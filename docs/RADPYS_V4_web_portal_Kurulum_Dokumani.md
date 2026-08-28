@@ -60,7 +60,14 @@ curl http://127.0.0.1:3000/api/health
 
 ### Sunucu olarak sürekli çalıştırma
 
-Terminal kapandığında uygulamanın durmaması için bir process manager kullanılmalı — örnek `pm2` ile:
+#### Seçenek 1 — Grafik Arayüzlü Başlatıcı (RADPYS Portal Launcher - Önerilen Windows Çözümü)
+Windows sunucularda veya ana bilgisayarda paketle gelen `RADPYS_Portal_Launcher.exe` (veya `user_launcher/portal_launcher.py`) uygulamasını kullanabilirsiniz:
+- **`[ ▶ Portali Başlat ]`** butonu ile tek tıkla servisi ayağa kaldırır.
+- LAN IP adresini otomatik tespit eder (`http://192.168.X.X:3000`), sağlık kontrolünü (`/api/health`) izler ve canlı akış loglarını gösterir.
+- Sistem tepsisine (Tray) küçülerek arka planda sessiz çalışabilir.
+
+#### Seçenek 2 — Process Manager (PM2)
+Terminal kapandığında uygulamanın durmaması için bir process manager kullanılabilir:
 
 ```bash
 npm install -g pm2

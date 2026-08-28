@@ -38,38 +38,38 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
   1. Mavi renkli *"Windows kişisel bilgisayarınızı korudu"* uyarısında **"Daha fazla bilgi"** (*More info*) bağlantısına tıklayın.
   2. Pencerenin altında açılan **"Yine de çalıştır"** (*Run anyway*) butonuna basarak kurulumu başlatın.
   3. Windows Defender karantinaya alırsa: *Windows Güvenliği > Virüs ve tehdit koruması > Koruma geçmişi* sekmesinden `RADPYS.exe` kaydını bulup **"Cihazda İzin Ver"** deyin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 1), `build_installer.bat`
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 1), `build_installer.bat`
 
 ### ❓ 1.2 İlk kurulumda varsayılan Yönetici (Admin) hesabı şifresi nedir ve nerededir?
 
 * **Neden Olur?:** RADPYS V4 ilk kez yüklendiğinde veritabanı otomatik olarak bir `admin` hesabı oluşturur ve rastgele geçici bir şifre atar.
 * **Çözüm:** Uygulama dizinindeki `data/ilk_admin_bilgileri.txt` dosyasını Not Defteri ile açarak tek seferlik geçici `admin` şifrenizi görebilirsiniz. İlk girişte sistem sizi otomatik olarak şifre yenilemeye yönlendirir. Güvenlik amacıyla bu dosyayı ilk girişten sonra siliniz.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 2.1), `app/database.py`
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 2.1), `app/database.py`
 
 ### ❓ 1.3 "Eksik Bilgi: Kullanıcı adı ve şifre zorunludur" veya "Giriş Başarısız" uyarısı
 
 * **Neden Olur?:** Kullanıcı adı veya şifre boş bırakılmış ya da yanlış girilmiştir (*Caps Lock* açık olabilir).
 * **Çözüm:** Kullanıcı adı ve şifrenizi kontrol edin. Karakterleri kontrol etmek için **"Şifreyi Göster"** kutucuğunu işaretleyin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 2)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 2)
 
 ### ❓ 1.4 "Hesabınız Geçici Olarak Kilitlendi" uyarısı alıyorum, ne yapmalıyım?
 
 * **Neden Olur?:** Güvenlik protokolü gereği **5 kez üst üste hatalı şifre** girildiğinde hesap kilitlenir.
 * **Çözüm:** Giriş ekranındaki **"Şifremi Unuttum"** butonunu kullanarak kayıtlı e-posta adresinizle yeni şifre oluşturabilir veya Sistem Yöneticinize başvurarak *Yönetim > Kullanıcı Yönetimi* panelinden kilidin kaldırılmasını talep edebilirsiniz.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 2 & 16.5)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 2 & 16.5)
 
 ### ❓ 1.5 Sistem Yönetici (Sudo) Şifresi Nedir ve Nerelerde İstenir?
 
 * **Neden Olur?:** Veritabanı sıfırlama, kullanıcı rol yetkileri değiştirme veya toplu veri silme gibi kritik güvenlik işlemlerinde işlem yapan kullanıcının kendi şifresini tekrar doğrulaması istenir.
 * **Çözüm:** Açılan doğrulama kutusuna mevcut oturum açtığınız kullanıcı şifrenizi girin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 18.4)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 18.4)
 
 ### ❓ 1.6 Kademeli Lisans Uyarısı (15 Gün / 3 Gün) ve Yönetici Aktivasyon Modu Nedir?
 
 * **Açıklama:** RADPYS lisans süresinin dolmasına 15 gün ve 3 gün kala sistem açılışında kademeli erken uyarı bildirimleri gösterilir.
   * **Süre Dolduğunda:** Normal kullanıcıların sisteme girişi engellenir; Admin kullanıcılar için modüller salt-okunur kilitlenerek doğrudan *Lisans Aktivasyon Ekranı* açılır.
   * **Çözüm:** Yeni lisans anahtarınızı girerek sistemi süresiz veya yeni periyotta aktifleştirin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 1.3), `app/services/system/license_service.py`
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 1.3), `app/services/system/license_service.py`
 
 ---
 
@@ -81,30 +81,30 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
 
 * **Neden Olur?:** Girilen T.C. Kimlik Numarası veritabanında başka bir personele zaten kayıtlıdır.
 * **Çözüm:** Personel arama çubuğundan TC kimlik numarasını aratarak mevcut kaydı güncelleyin veya yeni kayıttaki TC numarasını kontrol edin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 3)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 3)
 
 ### ❓ 2.2 "Personel Silinemez: Geçmiş Nöbet Kayıtları / Doz Ölçümleri Mevcut" uyarısı
 
 * **Neden Olur?:** Veri bütünlüğü ve denetim izi gereğince geçmiş nöbeti, dozimetre ölçümü veya sağlık muayenesi olan personel silinemez.
 * **Çözüm:** Personeli veritabanından silmek yerine durumunu **🔴 Pasif** olarak güncelleyin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 3)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 3)
 
 ### ❓ 2.3 "Personel Pasife Alınamaz: Aktif Nöbet veya İzin Kaydı Bulunmaktadır" uyarısı
 
 * **Neden Olur?:** Gelecek tarihe atanmış nöbet veya onaylanmış izni bulunan personel doğrudan pasife alınamaz.
 * **Çözüm:** Önce nöbet çizelgesinden veya izin modülünden personelin aktif kayıtlarını iptal/devir edin, ardından personeli pasife alın.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 3)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 3)
 
 ### ❓ 2.4 Personel Kartında KVKK Fernet AES-256 Şifreli Evrak Yükleme / İndirme Nasıl Yapılır?
 
 * **Açıklama:** Personel özlük kartı içerisindeki *Belgeler & Sözleşmeler* sekmesinden yüklenen tüm PDF, JPEG ve Word dosyaları diske açık yazılmaz; veritabanında **AES-256 Fernet** algoritmasıyla şifreli blob olarak saklanır.
 * **Çözüm:** Evrakı görüntülemek istediğinizde listedeki **"Görüntüle"** butonuna basmanız yeterlidir; sistem dosyayı bellekte anlık deşifre ederek sistemin varsayılan PDF görüntüleyicisinde güvenle açar.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 3.4), `app/db/database.py`
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 3.4), `app/db/database.py`
 
 ### ❓ 2.5 Personel Birim Değişikliği Yapıldığında Eski Nöbet ve İzinleri Etkilenir mi?
 
 * **Yanıt:** Hayır. Personelin kadro veya asıl birimi güncellendiğinde geçmiş dönemde onaylanmış ve yayınlanmış nöbet planları, geçmiş izin hakedişleri ve FHZ cetvelleri korunur; yeni birim ataması yalnızca gelecekteki nöbet planları ve mesailer için geçerli olur.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 3.2)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 3.2)
 
 ---
 
@@ -116,19 +116,19 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
 
 * **Neden Olur?:** Radyasyon çalışanının son periyodik muayenesinin üzerinden 1 yıl (365 gün) veya daha fazla süre geçmiştir.
 * **Çözüm:** Personeli derhal periyodik sağlık taramasına (Kan/Hemogram, Dahiliye, Dermatoloji, Göz) sevk edip muayene sonuçlarını veritabanına işleyin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 3 & NDK Mevzuatı)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 3 & NDK Mevzuatı)
 
 ### ❓ 3.2 🟡 "Yaklaşan Muayene" Uyarısı (Sarı Satır Vurgusu)
 
 * **Neden Olur?:** Personelin yıllık periyodik muayene son tarihine 30 günden az kalmıştır.
 * **Çözüm:** Randevu sürecini başlatmak için sağlık kurumu sevkiyatını planlayın.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 3)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 3)
 
 ### ❓ 3.3 "Eksik Branş Muayenesi" uyarısı nedir?
 
 * **Neden Olur?:** Dahiliye, Dermatoloji, Göz veya Periferik Yayma (Kan) muayene branşlarından biri henüz sisteme girilmemiştir.
 * **Çözüm:** Muayene penceresinde eksik branş sekmesini açarak doktordan alınan muayene sonucunu girip kaydedin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 3)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 3)
 
 ### ❓ 3.4 Şua İzni Öncesi / İşe Giriş Muayenesi ve Periyodik Muayene Farkı Nedir?
 
@@ -136,7 +136,7 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
   * **İşe Giriş Muayenesi:** Radyasyonlu alanda ilk kez göreve başlayacak personelin bazal kan ve göz değerlerini tespit etmek için zorunludur.
   * **Periyodik Muayene:** Yılda en az 1 kez (365 gün) tekrarlanması gereken genel taramadır.
   * **Şua İzni Öncesi Muayene:** 4 haftalık Şua iznine ayrılmadan önce personelin sağlık durumunu teyit etmek amacıyla kurum iç yönergesiyle uygulanan muayene türüdür.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 3.3)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 3.3)
 
 ---
 
@@ -148,37 +148,37 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
 
 * **Neden Olur?:** Talep edilen izin günü sayısı personelin kalan yıllık izin veya mazeret izni bakiyesini aşmaktadır.
 * **Çözüm:** Personelin izin bakiyesini *İzin Takip > Personel İzin Özeti* ekranından kontrol edin veya mazeret izni olarak düzenleyin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 4)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 4)
 
 ### ❓ 4.2 "Şua İzni Kesintisiz Kullanılmalıdır" uyarısı
 
 * **Neden Olur?:** Sağlık Bakanlığı ve NDK mevzuatı gereği 4 haftalık Şua İzni (Sağlık İzni) parçalı kullanılamaz; tek seferde blok olarak kullandırılmalıdır.
 * **Çözüm:** İzin başlangıç ve bitiş tarihlerini 4 haftalık blok olarak ayarlayın.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 4 & NDK Mevzuatı)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 4 & NDK Mevzuatı)
 
 ### ❓ 4.3 "Seçili Dönem Kilitli Olduğu İçin İşlem Yapılamaz" uyarısı
 
 * **Neden Olur?:** İlgili çalışma dönemi önceden **"Dönemi Kilitle"** veya **"Yılı Kilitle"** butonuyla kilitlenmiştir.
 * **Çözüm:** Sistem yöneticisine başvurarak ilgili dönemin kilidini geçici olarak kaldırtın.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 4)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 4)
 
 ### ❓ 4.5 İzin Kayıtlarındaki "Ön Onaylı" ve "Resmi Onaylı" Statüleri Ne Anlama Gelir?
 
 * **Açıklama:** RADPYS V4 2-Aşamalı İzin Onay mekanizması kullanır.
   * **🟡 Ön Onaylı:** Personelin şifahi veya ön bildirim yaptığı ancak idari izin belgesinin henüz resmiyet kazanmadığı durumdur. Nöbet motoru bu tarihleri otomatik bloklayarak çakışmayı engeller.
   * **🟢 Resmi Onaylı:** İzin belgesinin kurumsal onay aldığı durumdur. Yasal Şua izni hakedişi, yıllık izin düşümü ve Fiili Hizmet (FHZ) cetvellerinde sadece **Resmi Onaylı** kayıtlar işlenir.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 4.1), `app/domain/izin/policies.py`
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 4.1), `app/domain/izin/policies.py`
 
 ### ❓ 4.6 Fiili Hizmet (FHZ) Hesaplamasında "Resmi Onaysız İzin Var" Uyarısı Neden Çıkar?
 
 * **Neden Olur?:** FHZ dönemi hesaplanırken seçilen dönemde henüz idari evrakı tamamlanmamış **"Ön Onaylı"** izin kayıtları tespit edilmiştir.
 * **Çözüm:** Açılan ikaz penceresindeki *"İzinlere Git"* butonuna basarak ilgili izinlerin durumunu kontrol edin. Evrakları tamamlanan izinleri *"Resmi Onaylı"* yapın, ardından FHZ hesaplamasını yeniden başlatın.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 6.2), `ui/pages/fiili/fhz_onaysiz_izin_uyari_dialog.ui`
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 6.2), `ui/pages/fiili/fhz_onaysiz_izin_uyari_dialog.ui`
 
 ### ❓ 4.7 Toplu İçe Aktarım (Excel/CSV) İle Yüklenen Geçmiş İzinler Nasıl Kaydedilir?
 
 * **Açıklama:** Toplu aktarım sihirbazı (`bulk_import`) ile aktarılan geçmiş dönem izinleri fiilen kullanılmış kabul edildiğinden sistem tarafından otomatik olarak **`Resmi Onaylı`** statüsünde kaydedilir. Ekstra onay işlemine gerek kalmadan hakediş ve FHZ hesaplamalarına doğrudan yansır.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 4.1 & 15), `app/services/personel/izin_service.py`
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 4.1 & 15), `app/services/personel/izin_service.py`
 
 ### ❓ 4.8 İzin Hakediş Tablosundaki " [⏳ 45g]" veya " [🚨 YANDI]" Şua İzni Rozetleri Ne Anlama Gelir?
 
@@ -187,19 +187,19 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
   * **[🚨 15g] (Kırmızı - Kritik):** Yıl sonuna 30 günden az kaldığını ve acil izin planlaması gerektiğini belirtir.
   * **[🚨 YANDI]:** 31 Aralık tarihi geçmiş ve kullanılmayan Şua izninin zamanaşımına uğradığını belirtir.
 * **Çözüm:** İzin Hakediş ekranında *"⏳ Zamanaşımı Yaklaşan Şua İzinleri"* filtresini işaretleyerek riskli personelleri tek tıkla listeleyebilir ve nöbet/izin planlarını erkenden organize edebilirsiniz.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 4.2), `app/services/personel/izin_service.py`
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 4.2), `app/services/personel/izin_service.py`
 
 ### ❓ 4.9 Yıllık İzin ile Şua İzni Arasındaki Devir ve Yanma Farkları Nelerdir?
 
 * **Yanıt:**
   * **Yıllık İzin:** İdarenin uygun görmesi halinde bir sonraki yıla devredebilir (`Devir Gün` sütununda takip edilir).
   * **Şua İzni:** Radyasyondan arınma ve biyolojik dinlenme hakkı olduğu için cari takvim yılı içinde kullandırılmak zorundadır; sonraki yıla devredilemez veya nakde çevrilemez.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 4.2 & NDK Mevzuatı)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 4.2 & NDK Mevzuatı)
 
 ### ❓ 4.10 Mazeret İzni Eklendiğinde Nöbet Çizelgesi Otomatik Güncellenir mi?
 
 * **Yanıt:** Evet. İzin onaylandığı anda sistem yayınlanmış nöbet planındaki personelin nöbetini otomatik olarak `IPTAL_MAZERET` durumuna çeker ve o slota ikame atanabilmesi için nöbet hücresini boşa çıkarır.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 4.3 & 6.4)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 4.3 & 6.4)
 
 ---
 
@@ -214,13 +214,13 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
   1. Sistem personeli otomatik 🔴 **"Yüksek Riskli / Limit Aşıldı"** statüsüne alır.
   2. Personeli derhal radyasyonlu alandan (BT/Röntgen/Nükleer Tıp) çıkarıp radyasyonsuz birime (MR/Poliklinik/İdari) çekin.
   3. *Kalite & Güvenlik > Olay Bildirim / DÖF* panelinden otomatik oluşturulan DÖF kaydını işleyin ve Sağlık Bakanlığı sağlık tarama tutanağını sisteme yükleyin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 5 & 16.2), NDK Mevzuat Engine
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 5 & 16.2), NDK Mevzuat Engine
 
 ### ❓ 5.2 "Mükerrer Dozimetre Ölçüm Kaydı" uyarısı
 
 * **Neden Olur?:** Aynı personel ve aynı ölçüm periyodu (örn: *2026/03*) için sistemde zaten kayıtlı bir dozimetre doz verisi bulunmaktadır.
 * **Çözüm:** Var olan ölçüm kaydını düzenleyin veya periyot bilgisini kontrol edin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 5)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 5)
 
 ### ❓ 5.3 RD.F43 Resmi Doz Araştırma Formu Nasıl Doldurulur ve 10 İş Günü Sayacı Nasıl Çalışır?
 
@@ -228,21 +228,21 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
   * **10 İş Günü Yasal Süre Sayacı:** Form açılışında hafta sonlarını atlayarak kalan yasal araştırma süresini rozetle gösterir (`🟢 X gün kaldı`, `🚨 Yasal Süre Doldu`).
   * **Dinamik Doz Hesaplama Sihirbazı:** Unutulma süresi (saat) ve cihaz doz hızından ($\mu\text{Sv/sa}$) tahmini dozu tek tıkla otomatik hesaplar.
   * **Word/PDF Çıktı:** *"Resmi RD.F43 Word Çıktısı"* butonuyla doldurulan form doğrudan resmi NDK formatında üretilir.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 5.3), `app/services/system/export_service.py`
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 5.3), `app/services/system/export_service.py`
 
 ### ❓ 5.4 Dozimetre Karşılaştırma Grafikleri (Sparkline) ve Delta Doz Değişimi Nasıl Okunur?
 
 * **Açıklama:** *Dozimetre Karşılaştırma* sekmesinde iki dönem arasındaki fark (`Delta = Dönem 2 - Dönem 1`) ve yüzde değişim oranı görüntülenir.
   * Mini sparkline çizgi grafiği personelin son 12 aylık doz eğilimini gösterir.
   * Dozu ani yükselen personeller sarı/kırmızı renkle öne çıkarılarak koruyucu ekipman (RKE) kullanımı veya cihaz sızıntı denetimi için uyarı verilir.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 5.2)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 5.2)
 
 ### ❓ 5.5 Ekstremite (Yüzük / Bileklik) Doz Takibi Nasıl Yapılır ve Yasal Limiti Nedir?
 
 * **Açıklama:** Nükleer tıp, anjiyografi ve girişimsel radyolojide çalışan personelin el/parmak maruziyeti için ekstremite dozu takip edilir.
   * **Yasal Limit:** Yıllık 500 mSv (Tüm vücut 20 mSv limitinden ayrı takip edilir).
   * Sistemde manuel veya Excel aktarımı ile `Ekstremite` alanına girilen değerler ayrı bir yasal limit motoruyla denetlenir.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 5.1 & NDK Mevzuatı)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 5.1 & NDK Mevzuatı)
 
 ---
 
@@ -257,18 +257,18 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
   1. Nöbet Sihirbazı ekranında **"Çapraz Görevlendirme"** butonuna basarak komşu birimlerden geçici personel çekin.
   2. *Nöbet Ayarları > Yasal Kısıtlar* ekranından yumuşak kısıt limitlerini esnetin.
   3. Kırmızı hücreye çift tıklayarak amir yetkisiyle manuel atama yapın.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 6 & 16.1)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 6 & 16.1)
 
 ### ❓ 6.2 "Yasal Nöbet Ertesi Dinlenme İhlali" uyarısı alıyorum
 
 * **Neden Olur?:** Personel 24 saatlik nöbetten çıktıktan sonra en az 24 saat geçmeden tekrar nöbet yazılmaya çalışılmıştır. Sert kısıt engeller.
 * **Çözüm:** Personelin aradaki dinlenme süresini gözeterek nöbet gününü değiştirin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 6)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 6)
 
 ### ❓ 6.3 İki personel peş peşe 2 gün üst üste nöbet tutabilir mi?
 
 * **Yanıt:** Hayır. Sistemde *Nöbet Ertesi Dinlenme* sert kısıtı aktif olduğu için 24 saatlik nöbet sonrası en az 24 saat zorunlu dinlenme verilir.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 6.16)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 6.16)
 
 ### ❓ 6.4 Nöbet Çizelgesinde "⚡ Akıllı İkame Ata" Özelliği Nasıl Çalışır?
 
@@ -277,22 +277,22 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
   1. Çizelge tablosundaki herhangi bir hücreye **sağ tıklayın**.
   2. *"⚡ Akıllı İkame Ata (Önerilenler)"* menüsünden kısıtları sağlamış ve en yüksek uygunluk skoruna sahip adaya (örn: *Ahmet Kaya %95*) tıklayın.
   3. Sistem izinli ve çakışan personelleri otomatik eler, aylık çalışma açığı en çok olan personeli tek tıkla slota atar ve aylık çalışma saatlerini günceller.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 6.4), `app/services/nobet/nobet_cizelge_service.py`
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 6.4), `app/services/nobet/nobet_cizelge_service.py`
 
 ### ❓ 6.5 Yayınlanmış planda nöbet devri veya isim değişikliği yapıldığında hakediş saatleri ne olur?
 
 * **Yanıt:** Eğer *Onayda Otomatik Çizelge Güncelle* seçeneği aktifse, devir onaylandığı anda nöbet çizelgesindeki isim otomatik güncellenir ve personellerin aylık hakediş/fazla mesai saatleri anında yeniden hesaplanır.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 6.16)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 6.16)
 
 ### ❓ 6.6 Hafta Sonu ve Bayram Nöbet Adalet Dengesi Katsayısı Nasıl Çalışır?
 
 * **Açıklama:** Otomatik dağıtım motoru (Solver), geçmiş 3-6 ayın nöbet geçmişini tarar. Cumartesi, pazar ve bayram nöbetlerini personeller arasında eşit dağıtmak için nöbet yükü az olan personele öncelik puanı atar.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 6.1)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 6.1)
 
 ### ❓ 6.7 Çapraz Görevlendirme İle Komşu Birimden Personel Çekildiğinde Saatleri Hangi Birime Yazılır?
 
 * **Yanıt:** Personel nöbeti hangi birimde tuttuysa (örn: *Acil Radyoloji*), o nöbetin saat yükü ve Şua çalışma süresi nöbet tutulan birimin radyasyon risk katsayısı ile kaydedilir; personelin ana kadro birimindeki normal mesailerine engel teşkil etmez.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 6.2)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 6.2)
 
 ### ❓ 6.8 🤰 Personel gebelik bildirimi yaptığında mevcut ve gelecek ay nöbetleri nasıl etkilenir?
 
@@ -300,7 +300,7 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
   * **Radyasyonlu Alan Personeli (`radyasyonlu_alan = 1`):** Mevcut ve hazırlanmış gelecek ay nöbet çizelgesindeki **GÜNDÜZ VE GECE TÜM NÖBETLERİ** otomatik olarak `IPTAL_MAZERET` yapılır.
   * **Radyasyonsuz Alan Personeli (`radyasyonlu_alan = 0`):** Gündüz mesaileri saklı tutulur, **SADECE GECE VE 24 SAATLİK NÖBETLERİ** `IPTAL_MAZERET` yapılır.
   * **Yönetici Aksiyonu:** Yönetici **🎯 Yönetici Aksiyon Merkezi** (Masaüstünde *Onay Bekleyen Görevler > Gebelik & İdari Aksiyonlar*) üzerinden tek tıkla personelin yeni radyasyonsuz birim atamasını, boşalan nöbetlerin ikamelerini ve 160 saatlik gündüz mesai dengelemesini 3 adımlı sihirbazla tamamlar.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 3.6 & 8.4)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 3.6 & 8.4)
 
 ---
 
@@ -312,12 +312,12 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
 
 * **Neden Olur?:** Olay Bildirim Sihirbazında zorunlu olan olay detayı girilmeden bildirim gönderilmeye çalışılmıştır.
 * **Çözüm:** Olay açıklama alanını en az 10 karakter olacak şekilde doldurun.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 7)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 7)
 
 ### ❓ 7.2 Anonim olay bildirimlerinde kişisel bilgilerim görünür mü?
 
 * **Yanıt:** Hayır. *Anonim Bildirim Yap* seçeneği işaretlendiğinde sistem veritabanında bildiren personelin kimliğini anonimleştirir; yönetici panelinde isim görünmez.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 7)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 7)
 
 ### ❓ 7.3 ☢️ Radyasyon kazası veya ihlalinde "NDK 3 Günlük Yasal Bildirim Takibi" nasıl çalışır?
 
@@ -326,7 +326,7 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
   1. Sistem bildirim tarihine otomatik 3 gün ekleyerek `ndk_bildirim_son_tarih` alanını hesaplar ve takip durumunu `bekliyor` statüsüne alır.
   2. NDK'ya resmi bildirim yapıldığında olay detay sayfasından veya Web Portalından NDK bildirim tarihini sisteme işleyin. Takip durumu otomatik `yapildi` olarak güncellenir.
   3. Süresi yaklaşan veya geciken bildirimler panelde 🔴 **"NDK Bildirimi Bekliyor / Gecikmiş"** rozetiyle uyarılır.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 7.4 & NDK Mevzuatı)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 7.4 & NDK Mevzuatı)
 
 ### ❓ 7.4 NDK 2. Gün Hatırlatıcısı ve Süre Aşımı Alarmları Nasıl Çalışır?
 
@@ -334,13 +334,13 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
   * ⚠️ **NDK 2. Gün Hatırlatıcısı (Son 24 Saat):** Admin ve Yönetici rollerine acil sistem bildirimi oluşturur.
   * 🚨 **NDK Bildirim Süresi Doldu:** 3 günü geçmiş ve henüz bildirim sayısı girilmemiş vakalarda kırmızı alarm üretir.
   * Mükerrer bildirim engeli sayesinde aynı gün içinde yalnızca 1 kez hatırlatma iletilir.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 7.4), `app/services/system/notification_service.py`
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 7.4), `app/services/system/notification_service.py`
 
 ### ❓ 7.5 DÖF (Düzeltici Önleyici Faaliyet) Kapatılırken Zorunlu Kapanış Notu Neden İstenir?
 
 * **Açıklama:** Sağlık Bakanlığı SKS ve ISO 9001 kalite standartları gereğince açılan bir DÖF aksiyonu kök neden giderilmeden kapatılamaz.
 * **Çözüm:** Kapatma penceresinde yapılan iyileştirme (örn: *Zırhlama kapısı menteşesi onarıldı, personele koruyucu donanım eğitimi verildi*) yazılarak DÖF onaylanır.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 7.3)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 7.3)
 
 ---
 
@@ -382,30 +382,30 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
 
 * **Neden Olur?:** Onay bekleyen bir izin, nöbet devri veya veri değişikliği reddedilirken açıklama alanı boş bırakılmıştır.
 * **Çözüm:** Reddetme dialog penceresine açıklayıcı bir gerekçe yazarak onaylayın.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 8)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 8)
 
 ### ❓ 9.2 "Değişiklik Uygulanamadı / Kaynak Veri Silinmiş" uyarısı
 
 * **Neden Olur?:** Onay bekleyen veri, başka bir yönetici tarafından veritabanında silinmiş veya değiştirilmiştir.
 * **Çözüm:** Onay listesini yenileyip güncel durumunu kontrol edin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 8)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 8)
 
 ### ❓ 9.3 Personelin Web Portaldan sildiği eğitim/belge/muayene neden listeden hemen kaybolmuyor?
 
 * **Yanıt:** Kurumsal veri güvenliği gereğince standart personelin (`onay_gerektirir = 1`) silme istekleri doğrudan veritabanından silinmez; **`Silme Onayı Bekliyor`** rozetiyle yöneticinin onay kuyruğuna düşer. Yönetici onayladığında silme işlemi PostgreSQL üzerinde atomik olarak tamamlanır.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 8.7)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 8.7)
 
 ### ❓ 9.4 Web Portaldan yüklenen evraklar KVKK Kasasına (`stored_files`) ne zaman aktarılır?
 
 * **Yanıt:** Personel belgeyi yüklediğinde dosya geçici staging alanına kaydedilir. Yönetici Onay Bekleyen Görevler ekranından **"Onayla"** butonuna bastığı anda dosya arka planda **AES-256 Fernet** ile şifrelenerek veritabanına (`stored_files`) aktarılır ve `file-uuid` anahtarına bağlanır.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 8.6)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 8.6)
 
 ### ❓ 9.5 Fark İnceleme Ekranında (Diff View) Kırmızı ve Yeşil Renkler Ne Anlama Gelir?
 
 * **Açıklama:** Veri Değişiklikleri onay panelinde bir kaydı incelerken:
   * 🔴 **Kırmızı Vurgulu Alanlar (Eski Değer):** Veritabanında halihazırda kayıtlı olan mevcut veridir.
   * 🟢 **Yeşil Vurgulu Alanlar (Önerilen Yeni Değer):** Personelin veya operatörün güncellenmesini talep ettiği yeni veridir.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 8.2)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 8.2)
 
 ---
 
@@ -417,13 +417,13 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
 
 * **Neden Olur?:** Üretilecek rapor dosyası bilgisayarınızda başka bir programda (Excel, Adobe Reader vb.) halihazırda açıktır.
 * **Çözüm:** Açık olan PDF/Excel dosyasını kapatın ve *Rapor Oluştur* butonuna tekrar basın.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 13 & 16.4)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 13 & 16.4)
 
 ### ❓ 10.2 "Seçilen Kriterlere Uygun Kayıt Bulunamadı" uyarısı
 
 * **Neden Olur?:** Filtrelediğiniz tarih aralığında veya departmanda herhangi bir veri bulunmamaktadır.
 * **Çözüm:** Tarih aralığını veya departman filtre kriterlerini esneterek tekrar deneyin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 13)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 13)
 
 ### ❓ 10.3 Kurumsal rapor başlığını çok satırlı (Üniversite, Fakülte, Anabilim Dalı) olarak nasıl alt alta yazabilirim?
 
@@ -455,19 +455,19 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
 
 * **Neden Olur?:** Veri bütünlüğü gereği aktif personeli olan bir birim veya ünvan doğrudan silinemez.
 * **Çözüm:** Önce bağlı personellerin birimini/ünvanını değiştirin veya pasife alın, ardından departmanı silin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 10)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 10)
 
 ### ❓ 11.2 "Aynı İsimde veya Kodda Kayıt Zaten Mevcut" uyarısı
 
 * **Neden Olur?:** Aynı departman kural kodu (örn: `BT-01`) veya ünvan adı ikinci kez tanımlanamaz.
 * **Çözüm:** Mevcut kodları *Tanımlamalar* sekmesinden kontrol ederek farklı bir kod belirleyin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 10)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 10)
 
 ### ❓ 11.3 Tanımlamalar Tablosunda "Silinemeyen Kilitli Sistem Kodları" Nelerdir?
 
 * **Açıklama:** RADPYS çekirdek kurallarının dayandığı bazı temel tanımlar (örn: `Çalışma Koşulu A / B`, `Şua İzni Türü`, `Admin Rolü`, `657 Standart Memur Mesaisi`) veritabanında `is_system = 1` olarak korunur.
 * **Kural:** Sistem bu kayıtların silinmesini engeller ancak isim veya açıklama gibi etiketlerin güncellenmesine izin verir.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 10.1)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 10.1)
 
 ---
 
@@ -477,29 +477,29 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
 
 ### ❓ 12.1 🌐 Web Portalına tarayıcıdan erişilemiyor ("Sunucu Bağlantı Hatası / REST API Servisine Ulaşılamıyor")
 
-* **Neden Olur?:** Masaüstü uygulamasındaki REST API arka plan servisi kapalıdır veya ağ güvenlik duvarı (Firewall) portu engellemektedir.
+* **Neden Olur?:** Web Portal Node.js servisi sunucuda çalışmıyor veya ağ güvenlik duvarı (Firewall) portu (Port 3000) engellemektedir.
 * **Çözüm:**
-  1. Masaüstü uygulamasında *Yönetim > Web Portal & API Ayarları* sekmesine gidin.
-  2. 🟢 **"REST API Servisini Başlat"** butonuna basarak servisi aktif yapın (Varsayılan Port: 3000).
-  3. Sunucu IP adresini (örn: `http://192.168.1.X:3000`) kontrol edin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 11 & 16.3), `web_portal`
+  1. Sunucu üzerinde **RADPYS Portal Launcher** (`RADPYS_Portal_Launcher.exe`) uygulamasını açın ve **"▶ Portali Başlat"** butonuna basarak servisin `RUNNING` durumunda olduğunu teyit edin.
+  2. Windows Güvenlik Duvarı'nda 3000 numaralı TCP portuna yerel ağ gelen bağlantı izni (Inbound Rule) verin.
+  3. İstemci cihazın tarayıcısından sunucu IP adresini (örn: `http://192.168.1.X:3000`) kontrol edin.
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 15.3), `web_portal`
 
 ### ❓ 12.2 "Oturum Süresi Doldu / Lütfen Yeniden Giriş Yapın" uyarısı
 
 * **Neden Olur?:** Güvenlik protokolü gereğince web portalında oturum süresi tam **15 dakika** ile sınırlandırılmıştır. 15 dakika dolduğunda oturum güvenlik gereği kapatılır.
 * **Çözüm:** Kullanıcı adı ve şifrenizi girerek tekrar giriş yapın; yeni 15 dakikalık oturum anında başlar. Sunucu yeniden başlasa dahi oturumlar `data/sessions.json` dosyasında korunduğundan 15 dakikanız dolmadan oturumunuz düşmez.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 11)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 11)
 
 ### ❓ 12.3 "Yetkisiz Erişim / Bu İşlem İçin Yetkiniz Bulunmamaktadır" uyarısı
 
 * **Neden Olur?:** Saha çalışanlarının masaüstü yönetici paneline veya yetkisiz birimlerin verilerine erişimi rol bazlı olarak kısıtlanmıştır.
 * **Çözüm:** Kullanıcı rolünüzün erişim yetkilerini kontrol etmek veya yetki yükseltme talebinde bulunmak için Sistem Yöneticinize başvurun.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 11 & 16)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 11 & 16)
 
 ### ❓ 12.4 Web Portalında belgeleri indirmeden tarayıcıda görüntüleyebilir miyim?
 
 * **Yanıt:** Evet. Profilim altındaki Evrak Kasasında yer alan **"Görüntüle"** (Göz simgesi) butonuna basıldığında PDF ve resim evrakları tarayıcının kendi dahili görüntüleyicisinde yeni sekmede doğrudan açılır.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 8.6 & 11)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 8.6 & 11)
 
 ---
 
@@ -511,13 +511,13 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
 
 * **Neden Olur?:** Onay kuyruğunda bekleyen acil izin veya nöbet devri talebi olduğunda sistem zil simgesinde kırmızı bildirim yakar.
 * **Çözüm:** Sağ üst köşedeki Bildirim Zili simgesine tıklayarak okunmamış bildirimleri inceleyin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 12)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 12)
 
 ### ❓ 13.2 "Bildirim Servisi Bağlantı Hatası" uyarısı
 
 * **Neden Olur?:** Yerel bildirim servisi veya anlık iletişim kanalı geçici olarak durduğunda veya bağlantı koptuğunda belirir.
 * **Çözüm:** Sayfayı / uygulamayı yenileyin. Bağlantı otomatik olarak yeniden kurulacaktır.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 12)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 12)
 
 ---
 
@@ -529,12 +529,12 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
 
 * **Neden Olur?:** Program genel ayarlarını değiştirme yetkisi yalnızca *Sistem Yöneticisi* rolüne tanınmıştır.
 * **Çözüm:** Sistem Yöneticisi hesabıyla oturum açın.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 13)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 13)
 
 ### ❓ 14.2 Yanlış bir ayar girildiğinde fabrika ayarlarına nasıl dönülür?
 
 * **Çözüm:** *Program Ayarları* ekranındaki **"Varsayılan Ayarları Yükle"** butonuna basarak sistem konfigürasyonunu fabrika ayarlarına döndürebilirsiniz.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 13)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 13)
 
 ---
 
@@ -546,7 +546,7 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
 
 * **Neden Olur?:** Seçilen yedek dosyasının şifreleme anahtarı uyumsuzdur veya dosya bütünlüğü bozulmuştur.
 * **Çözüm:** Farklı bir tarihli `.dump` veya `.sql` yedek noktasını seçerek tekrar deneyin.
-* *🔍 Kaynak:* `docs/RADPYS_V3_Kullanim_Kilavuzu.md` (Bölüm 14)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 14)
 
 ### ❓ 15.2 🔓 Veritabanı yedekleme ve bakım işlemleri nasıl yapılır?
 
@@ -555,7 +555,7 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
   2. **`Veritabanı Yedekle`** butonuna basarak anlık şifreli `.dump` yedeği alabilirsiniz.
   3. **`Veritabanını Sıkıştır (VACUUM)`** butonu ile PostgreSQL sunucusu üzerinde optimizasyon yapabilirsiniz.
   4. **`İndeksleri Yeniden Oluştur (REINDEX)`** ile sorgu hızlandırma indekslerini yenileyebilirsiniz.
-* *🔍 Kaynak:* `docs/RADPYS_V3_Kullanim_Kilavuzu.md` (Bölüm 14)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 14)
 
 ### ❓ 15.3 pg_dump ve pg_restore İle PostgreSQL Veritabanı Nasıl Yedeklenir ve Taşınır?
 
@@ -573,19 +573,19 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
 
 * **Neden Olur?:** Yüklenen Excel dosyasındaki sütun başlıkları sistem formatından farklıdır.
 * **Çözüm:** Import Sihirbazı 1. Adımındaki **"Örnek Şablon İndir"** butonuna basarak standart şablonu indirin ve verilerinizi bu şablona yapıştırıp tekrar yükleyin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 15 & 16)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 15 & 16)
 
 ### ❓ 16.2 "Demo Sürüm Limiti (Maksimum 6 Personel Kaydı)" uyarısı
 
 * **Neden Olur?:** Uygulamanız Demo modundaysa, Excel dosyanızdaki personel sayısı 6 sınırını aştığı için aktarım durdurulur.
 * **Çözüm:** Lisans anahtarınızı *Hakkında > Lisans Aktifleştir* ekranından girerek Tam Sürüme geçin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 1.3 & 15)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 1.3 & 15)
 
 ### ❓ 16.3 "Geçersiz Departman Kodu" veya "Önce Tanımlamaları Yapınız" uyarısı
 
 * **Neden Olur?:** Excel dosyasındaki departman adı sistemdeki *Tanımlamalar > Departmanlar* listesiyle uyuşmamaktadır.
 * **Çözüm:** Excel'deki departman isimlerini sistemdeki tanımlı isimlerle birebir aynı olacak şekilde güncelleyin veya önce Tanımlamalar modülünden departmanı ekleyin.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 15)
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 15)
 
 ### ❓ 16.4 Toplu İçe Aktarmada Dry-Run Ön Doğrulama ve Tablo Üzerinde Düzenleme Nasıl Yapılır?
 
@@ -594,7 +594,7 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
   * 🟡 **Mükerrer:** TC Kimlik, Cihaz Kodu veya Dozimetre No sistemde zaten mevcuttur. *"Mükerrerleri Güncelle (Merge)"* veya *"Mükerrerleri Atla (Skip)"* stratejisi seçilebilir.
   * 🔴 **Hatalı:** Eksik veya geçersiz alan içeren satırlardır.
 * **Tablo Üzerinde Düzenleme (In-Place Edit):** Hatalı veya mükerrer satırları düzeltmek için Excel'i yeniden yüklemenize gerek yoktur. Önizleme tablosundaki ilgili hücreye **çift tıklayarak** veriyi doğrudan düzeltebilirsiniz; sistem anında durumu yeniden doğrular.
-* *🔍 Kaynak:* `docs/Kullanim_Kilavuzu.md` (Bölüm 15), `app/services/system/bulk_import_service.py`
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 15), `app/services/system/bulk_import_service.py`
 
 ---
 
@@ -673,4 +673,31 @@ Bu doküman, RADPYS V4 (Radyoloji & Radyasyon Personeli Yönetim Sistemi) masaü
 * **Açıklama:** DIN 6857-1 standardına göre non-kritik bölgede sınırlı yıpranması olan veya kurşun eşdeğeri $<0.25\text{ mm Pb}$ olan önlükler *Şartlı Kullanım* olarak etiketlenir.
 * **Kullanım Kuralı:** Bu ekipmanlar girişimsel radyoloji, anjiyografi veya skopi gibi yüksek primer dozlu alanlarda kullanılamaz; sadece düşük saçılma dozlu poliklinik röntgen ve kemik dansitometri gibi alanlarda geçici olarak kullandırılabilir.
 * *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 9C), `app/services/rke_service.py`
+
+---
+
+<a id="19-mimari-kat-plani-pdf-cihaz-pin-kilitleme-ve-akilli-gezinim"></a>
+
+## 19. Mimari Kat Planı PDF Desteği, Cihaz Pin Kilitleme & Akıllı Breadcrumb Gezinimi
+
+### ❓ 19.1 Mimari Kat Planı / Kroki Olarak PDF Dosyası Yükleyebilir miyim?
+
+* **Evet:** RADPYS V4, Ortam Dozu ve Departman Krokileri modüllerinde PNG/JPG resimlerinin yanı sıra **`.pdf` formatındaki vektörel mimari çizim dosyalarını doğrudan destekler**.
+* **Nasıl Çalışır?:** Yüklenen PDF dosyasının ilk sayfası `pypdfium2` motoruyla kayıpsız ve yüksek çözünürlüklü olarak işlenir ve interaktif grafik tuvaline yerleştirilir.
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 8 & 10)
+
+### ❓ 19.2 Cihaz Konumu ve Ortam Ölçüm Krokilerinde Pinlerin Kazara Kayması Nasıl Önlenir?
+
+* **Pin Kilitleme Modu (`[ 🔒 Pin Kilitli ]`):**
+  * Cihaz Ekle/Düzenle ve Ortam Dozu ekranlarında kat planı açıldığında pinler varsayılan olarak **Kilitli** gelir.
+  * Kilitli modda haritada fare tekerleğiyle sınırsız yakınlaşabilir (Zoom) ve haritayı sürükleyebilirsiniz (Pan); pin konumu kesinlikle bozulmaz veya kazara başka odaya sıçramaz.
+* **Konumu Değiştirmek İçin:** Araç çubuğundaki **`[ Pin Kilitli ]`** butonuna basarak turuncu renkli **`[ 🔓 Taşıma Aktif ]`** modunu açabilir ve pini fareyle dilediğiniz odaya sürükleyebilirsiniz.
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 8.1 & 10.5)
+
+### ❓ 19.3 Üst Araç Çubuğundaki Breadcrumb Başlıklarına Tıkladığımda Ne Olur?
+
+* **`RADPYS V4` (Kök Buton):** Açık olan tüm alt pencereleri tek hamlede kapatır ve temiz ana karşılama masaüstüne döner.
+* **Kategori Başlıkları (*Kalite Yönetimi*, *Cihaz Yönetimi*, *Personel Modülü* vb.):** Tıklandığında ilgili modüle bağlı tüm alt sayfaları listeleyen **Hızlı Geçiş Açılır Menüsü (Dropdown)** açılır. Böylece menüyü açmadan tek tıkla kardeş sayfalara geçebilirsiniz.
+* **Tüm Pencereler Kapatıldığında:** Üst breadcrumb çubuğu masaüstünde gereksiz yer kaplamaz; otomatik olarak temizlenir ve gizlenir.
+* *🔍 Kaynak:* `docs/RADPYS_V4_Kullanim_Kilavuzu.md` (Bölüm 16.4)
 

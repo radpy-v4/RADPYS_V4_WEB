@@ -12,6 +12,8 @@ Bu kılavuz, sistemin gerçek arayüz bileşenleri ve iş kuralları ile satır 
 4. [Şua İzni Zamanaşımı Takibi ve Yıl Sonu Erken Uyarıları](#4-sua-izni-zamanasimi-takibi-ve-yil-sonu-erken-uyarilari)
 5. [Radyasyon Olay Bildirimi ve NDK 2. Gün Hatırlatıcısı](#5-radyasyon-olay-bildirimi-ve-ndk-2-gun-hatirlaticisi)
 6. [Koruyucu Ekipman (RKE) DIN 6857-1 Muayene ve Kalite Kontrolü](#6-koruyucu-ekipman-rke-din-6857-1-muayene-ve-kalite-kontrolu)
+7. [RADPYS Portal Launcher ile Web Servis Yönetimi](#7-radpys-portal-launcher-ile-web-servis-yonetimi)
+8. [Veritabanı Bakım ve 2 Aşamalı Güvenlikli Sıfırlama](#8-veritabani-bakim-ve-2-asamali-sifirlama)
 
 ---
 
@@ -185,8 +187,54 @@ Kurşun önlük, tiroid koruyucu, gonadal koruyucu ve kurşun gözlüklerin yıl
 
 ---
 
+<a id="7-radpys-portal-launcher-ile-web-servis-yonetimi"></a>
+
+## 7. 🚀 RADPYS Portal Launcher ile Web Servis Yönetimi
+
+### 💡 Ne Zaman / Neden Kullanılır
+
+Kurum yerel ağındaki (LAN) çalışanların cep telefonu, tablet veya tarayıcı üzerinden nöbet devir, mazeret ve arıza bildirimlerine erişebilmesi için Node.js Web Portal servisini tek tıkla başlatmak, durdurmak ve canlı konsol loglarını izlemek için kullanılır.
+
+### ⚙️ Ön Koşullar
+
+- **Gerekli Yetki/Rol:** BT / Sistem Yöneticisi.
+- **Konum:** `RADPYS_Portal_Launcher.exe` (veya `user_launcher/portal_launcher.py`).
+
+### 🐾 Adım Adım İşlem Akışı
+
+1. Kurulum klasöründeki veya masaüstündeki **"RADPYS Portal Launcher"** simgesine çift tıklayın.
+2. Açılan görsel Launcher panelinde **"▶ Portali Başlat"** butonuna basın.
+3. Servis `3000` numaralı portta devreye girdiğinde durum rozeti 🟢 **"RUNNING / PORTAL AKTİF"** olur.
+4. Ekranda görüntülenen LAN IP adresinden (örn: `http://192.168.1.100:3000`) yerel ağdaki tüm cihazlar portala bağlanabilir.
+5. İhtiyaç halinde **"🌐 Portala Git"** butonuyla tarayıcıda açabilir, **"⏹ Portali Durdur"** ile sonlandırabilir veya pencereyi **Sistem Tepsisine (Tray)** küçülterek arka planda sessiz çalıştırabilirsiniz.
+
+---
+
+<a id="8-veritabani-bakim-ve-2-asamali-sifirlama"></a>
+
+## 8. 🛡️ Veritabanı Bakım ve 2 Aşamalı Güvenlikli Sıfırlama
+
+### 💡 Ne Zaman / Neden Kullanılır
+
+Test verilerini temizlemek veya yeni çalışma yılına girerken tüm hareket kayıtlarını silip sistemi fabrika ayarlarına döndürmek için kullanılır. Tanımlamalar, kullanıcılar ve admin hesabı korunur.
+
+### ⚙️ Ön Koşullar
+
+- **Gerekli Yetki/Rol:** Root / Sistem Yöneticisi (Admin).
+
+### 🐾 Adım Adım İşlem Akışı
+
+1. **Yönetim > Veritabanı & Bakım** sekmesine gidin.
+2. Sağ alt köşedeki **Tehlikeli Bölge** kartından **"Veritabanını Sıfırla"** butonuna tıklayın.
+3. **1. Aşama (Metin Onayı):** Açılan ilk penceredeki doğrulama kutusuna büyük harflerle **`SIFIRLA`** yazın ve onaylayın.
+4. **2. Aşama (Şifre Onayı):** Hemen ardından açılan Sudo güvenlik penceresine oturum açtığınız **Sistem Yöneticisi Parolanızı** girin.
+5. Sistem doğrulama sonrasında tüm personel, nöbet, izin ve ölçüm hareketlerini sıfırlayarak veritabanını fabrika ayarlarına döndürür.
+
+---
+
 ## 🧾 Değişiklik Günlüğü
 
-| Tarih | Bölüm | Özet |
+| Tarih | Sürüm | Özet |
 | :--- | :--- | :--- |
-| **2026-08-25** | **Tüm Kılavuz (v4.1.2.2)** | Toplu İçe Aktarma Dry-Run, RD.F43 Doz Araştırma Formu, Nöbet İkame Motoru, Şua Zamanaşımı Rozetleri, NDK 2. Gün Hatırlatıcısı ve RKE DIN 6857-1 Karar Motoru doğrulanarak eklendi. |
+| **2026-08-26** | **v4.1.2.3** | %100 Docstring denetimi tamamlandı. Kullanım kılavuzu ile gerçek kod senkronize edildi; RADPYS Portal Launcher GUI işleyişi, 2 aşamalı güvenlikli veritabanı sıfırlama (`SIFIRLA` + şifre), Onay Bekleyen Görevler 4 kategori ayrımı ve KVKK AES-256 `stored_files` dosya kasası işlendi. |
+| **2026-08-25** | **v4.1.2.2** | Toplu İçe Aktarma Dry-Run, RD.F43 Doz Araştırma Formu, Nöbet İkame Motoru, Şua Zamanaşımı Rozetleri, NDK 2. Gün Hatırlatıcısı ve RKE DIN 6857-1 Karar Motoru doğrulanarak eklendi. |

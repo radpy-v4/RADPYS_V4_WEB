@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RADPYS V4 — Olası Senaryolar ve Risk / Acil Durum İş Akışları</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
+
+    :root {
+      --paper: #f8f9fa;
+      --paper-2: #ffffff;
+      --ink: #2d3142;
+      --muted: #4f5d75;
+      --soft: #7a8399;
+      --rule: rgba(45, 49, 66, 0.12);
+      --rule-solid: #bfc0c0;
+      --accent: #eb6c36;
+      --accent-tint: rgba(235, 108, 54, 0.08);
+      --danger: #d9534f;
+      --danger-tint: rgba(217, 83, 79, 0.08);
+      --warning: #d97706;
+      --warning-tint: rgba(217, 119, 6, 0.08);
+      --success: #2e7d32;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Geist', -apple-system, sans-serif;
+      background-color: var(--paper);
+      color: var(--ink);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .diagram-container {
+      background: var(--paper-2);
+      border: 1px solid var(--rule-solid);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 960px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+
+    .diagram-header {
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 20px;
+    }
+
+    .diagram-category {
+      font-family: 'Geist Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .diagram-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .diagram-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .scenario-card {
+      background: #ffffff;
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .scenario-card.danger {
+      border: 1.5px solid var(--danger);
+      background: var(--danger-tint);
+    }
+
+    .scenario-card.warning {
+      border: 1.5px solid var(--warning);
+      background: var(--warning-tint);
+    }
+
+    .scenario-badge {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 4px;
+      width: fit-content;
+    }
+
+    .scenario-badge.danger { background: var(--danger); color: #fff; }
+    .scenario-badge.warning { background: var(--warning); color: #fff; }
+    .scenario-badge.info { background: var(--muted); color: #fff; }
+    .scenario-badge.accent { background: var(--accent); color: #fff; }
+
+    .scenario-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .scenario-steps {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+      padding-left: 18px;
+    }
+
+    .scenario-steps li {
+      margin-bottom: 6px;
+    }
+
+    .footer-note {
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--rule-solid);
+      font-family: 'Geist Mono', monospace;
+      font-size: 12px;
+      color: var(--soft);
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+<div class="diagram-container">
+  <div class="diagram-header">
+    <div class="diagram-category">RADPYS V4 — Risk & İstisna Senaryoları</div>
+    <h1 class="diagram-title">Olası Senaryolar ve Acil Durum Yönetim Haritası</h1>
+    <p class="diagram-subtitle">Limit aşımı, dozimetre kaybı, ani hastalık ve tıbbi engel durumlarında sistem tarafından tetiklenen protokoller.</p>
+  </div>
+
+  <div class="scenario-grid">
+
+    <!-- Senaryo 1 -->
+    <div class="scenario-card danger">
+      <span class="scenario-badge danger">Senaryo A — Acil Risk</span>
+      <div class="scenario-title">Yıllık Doz Limiti Aşımı (≥ 20 mSv)</div>
+      <ol class="scenario-steps">
+        <li><strong>Otomatik Blokaj:</strong> RADPYS personeli tüm nöbet çizelgelerinden ve radyasyonlu alanlardan derhal kilitler.</li>
+        <li><strong>DÖF ve Tutanak:</strong> Düzeltici Önleyici Faaliyet tutanağı otomatik oluşturulur.</li>
+        <li><strong>NDK Bildirimi:</strong> Nükleer Düzenleme Kurumu'na resmi bildirim raporu üretilir.</li>
+        <li><strong>Tıbbi Tarama:</strong> Sağlık kuruluna sevk edilir. Rapor çıkana kadar radyasyonsuz alanda çalıştırılır.</li>
+      </ol>
+    </div>
+
+    <!-- Senaryo 2 -->
+    <div class="scenario-card warning">
+      <span class="scenario-badge warning">Senaryo B — Anomali</span>
+      <div class="scenario-title">Dozimetre Kaybı veya Hasarı</div>
+      <ol class="scenario-steps">
+        <li><strong>Kayıp Bildirimi:</strong> Personel dozimetre kayıp/hasar formunu doldurur.</li>
+        <li><strong>Yedek Tahsisi:</strong> Geçici EPD veya yedek TLD dozimetre tanımlanır.</li>
+        <li><strong>Doz Kestirimi:</strong> Çalışılan cihaz radyasyonu ve süreye göre kayıp dönem için "Takdir Edilen Doz" hesaplanır.</li>
+        <li><strong>Veritabanı Güncelleme:</strong> Tahmini doz kümülatif toplama işlenir ve denetim günlüğüne kaydedilir.</li>
+      </ol>
+    </div>
+
+    <!-- Senaryo 3 -->
+    <div class="scenario-card">
+      <span class="scenario-badge accent">Senaryo C — Operasyonel</span>
+      <div class="scenario-title">Nöbet Günü Ani Hastalık / Mazeret</div>
+      <ol class="scenario-steps">
+        <li><strong>Acil Bildirim:</strong> Personel nöbet günü rapor/mazeret sunar.</li>
+        <li><strong>Aksiyon Merkezi Alarmı:</strong> Yönetici paneline "Düşen Nöbet" uyarısı düşer.</li>
+        <li><strong>Yedek Öneri Engine:</strong> RADPYS dinlenme süresi (≥11-16sa) uygun ve en az nöbet tutmuş yedek personeli önerir.</li>
+        <li><strong>Acil Atama:</strong> Seçilen personele nöbet kaydırılır, bakiye borç/alacağa işlenir.</li>
+      </ol>
+    </div>
+
+    <!-- Senaryo 4 -->
+    <div class="scenario-card">
+      <span class="scenario-badge info">Senaryo D — Tıbbi Engel</span>
+      <div class="scenario-title">Sağlık Muayenesinde "Geçici Muafiyet"</div>
+      <ol class="scenario-steps">
+        <li><strong>Muayene Kararı:</strong> Periyodik kan/sağlık taramasında tıbbi olumsuzluk tespit edilir.</li>
+        <li><strong>Muafiyet Kaydı:</strong> Personel kartı "Tıbbi Geçici Muaf" olarak işaretlenir.</li>
+        <li><strong>Nöbet İptali:</strong> Personelin gelecek nöbet atamaları otomatik düşürülür.</li>
+        <li><strong>Kontrol & Dönüş:</strong> İyileşme sonrası tıbbi kurul onayı ile muafiyet kaldırılır.</li>
+      </ol>
+    </div>
+
+  </div>
+
+  <div class="footer-note">
+    <span>Şema Tipi: Quadrant / Flow Grid</span>
+    <span>RADPYS V4 © 2026</span>
+  </div>
+</div>
+
+</body>
+</html>

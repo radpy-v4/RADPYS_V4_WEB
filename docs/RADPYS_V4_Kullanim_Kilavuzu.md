@@ -76,7 +76,7 @@ Yeni bir kuruluma başlamadan önce bilgisayarınızın aşağıdaki sistem ve �
 
 ---
 
-> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](sss.md)
+> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](RADPYS_V4_sss.md)
 
 ---
 
@@ -98,30 +98,24 @@ RADPYS V4 ilk kez yüklendiğinde ve çalıştırıldığında, veritabanı otom
 
 * **Kullanıcı Adı:** `admin`
 * **Geçici Şifre Dosyası:** İlk kurulum anında sistem, veritabanının bulunduğu klasörde (uygulama dizinindeki `data/` klasöründe) **`ilk_admin_bilgileri.txt`** adında bir metin dosyası otomatik oluşturur.
-* **Şifreyi Öğrenme:** `data/ilk_admin_bilgileri.txt` dosyasını Not Defteri ile açarak sistemin otomatik ürettiği tek seferlik geçici `admin` şifresini görebilirsiniz.
-
-> 🔒 **Güvenlik Uyarısı:** `admin` hesabı ile ilk kez giriş yaptığınızda sistem otomatik olarak **Şifre Değiştirme Penceresini** açar. Kendi özel şifrenizi belirledikten sonra, güvenlik amacıyla bilgisayarınızdaki `ilk_admin_bilgileri.txt` dosyasını siliniz.
+* **Varsayılan Parola Kuralı:** Kurulumda oluşturulan parola `Admin123!` veya metin dosyasında belirtilen güçlü geçici paroladır.
 
 ---
 
 ### 🐾 2.2 Adım Adım Oturum Açma İş Akışı
 
-1. Masaüstündeki **RADPYS V4** kısayoluna çift tıklayarak uygulamayı açın. Ekran başlığı `RADPYS - Giriş` (Demo modunda ise `RADPYS - Giriş [DEMO SÜRÜMÜ]`) olarak açılacaktır.
-2. **Kullanıcı Adı** alanına sistem yöneticinizin tanımladığı kullanıcı adını girin.
-3. **Şifre** alanına şifrenizi girin. *(Girdiğiniz karakterleri kontrol etmek için **"Şifreyi Göster"** kutucuğunu işaretleyebilirsiniz.)*
-4. Her girişte kullanıcı adını tekrar yazmamak için **"Beni Hatırla"** kutucuğunu işaretleyin.
-5. **"Giriş Yap"** butonuna basarak sisteme giriş yapın.
+1. Masaüstündeki **RADPYS V4** kısayoluna çift tıklayın.
+2. Açılan Giriş Penceresinde **Kullanıcı Adı** (`admin`) ve **Şifre** bilginizi girin.
+3. **"Giriş Yap"** butonuna tıklayın.
 
 ---
 
 ### 🐾 Adım Adım İlk Girişte Şifre Değiştirme İş Akışı
 
-Sistem yöneticiniz tarafından yeni hesap oluşturulduğunda veya geçici şifre tanımlandığında, ilk girişte otomatik olarak **Şifre Değiştirme Penceresi** açılır:
-
-1. **Mevcut Şifre** alanına size verilen geçici şifreyi girin.
-2. **Yeni Şifre** alanına yeni şifrenizi girin. *(Şifreniz en az 6 karakter uzunluğunda olmalı, harf ve rakam içermelidir).*
-3. **Yeni Şifre (Tekrar)** alanına şifrenizi doğrulama amacıyla tekrar girin.
-4. **"Şifreyi Güncelle ve Giriş Yap"** butonuna tıklayarak işlemi tamamlayın.
+1. Geçici şifrenizle ilk kez giriş yaptığınızda sistem otomatik olarak **"Zorunlu Şifre Değiştirme"** ekranını açar.
+2. **Mevcut Şifre** alanına geçici şifrenizi girin.
+3. **Yeni Şifre** ve **Yeni Şifre (Tekrar)** alanlarına en az 8 karakterden oluşan (büyük harf, küçük harf ve rakam içeren) yeni güçlü parolanızı girin.
+4. **"Şifreyi Güncelle"** butonuna basarak işlemi tamamlayın. Artık yeni şifrenizle oturum açabilirsiniz.
 
 ---
 
@@ -134,11 +128,11 @@ Sistem yöneticiniz tarafından yeni hesap oluşturulduğunda veya geçici şifr
 
 ---
 
-> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](sss.md)
+> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](RADPYS_V4_sss.md)
 
 ---
 
-### 🐾 1.3 Demo Sürümden Tam Sürüme (Lisans Aktivasyonu) Geçiş
+### 🐾 2.3 Demo Sürümden Tam Sürüme (Lisans Aktivasyonu) Geçiş
 
 ### 💡 İşlemin Amacı ve Ön Koşullar
 
@@ -158,7 +152,7 @@ Uygulama ilk kurulduğunda kısıtlı **Demo Modu** (15 Gün Deneme Süresi, Mak
 
 ---
 
-### 🐾 1.4 Kurulum Sonrası Hızlı Başlangıç ve İçe Aktarım
+### 🐾 2.4 Kurulum Sonrası Hızlı Başlangıç ve İçe Aktarım
 
 ### 💡 İşlemin Amacı ve Ön Koşullar
 
@@ -252,7 +246,7 @@ Güvenlik standartları gereği otomatik oluşturulan tüm kullanıcı hesaplar�
 
 ---
 
-> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](sss.md)
+> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](RADPYS_V4_sss.md)
 
 ---
 
@@ -352,7 +346,7 @@ Kurumdan ayrılan veya tayini çıkan personeli veritabanından kalıcı olarak 
 
 ---
 
-> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](sss.md)
+> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](RADPYS_V4_sss.md)
 
 ---
 
@@ -362,7 +356,7 @@ Kurumdan ayrılan veya tayini çıkan personeli veritabanından kalıcı olarak 
 
 #### 💡 Amaç
 
-6698 Sayılı KVKK Madde 11 (Veri Sahibinin Hakları ve Kişisel Verilerin Taşınabilirliği) gereğince, seçili personelin sistemde kayıtlı tüm özlük, izin, dozimetre ve sağlık muayene verileri ile şifreli dosya kasasında (`files.db`) saklanan tüm orijinal belgelerini tek tıkla taşınabilir `.zip` paketi olarak bilgisayara indirmektir.
+6698 Sayılı KVKK Madde 11 (Veri Sahibinin Hakları ve Kişisel Verilerin Taşınabilirliği) gereğince, seçili personelin sistemde kayıtlı tüm özlük, izin, dozimetre ve sağlık muayene verileri ile şifreli evrak kasasında (PostgreSQL `stored_files` tablosu) saklanan tüm orijinal belgelerini tek tıkla taşınabilir `.zip` paketi olarak bilgisayara indirmektir.
 
 #### 🐾 Adım Adım İş Akışı
 
@@ -402,6 +396,35 @@ Kadın personelin gebelik bildiriminde bulunması, doktor raporunu dijital arşi
    * 🛡️ **Radyasyonsuz Alan Personeli (`radyasyonlu_alan = 0`; Idari, Poliklinik vb.):** Gündüz mesaileri korunur, **SADECE GECE VE 24 SAATLİK NÖBETLER** `IPTAL_MAZERET` yapılır.
 4. **Merkezi Yönetici Aksiyon Sihirbazı (İdarenin 1-Tıkla Tamamlaması):**
    * Bildirim yapıldığı an **🎯 Yönetici Aksiyon Merkezi (Manager Action Hub)** ekranında yönetici için otomatik aksiyon kartı oluşturulur (Bkz. [Madde 8.4](#bolum-8-4)).
+
+---
+
+### 🐾 3.7 Radyasyon Güvenliği Sorumlusu (RGS / RSO) Görevlendirme ve Sertifika Takibi
+
+#### 💡 Amaç
+
+Nükleer Düzenleme Kurumu (NDK) mevzuatı uyarınca radyasyon kaynaklarının bulunduğu departmanlarda görevlendirilen Radyasyon Güvenliği Sorumluları (RGS) ve Yardımcılarının (RGSY) resmi görevlendirme sürelerini, yetki belgelerini ve sertifika geçerlilik sürelerini (erken uyarı rozetleri ile) takip etmektir.
+
+#### 🐾 Adım Adım İş Akışı
+
+1. **RGS Görevlendirme Takip Ekranını Açın:**
+   * Sol navigasyon menüsünden **Personel > RGS Görevlendirmeleri** sekmesine tıklayın.
+2. **KPI Özet Kartlarını İnceleyin:**
+   * **Toplam RGS/RSO:** Kurum genelinde tanımlı toplam görevlendirme sayısı.
+   * **Aktif Görevlendirmeler:** Halen geçerli olan görevlendirmeler.
+   * **Sertifikası Yaklaşanlar:** 60 gün içinde süresi dolacak NDK sertifikaları (🟡 Sarı rozet).
+   * **Sertifikası Dolanlar:** Geçerlilik süresi bitmiş sertifikalar (🔴 Kırmızı rozet).
+3. **Yeni RGS Görevlendirmesi Ekleyin:**
+   * Üst araç çubuğundaki **"Yeni Görevlendirme"** butonuna tıklayın.
+   * Açılan formda:
+     * **Personel & Departman:** Görevlendirilecek personeli ve birimi seçin.
+     * **Görev Tipi:** Açılır menüden *Radyasyon Güvenliği Sorumlusu (RGS)* veya *RGS Yardımcısı (RGSY)* seçin.
+     * **Görev Başlangıç ve Bitiş Tarihi:** Görevlendirme süresini takvimden belirleyin.
+     * **NDK Sertifika No & Geçerlilik Tarihi:** Resmi NDK sertifika numarasını ve bitiş tarihini girin.
+     * **Resmi Görevlendirme Belgesi:** NDK onay yazısını veya kurum içi görevlendirme evrakını (PDF) yükleyin *(Evrak şifreli kasaya kaydedilir)*.
+   * **"Kaydet"** butonuna basarak işlemi tamamlayın.
+4. **Filtreleme ve Dışa Aktarma (CSV/Excel):**
+   * **Departman**, **Görev Tipi** veya **Sertifika Durumu** filtresiyle listeyi daraltabilir; **"CSV Dışa Aktar"** butonuyla resmi denetim raporu çıktısı alabilirsiniz.
 
 ---
 
@@ -509,7 +532,7 @@ Hatalı veya tarihi değişen izin kayıtlarını güncellemek ya da iptal edile
 
 #### 💡 Amaç
 
-Saha çalışanlarının Web Portalı (`web_portal`) üzerinden oluşturduğu izin başvurularının Masaüstü RADPYS V4 veritabanına (`radpys.db` `personel_izinler` tablosu) otomatik aktarılması, **Onay Bekleyen Görevler Paneli** üzerinden yöneticilerce incelenerek karara bağlanmasıdır.
+Saha çalışanlarının Web Portalı (`web_portal`) üzerinden oluşturduğu izin başvurularının Masaüstü RADPYS V4 veritabanına (PostgreSQL `radpys_db` `personel_izinler` tablosu) otomatik aktarılması, **Onay Bekleyen Görevler Paneli** üzerinden yöneticilerce incelenerek karara bağlanmasıdır.
 
 #### 🐾 Adım Adım İş Akışı
 
@@ -540,11 +563,11 @@ Yıl sonunda personelin kullanmadığı devir izin bakiyelerini yeni çalışma 
 
 ---
 
-> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](sss.md)
+> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](RADPYS_V4_sss.md)
 
 ---
 
-### 🐾 4.5 Fiili Hizmet Süresi Zammı (FHZ) ve Sağlık (Şua) İzni Hakediş Sihirbazı
+### 🐾 4.6 Fiili Hizmet Süresi Zammı (FHZ) ve Sağlık (Şua) İzni Hakediş Sihirbazı
 
 ### 💡 İşlemin Amacı ve Ön Koşullar
 
@@ -556,7 +579,7 @@ Yıl sonunda personelin kullanmadığı devir izin bakiyelerini yeni çalışma 
 
 ---
 
-#### 🔀 4.5.1 Personel Asıl Birimi ve Nöbet Çizelgesi Arasındaki Hibrit (Hybrid) Hesaplama Mantığı
+#### 🔀 4.6.1 Personel Asıl Birimi ve Nöbet Çizelgesi Arasındaki Hibrit (Hybrid) Hesaplama Mantığı
 
 Radyasyonla çalışan sağlık personelleri kurum içerisinde tek bir alana sabit kalmayabilir; haftanın belirli gün ve gecelerinde farklı birimlerde (örn: Anjiyografi, Skopi, Nükleer Tıp, Tomografi, Acil Radyoloji) nöbet tutarken, nöbet dışı normal mesai günlerinde kendi kadrosunun bağlı olduğu **Asıl Birimlerinde** (örn: Genel Radyoloji) görev yapabilirler.
 
@@ -717,7 +740,7 @@ Yıllık veya dönemsel bazda personellerin kümülatif çalışma saatlerini, t
 
 ---
 
-> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](sss.md)
+> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](RADPYS_V4_sss.md)
 
 ---
 
@@ -786,7 +809,7 @@ Yaklaşan veya süresi geçen muayeneleri takip etmek, personelin geçmiş tüm 
 
 ---
 
-> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](sss.md)
+> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](RADPYS_V4_sss.md)
 
 ---
 
@@ -800,7 +823,7 @@ Dozimetre Modülü; iyonlaştırıcı radyasyonla çalışan personellerin akred
 
 ---
 
-### 🐾 5.1 Dozimetre Ölçüm Takibi ve Manuel Giriş Dozimetre Ölçüm Takibi ve Manuel Ölçüm Girişi
+### 🐾 5.1 Dozimetre Ölçüm Takibi ve Manuel Ölçüm Girişi
 
 #### 💡 Amaç
 
@@ -825,7 +848,7 @@ Dozimetre ölçüm sonuçlarını dönemsel olarak sorgulamak, yeni ölçüm ver
 
 ---
 
-### 🐾 5.2 Dozimetre Karşılaştırma, Trend ve Birim Risk Analizi Dozimetre Karşılaştırma, Trend ve Birim Risk Analizi
+### 🐾 5.2 Dozimetre Karşılaştırma, Trend ve Birim Risk Analizi
 
 #### 💡 Amaç
 
@@ -843,7 +866,7 @@ Dozimetre ölçüm sonuçlarını dönemsel olarak sorgulamak, yeni ölçüm ver
 
 ---
 
-### 🐾 5.3 NDK Limit Aşımı, Erken Uyarı ve DÖF Aksiyon Yönetimi NDK Limit Aşımı, Erken Uyarı ve DÖF Aksiyon Yönetimi
+### 🐾 5.3 NDK Limit Aşımı, Erken Uyarı ve DÖF Aksiyon Yönetimi
 
 #### 💡 Amaç
 
@@ -899,7 +922,7 @@ NDK ve RADKOR standartlarında 2 sayfalık resmi RD.F43 Yüksek Doz / Unutulma A
 
 ---
 
-> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](sss.md)
+> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](RADPYS_V4_sss.md)
 
 ---
 
@@ -959,7 +982,7 @@ Sistem ilk kurulduğunda aşağıdaki tüm yasal kurallar veritabanında hazır 
 
 ---
 
-> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](sss.md)
+> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](RADPYS_V4_sss.md)
 
 ---
 
@@ -1339,7 +1362,7 @@ RADPYS V4; radyasyon kategorisindeki olaylarda bu 3 günlük yasal son tarihi ot
 
 ---
 
-> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](sss.md)
+> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](RADPYS_V4_sss.md)
 
 ---
 
@@ -1469,7 +1492,7 @@ Sağlık Bakanlığı, Çalışma ve Sosyal Güvenlik Bakanlığı ile Nükleer 
 
 ---
 
-### 🐾 8.1 Eğitim Kataloğu ve Materyal Tanımlama
+### 🐾 9.1 Eğitim Kataloğu ve Materyal Tanımlama
 
 #### 💡 Amacı
 
@@ -1491,7 +1514,7 @@ Kurumda verilecek eğitimlerin süreleri, baraj puanları, geçerlilik periyotla
 
 ---
 
-### 🐾 8.2 Sınav Soruları Havuzu Yönetimi ve Otomatik Soru Bağlama
+### 🐾 9.2 Sınav Soruları Havuzu Yönetimi ve Otomatik Soru Bağlama
 
 #### 💡 Amacı
 
@@ -1512,7 +1535,7 @@ Sınavlı eğitimler için çoktan seçmeli (A, B, C, D) soru bankası oluşturu
 
 ---
 
-### 🐾 8.3 Toplu ve Bireysel Personel Eğitim Ataması
+### 🐾 9.3 Toplu ve Bireysel Personel Eğitim Ataması
 
 #### 💡 Amacı
 
@@ -1529,7 +1552,7 @@ Belirli bir birimdeki veya unvandaki personellere zorunlu eğitimlerin atanması
 
 ---
 
-### 🐾 8.4 Online Sınav ve Tamamlama Süreci (Web Portal & Masaüstü)
+### 🐾 9.4 Online Sınav ve Tamamlama Süreci (Web Portal & Masaüstü)
 
 #### 💡 Amacı
 
@@ -1551,7 +1574,7 @@ Personelin eğitim dokümanını inceleyip sınavı tamamlaması ve sertifikasyo
 
 ---
 
-### 🐾 8.5 Departman Eğitim Uyum Raporu ve Yasal Denetim Takibi
+### 🐾 9.5 Departman Eğitim Uyum Raporu ve Yasal Denetim Takibi
 
 #### 💡 Amacı
 
@@ -1589,7 +1612,7 @@ Masaüstü uygulamasında sol dikey menüden **Cihaz Yönetimi** sekmesinden eri
 
 ---
 
-### 🐾 9B.1 Cihaz Listesi, Hızlı Filtreleme ve Toolbar İşlemleri
+### 🐾 10.1 Cihaz Listesi, Hızlı Filtreleme ve Toolbar İşlemleri
 
 Cihaz Yönetimi ana ekranında arama kutusunun hemen altında **3'lü Hızlı Filtreleme Seçeneği** yer almaktadır:
 
@@ -1610,7 +1633,7 @@ Cihaz Yönetimi ana ekranında arama kutusunun hemen altında **3'lü Hızlı Fi
 
 ---
 
-### 🐾 9B.2 Zengin Sağ Tık (Context Menu) Kullanımı
+### 🐾 10.2 Zengin Sağ Tık (Context Menu) Kullanımı
 
 Tablodaki herhangi bir cihaz satırına sağ tıklandığında açılan hızlı işlem menüsü:
 
@@ -1620,7 +1643,7 @@ Tablodaki herhangi bir cihaz satırına sağ tıklandığında açılan hızlı 
 
 ---
 
-### 🐾 9B.3 Cihaz Karekod (QR) Etiketi Önizleme, Yazdırma ve PNG Kaydetme
+### 🐾 10.3 Cihaz Karekod (QR) Etiketi Önizleme, Yazdırma ve PNG Kaydetme
 
 #### 💡 Amaç
 
@@ -1637,12 +1660,31 @@ Her tıbbi cihazın üzerine yapıştırılacak dayanıklı kimlik ve hızlı ar
 
 ---
 
-### 🐾 9B.4 Web & Mobil Portal Üzerinden Karekod ile Hızlı Arıza Bildirimi
+### 🐾 10.4 Web & Mobil Portal Üzerinden Karekod ile Hızlı Arıza Bildirimi
 
 1. **Telefon Kamerasını Tutun:** Sağlık personeli veya tekniker, cihazın üzerindeki QR etiketi cep telefonu kamerasıyla okutur.
 2. **Otomatik Yönlenme:** Web Portal anında açılarak **`📱 QR Okundu: [Cihaz Kodu] seçildi`** bildirimiyle doğrudan **"Hızlı Arıza Bildir"** sekmesine geçer.
 3. **Arıza Girişi:** Arıza açıklaması ve aciliyet seviyesi (Normal, Yüksek, Acil/Hizmet Durdu) seçilerek **"Arıza Bildir"** butonuna basılır.
 4. **Teknik Servis Müdahalesi:** Biyomedikal veya teknik ekip, Web Portal **"Arıza Takip & Müdahale"** sekmesinden yapılan işlemi, parça değişimini ve gerekirse tüp seri numarasını girerek arızayı anında kapatır.
+
+---
+
+### 🐾 10.5 5 Sekmeli Cihaz Formu & 4. Kat Planı Pin Kilitleme Modu
+
+Yeni cihaz eklerken veya mevcut bir cihazı düzenlerken açılan diyalog **5 Sekmeli Profesyonel Form** yapısına sahiptir:
+
+1. **1. Genel Bilgiler:** Cihaz Kodu, Marka, Model, Seri No, Bulunduğu Birim/Departman, Hizmete Giriş Tarihi ve Kaynak Grubu.
+2. **2. NDK Lisans Bilgileri:** Lisans Numarası, Lisans Durumu, Lisans Başlangıç/Bitiş Tarihleri, Birim Sorumlusu ve RKS Personeli seçimi.
+3. **3. Garanti & Bakım:** Yetkili servis firması, garanti başlangıç/bitiş tarihleri ve periyodik bakım sözleşmesi detayları.
+4. **4. Kat Planı / Kroki Konumu:**
+   * **Mimari Kroki Seçimi:** İlgili birime ait kat planı (`.pdf` veya `.png/.jpg`) seçildiğinde kroki otomatik olarak tuvale yüklenir.
+   * **Oda / Salon No:** Cihazın bulunduğu spesifik oda (Örn: *Anjiyo Salon 1*, *BT Kumanda Odası*).
+   * **İnteraktif Pin Yerleşimi:** Cihazın oda içindeki tam konumunu belirleyen çift katmanlı parlayan pin (`🩻 Cihaz Kodu • Oda`).
+   * **🔒 Pin Kilitleme / Taşıma Koruma Modu:**
+     * **`[ 🔒 Pin Kilitli ]` (Varsayılan):** Haritada serbestçe gezinirken (Pan / Zoom) pinin yanlışlıkla başka odalara sıçramasını önler.
+     * **`[ 🔓 Taşıma Aktif ]`:** Butona tıklandığında turuncu renkli taşıma modu açılır; pin farenin sol tuşuyla tutularak oda içinde serbestçe yeni yerine sürüklenebilir.
+   * **Ekrana Sığdır (`btnCihazZoomFit`):** Kat planını pencere boyutuna tam sığdırır.
+5. **5. Kılavuzlar & Belgeler:** Cihaza ait kullanım kılavuzu, teknik servis el kitabı veya NDK zırhlama raporlarının AES-256 Fernet şifreli evrak kasasına yüklenmesi.
 
 ---
 
@@ -1674,7 +1716,7 @@ graph TD
 
 ---
 
-### 🐾 9C.1 Akıllı RKE Kodlama Motoru (Otomatik Kod Üretimi)
+### 🐾 11.1 Akıllı RKE Kodlama Motoru (Otomatik Kod Üretimi)
 
 RADPYS V4, koruyucu ekipmanların kurum içinde standart ve karışıklığa mahal vermeyecek şekilde adlandırılması için **Akıllı Kod Üretim Motoru (`RkeKodGenerator`)** ile donatılmıştır.
 
@@ -1692,7 +1734,7 @@ RADPYS V4, koruyucu ekipmanların kurum içinde standart ve karışıklığa mah
 
 ---
 
-### 🐾 9C.2 RKE Envanter Yönetimi ve Zimmet İşlemleri
+### 🐾 11.2 RKE Envanter Yönetimi ve Zimmet İşlemleri
 
 **Koruyucu Ekipman (RKE) \> RKE Yönetimi** ekranı; kurumdaki tüm koruyucu donanımların teknik özelliklerini, fiziksel konumlarını ve muayene durumlarını listeler.
 
@@ -1718,7 +1760,7 @@ RADPYS V4, koruyucu ekipmanların kurum içinde standart ve karışıklığa mah
 
 ---
 
-### 🐾 9C.3 DIN 6857-1 Kalite Kontrol Muayenesi ve Otomatik Karar Motoru
+### 🐾 11.3 DIN 6857-1 Kalite Kontrol Muayenesi ve Otomatik Karar Motoru
 
 DIN 6857-1 ve IEC 61331-3 standartları, koruyucu donanımların floroskopi veya radyografi altında taranarak kurşun katmanındaki kırılma, yırtılma ve deliklerin alan hesabına göre değerlendirilmesini öngörür.
 
@@ -1742,7 +1784,7 @@ DIN 6857-1 ve IEC 61331-3 standartları, koruyucu donanımların floroskopi veya
 
 ---
 
-### 🐾 9C.4 RKE Muayene Listesi ve KPI İstatistik Paneli
+### 🐾 11.4 RKE Muayene Listesi ve KPI İstatistik Paneli
 
 **Koruyucu Ekipman (RKE) \> RKE Muayene Listesi** ekranı; sağlık kuruluşundaki tüm muayenelerin kronolojik geçmişini, kontrolü yaklaşan veya geciken ekipmanları tek bir ekranda raporlar.
 
@@ -1755,7 +1797,7 @@ DIN 6857-1 ve IEC 61331-3 standartları, koruyucu donanımların floroskopi veya
 
 ---
 
-### 🐾 9C.5 Toplu Excel İçe Aktarma (RKE ve Muayene Sihirbazları)
+### 🐾 11.5 Toplu Excel İçe Aktarma (RKE ve Muayene Sihirbazları)
 
 Mevcut Excel envanterinizi sisteme saniyeler içinde aktarmak için:
 1. **RKE Yönetimi \> Excel İçe Aktar** butonuna basın.
@@ -1779,27 +1821,26 @@ Masaüstü uygulamasında sol dikey navigasyon menüsünden **Yönetim > Onay Be
 
 ---
 
-### 🐾 12.1 5 Onay Kategorisi ve Adım Adım Yönetim İş Akışı
+### 🐾 12.1 4 Temel Onay Kategorisi ve Adım Adım Yönetim İş Akışı
 
 #### 💡 Amaç
 
-Yöneticilerin ve amirlerin kurum genelinden gelen tüm izin, devir, mazeret, plan ve veri değişiklik taleplerini kategoriler halinde inceleyip onaylamasını sağlamaktır.
+Yöneticilerin ve amirlerin kurum genelinden gelen nöbet devir, gebelik/idari aksiyon, taslak nöbet planı ve veri değişiklik taleplerini kategoriler halinde inceleyip karara bağlamasını sağlamaktır. *(Not: İzin talepleri ve onayları doğrudan İzin Modülü > İzin Listesi ve İzin Hak Edişleri üzerinden yürütülmektedir).*
 
 #### 🐾 Adım Adım İş Akışı
 
 1. **Onay Bekleyen Görevler Paneline Gidin:**
    * Sol navigasyon menüsünden **Yönetim > Onay Bekleyen Görevler** sekmesine tıklayın.
 2. **Sol Kategori Menüsünden İlgili Alanı Seçin:**
-   * 📝 **İzin Talepleri:** Personel tarafından sunulan yıllık izin, mazeret ve sağlık izni başvurularını listeler.
-   * 🔄 **Nöbet Devirleri:** Nöbetini devreden ve devralan personellerin onayından geçmiş (`Devralan Onaylı`), amir/yönetici nihai onayı bekleyen nöbet takas taleplerini listeler.
-   * 📋 **Nöbet İstekleri:** Personellerin nöbet muafiyeti, nöbet tutmama mazereti veya gün tercihi taleplerini listeler.
+   * 🔄 **Nöbet Devirleri:** Nöbetini devreden ve devralan personellerin onayından geçmiş (`Devralan Onaylı`) veya amir/yönetici nihai onayı bekleyen nöbet takas taleplerini listeler.
+   * 🤰 **Gebelik & İdari Aksiyonlar:** Radyasyon çalışanlarının gebelik bildirimleri sonrası görev yeri değişikliği, nöbet ikameleri ve gündüz mesai dengelemesini 3 adımlı sihirbazla yürütür.
    * 🖨️ **Nöbet Planları:** Birim sorumluları tarafından hazırlanan ve yayına alınmak üzere yönetici onayına sunulan taslak nöbet planlarını listeler.
-   * ⚙️ **Veri Değişiklikleri:** Yetkisiz rollerin yaptığı kaydetme/düzenleme/silme başvurularını ve veri onay taleplerini listeler.
+   * ⚙️ **Veri Değişiklikleri:** Onay kısıtlı rollerin (`onay_gerektirir = 1`) yaptığı personel özlük, eğitim, muayene veya evrak ekleme/düzenleme/silme taleplerini listeler.
 3. **Talep Detaylarını İnceleyin:**
    * Sağ tablodan ilgili talep satırını seçin. Alt panelde personelin gerekçesi, başvuru tarihi ve talep detayları görüntülenir.
 4. **Onayla veya Reddet Butonlarını Kullanın:**
    * **"Onayla"** butonuna bastığınızda işlem onaylanır ve ilgili modül veritabanına otomatik işlenir.
-   * **"Reddet"** butonuna basıldığında açılan diyalog penceresine **Reddetme Gerekçesini** yazarak işlemi reddedin. Başvuran personele otomatik bilgilendirme bildirimi gönderilir.
+   * **"Reddet"** butonuna basıldığında açılan diyalog penceresine **Reddetme Gerekçesini** yazarak işlemi reddedin. Başvuran personele otomatik sistem bildirimi oluşturulur.
 
 ---
 
@@ -2024,7 +2065,7 @@ Kurum logosunu, amblemini ve çok satırlı kurumsal başlıkları (Üniversite,
 
 ---
 
-> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](sss.md)
+> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](RADPYS_V4_sss.md)
 
 ---
 
@@ -2136,11 +2177,11 @@ Web Portalından veya masaüstünden bildirilen olay ihlallerinin ilgili kalite 
    * Olay kategorisi seçin (*Radyasyon İhlali Çalışan, MR Güvenlik İhlali, Cihaz Arızası, Ramak Kala*).
    * Karşısına incelemekle görevli Kalite Yöneticisini veya Radyasyon Koruma Görevlisini (RKG) atayın.
 3. **Kaydedin:**
-   * **"Kaydet"** butonuna basarak otomatik e-posta ve panel bildirim yönlendirmesini aktifleştirin.
+   * **"Kaydet"** butonuna basarak olay bildirimlerinin ilgili sorumlunun sistem paneline otomatik yönlendirilmesini aktifleştirin.
 
 ---
 
-> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](sss.md)
+> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](RADPYS_V4_sss.md)
 
 ---
 
@@ -2236,30 +2277,34 @@ Saha çalışanlarının (radyoloji teknikerleri, uzmanlar, hemşireler) hastane
 4. **Mazeret / Açıklama Notu Ekleyin:**
    * İznin gerekçesini veya ulaşılabilecek iletişim bilgilerini açıklama kutusuna yazın.
 5. **Başvuruyu Gönderin:**
-   * **"İzin Talebini Gönder"** butonuna basın. Talep anında veritabanına işlenerek Masaüstü RADPYS V4 veritabanına (`radpys.db`) ve **Onay Bekleyen Görevler Paneline** iletilir.
+   * **"İzin Talebini Gönder"** butonuna basın. Talep anında veritabanına işlenerek Masaüstü RADPYS V4 veritabanına (PostgreSQL `radpys_db`) ve **Onay Bekleyen Görevler Paneline** iletilir.
 6. **Canlı Talep Takibi ve İptal İşlemi:**
    * Ekranın sağ tarafındaki **"İzin Taleplerim ve Durum Takibi"** panelinden başvurunuzun son durumunu (`Beklemede`, `Onaylandı`, `Reddedildi`) ve varsa yöneticinin red nedenini anlık takip edin.
    * Henüz `Beklemede` statüsündeki bir talebinizi vazgeçmeniz halinde satır yanındaki **"Talebi İptal Et"** butonuna basarak iptal edebilirsiniz.
 
 ---
 
-### 🐾 15.3 Masaüstü RADPYS V4: Web Portal ve REST API Servis Yönetimi
+### 🐾 15.3 RADPYS Portal Başlatıcı (GUI Launcher) ve Web Servis Yönetimi
 
 #### 💡 Amaç
 
-Sistem yöneticilerinin Web Portal backend servisini (REST API) yönetmesi, bağlantı portunu ayarlaması ve aktif web oturumlarını izlemesidir.
+Kurum sunucusunda veya ana bilgisayarda Web Portal Node.js REST API servisini grafik arayüzlü **RADPYS Portal Launcher** ile tek tıkla başlatmak, durdurmak, IP/port bilgilerini görmek ve canlı sistem loglarını izlemektir.
 
-#### 🐾 Adım Adım İş Akışı
+#### 🐾 Adım Adım Portal Başlatma ve Yönetim İş Akışı
 
-1. **Web Portal Ayarları Ekranına Geçin:**
-   * Masaüstü uygulamasında sol menüden **Yönetim > Web Portal & API Ayarları** sekmesine tıklayın.
-2. **API Servis Durumunu Kontrol Edin:**
-   * 🟢 **"REST API Servisi Çalışıyor"** durumu yeşil renkte yanmalıdır.
-   * İhtiyaç halinde **"Servisi Durdur"** veya **"Servisi Yeniden Başlat"** butonlarını kullanın.
-3. **Erişim Portu ve Güvenlik Ayarları:**
-   * Servis dinleme portunu (örn: `8000`) ve CORS güvenli köken adreslerini tanımlayın.
-4. **Aktif Web Oturumlarını İzleyin:**
-   * Alt tablodan Web Portalına anlık olarak bağlı olan çalışanların IP adreslerini, oturum açma sürelerini ve yapılan son istekleri takip edin.
+1. **Portal Launcher Uygulamasını Başlatın:**
+   * Masaüstündeki **"RADPYS Portal Launcher"** kısayoluna veya program dizinindeki **`RADPYS_Portal_Launcher.exe`** (veya `user_launcher/portal_launcher.py`) dosyasına çift tıklayın.
+2. **Servisi Tek Tıkla Başlatın (`[ ▶ Portali Başlat ]`):**
+   * Launcher arayüzünde yeşil renkli **"▶ Portali Başlat"** butonuna basın.
+   * Sistem otomatik olarak Node.js ortamını ve `web_portal` paketini denetler, port çakışması yoksa sunucuyu `3000` numaralı portta devreye alır.
+   * Durum rozeti anında 🟢 **"RUNNING / PORTAL AKTİF"** olarak güncellenir.
+3. **Yerel Ağ IP Adresi ve Doğrudan Erişim (`[ 🌐 Portala Git ]`):**
+   * Launcher penceresinde sistemin LAN IP adresi otomatik tespit edilerek gösterilir (Örn: `http://192.168.1.100:3000`).
+   * **"🌐 Portala Git"** butonuna basarak doğrudan varsayılan web tarayıcınızda açabilirsiniz. Kurum yerel ağındaki diğer telefon, tablet ve bilgisayarlar bu adrese bağlanabilir.
+4. **Canlı Akış Logları ve Durdurma:**
+   * Ekrandaki konsol panelinden API isteklerini, gelen bağlantıları ve senkronizasyon hareketlerini anlık izleyebilirsiniz.
+   * Hizmeti sonlandırmak istediğinizde kırmızı **"⏹ Portali Durdur"** butonuna basmanız yeterlidir.
+   * İsteğe bağlı olarak Launcher penceresini sağ üstteki küçült butonuyla **Windows Sistem Tepsisine (System Tray)** alarak arka planda sessiz çalışmasını sağlayabilirsiniz.
 
 ---
 
@@ -2283,7 +2328,7 @@ Nöbetçi radyoloji teknikerleri ve hekimlerin, akıllı telefon veya tabletleri
 
 ---
 
-> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](sss.md)
+> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](RADPYS_V4_sss.md)
 
 ---
 
@@ -2360,7 +2405,33 @@ Ekranın en alt bandında soldan sağa doğru şu durum göstergeleri yer alır:
 
 ---
 
-> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](sss.md)
+### 🐾 16.4 Üst Araç Çubuğu Hiyerarşik Gezinti (Breadcrumb) ve Hızlı Geçiş Açılır Menüleri
+
+#### 💡 Amaç
+
+Kullanıcının uygulama içerisinde hangi modülde ve ekranda olduğunu anlık izlemesi, üst kategorilere tıkladığında alt sayfalara doğrudan açılır menü ile erişmesi ve ana masaüstüne tek tıkla dönebilmesidir.
+
+```mermaid
+graph LR
+    A["🏠 RADPYS V4 (Ana Sayfa)"] -->|Tıkla: Tüm pencereleri kapat| B["Masaüstü"]
+    C["📁 Kategori (Örn: Kalite Yönetimi)"] -->|Tıkla: Açılır Menü| D["Ortam Dozu / Hizmet İçi Eğitim"]
+    E["📄 Aktif Sayfa (Örn: Ortam Dozu_Kroki)"] -->|Mevcut Konum| F["Sabit Başlık"]
+```
+
+#### 🧭 Kullanım ve Akıllı Davranış Kuralları:
+
+1. **Otomatik Gizlenme (Akıllı Yaşam Döngüsü):**
+   * Açık olan tüm alt pencereler kapatıldığında üst breadcrumb navigasyonu arka planda asılı kalmaz; otomatik olarak temizlenir ve gizlenir (`setVisible(False)`).
+   * Yeni bir sayfa açıldığında hiyerarşik yol anında belirir.
+2. **`RADPYS V4` Kök Butonu:**
+   * Breadcrumb'ın en başındaki `RADPYS V4` veya `Ana Sayfa` butonuna tıklandığında açık tüm sayfalar kapatılarak temiz ana masaüstü ekranına dönülür.
+3. **Kategori Hızlı Geçiş Menüleri (`QMenu`):**
+   * Ara kategorilere (*Kalite Yönetimi*, *Cihaz Yönetimi*, *Personel Modülü*, *Nöbet Planları*, *İzin Modülü*, *Sistem Yönetimi*) tıklandığında ilgili modül grubunun altındaki tüm sayfaları içeren şık bir açılır menü (Dropdown) belirir.
+   * Örneğin **Kalite Yönetimi** tıklandığında açılan menüden doğrudan *Ortam Dozu ve İnteraktif Kroki* veya *Hizmet İçi Eğitim & LMS* ekranına tek tıkla geçiş yapılabilir.
+
+---
+
+> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](RADPYS_V4_sss.md)
 
 ---
 
@@ -2417,7 +2488,7 @@ Yazılımın temel çalışma kurallarını ve sistem anahtarlarını dinamik ol
 
 ---
 
-> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](sss.md)
+> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](RADPYS_V4_sss.md)
 
 ---
 
@@ -2447,7 +2518,7 @@ Sistemdeki tüm personel, izin, nöbet, dozimetre ve olay verilerinin anlık şi
    * Sol dikey menüden **Yönetim > Veritabanı & Bakım** sekmesine tıklayın.
 2. **Veritabanını Yedekleyin:**
    * **"Veritabanı Yedekle"** butonuna basın.
-   * Sistem o anki tüm kayıtları tarih ve saat damgası ekleyerek (örn: `radpys_backup_2026-08-12_0830.db`) şifreli arşiv dosyası olarak kaydeder.
+   * Sistem o anki tüm kayıtları tarih ve saat damgası ekleyerek (örn: `radpys_db_backup_20260812_083000.dump`) şifreli arşiv dosyası olarak kaydeder.
 3. **Ekli Dosyaları Arşivleyin:**
    * Sisteme yüklenmiş matbu dilekçeleri, sağlık muayene raporlarını ve kurum içi tutanakları yedeklemek için **"Dosyaları Yedekle"** butonuna basın. Yüklenmiş tüm dosyalar sıkıştırılmış arşiv paketi olarak dışa aktarılır.
 4. **Yedek Listesini Yenileyin:**
@@ -2507,19 +2578,18 @@ Yıl sonu devirlerinde veya test sonrasında tüm kullanıcı ve operasyon veril
    * Ekranın sağ altındaki **Tehlikeli Bölge** kartını bulun.
 2. **Sıfırlama Butonuna Basın:**
    * **"Veritabanını Sıfırla"** butonuna tıklayın.
-3. **Kapsam Açıklaması ve Güvenlik Onayı:**
+3. **Kapsam Açıklaması ve 2 Aşamalı Güvenlik Onayı:**
    * ⚠️ *Sıfırlama işlemi; tüm personelleri, nöbetleri, izinleri, dozimetre ölçümlerini ve kalite ihlal kayıtlarını siler. Ancak sistem sabitleri, tanımlamalar, program ayarları ve yönetici hesabı korunur.*
-   * Açılan diyalog penceresinde Sistem Yöneticisi (Sudo) şifrenizi girerek sıfırlamayı onaylayın.
+   * **1. Aşama (Metin Onayı):** Açılan ilk doğrulama penceresindeki kutucuğa büyük harflerle **SIFIRLA** yazarak onaylayın.
+   * **2. Aşama (Şifre Onayı):** Ardından açılan Sudo güvenlik penceresine oturum açtığınız **Sistem Yöneticisi Parolanızı** girerek sıfırlama işlemini tamamlayın.
 
 ---
 
-> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](sss.md)
+> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](RADPYS_V4_sss.md)
 
 ---
 
----
-
-### 🐾 18.4 🔓 PostgreSQL Veritabanı ve Yedek Yönetimi
+### 🐾 18.5 🔓 PostgreSQL Veritabanı ve Yedek Yönetimi
 
 #### 💡 Amaç
 
@@ -2539,7 +2609,7 @@ Kurumun verilerini başka bir sunucuya veya yedek merkezine aktarmak istemesi du
 
 ---
 
-### 🐾 18.5 🛡️ KVKK Dosya Erişim ve İşlem İzi Logu (Audit Log)
+### 🐾 18.6 🛡️ KVKK Dosya Erişim ve İşlem İzi Logu (Audit Log)
 
 #### 💡 Amaç
 
@@ -2633,7 +2703,7 @@ Dış kaynaktan (Excel / CSV) gelen verileri belirlenen modüle göre eşleştir
 
 ---
 
-> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](sss.md)
+> 💡 **Sık Karşılaşılan Uyarılar ve Çözüm Adımları:** Detaylı soru ve çözüm rehberi için bkz: [RADPYS V4 SSS Dokümanı](RADPYS_V4_sss.md)
 
 ---
 
@@ -2671,11 +2741,11 @@ Bu bölümde RADPYS V4 kullanımı sırasında karşılaşılabilecek olası aks
 
 #### 3. 🌐 Web Portalına Tarayıcıdan Erişilemiyor ("Bağlantı Reddedildi")
 
-* **Neden Olur?:** Masaüstü RADPYS V4 uygulamasındaki REST API arka plan servisi kapalıdır veya kurum güvenlik duvarı (Firewall) bağlantı portunu engellemektedir.
+* **Neden Olur?:** Web Portal Node.js servisi sunucuda çalışmıyor veya kurum güvenlik duvarı (Firewall) bağlantı portunu (Port 3000) engellemektedir.
 * **Çözüm:**
-  1. Masaüstü uygulamasında **Yönetim > Web Portal & API Ayarları** sekmesine gidin.
-  2. 🟢 **"REST API Servisini Başlat"** butonuna basın.
-  3. Sunucu IP adresini (örn: `http://192.168.1.100:8000`) kontrol edin.
+  1. Sunucuda veya ana bilgisayarda komut satırından `cd web_portal && node dist/server.js` (veya `npm run dev`) komutuyla servis durumunu kontrol edin.
+  2. Windows Güvenlik Duvarı'nda 3000 numaralı TCP portuna yerel ağ gelen bağlantı kuralı (Inbound Rule) izni tanımlayın.
+  3. İstemci cihazlardan sunucunun yerel IP adresine (örn: `http://192.168.1.100:3000`) erişim sağlayın.
 
 ---
 
@@ -2700,6 +2770,27 @@ Bu bölümde RADPYS V4 kullanımı sırasında karşılaşılabilecek olası aks
 <a id="bolum-21"></a>
 
 ## 21. Sürüm Notları ve Güncelleme Geçmişi (Update Log)
+
+### 🗺️ RADPYS V4.1.2.4 (Sürüm 4.1.2.4 — Mimari Kat Planı PDF Desteği, Cihaz Pin Kilitleme & Akıllı Breadcrumb Menüleri)
+
+* 📄 **Mimari Kat Planı / Kroki PDF Desteği (`pypdfium2`):**
+  * Ortam Ölçüm Krokileri ve Departman Kat Planları havuzuna PNG/JPG formatlarının yanı sıra standart mimari çizim formatı olan **`.pdf` dosyalarının doğrudan yüklenmesi** ve yüksek çözünürlüklü `QPixmap` olarak sahneye aktarılması sağlandı.
+  * Çok sayfalı ve tek sayfalı PDF planlarının ilk sayfası otomatik işlenerek ölçeklenebilir vektörel netlikte tuvale yerleştirilir.
+* 🩻 **Cihaz Yönetimi Kat Planı Veri Yükleme & Kayıt Bütünlüğü:**
+  * Cihaz düzenleme formundaki 4. Kat Planı sekmesinde veritabanı anahtarları tekilleştirildi; düzenleme modunda kroki, oda ve pin konumu eksiksiz yüklenir.
+  * `_set_combo_by_data` sayısal ID ve string veri dönüşümleri normalize edilerek açılır kutuların doğru indekste açılması sağlandı.
+* 🔒 **Cihaz Kat Planı Pin Kilitleme / Taşıma Güvenlik Modu:**
+  * Cihaz Ekle/Düzenle ekranındaki 4. Kat Planı araç çubuğuna pin kilitleme butonu (`btnCihazPinKilitle`) entegre edildi (Açılışta varsayılan olarak **Kilitli** gelir).
+  * Kilitli modda haritada serbestçe gezilirken pinin yanlışlıkla kayması engellendi; taşıma modunda pin serbestçe konumlandırılabilir.
+* 🧭 **Üst Araç Çubuğu Breadcrumb Yaşam Döngüsü & Otomatik Gizlenme:**
+  * Açık olan tüm alt pencereler kapatıldığında üst breadcrumb navigasyonunun masaüstü arka planında asılı kalması önlendi; içerik sıfırlanıp bileşen otomatik olarak gizlenir (`setVisible(False)`).
+* ⚡ **Akıllı Breadcrumb Kategori Hızlı Geçiş Açılır Menüleri:**
+  * Breadcrumb üzerindeki üst modül kategorilerine (*Kalite Yönetimi*, *Cihaz Yönetimi*, *Personel Modülü*, *Nöbet Planları*, *İzin Modülü*, *Sistem Yönetimi*) tıklandığında ilgili kategorinin tüm alt ekranlarını listeleyen şık, karanlık tema uyumlu açılır menü eklendi.
+  * Kök `RADPYS V4` öğesine tıklandığında açık tüm alt pencereler kapatılarak temiz karşılama ekranına dönülmesi sağlandı.
+* 🌐 **Web Portal Durum Çubuğu Hata İyileştirmesi:**
+  * `app_controller.py` içindeki eski tanımsız değişken referansları temizlenerek Node.js Web Portal durum kontrolü stabilize edildi.
+
+---
 
 ### 🚀 RADPYS V4.1.2.2 (Sürüm 4.1.2.2 — Akıllı Dry-Run İçe Aktarma, Resmi RD.F43 Doz Formu, Nöbet İkame Motoru, Şua Erken Uyarı & NDK 2. Gün Hatırlatıcısı)
 

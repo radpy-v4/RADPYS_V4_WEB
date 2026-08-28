@@ -95,3 +95,72 @@ Bu iç denetim kaydı, `docs/kilavuz_guncel.md` kılavuzundaki her bir operasyon
 ### Düzeltme Notları (Referans vs Kod)
 
 - **Merkezi Kural Motoru (SSOT):** `evaluate_rke_inspection_rules` fonksiyonu Kritik Bölge (HEK), Non-Kritik $>15\text{ mm}^2$ (HEK), $\le 15\text{ mm}^2$ (Şartlı Kullanım), $<0.25\text{ mm Pb}$ (Şartlı Kullanım) kurallarını çalıştırmaktadır (`rke_service.py:440`).
+
+---
+
+## 7. RGS / RSO Görevlendirme ve NDK Sertifika Takibi — Denetim Kaydı
+
+### Taranan Dosyalar
+
+- `ui/pages/personel/rgs_gorevlendirme_page.ui`
+- `ui/controllers/personel/rgs_gorevlendirme_controller.py`
+- `ui/controllers/personel/rgs_gorevlendirme_dialog_controller.py`
+- `app/services/personel/rgs_gorevlendirme_service.py`
+
+### Düzeltme Notları (Referans vs Kod)
+
+- **Kılavuza Ekleme Yapıldı:** Kılavuzda Bölüm 3 altında eksik olan RGS takibi, koddaki KPI kartları (`lblKpiTotal`, `lblKpiActive`, `lblKpiExpiring`, `lblKpiExpired`), filtreleme ve CSV ihracı özellikleri ile senkronize edilerek `Madde 3.7` olarak kullanım kılavuzuna işlendi.
+- **Sertifika Durum Rozetleri:** Koddaki 60 gün kuralı (`sertifika_durum_ui`: `GEÇERLİ`, `YAKLAŞTI`, `DOLDU`) kılavuza eklendi.
+
+---
+
+## 8. RADPYS Portal Launcher (GUI) — Denetim Kaydı
+
+### Taranan Dosyalar
+
+- `user_launcher/portal_launcher.py` (satır 1–950)
+- `web_portal/server.ts` (satır 5730–5758)
+
+### Düzeltme Notları (Referans vs Kod)
+
+- **GUI Başlatıcı:** Kılavuzda ana masaüstü menüsü altında hayali bir alt pencere olarak anlatılan kısım düzeltildi; `RADPYS_Portal_Launcher.exe` grafik başlatıcısının (`[ ▶ Portali Başlat ]`, `[ ⏹ Portali Durdur ]`, `[ 🌐 Portala Git ]`, Port 3000, LAN IP tespiti, Sistem Tepsisi küçültme) gerçek işleyişi `Bölüm 15.3` ve SSS `12.1`'e işlendi.
+
+---
+
+## 9. Veritabanı Bakım ve 2 Aşamalı Güvenlikli Sıfırlama — Denetim Kaydı
+
+### Taranan Dosyalar
+
+- `ui/controllers/admin/system/db_maintenance_controller.py` (satır 190–248, 730–785)
+- `scripts/reset_db.py`
+
+### Düzeltme Notları (Referans vs Kod)
+
+- **Çift Kademeli Doğrulama:** Koddaki `on_reset_database` iş akışı doğrulandı: 1. Aşama `ConfirmResetDialog` (kutucuğa büyük harflerle `SIFIRLA` yazılması), 2. Aşama `SudoDialogController` (Sistem Yöneticisi şifresinin girilmesi). Kılavuz `Bölüm 18.4` bu 2 adımı içerecek şekilde eşitlendi.
+
+---
+
+## 10. Evrensel Onay Sistemi ve 4 Kategori Ayrımı — Denetim Kaydı
+
+### Taranan Dosyalar
+
+- `ui/controllers/onay_bekleyen_gorevler_controller.py` (satır 80–150)
+- `app/services/system/approval_service.py`
+
+### Düzeltme Notları (Referans vs Kod)
+
+- **Kategori Senkronizasyonu:** `btnTabIzin` butonunun gizlendiği ve izinlerin doğrudan İzin Modülü'nden yönetildiği; Onay Paneli'nin ise **Nöbet Devirleri**, **Gebelik & İdari Aksiyonlar**, **Nöbet Planları** ve **Veri Değişiklikleri** olmak üzere 4 ana kategoriyi yönettiği `Bölüm 12.1`'e yansıtıldı.
+
+---
+
+## 11. %100 Docstring Kapsam Denetimi — Denetim Kaydı
+
+### Taranan Dosyalar
+
+- Proje genelindeki 104 kaynak dosya (`app/`, `ui/`, `scratch/`, `scripts/`)
+- `scripts/find_missing_docstrings.py` & `scripts/docstring_hierarchy_summary.py`
+
+### Düzeltme Notları (Referans vs Kod)
+
+- **1228 Hedef:** Tüm modül, sınıf ve fonksiyonlar PEP 257 standartlarında docstring'e kavuşturuldu; 0 eksik ile kapsama oranı %100'e ulaştı. Windows cp1254 terminal desteği sağlandı.
+

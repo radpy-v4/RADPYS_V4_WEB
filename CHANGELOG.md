@@ -1,255 +1,385 @@
 # CHANGELOG
 
-Tüm önemli değişiklikler bu dosyada kayıt altına alınacaktır.
+## [4.1.2.4] - 2026-08-27
 
-## [4.1.2] - 2026-08-25
+### 🗺️ Mimari Kat Planı PDF Desteği, Cihaz Pin Kilitleme & Akıllı Breadcrumb Hızlı Geçiş Menüleri
 
-### Koruyucu Donanım (RKE) ve KKD Yönetim Merkezi, DIN 6857-1 Kalite Kontrol Muayenesi ve Akıllı Kodlama Motoru
+#### 1. 📄 Mimari Kat Planı / Kroki PDF Desteği & Vektörel Rendering
 
-- **Radyasyon Koruyucu Ekipman (RKE) & KKD Yönetim Merkezi:** `rke_envanter`, `rke_muayeneler` ve `rke_zimmet_hareketleri` tabloları ile kurşun önlük, tiroid, gonad, gözlük, eldiven ve paravan donanımlarının tam envanter takibi.
-- **Akıllı Kodlama Motoru (`RkeKodGenerator`):** Departman ve ekipman türü tanımları öncelikli dinamik `RKE-[Tür]-[SıraNo]` (örn: `RKE-O-001`) ve `[AnaBilimDali]-[Birim]-[Tür]-[SıraNo]` kurumsal tekil kod üretimi.
-- **DIN 6857-1 / IEC 61331-3 Skopi Muayene & Otomatik Karar Motoru:** Skopi/Floroskopi altında yapılan kalite kontrol testinde hasar bölgesi (Kritik/Non-Kritik) ve kusur alanına ($mm^2$) göre anlık `KULLANIMA_UYGUN`, `SARTLI_KULLANIM` veya `HEK_HURDAYA_AYIR` kararı üretimi.
-- **Canlı KPI Kartları & QR Etiketler:** Muayenesi yaklaşanlar (≤30 gün), süresi dolanlar ve hurdaya ayrılanlar için anlık KPI kartları; 2D QR etiket yazdırma ve Excel/CSV toplu içe aktarma sihirbazları.
+- **Kayıpsız PDF Desteği (`pypdfium2`):** Ortam Ölçüm Krokileri ve Departman Kat Planları havuzuna PNG/JPG formatlarının yanı sıra standart mimari çizim formatı olan **`.pdf` dosyalarının doğrudan yüklenmesi** ve yüksek çözünürlüklü `QPixmap` olarak sahneye aktarılması sağlandı.
+- **Dinamik Format Dönüştürme:** Çok sayfalı ve tek sayfalı PDF planlarının ilk sayfası otomatik işlenerek ölçeklenebilir vektörel netlikte tuvale yerleştirilir.
 
-## [4.1.0] - 2026-08-22
+#### 2. 🩻 Cihaz Yönetimi Kat Planı Veri Yükleme & Kayıt Bütünlüğü
 
-### Tıbbi Cihaz Envanteri, NDK Lisans Takibi, 2D QR Etiketleme ve Mobil QR Hızlı Arıza Portalı
+- **Sekme 4 Veri Onarımı (`_load_cihaz_data`):** Veritabanından gelen cihaz verilerindeki düz ve iç içe sözlük alanları (`kroki_id`, `pos_x`, `pos_y`, `kroki_oda_no`, `lisans_no`, `servis_firmasi`) tekilleştirildi; düzenleme modunda kat planı ve oda bilgisinin boş kalması sorunu giderildi.
+- **Tip Güvenlikli ComboBox Eşleme (`_set_combo_by_data`):** Sayısal ID ve string veri dönüşümleri normalize edilerek açılır kutuların doğru indekste açılması sağlandı.
+- **`QLineEdit` Setter Onarımı:** Lisans açıklama alanındaki metod çağrısı `.setText()` olarak düzeltildi.
 
-- **Tıbbi Cihaz Envanteri & 3'lü Hızlı Filtre:** `Tümü`, `Radyasyonlu (X-Ray)`, `Radyasyonsuz (MR/USG)` hızlı filtreleri, NDK lisansı, marka/model, seri no, tüp seri no ve garanti takibi.
-- **Dinamik Yerel IP Algılamalı 2D QR Karekod Etiket Üretim Modülü (`CihazQrDialog`):** Cihazın üzerine yapıştırılacak karekod etiket üretimi ve yazdırma.
-- **Web & Mobil Portal Entegre Hızlı Arıza Bildirimi (`CihazArizaView`):** Sahada telefon kamerasıyla QR okutulduğunda cihaz seçili arıza formunun açılması; biyomedikal teknik servis müdahale ve parça değişim takibi.
-- **NDK Resmi Denetim Çizelgesi:** Sağlık Bakanlığı ve NDK resmi denetimlerine sunulan standart formatlı Excel denetim çizelgesi çıktısı.
+#### 3. 🔒 Cihaz Kat Planı Pin Kilitleme / Taşıma Güvenlik Modu
 
-## [4.0.2] - 2026-08-20
+- **Koruma Butonu (`btnCihazPinKilitle`):** Cihaz Ekle/Düzenle ekranındaki 4. Kat Planı araç çubuğuna pin kilitleme butonu entegre edildi (Açılışta varsayılan olarak **Kilitli** gelir).
+- **Kaza Önleme Mekanizması:** Kilitli modda haritada serbestçe gezilirken (Zoom/Pan) pinin yanlışlıkla başka odalara sıçraması engellendi. Taşıma modu aktif edildiğinde pin fareyle serbestçe sürüklenip bırakılabilir.
 
-### Radyasyon Ortam Dozu Ölçümleri, İnteraktif Mimari Plan Krokisi ve SKS 6.1 Alan İzleme Sistemi
+#### 4. 🧭 Üst Araç Çubuğu Breadcrumb Yaşam Döngüsü & Otomatik Gizlenme
 
-- **Masaüstü & Web İnteraktif Mimari Plan Krokisi:** Vektörel PDF ve PNG kat planlarında donanım hızlandırmalı sınırsız Zoom ve Pan desteği.
-- **Mimari Plan Canlı Pinleri & Doz Girişi:** *Denetimli Alan*, *Gözetimli Alan* ve *Halka Açık Alan* eşiklerine sahip çift katmanlı parlayan canlı pinler; haritadan tek tıkla dedektör ($\mu Sv/h$) doz girişi.
-- **SKS 6.1 SRG11.02 Resmi Excel Denetim Raporu:** Sağlık Bakanlığı kalite denetimlerine hazır tek tıkla resmi Excel rapor üretimi.
-- **Web Portalı & Mobil Alan İzleme (`OrtamDozuView.tsx`):** Sahada tablet ve telefondan krokileri canlı izleme ve ölçüm kaydetme.
+- **Ekran Kapanış Temizliği (`_update_app_title_from_subwindow`):** Açık olan tüm alt pencereler kapatıldığında üst breadcrumb navigasyonunun masaüstü arka planında asılı kalması önlendi; içerik sıfırlanıp bileşen otomatik olarak gizlenir (`setVisible(False)`).
+- **İmha Olayı Bağlantısı:** Alt pencere kapatma/yok edilme (`subwin.destroyed`) sinyaline dinamik başlık ve breadcrumb güncelleme tetikleyicisi bağlandı.
 
-## [4.0.1] - 2026-08-18
+#### 5. ⚡ Akıllı Breadcrumb Kategori Hızlı Geçiş Açılır Menüleri (Seçenek 3)
 
-### Hizmet İçi Eğitim Kataloğu, Çoktan Seçmeli Soru Bankası ve Online Sınav Motoru (LMS)
+- **Hızlı Geçiş Açılır Menüleri (`QMenu`):** Breadcrumb üzerindeki üst modül kategorilerine (*Kalite Yönetimi*, *Cihaz Yönetimi*, *Personel Modülü*, *Nöbet Planları*, *İzin Modülü*, *Sistem Yönetimi*) tıklandığında ilgili kategorinin tüm alt ekranlarını listeleyen şık, karanlık tema uyumlu açılır menü eklendi.
+- **Ana Sayfaya Dönüş:** Kök `RADPYS V4` öğesine tıklandığında açık tüm alt pencereler kapatılarak temiz karşılama ekranına dönülmesi sağlandı.
 
-- **Zorunlu Periyodik Eğitim Kataloğu:** Video/PDF materyal yükleme ve departman personellerine toplu eğitim atama.
-- **Sınav Soruları Havuzu (Soru Bankası):** Çoktan seçmeli A/B/C/D soru bankası, eğitimden kopyalama ve Excel'den soru aktarma.
-- **Web Portalı Online Sınav Motoru:** Personellerin web ve mobilden doküman çalışıp sınava girmesi (%70 baraj), otomatik puanlama ve sertifikasyon.
-- **Departman Eğitim Uyum Matrisi (Compliance Matrix):** Yasal geçerlilik süreleri ve teftiş denetim listeleri.
+#### 6. 🌐 Web Portal Durum Çubuğu Hata İyileştirmesi
 
-## [4.0.0] - 2026-08-16
+- `app_controller.py` içindeki eski tanımsız değişken referansları (`btn_sync`, `now_str`) temizlenerek Node.js Web Portal durum kontrolü stabilize edildi.
 
-### PostgreSQL 14+/16 Kurumsal Veritabanı Mimarisi, PWA Web Portalı, Evrensel Onay Diff View ve KVKK Kasası
+---
 
-- **PostgreSQL 14+/16 Kurumsal Mimarisi (`psycopg3`):** Çok kullanıcılı, yüksek eşzamanlılıklı ve ACID uyumlu ilişkisel veritabanı motoruna geçiş.
-- **Mobil Ana Ekrana Yüklenebilir (Installable) PWA Web Portalı:** React + Vite + Tailwind mimarisiyle mobil uygulama benzeri çalışma deneyimi.
-- **Görsel Diff Destekli Evrensel Onay Sistemi:** 5 onay kategorisi (İzinler, Nöbet Devirleri, Nöbet İstekleri, Nöbet Planları, Veri Değişiklikleri) ve eski/yeni verileri yan yana kıyaslayan onay paneli.
-- **KVKK AES-256 Fernet Şifreli Evrak Kasası (`stored_files`):** Belgelerin PostgreSQL veritabanında şifreli depolanması ve KVKK Madde 11 Kişisel Veri İhraç Paketi (ZIP).
+## [4.1.2.3] - 2026-08-26
 
-## [3.8.6.2] - 2026-08-10
+### 📚 Tam Kapsam Docstring Denetimi (%100) & Operasyonel Kullanım Kılavuzu Kod Senkronizasyonu
 
-### PySide6/PyQt Regresyon Test Düzeltmeleri, Türkçe Karakter Lookup Normalizasyonu ve Qt Asenkron Zamanlayıcı Güvenliği
+#### 1. 🔍 %100 Docstring Kapsam Denetimi & AST Doğrulaması
 
-#### PySide6 Sinyal, Slot & Import Düzeltmeleri
+- **1228 Hedef Fonksiyon, Sınıf ve Modül:** Projedeki tüm Python kaynak dosyaları (`app/`, `ui/`, `scratch/`, `scripts/`) PEP 257 ve Google Python Docstring standartlarında denetlendi; eksik/zayıf docstring sayısı **0'a indirildi (%100 kapsama)**.
+- **AST Tarayıcıları & Raporlama:** `scripts/docstring_hierarchy_summary.py` ve `scripts/find_missing_docstrings.py` araçları Windows cp1254 terminal karakter kodlamasına dayanıklı hale getirildi.
 
-- **`QAction` İçe Aktarım Standartlaştırması:** `tests/test_pyside_buttons_regression.py` dosyasındaki hatalı `from PySide6.QtWidgets import QAction` içe aktarımı, PySide6 standartlarına uygun olarak `from PySide6.QtGui import QAction` şeklinde güncellendi.
-- **Subwindow Ertelenmiş Silme (`deleteLater`) Test Uyumu:** `test_app_controller_subwindow_destroyed_connection` testinde `deleteLater()` çağrısı sonrası `destroyed` sinyalinin anında yakalanabilmesi için `QCoreApplication.sendPostedEvents(None, QEvent.Type.DeferredDelete)` işleyicisi eklendi.
+#### 2. 📖 Kullanım Kılavuzu & SSS Dokümanı Kod Eşitlemesi (`RADPYS_V4_Kullanim_Kilavuzu.md` & `RADPYS_V4_sss.md`)
 
-#### Türkçe Karakterli Departman & Görev Yeri Eşleştirme (Lookup Normalizasyonu)
+- **RADPYS Portal Launcher GUI Doğrulaması:** Web portalının başlatma ve durdurma süreçlerinin görsel `RADPYS_Portal_Launcher.exe` aracıyla (port 3000, LAN IP tespiti, `/api/health`, konsol logları) yönetildiği kılavuza işlendi.
+- **2 Aşamalı Güvenlikli Veritabanı Sıfırlama:** Fabrika ayarlarına döndürme sürecinin çift kademeli güvenlik mekanizması (1. Aşama: `SIFIRLA` metin onayı, 2. Aşama: `Sudo Şifresi`) kılavuz ve SSS adımlarına aktarıldı.
+- **Evrensel Onay Sistemi 4 Kategori Standardizasyonu:** `Onay Bekleyen Görevler` panelindeki aktif 4 kategori (*Nöbet Devirleri*, *Gebelik & İdari Aksiyonlar*, *Nöbet Planları*, *Veri Değişiklikleri*) arayüzle birebir eşitlendi.
+- **PostgreSQL & KVKK AES-256 Evrak Kasası Uyumu:** `stored_files` tablosu, PostgreSQL `.dump` yedekleme mimarisi ve sıfırlama prosedürleri güncellendi.
+- **Mevzuat & Hiyerarşi İyileştirmeleri:** Şua İzni (0-30 gün) birincil amacı pekiştirildi, SGK emeklilik ayrımı netleştirildi, alt başlık numaralandırmaları (`9.x`, `10.x`, `11.x`, `18.x`) ve tüm iç bağlantılar düzeltildi.
 
-- **ASCII Dönüşüm Mantığı:** Excel aktarım işlemlerinde Türkçe karakterli departman/unvan isimlerinin (`Başhemşirelik` vb.) ASCII karşılıkları (`BASHEMSIRELIK`) ile hatasız eşleşebilmesi için `_clean_for_lookup_match` metodu ve `tests/test_import_department_resolution.py` testindeki dönüşüm haritası `ÇĞİÖŞÜçğıöşü` -> `cgiosucgiosu` ASCII normalizasyonuna kavuşturuldu.
+---
 
-#### Headless CI & Test Altyapısı İyileştirmeleri
+## [4.1.2.2] - 2026-08-25
 
-- **Fallback `qtbot` Fixture'ı (`conftest.py`):** `pytest-qt` kütüphanesinin yüklü olmadığı headless CI/CD ortamlarında buton ve arayüz regresyon testlerinin toplanırken (`collection phase`) `fixture 'qtbot' not found` hatası vermesini engellemek üzere `tests/conftest.py` dosyasına dinamik fallback `qtbot` fixture'ı yerleştirildi.
+### 🚀 Gelişmiş Otomasyon, Yasal Doz & Şua Uyum Motoru, Akıllı Nöbet İkamesi ve RKE Karar Motoru (Faz 1 - Faz 6)
 
-#### Qt C++ Nesne Yaşam Döngüsü & Asenkron `QTimer` Güvenliği
+#### 1. 📥 Toplu İçe Aktarma Akıllı Ön Doğrulama & Çakışma Yönetimi (Faz 1)
 
-- **Silinmiş C++ Nesne Koruması:** Diyalogların ve pencere bileşenlerinin kapatılmasından sonra çalışan asenkron `QTimer.singleShot` zamanlayıcılarının silinmiş C++ nesnelerine erişip `RuntimeError` (`libshiboken: Internal C++ object already deleted`) üretmesini önlemek için `TemplatesController`, `RoleFormController`, `UserFormController` ve `AuthPasswordChangeDialog` sınıflarına `shiboken6.isValid(self)` denetimleri ve `RuntimeError` istisna yakalayıcıları eklendi.
+- **Dry-Run (Ön Doğrulama) Motoru (`BulkImportService.validate_batch`):** Excel/CSV içe aktarılmadan önce tüm satırları analiz eder; geçerli, mükerrer ve hatalı kayıtları belirler.
+- **Akıllı Durum Rozetleri & Filtreleme:** Önizleme tablosunda `🟢 Geçerli`, `🟡 Mükerrer`, `🔴 Hatalı` durum rozetleri ve filtre butonları (`Tümü`, `Yalnızca Hatalılar`, `Yalnızca Mükerrerler`).
+- **Hücre Üzerinde Anlık Düzenleme (In-Place Edit):** Hatalı satırların Excel'i yeniden yüklemeden doğrudan tablo üzerinde çift tıklanarak düzeltilebilmesi sağlandı.
+- **Çakışma Stratejileri:** *"Mükerrerleri Güncelle (Merge)"* ve *"Mükerrerleri Atla (Skip)"* seçenekleri ile veritabanındaki mevcut kayıtların korunması veya zenginleştirilmesi.
 
-## [3.4.0] - 2026-07-21
+#### 2. 📑 Resmi RD.F43 Doz Araştırma Formu & Dinamik Hesaplama Motoru (Faz 2)
 
-### Demo Modu, Veritabanı Şifreleme ve Lisans Aktivasyonu Entegrasyonu
+- **Veritabanı Şeması & Migration (`V20260825_1_rdf43_doz_arastirma_formu.py` - v4.8.1.0):** `arastirma_formu` ve `kullanim_detay` tablolarına resmi RD.F43 alanları eklendi.
+- **10 İş Günü Yasal Süre Motoru:** NDK 10 iş günü yasal araştırma süresini hafta sonlarını atlayarak hesaplayan rozet sistemi (`add_business_days`, `calculate_business_days_remaining`).
+- **Dinamik Doz Hesaplama Sihirbazı:** Doz hızı ($\mu\text{Sv/sa}$) ve unutulma süresi üzerinden tahmini dozu otomatik hesaplayan formül motoru (`calculate_estimated_dose`).
+- **Resmi RD.F43 Word Rapor Çıktısı (`ExportService.export_rd_f43_formu`):** NDK ve RADKOR standartlarında 2 sayfalık resmi araştırma formunun `docxtpl` ile dinamik üretilmesi.
 
-#### SQLCipher Veritabanı Şifrelemesi & Otomatik Geçiş (Auto-Migration)
-- **Dosya Düzeyinde AES-256 Şifreleme:** `sqlcipher3` kütüphanesi entegre edilerek `radpys.db` veritabanı dosya düzeyinde AES-256 standardıyla şifrelendi. Şifresiz SQLite okuyucularla dosyanın açılması engellendi.
-- **Düz Metin DB Otomatik Geçişi:** Mevcut şifresiz veritabanlarının, ilk açılışta veriler kaybolmadan arka planda otomatik olarak şifreli formata dönüştürülmesi (auto-migration) sağlandı.
+#### 3. ⚡ Nöbet Çizelgesi Otomatik İkame Öneri Motoru (Faz 3)
 
-#### Demo Sürüm Kısıtlamaları & Süre Aşımı Kontrolü
-- **Zaman Kısıtı:** Kurulumdan itibaren 30 gün deneme süresi sınırı getirildi. 30 gün dolduğunda uygulama uyarı vererek açılışta kendini kapatır.
-- **Kayıt ve Plan Sınırları:** Maksimum **15 aktif personel** ve **3 nöbet planı** limiti eklendi.
-- **Toplu İthalat Denetimleri:** Excel/CSV üzerinden yapılan toplu personel ve nöbet (shift) ithalatlarında da 15 personel ve 3 nöbet planı limiti tam olarak denetlenmektedir.
+- **Kural & Skorlama Motoru (`NobetCizelgeService.suggest_shift_substitutes`):**
+  - İzinli, mazeretli, çakışan nöbeti olan veya 24 saat dinlenme kuralına uymayan personelleri otomatik eler.
+  - Aylık hedef çalışma saat açığı, hafta sonu nöbet adaleti ve dinlenme sürelerine göre 0-100 arası uygunluk skoru hesaplar.
+- **Sağ Tık Hızlı İkame Menüsü (`NobetCizelgeTableWidget` & `NobetPlanDetayController`):** Çizelge tablosunda boş bir slota sağ tıklandığında en uygun 3 adayı skor ve gerekçesiyle listeler, tek tıkla slota atar ve aylık saatleri günceller.
+- **Manuel Form Entegrasyonu:** Nöbet kayıt diyalogunda *"⚡ Uygun İkame Öner"* butonuyla en uygun adayın tek tıkla forma doldurulması.
 
-#### Çevrimdışı (Offline) Lisans Aktivasyonu
-- **Cihaz Kimliği (Machine ID):** Her bilgisayarın MAC/UUID bilgisine özel benzersiz cihaz kimliği (`RP-XXXX-XXXX-XXXX-XXXX`) üreten algoritma eklendi.
-- **Lisans Doğrulama:** Cihaz kimliğine özel üretilen Lisans Anahtarları (`LK-XXXX-XXXX-XXXX-XXXX`) için yerel (offline) doğrulama sistemi eklendi.
-- **Hakkında Aktivasyon Kartı:** Hakkında (`HakkindaDialog`) ekranına cihaz kimliğini kopyalama, lisans anahtarı giriş alanı ve lisansı aktifleştirme arayüzü entegre edildi. Doğrulama yapıldığında kilitler otomatik olarak açılır ve program Tam Sürüm olarak çalışır.
+#### 4. ⏳ Şua İzni Zamanaşımı & Erken Uyarı Paneli (Faz 4)
 
-#### Asenkron Güncelleme Desteği (Update Checker)
-- **Otomatik Sürüm Kontrolü & Sürüm Ayrıştırma (Split Updates):** Web sitenizdeki `version.json` dosyasını arka planda asenkron sorgulayan mekanizma kuruldu. Demo kullanıcılarının kritik yama düzeltmelerinden mahrum kalmaması amacıyla, güncelleme sorgusu lisans durumuna göre bölünmüştür. Demo kullanıcıları yalnızca `latest_demo_version` (kritik düzeltme) güncellemelerini alırken, Tam Sürüm kullanıcıları tüm yeni özellikleri (`version` alanı üzerinden) alabilmektedir.
-- **Durum Çubuğu Bildirimi:** Yeni sürüm tespit edildiğinde durum çubuğunda (Status Bar) yeşil renkli, tıklanabilir indirme butonu belirmesi sağlandı.
-- **Kayıpsız Kurulum (Inno Setup):** Güncellemelerde kullanıcının veritabanını (`radpys.db`) koruyan `radpys_installer.iss` paketleyici şablonu oluşturuldu.
+- **Zamanaşımı Hesaplama Servisi (`IzinService.get_expiring_sua_leaves`):** 31 Aralık son kullanım tarihine göre kullanılmamış Şua izinlerini analiz eder (`expired`, `critical` - son 30 gün, `warning` - son 60 gün).
+- **Hakediş Tablosu Rozetleri & Filtre:** Kalan günü olan Şua izinleri için erken uyarı rozetleri (`[⏳ 45g]`, `[🚨 15g]`, `[🚨 YANDI]`) ve *"⏳ Zamanaşımı Yaklaşan Şua İzinleri"* tek tık filtresi eklendi.
 
-## [3.3.0] - 2026-07-20
+#### 5. 🔔 Kalite & Olay Bildirimi 2. Gün NDK Hatırlatıcısı (Faz 5)
 
-### Rapor Modülü Genişletme ve Dinamik Şablon Altyapısı
+- **Otomatik Alarm Motoru (`NotificationService.check_pending_ndk_incidents`):** 3 günlük yasal NDK bildirim süresinde 2. güne girildiğinde (`gecen_gun >= 2`) Admin ve Yönetici rollerine otomatik sistem bildirimi iletir.
+- **Süre Aşımı Uyarısı:** 3 günü geçen vakalar için `🚨 NDK BİLDİRİM SÜRESİ DOLDU` alarmı üretir.
 
-#### Dinamik Şablon ve Konum Eşleme (Dynamic Header Mapping)
-- **Hatalı/Sabit Konum Sorununun Giderilmesi (Excel):** Şablon dosyasındaki (`.xlsx`) başlık satırını (row = `{{VERI}}` satırının bir üstü) okuyup normalize ederek veriyi otomatik olarak doğru başlığın altına eşleyen akıllı eşleme sistemi geliştirildi. Kullanıcı şablonda sütun sırasını değiştirse, bazı sütunları çıkarsa veya yeni veriler eklese dahi kod değişikliği yapılmasına gerek kalmaz; veriler otomatik olarak doğru sütuna yazılır.
-- **Şablon Bozulmalarının Engellenmesi:** Şablon dosyalarını fiziksel olarak manipüle edip bozan eski yıkıcı "Güncelle" butonları ve kodları tamamen kaldırıldı; şablonlar salt-okunur kaynak haline getirildi.
-- **Sütun Sıralama Arayüzünün Sadeleştirilmesi:** Şablon Ayarları ekranında karmaşıklık yaratan Yukarı/Aşağı sütun taşıma butonları (`btnMoveUp`, `btnMoveDown`) ve slot metotları `templates_page.ui` ve `templates_controller.py` dosyalarından tamamen silindi.
-- **Çoklu Sayfa Şablon Kirliliği Düzeltildi (Bug Fix):** Nöbet Planı ve Hakediş dökümlerinde, ikinci sayfa kopyalanırken ilk sayfanın verilerinin yeni sayfaya taşması hatası giderildi. Sayfalar doldurulmadan önce boş şablondan klonlanıp oluşturulacak şekilde revize edildi.
+#### 6. 🦺 RKE Karar Motoru & Durum Senkronizasyonu (Faz 6)
 
-#### Uzmanlık Rapor Alanlarının Genişletilmesi (Tüm Tablo Sütunları)
-Rapordaki kısıtlamalar kaldırılarak veritabanındaki tüm anlamlı sütunlar dışa aktarıma dahil edildi:
-- **Sağlık Muayene Raporu:** Göz, Dahiliye, Dermatoloji muayene tarihleri ile muayene onay durumları eklenerek toplam **22** sütuna genişletildi.
-- **Eğitim Durum Raporu:** Eğitim onay durumu (`onay_durumu`) kolonu eklenmiş ve subquery filtresi kaldırılarak onay bekleyen veya reddedilen tüm eğitimlerin dökümde listelenmesi sağlandı.
-- **Dozimetre Ölçüm Raporu:** Laboratuvara gönderim/sonuç geliş tarihleri, limit aşımı tipi, bildirim durumu ve rapor no gibi alanlarla toplam **21** sütuna genişletildi.
-- **İzin Bakiye Raporu:** Yıllık ve Şua izinleri için devir ve dondurulan gün kırılımları da eklenerek toplam **14** sütuna çıkarıldı (ayrıca Şua izin kodu `"SUA"` yerine veritabanı ile tam uyumlu `"SHUA"` olarak düzeltildi).
+- **Merkezi Kural Motoru (`RkeService.evaluate_rke_inspection_rules`):** DIN 6857-1, IEC 61331 ve SKS 6.1 standartlarına göre muayene kararlarını tekilleştirdi (Kritik Bölge Sıfır Tolerans $\rightarrow$ HEK, Non-Kritik $>15\text{ mm}^2 \rightarrow$ HEK, $\le 15\text{ mm}^2 \rightarrow$ Şartlı Kullanım, $<0.25\text{ mm Pb} \rightarrow$ Şartlı Kullanım).
+- **Masaüstü ve Web API Senkronizasyonu:** Tüm platformlar aynı merkezi karar kuralları üzerinden çalıştırıldı.
 
-#### Yeni 5. Rapor Türü ve Şablonlar
-- **Kimlik ve İletişim Bilgileri Raporu:** Personelin doğum tarihi/yeri, cinsiyeti, medeni hali, anne/baba adı, telefon/e-posta adresleri, il/ilçe bilgileri, işten çıkış tarihi/nedeni, nöbet ve fazla mesai durumlarını listeleyen yepyeni bir rapor türü sihirbaza eklendi.
-- **Merkezi Şablonlar Dökümü:** Dökümü alınabilen tüm raporlar için örnek şablon dosyaları (`.xlsx` ve kurumsal temiz tasarımlı `.docx`) oluşturularak `data/templates/` dizinine yerleştirildi.
+---
 
-#### Altyapı, Performans ve Güvenlik Düzeltmeleri
-- **4 Yeni Dinamik Sağlayıcı (FieldProvider):** İsteğe bağlı eklenebilen `calisma_kisiti_detay`, `belge_listesi`, `dozimetre_atama_detay` (SQL JOIN hatası ve olmayan boolean `aktif` filtresi giderildi) ve `izin_gecmisi_son` dynamic sağlayıcıları sisteme entegre edildi.
-- **İşlem (Transaction) Atomikliği (Bug Fix):** `save_template_field_settings` metodunda `conn.execute` kullanılarak veritabanı silme ve ekleme işlemlerinin tam atomik (hata durumunda rollback olabilen) çalışması sağlandı.
-- **SQLite Parametre Limiti Güvenliği:** 999 parametre limitini aşan dökümlerde SQLite'ın çökmesini engellemek için `_fetch_in_chunks` üzerinden parametreler 900'lük gruplar halinde parçalanıp çekilecek şekilde güncellendi.
-- **Çift Çağrı Sütun Tekrarlama Engeli:** Aynı RaporPaketi ile birden fazla kez dışa aktarım tetiklendiğinde sütun tanımlarının mükerrer eklenmesi engellendi.
-- **Zenginleştirici (Enrichment) Hata Güvenliği:** Dinamik alan zenginleştirme (`_enrich_optional_fields`) olası FieldProvider hatalarını yakalamak için try-except bloğu içine taşındı.
+## [4.1.2.1] - 2026-08-25
 
-## [3.2.2] - 2026-07-19
+### 📊 Kurumsal Raporlama Sistemi, Dinamik Çok Satırlı Kurum Başlıkları & Şablon Yönetimi
+
+#### 1. 📑 4 Yeni Kurumsal Rapor Kataloğu (`REPORT_REGISTRY` & `ReportEngine`)
+
+- **Cihaz Lisans ve Kalibrasyon Takip Raporu (`cihaz_lisans_kalibrasyon`):** NDK lisans bitişleri, periyodik kalite kontrol (QC) ve kalibrasyon takip çizelgesi.
+- **Radyasyon Koruyucu Ekipman (RKE) Muayene Çizelgesi (`rke_muayene_cizelgesi`):** DIN 6857-1 / SKS standartlarında kurşun önlük, tiroid ve koruyucu donanımların yıllık muayene ve sağlamlık dökümü.
+- **Radyasyon Alanları Ortam Dozu Denetim Raporu (`ortam_dozu_denetim`):** Alan izleme, oda arka plan ve dedektör ölçümlerinin yasal sınır uygunluk denetim raporu.
+- **Fiziksel Konum ve Oda Bazlı Envanter Raporu (`fiziksel_konum_envanter`):** Bina, kat ve oda bazında yerleşik cihaz, RKE ve görevli personel envanter dökümü.
+- **Otomatik Şablon Senkronizasyonu (`template_updater.py`):** `data/templates/` altındaki 40 şablon (`.docx`, `.xlsx`) otomatik olarak güncellendi ve standartlaştırıldı.
+
+#### 2. 🏛️ Dinamik Kurum Başlığı & Çift Logo Yönetimi (`TemplatesController` & `export_service.py`)
 
-### Nöbet Ayarları Senkronizasyon ve Kısıt UI Düzeltmeleri
+- **Dinamik Kurumsal Marka:** Sabit "Sağlık Bakanlığı" metinleri kaldırılarak veritabanı ayarlarından (`program_ayarlari`) gelen dinamik `BASLIK_1`, `BASLIK_2`, `LOGO_1` ve `LOGO_2` yapısına geçildi.
+- **Kategori Bazlı Şablon Filtreleme (`cmbTemplateCategory`):** 40 şablonun kategoriye göre süzülmesi, ofis programında tek tıkla açılması (`Aç`) ve orijinal fabrika ayarlarına sıfırlanması (`Yeniden Oluştur`) sağlandı.
+- **Sadeleştirilmiş Tek Merkezli Yönetim:** Kafa karıştıran şablon bazlı override kutuları kaldırılarak tek merkezli, pratik ve anlaşılır genel kurum ayarları mimarisine dönüştürüldü.
 
-#### Arayüz ve Form İyileştirmeleri
+#### 3. ✍️ Çok Satırlı Başlık Desteği & Word XML `<w:br/>` Satır Kırılımı
 
-- **Ortak Onay Kutusu Veri Ezme Hatası Düzeltildi (Bug Fix):** Nöbet Genel Ayarları sekmesindeki "Kaydet" butonu tıklandığında, Birim Ayarları sekmesinde seçili olan birimin takvim kural onay kutuları (`weekendWorkCheck`, `holidayWorkCheck`, `combine24hCheck`) durumlarının global varsayılanların üzerine yazılması hatası giderildi. Bu onay kutuları genel sekmedeki kaydetme payload'undan çıkarıldı.
-- **Birim Kuralları Özel Kaydetme Butonu:** Birim Kuralları sekmesine programatik olarak "Birim Kurallarını Kaydet" butonu (`btnSaveUnitRules`) eklendi. Stones koyu temasına uygun olarak stilize edilen bu buton sayesinde "Genel (Birim Bağımsız)" varsayılanları veya birime özel takvim kuralları artık bağımsız olarak tek bir sekmeden kaydedilebilmektedir.
-- **Slot Kaydetme/Güncelleme Decoupling:** Birim slotu ekleme (`save_unit_slot`) ve güncelleme (`update_unit_slot`) metotlarında yer alan ve her slot işleminde genel parametrelerin de dolaylı yoldan kaydedilmesine yol açarak senkronizasyon hatalarına sebep olan `self.main._save_parameters()` tetikleyicileri kaldırıldı.
-- **Kısıt Tipi Combobox Seçim Hatası Düzeltildi (Bug Fix):** Yasal Kısıtlar tablosundan bir kısıt seçildiğinde açılır kutudaki (`ruleTypeCombo`) değerin eşleşmeyerek boş kalması hatası giderildi. Form doldurulurken `kural_tipi_ui` yerine doğrudan veritabanındaki ham `kural_tipi` değeri kullanılarak tam eşleşme sağlandı.
-- **Nöbet Taslak Yedeği Geri Yükleme Arayüzü:** Otomatik planlama öncesinde otomatik olarak alınan JSON yedeklerin (`data/backups/nobet/plan_{plan_id}_*.json`), çizelge detay ekranına eklenen **"Yedekten Taslak Yükle"** butonu (`btnRestoreBackup`) aracılığıyla kolayca geri yüklenebilmesi sağlandı.
-- **Otomatik Yedek Temizliği:** Disk kirliliğini önlemek adına, bir nöbet planı **Yayınlandığında**, **Arşivlendiğinde** veya **Silindiğinde**, o plana ait geçmişte otomatik alınmış tüm geçici `.json` yedek dosyaları diskten otomatik olarak silinecek şekilde `nobet_plan_service.py` (`set_plan_status` ve `delete_plan` fonksiyonları) güncellendi.
+- **Çok Satırlı Giriş Alanları (`QPlainTextEdit`):** `Kurum Başlık 1` ve `Kurum Başlık 2` kutularına Enter tuşuyla sınırsız alt satır (Üniversite / Fakülte / Anabilim Dalı) yazabilme desteği.
+- **Word `docxtpl.Listing` Entegrasyonu:** Çok satırlı başlıklardaki `\n` satır kırılımlarının Word ve PDF çıktılarında gerçek XML `<w:br/>` olarak alt alta basılması sağlandı.
 
-## [3.2.1] - 2026-07-18
+#### 4. 🐛 Hata Düzeltmeleri (Bug Fixes)
+
+- **Olay Bildirim Servisi:** `list_olay_lookups` metot uyumsuzluğu giderildi.
+- **Tablo Hücreleri Tip Güvenliği:** Tabloya aktarılan `datetime`/`date` nesneleri için güvenli string dönüştürücü (`_format_cell_text`) entegre edilerek `QTableWidgetItem` tip hatası çözüldü.
+
+---
+
+## [4.1.2.0] - 2026-08-23
+
+### 🏥 RADPYS V4 Tıbbi Cihaz, Lisans, Arıza & Bakım ve Kalite Kontrol (QC) Modülü
+
+#### 1. 🗄️ Veri Modeli ve Dinamik Tanımlamalar (Lookuplar)
+
+- **Cihaz Tanımları (`cihaz_tanimlari`):** Marka (16), Kullanım Amacı (9), Cihaz Türü (13), Lisans Durumu (7), Görev/Ünvan (6), Anabilim Dalı (16) seed verileriyle tohumlandı.
+- **Master-Detail Veritabanı Mimarisi:** 8 yeni ilişkisel tablo (`cihazlar`, `cihaz_lisanslari`, `cihaz_bakim_garanti`, `cihaz_konumlari`, `cihaz_dokumanlari`, `cihaz_arizalar`, `cihaz_kalite_kontrolleri`, `kurumsal_tesis_lisanslari`) oluşturuldu.
+- **Akıllı Cihaz Kod Üretimi (`CihazKodGenerator`):** `[KAYNAK_GRUBU]-[BIRIM_KODU]-[TUR_KODU]-[SIRA_NO]` standardında (örn: `XRAY-ACL-ANJ-01`) otomatik sayaçlı kodlama.
+
+#### 2. 📋 4 Bağımsız Masaüstü Yönetim Ekranı ve Alt Pencereler (MDI Subwindow)
+
+- **Ekran 1: Cihaz & Lisans Envanteri (`CihazYonetimiController` & `cihaz_yonetimi_page.ui`):**
+  - Gelişmiş filtreleme (Arama, Kaynak Grubu, Birim, Lisans Durumu, Cihaz Durumu).
+  - 8 sütunlu ana envanter tablosu ve dinamik kalan lisans süresi alarm rozetleri (🟢 >60G, 🟡 16-60G, 🟠 0-15G, 🔴 Doldu).
+  - 5 sekmeli alt Inspector çekmecesi (Genel Bilgiler, Lisans & Sorumlular, Garanti & Servis, Belgeler, Kroki Sabit Konum).
+  - 5 sekmeli tam donanımlı cihaz ekleme/düzenleme formu (`CihazEkleDuzenleController` & `cihaz_ekle_duzenle_dialog.ui`).
+  - KVKK Uyumlu Evrak Kasası (`stored_files`) Fernet AES-256 şifreli PDF ve kılavuz yükleme/önizleme.
+- **Ekran 2: Arıza, Bakım & Teknik Servis Takibi (`CihazArizaController` & `cihaz_ariza_page.ui`):**
+  - KPI Sayaçları (`[Toplam Arıza]`, `[🔴 Açık Arıza]`, `[🟡 Bekleyen]`, `[🟢 Çözülen]`, `[💰 Toplam Maliyet ₺]`).
+  - Arıza bildirildiğinde cihaz durumunu otomatik `'Arizali'` statüsüne alma (`CihazArizaBildirDialogController`).
+  - Teknik servis müdahalesi, değişen parçalar, X-ışını tüp değişimi ve maliyet ile arızayı kapatıp cihazı tekrar `'Aktif'` duruma döndürme (`CihazArizaCozDialogController`).
+- **Ekran 3: Kalite Kontrol (QC) & Kalibrasyon Takibi (`CihazQcController` & `cihaz_qc_page.ui`):**
+  - SKS 6.1 ve NDK standartlarında periyodik testler (Günlük, Aylık, Yıllık Kalibrasyon, Zırhlama, Dozimetrik Doğrulama).
+  - Test geçerlilik süresi (ay) ve sonraki kontrol tarihine göre otomatik yaklaşan/dolan uyarıları.
+  - PDF kalibrasyon raporu yükleme ve tek tıkla sistem varsayılan PDF görüntüleyicisinde açma.
+- **Ekran 4: HEK & Hizmet Dışı Cihaz Arşivi (`CihazHekController` & `cihaz_hek_page.ui`):**
+  - Ekonomik ömrünü tamamlayan veya devredilen cihazların arşiv sicili ve tek tıkla Hurda / Çıkış Tutanağı üretimi.
+  - İhtiyaç halinde cihazı tek tıkla tekrar aktif envantere dahil etme (`reactivate_from_hek`).
+
+#### 3. 📥 Excel İçe ve Dışa Aktarma Motoru (`CihazImportService`)
+
+- Kurumsal envanter Excel şablonlarını esnek sütun eşleştirme ile okuyan, marka/tür/amaç lookuplarını dinamik çözen ve idempotent içe aktarma yapan servis.
+- NDK Resmi Denetim Çizelgesi ve filtrelenmiş cihaz envanterini Excel formatında dışa aktarma.
+
+#### 4. 🔔 Otomatik Bildirim & Erken Uyarı Entegrasyonu (`NotificationService`)
 
-### Nöbet Talep Sistemi Refaktörü (Nöbet Yazma/Yazmama + Öncelik Entegrasyonu)
+- Lisans bitimine 60, 30, 15 ve 0 gün kalan cihazlar için RKS personeline ve Adminlere otomatik bildirim gönderimi.
+- Sonraki QC / Kalibrasyon tarihine <=30 gün kalan cihazlar için erken uyarı bildirimleri.
+- Mükerrer bildirim engelleme koruması (aynı gün aynı cihaz için mükerrer uyarı üretilmez).
 
-#### Algoritma ve Kısıt Motoru (Scheduler)
+---
 
-- **Nöbet Yazma (Mazeret) Talepleri Entegre Edildi:** Nöbet planlama motoruna (`nobet_scheduler.py`) onaylı `nobet_yazma` (nöbet yazılmasın) taleplerinin kontrolü eklendi. Strict (sert kısıtlar) aşamasında bu tarihlerde personele nöbet verilmesi engellenir.
-- **Dinamik Kısıt Esnetme:** Kadro yetersizliği durumunda relaxed (fallback) aşamasında, önceliği `4` veya `5` (Çok Yüksek / Kritik) olan `nobet_yazma` talepleri kesinlikle korunurken, 1-3 öncelikli mazeretlerin gerekirse esnetilebilmesine izin verildi.
-- **Nöbet Yazılma (İstek) Önceliklendirmesi:** Onaylı `nobet_yaz` (nöbet yazılsın) talebi olan personeller, planlama motorundaki aday sıralama aşamasında talep öncelik derecelerine göre (1-5, azalan sırada) en ön sıraya yerleştirilerek otomatik atamada önceliklendirildi.
-- **Birleştirilmiş Nöbetlerde Mazeret/İstek Kontrolleri Eklendi (Bug Fix):** Algoritmanın 12 saatlik nöbetleri birleştirerek 24 saatlik nöbet olarak atadığı Phase 1 (Combined shifts) aşamasında approved `nobet_yazma` ve `nobet_yaz` kısıtlarının tamamen bypass edilmesine neden olan mantıksal hata giderildi. Artık birleştirilmiş nöbetler atanırken de mazeret ve istek kısıtları strict olarak uygulanmaktadır.
-- **SQLite3 Row .get() AttributeError Hatası Düzeltildi (Bug Fix):** `get_sifting_request` fonksiyonunda veritabanından gelen `sqlite3.Row` nesnesi `dict(row)` olarak Python sözlüğüne dönüştürülerek, kısıt gevşetme (relaxed) ve sıralama (sort_key) aşamalarında yapılan `.get()` çağrılarının hata fırlatması engellendi.
+### ⚡ Cihaz Envanteri, NDK Lisansları, Kalite Kontrol (QC) ve Arıza & Bakım Yönetimi (Masaüstü UI & Servis Katmanı)
 
-#### Arayüz Sadeleştirmesi ve Veri Girişi
+#### 📋 Masaüstü Cihaz & Lisans Yönetim Merkezi (`CihazYonetimiController` - `app_window.ui`)
 
-- **İstek Tipi Seçeneklerinin Temizlenmesi:** Ayarlar altındaki Personel İstekleri sekmesinden veritabanı validasyonuyla çelişen ve işlevsiz kalan "İzinli" ve "Kongre" tipleri kaldırıldı; geriye kalan 5 geçerli istek tipi ("Nöbet Yazılmasın", "Nöbet Yazılsın", "Eğitim", "Nöbet Muafiyeti", "Fazla Mesai Talebi") listelenecek şekilde form arayüzü sadeleştirildi.
-- **Tarih Seçimi Otomasyonu:** "Belirli Bir Tarih Seç" onay kutusu gizlendi. Tarih gerektiren `nobet_yazma`/`nobet_yaz` tiplerinde tarih aralığı zorunlu kılınırken, tarih gerektirmeyen diğer tiplerde tarih giriş alanları otomatik gizlenecek şekilde form tasarımı dinamikleştirildi.
-- **İstek Tipi Haritası Güncellendi (Temizlik):** `nobet_ayarlar_personel_istekleri_tab.py` üzerindeki `istek_tipi_map` haritasından veritabanında kaydı bulunmayan ve kaldırılan `izinli` ve `kongre` tipleri temizlendi.
+- **6 Sekmeli Entegre Yönetim Mimarisi:**
+  - **1. NDK Lisanslı Radyasyon Cihazları (`tabLisansli`):** Anabilim Dalı, Bina/Oda, NDK Lisans No, Cihaz Cinsi, Marka/Model, Seri No, RKS, Tesis Sorumlusu, Demirbaş No ve dinamik kademeli alarm rozetleri.
+  - **2. MR & Ultrason Envanteri (`tabMrUsg`):** İyonlaştırıcı olmayan görüntüleme cihazları ve departman/demirbaş takibi.
+  - **3. Kurumsal / Tesis Lisansları (`tabKurumsal`):** Tesis genelini kapsayan ana NDK yetkilendirme lisansı ve vize süreçleri.
+  - **4. Kalite Kontrol (QC) & Kalibrasyon (`tabQc`):** SKS 6.1 ve NDK standartlarında periyodik testler (Günlük, Aylık, Yıllık Kalibrasyon, Zırhlama), sonraki test tarihine göre kalan gün uyarıları ve uygunluk kayıtları.
+  - **5. Arıza & Bakım Takibi (`tabAriza`):** Otomatik arıza kodu (`ARZ-2026-001`), arıza bildiriminde cihaz statüsünün otomatik `'Arizali'` yapılması, teknik servis müdahale raporu, değişen parça, maliyet (₺) ve arıza çözüldüğünde cihazın otomatik `'Aktif'` duruma döndürülmesi.
+  - **6. HEK & Arşiv (`tabHek`):** Hurdaya ayrılan veya devredilen cihazların arşiv sicili.
+- **Dinamik Kademeli Erken Uyarı Rozetleri:**
+  - 🟢 Normal (>60 Gün)
+  - 🟡 Yaklaşıyor (16-60 Gün)
+  - 🟠 Kritik (0-15 Gün)
+  - 🔴 Süresi Dolan (<0 Gün)
+  - 🟣 Başvuruda / Eksik Husus
+- **Excel Entegrasyonu & Raporlama:**
+  - Kurumsal `Lisanslı Cihazlar 2023 Dosyasının Kopyası.xlsx` 3 sayfasını (`LİSANSLI CİHAZLAR`, `ULTRASON ve MR`, `HEK ve DİĞER HUSUSLAR`) tek tıkla ve idempotent olarak veritabanına aktaran `CihazImportService`.
+  - Tablolardaki filtrelenmiş verileri tek tıkla Excel'e aktaran `export_to_excel` mekanizması.
+- **5 Adet Modern Dialog Penceresi:**
+  - `cihaz_ekle_dialog.ui`: Cihaz künye tanımlama/düzenleme.
+  - `cihaz_lisans_dialog.ui`: NDK lisans ve vize sürelerini güncelleme.
+  - `cihaz_qc_dialog.ui`: Kalite kontrol & kalibrasyon test kaydı.
+  - `cihaz_ariza_dialog.ui`: Arıza bildirimi açma ve aciliyet belirleme.
+  - `cihaz_ariza_coz_dialog.ui`: Arıza çözümü, parça değişimi ve servis tutanağı.
+- **Ana Gezinti (Sidebar):** Sol menüye `btnCihazYonetimi` butonu eklendi ve alt pencere (subwindow) mimarisine bağlandı.
 
-#### Lite Sürüm Temizlik ve İyileştirmeler (Plan Uygulama Durum Raporu Düzeltmeleri)
+#### 🗄️ PostgreSQL Veritabanı ve Servis Mimarisi
 
-- **Kod Kalıntıları Temizlendi:** `nobet_service.py` içerisindeki eski `list_nobet_agirliklari`, `upsert_nobet_agirliklari` ve `delete_nobet_agirliklari` facade metot köprüleri kaldırıldı.
-- **Onay Bekleyen Görevler Temizliği:** `onay_bekleyen_gorevler_controller.py` içinden artık kullanılmayan `kalite_dokumanlari` ve `hizmet_ici_egitimler` sekmelerinin yükleme, yenileme ve isim harita referansları tamamen silindi.
-- **Varsayılan Rol Yetkileri Düzenlendi:** `role_repository.py` içerisindeki default yetki tanımlarından yayından kaldırılan `kalite_dokumanlari` ve `hizmet_ici_egitim` izinleri çıkartılarak veritabanına gereksiz yetki satırı eklenmesi engellendi.
-- **Admin Bypass Belge Referansı:** `nobet_devir_service.py` içindeki admin devir onay bypass kod bloğuna `Kullanim_Kilavuzu.md` referanslı tasarım kararı açıklama yorumu eklendi.
+- **Migrationlar:** `V20260822_3_cihaz_lisans_ve_kalite_kontrol.py` (`v3.17.0`) ve `V20260822_4_cihaz_ariza_takibi.py` (`v3.18.0`).
+- **Tablolar:** `cihazlar`, `cihaz_lisanslari`, `cihaz_kalite_kontrolleri`, `cihaz_arizalar`, `kurumsal_tesis_lisanslari`.
+- **Servisler:** `CihazService`, `CihazLisansService`, `CihazKalibrasyonService`, `CihazArizaService`, `CihazImportService` ve `ServiceRegistry` entegrasyonu.
+- **Testler:** `tests/test_cihaz_service.py` içinde 5 kapsamlı birim ve entegrasyon testi eklendi (%100 Başarılı).
 
-#### Lite Dönüşümü Sonrası Ölü Kod Kalıntıları Temizliği (Ölü Kod Raporu Kararları)
+---
 
-- **Nöbet İstekleri Onay Akışı Tamamen Kaldırıldı:** `nobet_plan_onizleme_controller.py` dosyasından onaylama/reddetme sağ-tık context menüsü ve ilişkili metotlar kaldırıldı. Ayrıca `nobet_settings_service.py` içerisinde programatik eklemelerde `onay_durumu` varsayılan değeri `"Beklemede"` yerine `"Onaylandi"` yapıldı.
-- **Ayarlar Ekranından Ölü Kod Temizliği:** `nobet_ayarlar_personel_istekleri_tab.py` içindeki gizlenmiş olan `approve_request` ve `reject_request` metotları ile bunların `.clicked.connect` sinyal bağlantıları tamamen temizlendi.
-- **Onay Bekleyen Görevler Ekranından Ölü Kod Temizliği:** `onay_bekleyen_gorevler_controller.py` içerisindeki gizlenen Nöbet İstekleri sekmesine ait `_load_nobet_istekleri`, `_on_istek_selection_changed`, `_approve_istek` ve `_reject_istek` metotları ve tüm sinyal bağlantıları silinerek gereksiz veritabanı sorguları kaldırıldı.
-- **İngilizce Kullanım Kılavuzu Güncellendi:** `User_Guide_EN.md` dosyasından Hizmet İçi Eğitim (Section 12) ve Kalite Dokümanları (Section 13) modüllerini anlatan tüm kısımlar çıkarılarak renumbering yapıldı ve Türkçe kılavuzla bölüm uyumluluğu sağlandı.
+## [4.0.2.0] - 2026-08-22
 
-#### Sihirbaz Hızlı Talep Girişi
+### ☢️ Radyasyon Ortam Dozu, İnteraktif Mimari Plan Krokisi ve SKS 6.1 Alan İzleme Sistemi (Masaüstü & Web Portal)
 
-- **Hızlı Talep Ekleme Penceresi:** Nöbet planlama sihirbazı önizleme adımına koordinatörün sistemden çıkmadan hızlıca mazeret, istek veya fazla mesai limiti tanımlayabilmesini sağlayan "Hızlı Talep Ekle" butonu dynamically eklendi.
-- **Entegre Talep Kaydı (`NobetHizliIstekDialog`):** Planlama sihirbazından eklenen isteklerin sadece bu plana uygun dönem içi tarihleri kabul etmesi ve eklenen tüm talepleri doğrudan **Onaylandı** statüsünde kaydetmesi sağlandı.
-- **Arayüz/Denetleyici Ayrımı (UI Separation):** `NobetHizliIstekDialog` arayüz tasarımı, proje mimarisi standartlarına uygun olarak kod içerisinden arındırılarak `nobet_hizli_istek_dialog.ui` XML dosyasına taşındı. Denetleyici `nobet_hizli_istek_dialog.py` sadece bu arayüzün dinamik veri atamalarını ve sinyal/slot bağlantılarını yönetecek şekilde güncellendi.
+#### 📋 Masaüstü Ortam Dozu & Kroki Yönetim Merkezi (`OrtamDozuController` - `app_window.ui`)
 
-## [3.2.0] - 2026-07-18
+- **Mimari Plan & Vektörel PDF / Resim Kroki Motoru:**
+  - Tek sayfalı yüksek çözünürlüklü mimari plan PDF'leri ile PNG/JPG görsellerini `QGraphicsScene` üzerinde donanım hızlandırmalı olarak sunma.
+  - Sınırsız fare tekerleği yakınlaştırması (Wheel Zoom), tuvali tut-sürükle (Pan/Drag) ve tek tıkla *"Ekrana Sığdır"* görünüm sıfırlama.
+- **Canlı Pinleme, Taşıma ve Kilitleme:**
+  - Plan üzerine sağ tıkla veya butonla yeni ölçüm noktası yerleştirme, sürükle-bırak ile oda koordinatını taşıma ve *"Pinleri Kilitle"* emniyeti.
+  - Çift katmanlı parlayan halo (beacon) çemberleri ve koyu lacivert rozet kartları (`KOD • 0.5 µSv/h`).
+- **Departman Koduna Duyarlı Otomatik Sayaçlı Nokta Kodu:**
+  - Birim koduna göre otomatik artan kurumsal nokta kodu önerisi (Örn: `RAD_ACL_RNT_01`, `TEK_SOR_BT_01`, `RAD_XRAY_01`).
+- **SKS 6.1 ve NDK Mevzuat Standartları:**
+  - *Denetimli Alan*, *Gözetimli Alan* ve *Halka Açık Alan* için NDK standart uyarı (2.5 / 0.5 / 0.1 µSv/h) ve limit (10.0 / 2.5 / 0.5 µSv/h) eşikleri.
+  - Periyodik ölçüm geçmişi, anlık eşik değerlendirmesi (Normal, Uyarı, Limit Aşımı) ve Sağlık Bakanlığı SKS denetimlerine uygun resmi Excel rapor dışa aktarımı (`export_sks_raporu_excel`).
 
-### Nöbet Modülü Bölüm 2 Refaktör ve Optimizasyonları
+#### 🌐 Web Portalı & Tablet/Mobil Canlı Harita Modülü (`OrtamDozuView.tsx` & `server.ts`)
 
-#### Arayüz ve Form İyileştirmeleri
+- **Masaüstüyle %100 Pixel-Perfect Eşleşme:**
+  - Görsel en-boy oranını (aspect ratio) koruyan tuval mimarisi sayesinde masaüstünde yerleştirilen pinlerin web planında tam aynı koordinata oturması.
+- **Akıcı Fare Gezintisi (Pan & Drag & Wheel Zoom):**
+  - Harita üzerinde farenin sol tuşuna basılı tutarak planı kaydırma (Pan/Drag), fare tekerleğiyle %50-%400 arası yakınlaşma ve dokunmatik mobil/tablet desteği.
+- **Haritaya Tıklayarak Nokta Ekleme (`+ Yeni Nokta Ekle`):**
+  - İşaretleme modu aktifken mimari plan üzerinde tıklanan yerin X/Y koordinatlarını otomatik yakalayan ve departman kodlu sayaçla nokta tanımlayan modal.
+- **Pin Üzerinden Tek Tıkla Doz Kaydı:**
+  - Haritadaki herhangi bir pine tıklayarak periyodik doz ölçümü girme; anında renk, rozet ve geçmiş tablosu senkronizasyonu.
+- **RBAC Yetkilendirme:** Sadece yetkili personellerin (`admin`, `sorumlu`, `rks`, `rso`) erişebildiği güvenli REST API mimarisi.
 
-- **Kısıt Hiyerarşisi Bilgi Etiketi:** `nobet_temel.ui`, `nobet_birim_kural.ui` ve `nobet_gelismis.ui` formlarının en üstüne kısıtların öncelik sırasını ("Birim Kuralları > Vardiya Kısıtları (Birim & Sınıf Bazlı) > Temel Ayarlar") gösteren bilgi etiketleri (`hierarchyLabel`) eklendi.
-- **Yasal Kısıtlar Sekmesinin Yeniden Adlandırılması:** Arayüzde yer alan "Yasal Kısıtlar" etiketleri "Vardiya Kısıtları (Birim & Sınıf Bazlı)" olarak güncellendi ve bu tabın başlığı da buna göre değiştirildi.
-- **Gün Kısıtı Combobox Entegrasyonu:** Birim Kuralları tabına `slotGunKisitiCombo` eklenerek, vardiya türlerinin her gün, hafta içi veya hafta sonu/tatil olarak çalıştırılabilmesi sağlandı.
-- **Planlama Sonuç Bildirim Alanı:** Nöbet detay çizelgesinin alt kısmına otomatik planlama bittiğinde detaylı atanan/boş kalan slot özetini gösteren dinamik bir sonuç paneli (`schedulerResultLabel`) eklendi.
+---
 
-#### Algoritma ve Kısıt Motoru (Scheduler)
+## [4.0.1.0] - 2026-08-22
 
-- **Optimistic Concurrency (İyimser Eşzamanlılık):** `set_plan_status` metodunda plan durumu güncellemelerine yarış durumlarını önlemek adına optimistic concurrency check (`onay_durumu IS ?`) eklendi.
-- **Atıl Fazla Mesai Kodlarının Temizliği:** Fazla mesai politikaları backend ve veritabanı ayarlarından tamamen kaldırılarak sadece `personel_istek_max_saat` limitine odaklanıldı.
-- **Optimizasyon İterasyon Sınırı Uyarısı:** Optimizasyon döngüsünün sessizce kesilmesini önlemek amacıyla `while ... else` yapısı eklenerek maksimum iterasyon limitine ulaşıldığında kullanıcıya uyarı iletilmesi sağlandı.
+### 🎓 Hizmet İçi Eğitim, Soru Havuzu, Online Sınav Motoru (LMS) ve Uyum Takip Sistemi
 
-#### Hata Giderme
+#### 📋 Masaüstü Hizmet İçi Eğitim Yönetim Merkezi (`HizmetIciEgitimController`)
 
-- **SQLite3 Row get() Hatası Giderildi:** Otomatik planlama sırasında departman ayarlarını okurken `sqlite3.Row` nesnesinde `.get()` çağrısı yapılmasından kaynaklanan `AttributeError` hatası, departman kaydının sözlüğe (`dict(dep_row)`) dönüştürülmesiyle giderildi.
-- **Traceback Loglama Desteği:** `on_finished` slotlarında fırlatılan Exception nesnelerinin traceback çıktılarının log dosyalarına doğru biçimde aktarılması sağlandı (`exc_info=res`).
+- **5 Kapsamlı Yönetim Sekmesi:**
+  - **Eğitim Uyum Raporu (`tabUyum`):** Departman ve personel bazlı yasal eğitim geçerlilik durumları (Aktif, Süresi Yaklaşıyor, Süresi Doldu, Hiç Alınmamış), renkli durum rozetleri ve Excel denetim raporu çıktısı.
+  - **Toplu Eğitim Atama (`tabAtama`):** Hedef eğitim, son tamamlama tarihi, birim ve hizmet türü filtreleriyle personellere tek tıkla toplu eğitim atama ve bildirim üretme.
+  - **Tamamlama & Belge Girişi (`tabTamamlama`):** Sertifikasyon kayıtları ve KVKK Evrak Kasasında AES-256 Fernet ile şifrelenen resmi katılım belgeleri.
+  - **Eğitim Kataloğu (`tabKatalog`):** Kurumsal eğitim türleri, kategori ilişkisi (Lookup), geçerlilik periyotları (ay), sınav baraj puanı (%) ve PDF/Video eğitim materyali yükleme.
+  - **Sınav Soruları Havuzu (`tabSorular`):** Çoktan seçmeli (A, B, C, D) soru bankası, canlı kategori filtreleme, otomatik tamamlama (auto-complete) özellikli eğitim arama açılır kutusu.
+- **Soru Yönetiminde Hızlı İşlemler:**
+  - **Başka Eğitimden Kopyala... :** Mevcut bir eğitimin tüm soru havuzunu yeni eğitime saniyeler içinde aktarma (`copy_sorular_between_egitimler`).
+  - **Excel Soru İçe Aktarım & Şablon:** Standart soru yükleme şablonu indirme ve Excel/CSV üzerinden toplu soru aktarımı (`export_soru_sablonu`, `import_sorular_from_file`).
 
-## [3.1.0] - 2026-07-18
+#### 🌐 Web Portalı & Mobil LMS Online Sınav Motoru (Vue / React + PWA)
 
-### Nöbet Modülü Bölüm 1 İyileştirmeleri ve Form/Girdi Optimizasyonları
+- **Personel Self-Servis Sınav Portalı (`TrainingModal.vue`):** Personellerin kendilerine atanan eğitimlerin PDF ve video materyallerini tarayıcı üzerinden inceleyip online sınava girebildiği kullanıcı dostu arayüz.
+- **Sunucu Tarafı Puanlama & Otomasyon:** İstemciye doğru cevapları ifşa etmeyen güvenli puanlama motoru; baraj puanı geçildiğinde otomatik eğitim tamamlama ve Evrensel Onay Sistemi entegrasyonu.
 
-#### Arayüz ve Form Düzenlemeleri
+#### ⚙️ Sistem Tanımları: Hizmet İçi Eğitim Kategorileri Modülü
 
-- **Birim Kuralları UI Temizliği (`nobet_birim_kural.ui`):** Mükerrer kısıt girişlerini önlemek adına, `maxConsecutiveInput`, `minRestInput`, `dailyMaxHourInput`, `weekendMaxInput`, `countWeekendAsHolidayCheck`, `holidayPriorityInput`, `nightPriorityInput` ve bu alanların etiketleri fiziksel XML kodlarından tamamen silindi.
-- **Fazla Mesai Politikası (`fm_off`):** Fazla mesai muafiyet seçeneği, Nöbet İstekleri tabından kalıcı olarak **Personel Kısıtları** sekmesine (`pcFMOff` checkbox'ı ile) taşındı. `personeller.fm_off` kolonuna doğrudan bağlanarak anlık güncelleme yapması sağlandı.
-- **Kısıt Ağırlıkları Tabının Kaldırılması:** Ağırlık yönetimi sekmeleri ve sol menüdeki "Kısıt Ağırlıkları" seçeneği (`nobet_kisit_agirlik.ui` ve ilgili kontrolörler) tümüyle kaldırılarak sistem sadeleştirildi.
-- **Arama/Filtreleme Özelliği:** Personel Talepleri ve Personel Kısıtları sekmelerindeki personel isim seçme kutuları (`prPersonCombo` ve `pcPersonCombo`) `setEditable(True)` yapıldı ve harf duyarsız arama moduna (`MatchContains`) geçirilerek filterlenebilir yapıldı.
-- **Vardiya Otomatik Zaman/Süre Hesaplayıcı:** Vardiya tanımlama alanındaki Başlangıç Saati, Süre (Saat) ve Bitiş Saati kontrolleri birbirine akıllı sinyallerle bağlandı:
-  - Başlangıç veya Süre değiştiğinde Bitiş Saati otomatik güncellenir.
-  - Bitiş Saati değiştiğinde Süre otomatik hesaplanır (ertesi güne sarkan nöbet farkı da dahil).
-  - Form verileri yüklenirken veya temizlenirken sonsuz tetikleme döngülerini önlemek adına kilit mekanizması eklendi.
+- **Lookup Entegrasyonu:** Sol sistem tanımları menüsü altına *"Hizmet İçi Eğitim Kategorileri"* yönetim ekranı (`lookup_egitim_kategori.ui`) eklendi.
 
-#### Algoritma ve Kısıt Motoru (Scheduler) Entegrasyonları
+---
 
-- **Yaş/Kıdem Yasal Muafiyet Kapsamı (Seçenek B):** Nöbet Temel Ayarlar sekmesine yaş ve kıdem muafiyetinin kapsamını kontrol eden `exempNightCheck` (Gece Muafiyeti) ve `exempWeekendCheck` (Hafta Sonu Muafiyeti) kontrol kutuları yerleştirildi. Nöbet scheduler planlama motoru, bu personelleri tamamen planlamadan çıkarmak yerine, tercihlerine göre gece veya hafta sonu nöbetlerine atamayı engelleyecek ancak uygun hafta içi gündüz nöbetlerinde çalıştıracak şekilde revize edildi.
-- **Tekil Kısıt Hiyerarşisi:** `nobet_scheduler.py` üzerindeki limit parametreleri için veritabanı kısıt tablosunu (`nobet_kisitlari`) birinci öncelik, departman ayarlarını ikinci öncelik ve global ayarları son çare fallback olarak okuyan 3-seviyeli dinamik öncelik mekanizması kuruldu.
-- **Ayrı Hafta Sonu ve Bayram Kuralları:** Kısıt motorunda hafta sonu nöbetleri (HS) ve resmi bayram tatilleri birbirinden tamamen ayrı değerlendirilerek nöbetlerin hatalı atanması engellendi.
+## [4.0.0.0] - 2026-08-21
 
-#### Veritabanı Değişiklikleri ve Seed Kayıtları
+### 🚀 RADPYS V4 Kurumsal Ana Sürüm: PostgreSQL 14+ Çok Kullanıcılı Mimari, Web Portal PWA, Evrensel Onay Sistemi ve KVKK AES-256 Şifreli Evrak Kasası
 
-- **Şema Göçü (Migration):** `nobet_ayarlari` tablosuna `muafiyet_gece_mi` ve `muafiyet_haftasonu_mi` kolonları ekleyen migration dosyası oluşturuldu.
-- **Kısıt Tohumları (Seeds):** Hafta Sonu Nöbet Dengesi (`hafta_sonu_dagilim` = 4) ve Bayram Nöbet Dengesi (`bayram_dagilim` = 2) yasal kısıt kuralları baseline şemaya ve mevcut aktif veritabanına varsayılan yasal kısıt olarak eklenerek otomatik aktifleştirildi.
+#### 🐘 PostgreSQL 14+/16 Kurumsal Veritabanı Mimarisine Geçiş (`psycopg3`)
 
-## [3.0.0] - 2026-07-17
+- **İlişkisel & Eşzamanlı Veritabanı Motoru:** Tek kullanıcılı/yerel SQLite ve SQLCipher altyapısı tamamen kaldırılarak yerine kurumsal, ACID uyumlu, yüksek eşzamanlılık (concurrency) destekleyen **PostgreSQL 14+ (`psycopg3`)** mimarisi entegre edildi.
+- **Transaction Sınırları & Havuzlama:** Tüm servis operasyonları `with self.db.transaction() as conn:` yapısıyla atomik hale getirildi; çoklu kullanıcı ortamında veri tutarlılığı güvenceye alındı.
+- **SQL Uyumluluk ve Otomatik Adaptasyon (`adapt_sql`):** Standart `?` parametre placeholder'ları PostgreSQL uyumlu `%s` formatına otomatik dönüştürüldü; `datetime('now')` -> `CURRENT_TIMESTAMP` ve `LIMIT/OFFSET` sözdizimi uyarlandı.
+- **Veritabanı Bakım Araçları:** PostgreSQL yerel `VACUUM ANALYZE`, `REINDEX DATABASE`, `pg_dump` ve `pg_restore` tam yedekleme/kurtarma mekanizmaları geliştirildi.
 
-### RADPYS V3.0 Lite Scope Dönüşümü
+#### 🌐 Çok Platformlu Canlı Web Portalı (React + Vite + Tailwind + PWA)
 
-Bu sürümle birlikte RADPYS, yerel/ağ paylaşımı ortamlarında (Dropbox, SMB, vb.) SQLite'ın çok kullanıcılı eşzamanlı yazma kısıtlamalarından kaynaklanan veri çakışmalarını önlemek amacıyla **Lite** kapsamına dönüştürülmüştür. Ağır eşzamanlı yük getiren portal modülleri kaldırılmış ve operasyonel iş akışları sadeleştirilmiştir.
+- **Masaüstünden Bağımsız Web Erişimi:** Radyoloji teknisyenleri, hekimler ve idari personelin telefon, tablet veya bilgisayar tarayıcısından erişebildiği tam teşekküllü Web Portalı entegre edildi.
+- **PWA (Progressive Web App) Desteği:** Masaüstü ve mobil cihazlarda ana ekrana yüklenebilir (Installable), çevrimdışı önbellek korumalı PWA mimarisi kuruldu.
+- **Dinamik Profil ve Self-Servis:** Personelin kendi iletişim bilgilerini, acil durum yakınlarını, eğitim geçmişini, nöbet çizelgesini, izin bakiyelerini ve sağlık muayene takvimini canlı izleyebildiği profil merkezi tamamlandı.
+- **Dinamik Eğitim & İzin Veri Akışı:** Sabit listeler kaldırılarak `egitim_turleri` ve `izin_haklari` tabloları üzerinden %100 canlı veritabanı entegrasyonu sağlandı.
 
-#### Kaldırılan Modüller ve Arayüzler
+#### 🛡️ Evrensel Onay Sistemi (Universal Approval Workflow)
 
-- **Hizmet İçi Eğitim Portalı (LMS + Sınav Sistemi)**: Sınav atama, doküman okuma, PowerPoint/Video oynatıcılar ve otomatik sertifika üretici de dahil olmak üzere modüle ait tüm servis, repository, arayüz (.ui) ve denetleyici (controller) dosyaları tamamen kaldırıldı.
-- **Kalite Dokümanları Okuma Portalı**: Doküman ekleme, okuma takibi, revizyon önerileri ve dahili PDF/Docx okuyucuları ile ilişkili tüm dosyalar temizlendi.
-- **Görüntüleyici ve Medya Oynatıcılar**: PowerPoint sunum okuyucu (`pptx_viewer_dialog`), video oynatıcı (`video_viewer_dialog`), PDF okuyucu (`pdf_viewer_dialog`) ve Word okuyucu (`docx_viewer_dialog`) kaldırıldı.
-- **Dashboard (Gösterge Paneli) Hub Temizliği**: Gösterge paneli hub yapısı güncellenerek Eğitim sekmesi, Eğitim Özet Gösterge Paneli ve bu panelin backend servis bağlantıları tamamen kaldırıldı. Sekmeler Genel Bakış, Nöbet ve Olaylar olarak yeniden yapılandırıldı.
-- **Komut Paleti Güncellemesi**: Komut paletindeki kalite belgesi arama ve doğrudan belge açma eylemleri kaldırılarak olası SQLite kilitlenmeleri engellendi.
+- **Tüm Alt Tablolar Kapsama Alındı:** Personel özlük güncellemelerinin yanı sıra Evrak Kasası (`personel_belgeler`), Eğitimler (`personel_egitimler`), Sertifikalar (`personel_sertifikalar`), Önceki Hizmetler (`personel_hizmetler`), Çalışma Kısıtı/Muafiyetler (`personel_calisma_kisitlari`), Gebelik/Süt İzni (`personel_gebelik_takip`), Cihaz Zimmet (`personel_cihaz_zimmet`) ve RGS Görevlendirme talepleri tam onay motoruna bağlandı.
+- **Silme Taleplerinin Onay Kuyruğuna Yönlendirilmesi:** Standart personelin Web Portaldan yaptığı eğitim, evrak veya sağlık muayenesi silme istekleri veritabanından doğrudan silinmeyip `islem_tipi = 'silme'` ile onay kuyruğuna alınır (`Silme Onayı Bekliyor`).
+- **Görsel Diff & Karşılaştırma Diyaloğu (`DiffDialog`):** Masaüstü yönetim panelinde eski veri ile talep edilen yeni veriyi yan yana kıyaslayan, teknik DB kolonları yerine anlaşılır Türkçe etiketler (`FIELD_LABELS_TR`) içeren görsel diff penceresi geliştirildi.
+- **Hedef Servis Otomasyonu:** Onaylanan talepler doğrudan ilgili domain servisi üzerinden yetkilendirilerek PostgreSQL hedef tablolarına atomik transaction ile işlenir.
 
-#### Sadeleştirilen İş Akışları
+#### 🔒 KVKK AES-256 Fernet Şifreli Evrak Kasası & Web Yükleme Köprüsü (`stored_files`)
 
-- **İzin Modülü**: Çok adımlı onay zinciri (Beklemede → Birim Onaylı → Onaylandı) devre dışı bırakıldı. Yeni izin talepleri doğrudan **Onaylandı** (`STATUS_ONAYLANDI`) durumunda kaydedilir. İzin listesi ekranındaki onaylama ve reddetme butonları gizlendi.
-- **Nöbet Personel İstekleri**: Personel istek onay zinciri kaldırıldı. Girişi yapılan istekler doğrudan **Onaylandı** durumunda oluşturulur. İstek yönetimindeki onay/red butonları gizlendi. Personel profili altındaki Nöbet İstekleri sekmesi tamamen kaldırıldı.
-- **Evrensel Onay Sistemi (Onay Bekleyen Görevler)**: İzinler, Nöbet İstekleri ve Veri Onay sekmeleri gizlendi. Merkezi onay panelinin varsayılan açılış sekmesi **Nöbet Devir** (index 1) olarak değiştirildi.
+- **Geçici Yükleme ➔ Şifreli Kasa Onay Köprüsü:** Web portaldan yüklenen evraklar geçici staging alanına kaydedilir; yönetici onayladığı anda dosya **AES-256 Fernet** ile şifrelenerek PostgreSQL `stored_files` tablosuna aktarılır ve `file-uuid` anahtarına dönüştürülür.
+- **Tarayıcıda Doğrudan Açma (Inline Preview):** Belgeler indirilmek yerine `Content-Disposition: inline` ve uygun MIME tipleriyle tarayıcının yerleşik PDF/Resim görüntüleyicisinde doğrudan yeni sekmede açılır.
+- **Yetki Bazlı Şifre Çözme & Görüntüleme:** Belgeler yalnızca oturum açmış ve yetkili aktörler tarafından çalışma zamanında anlık deşifre edilerek güvenle sunulur.
 
-#### Veritabanı ve Şema Güncellemeleri
+#### ⏱️ Web Portal Güvenli Oturum Yönetimi & URL Token Desteği
 
-- `hizmet_ici_egitimler`, `personel_hizmet_ici_egitim_takip`, `hizmet_ici_egitim_sorulari`, `personel_hizmet_ici_egitim_gecmisi`, `kalite_dokumanlari`, `personel_kalite_okuma_takip` ve `kalite_dokuman_onerileri` tabloları ve bunlara ait tüm indeksler `schema.sql` baseline dosyasından tamamen çıkarıldı.
-- Bildirim tipi kontrol kısıtından (CHECK constraint) `hizmet_ici_egitim` ve `kalite_dokumani` kaldırıldı.
-- `schema.txt` yedek referans dosyası yeni SQL baseline şemasıyla senkronize edildi.
-- Yerel `data/radpys.db` veritabanı sıfırlanarak temiz şema baseline dosyasından sıfırdan yeniden oluşturulması sağlandı.
+- **15 Dakikalık Oturum Kuralı:** Güvenlik standartlarına uygun 15 dakikalık oturum süresi yapılandırıldı; oturum süresi yalnızca kullanıcı tekrar giriş yaptığında güncellenir.
+- **Kalıcı Oturum Depolama (`sessions.json`):** Sunucu kapansa veya yeniden başlasa dahi kullanıcıların aktif 15 dakikalık oturumları diskte korunur.
+- **URL Query Token Yetkilendirmesi:** Yeni sekmede açılan belge linklerinde oturum kaybını önlemek için `?token=...` desteği entegre edildi.
 
-#### Hata Giderme ve İyileştirmeler
+#### 📊 Dinamik İzin Hakları & Gerçek Zamanlı Bakiye Hesaplama
 
-- **Dil Dosyası Yükleme Sorunu**: `translation_service.py` içerisinde veritabanından dil tercihini sorgularken `settings_service` üzerindeki hatalı `get_string` çağrısı, doğru olan `get_setting` ile değiştirildi. Böylece arayüz dilinin İngilizce veya Türkçe olarak seçilmesinde oluşan sessiz çökme (hata yutma) giderildi.
-- **Giriş Sayfası Yerelleştirmesi**: Giriş ekranı yapıcı metoduna dil çevirilerini uygulayan tetikleyici eklenerek, login penceresinin sistem ayarlarındaki dile göre otomatik olarak çevrilmesi (örneğin İngilizce) sağlandı.
-- **Arayüz Kontrolü**: Arayüz şablonlarında (`app_window.ui`) yer alan ancak artık işlevsiz olan `btnHizmetIciEgitim`, `btnKaliteRead`, `btnEgitimYonetimi` butonları ana pencere yüklenirken programatik olarak gizlendi.
-- **SideBar Başlık Yerelleştirmesi**: `SideBar` (`QToolBox`) altındaki sekme başlıklarının (PERSONEL, KALİTE YÖNETİMİ, YÖNETİM) dil dosyalarına göre değişmeme sorunu giderildi. `translation_service.py` içerisine hiyerarşik `QToolBox` tespiti ve `setItemText` çağrısı desteği eklenerek tab isimlerinin dinamik olarak tercüme edilmesi sağlandı. `en.json` ve `tr.json` dosyalarına ilgili sekmeler için (`page`, `page_2`, `page_3`) dil karşılıkları eklendi.
-- **Form/Diyalog Başlıklarının Yerelleştirilmesi (setWindowTitle)**: Python denetleyicileri ve alt pencereler tarafından sert kodlanmış Türkçe karakter dizileriyle atanan pencere ve form başlıklarının (`setWindowTitle`) dil seçimine göre değişmeme sorunu giderildi. `main.pyw` dosyasında uygulama başlangıcında `QWidget.setWindowTitle` üzerine evrensel bir patch (monkey-patch) enjekte edilerek, atanan tüm başlıkların çalışma zamanında çeviri motorundan geçirilmesi sağlandı. Çeviri veritabanına (`translation_service.py`) 40'tan fazla ana form başlığı eklenerek dinamik dönüşüm sağlandı.
-- **Dil Dosyaları Temizliği**: Artık kullanılmayan eğitim/kalite ekranlarının tüm çeviri anahtarları `en.json` ve `tr.json` dosyalarından tamamen kaldırıldı.
+- **Otomatik Bakiye Hesaplama Motoru:** Sahte placeholder değerler kaldırılarak, personelin hizmet yılına göre `izin_haklari` tablosundan hakedilen, devreden, kullanılan ve kalan izin günleri formülle anlık hesaplandı.
+- **Şua & Radyasyon İzni Entegrasyonu:** Radyasyon çalışanlarının yasal yıllık 30 günlük şua izni hakları ve yıllık izinleri ayrıştırıldı.
+
+#### 📄 docxtpl Jinja2 Kurumsal Matbu Evrak Motoru
+
+- **Word (.docx) Rapor Şablonları:** Ham XML manipülasyonu yerine `docxtpl` (`python-docx-template`) kütüphanesi entegre edildi.
+- **Dinamik Görsel & Veri Enjeksiyonu:** Kurum logoları `InlineImage` API'si ile şablonlara yerleştirilerek resmi radyasyon güvenliği tutanakları ve izin formları üretildi.
+
+#### 🔐 Kademeli Lisans & Yönetici Modu
+
+- **15 ve 3 Gün Erken Uyarı:** Lisans süresi dolumuna 15 gün ve 3 gün kala kademeli uyarı mekanizması eklendi.
+- **Lisans Aşımında Yönetici Aktivasyon Ekranı:** Lisans bittiğinde normal personel kilitlenirken, yöneticiler doğrudan lisans aktivasyon ekranına yönlendirilir.
+
+---
+
+## [3.0.0.0 - 3.9.0.2] - 2026-07-17 / 2026-08-15
+
+### 🏆 RADPYS V4 Kararlı Sürüm Serisi ve Evrimsel Gelişim (Lite Scope ➔ Kurumsal Web Entegrasyonu)
+
+RADPYS V4 geliştirme döngüsü boyunca; yerel SQLite/SQLCipher mimarisinde yüksek kararlılık ve güvenlik sağlayan **Lite Dönüşümü**, kriptografik anahtar yönetimi, akıllı nöbet planlama algoritması, `docxtpl` kurumsal raporlama ve çok platformlu **Web Portalı & REST API** altyapısı tamamlanmıştır. Tüm bu geliştirmeler aşağıdaki 7 ana modüler çatı altında toplanmıştır:
+
+---
+
+#### 1. 🌐 Web Portalı, REST API Servisi ve PWA Altyapısı
+
+- **Çok Kullanıcılı Web Mimarisi:** Masaüstü uygulamasından bağımsız çalışan, Express.js + React (Vite + TailwindCSS) mimarisinde Web Portalı (`web_portal`) geliştirildi. Yerel ağ (LAN/Wi-Fi), Cloudflare Tunnel, Nginx Reverse Proxy ve HTTPS arkasında dış internete açık çalışma desteği sağlandı.
+- **Güvenli Oturum & Kalıcı Depolama:** 15 dakikalık oturum standardı getirildi; `data/sessions.json` ile sunucu yeniden başlasa bile aktif oturumların korunması sağlandı. Yeni sekmede belge açma için URL Query Token (`?token=...`) yetkilendirmesi eklendi.
+- **İlk Giriş Şifre Yenileme:** İlk kez giriş yapan personel için (`ilkGiris === 1`) `/api/auth/change-password` endpoint'i ve özel ilk giriş şifre değiştirme ekranı kuruldu; şifreler `pbkdf2_sha256` standardında hash'lendi.
+- **Saha Formları & Dinamik Kısıtlar:** Nöbet Devir Talebi (`ShiftChangeForm`), Anlık Olay & DÖF Bildirimi (`IncidentReportForm`) ve İstek & Mazeret (`PersonnelRequestForm`) formları entegre edildi. Haftalık ders günleri seçimi ve kısıt tipleri dinamikleştirildi.
+- **Web GUI Launcher & Asenkron Servis:** Kullanıcıların terminal kullanmadan tek pencereden web sunucusunu yönetebildiği PySide6 GUI başlatıcı (`portal_launcher.py`, `RADPYS_Portal_Launcher.exe`), asenkron health-check pingleme ve Windows başlangıç entegrasyonu sağlandı.
+- **Veri Klasörü & Thread-Safe Mutex:** Web verileri `web_portal/data/` altında toplandı; `saveDatabase` işlemlerine async mutex (`dbMutex`) ve atomik `.tmp` -> `.bak` dosya yazım koruması eklendi.
+
+#### 2. 🔐 Kriptografik Güvenlik, Anahtar Kasası (Key Manager) ve SQLCipher Şifreleme
+
+- **Dosya Düzeyinde AES-256 SQLCipher:** `radpys.db` veritabanı dosya düzeyinde 256-bit AES ile şifrelendi; düz metin SQLite veritabanlarından şifreli formata otomatik kayıpsız geçiş (auto-migration) sağlandı.
+- **DPAPI Windows Oturum Kasası & Donanım Türetimi (`KeyManager`):** Şifreleme anahtarları Windows DPAPI ile korundu; Windows SID veya kullanıcı profili değişimlerinde donanım özetinden (`_derive_hardware_key`) anahtar üreterek çökmeyi önleyen otomatik kurtarma (self-healing) mimarisi kuruldu.
+- **Grafiksel Anahtar Kasası (`KeyManagementDialog`):** Yöneticilerin 256-bit AES anahtarlarını yönetebildiği, Sudo doğrulamalı, metin yedeği (`radpys_encryption_keys.txt`) alabilen ve afet kurtarma anahtar enjeksiyonu yapabilen grafiksel kasa arayüzü geliştirildi.
+- **Senkronize Çift DB Bakımı & Şifresiz İhraç:** `radpys.db` ve `files.db` veritabanlarında eşzamanlı çalışan bakım araçları (`VACUUM`, `INTEGRITY CHECK`, `REINDEX`) ile kurumdan ayrılma veya veri taşıma durumları için şifresiz ham SQLite ZIP ihraç paketi (`on_export_unencrypted`) geliştirildi.
+- **Ed25519 Asimetrik Dijital İmzalı Lisanslama:** Simetrik SHA-256 tuz yapısı yerine Ed25519 açık anahtarlı asimetrik imza standardı (`LK-AS-...`), Cihaz Kimliği (`Machine ID: RP-XXXX-...`) üretimi ve bağımsız satıcı lisans jeneratörü kuruldu.
+
+#### 3. 📅 Nöbet Motoru, Akıllı Zamanlayıcı (Scheduler) ve Yasal Kısıtlar
+
+- **Tekil Kısıt Hiyerarşisi:** Kısıt öncelik sırası netleştirildi (*Birim Kuralları > Vardiya Kısıtları > Temel Ayarlar*). Hafta sonu ve resmi bayram nöbetleri birbirinden tamamen ayrı kurallarla değerlendirildi.
+- **Kişiye Özel Yasal Muafiyet Otomasyonları:**
+  - *Yasal Emzirme İzni:* İlk 6 ay (-3s), ikinci 6 ay (-1.5s) ve 2. yıl (gece nöbeti yasağı) olmak üzere 3 aşamalı otomatik kısıt zinciri.
+  - *Gebelik Muafiyeti:* 24. haftadan itibaren gece nöbeti ve radyasyon alanı muafiyeti kısıtlaması.
+  - *Sendika Muafiyeti:* Memur (haftalık 4s) ve İşçi (haftalık 2s) hizmet sınıflarına göre otomatik mesai saati indirimi.
+  - *Yaş ve Kıdem Muafiyeti:* Gece veya hafta sonu muafiyet seçeneği.
+- **Tekrarlayan Eğitim Kısıtı & Sömestr Revizyonu:** Personelin haftalık ders günleri (1..7) kısıt motoruna katı engelleme (strict exclusion) olarak bağlandı; sömestr ortası ders programı revizyonu (`NobetEgitimRevizyonDialog`) eklendi.
+- **Fazla Mesai Limitlerinin Ayrıştırılması:** `fm_off` ve `personel_max_fazla_mesai_saat` limitleri yalnızca ilgili kısıt tiplerine bağlandı; gebelik/emzirme kurallarının fazla mesai hakkını ezmesi engellendi.
+- **Çoklu Plan Yayını & Dinamik Devir:** Nöbet planları yayına alındığında tüm birimlerin planları (`schedule.json`) web portala ihraç edildi; devralan personelin yayındaki nöbetleri seçebilmesi sağlandı.
+
+#### 4. 📄 Kurumsal Rapor Merkezi, docxtpl Jinja2 Word Şablonları ve Dinamik Eşleme
+
+- **Dinamik Başlık & Konum Eşleme (Dynamic Header Mapping):** Excel şablonlarında (`.xlsx`) başlık satırı otomatik okunup normalize edilerek veri sütun sırasından bağımsız doğru başlığın altına dinamik yazıldı; şablon dosyaları salt-okunur güvenceye alındı.
+- **`docxtpl` Jinja2 Word Şablon Motoru:** Ham XML manipülasyonu yerine `docxtpl` (`python-docx-template`) kütüphanesi entegre edildi; kurum logoları `InlineImage` API'si ile dinamik boyutlandırılarak şablonlara gömüldü.
+- **5 Ana Kurumsal Rapor Kataloğu:** Genişletilmiş sütun tanımlarıyla *Sağlık Muayene (22 sütun)*, *Eğitim Durum*, *Dozimetre Ölçüm (21 sütun)*, *İzin Bakiye (14 sütun)* ve yeni *Kimlik & İletişim Bilgileri Raporu* tamamlandı.
+- **KVKK Muafiyet Kapsamı (`KvkkExemptScope`):** Rapor çıktılarında yetkili personelin isim ve kimlik bilgilerinin sansürlenmesini önleyen güvenli bağlam ve tam audit log kaydı sağlandı.
+
+#### 5. 🛡️ KVKK Özel Kategori Veri Güvenliği, Sağlık Muayene Revizyonu ve Çökme Raporlama
+
+- **Sağlık Verileri KVKK Özel Kategori Güvenliği:** Cumhurbaşkanlığı Kararı 7077 uyarınca radyasyon çalışanları için yıllık 12 ay muayene periyodu sabitlendi. Muayene revizyon logları (`saglik_muayene_revizyon_log`), audit erişim takibi (`saglik_erisim_log`), Fernet şifreli evrak depolama ve yetkisiz rollere klinik tanı maskelemesi (`"—"`) uygulandı.
+- **Etkileşim Günlüğünde KVKK Maskeleme:** `interaction_logger.py` günlüğünde hassas kişisel veriler yerine yalnızca karakter uzunlukları (`new_value_len`) ve doluluk durumları loglandı.
+- **Global Çökme Yakalayıcı (`CrashDialog`):** `sys.excepthook` ile yakalanmamış hatalarda koyu tema uyumlu hata bildirim diyaloğu, hata izi kopyalama ve tek tıkla destek log paketi (`radpys_destek_log.zip`) üretimi sağlandı.
+
+#### 6. 🎨 Arayüz Modernizasyonu, Dark Fusion Teması ve Tabler SVG İkon Standardı
+
+- **Kurumsal İkon Standardı:** Arayüzlerdeki tüm emojiler temizlenerek 2.800+ parçalık Tabler Outline SVG vektörel ikon kütüphanesi PySide6 `QIcon` nesnelerine bağlandı.
+- **Web Portalı Windows 11 Dark Fusion Teması:** Web portalındaki 12 dashboard bileşeni, form sihirbazları ve veri kartları mat/akrilik Dark Fusion (`bg-slate-900/95`) tasarımına dönüştürüldü; resmi kurum amblemleri entegre edildi.
+- **UI/Controller Katman Ayrımı (`AGENTS.md`):** Controller dosyalarındaki tüm programatik UI kodları temizlenerek `.ui` (XML) şablonlarına aktarıldı.
+- **4 Haneli Sürümleme:** Sürüm mimarisi `MAJOR.MINOR.PATCH.BUILD` (örn: `3.8.6.2`) standardına kavuşturuldu.
+
+#### 7. ⚡ Performans, Eşzamanlılık ve Kararlılık İyileştirmeleri
+
+- **Toplu İçe Aktarımda Deadlock Çözümü & 500x Hızlanma:** Veritabanı kilidi `threading.RLock()` yapıldı; 50'şerli transaction paketleme ve `QCoreApplication.processEvents` ile donmasız ve 500 kat daha hızlı Excel/CSV içe aktarımı sağlandı.
+- **SQLite 999 Parametre Güvenliği:** Toplu sorgularda parametreler 900'lük gruplar halinde (`_fetch_in_chunks`) parçalanarak çökme riskleri ortadan kaldırıldı.
+- **Lite Scope Dönüşümü:** SQLite'ın çok kullanıcılı ağ paylaşımlarındaki kilitlenme risklerini önlemek için ağır LMS ve doküman portalları ayıklanarak çekirdek operasyonel modüller maksimum kararlılığa ulaştırıldı.

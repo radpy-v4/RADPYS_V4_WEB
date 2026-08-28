@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RADPYS V3 — Sistem Mimarısı</title>
+  <title>RADPYS V4 — Sistem Mimarısı</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
 
@@ -152,7 +152,7 @@
 
 <div class="diagram-container">
   <div class="diagram-header">
-    <div class="diagram-category">RADPYS V3 — Mimari & Güvenlik Yapısı</div>
+    <div class="diagram-category">RADPYS V4 — Mimari & Güvenlik Yapısı</div>
     <h1 class="diagram-title">Sistem Katmanları ve Veri Güvenliği Mimarisi</h1>
     <p class="diagram-subtitle">Yerel bilgisayarda çalışan şifreli masaüstü istemcisi, güvenli SQLCipher veritabanı ve isteğe bağlı REST API servisleri.</p>
   </div>
@@ -174,12 +174,12 @@
     <!-- Card 2 -->
     <div class="arch-card">
       <span class="arch-badge">Güvenlik & Depolama</span>
-      <div class="arch-name">SQLCipher (AES-256) Veritabanı</div>
-      <div class="arch-desc">Tüm kişisel ve tıbbi sağlık verileri yerel bilgisayarınızda AES-256 bit askeri düzeyde şifrelenerek saklanır.</div>
+      <div class="arch-name">PostgreSQL & KVKK Fernet (AES-256) Kasası</div>
+      <div class="arch-desc">İlişkisel veriler kurumsal PostgreSQL sunucusunda, tıbbi sağlık ve tahlil belgeleri AES-256 Fernet ile şifrelenerek saklanır.</div>
       <div class="arch-tags">
-        <span class="tag">AES-256</span>
-        <span class="tag">SQLCipher</span>
-        <span class="tag">Local DB</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Fernet AES-256</span>
+        <span class="tag">KVKK Kasası</span>
       </div>
     </div>
 
@@ -199,7 +199,7 @@
 
   <div class="footer-note">
     <span>Şema Tipi: Architecture</span>
-    <span>RADPYS V3 © 2026</span>
+    <span>RADPYS V4 © 2026</span>
   </div>
 </div>
 
