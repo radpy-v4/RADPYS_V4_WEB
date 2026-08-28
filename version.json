@@ -1,0 +1,7 @@
+{
+  "version": "4.1.2.0",
+  "latest_demo_version": "4.1.2.0",
+  "release_date": "2026-08-25",
+  "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
+  "changelog": "RADPYS V4.1.2: RKE DIN 6857-1 Skopi Muayenesi ve Karar Motoru, İnteraktif Ortam Dozu Krokisi, Mobil QR Arıza Portalı, Hizmet İçi Eğitim LMS ve PostgreSQL 14+/16 mimarisi entegre edildi."
+}

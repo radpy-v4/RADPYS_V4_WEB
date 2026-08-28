@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="RADPYS V4 — Radyasyon çalışanları ve radyoloji departmanları yönetim sistemi. Nöbet Solver, dozimetre analizi, Şua izni, SKS 6.1 DÖF, RKE DIN 6857-1, ortam dozu krokisi, QR arıza ve online sınav LMS tek platformda." />
+    <meta name="keywords" content="RADPYS, RADPYS V4, radyasyon çalışanları, dozimetre takibi, nöbet planlama, şua izni, SKS 6.1, NDK, TENMAK, radyoloji yönetim yazılımı, RKE DIN 6857-1, ortam dozu krokisi, cihaz arıza QR" />
+    <meta name="author" content="RADPYS Yazılım" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="geo.region" content="TR" />
+    <meta name="geo.placename" content="Türkiye" />
+    <title>RADPYS V4 — Radyasyon Çalışanları & Departman Yönetim Sistemi</title>
+
+    <link rel="icon" type="image/x-icon" href="images/logo.ico" />
+    <link rel="icon" type="image/webp" href="images/logo.webp" />
+    <link rel="apple-touch-icon" href="https://radpys.com.tr/images/main_logo.webp" />
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://radpys.com.tr/" />
+
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="google5be46238fa239b38" />
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://radpys.com.tr/" />
+    <meta property="og:site_name" content="RADPYS V4" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:title" content="RADPYS V4 — Radyasyon Çalışanları & Departman Yönetim Sistemi" />
+    <meta property="og:description"
+        content="Nöbet, dozimetre, Şua izni, olay bildirimi, RKE DIN 6857-1, interaktif kroki, cihaz QR arıza ve PostgreSQL KVKK altyapısı tek platformda." />
+    <meta property="og:image" content="https://radpys.com.tr/images/main_logo.webp" />
+    <meta property="og:image:secure_url" content="https://radpys.com.tr/images/main_logo.webp" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="RADPYS V4 — Radyasyon Çalışanları Yönetim Sistemi Logo" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="RADPYS V4 — Radyasyon Çalışanları Yönetim Sistemi" />
+    <meta name="twitter:description"
+        content="Nöbet, dozimetre, Şua izni, olay bildirimi, RKE DIN 6857-1 ve PostgreSQL KVKK altyapısı tek platformda." />
+    <meta name="twitter:image" content="https://radpys.com.tr/images/main_logo.webp" />
+    <meta name="twitter:image:alt" content="RADPYS V4 Logo" />
+
+    <!-- Schema.org Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://radpys.com.tr/#software",
+          "name": "RADPYS V4",
+          "operatingSystem": "Windows 10, Windows 11, Windows Server, Web PWA",
+          "applicationCategory": "HealthApplication",
+          "softwareVersion": "4.1.2.0",
+          "description": "Nöbet planlamasından Şua izinlerine, dozimetre takibinden NDK ve SKS 6.1 Olay/DÖF bildirimlerine, RKE DIN 6857-1 Skopi muayenelerinden İnteraktif Ortam Dozu krokilerine ve Mobil QR Arıza Portalı'na kadar tüm radyoloji ve sağlık fiziği süreçlerini PostgreSQL ve AES-256 şifreli KVKK kasasıyla yönetin.",
+          "url": "https://radpys.com.tr/",
+          "inLanguage": "tr-TR",
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "TRY",
+            "lowPrice": "1500",
+            "highPrice": "12000",
+            "offerCount": "4"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "@id": "https://radpys.com.tr/#organization"
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://radpys.com.tr/#organization",
+          "name": "RADPYS — Radyasyon Çalışanları Yönetim Sistemi",
+          "url": "https://radpys.com.tr/",
+          "logo": "https://radpys.com.tr/images/main_logo.webp",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "url": "https://radpys.com.tr/iletisim.html",
+            "availableLanguage": "Turkish"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://radpys.com.tr/#website",
+          "url": "https://radpys.com.tr/",
+          "name": "RADPYS V4",
+          "inLanguage": "tr-TR",
+          "publisher": {
+            "@id": "https://radpys.com.tr/#organization"
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="preconnect" href="https://cdn.fontshare.com" />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link
+        href="https://api.fontshare.com/v2/css?f[]=clash-display@300,400,500,600,700&f[]=manrope@300,400,500,600,700&f[]=jetbrains-mono@400,500&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/js/tailwind.config.js"></script>
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+</head>
+
+<body>
+    <div id="site-nav"></div>
+
+    <main>
+        <!-- HERO -->
+        <section class="relative min-h-[100vh] pt-32 pb-24 overflow-hidden">
+            <div class="blob blob-teal" style="top:-10%; left:-10%; width:520px; height:520px; border-radius:9999px">
+            </div>
+            <div class="blob blob-purple" style="top:10%; right:-15%; width:560px; height:560px; border-radius:9999px">
+            </div>
+            <div class="absolute inset-0 bg-grid bg-grid-fade opacity-70"></div>
+
+            <div class="relative container-narrow z-10">
+                <span class="section-label"><span class="text-slate-500">00</span>&nbsp;RADPYS V4.1.2 — Radyoloji & Radyasyon Güvenliği Ekipleri İçin</span>
+
+                <h1 class="mt-6 font-display font-medium leading-[0.98] tracking-[-0.035em]"
+                    style="font-size:clamp(2.75rem,7.4vw,7rem)">
+                    <span class="reveal-mask d1"><span>Radyoloji iş gücü</span></span>
+                    <span class="reveal-mask d2"><span>operasyonlarında sıfır karmaşa,</span></span>
+                    <span class="reveal-mask d3"><span>maksimum verim.</span></span>
+                </h1>
+
+                <p class="reveal mt-10 max-w-2xl text-slate-300 text-lg md:text-xl leading-relaxed">
+                    Nöbet planlamasından Şua izinlerine, dozimetre takibinden Olay/DÖF bildirimlerine, RKE DIN 6857-1 muayenelerinden İnteraktif Mimari Plan Kroki izlemesine kadar tüm departman süreçlerinizi <strong>NDK, TENMAK, SKS 6.1 ve KVKK (6698)</strong> standartlarında hibrit <strong>PostgreSQL ve Web Portalı & PWA</strong> mimarisiyle yönetin.
+                </p>
+
+                <!-- Compliance Trust Banner -->
+                <div class="reveal mt-6 flex flex-wrap items-center gap-3 text-xs font-mono text-slate-400">
+                    <span
+                        class="px-3 py-1.5 rounded-full border border-teal-500/30 bg-teal-500/10 text-teal-300 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span> NDK & TENMAK Mevzuat Esaslı
+                    </span>
+                    <span
+                        class="px-3 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span> SKS 6.1 & DIN 6857-1 Uyumlu
+                    </span>
+                    <span
+                        class="px-3 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> PostgreSQL & AES-256 KVKK Kasası
+                    </span>
+                    <span
+                        class="px-3 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Masaüstü & Web PWA Portalı
+                    </span>
+                </div>
+
+                <div class="reveal mt-10 flex flex-wrap items-center gap-4">
+                    <a href="https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe"
+                        class="btn btn-primary">Demo İndir (Windows) →</a>
+                    <a href="moduller.html" class="btn btn-ghost">Modülleri İncele ↗</a>
+                    <a href="fiyatlandirma.html" class="btn btn-outline">Elit Paketi Gör 💎</a>
+                </div>
+
+                <!-- Dashboard mockup -->
+                <div class="reveal relative mt-20">
+                    <div class="absolute -inset-8 md:-inset-14 pointer-events-none">
+                        <div class="absolute inset-0"
+                            style="background:radial-gradient(circle at 50% 20%, rgba(34,211,238,0.35), transparent 60%); filter:blur(30px)">
+                        </div>
+                    </div>
+                    <div class="relative rounded-2xl overflow-hidden border border-white/10 glass"
+                        style="box-shadow:0 40px 120px -30px rgba(0,0,0,0.9)">
+                        <div class="flex items-center justify-between px-5 py-3 border-b border-white/5"
+                            style="background:rgba(0,0,0,0.3)">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-400/70"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-400/70"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400/70"></span>
+                            </div>
+                            <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-slate-400">radpys v4 / kontrol ve aksiyon merkezi</span>
+                            <span class="text-neon-teal">◆</span>
+                        </div>
+                        <div class="grid md:grid-cols-4 gap-0">
+                            <div class="p-5 border-r border-b border-white/5">
+                                <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-slate-500">Aylık Kolektif Doz</div>
+                                <div class="mt-2 font-display text-2xl md:text-3xl text-teal-300">2.14 mSv</div>
+                                <div class="mt-3 h-12 flex items-end gap-1" id="bars-1"></div>
+                            </div>
+                            <div class="p-5 border-r border-b border-white/5">
+                                <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-slate-500">Nöbet Dağılımı</div>
+                                <div class="mt-2 font-display text-2xl md:text-3xl text-cyan-300">98% Dengeli</div>
+                                <div class="mt-3 h-12 flex items-end gap-1" id="bars-2"></div>
+                            </div>
+                            <div class="p-5 border-r border-b border-white/5">
+                                <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-slate-500">RKE DIN 6857-1</div>
+                                <div class="mt-2 font-display text-2xl md:text-3xl text-emerald-400">48 Uygun / 0 HEK</div>
+                                <div class="mt-3 text-xs font-mono text-emerald-400/80">Yıllık skopi muayeneleri tam</div>
+                            </div>
+                            <div class="p-5 border-b border-white/5">
+                                <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-slate-500">Alan İzleme (SKS 6.1)</div>
+                                <div class="mt-2 font-display text-2xl md:text-3xl text-purple-300">12 Canlı Pin</div>
+                                <div class="mt-3 text-xs font-mono text-purple-400/80">Ortam dozları güvenli eşikte</div>
+                            </div>
+                        </div>
+                        <div class="p-5 md:p-7 border-t border-white/5" style="background:rgba(0,0,0,0.2)">
+                            <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-neon-teal">canlı akış — telemetri ve onay kuyruğu</div>
+                            <div class="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <div
+                                    class="rounded-lg border border-white/5 px-3 py-2.5 bg-white/[0.02] flex items-center justify-between">
+                                    <div>
+                                        <div class="text-xs text-slate-400 font-mono">BT-1 Ortam Dozu</div>
+                                        <div class="text-sm mt-0.5 text-teal-300">0.24 µSv/h (Normal)</div>
+                                    </div><span class="w-2 h-2 rounded-full bg-neon-teal"
+                                        style="box-shadow:0 0 10px #14b8a6"></span>
+                                </div>
+                                <div
+                                    class="rounded-lg border border-white/5 px-3 py-2.5 bg-white/[0.02] flex items-center justify-between">
+                                    <div>
+                                        <div class="text-xs text-slate-400 font-mono">RKE-O-004 Önlük</div>
+                                        <div class="text-sm mt-0.5 text-emerald-300">DIN 6857-1 UYGUN</div>
+                                    </div><span class="w-2 h-2 rounded-full bg-emerald-400"
+                                        style="box-shadow:0 0 10px #10b981"></span>
+                                </div>
+                                <div
+                                    class="rounded-lg border border-white/5 px-3 py-2.5 bg-white/[0.02] flex items-center justify-between">
+                                    <div>
+                                        <div class="text-xs text-slate-400 font-mono">Karekod Arıza (QR)</div>
+                                        <div class="text-sm mt-0.5 text-cyan-300">Anjiyo-1 Müdahale Edildi</div>
+                                    </div><span class="w-2 h-2 rounded-full bg-cyan-400"
+                                        style="box-shadow:0 0 10px #22d3ee"></span>
+                                </div>
+                                <div
+                                    class="rounded-lg border border-white/5 px-3 py-2.5 bg-white/[0.02] flex items-center justify-between">
+                                    <div>
+                                        <div class="text-xs text-slate-400 font-mono">Online Sınav LMS</div>
+                                        <div class="text-sm mt-0.5 text-amber-300">14 Personel Tamamladı</div>
+                                    </div><span class="w-2 h-2 rounded-full bg-amber-400"
+                                        style="box-shadow:0 0 10px #fbbf24"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="mt-12 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.28em] text-slate-500">
+                    <span class="w-6 h-px bg-slate-600"></span>
+                    Aşağı kaydırın
+                </div>
+            </div>
+        </section>
+
+        <!-- MARQUEE -->
+        <section class="relative py-10 border-y border-white/5" style="background:rgba(0,0,0,0.3)">
+            <div class="marquee">
+                <div class="marquee-track font-display text-3xl md:text-5xl text-white/60 tracking-tight"
+                    id="marquee-a"></div>
+                <div class="marquee-track font-display text-3xl md:text-5xl text-white/60 tracking-tight" id="marquee-b"
+                    aria-hidden="true"></div>
+            </div>
+        </section>
+
+        <!-- MANIFESTO -->
+        <section class="relative py-28 md:py-36">
+            <div class="container-narrow grid md:grid-cols-12 gap-10">
+                <div class="md:col-span-4">
+                    <span class="section-label"><span class="text-slate-500">01</span>&nbsp;Neden RADPYS V4</span>
+                    <h2 class="reveal mt-6 font-display text-4xl md:text-5xl leading-[1.05] tracking-tight">Dört ilke,
+                        <span class="text-neon-teal">tek ekosistem.</span>
+                    </h2>
+                </div>
+                <div class="md:col-span-8 space-y-16" id="manifesto"></div>
+            </div>
+        </section>
+
+        <!-- MODULES BENTO -->
+        <section class="relative py-24 md:py-32">
+            <div class="container-narrow">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div>
+                        <span class="section-label"><span class="text-slate-500">02</span>&nbsp;Modüller & Yetenekler</span>
+                        <h2 class="reveal mt-6 font-display text-4xl md:text-5xl tracking-tight">14+ Entegre Modül. <br
+                                class="hidden md:block"><span class="text-neon-cyan">Tek gerçek kaynak.</span></h2>
+                    </div>
+                    <a href="moduller.html"
+                        class="reveal inline-flex items-center gap-2 text-sm text-slate-300 hover:text-white">Tüm Modülleri İncele ↗</a>
+                </div>
+                <div class="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="module-grid"></div>
+            </div>
+        </section>
+
+        <!-- GELECEK VİZYONU & AR-GE YOL HARİTASI -->
+        <section class="relative py-20 border-t border-white/5" style="background:rgba(0,0,0,0.3)">
+            <div class="container-narrow">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div>
+                        <span class="section-label"><span class="text-slate-500">03</span>&nbsp;Ar-Ge & İnovasyon</span>
+                        <h2 class="reveal mt-6 font-display text-4xl md:text-5xl tracking-tight">
+                            Değişen mevzuata <br class="hidden md:block">
+                            <span class="text-neon-teal">her an hazır platform.</span>
+                        </h2>
+                    </div>
+                    <a href="moduller.html#roadmap" class="reveal btn btn-outline text-sm">Tüm Ar-Ge Yol Haritası →</a>
+                </div>
+
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="reveal card p-7 border border-white/10 flex flex-col justify-between">
+                        <div>
+                            <span
+                                class="px-2.5 py-1 text-[11px] font-mono rounded-full border border-emerald-500/30 text-emerald-400 bg-emerald-500/10">Ar-Ge Aşaması</span>
+                            <h3 class="mt-4 font-display text-xl font-bold">Yapay Zekalı Doz Tahmini</h3>
+                            <p class="mt-2 text-xs font-mono text-neon-teal font-semibold">Öngörücü Doz Analitiği</p>
+                            <p class="mt-3 text-sm text-slate-300 leading-relaxed">Personellerin doz trendlerini analiz ederek yıl sonu yasal limit aşımı riskini 6 ay önceden tespit eden akıllı algoritma.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-white/5 font-mono text-xs text-slate-400">AI & Risk Analizi</div>
+                    </div>
+
+                    <div class="reveal card p-7 border border-white/10 flex flex-col justify-between">
+                        <div>
+                            <span
+                                class="px-2.5 py-1 text-[11px] font-mono rounded-full border border-teal-500/30 text-teal-400 bg-teal-500/10">Geliştirme Aşamasında</span>
+                            <h3 class="mt-4 font-display text-xl font-bold">PACS / DICOM Doz Köprüsü</h3>
+                            <p class="mt-2 text-xs font-mono text-neon-teal font-semibold">RDSR Entegrasyonu</p>
+                            <p class="mt-3 text-sm text-slate-300 leading-relaxed">BT ve Anjiyo cihazlarından çıkan DICOM RDSR raporlarını doğrudan PACS sunucusundan okuyan modalite doz haritası.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-white/5 font-mono text-xs text-slate-400">DICOM & RDSR</div>
+                    </div>
+
+                    <div class="reveal card p-7 border border-white/10 flex flex-col justify-between">
+                        <div>
+                            <span
+                                class="px-2.5 py-1 text-[11px] font-mono rounded-full border border-cyan-500/30 text-cyan-400 bg-cyan-500/10">Planlanan Güncelleme</span>
+                            <h3 class="mt-4 font-display text-xl font-bold">IoT Canlı Alan Telemetrisi</h3>
+                            <p class="mt-2 text-xs font-mono text-neon-teal font-semibold">Kablosuz Canlı Radyasyon</p>
+                            <p class="mt-3 text-sm text-slate-300 leading-relaxed">Odalara yerleştirilen Wi-Fi radyasyon dedektörlerinden gelen mikro-Sievert verilerini mimari krokide canlı ısı haritasına dönüştürme.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-white/5 font-mono text-xs text-slate-400">IoT & Canlı Harita</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS -->
+        <section class="relative py-24 md:py-32 border-t border-white/5" style="background:rgba(0,0,0,0.2)">
+            <div class="container-narrow">
+                <span class="section-label"><span class="text-slate-500">04</span>&nbsp;Öne Çıkan Rakamlar</span>
+                <div class="mt-6 grid md:grid-cols-4 gap-8" id="stats-grid"></div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="relative py-28 overflow-hidden">
+            <div class="absolute inset-0"
+                style="background:radial-gradient(circle at 50% 50%, rgba(34,211,238,0.14), transparent 60%)"></div>
+            <div class="absolute inset-0 bg-grid bg-grid-fade opacity-70"></div>
+            <div class="relative max-w-5xl mx-auto px-6 text-center">
+                <span class="section-label" style="justify-content:center; display:inline-flex"><span
+                        class="text-slate-500">05</span>&nbsp;Sıradaki adım</span>
+                <h2 class="reveal mt-8 font-display text-4xl md:text-6xl leading-[1.05] tracking-tight">Ekibiniz ve
+                    kurumunuz için <br class="hidden md:block"><span class="text-neon-teal">bize ulaşın.</span></h2>
+                <p class="reveal mt-6 text-slate-300 text-lg max-w-2xl mx-auto">Kurumunuza özel dozimetre, nöbet, RKE kalite kontrol ve KVKK süreçleri hakkında bilgi almak ve Elit Paket teklifi istemek için ekibimizle iletişime geçin.</p>
+                <div class="reveal mt-10 flex flex-wrap items-center justify-center gap-4">
+                    <a href="iletisim.html" class="btn btn-primary">İletişime Geçin →</a>
+                    <a href="fiyatlandirma.html" class="btn btn-outline">Fiyatları & Elit Paketi İncele</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/layout.js"></script>
+    <script>
+        // Populate dynamic sections
+        (function () {
+            const { MODULES, STATS } = window.RADPYS;
+
+            // Bars
+            const bar = (i, off) => {
+                const h = 20 + ((i * 13 + off * 7) % 70);
+                const op = 0.35 + ((i + off) % 5) / 8;
+                return `<div style="flex:1; height:${h}%; opacity:${op}; background:linear-gradient(180deg,rgba(103,232,249,0.8),rgba(20,184,166,0.6)); border-radius:2px"></div>`;
+            };
+            ["bars-1", "bars-2"].forEach((id, off) => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.innerHTML = Array.from({ length: 22 })
+                        .map((_, i) => bar(i, off))
+                        .join("");
+                }
+            });
+
+            // Marquee
+            const MQ = ["KVKK AES-256 Şifreleme", "PostgreSQL Kurumsal DB", "DIN 6857-1 RKE Muayene", "İnteraktif Mimari Plan Krokisi", "QR Karekod Arıza Portalı", "Online Sınav LMS Motoru", "Evrensel Onay & Diff View", "Web Portalı & Mobil PWA", "SKS 6.1 & NDK 72s Takibi"];
+            const mqHtml = MQ.map((m) => `<span style="display:inline-flex; align-items:center; gap:1.25rem"><span>${m}</span><span style="width:6px;height:6px;border-radius:9999px;background:#14b8a6;box-shadow:0 0 12px #14b8a6"></span></span>`).join("");
+            document.getElementById("marquee-a").innerHTML = mqHtml;
+            document.getElementById("marquee-b").innerHTML = mqHtml;
+
+            // Manifesto
+            const MANIFESTO = [
+                { n: "01", t: "Kağıt ve Excel karmaşasına son.", b: "Dağınık Excel çizelgeleri, kaybolan dozimetre çıktıları ve WhatsApp nöbet gruplarının sonu. Her kayıt zaman damgalı, denetlenebilir ve tek merkezde." },
+                { n: "02", t: "Şeffaf kısıtlar, adaletli dağıtım.", b: "Nöbet algoritması yasal mevzuat ve sert/yumuşak kısıtlarla çalışır. Ekip neden o gün nöbette olduğunu şeffafça görür — amirin insafı değil, kurallar geçerlidir." },
+                { n: "03", t: "Askeri düzeyde veri güvenliği.", b: "PostgreSQL altyapısı, AES-256 Fernet şifreli evrak kasası ve KVKK Madde 11 ZIP ihracı. Sağlık verileriniz kurumunuzun tam kontrolünde korunur." },
+                { n: "04", t: "Zamandan ve cezai riskten tasarruf.", b: "Denetim hazırlığı iki gün değil, iki saat. NDK 72 saatlik bildirim ve SKS 6.1 Excel raporları tek tıkla hazır. Yöneticiler saatlerce nöbet çizmekten kurtulur." },
+            ];
+            document.getElementById("manifesto").innerHTML = MANIFESTO.map(
+                (m) => `
+        <div class="reveal border-t border-white/10 pt-8 grid gap-6 md:gap-10" style="grid-template-columns:auto 1fr">
+          <div class="chapter-number" style="font-size:clamp(4.5rem,8vw,7rem); line-height:1">${m.n}</div>
+          <div class="pt-3">
+            <h3 class="font-display text-2xl md:text-3xl leading-tight">${m.t}</h3>
+            <p class="mt-3 text-slate-300 text-base md:text-lg max-w-xl">${m.b}</p>
+          </div>
+        </div>`
+            ).join("");
+
+            // Modules grid
+            document.getElementById("module-grid").innerHTML = MODULES.map(
+                (m) => `
+        <div class="reveal card card-lift p-7 h-full flex flex-col justify-between">
+          <div>
+            <div class="flex items-start justify-between">
+              <div class="w-11 h-11 rounded-xl grid place-items-center" style="background:rgba(20,184,166,0.1); border:1px solid rgba(20,184,166,0.25); color:#5eead4">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${m.icon}"/></svg>
+              </div>
+              <span class="font-mono text-[10px] tracking-[0.25em] text-slate-500">${m.tag}</span>
+            </div>
+            <h3 class="mt-6 font-display text-xl md:text-2xl">${m.name}</h3>
+            <p class="mt-2 text-sm text-slate-400 leading-relaxed">${m.desc}</p>
+          </div>
+          <div class="mt-6 h-px w-full" style="background:linear-gradient(90deg,rgba(20,184,166,0.3),transparent)"></div>
+        </div>`
+            ).join("");
+
+            // Stats
+            const items = [
+                { k: "institutions", label: "Kurum & Hastane", suf: "+" },
+                { k: "users", label: "Aktif Kullanıcı", suf: "+" },
+                { k: "years", label: "Yıllık Deneyim", suf: "" },
+                { k: "modules", label: "Entegre Modül", suf: "+" },
+            ];
+            document.getElementById("stats-grid").innerHTML = items
+                .map(
+                    (s) => `
+        <div class="reveal is-visible border-t border-white/10 pt-6">
+          <div class="font-display text-5xl md:text-6xl text-glow-teal">${STATS[s.k]}${s.suf}</div>
+          <div class="mt-2 font-mono text-[11px] uppercase tracking-[0.28em] text-slate-500">${s.label}</div>
+        </div>`
+                )
+                .join("");
+        })();
+    </script>
+</body>
+
+</html>

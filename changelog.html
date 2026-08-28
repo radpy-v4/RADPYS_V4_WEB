@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="RADPYS V4 sürüm notları. Yeni özellikler, RKE DIN 6857-1, ortam dozu krokisi, QR arıza, online sınav LMS, PostgreSQL ve güncelleme geçmişi kronolojik olarak." />
+    <meta name="keywords" content="RADPYS sürüm notları, changelog, RADPYS güncellemeler, yeni özellikler, versiyon geçmişi, RADPYS V4 changelog" />
+    <meta name="author" content="RADPYS Yazılım" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="geo.region" content="TR" />
+    <meta name="geo.placename" content="Türkiye" />
+    <title>Sürüm Notları — RADPYS V4</title>
+
+    <link rel="icon" type="image/x-icon" href="images/logo.ico" />
+    <link rel="icon" type="image/webp" href="images/logo.webp" />
+    <link rel="apple-touch-icon" href="https://radpys.com.tr/images/main_logo.webp" />
+    <link rel="canonical" href="https://radpys.com.tr/changelog.html" />
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://radpys.com.tr/changelog.html" />
+    <meta property="og:site_name" content="RADPYS V4" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:title" content="Sürüm Notları — RADPYS V4" />
+    <meta property="og:description"
+        content="RADPYS V4 sürüm notları. Yeni özellikler, RKE DIN 6857-1, ortam dozu krokisi, QR arıza ve PostgreSQL altyapısı." />
+    <meta property="og:image" content="https://radpys.com.tr/images/main_logo.webp" />
+    <meta property="og:image:secure_url" content="https://radpys.com.tr/images/main_logo.webp" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="RADPYS V4 Sürüm Notları" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sürüm Notları — RADPYS V4" />
+    <meta name="twitter:description"
+        content="RADPYS V4 sürüm notları. Yeni özellikler, iyileştirmeler ve düzeltmeler." />
+    <meta name="twitter:image" content="https://radpys.com.tr/images/main_logo.webp" />
+    <meta name="twitter:image:alt" content="RADPYS V4 Sürüm Notları Logo" />
+
+    <!-- Schema.org BreadcrumbList JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://radpys.com.tr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sürüm Notları",
+          "item": "https://radpys.com.tr/changelog.html"
+        }
+      ]
+    }
+    </script>
+    <link rel="preconnect" href="https://cdn.fontshare.com" />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link
+        href="https://api.fontshare.com/v2/css?f[]=clash-display@300,400,500,600,700&f[]=manrope@300,400,500,600,700&f[]=jetbrains-mono@400,500&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/js/tailwind.config.js"></script>
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <style>
+        .changelog {
+            position: relative;
+        }
+
+        .changelog::before {
+            content: "";
+            position: absolute;
+            left: 0.55rem;
+            top: 0.5rem;
+            bottom: 0.5rem;
+            width: 1px;
+            background: linear-gradient(180deg,
+                    rgba(20, 184, 166, 0.55) 0%,
+                    rgba(34, 211, 238, 0.35) 40%,
+                    rgba(139, 92, 246, 0.3) 80%,
+                    transparent 100%);
+        }
+
+        .cl-item {
+            position: relative;
+            padding-left: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .cl-item::before {
+            content: "";
+            position: absolute;
+            left: 0.25rem;
+            top: 0.5rem;
+            width: 0.7rem;
+            height: 0.7rem;
+            border-radius: 9999px;
+            background: #14b8a6;
+            box-shadow: 0 0 16px rgba(20, 184, 166, 0.8);
+            border: 2px solid #0a0f1e;
+        }
+
+        .cl-item.latest::before {
+            animation: pulse-dot 2.4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                box-shadow: 0 0 12px rgba(20, 184, 166, 0.6);
+            }
+
+            50% {
+                box-shadow: 0 0 22px rgba(34, 211, 238, 0.9);
+                background: #22d3ee;
+            }
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.18rem 0.6rem;
+            border-radius: 9999px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border: 1px solid;
+        }
+
+        .tag-new {
+            color: #5eead4;
+            border-color: rgba(20, 184, 166, 0.4);
+            background: rgba(20, 184, 166, 0.08);
+        }
+
+        .tag-improved {
+            color: #67e8f9;
+            border-color: rgba(34, 211, 238, 0.4);
+            background: rgba(34, 211, 238, 0.08);
+        }
+
+        .tag-fixed {
+            color: #a78bfa;
+            border-color: rgba(139, 92, 246, 0.4);
+            background: rgba(139, 92, 246, 0.08);
+        }
+
+        .tag-breaking {
+            color: #fca5a5;
+            border-color: rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.08);
+        }
+
+        .change-list li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="site-nav"></div>
+
+    <main>
+        <!-- HERO -->
+        <section class="relative pt-40 pb-12 overflow-hidden">
+            <div class="blob blob-teal" style="top:-10%; left:-10%; width:520px; height:520px; border-radius:9999px">
+            </div>
+            <div class="blob blob-purple" style="top:10%; right:-15%; width:560px; height:560px; border-radius:9999px">
+            </div>
+            <div class="absolute inset-0 bg-grid bg-grid-fade opacity-70"></div>
+            <div class="relative container-narrow">
+                <span class="section-label">Sürüm Notları</span>
+                <h1 class="mt-6 font-display text-5xl md:text-7xl leading-[1] tracking-[-0.03em]">
+                    <span class="reveal-mask d1"><span>Her sürüm bir</span></span>
+                    <span class="reveal-mask d2"><span>adım daha ileriye.</span></span>
+                </h1>
+                <p class="reveal mt-6 max-w-2xl text-slate-300 text-lg">
+                    RADPYS'in geçmiş sürümlerindeki yenilikler, operasyonel modül entegrasyonları, iyileştirmeler ve düzeltmeler.
+                </p>
+                <div class="reveal mt-8 flex flex-wrap gap-2">
+                    <span class="tag tag-new">Yeni</span>
+                    <span class="tag tag-improved">Geliştirme</span>
+                    <span class="tag tag-fixed">Düzeltme</span>
+                    <span class="tag tag-breaking">Kırıcı</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- TIMELINE -->
+        <section class="relative py-16">
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="changelog" id="cl-list"></div>
+
+                <div class="mt-10 rounded-2xl border border-white/10 p-8 text-center"
+                    style="background:linear-gradient(135deg, rgba(20,184,166,0.06), rgba(139,92,246,0.04))">
+                    <h3 class="font-display text-2xl">Yeni sürümlerden haberdar olmak ister misiniz?</h3>
+                    <p class="mt-3 text-slate-300">Yeni sürüm ve mevzuat güncellemeleri yayınlandığında bilgilendiriyoruz.</p>
+                    <a href="iletisim.html" class="btn btn-primary mt-6">Bültene Katılın →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="assets/js/layout.js"></script>
+    <script>
+        const RELEASES = [
+            {
+                version: "4.1.2",
+                date: "25 Ağustos 2026",
+                title: "Koruyucu Donanım (RKE) Yönetimi, DIN 6857-1 Skopi Muayenesi, Akıllı Kodlama ve Karar Motoru",
+                changes: [
+                    { type: "new", text: "Radyasyon Koruyucu Ekipman (RKE) & KKD Yönetim Merkezi: Kurşun önlük, tiroid, gonad, gözlük ve paravan envanter & zimmet takibi eklendi" },
+                    { type: "new", text: "DIN 6857-1 / IEC 61331-3 Skopi Muayene Motoru: Hasar bölgesi (Kritik/Non-Kritik) ve kusur alanına (mm²) göre otomatik UYGUN / ŞARTLI / HEK kararı üreten karar motoru geliştirildi" },
+                    { type: "new", text: "Akıllı Kodlama Motoru (RkeKodGenerator): Sistem tanımları öncelikli dinamik RKE-O-001 ve departman kodlu tekil etiket üretimi sağlandı" },
+                    { type: "improved", text: "RKE Canlı KPI Özet Paneli: Muayenesi yaklaşanlar (≤30 gün), süresi geçenler ve HEK hurda sayıları anlık dashboard'a bağlandı" },
+                    { type: "improved", text: "Cihaz ve RKE Envanteri için Excel / CSV Toplu İçe Aktarma sihirbazları devreye alındı" },
+                ],
+            },
+            {
+                version: "4.1.0",
+                date: "22 Ağustos 2026",
+                title: "Tıbbi Cihaz Envanteri, NDK Lisans Takibi, 2D QR Etiketleme ve Mobil Hızlı Arıza Portalı",
+                changes: [
+                    { type: "new", text: "Tıbbi Cihaz Envanteri & 3'lü Hızlı Filtre (Tümü, Radyasyonlu X-Ray, Radyasyonsuz MR/USG) ile NDK lisans ve garanti takibi entegre edildi" },
+                    { type: "new", text: "Dinamik Yerel IP Algılamalı 2D QR Karekod Etiket Üretim Modülü (CihazQrDialog) eklendi" },
+                    { type: "new", text: "Web & Mobil Portal Entegre Hızlı Arıza Bildirimi (CihazArizaView): Sahada telefon kamerasıyla QR okutulduğunda cihaz seçili arıza formunun açılması sağlandı" },
+                    { type: "improved", text: "Sağlık Bakanlığı ve NDK resmi denetimlerine sunulan standart NDK Cihaz ve Lisans Denetim Çizelgesi çıktısı hazırlandı" },
+                ],
+            },
+            {
+                version: "4.0.2",
+                date: "20 Ağustos 2026",
+                title: "Radyasyon Ortam Dozu Ölçümleri, İnteraktif Mimari Plan Krokisi ve SKS 6.1 Alan İzleme Sistemi",
+                changes: [
+                    { type: "new", text: "Masaüstü & Web İnteraktif Mimari Plan Krokisi: Vektörel PDF ve PNG kat planlarında donanım hızlandırmalı sınırsız Zoom ve Pan desteği" },
+                    { type: "new", text: "Mimari kroki üstünde çift katmanlı parlayan canlı pinler ve tek tıkla dedektör (µSv/h) doz ölçüm girişi" },
+                    { type: "new", text: "Sağlık Bakanlığı SKS 6.1 SRG11.02 Resmi Excel Denetim Raporu tek tıkla dışa aktarımı" },
+                    { type: "improved", text: "Web Portalı ve Tablet/Mobil üzerinden sahada canlı alan izleme (OrtamDozuView.tsx) devreye alındı" },
+                ],
+            },
+            {
+                version: "4.0.1",
+                date: "18 Ağustos 2026",
+                title: "Hizmet İçi Eğitim Kataloğu, Çoktan Seçmeli Soru Bankası ve Online Sınav Motoru (LMS)",
+                changes: [
+                    { type: "new", text: "Zorunlu Periyodik Eğitim Kataloğu: Video/PDF materyal yükleme ve departman personellerine toplu eğitim atama" },
+                    { type: "new", text: "Sınav Soruları Havuzu (Soru Bankası): Çoktan seçmeli A/B/C/D soru bankası, eğitimden kopyalama ve Excel'den soru import" },
+                    { type: "new", text: "Web Portalı Online Sınav Motoru: Personellerin web ve mobilden doküman çalışıp sınava girmesi (%70 baraj) ve otomatik sertifikasyon" },
+                    { type: "improved", text: "Departman Eğitim Uyum Matrisi (Compliance Matrix) ile teftiş denetim listeleri oluşturuldu" },
+                ],
+            },
+            {
+                version: "4.0.0",
+                date: "16 Ağustos 2026",
+                title: "PostgreSQL 14+/16 Kurumsal Veritabanı Mimarisi, PWA Web Portalı, Evrensel Onay Diff View ve KVKK Kasası",
+                changes: [
+                    { type: "breaking", text: "PostgreSQL 14+/16 Kurumsal Mimarisi (psycopg3): Çok kullanıcılı, yüksek eşzamanlılıklı ve ACID uyumlu veritabanı motoruna geçildi" },
+                    { type: "new", text: "Mobil Ana Ekrana Yüklenebilir (Installable) PWA Web Portalı (React + Vite + Tailwind)" },
+                    { type: "new", text: "Görsel Diff Destekli Evrensel Onay Sistemi: 5 onay kategorisi ve eski/yeni verileri yan yana kıyaslayan onay paneli" },
+                    { type: "new", text: "KVKK AES-256 Fernet Şifreli Evrak Kasası (stored_files) ve KVKK Madde 11 Kişisel Veri İhraç Paketi (ZIP)" },
+                ],
+            },
+            {
+                version: "3.9.0",
+                date: "15 Ağustos 2026",
+                title: "Gebelik Bildirimi & Yasal Muafiyet ve NDK 72 Saatlik Resmi Bildirim Takibi",
+                changes: [
+                    { type: "new", text: "Gebelik Bildirimi & Yasal Muafiyet Modülü: Doktor raporu entegreli hamilelik bildirimi, nöbet algoritmasına otomatik kısıt/muafiyet sinyali ve kümülatif gebelik dozu takibi eklendi" },
+                    { type: "new", text: "NDK Resmi Bildirim Süreç Takibi: 72 saatlik yasal kaza/olay bildirim geri sayım sayacı ve dijital süreç takibi entegre edildi" },
+                    { type: "improved", text: "Yönetici Aksiyon Merkezi (Action Hub) ile boşalan nöbetlere 3 adımlı ikame atama sihirbazı devreye alındı" },
+                ],
+            },
+            {
+                version: "3.8.6",
+                date: "10 Ağustos 2026",
+                title: "PySide6 Regresyon & Arayüz Test Düzeltmeleri, Lookup Normalizasyonu ve Zamanlayıcı Korumaları",
+                changes: [
+                    { type: "fixed", text: "PySide6 QAction içe aktarımı QtGui.QAction olarak standartlaştırıldı" },
+                    { type: "improved", text: "Excel aktarımında Türkçe karakterli departman/unvan isimlerinin ASCII dönüşümlü tam eşleşmesi sağlandı" },
+                    { type: "fixed", text: "Diyalog ve form pencerelerinde C++ nesne yaşam döngüsü ve asenkron QTimer.singleShot çökme emniyetleri eklendi" },
+                ],
+            }
+        ];
+
+        const tagClass = {
+            new: "tag-new",
+            improved: "tag-improved",
+            fixed: "tag-fixed",
+            breaking: "tag-breaking",
+        };
+        const tagLabel = {
+            new: "Yeni",
+            improved: "Geliştirme",
+            fixed: "Düzeltme",
+            breaking: "Kırıcı",
+        };
+
+        const list = document.getElementById("cl-list");
+        list.innerHTML = RELEASES.map(
+            (r, i) => `
+      <div class="cl-item ${i === 0 ? "latest" : ""}">
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="font-display text-2xl font-bold text-white">v${r.version}</span>
+          <span class="font-mono text-xs text-slate-400">· ${r.date}</span>
+          ${i === 0 ? `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider font-bold bg-cyan-400 text-slate-950">Güncel Sürüm</span>` : ""}
+        </div>
+        <h3 class="mt-2 font-display text-lg text-neon-teal">${r.title}</h3>
+        <ul class="mt-4 space-y-2 change-list">
+          ${r.changes
+                    .map(
+                        (c) => `
+            <li class="flex items-start gap-2.5 text-sm text-slate-300">
+              <span class="tag ${tagClass[c.type]} mt-0.5 shrink-0">${tagLabel[c.type]}</span>
+              <span class="leading-relaxed">${c.text}</span>
+            </li>`
+                    )
+                    .join("")}
+        </ul>
+      </div>`
+        ).join("");
+    </script>
+</body>
+
+</html>

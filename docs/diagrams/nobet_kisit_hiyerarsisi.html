@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RADPYS V3 — Nöbet Kısıt Hiyerarşisi</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
+
+    :root {
+      --paper: #f8f9fa;
+      --paper-2: #ffffff;
+      --ink: #2d3142;
+      --muted: #4f5d75;
+      --soft: #7a8399;
+      --rule: rgba(45, 49, 66, 0.12);
+      --rule-solid: #bfc0c0;
+      --accent: #eb6c36;
+      --accent-tint: rgba(235, 108, 54, 0.08);
+      --link: #2e5aa8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Geist', -apple-system, sans-serif;
+      background-color: var(--paper);
+      color: var(--ink);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .diagram-container {
+      background: var(--paper-2);
+      border: 1px solid var(--rule-solid);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 840px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+
+    .diagram-header {
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 20px;
+    }
+
+    .diagram-category {
+      font-family: 'Geist Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .diagram-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .diagram-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .layer-card {
+      background: #ffffff;
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      align-items: center;
+      gap: 20px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .layer-card:hover {
+      transform: translateY(-1px);
+    }
+
+    .layer-card.focal {
+      background: var(--accent-tint);
+      border: 1.5px solid var(--accent);
+    }
+
+    .priority-badge {
+      font-family: 'Geist Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .layer-card.focal .priority-badge {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .layer-card:not(.focal) .priority-badge {
+      background: rgba(79, 93, 117, 0.1);
+      color: var(--muted);
+      border: 1px solid var(--rule);
+    }
+
+    .layer-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .layer-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .layer-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .footer-note {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--rule-solid);
+      font-family: 'Geist Mono', monospace;
+      font-size: 12px;
+      color: var(--soft);
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+<div class="diagram-container">
+  <div class="diagram-header">
+    <div class="diagram-category">RADPYS V3 — Algoritma Mimarisı</div>
+    <h1 class="diagram-title">Nöbet Kısıt Hiyerarşisi ve Öncelik Katmanları</h1>
+    <p class="diagram-subtitle">Otomatik nöbet dağıtım motoru (Scheduler), vardiya atamalarında kuralları yukarıdan aşağıya kesin öncelikle değerlendirir.</p>
+  </div>
+
+  <div class="stack">
+    <!-- Layer 1 -->
+    <div class="layer-card focal">
+      <div class="priority-badge">1. ÖNCELİK</div>
+      <div class="layer-content">
+        <div class="layer-title">Yasal Mevzuat & Sağlık Kısıtları (Mutlak Kısıtlar)</div>
+        <div class="layer-desc">Gebelik, emzirme, yaş/kıdem muafiyetleri, yasal maksimum çalışma süreleri ve NDK/Sağlık Bakanlığı zorunlu kısıtları. Asla ihlal edilemez.</div>
+      </div>
+    </div>
+
+    <!-- Layer 2 -->
+    <div class="layer-card">
+      <div class="priority-badge">2. ÖNCELİK</div>
+      <div class="layer-content">
+        <div class="layer-title">Birim Kuralları & Asgari/Azami Nöbetçi Sayısı</div>
+        <div class="layer-desc">Radyoloji, Tomografi vb. birimlerin günlük kesintisiz hizmet için ihtiyaç duyduğu minimum ve maksimum aktif personel kapasitesi.</div>
+      </div>
+    </div>
+
+    <!-- Layer 3 -->
+    <div class="layer-card">
+      <div class="priority-badge">3. ÖNCELİK</div>
+      <div class="layer-content">
+        <div class="layer-title">Vardiya Kısıtları & Hizmet Sınıfları</div>
+        <div class="layer-desc">Gece/gündüz vardiya dinlenme süreleri, üst üste gece nöbeti yazılmaması ve hizmet sınıfı bazlı rotasyon kuralları.</div>
+      </div>
+    </div>
+
+    <!-- Layer 4 -->
+    <div class="layer-card">
+      <div class="priority-badge">4. ÖNCELİK</div>
+      <div class="layer-content">
+        <div class="layer-title">Personel Özel Kısıtları & Mazeret Talepleri</div>
+        <div class="layer-desc">Yasal mazeret izinleri, önceden onaylanmış nöbet devir talepleri ve personelin sisteme işlediği mazeret tercihleri.</div>
+      </div>
+    </div>
+
+    <!-- Layer 5 -->
+    <div class="layer-card">
+      <div class="priority-badge">5. ÖNCELİK</div>
+      <div class="layer-content">
+        <div class="layer-title">Temel Ayarlar & Adalet Algoritması Katsayıları</div>
+        <div class="layer-desc">Hafta sonu/bayram nöbet yüklerinin eşit dağıtılması, kıdem adalet puanı ve geçmiş dönem nöbet dengesi hesaplamaları.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <span>Şema Tipi: Layer Stack</span>
+    <span>RADPYS V3 © 2026</span>
+  </div>
+</div>
+
+</body>
+</html>

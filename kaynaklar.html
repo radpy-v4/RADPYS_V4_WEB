@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="RADPYS V3 kaynak merkezi — mevzuat, radyasyon güvenliği ve ürün yazıları." />
+    <meta name="keywords" content="RADPYS kaynaklar, radyasyon güvenliği mevzuatı, NDK yönetmelik, TENMAK standartları, radyoloji blog" />
+    <meta name="author" content="RADPYS Yazılım" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="geo.region" content="TR" />
+    <meta name="geo.placename" content="Türkiye" />
+    <title>Kaynaklar — RADPYS V3</title>
+
+    <link rel="icon" type="image/x-icon" href="images/logo.ico" />
+    <link rel="icon" type="image/webp" href="images/logo.webp" />
+    <link rel="apple-touch-icon" href="https://radpys.com.tr/images/main_logo.webp" />
+    <link rel="canonical" href="https://radpys.com.tr/kaynaklar.html" />
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://radpys.com.tr/kaynaklar.html" />
+    <meta property="og:site_name" content="RADPYS V3" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:title" content="Kaynaklar — RADPYS V3" />
+    <meta property="og:description"
+        content="RADPYS V3 kaynak merkezi — mevzuat, radyasyon güvenliği ve ürün yazıları." />
+    <meta property="og:image" content="https://radpys.com.tr/images/main_logo.webp" />
+    <meta property="og:image:secure_url" content="https://radpys.com.tr/images/main_logo.webp" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="RADPYS V3 Kaynaklar" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Kaynaklar — RADPYS V3" />
+    <meta name="twitter:description" content="RADPYS V3 kaynak merkezi — mevzuat ve radyasyon güvenliği." />
+    <meta name="twitter:image" content="https://radpys.com.tr/images/main_logo.webp" />
+    <meta name="twitter:image:alt" content="RADPYS V3 Kaynaklar Logo" />
+
+    <!-- Schema.org BreadcrumbList JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://radpys.com.tr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Kaynaklar",
+          "item": "https://radpys.com.tr/kaynaklar.html"
+        }
+      ]
+    }
+    </script>
+    <link rel="preconnect" href="https://cdn.fontshare.com" />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link
+        href="https://api.fontshare.com/v2/css?f[]=clash-display@300,400,500,600,700&f[]=manrope@300,400,500,600,700&f[]=jetbrains-mono@400,500&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/js/tailwind.config.js"></script>
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+</head>
+
+<body>
+    <div id="site-nav"></div>
+    <main>
+        <!-- HERO / LIST -->
+        <section id="view-list">
+            <div class="relative pt-40 pb-12 overflow-hidden">
+                <div class="blob blob-teal"
+                    style="top:-10%; left:-10%; width:520px; height:520px; border-radius:9999px"></div>
+                <div class="blob blob-purple"
+                    style="top:10%; right:-15%; width:560px; height:560px; border-radius:9999px"></div>
+                <div class="absolute inset-0 bg-grid bg-grid-fade opacity-70"></div>
+                <div class="relative container-narrow">
+                    <span class="section-label">Kaynaklar</span>
+                    <h1 class="mt-6 font-display text-5xl md:text-7xl leading-[1] tracking-[-0.03em]">
+                        <span class="reveal-mask d1"><span>Radyasyon güvenliği,</span></span>
+                        <span class="reveal-mask d2"><span>mevzuat, ürün.</span></span>
+                    </h1>
+                    <p class="reveal mt-6 max-w-2xl text-slate-300 text-lg">Ekibimiz ve alan uzmanlarından yazılar.</p>
+                </div>
+            </div>
+
+            <div class="relative py-12">
+                <div class="container-narrow">
+                    <div class="flex flex-wrap gap-2" id="filters"></div>
+                    <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="post-grid"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- POST DETAIL (revealed when ?slug=...) -->
+        <article id="view-post" style="display:none">
+            <section class="relative pt-40 pb-12 overflow-hidden">
+                <div class="blob blob-teal"
+                    style="top:-10%; left:-10%; width:520px; height:520px; border-radius:9999px"></div>
+                <div class="blob blob-purple"
+                    style="top:10%; right:-15%; width:560px; height:560px; border-radius:9999px"></div>
+                <div class="absolute inset-0 bg-grid bg-grid-fade opacity-70"></div>
+                <div class="relative max-w-3xl mx-auto px-6" id="post-header"></div>
+            </section>
+            <div class="max-w-5xl mx-auto px-6" id="post-cover"></div>
+            <section class="relative py-16">
+                <div class="max-w-3xl mx-auto px-6" id="post-body"></div>
+            </section>
+        </article>
+    </main>
+    <div id="site-footer"></div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/layout.js"></script>
+    <script>
+        (function () {
+            const { BLOG_POSTS: posts } = window.RADPYS;
+            const params = new URLSearchParams(location.search);
+            const slug = params.get("slug");
+
+            if (slug) {
+                const post = posts.find(p => p.slug === slug);
+                document.getElementById("view-list").style.display = "none";
+                document.getElementById("view-post").style.display = "block";
+                if (!post) {
+                    document.getElementById("post-header").innerHTML = `<p class="text-slate-400 pt-20">Yazı bulunamadı.</p><a href="kaynaklar.html" class="text-neon-teal underline">Geri dön</a>`;
+                } else {
+                    document.title = post.title + " — RADPYS V3";
+                    document.getElementById("post-header").innerHTML = `
+              <a href="kaynaklar.html" class="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white">← Kaynaklar</a>
+              <span class="section-label mt-8" style="display:inline-flex">${post.category}</span>
+              <h1 class="mt-4 font-display text-4xl md:text-6xl leading-[1.05] tracking-tight">${post.title}</h1>
+              <div class="mt-6 font-mono text-xs uppercase tracking-[0.22em] text-slate-500">${post.author} · ${post.readTime} dk okuma</div>
+            `;
+                    if (post.cover) document.getElementById("post-cover").innerHTML = `
+              <div class="rounded-2xl overflow-hidden border border-white/10 bg-black/40" style="aspect-ratio:16/9">
+                <img src="${post.cover}" alt="${post.title}" style="width:100%; height:100%; object-fit:cover; opacity:0.8" />
+              </div>`;
+                    document.getElementById("post-body").innerHTML = post.content.map(p => `<p class="text-slate-300 leading-relaxed mb-6 text-lg">${p}</p>`).join("") + `
+              <div class="mt-14 pt-8 border-t border-white/10"><a href="https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Demo İndir →</a></div>`;
+                }
+            } else {
+                // list view
+                const CATS = ["Tümü", "Mevzuat & Kanunlar", "NDK Kılavuzları", "Radyasyon Güvenliği", "Rehber & Ürün"];
+                let activeIdx = 0;
+
+                function renderFilters() {
+                    document.getElementById("filters").innerHTML = CATS.map((c, i) => `
+              <button data-idx="${i}" class="px-4 py-2 rounded-full text-sm border transition-all ${i === activeIdx ? "bg-neon-teal text-[#0a0f1e] border-neon-teal" : "border-white/10 text-slate-300 hover:border-neon-teal/40"}">${c}</button>
+            `).join("");
+                    document.querySelectorAll("#filters button").forEach(b => b.addEventListener("click", () => {
+                        activeIdx = parseInt(b.dataset.idx, 10);
+                        renderFilters();
+                        renderPosts();
+                    }));
+                }
+
+                function renderPosts() {
+                    const activeCategory = CATS[activeIdx];
+                    const list = activeIdx === 0 ? posts : posts.filter(p => p.category === activeCategory);
+                    document.getElementById("post-grid").innerHTML = list.length ? list.map(p => `
+              <a href="kaynaklar.html?slug=${encodeURIComponent(p.slug)}" class="reveal is-visible block h-full group">
+                <article class="card card-lift overflow-hidden h-full">
+                  <div class="relative overflow-hidden bg-black/40" style="aspect-ratio:16/10">
+                    <img src="${p.cover}" alt="${p.title}" loading="lazy" style="width:100%; height:100%; object-fit:cover; opacity:0.7; transition:transform 0.7s ease, opacity 0.3s ease" onmouseenter="this.style.transform='scale(1.05)'; this.style.opacity='0.9'" onmouseleave="this.style.transform='scale(1)'; this.style.opacity='0.7'" />
+                    <div class="absolute inset-0" style="background:linear-gradient(0deg, #0a0f1e, transparent)"></div>
+                    <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-[0.2em] text-neon-cyan" style="background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,0.1)">${p.category}</span>
+                  </div>
+                  <div class="p-6">
+                    <h3 class="font-display text-xl leading-snug group-hover:text-neon-cyan transition-colors">${p.title}</h3>
+                    <p class="mt-2 text-sm text-slate-400" style="display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden">${p.excerpt}</p>
+                    <div class="mt-5 flex items-center justify-between text-xs text-slate-500">
+                      <span>${p.author} · ${p.readTime} dk okuma</span>
+                      <span class="text-neon-teal">↗</span>
+                    </div>
+                  </div>
+                </article>
+              </a>
+            `).join("") : `<div style="grid-column:1/-1" class="py-20 text-center text-slate-500 font-mono text-xs uppercase tracking-[0.22em]">Bu kategoride yazı yok.</div>`;
+                }
+
+                renderFilters();
+                renderPosts();
+            }
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+# Media & large files
+*.mp4
+*.zip
+*.exe
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+docs/images/*
+
+# ALwrity & Python AI Tools
+alwrity/
+.env
+venv/
+__pycache__/
+
+# Marketing reference repos
+docs/marketing-resources/
+
+
+

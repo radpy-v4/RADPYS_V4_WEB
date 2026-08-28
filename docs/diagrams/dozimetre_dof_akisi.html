@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RADPYS V3 — Dozimetre Uyarısı ve DÖF İş Akışı</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
+
+    :root {
+      --paper: #f8f9fa;
+      --paper-2: #ffffff;
+      --ink: #2d3142;
+      --muted: #4f5d75;
+      --soft: #7a8399;
+      --rule: rgba(45, 49, 66, 0.12);
+      --rule-solid: #bfc0c0;
+      --accent: #eb6c36;
+      --accent-tint: rgba(235, 108, 54, 0.08);
+      --danger: #d9534f;
+      --danger-tint: rgba(217, 83, 79, 0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Geist', -apple-system, sans-serif;
+      background-color: var(--paper);
+      color: var(--ink);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .diagram-container {
+      background: var(--paper-2);
+      border: 1px solid var(--rule-solid);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 900px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+
+    .diagram-header {
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 20px;
+    }
+
+    .diagram-category {
+      font-family: 'Geist Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .diagram-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .diagram-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .flow-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+    }
+
+    .step-row {
+      display: grid;
+      grid-template-columns: 50px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .step-number {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--paper);
+      border: 1.5px solid var(--rule-solid);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Geist Mono', monospace;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .step-card {
+      background: #ffffff;
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .step-card.focal {
+      border: 1.5px solid var(--accent);
+      background: var(--accent-tint);
+    }
+
+    .step-card.alert {
+      border: 1.5px solid var(--danger);
+      background: var(--danger-tint);
+    }
+
+    .step-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .step-desc {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .branch-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .branch-box {
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 14px;
+      background: #ffffff;
+    }
+
+    .branch-box.danger {
+      border-color: var(--danger);
+    }
+
+    .branch-tag {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: inline-block;
+    }
+
+    .branch-tag.ok { color: #2e7d32; }
+    .branch-tag.err { color: var(--danger); }
+
+    .connector-line {
+      width: 2px;
+      height: 20px;
+      background: var(--rule-solid);
+      margin-left: 21px;
+      margin-top: -10px;
+      margin-bottom: -10px;
+    }
+
+    .footer-note {
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--rule-solid);
+      font-family: 'Geist Mono', monospace;
+      font-size: 12px;
+      color: var(--soft);
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+<div class="diagram-container">
+  <div class="diagram-header">
+    <div class="diagram-category">RADPYS V3 — Sağlık & Mevzuat Akışı</div>
+    <h1 class="diagram-title">Dozimetre Anomali Uyarısı ve DÖF İş Akış Şeması</h1>
+    <p class="diagram-subtitle">Yıllık doz limiti aşımlarında NDK ve Sağlık Bakanlığı mevzuatına tam uyumlu otomatik prosedür.</p>
+  </div>
+
+  <div class="flow-steps">
+
+    <!-- Step 1 -->
+    <div class="step-row">
+      <div class="step-number">1</div>
+      <div class="step-card">
+        <div class="step-title">Dozimetre Ölçüm Verisi Girişi</div>
+        <div class="step-desc">Aylık veya 2 aylık periyodik dozimetre okuma verileri sisteme manuel girilir veya Excel/CSV formatında toplu aktarılır.</div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- Step 2 -->
+    <div class="step-row">
+      <div class="step-number">2</div>
+      <div class="step-card focal">
+        <div class="step-title">Otomatik Limit & Anomali Denetimi (RADPYS Engine)</div>
+        <div class="step-desc">Sistem, girilen dozu personelin yıllık kümülatif dozuyla birleştirerek yasal eşikleri anlık kontrol eder.</div>
+
+        <div class="branch-container">
+          <div class="branch-box">
+            <span class="branch-tag ok">✔ Normal (Tek < 5 mSv / Yıl < 20 mSv)</span>
+            <div style="font-size:12.5px; color:var(--muted);">Ölçüm kaydı onaylanır, personel rutin görevine devam eder.</div>
+          </div>
+          <div class="branch-box danger">
+            <span class="branch-tag err">⚠ Limit Aşımı (Tek ≥ 5 mSv / Yıl ≥ 20 mSv)</span>
+            <div style="font-size:12.5px; color:var(--muted);">Kırmızı satır vurgusu yapılır, anomali alarmı tetiklenir.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector-line"></div>
+
+    <!-- Step 3 -->
+    <div class="step-row">
+      <div class="step-number">3</div>
+      <div class="step-card alert">
+        <div class="step-title">Zorunlu Prosedür ve DÖF Başlatılması</div>
+        <div class="step-desc">Limit aşımı gerçekleştiğinde sistem sorumluyu uyarır ve aşağıdaki yasal adımlar sırasıyla uygulanır:</div>
+
+        <ul style="margin-top:8px; padding-left:18px; font-size:13px; color:var(--muted); line-height:1.6;">
+          <li><strong>Birim Değişikliği:</strong> Personel derhal radyasyonsuz birime çekilir.</li>
+          <li><strong>DÖF Tutanak Oluşturma:</strong> Sistem üzerinden Düzeltici Önleyici Faaliyet (DÖF) tutanağı üretilir.</li>
+          <li><strong>Sağlık Taraması:</strong> Periyodik kan tahlili ve tıbbi tetkik süreci başlatılır.</li>
+          <li><strong>NDK Bildirimi:</strong> Nükleer Düzenleme Kurumu'na (NDK) yasal bildirim raporu gönderilir.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-note">
+    <span>Şema Tipi: Process / Flowchart</span>
+    <span>RADPYS V3 © 2026</span>
+  </div>
+</div>
+
+</body>
+</html>

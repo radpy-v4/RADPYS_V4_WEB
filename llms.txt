@@ -1,0 +1,40 @@
+# RADPYS V4 — Radyasyon Çalışanları & Departman Yönetim Sistemi
+
+> RADPYS V4; hastane ve radyoloji departmanları için SKS 6.1, KVKK, DIN 6857-1 ve NDK/TAEK mevzuatlarına tam uyumlu dozimetre takibi, kısıt-bilinçli nöbet planlama, Şua izinleri, RKE muayeneleri, ortam dozu krokisi, cihaz QR arıza ve online sınav LMS platformudur.  
+> **Kapsamlı İçerik (Full Content):** [llms-full.txt](https://radpys.com.tr/llms-full.txt)
+
+## Genel Bakış
+RADPYS V4, radyasyon alanında çalışan sağlık personelinin (Radyoloji Teknisyenleri/Teknikerleri, Radyoloji Uzmanları, Sağlık Fizikçileri) tüm idari, tıbbi, radyasyon güvenliği ve yasal takip süreçlerini çok kullanıcılı PostgreSQL ve AES-256 Fernet şifreli KVKK evrak kasası altyapısıyla yönetir.
+
+## Temel Modüller ve Yetenekler (14+ Modül)
+- **Nöbet Planlaması (Solver Engine):** Kısıt-bilinçli, adil, çapraz görevlendirme destekli otomatik nöbet çizelgesi oluşturma ve 2 aşamalı devir onayı.
+- **Dozimetre Takibi & Risk Analizi:** Hp(10)/Hp(0.07)/Hp(3) ölçümleri, yıllık 20 mSv ve anomali uyarıları, birim risk haritası.
+- **İzin ve Şua İzni Takibi:** 3153 sayılı kanun uyumlu Şua izni ve 2 aşamalı izin onay mekanizması (Ön Onay / Resmi Onay).
+- **Fiili Hizmet & Şua Hakedişi (Hibrit Model):** Kıstelyevm esasına göre 0-30 gün yasal Sağlık (Şua) İzni gün sayısı hesaplama.
+- **Sağlık Muayeneleri:** NDK 365 gün kuralı, Dahiliye, Dermatoloji ve Göz katarakt onayları takibi.
+- **Radyasyon Güvenliği, Olay & DÖF:** Web Portalı 3 adımlı anonim bildirim, kök neden analizi ve CAPA yönetimi.
+- **NDK 72 Saatlik Resmi Bildirim Takibi:** 3 günlük yasal süre sayacı ve gecikme erken uyarıları.
+- **Gebelik & Yönetici Aksiyon Merkezi:** Otomatik nöbet iptali ve 3 adımlı ikame atama sihirbazı.
+- **Radyasyon Koruyucu Ekipman (RKE) & DIN 6857-1:** Kurşun önlük envanteri, akıllı kodlama ve skopi muayene otomatik karar motoru (Uygun/Şartlı/HEK).
+- **Radyasyon Ortam Dozu & İnteraktif Kroki:** Vektörel mimari kat planları üzerinde canlı pinler ve SKS 6.1 SRG11.02 resmi Excel raporu.
+- **Tıbbi Cihaz Envanteri & Mobil QR Arıza:** 2D QR etiketler ve sahada telefon kamerasıyla anında arıza bildirme.
+- **Hizmet İçi Eğitim & Online Sınav LMS:** Merkezi çoktan seçmeli soru bankası, online sınav ve Eğitim Uyum Matrisi.
+- **Evrensel Onay & Görsel Diff View:** 5 kategori onay kuyruğu, eski/yeni verileri yan yana kıyaslama ve şifahi onay bypass.
+- **Rapor Merkezi & KVKK Evrak Kasası:** 7 kategori kurumsal matbu rapor, çok satırlı dinamik başlıklar ve KVKK Madde 11 ZIP ihracı.
+
+## Paketler & Fiyatlandırma
+- **Başlangıç Paketi:** Maks. 5 Personel (Temel modüller)
+- **Standart Paket:** Maks. 15 Personel (Popüler paket)
+- **Pro Paket:** Sınırsız Personel (Tüm temel & idari modüller)
+- **Elit Paket (V4 Elite):** Sınırsız Personel & Cihaz (RKE DIN 6857-1, İnteraktif Kroki, QR Arıza, Eğitim LMS, PostgreSQL ve VIP Destek)
+
+## Bağlantılar & Kaynaklar
+- [Ana Sayfa](https://radpys.com.tr/)
+- [Modüller](https://radpys.com.tr/moduller.html)
+- [Fiyatlandırma & Elit Paket](https://radpys.com.tr/fiyatlandirma.html)
+- [Dokümanlar & Rehber](https://radpys.com.tr/dokumanlar.html)
+- [Sürüm Notları (Changelog)](https://radpys.com.tr/changelog.html)
+- [Kaynaklar & Blog](https://radpys.com.tr/kaynaklar.html)
+- [Hakkımızda](https://radpys.com.tr/hakkimizda.html)
+- [İletişim](https://radpys.com.tr/iletisim.html)
+- [Tam Kullanım Kılavuzu (llms-full.txt)](https://radpys.com.tr/llms-full.txt)

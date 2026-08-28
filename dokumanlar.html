@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="RADPYS V4 kapsamlı dokümantasyonu — Kurulum, lisanslama, personel özlük, nöbet, dozimetre, izin, FHZ, RKE DIN 6857-1, ortam dozu krokisi, QR arıza, online sınav LMS, onay sistemi ve PostgreSQL veritabanı rehberi." />
+    <meta name="keywords" content="RADPYS dokümanları, kullanım rehberi, RADPYS kurulum, dozimetre takip rehberi, nöbet yazılımı dokümantasyon, RKE muayene rehberi, ortam dozu krokisi rehberi" />
+    <meta name="author" content="RADPYS Yazılım" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="geo.region" content="TR" />
+    <meta name="geo.placename" content="Türkiye" />
+    <title>Dokümanlar — RADPYS V4</title>
+
+    <link rel="icon" type="image/x-icon" href="images/logo.ico" />
+    <link rel="icon" type="image/webp" href="images/logo.webp" />
+    <link rel="apple-touch-icon" href="https://radpys.com.tr/images/main_logo.webp" />
+    <link rel="canonical" href="https://radpys.com.tr/dokumanlar.html" />
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://radpys.com.tr/dokumanlar.html" />
+    <meta property="og:site_name" content="RADPYS V4" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:title" content="Dokümanlar — RADPYS V4" />
+    <meta property="og:description"
+        content="RADPYS V4 kapsamlı dokümantasyonu — 21 bölüm, tüm operasyonel modüller, RKE DIN 6857-1, ortam dozu krokisi ve PostgreSQL mimarisi." />
+    <meta property="og:image" content="https://radpys.com.tr/images/main_logo.webp" />
+    <meta property="og:image:secure_url" content="https://radpys.com.tr/images/main_logo.webp" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="RADPYS V4 Dokümanları" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dokümanlar — RADPYS V4" />
+    <meta name="twitter:description"
+        content="RADPYS V4 kapsamlı dokümantasyonu — Kurulum, lisanslama, nöbet, dozimetre, RKE, ortam dozu ve onay sistemi." />
+    <meta name="twitter:image" content="https://radpys.com.tr/images/main_logo.webp" />
+    <meta name="twitter:image:alt" content="RADPYS V4 Dokümanları Logo" />
+
+    <!-- Schema.org TechArticle, BreadcrumbList & FAQPage JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Ana Sayfa",
+              "item": "https://radpys.com.tr/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Dokümanlar",
+              "item": "https://radpys.com.tr/dokumanlar.html"
+            }
+          ]
+        },
+        {
+          "@type": "TechArticle",
+          "headline": "RADPYS V4 Kullanım ve Kurulum Dokümantasyonu",
+          "description": "RADPYS V4 kapsamlı dokümantasyonu — Kurulum, lisanslama, personel özlük, nöbet, dozimetre, izin, FHZ, RKE DIN 6857-1, ortam dozu krokisi, QR arıza, online sınav LMS, onay sistemi ve PostgreSQL veritabanı rehberi.",
+          "url": "https://radpys.com.tr/dokumanlar.html",
+          "inLanguage": "tr-TR",
+          "publisher": {
+            "@type": "Organization",
+            "name": "RADPYS",
+            "url": "https://radpys.com.tr/"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Kurulumda 'Windows kişisel bilgisayarınızı korudu' (SmartScreen) uyarısı alıyorum, ne yapmalıyım?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Mavi renkli güvenlik uyarısında 'Daha fazla bilgi' (More info) bağlantısına tıklayıp pencerenin altında açılan 'Yine de çalıştır' (Run anyway) butonuna basarak kurulumu başlatabilirsiniz. RADPYS V4 %100 güvenlidir."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "RKE DIN 6857-1 Kalite Kontrol Muayenesi nasıl çalışır?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Floroskopi/Skopi altında koruyucu donanımın hasar bölgesi (Kritik/Non-Kritik) ve kusur alanı (mm²) sisteme girildiğinde, karar motoru mevzuat standardına göre anlık olarak 'Uygun', 'Şartlı Kullanım' veya 'HEK / Hurdaya Ayır' kararını otomatik üretir."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "İnteraktif Mimari Plan Krokisi üzerinde ortam dozu ölçümü nasıl kaydedilir?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Vektörel PDF veya PNG kat planı üzerine yerleştirilen canlı pine çift tıklanarak dedektör okuma dozu (µSv/h) girilir. Sistem NDK alan eşiklerini (Denetimli/Gözetimli) anlık denetler ve SKS 6.1 resmi Excel raporunu hazırlar."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Şua İzni (Sağlık İzni) parçalı olarak kullanılabilir mi?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Hayır. Sağlık Bakanlığı ve NDK mevzuatı gereğince 4 haftalık Şua İzni parçalı kullanılamaz; tek seferde blok olarak kullandırılmalıdır."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "NDK 72 Saatlik Yasal Bildirim Takibi nasıl çalışır?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Olay kategorisi 'RADYASYON' içerdiğinde NDK mevzuatı gereği 3 takvim günü (72 saat) içinde resmi bildirim yapılması yasal zorunluluktur. Sistem son tarihi otomatik hesaplar ve zamanında yapılmayan bildirimlerde panelde kırmızı uyarı verir."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="preconnect" href="https://cdn.fontshare.com" />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link
+        href="https://api.fontshare.com/v2/css?f[]=clash-display@300,400,500,600,700&f[]=manrope@300,400,500,600,700&f[]=jetbrains-mono@400,500&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/js/tailwind.config.js"></script>
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <style>
+        /* Docs-specific styling */
+        .docs-side a {
+            display: block;
+            padding: 0.45rem 0.75rem;
+            border-left: 2px solid transparent;
+            color: #94a3b8;
+            font-size: 0.86rem;
+            transition: color 0.2s, border-color 0.2s, background 0.2s;
+            border-radius: 0 0.375rem 0.375rem 0;
+        }
+
+        .docs-side a:hover {
+            color: #fff;
+            border-color: rgba(20, 184, 166, 0.4);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .docs-side a.is-active {
+            color: #5eead4;
+            border-color: #14b8a6;
+            background: rgba(20, 184, 166, 0.08);
+            font-weight: 500;
+        }
+
+        .docs-side .group-label {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #14b8a6;
+            padding: 0.75rem 0.75rem 0.25rem;
+            margin-top: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .prose-doc h2 {
+            font-family: "Clash Display", sans-serif;
+            font-size: 1.85rem;
+            letter-spacing: -0.02em;
+            margin: 3.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            scroll-margin-top: 6rem;
+            color: #f8fafc;
+        }
+
+        .prose-doc h3 {
+            font-family: "Clash Display", sans-serif;
+            font-size: 1.3rem;
+            margin: 2rem 0 0.75rem;
+            color: #e2e8f0;
+            scroll-margin-top: 6rem;
+        }
+
+        .prose-doc h4 {
+            font-family: "Manrope", sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin: 1.5rem 0 0.5rem;
+            color: #cbd5e1;
+        }
+
+        .prose-doc p {
+            color: #cbd5e1;
+            line-height: 1.75;
+            margin: 0 0 1.1rem;
+            font-size: 0.96rem;
+        }
+
+        .prose-doc ul,
+        .prose-doc ol {
+            color: #cbd5e1;
+            padding-left: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+            font-size: 0.95rem;
+        }
+
+        .prose-doc li {
+            margin-bottom: 0.4rem;
+        }
+
+        .prose-doc code {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.84em;
+            background: rgba(20, 184, 166, 0.12);
+            color: #5eead4;
+            padding: 0.15rem 0.45rem;
+            border-radius: 4px;
+            border: 1px solid rgba(20, 184, 166, 0.25);
+        }
+
+        .prose-doc pre {
+            background: rgba(10, 15, 30, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            padding: 1.15rem 1.35rem;
+            overflow-x: auto;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.82rem;
+            line-height: 1.65;
+            color: #e2e8f0;
+            margin: 1.25rem 0;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .prose-doc pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            color: inherit;
+        }
+
+        .alert-box {
+            border-left: 3px solid;
+            padding: 1rem 1.25rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            margin: 1.5rem 0;
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        .alert-info {
+            border-color: #22d3ee;
+            background: rgba(34, 211, 238, 0.06);
+            color: #bae6fd;
+        }
+
+        .alert-warning {
+            border-color: #fbbf24;
+            background: rgba(251, 191, 36, 0.06);
+            color: #fef08a;
+        }
+
+        /* Custom scrollbar for docs sidebar */
+        .docs-scrollbar::-webkit-scrollbar {
+            width: 5px;
+        }
+        .docs-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 4px;
+        }
+        .docs-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(20, 184, 166, 0.3);
+            border-radius: 4px;
+        }
+        .docs-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(20, 184, 166, 0.6);
+        }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            transition: all 0.3s ease;
+        }
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="site-nav"></div>
+
+    <main class="relative pt-32 pb-24">
+        <div class="container-narrow">
+            <div class="mb-12">
+                <span class="section-label">RADPYS V4.1.2 Kılavuzu</span>
+                <h1 class="mt-4 font-display text-4xl md:text-5xl tracking-tight">Kullanım & Operasyon Dokümantasyonu</h1>
+                <p class="mt-4 text-slate-300 text-base md:text-lg max-w-3xl leading-relaxed">
+                    RADPYS V4; radyoloji çalışanları yönetimi, dozimetre analitiği, kısıt-bilinçli nöbet motoru, RKE DIN 6857-1 skopi muayeneleri, interaktif ortam dozu krokisi, cihaz QR arıza portalı ve PostgreSQL KVKK evrak kasasının uçtan uca resmi kullanım rehberidir.
+                </p>
+            </div>
+
+            <!-- Mobile Quick Jump Bar -->
+            <div class="lg:hidden col-span-12 sticky top-16 z-40 mb-6 p-3 rounded-xl border border-white/10 glass flex items-center justify-between gap-3 shadow-xl backdrop-blur-xl">
+                <div class="flex items-center gap-2 text-xs font-mono text-neon-teal">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+                    <span>Bölüme Git:</span>
+                </div>
+                <select id="mobile-doc-select" class="bg-black/60 border border-white/15 rounded-lg px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-teal-500 font-mono w-auto max-w-[220px]">
+                    <option value="">Bölüm Seçin (1-21) ▾</option>
+                    <option value="#bolum-1">1. Kurulum & İzinler</option>
+                    <option value="#bolum-2">2. Giriş & Lisans</option>
+                    <option value="#bolum-3">3. Personel Özlük & KVKK ZIP</option>
+                    <option value="#bolum-4">4. İzin & Şua İzni Hakedişi</option>
+                    <option value="#bolum-5">5. Dozimetre Takibi & Risk</option>
+                    <option value="#bolum-6">6. Nöbet Solver & Kısıtlar</option>
+                    <option value="#bolum-7">7. Olay Bildirimi & 72s NDK</option>
+                    <option value="#bolum-8">8. Ortam Dozu & Kroki</option>
+                    <option value="#bolum-9">9. Hizmet İçi Eğitim & LMS</option>
+                    <option value="#bolum-10">10. Tıbbi Cihaz & QR Arıza</option>
+                    <option value="#bolum-11">11. Koruyucu Ekipman (RKE)</option>
+                    <option value="#bolum-12">12. Onay Bekleyen Görevler</option>
+                    <option value="#bolum-13">13. Rapor Merkezi & Şablonlar</option>
+                    <option value="#bolum-14">14. Tanımlamalar (Lookup)</option>
+                    <option value="#bolum-15">15. Web Portalı & PWA</option>
+                    <option value="#bolum-16">16. Bildirim Merkezi</option>
+                    <option value="#bolum-17">17. Program Ayarları & Temalar</option>
+                    <option value="#bolum-18">18. PostgreSQL & Evrak Kasası</option>
+                    <option value="#bolum-19">19. Toplu İçe Aktarma</option>
+                    <option value="#bolum-20">20. Sorun Giderme & SSS</option>
+                    <option value="#bolum-21">21. Sürüm Notları (Log)</option>
+                </select>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-10 items-start">
+                <!-- Sticky Sidebar Navigation (21 Bölüm) -->
+                <aside class="hidden lg:block lg:col-span-4 self-start sticky top-20 z-30">
+                    <div class="p-4 rounded-xl border border-white/10 glass docs-side flex flex-col max-h-[calc(100vh-6rem)] shadow-xl">
+                        <!-- Fast Search Filter -->
+                        <div class="mb-3 relative">
+                            <input type="text" id="docs-search" placeholder="Bölümlerde ara... (örn: RKE, Şua, Doz)" 
+                                class="w-full px-3 py-2 pl-8 rounded-lg text-xs bg-black/40 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-teal-500/60 transition-all font-mono" />
+                            <svg class="absolute left-2.5 top-2.5 text-slate-400 w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                        </div>
+
+                        <!-- Scrollable Links Container -->
+                        <div id="docs-nav" class="overflow-y-auto docs-scrollbar pr-1 space-y-1 flex-1">
+                            <div class="group-label">I. Genel Bilgiler & Kurulum</div>
+                            <a href="#bolum-1" id="nav-bolum-1">1. Kurulum & Windows İzinleri</a>
+                            <a href="#bolum-2" id="nav-bolum-2">2. Giriş & Kullanıcı Yönetimi</a>
+
+                            <div class="group-label">II. Temel Operasyonel Modüller</div>
+                            <a href="#bolum-3" id="nav-bolum-3">3. Personel Özlük & KVKK ZIP İhracı</a>
+                            <a href="#bolum-4" id="nav-bolum-4">4. İzin Takip & Şua İzni Hakedişi</a>
+                            <a href="#bolum-5" id="nav-bolum-5">5. Dozimetre Takibi & Risk Analizi</a>
+                            <a href="#bolum-6" id="nav-bolum-6">6. Nöbet Dağıtım Motoru & Kısıtlar</a>
+                            <a href="#bolum-7" id="nav-bolum-7">7. Olay Bildirimi, DÖF & 72s NDK</a>
+                            <a href="#bolum-8" id="nav-bolum-8">8. Ortam Dozu & İnteraktif Kroki</a>
+                            <a href="#bolum-9" id="nav-bolum-9">9. Hizmet İçi Eğitim & Sınav LMS</a>
+                            <a href="#bolum-10" id="nav-bolum-10">10. Tıbbi Cihaz & Mobil QR Arıza</a>
+                            <a href="#bolum-11" id="nav-bolum-11">11. Koruyucu Ekipman (RKE) & DIN 6857-1</a>
+
+                            <div class="group-label">III. Kurumsal Yönetim & Raporlama</div>
+                            <a href="#bolum-12" id="nav-bolum-12">12. Onay Bekleyen Görevler & Diff View</a>
+                            <a href="#bolum-13" id="nav-bolum-13">13. Rapor Merkezi & Matbu Şablonlar</a>
+                            <a href="#bolum-14" id="nav-bolum-14">14. Tanımlamalar (Lookup) Modülü</a>
+                            <a href="#bolum-15" id="nav-bolum-15">15. Web Portalı, REST API & PWA</a>
+
+                            <div class="group-label">IV. Sistem Yönetimi & Veri</div>
+                            <a href="#bolum-16" id="nav-bolum-16">16. Bildirim Merkezi & Durum Çubuğu</a>
+                            <a href="#bolum-17" id="nav-bolum-17">17. Program Ayarları & Temalar</a>
+                            <a href="#bolum-18" id="nav-bolum-18">18. PostgreSQL & AES-256 Evrak Kasası</a>
+                            <a href="#bolum-19" id="nav-bolum-19">19. Toplu İçe Aktarma Sihirbazları</a>
+
+                            <div class="group-label">V. Destek & Güncellemeler</div>
+                            <a href="#bolum-20" id="nav-bolum-20">20. Sorun Giderme & SSS</a>
+                            <a href="#bolum-21" id="nav-bolum-21">21. Sürüm Notları (Changelog)</a>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Content Area -->
+                <article class="lg:col-span-8 prose-doc">
+
+                    <!-- BÖLÜM 1 -->
+                    <section id="bolum-1">
+                        <h2>1. RADPYS V4 Kurulumu ve Windows Güvenlik İzinleri</h2>
+                        <p>RADPYS V4; Windows 10 (Sürüm 1809 ve üzeri), Windows 11 (64-bit) ve Windows Server sistemlerinde çalışan, kurumsal <strong>PostgreSQL</strong> veritabanı ve <strong>AES-256 KVKK Evrak Kasası</strong> mimarisine sahip çok kullanıcılı bir masaüstü ve web yönetim sistemidir.</p>
+                        
+                        <div class="alert-box alert-info">
+                            <strong>Sistem Gereksinimleri:</strong> 64-bit Windows OS, en az 4 GB RAM (8 GB önerilen), 500 MB disk alanı. Web Portalı ve REST API senkronizasyonu için Node.js v18.0.0+ LTS gereklidir.
+                        </div>
+
+                        <h3>Adım Adım Kurulum</h3>
+                        <ol>
+                            <li><code>RADPYS_Setup_latest.exe</code> kurulum dosyasını çalıştırın.</li>
+                            <li><strong>Windows SmartScreen Uyarısı:</strong> Mavi renkli <em>"Windows kişisel bilgisayarınızı korudu"</em> uyarısı çıktığında, <strong>"Daha fazla bilgi"</strong> (<em>More info</em>) bağlantısına tıklayıp <strong>"Yine de çalıştır"</strong> (<em>Run anyway</em>) butonuna basın.</li>
+                            <li>Inno Setup sihirbazında yükleme dizinini seçip masaüstü kısayolu oluşturarak kurulumu tamamlayın.</li>
+                        </ol>
+                    </section>
+
+                    <!-- BÖLÜM 2 -->
+                    <section id="bolum-2">
+                        <h2>2. Sisteme Giriş, Şifre Değiştirme ve Lisans Aktivasyonu</h2>
+                        <p>İlk kurulumda sistem, veritabanı klasöründe (<code>data/ilk_admin_bilgileri.txt</code>) otomatik tek seferlik bir yönetici geçici şifresi üretir. İlk girişte şifre değiştirme zorunludur.</p>
+
+                        <div class="alert-box alert-security">
+                            <strong>Demo Sürümden Tam Sürüme (Lisans Aktivasyonu):</strong> Uygulama 15 günlük Demo Modu ile başlar. Sağ üstteki <em>Hakkında</em> butonuna basıp benzersiz <code>Cihaz Kimliği</code> kodunu kopyalayarak lisans anahtarınızı aktifleştirebilirsiniz.
+                        </div>
+                    </section>
+
+                    <!-- BÖLÜM 3 -->
+                    <section id="bolum-3">
+                        <h2>3. Personel Modülü & KVKK Madde 11 Kişisel Veri İhraç Paketi (ZIP)</h2>
+                        <p>Personel Modülü; radyasyon görevlilerinin (Grup A / Grup B) kimlik, özlük, sicil, görev yeri, gebelik/emzirme kısıtları ve eğitim geçmişinin merkezi olarak yönetildiği bölümdür.</p>
+
+                        <h3>📦 KVKK Madde 11 Kişisel Veri İhraç Paketi İndirme (ZIP)</h3>
+                        <p>6698 Sayılı KVKK Madde 11 (Veri Sahibinin Hakları ve Taşınabilirlik) uyarınca, personelin satırına sağ tıklanıp <code>📦 KVKK Veri İhraç Paketi İndir (ZIP)</code> seçildiğinde:</p>
+                        <ul>
+                            <li><code>personel_veri_ozeti.json</code>: Tüm özlük, izin, dozimetre ve sağlık kayıtları okunabilir JSON formatında çıkarılır.</li>
+                            <li><code>evraklar/</code>: Personelin şifreli kasadaki (stored_files) tüm diplomaları ve sağlık raporları orijinal formatında deşifre edilerek ZIP'e eklenir.</li>
+                        </ul>
+                    </section>
+
+                    <!-- BÖLÜM 4 -->
+                    <section id="bolum-4">
+                        <h2>4. İzin Takip, Şua İzni & Hibrit Fiili Hizmet Hakediş Sihirbazı</h2>
+                        <div class="alert-box alert-warning">
+                            <strong>🎯 Birincil Amaç Vurgusu:</strong> Fiili Hizmet modülünün asıl ve birincil amacı <strong>Sağlık (Şua) İznini (0-30 Gün)</strong> hesaplamaktır. Sistem SGK emeklilik yıpranma payı programı değildir; radyasyonlu alandaki fiili çalışma süresine göre yıllık Şua izni gün sayısını belirler.
+                        </div>
+
+                        <h3>Hibrit (Hybrid) Hesaplama Yöntemi</h3>
+                        <p>Personel ay içinde hem BT/Anjiyo (Çalışma Koşulu A) hem de MR/Poliklinik (Çalışma Koşulu B) nöbeti tuttuğunda; sistem nöbet çizelgesindeki radyasyonlu saatleri çeker, normal mesai günlerini personelin asıl birimiyle tamamlar ve kıstelyevm esasına göre Şua İzni hakedişini üretir.</p>
+                    </section>
+
+                    <!-- BÖLÜM 5 -->
+                    <section id="bolum-5">
+                        <h2>5. Dozimetre Takip, Trend Analizi & NDK Limit Uyarıları</h2>
+                        <p>Akredite laboratuvarlardan gelen <code>Hp(10)</code> (Tüm Vücut), <code>Hp(0.07)</code> (Cilt), <code>Hp(3)</code> (Göz Merceği) ve <code>Ekstremite</code> doz ölçümlerini takip eder.</p>
+                        <ul>
+                            <li><strong>Yıllık Limit Aşımı:</strong> 20 mSv/yıl aşıldığında sistem personeli otomatik 🔴 <em>Yüksek Riskli</em> statüsüne alır ve DÖF sürecini başlatır.</li>
+                            <li><strong>Anomali Eşikleri:</strong> Tek okumada 2.0 mSv (Sarı Uyarı) ve 5.0 mSv (Kırmızı Tehlike).</li>
+                            <li><strong>Excel/PDF İçe Aktarma:</strong> Dozimetre ölçüm firmasından gelen raporlar sürükle-bırak yöntemiyle tek tıkla sisteme aktarılır.</li>
+                        </ul>
+                    </section>
+
+                    <!-- BÖLÜM 6 -->
+                    <section id="bolum-6">
+                        <h2>6. Nöbet Modülü Yönetimi & Otomatik Dağıtım Motoru (Solver)</h2>
+                        <p>Nöbet motoru; yasal kısıtlar (hamilelik, süt izni, 24 saatlik nöbet ertesi dinlenme, 25 yıl kıdem muafiyeti) ve adalet katsayılarını gözeterek aylık vardiya çizelgelerini saniyeler içinde üretir.</p>
+
+                        <h3>Çapraz Görevlendirme ile Boş Slot Çözümü</h3>
+                        <p>Birimde personel yetersizliği nedeniyle boş kalan vardiya hücreleri (🔴 <em>Boş Slot</em>) oluştuğunda; <strong>Çapraz Görevlendirme</strong> butonuyla komşu birimlerden (MR, Röntgen, Mammografi) geçici personel çekilerek dağıtım motoru yeniden çalıştırılır.</p>
+                    </section>
+
+                    <!-- BÖLÜM 7 -->
+                    <section id="bolum-7">
+                        <h2>7. Radyasyon Güvenliği, Olay Bildirimi & NDK 72 Saatlik Takip</h2>
+                        <p>Saha personeli Web Portalı üzerinden 3 adımda anonim veya isimli olay bildirimi yapabilir. Kalite yöneticileri masaüstü RADPYS V4 üzerinden DÖF (Düzeltici Önleyici Faaliyet) başlatır.</p>
+                        <div class="alert-box alert-warning">
+                            <strong>NDK 72 Saatlik Yasal Bildirim:</strong> Olay kategorisinde radyasyon ihlali varsa sistem <code>Olay Tarihi + 3 Gün</code> son tarihini hesaplar ve gecikmelerde panelde kırmızı görsel ikaz verir.
+                        </div>
+                    </section>
+
+                    <!-- BÖLÜM 8 -->
+                    <section id="bolum-8">
+                        <h2>8. Radyasyon Ortam Dozu Ölçümleri, İnteraktif Kroki & SKS 6.1</h2>
+                        <p>Kurumun mimari kat planları (vektörel PDF veya yüksek çözünürlüklü görsel) interaktif tuvale yüklenir. Fare tekerleğiyle sınırsız Zoom ve Pan yapılır.</p>
+                        <ul>
+                            <li><strong>Canlı Pinler:</strong> Denetimli Alan (2.5 µSv/h), Gözetimli Alan (0.5 µSv/h) ve Halka Açık Alan eşikleriyle harita üzerinde parlayan pinler konumlandırılır.</li>
+                            <li><strong>Ölçüm Girişi:</strong> Pine çift tıklanarak dedektör okuma değeri girilir; pin rengi otomatik güncellenir.</li>
+                            <li><strong>SKS 6.1 Excel Raporu:</strong> Sağlık Bakanlığı denetimlerine uygun tek tıkla resmi Excel dökümü alınır.</li>
+                            <li><strong>Web & Mobil Alan İzleme:</strong> Saha sorumluları <code>OrtamDozuView.tsx</code> ile sahada tabletten krokileri izler.</li>
+                        </ul>
+                    </section>
+
+                    <!-- BÖLÜM 9 -->
+                    <section id="bolum-9">
+                        <h2>9. Hizmet İçi Eğitim, Soru Havuzu & Online Sınav LMS</h2>
+                        <p>NDK ve İSG zorunlu periyodik eğitimlerinin kataloğu, çoktan seçmeli A/B/C/D soru bankası havuzu ve online sınav motorudur.</p>
+                        <ul>
+                            <li>Personel Web Portalı üzerinden eğitim materyalini (PDF/Video) inceleyip sınava girer.</li>
+                            <li>Sınav motoru puanı anında hesaplar (%70 baraj), geçerlilik süresini takip eder.</li>
+                            <li><strong>Uyum Raporu (Compliance Matrix):</strong> Departman bazlı eğitim eksikleri ve yaklaşan geçerlilik tarihleri tek ekranda izlenir.</li>
+                        </ul>
+                    </section>
+
+                    <!-- BÖLÜM 10 -->
+                    <section id="bolum-10">
+                        <h2>10. Tıbbi Cihaz Envanteri & Mobil QR Arıza Portalı</h2>
+                        <p>BT, Röntgen, Anjiyo, Skopi, MR ve USG cihazlarının NDK lisansları, garanti süreleri ve periyodik kalite kontrolleri yönetilir.</p>
+                        <ul>
+                            <li><strong>2D Karekod (QR) Etiket:</strong> Cihazın üzerine yapıştırılacak QR etiket tek tıkla üretilir ve yazdırılır.</li>
+                            <li><strong>Mobil Hızlı Arıza Bildirimi:</strong> Sağlık personeli telefon kamerasıyla etiketi okuttuğunda cihaz otomatik seçili arıza bildirim ekranı açılır. Biyomedikal müdahale ve tüp seri no takibi yapılır.</li>
+                        </ul>
+                    </section>
+
+                    <!-- BÖLÜM 11 -->
+                    <section id="bolum-11">
+                        <h2>11. Koruyucu Ekipman (RKE) & DIN 6857-1 Kalite Kontrol Muayenesi</h2>
+                        <p>Kurşun önlük, tiroid, gonad, gözlük ve paravan envanteri, zimmet takibi ve DIN 6857-1 / IEC 61331-3 floroskopi muayene motorudur.</p>
+                        <ul>
+                            <li><strong>Akıllı Kodlama:</strong> <code>RKE-[Tür]-[SıraNo]</code> formatında kurumsal otomatik kod üretimi.</li>
+                            <li><strong>Otomatik Karar Motoru:</strong> Skopi altında hasar bölgesi (Kritik/Non-Kritik) ve kusur alanı ($mm^2$) girildiğinde anlık <code>UYGUN</code>, <code>ŞARTLI KULLANIM</code> veya <code>HEK / HURDA</code> kararı üretilir.</li>
+                        </ul>
+                    </section>
+
+                    <!-- BÖLÜM 12 -->
+                    <section id="bolum-12">
+                        <h2>12. Onay Bekleyen Görevler Paneli & Görsel Diff View</h2>
+                        <p>Tüm izin, nöbet devir, mazeret ve veri değişiklik talepleri tek bir onay merkezinde toplanır.</p>
+                        <ul>
+                            <li><strong>Diff Görünümü:</strong> Eski ve önerilen yeni veriler yan yana kırmızı/yeşil renkle karşılaştırılarak hatalı kayıt önlenir.</li>
+                            <li><strong>Şifahi Onay Bypass:</strong> Devralan personel izinliyse amir sözlü teyit ile devir sürecini onaylayabilir.</li>
+                        </ul>
+                    </section>
+
+                    <!-- BÖLÜM 13 -->
+                    <section id="bolum-13">
+                        <h2>13. Raporlar Modülü & Dinamik Çok Satırlı Başlıklar</h2>
+                        <p>7 ana kategoride toplanmış resmi matbu raporlar; kurum logosu, alt bilgi ve çok satırlı dinamik kurum başlıkları (<code>&lt;w:br/&gt;</code>) ile PDF, Excel ve Word formatında üretilir.</p>
+                    </section>
+
+                    <!-- BÖLÜM 14 -->
+                    <section id="bolum-14">
+                        <h2>14. Tanımlamalar (Lookup) Modülü & Kurumsal Kodlama</h2>
+                        <p>Departmanlar, birimler, görev unvanları, cihaz türleri, RKE kategorileri, izin tipleri ve resmi tatil takviminin yönetildiği merkezi konfigürasyon alanıdır.</p>
+                        <ul>
+                            <li><strong>Esnek Hiyerarşi:</strong> Kurumun organizasyon şemasına göre birimler ve çalışma alanları (Denetimli / Gözetimli / Serbest) tanımlanır.</li>
+                            <li><strong>Resmi Tatil Takvimi:</strong> Nöbet dağıtım motorunun bayram ve resmi tatil katsayılarını doğru hesaplayabilmesi için yıllık takvim tek tıkla yüklenir.</li>
+                        </ul>
+                    </section>
+
+                    <!-- BÖLÜM 15 -->
+                    <section id="bolum-15">
+                        <h2>15. Çoklu Kullanıcı Web Portalı, REST API & Mobil PWA</h2>
+                        <p>Saha çalışanları masaüstü yazılıma ihtiyaç duymadan web tarayıcısından ve mobil telefonlarından nöbet çizelgelerine, devir taleplerine ve izin başvurularına erişir.</p>
+                        <ul>
+                            <li><strong>PWA Desteği:</strong> Mobil tarayıcıdan tek tıkla ana ekrana yerel uygulama gibi kurulabilir.</li>
+                            <li><strong>Intranet & Cloud:</strong> Kurum içi yerel ağda (192.168.X.X) veya güvenli Cloudflare Reverse Proxy arkasında çalışır.</li>
+                        </ul>
+                    </section>
+
+                    <!-- BÖLÜM 16 -->
+                    <section id="bolum-16">
+                        <h2>16. Bildirim Merkezi & Durum Çubuğu (Status Bar)</h2>
+                        <p>RADPYS V4; yaklaşan yasal süreleri, muayene tarihlerini ve limit aşımlarını arka planda sürekli denetler.</p>
+                        <ul>
+                            <li><strong>Erken Uyarılar:</strong> Doz aşım anomalileri, 30 gün içinde süresi dolacak sağlık muayeneleri ve cihaz kalibrasyonları bildirim panelinde listelenir.</li>
+                            <li><strong>Canlı Bağlantı Durumu:</strong> Durum çubuğunda PostgreSQL veritabanı gecikmesi (latency), aktif kullanıcı rolü ve onay bekleyen görev sayısı anlık gösterilir.</li>
+                        </ul>
+                    </section>
+
+                    <!-- BÖLÜM 17 -->
+                    <section id="bolum-17">
+                        <h2>17. Program Ayarları, Yetkilendirme & Kurumsal Temalar</h2>
+                        <p>Sistem genelindeki güvenlik ve görsel ayarların yapılandırıldığı yönetim panelidir.</p>
+                        <ul>
+                            <li><strong>Veritabanı & Güvenlik:</strong> PostgreSQL bağlantı parametreleri, KVKK Fernet anahtarı ve REST API güvenlik token'ları yönetilir.</li>
+                            <li><strong>Kurumsal Kimlik:</strong> Raporlarda kullanılacak kurum logosu, resmi kurum unvanı ve koyu/açık modern arayüz teması seçilebilir.</li>
+                        </ul>
+                    </section>
+
+                    <!-- BÖLÜM 18 -->
+                    <section id="bolum-18">
+                        <h2>18. PostgreSQL Veritabanı & AES-256 Şifreli Evrak Kasası</h2>
+                        <p>RADPYS V4; yüksek eşzamanlılık ve çoklu kullanıcı için kurumsal PostgreSQL mimarisine sahiptir. Yüklenen tüm belgeler <code>stored_files</code> tablosunda AES-256 Fernet ile şifrelenir ve KVKK denetim logu (Audit Trail) tutulur.</p>
+                    </section>
+
+                    <!-- BÖLÜM 19 -->
+                    <section id="bolum-19">
+                        <h2>19. Toplu İçe Aktarma (Import) Sihirbazları</h2>
+                        <p>Excel, CSV ve ölçüm firmalarından gelen standart PDF raporlarının sürükle-bırak yöntemiyle sisteme aktarılmasını sağlar.</p>
+                        <ul>
+                            <li><strong>Toplu Personel & Dozimetre Aktarımı:</strong> Mevcut personel kadrosu ve geçmiş doz okumaları tek seferde eşleştirilerek içe aktarılır.</li>
+                            <li><strong>RKE Envanter Aktarımı:</strong> Hastanede mevcut tüm kurşun önlük ve koruyucu ekipman listesi Excel şablonuyla sisteme yüklenir.</li>
+                        </ul>
+                    </section>
+
+                    <!-- BÖLÜM 20 & 21 -->
+                    <section id="bolum-20">
+                        <h2>20. Sorun Giderme & Sıkça Sorulan Sorular</h2>
+                        <p>Olası NDK limit aşımları, SmartScreen izinleri, REST API bağlantı durumları ve şifre sıfırlama adımları için detaylı rehber.</p>
+                    </section>
+
+                    <section id="bolum-21">
+                        <h2>21. Sürüm Notları (Update Log)</h2>
+                        <p>RADPYS V4.1.2 ve önceki sürümlere ait tüm detaylı sürüm geçmişi için <a href="changelog.html" class="text-neon-teal underline">Sürüm Notları Sayfasına</a> göz atabilirsiniz.</p>
+                    </section>
+
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <!-- Floating Back To Top Button -->
+    <button id="back-to-top" aria-label="Başa Dön" class="w-12 h-12 rounded-full grid place-items-center bg-teal-500/20 hover:bg-teal-500/35 border border-neon-teal text-neon-teal shadow-2xl backdrop-blur-xl cursor-pointer">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+    </button>
+
+    <script src="assets/js/layout.js"></script>
+    <script>
+        (function () {
+            const links = Array.from(document.querySelectorAll("#docs-nav a[href^='#']"));
+            const docsNavContainer = document.getElementById("docs-nav");
+            const backToTopBtn = document.getElementById("back-to-top");
+            const mobileSelect = document.getElementById("mobile-doc-select");
+            const searchInput = document.getElementById("docs-search");
+
+            function getAbsoluteTop(el) {
+                return el.getBoundingClientRect().top + window.scrollY;
+            }
+
+            function getTargets() {
+                return links
+                    .map((a) => {
+                        const href = a.getAttribute("href");
+                        const el = href && href.startsWith("#") ? document.querySelector(href) : null;
+                        return { a, el };
+                    })
+                    .filter((x) => x.el);
+            }
+
+            let targets = getTargets();
+
+            function onScroll() {
+                const scrollY = window.scrollY;
+                const scrollThreshold = scrollY + 160;
+                let active = null;
+
+                for (let i = 0; i < targets.length; i++) {
+                    const top = getAbsoluteTop(targets[i].el);
+                    if (top <= scrollThreshold) {
+                        active = targets[i];
+                    } else {
+                        break;
+                    }
+                }
+
+                if (window.innerHeight + scrollY >= document.documentElement.scrollHeight - 70) {
+                    if (targets.length > 0) active = targets[targets.length - 1];
+                }
+
+                links.forEach((l) => l.classList.remove("is-active"));
+                if (active && active.a) {
+                    active.a.classList.add("is-active");
+
+                    // Keep active item in view inside the sidebar container
+                    if (docsNavContainer) {
+                        const containerRect = docsNavContainer.getBoundingClientRect();
+                        const linkRect = active.a.getBoundingClientRect();
+                        if (linkRect.top < containerRect.top + 20 || linkRect.bottom > containerRect.bottom - 20) {
+                            active.a.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                        }
+                    }
+
+                    // Sync mobile select if present
+                    if (mobileSelect) {
+                        const href = active.a.getAttribute("href");
+                        if (mobileSelect.value !== href) {
+                            mobileSelect.value = href;
+                        }
+                    }
+                }
+
+                // Back to Top button visibility
+                if (backToTopBtn) {
+                    if (scrollY > 400) {
+                        backToTopBtn.classList.add("visible");
+                    } else {
+                        backToTopBtn.classList.remove("visible");
+                    }
+                }
+            }
+
+            window.addEventListener("scroll", onScroll, { passive: true });
+            window.addEventListener("resize", () => {
+                targets = getTargets();
+                onScroll();
+            });
+            onScroll();
+
+            // Smooth scroll click handler for desktop sidebar
+            links.forEach((a) => {
+                a.addEventListener("click", (e) => {
+                    const href = a.getAttribute("href");
+                    if (href && href.startsWith("#")) {
+                        const el = document.querySelector(href);
+                        if (el) {
+                            e.preventDefault();
+                            const targetY = getAbsoluteTop(el) - 95;
+                            window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
+                            history.replaceState(null, "", href);
+                        }
+                    }
+                });
+            });
+
+            // Mobile dropdown jump
+            if (mobileSelect) {
+                mobileSelect.addEventListener("change", (e) => {
+                    const href = e.target.value;
+                    if (href && href.startsWith("#")) {
+                        const el = document.querySelector(href);
+                        if (el) {
+                            const targetY = getAbsoluteTop(el) - 95;
+                            window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
+                            history.replaceState(null, "", href);
+                        }
+                    }
+                });
+            }
+
+            // Back to top click handler
+            if (backToTopBtn) {
+                backToTopBtn.addEventListener("click", () => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                });
+            }
+
+            // Fast Search Filter for sidebar links & categories
+            if (searchInput) {
+                searchInput.addEventListener("input", (e) => {
+                    const term = e.target.value.toLowerCase().trim();
+                    const groupLabels = document.querySelectorAll(".docs-side .group-label");
+                    
+                    links.forEach((link) => {
+                        const text = link.textContent.toLowerCase();
+                        if (!term || text.includes(term)) {
+                            link.style.display = "block";
+                        } else {
+                            link.style.display = "none";
+                        }
+                    });
+
+                    // Hide group labels if no children match
+                    groupLabels.forEach((gl) => {
+                        let next = gl.nextElementSibling;
+                        let hasVisible = false;
+                        while (next && !next.classList.contains("group-label")) {
+                            if (next.style.display !== "none") {
+                                hasVisible = true;
+                                break;
+                            }
+                            next = next.nextElementSibling;
+                        }
+                        gl.style.display = (!term || hasVisible) ? "flex" : "none";
+                    });
+                });
+            }
+        })();
+    </script>
+</body>
+
+</html>
