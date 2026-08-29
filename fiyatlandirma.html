@@ -309,15 +309,10 @@
                     "🐘 <strong>PostgreSQL 14+/16 Kurumsal DB</strong> & Mobil Yüklenebilir PWA Portalı",
                     "👨‍💻 <strong>7/24 Özel VIP Mühendislik</strong> & Özel Veri Göçü Danışmanlığı"
                 ],
-                cta: "Elit Teklif Al / Satın Al",
+                cta: "Özel Teklif Al →",
                 highlight: true,
                 isElite: true,
-                prices: {
-                    1: { total: "12.000 ₺", monthly: "12.000 ₺", note: null },
-                    3: { total: "32.400 ₺", monthly: "10.800 ₺", note: "Aylık 10.800 ₺ (%10 İndirim)" },
-                    6: { total: "57.600 ₺", monthly: "9.600 ₺", note: "Aylık 9.600 ₺ (%20 İndirim)" },
-                    12: { total: "100.800 ₺", monthly: "8.400 ₺", note: "Aylık 8.400 ₺ (%30 İndirim)" }
-                }
+                prices: null
             }
         ];
 
@@ -335,9 +330,6 @@
             const periodLabel = currentPeriod === 1 ? "aylık" : `${currentPeriod} aylık toplam`;
 
             document.getElementById("tiers").innerHTML = TIERS_DATA.map(t => {
-                const pInfo = t.prices[currentPeriod];
-                const formattedTotal = pInfo.total.replace(" ₺", "&nbsp;₺");
-                
                 let borderStyle = "border-white/10 bg-white/[0.02]";
                 let containerStyle = "";
                 
@@ -347,6 +339,26 @@
                 } else if (t.highlight) {
                     borderStyle = "border-neon-teal/50 bg-slate-900/60";
                     containerStyle = "background:linear-gradient(180deg, rgba(20,184,166,0.1), rgba(15,23,42,0.6)); box-shadow:0 0 50px -15px rgba(20,184,166,0.3);";
+                }
+
+                let priceSection = "";
+                if (t.isElite) {
+                    priceSection = `
+                    <div class="flex items-baseline flex-wrap gap-x-2 gap-y-1">
+                      <span class="font-display text-2xl sm:text-3xl lg:text-3xl xl:text-3xl tracking-tight whitespace-nowrap text-cyan-300 font-semibold">Özel Teklif</span>
+                    </div>
+                    <div class="mt-1 text-xs text-cyan-400/80 font-medium">Kurumunuza özel proje & lisanslama</div>
+                    `;
+                } else {
+                    const pInfo = t.prices[currentPeriod];
+                    const formattedTotal = pInfo.total.replace(" ₺", "&nbsp;₺");
+                    priceSection = `
+                    <div class="flex items-baseline flex-wrap gap-x-2 gap-y-1">
+                      <span class="font-display text-2xl sm:text-3xl lg:text-3xl xl:text-3xl tracking-tight whitespace-nowrap">${formattedTotal}</span>
+                      <span class="text-slate-400 text-xs whitespace-nowrap">/ ${periodLabel}</span>
+                    </div>
+                    ${pInfo.note ? `<div class="mt-1 text-xs text-teal-400 font-medium">${pInfo.note}</div>` : `<div class="mt-1 text-xs text-slate-500">Standart tarife</div>`}
+                    `;
                 }
 
                 return `
@@ -361,11 +373,7 @@
           </div>
           <p class="mt-3 text-xs sm:text-sm text-slate-400" style="min-height:2.8rem">${t.desc}</p>
           <div class="mt-5">
-            <div class="flex items-baseline flex-wrap gap-x-2 gap-y-1">
-              <span class="font-display text-2xl sm:text-3xl lg:text-3xl xl:text-3xl tracking-tight whitespace-nowrap ${t.isElite ? 'text-cyan-200' : ''}">${formattedTotal}</span>
-              <span class="text-slate-400 text-xs whitespace-nowrap">/ ${periodLabel}</span>
-            </div>
-            ${pInfo.note ? `<div class="mt-1 text-xs ${t.isElite ? 'text-cyan-300' : 'text-teal-400'} font-medium">${pInfo.note}</div>` : `<div class="mt-1 text-xs text-slate-500">Standart tarife</div>`}
+            ${priceSection}
           </div>
           <ul class="mt-6 space-y-2.5 border-t border-white/10 pt-5">
             ${t.features.map(f => `<li class="flex gap-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="${t.isElite ? '#22d3ee' : '#14b8a6'}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-top:3px; flex-shrink:0"><polyline points="20 6 9 17 4 12"/></svg><span>${f}</span></li>`).join("")}
