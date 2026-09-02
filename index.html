@@ -12,7 +12,7 @@
     <meta name="theme-color" content="#0f172a" />
     <meta name="geo.region" content="TR" />
     <meta name="geo.placename" content="Türkiye" />
-    <title>RADPYS V4 — Radyasyon Çalışanları & Departman Yönetim Sistemi</title>
+    <title>RADPYS V4 — Radyoloji & Radyasyon Yönetim Sistemi</title>
 
     <link rel="icon" type="image/x-icon" href="images/logo.ico" />
     <link rel="icon" type="image/webp" href="images/logo.webp" />
@@ -28,21 +28,21 @@
     <meta property="og:url" content="https://radpys.com.tr/" />
     <meta property="og:site_name" content="RADPYS V4" />
     <meta property="og:locale" content="tr_TR" />
-    <meta property="og:title" content="RADPYS V4 — Radyasyon Çalışanları & Departman Yönetim Sistemi" />
+    <meta property="og:title" content="RADPYS V4 — Radyoloji & Radyasyon Yönetim Sistemi" />
     <meta property="og:description"
-        content="Nöbet, dozimetre, Şua izni, olay bildirimi, RKE DIN 6857-1, interaktif kroki, cihaz QR arıza ve PostgreSQL KVKK altyapısı tek platformda." />
+        content="Radyoloji ve radyasyon çalışanları yönetim sistemi: Nöbet planlama, dozimetre takibi, Şua izni, SKS 6.1, RKE DIN 6857-1 ve KVKK tek platformda." />
     <meta property="og:image" content="https://radpys.com.tr/images/main_logo.webp" />
     <meta property="og:image:secure_url" content="https://radpys.com.tr/images/main_logo.webp" />
     <meta property="og:image:type" content="image/webp" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="RADPYS V4 — Radyasyon Çalışanları Yönetim Sistemi Logo" />
+    <meta property="og:image:alt" content="RADPYS V4 — Radyoloji & Radyasyon Yönetim Sistemi" />
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="RADPYS V4 — Radyasyon Çalışanları Yönetim Sistemi" />
+    <meta name="twitter:title" content="RADPYS V4 — Radyoloji & Radyasyon Yönetim Sistemi" />
     <meta name="twitter:description"
-        content="Nöbet, dozimetre, Şua izni, olay bildirimi, RKE DIN 6857-1 ve PostgreSQL KVKK altyapısı tek platformda." />
+        content="Radyoloji ve radyasyon çalışanları yönetim sistemi: Nöbet planlama, dozimetre takibi, Şua izni, SKS 6.1, RKE DIN 6857-1 ve KVKK tek platformda." />
     <meta name="twitter:image" content="https://radpys.com.tr/images/main_logo.webp" />
     <meta name="twitter:image:alt" content="RADPYS V4 Logo" />
 
@@ -79,12 +79,78 @@
           "name": "RADPYS — Radyasyon Çalışanları Yönetim Sistemi",
           "url": "https://radpys.com.tr/",
           "logo": "https://radpys.com.tr/images/main_logo.webp",
+          "sameAs": [
+            "https://www.linkedin.com/in/cem-kara-633b11429",
+            "https://www.facebook.com/profile.php?id=61593139902770",
+            "https://www.youtube.com/@RADPYS_V4"
+          ],
           "contactPoint": {
             "@type": "ContactPoint",
             "contactType": "customer support",
             "url": "https://radpys.com.tr/iletisim.html",
             "availableLanguage": "Turkish"
           }
+        },
+        {
+          "@type": "MedicalBusiness",
+          "@id": "https://radpys.com.tr/#localbusiness",
+          "name": "RADPYS Radyoloji ve Sağlık Bilişim Sistemleri",
+          "url": "https://radpys.com.tr/",
+          "logo": "https://radpys.com.tr/images/main_logo.webp",
+          "image": "https://radpys.com.tr/images/main_logo.webp",
+          "description": "Türkiye geneli hastane, tıp merkezi ve görüntüleme merkezleri için NDK 72s bildirimi, SKS 6.1 DÖF, DIN 6857-1 RKE ve KVKK uyumlu radyoloji personel ve departman yönetim yazılımı.",
+          "areaServed": "TR",
+          "sameAs": [
+            "https://www.linkedin.com/in/cem-kara-633b11429",
+            "https://www.facebook.com/profile.php?id=61593139902770",
+            "https://www.youtube.com/@RADPYS_V4"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://radpys.com.tr/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "RADPYS V4 dozimetre limit aşımında NDK 72 saatlik bildirim sürecini nasıl yönetir?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Personelin dozu yıllık 20 mSv yasal limitini aştığında sistem personeli otomatik 'Yüksek Riskli' statüsüne alır. Resmi 2 sayfalık RD.F43 Doz Araştırma Formunu, 10 iş günü sayacını ve NDK mevzuatına uygun 72 saatlik resmi bildirim şablonunu (Form A-1) tek tıkla üretir."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Şua izni (Sağlık İzni) takibi mevzuata uygun olarak nasıl yapılır?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sağlık Bakanlığı ve NDK mevzuatı uyarınca 4 haftalık Şua izinleri cari takvim yılı içinde kullandırılmak zorundadır ve devretmez. RADPYS V4, yıl sonuna 60 ve 30 gün kala kademeli erken uyarı rozetleri ([⏳ 45g], [🚨 15g]) üreterek izinlerin zamanaşımına uğramasını engeller."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "RKE DIN 6857-1 / DIN 6857-2 Kurşun Koruyucu Ekipman modülü ne sağlar?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Kurşun önlük, tiroid koruyucu ve gonat koruyucuların yıllık skopi kontrol ve fiziki muayene periyotlarını takip eder. Karekod/barkod etiketi oluşturur ve delinme/çatlak tespit edilen ekipmanları anında 'Hek / Kullanım Dışı' statüsüne çeker."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "RADPYS V4 verileri KVKK 6698 kapsamında nasıl korunur?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Personel özlük evrakları, sağlık raporları ve doz kayıtları diske açık yazılmaz; AES-256 Fernet şifreleme algoritması ile PostgreSQL veritabanında şifreli blob olarak saklanır. Madde 11 şifreli ZIP dışa aktarma mekanizması sunar."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "SKS 6.1 Olay Bildirimi ve DÖF (CAPA) süreçleri nasıl işler?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sağlıkta Kalite Standartları (SKS 6.1) gereğince radyoloji departmanındaki doz aşımı, cihaz arızası veya kontaminasyon gibi durumlar İstenmeyen Olay Bildirim Sistemi (İOBS) üzerinden kayıt altına alınır ve kök neden analizli DÖF süreçleri işletilir."
+              }
+            }
+          ]
         },
         {
           "@type": "WebSite",
@@ -341,10 +407,145 @@
             </div>
         </section>
 
+        <!-- MEVZUAT VE STANDARTLAR MATRİSİ -->
+        <section class="relative py-24 md:py-32 border-t border-white/5">
+            <div class="container-narrow">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div>
+                        <span class="section-label"><span class="text-slate-500">04</span>&nbsp;Mevzuat & Standartlar</span>
+                        <h2 class="reveal mt-6 font-display text-4xl md:text-5xl tracking-tight">
+                            Yasal denetimlerde <br class="hidden md:block">
+                            <span class="text-neon-teal">sıfır cezai risk.</span>
+                        </h2>
+                    </div>
+                    <p class="reveal text-sm text-slate-400 max-w-md">
+                        Sağlık Bakanlığı, NDK ve uluslararası radyasyon güvenliği normlarına tam uyum. Denetim süreçlerinde gereken tüm resmi formlar ve raporlar tek merkezde hazır.
+                    </p>
+                </div>
+
+                <div class="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="reveal card p-6 border border-white/10 flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-lg bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center font-mono text-sm font-bold">72s</div>
+                            <h3 class="mt-5 font-display text-lg font-bold text-white">NDK 72 Saatlik Acil Bildirim</h3>
+                            <p class="mt-2 text-xs font-mono text-teal-400">Limit Aşımı & RD.F43 Formu</p>
+                            <p class="mt-3 text-xs text-slate-300 leading-relaxed">
+                                Yıllık 20 mSv veya 5 yıllık 100 mSv doz aşımında personeli otomatik riskli statüye alma, 10 iş günü araştırma sayacı ve resmi NDK Form A-1 şablon ihracı.
+                            </p>
+                        </div>
+                        <div class="mt-5 pt-3 border-t border-white/5 font-mono text-[11px] text-slate-400">NDK & TAEK Yönetmeliği</div>
+                    </div>
+
+                    <div class="reveal card p-6 border border-white/10 flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center font-mono text-sm font-bold">SKS</div>
+                            <h3 class="mt-5 font-display text-lg font-bold text-white">SKS 6.1 Kalite & DÖF</h3>
+                            <p class="mt-2 text-xs font-mono text-cyan-400">İstenmeyen Olay Bildirimi</p>
+                            <p class="mt-3 text-xs text-slate-300 leading-relaxed">
+                                Sağlıkta Kalite Standartları Versiyon 6.1 uyumlu İOBS sistemi. Doz aşımı, cihaz arızası ve ramak kala olaylarında kök neden analizli DÖF/CAPA takibi.
+                            </p>
+                        </div>
+                        <div class="mt-5 pt-3 border-t border-white/5 font-mono text-[11px] text-slate-400">Sağlık Bakanlığı SKS 6.1</div>
+                    </div>
+
+                    <div class="reveal card p-6 border border-white/10 flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center font-mono text-sm font-bold">RKE</div>
+                            <h3 class="mt-5 font-display text-lg font-bold text-white">DIN 6857-1 / DIN 6857-2</h3>
+                            <p class="mt-2 text-xs font-mono text-emerald-400">Kurşun Koruyucu Muayenesi</p>
+                            <p class="mt-3 text-xs text-slate-300 leading-relaxed">
+                                Kurşun önlük, tiroid ve gonat koruyucuların yıllık skopi kontrolü, akıllı karekodlama ve kurşun eşdeğeri (Pb) kalite kontrol arşivi.
+                            </p>
+                        </div>
+                        <div class="mt-5 pt-3 border-t border-white/5 font-mono text-[11px] text-slate-400">DIN 6857-1 / 6857-2</div>
+                    </div>
+
+                    <div class="reveal card p-6 border border-white/10 flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center font-mono text-sm font-bold">KVKK</div>
+                            <h3 class="mt-5 font-display text-lg font-bold text-white">KVKK 6698 & AES-256</h3>
+                            <p class="mt-2 text-xs font-mono text-indigo-400">Şifreli Kasa & PostgreSQL</p>
+                            <p class="mt-3 text-xs text-slate-300 leading-relaxed">
+                                Personel özlük evrakları ve sağlık verileri diske açık yazılmaz; AES-256 Fernet şifreleme ve kurum içi PostgreSQL veritabanında güvenle saklanır.
+                            </p>
+                        </div>
+                        <div class="mt-5 pt-3 border-t border-white/5 font-mono text-[11px] text-slate-400">6698 Sayılı Kanun Madde 11</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SSS (FAQ) ACCORDION -->
+        <section class="relative py-24 md:py-32 border-t border-white/5" style="background:rgba(0,0,0,0.25)">
+            <div class="container-narrow max-w-4xl">
+                <div class="text-center">
+                    <span class="section-label" style="justify-content:center; display:inline-flex"><span class="text-slate-500">05</span>&nbsp;Sıkça Sorulan Sorular</span>
+                    <h2 class="reveal mt-6 font-display text-3xl md:text-5xl tracking-tight">
+                        Merak edilen <span class="text-neon-cyan">teknik & yasal detaylar.</span>
+                    </h2>
+                    <p class="reveal mt-4 text-slate-400 text-sm max-w-xl mx-auto">
+                        Kullanım kılavuzumuz ve mevzuat kuralları doğrultusunda derlenen en kritik soru ve yanıtlar.
+                    </p>
+                </div>
+
+                <div class="mt-12 space-y-4">
+                    <details class="reveal group card p-6 border border-white/10 cursor-pointer rounded-2xl open:border-teal-500/40">
+                        <summary class="flex items-center justify-between font-display text-lg font-semibold text-white list-none">
+                            <span>RADPYS V4 dozimetre limit aşımında NDK 72 saatlik bildirim sürecini nasıl yönetir?</span>
+                            <span class="text-neon-teal transition-transform group-open:rotate-180">↓</span>
+                        </summary>
+                        <p class="mt-4 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
+                            Personelin 12 aylık kümülatif dozu 20 mSv (veya 5 yıllık 100 mSv) yasal sınırını aştığında, sistem personeli otomatik olarak "Yüksek Riskli" statüsüne alır. NDK mevzuatına uygun 72 saatlik resmi acil bildirim şablonunu (Form A-1), 10 iş günü araştırma sayacını ve 2 sayfalık resmi RD.F43 Doz Araştırma Formunu tek tıkla üretir.
+                        </p>
+                    </details>
+
+                    <details class="reveal group card p-6 border border-white/10 cursor-pointer rounded-2xl open:border-teal-500/40">
+                        <summary class="flex items-center justify-between font-display text-lg font-semibold text-white list-none">
+                            <span>Şua İzni (Sağlık İzni) takibi ve zamanaşımı uyarıları nasıl çalışır?</span>
+                            <span class="text-neon-teal transition-transform group-open:rotate-180">↓</span>
+                        </summary>
+                        <p class="mt-4 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
+                            Sağlık Bakanlığı ve NDK mevzuatı gereği 4 haftalık Şua izni parçalı kullanılamaz ve sonraki takvim yılına devretmez. RADPYS V4, yıl sonuna 60 gün ve 30 gün kala kademeli erken uyarı rozetleri ([⏳ 45g], [🚨 15g]) üreterek personelin hakkının zamanaşımına uğramasını önler.
+                        </p>
+                    </details>
+
+                    <details class="reveal group card p-6 border border-white/10 cursor-pointer rounded-2xl open:border-teal-500/40">
+                        <summary class="flex items-center justify-between font-display text-lg font-semibold text-white list-none">
+                            <span>RKE DIN 6857-1 / DIN 6857-2 Kurşun Koruyucu Ekipman modülü ne sağlar?</span>
+                            <span class="text-neon-teal transition-transform group-open:rotate-180">↓</span>
+                        </summary>
+                        <p class="mt-4 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
+                            Kurşun önlük, tiroid koruyucu, gonat koruyucu ve kurşun eldivenlerin yıllık skopi kontrollerini, fiziksel muayenelerini ve kurşun eşdeğeri (Pb mm) ölçümlerini takip eder. Her ekipmana özel karekod üretir ve hasarlı ekipmanların anında HEK / Kullanım Dışı yapılmasını sağlar.
+                        </p>
+                    </details>
+
+                    <details class="reveal group card p-6 border border-white/10 cursor-pointer rounded-2xl open:border-teal-500/40">
+                        <summary class="flex items-center justify-between font-display text-lg font-semibold text-white list-none">
+                            <span>Veri güvenliği ve KVKK 6698 uyumu nasıl sağlanır?</span>
+                            <span class="text-neon-teal transition-transform group-open:rotate-180">↓</span>
+                        </summary>
+                        <p class="mt-4 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
+                            Personel sağlık raporları, dozimetre dökümleri ve özlük evrakları sunucu diskine açık yazılmaz. AES-256 Fernet algoritmasıyla şifreli blob formatında PostgreSQL veritabanında saklanır. KVKK Madde 11 kapsamında şifreli ZIP personel veri ihracı imkanı sunar.
+                        </p>
+                    </details>
+
+                    <details class="reveal group card p-6 border border-white/10 cursor-pointer rounded-2xl open:border-teal-500/40">
+                        <summary class="flex items-center justify-between font-display text-lg font-semibold text-white list-none">
+                            <span>SKS 6.1 Kalite Standartları ve İstenmeyen Olay Bildirimi (İOBS) entegrasyonu var mı?</span>
+                            <span class="text-neon-teal transition-transform group-open:rotate-180">↓</span>
+                        </summary>
+                        <p class="mt-4 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
+                            Evet. Sağlıkta Kalite Standartları Versiyon 6.1 ile birebir uyumlu İstenmeyen Olay Bildirim Modülü içerir. Doz aşımı, cihaz arızası veya kontaminasyon durumlarında Düzeltici Önleyici Faaliyet (DÖF / CAPA) akışları başlatılır ve resmi Excel/PDF çıktıları alınabilir.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
         <!-- STATS -->
         <section class="relative py-24 md:py-32 border-t border-white/5" style="background:rgba(0,0,0,0.2)">
             <div class="container-narrow">
-                <span class="section-label"><span class="text-slate-500">04</span>&nbsp;Öne Çıkan Rakamlar</span>
+                <span class="section-label"><span class="text-slate-500">06</span>&nbsp;Öne Çıkan Rakamlar</span>
                 <div class="mt-6 grid md:grid-cols-4 gap-8" id="stats-grid"></div>
             </div>
         </section>
@@ -356,7 +557,7 @@
             <div class="absolute inset-0 bg-grid bg-grid-fade opacity-70"></div>
             <div class="relative max-w-5xl mx-auto px-6 text-center">
                 <span class="section-label" style="justify-content:center; display:inline-flex"><span
-                        class="text-slate-500">05</span>&nbsp;Sıradaki adım</span>
+                        class="text-slate-500">07</span>&nbsp;Sıradaki adım</span>
                 <h2 class="reveal mt-8 font-display text-4xl md:text-6xl leading-[1.05] tracking-tight">Ekibiniz ve
                     kurumunuz için <br class="hidden md:block"><span class="text-neon-teal">bize ulaşın.</span></h2>
                 <p class="reveal mt-6 text-slate-300 text-lg max-w-2xl mx-auto">Kurumunuza özel dozimetre, nöbet, RKE kalite kontrol ve KVKK süreçleri hakkında bilgi almak ve Elit Paket teklifi istemek için ekibimizle iletişime geçin.</p>
