@@ -11,6 +11,7 @@
 (function () {
   const NAV_LINKS = [
     { href: "moduller.html", label: "Modüller" },
+    { href: "gelistirme-planlari.html", label: "Yol Haritası" },
     { href: "fiyatlandirma.html", label: "Fiyatlandırma" },
     { href: "dokumanlar.html", label: "Dokümanlar" },
     { href: "kaynaklar.html", label: "Kaynaklar" },
@@ -88,6 +89,7 @@
               <h4 class="text-xs uppercase tracking-[0.2em] text-neon-teal font-mono">Ürün</h4>
               <ul class="mt-4 space-y-2 text-sm text-slate-300">
                 <li><a href="moduller.html" class="hover:text-white">Modüller</a></li>
+                <li><a href="gelistirme-planlari.html" class="hover:text-white">Ar-Ge & Yol Haritası</a></li>
                 <li><a href="fiyatlandirma.html" class="hover:text-white">Fiyatlandırma</a></li>
                 <li><a href="dokumanlar.html" class="hover:text-white">Dokümanlar & Kılavuz</a></li>
               </ul>

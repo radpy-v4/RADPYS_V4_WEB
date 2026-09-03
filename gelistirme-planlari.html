@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="RADPYS V4 & V5 Ar-Ge ve Master Geliştirme Yol Haritası: Saha QR Asistanı, TimesFM Doz Tahmini, NDK Denetim Simülatörü, PACS DICOM RDSR, IoT Isı Haritası ve Edge AI Güvenlik Modülleri." />
+    <meta name="keywords"
+        content="RADPYS yol haritası, RADPYS geliştirme planı, radyoloji yapay zeka, Google TimesFM doz tahmini, NDK denetim simülatörü, DICOM RDSR köprüsü, IoT radyasyon haritası, Edge AI dozimetre kontrolü, medikal fizik yazılımı" />
+    <meta name="author" content="RADPYS Yazılım" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="geo.region" content="TR" />
+    <meta name="geo.placename" content="Türkiye" />
+    <title>RADPYS V4 & V5 — Master Geliştirme Planları & Ar-Ge Yol Haritası</title>
+
+    <link rel="icon" type="image/x-icon" href="images/logo.ico" />
+    <link rel="icon" type="image/webp" href="images/logo.webp" />
+    <link rel="apple-touch-icon" href="https://radpys.com.tr/images/main_logo.webp" />
+    <link rel="canonical" href="https://radpys.com.tr/gelistirme-planlari.html" />
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://radpys.com.tr/gelistirme-planlari.html" />
+    <meta property="og:site_name" content="RADPYS V4" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:title" content="RADPYS V4 & V5 — Master Geliştirme Planları & Ar-Ge Yol Haritası" />
+    <meta property="og:description"
+        content="3 Ana Dalga ve 8 İleri Faz: Google TimesFM AI Doz Tahmini, NDK Denetim Simülatörü, DICOM RDSR Doz Köprüsü ve Edge AI Dozimetre Güvenlik Denetimi." />
+    <meta property="og:image" content="https://radpys.com.tr/images/main_logo.webp" />
+    <meta property="og:image:secure_url" content="https://radpys.com.tr/images/main_logo.webp" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="RADPYS V4 Ar-Ge ve Geliştirme Planları" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="RADPYS V4 & V5 — Master Geliştirme Planları & Ar-Ge Yol Haritası" />
+    <meta name="twitter:description"
+        content="3 Ana Dalga ve 8 İleri Faz: Google TimesFM AI Doz Tahmini, NDK Denetim Simülatörü, DICOM RDSR Doz Köprüsü ve Edge AI Dozimetre Güvenlik Denetimi." />
+    <meta name="twitter:image" content="https://radpys.com.tr/images/main_logo.webp" />
+    <meta name="twitter:image:alt" content="RADPYS V4 Ar-Ge Yol Haritası" />
+
+    <!-- Schema.org BreadcrumbList & TechArticle JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Ana Sayfa",
+              "item": "https://radpys.com.tr/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Geliştirme Planları & Ar-Ge",
+              "item": "https://radpys.com.tr/gelistirme-planlari.html"
+            }
+          ]
+        },
+        {
+          "@type": "TechArticle",
+          "headline": "RADPYS V4 ve V5 Master Geliştirme Planları ve Ar-Ge Yol Haritası",
+          "description": "3 Ana Dalga ve 8 Fazlık Sağlık Fiziği ve Radyasyon Güvenliği İnovasyon Yol Haritası",
+          "author": {
+            "@type": "Organization",
+            "name": "RADPYS Yazılım"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "RADPYS Yazılım",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://radpys.com.tr/images/main_logo.webp"
+            }
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="preconnect" href="https://cdn.fontshare.com" />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link
+        href="https://api.fontshare.com/v2/css?f[]=clash-display@300,400,500,600,700&f[]=manrope@300,400,500,600,700&f[]=jetbrains-mono@400,500&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/js/tailwind.config.js"></script>
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+</head>
+
+<body>
+    <div id="site-nav"></div>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="relative pt-40 pb-20 overflow-hidden">
+            <div class="blob blob-teal" style="top:-10%; left:-10%; width:540px; height:540px; border-radius:9999px"></div>
+            <div class="blob blob-purple" style="top:15%; right:-12%; width:580px; height:580px; border-radius:9999px"></div>
+            <div class="absolute inset-0 bg-grid bg-grid-fade opacity-70"></div>
+            
+            <div class="relative container-narrow text-center">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-teal-500/30 bg-teal-500/10 text-teal-300 text-xs font-mono uppercase tracking-wider mb-6">
+                    <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                    RADPYS V4 & V5 Master Roadmap
+                </div>
+                
+                <h1 class="font-display text-4xl sm:text-6xl md:text-7xl leading-[1.08] tracking-[-0.03em] max-w-4xl mx-auto">
+                    <span class="reveal-mask d1"><span>Geleceğin Radyasyon Güvenliği</span></span>
+                    <span class="reveal-mask d2"><span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-cyan-300 to-purple-400">& Klinik Yapay Zekâsı.</span></span>
+                </h1>
+                
+                <p class="reveal mt-8 max-w-3xl mx-auto text-slate-300 text-lg md:text-xl leading-relaxed">
+                    RADPYS V4 ve V5 vizyonu; NDK, SKS 6.1 ve uluslararası IAEA standartlarını <strong>Foundation AI modelleri</strong>, <strong>PACS DICOM köprüleri</strong>, <strong>IoT telemetrisi</strong> ve <strong>Edge AI güvenlik denetimiyle</strong> buluşturan 3 ana dalga ve 8 ileri fazlık master geliştirme planıdır.
+                </p>
+
+                <!-- STAT STRIP -->
+                <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                    <div class="glass p-5 rounded-2xl border border-white/10 text-center hover:border-teal-400/40 transition-all">
+                        <div class="font-display text-3xl md:text-4xl font-bold text-teal-400">3 Dalga</div>
+                        <div class="text-xs font-mono uppercase tracking-wider text-slate-400 mt-1">Stratejik Dağıtım</div>
+                    </div>
+                    <div class="glass p-5 rounded-2xl border border-white/10 text-center hover:border-cyan-400/40 transition-all">
+                        <div class="font-display text-3xl md:text-4xl font-bold text-cyan-300">8 Faz</div>
+                        <div class="text-xs font-mono uppercase tracking-wider text-slate-400 mt-1">İleri Seviye Modül</div>
+                    </div>
+                    <div class="glass p-5 rounded-2xl border border-white/10 text-center hover:border-purple-400/40 transition-all">
+                        <div class="font-display text-3xl md:text-4xl font-bold text-purple-400">Zero-Shot</div>
+                        <div class="text-xs font-mono uppercase tracking-wider text-slate-400 mt-1">TimesFM Doz AI</div>
+                    </div>
+                    <div class="glass p-5 rounded-2xl border border-white/10 text-center hover:border-teal-400/40 transition-all">
+                        <div class="font-display text-3xl md:text-4xl font-bold text-teal-300">%100</div>
+                        <div class="text-xs font-mono uppercase tracking-wider text-slate-400 mt-1">NDK & SKS Uyum</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DALGA FILTRELEME & HIZLI SEÇİCİ -->
+        <section class="sticky top-16 z-30 py-4 bg-[#0a0f1e]/90 backdrop-blur-md border-y border-white/5">
+            <div class="container-narrow flex flex-wrap items-center justify-between gap-4">
+                <span class="text-xs font-mono uppercase tracking-wider text-slate-400 hidden sm:inline-block">Yol Haritası Filtresi:</span>
+                <div class="flex flex-wrap items-center gap-2">
+                    <button class="filter-btn active px-4 py-2 rounded-xl text-xs font-mono uppercase tracking-wider border transition-all"
+                            data-wave="all" onclick="filterWaves('all', this)">Tüm Yol Haritası (8 Faz)</button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-xs font-mono uppercase tracking-wider border border-white/10 text-slate-300 hover:border-teal-400/50 hover:text-white transition-all"
+                            data-wave="wave1" onclick="filterWaves('wave1', this)">🌊 Dalga 1: Hızlı Kazanımlar</button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-xs font-mono uppercase tracking-wider border border-white/10 text-slate-300 hover:border-cyan-400/50 hover:text-white transition-all"
+                            data-wave="wave2" onclick="filterWaves('wave2', this)">🌊 Dalga 2: Kurumsal & PACS</button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-xs font-mono uppercase tracking-wider border border-white/10 text-slate-300 hover:border-purple-400/50 hover:text-white transition-all"
+                            data-wave="wave3" onclick="filterWaves('wave3', this)">🌊 Dalga 3: IoT & Edge AI</button>
+                </div>
+                <a href="#pilot-katilim" class="text-xs font-mono text-teal-400 hover:text-teal-300 flex items-center gap-1">
+                    Pilot Hastane Olun →
+                </a>
+            </div>
+        </section>
+
+        <!-- ROADMAP TIMELINE & PHASES CONTAINER -->
+        <section class="relative py-20">
+            <div class="container-narrow space-y-20" id="roadmap-content">
+
+                <!-- ==================== DALGA 1 ==================== -->
+                <div class="wave-block" id="wave-1-block" data-wave-id="wave1">
+                    <!-- Dalga Header -->
+                    <div class="flex items-center gap-4 mb-10 pb-4 border-b border-teal-500/20">
+                        <div class="w-12 h-12 rounded-2xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400 font-display text-2xl font-bold">
+                            01
+                        </div>
+                        <div>
+                            <span class="text-xs font-mono uppercase tracking-widest text-teal-400">Öncelikli Dağıtım</span>
+                            <h2 class="font-display text-2xl md:text-4xl font-bold text-white">
+                                DALGA 1: Altyapısı Hazır Hızlı Kazanımlar
+                            </h2>
+                        </div>
+                    </div>
+
+                    <!-- Faz Kartları Grid -->
+                    <div class="grid lg:grid-cols-3 gap-6">
+                        
+                        <!-- FAZ 1 -->
+                        <div class="glass p-7 rounded-3xl border border-teal-500/20 hover:border-teal-400/60 transition-all flex flex-col justify-between group">
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-4">
+                                    <span class="px-3 py-1 rounded-lg bg-teal-500/10 text-teal-300 text-xs font-mono font-semibold border border-teal-500/20">FAZ 01</span>
+                                    <span class="text-xs font-mono text-emerald-400 flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                                        Altyapı Hazır
+                                    </span>
+                                </div>
+                                <h3 class="font-display text-xl font-bold text-white group-hover:text-teal-300 transition-colors">
+                                    Saha / Tablet QR-Barkod Muayene & Hızlı Envanter Asistanı
+                                </h3>
+                                <p class="text-slate-300 text-sm mt-3 leading-relaxed">
+                                    Medikal Fizikçiler ve RKE sorumluları için sahada doğrudan tablet kamerasıyla QR/Barkod okutma, skopi altındaki kurşun önlük ve paravan çatlaklarını interaktif krokide işaretleme ve anlık fotoğraf kaydı.
+                                </p>
+                                
+                                <div class="mt-6 pt-5 border-t border-white/5 space-y-2.5">
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-teal-400 font-bold">✓</span>
+                                        <span>DIN 6857-1 skopi kusur haritalama & interaktif grid</span>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-teal-400 font-bold">✓</span>
+                                        <span>Çevrimdışı (Offline-first) PWA & SQLite yerel önbellek</span>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-teal-400 font-bold">✓</span>
+                                        <span>Otomatik barkodlu durum etiketi & seri no eşleme</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
+                                <span>Odak: RKE & Saha Hızı</span>
+                                <span class="text-teal-400">Mobil / Tablet PWA</span>
+                            </div>
+                        </div>
+
+                        <!-- FAZ 2 -->
+                        <div class="glass p-7 rounded-3xl border border-teal-500/20 hover:border-teal-400/60 transition-all flex flex-col justify-between group relative overflow-hidden">
+                            <div class="absolute -right-12 -top-12 w-32 h-32 bg-teal-500/10 rounded-full blur-2xl"></div>
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-4">
+                                    <span class="px-3 py-1 rounded-lg bg-teal-500/10 text-teal-300 text-xs font-mono font-semibold border border-teal-500/20">FAZ 02</span>
+                                    <span class="text-xs font-mono text-cyan-400 flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                                        Foundation AI
+                                    </span>
+                                </div>
+                                <h3 class="font-display text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                                    Google TimesFM ile Yapay Zekâlı Doz Trend Tahmini & Klinik Rotasyon
+                                </h3>
+                                <p class="text-slate-300 text-sm mt-3 leading-relaxed">
+                                    Google Research'ün 1 trilyon zaman serisiyle önceden eğitilmiş <strong>TimesFM (Zero-Shot Transformer)</strong> modeliyle, 6 ay önceden 20 mSv NDK limit aşım riskini tespit eder ve proaktif rotasyon simülasyonu önerir.
+                                </p>
+                                
+                                <div class="mt-6 pt-5 border-t border-white/5 space-y-2.5">
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-cyan-400 font-bold">✓</span>
+                                        <span>Sıfır ek model eğitimi (Zero-Shot) ile yüksek doğruluk</span>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-cyan-400 font-bold">✓</span>
+                                        <span>Çok değişkenli (Vaka yoğunluğu, modalite, nöbet) risk tahmini</span>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-cyan-400 font-bold">✓</span>
+                                        <span>Radyasyonsuz alanlara (MRG/USG) otomatik akıllı rotasyon</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
+                                <span>Odak: Kestirimci Güvenlik</span>
+                                <span class="text-cyan-400">TimesFM 1.0 AI</span>
+                            </div>
+                        </div>
+
+                        <!-- FAZ 3 -->
+                        <div class="glass p-7 rounded-3xl border border-teal-500/20 hover:border-teal-400/60 transition-all flex flex-col justify-between group">
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-4">
+                                    <span class="px-3 py-1 rounded-lg bg-teal-500/10 text-teal-300 text-xs font-mono font-semibold border border-teal-500/20">FAZ 03</span>
+                                    <span class="text-xs font-mono text-teal-400 flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
+                                        Denetim Simülatörü
+                                    </span>
+                                </div>
+                                <h3 class="font-display text-xl font-bold text-white group-hover:text-teal-300 transition-colors">
+                                    NDK & SKS "Otomatik Denetim Simülatörü" & Uygunsuzluk Risk Karnesi
+                                </h3>
+                                <p class="text-slate-300 text-sm mt-3 leading-relaxed">
+                                    Tek tıkla kurumun tüm veritabanını tarar; lisans vizeleri, eksik kalibrasyonlar, muayenesiz kurşun önlükler ve şua izinlerini 100 puanlık resmi NDK/SKS 6.1 denetim risk karnesine dönüştürür.
+                                </p>
+                                
+                                <div class="mt-6 pt-5 border-t border-white/5 space-y-2.5">
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-teal-400 font-bold">✓</span>
+                                        <span>Resmi NDK / SKS Sağlıkta Kalite maddeleriyle birebir eşleşme</span>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-teal-400 font-bold">✓</span>
+                                        <span>Otomatik DÖF (Düzeltici Önleyici Faaliyet) görevi atama</span>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-teal-400 font-bold">✓</span>
+                                        <span>Yönetici özet denetim hazırbulunuşluk PDF çıktısı</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
+                                <span>Odak: Sıfır İdari Ceza</span>
+                                <span class="text-teal-400">Mevzuat Uyumu</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- ==================== DALGA 2 ==================== -->
+                <div class="wave-block" id="wave-2-block" data-wave-id="wave2">
+                    <!-- Dalga Header -->
+                    <div class="flex items-center gap-4 mb-10 pb-4 border-b border-cyan-500/20">
+                        <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-display text-2xl font-bold">
+                            02
+                        </div>
+                        <div>
+                            <span class="text-xs font-mono uppercase tracking-widest text-cyan-400">Klinik & İletişim Entegrasyonu</span>
+                            <h2 class="font-display text-2xl md:text-4xl font-bold text-white">
+                                DALGA 2: Kurumsal İletişim, Etkileşimli Onay ve DICOM Entegrasyonu
+                            </h2>
+                        </div>
+                    </div>
+
+                    <!-- Faz Kartları Grid -->
+                    <div class="grid lg:grid-cols-2 gap-6">
+                        
+                        <!-- FAZ 4 -->
+                        <div class="glass p-8 rounded-3xl border border-cyan-500/20 hover:border-cyan-400/60 transition-all flex flex-col justify-between group">
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-4">
+                                    <span class="px-3 py-1 rounded-lg bg-cyan-500/10 text-cyan-300 text-xs font-mono font-semibold border border-cyan-500/20">FAZ 04</span>
+                                    <span class="text-xs font-mono text-cyan-400">Kurumsal Tebligat</span>
+                                </div>
+                                <h3 class="font-display text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                                    E-Posta & SMS Bildirim, Tebligat, Kanal Ayrıştırmalı OTP & Magic-Link Onay Sistemi
+                                </h3>
+                                <p class="text-slate-300 text-base mt-3 leading-relaxed">
+                                    Kademeli kurumsal onay (Birim Sorumlusu → Medikal Fizik → Başhekimlik), SMS OTP doğrulaması ve kritik NDK limit aşımı/kaza bildirimlerinde zorunlu paralel SMS fail-safe mimarisi.
+                                </p>
+                                
+                                <div class="mt-6 pt-5 border-t border-white/5 grid sm:grid-cols-2 gap-3">
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-cyan-400 font-bold">✓</span>
+                                        <span>Tek kullanımlık tokenlı Magic-Link onay</span>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-cyan-400 font-bold">✓</span>
+                                        <span>Resmi tebligat teslim & okundu logu (HMAC-SHA256)</span>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-cyan-400 font-bold">✓</span>
+                                        <span>Güvenli takvim (.ics) ve PDF indirme tokenları</span>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-cyan-400 font-bold">✓</span>
+                                        <span>Kurumsal DMZ / Proxy ve SMTP/SMS gateway desteği</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
+                                <span>Protokol: OTP + Magic-Link + HMAC</span>
+                                <span class="text-cyan-400">KVKK & Güvenlik</span>
+                            </div>
+                        </div>
+
+                        <!-- FAZ 5 -->
+                        <div class="glass p-8 rounded-3xl border border-cyan-500/20 hover:border-cyan-400/60 transition-all flex flex-col justify-between group">
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-4">
+                                    <span class="px-3 py-1 rounded-lg bg-cyan-500/10 text-cyan-300 text-xs font-mono font-semibold border border-cyan-500/20">FAZ 05</span>
+                                    <span class="text-xs font-mono text-cyan-400">PACS / DICOM Bridge</span>
+                                </div>
+                                <h3 class="font-display text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                                    PACS / DICOM RDSR Doz Akış Köprüsü (C-STORE SCP Servisi)
+                                </h3>
+                                <p class="text-slate-300 text-base mt-3 leading-relaxed">
+                                    Hastane PACS sunucusundan BT, Anjiyografi ve Mamografi modalitelerinden fırlatılan DICOM RDSR (Radiation Dose Structured Report) nesnelerini otomatik dinleyen, CTDIvol, DLP, DAP metriklerini çekip personelle eşleştiren mikroservis.
+                                </p>
+                                
+                                <div class="mt-6 pt-5 border-t border-white/5 grid sm:grid-cols-2 gap-3">
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-cyan-400 font-bold">✓</span>
+                                        <span>C-STORE SCP arka plan dinleyicisi (Pynetdicom / Fo-Dicom)</span>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-cyan-400 font-bold">✓</span>
+                                        <span>BT: CTDIvol, DLP | Anjiyo: DAP, Skopi Süresi ayrıştırma</span>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-cyan-400 font-bold">✓</span>
+                                        <span>Personel nöbet çizelgesiyle otomatik hekim/teknisyen eşleme</span>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-cyan-400 font-bold">✓</span>
+                                        <span>Cihaz ve oda bazlı anlık radyasyon yükü analitiği</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
+                                <span>Standart: DICOM PS 3.16 RDSR</span>
+                                <span class="text-cyan-400">PACS Doz Köprüsü</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- ==================== DALGA 3 ==================== -->
+                <div class="wave-block" id="wave-3-block" data-wave-id="wave3">
+                    <!-- Dalga Header -->
+                    <div class="flex items-center gap-4 mb-10 pb-4 border-b border-purple-500/20">
+                        <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 font-display text-2xl font-bold">
+                            03
+                        </div>
+                        <div>
+                            <span class="text-xs font-mono uppercase tracking-widest text-purple-400">İleri Teknoloji & Donanım</span>
+                            <h2 class="font-display text-2xl md:text-4xl font-bold text-white">
+                                DALGA 3: İleri Seviye IoT, Edge AI ve Klinik Optimizasyon
+                            </h2>
+                        </div>
+                    </div>
+
+                    <!-- Faz Kartları Grid -->
+                    <div class="grid lg:grid-cols-3 gap-6">
+                        
+                        <!-- FAZ 6 -->
+                        <div class="glass p-7 rounded-3xl border border-purple-500/20 hover:border-purple-400/60 transition-all flex flex-col justify-between group">
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-4">
+                                    <span class="px-3 py-1 rounded-lg bg-purple-500/10 text-purple-300 text-xs font-mono font-semibold border border-purple-500/20">FAZ 06</span>
+                                    <span class="text-xs font-mono text-purple-400">IoT Telemetri</span>
+                                </div>
+                                <h3 class="font-display text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                                    IoT Gerçek Zamanlı Ortam Dedektör Telemetrisi & Mimari Canlı Isı Haritası
+                                </h3>
+                                <p class="text-slate-300 text-sm mt-3 leading-relaxed">
+                                    Wi-Fi, Zigbee veya MQTT protokolüyle çalışan alan radyasyon monitörlerinden gelen anlık µSv/h akışını interaktif departman mimari krokisinde IDW enterpolasyonuyla canlı ısı haritası olarak sunar.
+                                </p>
+                                
+                                <div class="mt-6 pt-5 border-t border-white/5 space-y-2.5">
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-purple-400 font-bold">✓</span>
+                                        <span>MQTT / WebSocket üzerinden milisaniyelik veri akışı</span>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-purple-400 font-bold">✓</span>
+                                        <span>Eşik aşımı anında ekranda görsel & sesli flaş alarm</span>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-purple-400 font-bold">✓</span>
+                                        <span>Kat ve oda bazında geçmişe dönük doz sızıntı simülasyonu</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
+                                <span>Protokol: MQTT / WebSocket</span>
+                                <span class="text-purple-400">Canlı Telemetri</span>
+                            </div>
+                        </div>
+
+                        <!-- FAZ 7 -->
+                        <div class="glass p-7 rounded-3xl border border-purple-500/20 hover:border-purple-400/60 transition-all flex flex-col justify-between group relative overflow-hidden">
+                            <div class="absolute -right-12 -top-12 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl"></div>
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-4">
+                                    <span class="px-3 py-1 rounded-lg bg-purple-500/10 text-purple-300 text-xs font-mono font-semibold border border-purple-500/20">FAZ 07</span>
+                                    <span class="text-xs font-mono text-pink-400">Edge Vision AI</span>
+                                </div>
+                                <h3 class="font-display text-xl font-bold text-white group-hover:text-pink-300 transition-colors">
+                                    Edge AI / Görüntü İşleme ile Odaya Girişte RKE & Dozimetre Güvenlik Kontrolü
+                                </h3>
+                                <p class="text-slate-300 text-sm mt-3 leading-relaxed">
+                                    Anjiyografi ve Skopi oda girişlerindeki tablet/IP kamera ile personelin kurşun önlük, tiroid koruyucu ve yakasında dozimetre bulunup bulunmadığını 0.2 saniyede denetleyen hafif Edge YOLOv8 modeli.
+                                </p>
+                                
+                                <div class="mt-6 pt-5 border-t border-white/5 space-y-2.5">
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-pink-400 font-bold">✓</span>
+                                        <span>0.2 saniye hızında yerel Edge cihazında tespit (YOLOv8-Nano)</span>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-pink-400 font-bold">✓</span>
+                                        <span>Dozimetresiz ve kurşun koruyucusuz girişte anlık sesli ikaz</span>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-pink-400 font-bold">✓</span>
+                                        <span>Yüz tanıma yapılmaz — %100 KVKK uyumlu nesne tespiti</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
+                                <span>Model: YOLOv8 On-Device</span>
+                                <span class="text-pink-400">Edge Güvenlik</span>
+                            </div>
+                        </div>
+
+                        <!-- FAZ 8 -->
+                        <div class="glass p-7 rounded-3xl border border-purple-500/20 hover:border-purple-400/60 transition-all flex flex-col justify-between group">
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-4">
+                                    <span class="px-3 py-1 rounded-lg bg-purple-500/10 text-purple-300 text-xs font-mono font-semibold border border-purple-500/20">FAZ 08</span>
+                                    <span class="text-xs font-mono text-purple-400">Klinik Optimizasyon</span>
+                                </div>
+                                <h3 class="font-display text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                                    Hasta Kümülatif Doz Takibi, Ulusal DRL Optimizasyonu & Kestirimci Tüp Ömrü
+                                </h3>
+                                <p class="text-slate-300 text-sm mt-3 leading-relaxed">
+                                    Hastanın modaliteler arası kümülatif dozu, Sağlık Bakanlığı ulusal DRL (Diagnostik Referans Seviyeleri) kıyaslaması ve TimesFM ile X-ışını tüpü yıpranma zamanını tahmin eden kestirimci bakım motoru.
+                                </p>
+                                
+                                <div class="mt-6 pt-5 border-t border-white/5 space-y-2.5">
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-purple-400 font-bold">✓</span>
+                                        <span>Ulusal DRL referans seviyeleriyle otomatik anomalik protokol uyarısı</span>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-purple-400 font-bold">✓</span>
+                                        <span>Hasta bazında ömür boyu kümülatif radyasyon profili (EURATOM uyumlu)</span>
+                                    </div>
+                                    <div class="text-xs font-mono text-slate-400 flex items-start gap-2">
+                                        <span class="text-purple-400 font-bold">✓</span>
+                                        <span>Cihaz X-Işını tüp ömrü arıza kestirimi ile plansız duruşları önleme</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
+                                <span>Kapsam: DRL & Tüp Ömrü</span>
+                                <span class="text-purple-400">EURATOM & SKS</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TEKNOLOJİ & MİMARİ SÜTUNLARI -->
+        <section class="relative py-20 border-t border-white/5" style="background:#070b16">
+            <div class="container-narrow">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="section-label" style="justify-content:center; display:inline-flex">Teknoloji & Güvenlik İlkeleri</span>
+                    <h2 class="font-display text-3xl md:text-5xl font-bold mt-4">
+                        Modern Altyapı, <span class="text-teal-400">Tavizsiz Güvenlik.</span>
+                    </h2>
+                    <p class="text-slate-400 mt-4 text-base">
+                        Geliştirilen tüm ileri seviye fazlar, kurum içi (on-premises) izolasyonu korurken en yeni yapay zekâ ve sağlık standartlarını destekler.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="glass p-6 rounded-2xl border border-white/5">
+                        <div class="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center text-teal-300 font-bold mb-4 font-mono text-sm">AI</div>
+                        <h4 class="font-display font-bold text-lg text-white">Zero-Shot TimesFM</h4>
+                        <p class="text-slate-400 text-sm mt-2">Doz verilerini harici buluta göndermeden yerel çıkarımla 6 ay önceden trend analizi.</p>
+                    </div>
+
+                    <div class="glass p-6 rounded-2xl border border-white/5">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-300 font-bold mb-4 font-mono text-sm">DICOM</div>
+                        <h4 class="font-display font-bold text-lg text-white">DICOM PS 3.16 RDSR</h4>
+                        <p class="text-slate-400 text-sm mt-2">PACS sunucularıyla doğrudan C-STORE SCP köprüsü ile el değmeden otomatik doz aktarımı.</p>
+                    </div>
+
+                    <div class="glass p-6 rounded-2xl border border-white/5">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-300 font-bold mb-4 font-mono text-sm">EDGE</div>
+                        <h4 class="font-display font-bold text-lg text-white">Edge Vision & IoT</h4>
+                        <p class="text-slate-400 text-sm mt-2">Yüz tanıma yapılmaksızın sadece RKE/Dozimetre tespiti yapan ve MQTT telemetrisi sunan uç cihazlar.</p>
+                    </div>
+
+                    <div class="glass p-6 rounded-2xl border border-white/5">
+                        <div class="w-10 h-10 rounded-xl bg-pink-500/10 flex items-center justify-center text-pink-300 font-bold mb-4 font-mono text-sm">KVKK</div>
+                        <h4 class="font-display font-bold text-lg text-white">On-Premises & AES-256</h4>
+                        <p class="text-slate-400 text-sm mt-2">PostgreSQL 16, SQLCipher ve HMAC imzalı token mimarisiyle tam yasal mevzuat uyumu.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PILOT HASTANE & ERKEN ERİŞİM CTA -->
+        <section id="pilot-katilim" class="relative py-24 overflow-hidden">
+            <div class="blob blob-teal" style="bottom:-10%; right:10%; width:450px; height:450px; border-radius:9999px"></div>
+            <div class="relative container-narrow">
+                <div class="glass p-8 md:p-14 rounded-3xl border border-teal-500/30 text-center max-w-4xl mx-auto shadow-2xl">
+                    <span class="px-3 py-1 rounded-full bg-teal-500/10 text-teal-300 text-xs font-mono font-semibold border border-teal-500/30 uppercase tracking-wider">
+                        Ar-Ge & Erken Erişim Programı
+                    </span>
+                    <h2 class="font-display text-3xl md:text-5xl font-bold mt-6 text-white">
+                        Hastaneni Bu İnovasyona Dahil Et.
+                    </h2>
+                    <p class="text-slate-300 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
+                        TimesFM Doz AI, PACS DICOM RDSR Köprüsü ve Saha Tablet Asistanı modüllerinin pilot hastane programına katılarak yeni özellikleri ilk deneyimleyen kurumlar arasında yer alın.
+                    </p>
+                    
+                    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+                        <a href="iletisim.html?konu=pilot_programi" class="btn btn-primary px-8 py-3.5 text-base">
+                            Pilot Hastane Başvurusu Yap →
+                        </a>
+                        <a href="fiyatlandirma.html" class="btn btn-outline px-6 py-3.5 text-base">
+                            Mevcut Sürümleri İncele
+                        </a>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-slate-400">
+                        <span>🛡️ Tamamen Ücretsiz Pilot Kurulum</span>
+                        <span>📑 Öncelikli Ar-Ge Destek Hattı</span>
+                        <span>⚡ Özel Entegrasyon Danışmanlığı</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SSS (FAQ) -->
+        <section class="relative py-20 border-t border-white/5">
+            <div class="container-narrow max-w-3xl">
+                <h3 class="font-display text-2xl md:text-3xl font-bold text-center mb-10 text-white">
+                    Geliştirme Planları Hakkında Sıkça Sorulan Sorular
+                </h3>
+
+                <div class="space-y-4">
+                    <div class="glass p-5 rounded-2xl border border-white/5">
+                        <h4 class="font-display font-semibold text-white text-base">Bu yeni modüller mevcut RADPYS V4 kullanıcılarına nasıl sunulacak?</h4>
+                        <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                            Dalga 1 modülleri (Saha QR Asistanı, TimesFM Doz AI ve Denetim Simülatörü) V4.2 ve V4.3 minör güncellemeleri olarak Elit ve Pro lisans sahiplerine otomatik ve ücretsiz olarak dağıtılacaktır.
+                        </p>
+                    </div>
+
+                    <div class="glass p-5 rounded-2xl border border-white/5">
+                        <h4 class="font-display font-semibold text-white text-base">PACS ve DICOM RDSR köprüsü hastane ağında güvenlik açığı yaratır mı?</h4>
+                        <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                            Kesinlikle hayır. PACS Doz Köprüsü sadece yerel hastane LAN/DMZ ağı içinde çalışan ve dış dünyaya kapalı bir C-STORE SCP mikroservisidir. Görüntü piksel verilerini çekmez; sadece radyasyon dozu yapılandırılmış raporlarını (RDSR) işler.
+                        </p>
+                    </div>
+
+                    <div class="glass p-5 rounded-2xl border border-white/5">
+                        <h4 class="font-display font-semibold text-white text-base">Google TimesFM yapay zekâ modeli için internet bağlantısı zorunlu mu?</h4>
+                        <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                            Hayır. TimesFM modeli yerel sunucunuzda (ONNX / TorchScript) çalışacak şekilde optimize edilmiştir. Hastane içi hiçbir personel ya da klinik veri internete çıkmadan tamamen yerelde analiz edilir.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/layout.js"></script>
+    <script>
+        function filterWaves(wave, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.remove('active', 'border-teal-500', 'bg-teal-500/10', 'text-white');
+                b.classList.add('border-white/10', 'text-slate-300');
+            });
+            btn.classList.add('active', 'border-teal-500', 'bg-teal-500/10', 'text-white');
+            btn.classList.remove('border-white/10', 'text-slate-300');
+
+            const blocks = document.querySelectorAll('.wave-block');
+            blocks.forEach(block => {
+                if (wave === 'all') {
+                    block.style.display = 'block';
+                    block.style.opacity = '1';
+                } else if (block.getAttribute('data-wave-id') === wave) {
+                    block.style.display = 'block';
+                    block.style.opacity = '1';
+                } else {
+                    block.style.display = 'none';
+                }
+            });
+        }
+    </script>
+    <style>
+        .filter-btn.active {
+            border-color: rgba(20, 184, 166, 0.6) !important;
+            background: rgba(20, 184, 166, 0.15) !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 15px rgba(20, 184, 166, 0.2);
+        }
+    </style>
+</body>
+
+</html>

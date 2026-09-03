@@ -95,20 +95,26 @@
       <div class="container-narrow space-y-24 md:space-y-32" id="modules-list"></div>
     </section>
 
-    <!-- AR-GE / GELECEK VİZYONU -->
+    <!-- AR-GE / GELECEK VİZYONU: DALGA 1 -->
     <section id="roadmap" class="relative py-24 border-t border-white/10" style="background:rgba(0,0,0,0.25)">
       <div class="container-narrow">
         <div class="max-w-3xl">
-          <span class="section-label">Ar-Ge & Gelecek Vizyonu</span>
+          <span class="section-label">Ar-Ge & Master Yol Haritası</span>
           <h2 class="reveal mt-6 font-display text-4xl md:text-5xl tracking-tight">
-            Gelecek Nesil Sağlık Teknolojileri & <span class="text-neon-teal">Ar-Ge Yol Haritamız</span>
+            🌊 DALGA 1: Altyapısı Hazır <span class="text-neon-teal">Hızlı Kazanımlar</span>
           </h2>
           <p class="reveal mt-4 text-slate-300 text-lg leading-relaxed">
-            RADPYS; NDK, SKS 6.1, IAEA ve Sağlık Bakanlığı standartlarındaki tüm gelişmeleri yakından takip eder. Geliştirme laboratuvarımızda üzerinde çalışılan yeni nesil özellikler:
+            RADPYS V4 ve V5 Master Yol Haritası'nın ilk dalgasında; veritabanı şemaları, saha altyapısı ve entegrasyon modelleri hazır olan 3 öncelikli faz sisteme dahil ediliyor:
           </p>
         </div>
 
         <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="future-modules-grid"></div>
+
+        <div class="mt-12 text-center">
+          <a href="gelistirme-planlari.html" class="btn btn-outline border-teal-500/30 text-teal-300 hover:bg-teal-500/10">
+            3 Ana Dalga ve 8 Fazlık Master Yol Haritasının Tamamını İnceleyin →
+          </a>
+        </div>
       </div>
     </section>
 
@@ -283,28 +289,28 @@
 
     const FUTURE_MODULES = [
       {
-        badge: "Ar-Ge Aşaması",
-        badgeColor: "border-emerald-500/30 text-emerald-400 bg-emerald-500/10",
-        name: "Yapay Zekalı Doz Trend Tahmini",
-        highlight: "Öngörücü Dozimetre Analitiği",
-        desc: "Makine öğrenimi modelleriyle personellerin geçmiş okuma trendlerini analiz ederek, yıl sonu NDK limit aşımı riskini 6 ay önceden tahminleyen erken uyarı algoritması.",
-        tag: "AI & Doz Analizi",
-      },
-      {
-        badge: "Geliştirme Aşamasında",
+        badge: "FAZ 1 — Altyapı Hazır",
         badgeColor: "border-teal-500/30 text-teal-400 bg-teal-500/10",
-        name: "PACS / DICOM Doz Akış Köprüsü",
-        highlight: "RDSR (Radiation Dose Structured Report)",
-        desc: "BT ve Anjiyo cihazlarından çıkan DICOM RDSR doz raporlarını doğrudan PACS sunucusundan okuyarak hasta ve tetkik bazlı modalite doz haritası çıkarma entegrasyonu.",
-        tag: "DICOM & RDSR",
+        name: "Saha / Tablet QR-Barkod Muayene & Hızlı Envanter Asistanı",
+        highlight: "Tablet QR/Barkod, DIN 6857-1 & Çevrimdışı PWA",
+        desc: "Medikal Fizikçiler için sahada doğrudan tablet kamerasıyla QR/Barkod okutma, skopi altındaki kurşun önlük ve paravan kusurlarını interaktif krokide işaretleme, fotoğraf ekleme ve anlık senkronizasyon.",
+        tag: "RKE Muayene & Saha Asistanı",
       },
       {
-        badge: "Planlanan Güncelleme",
+        badge: "FAZ 2 — Foundation AI",
         badgeColor: "border-cyan-500/30 text-cyan-400 bg-cyan-500/10",
-        name: "IoT Gerçek Zamanlı Ortam Dedektör Entegrasyonu",
-        highlight: "Kablosuz Canlı Radyasyon Akışı",
-        desc: "Odalara yerleştirilen Wi-Fi/Zigbee tabanlı sabit radyasyon dedektörlerinden gelen anlık mikro-Sievert verilerini mimari krokide canlı yanıp sönen ısı haritasına dönüştürme.",
-        tag: "IoT & Canlı Telemetri",
+        name: "Google TimesFM ile Yapay Zekâlı Doz Trend Tahmini & Rotasyon",
+        highlight: "1 Trilyon Verili Zero-Shot Transformer",
+        desc: "Google Research TimesFM foundation modeliyle sıfır ek model eğitimiyle 6 ay önceden 20 mSv limit aşımı uyarısı, çok değişkenli risk analizi ve radyasyonsuz birimlere akıllı rotasyon önerisi.",
+        tag: "Zero-Shot AI & Klinik Rotasyon",
+      },
+      {
+        badge: "FAZ 3 — Denetim Simülatörü",
+        badgeColor: "border-purple-500/30 text-purple-400 bg-purple-500/10",
+        name: "NDK & SKS 6.1 Otomatik Denetim Simülatörü & Risk Karnesi",
+        highlight: "100 Puanlık Resmi Denetim Hazırlık Motoru",
+        desc: "Tek tıkla tüm kurumu tarayarak süresi dolan lisans, eksik kalibrasyon, muayenesiz kurşun önlük, eksik şua izni ve kaza bildirimlerini analiz eden resmi denetim karnesi ve hazırlık raporu motoru.",
+        tag: "NDK & SKS 6.1 Denetim Motoru",
       },
     ];
 
