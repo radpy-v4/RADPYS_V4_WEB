@@ -1,5 +1,127 @@
 # CHANGELOG
 
+## [4.1.2.8] - 2026-09-06
+
+### 🏪 Nöbet Değişim Havuzu (Shift Marketplace), 36 Saat Güvenlik Kısıtları (TTL) & Web Portalı Pazaryeri Arayüzü
+
+#### 1. 🌐 Nöbet Değişim Havuzu (Shift Marketplace) Mimarisi (`NobetHavuzService`)
+
+- **Sıfır Telefon/WhatsApp Trafiği:** Nöbet değiştirmek isteyen personellerin bireysel arama ve ikna çabaları yerine nöbetlerini ortak dijital pazaryerine ("Nöbet Değişim Havuzu") ilan olarak açabilmesi sağlandı.
+- **İlan Türleri:** "Açık Devir (Karşılıksız)" ve "Karşılıklı Takas" opsiyonları tanımlandı.
+- **İlk Gelen Talip Kilidi (First-Come First-Served):** Bir personel ilana talip olduğunda ilan durumu `HAVUZDA` -> `TEKLIF_GELDI` seviyesine yükseltilerek diğer personellere kilitlenir.
+- **Teklif Reddi Döngüsü:** İlan sahibi gelen talibi/teklifi reddederse ilan silinmez; 36 saatlik süre kısıtı dolana kadar havuzda yeni taliplere açık kalmaya devam eder (`durum = HAVUZDA`).
+
+#### 2. ⏱️ 36 Saat Güvenlik Kısıtı (TTL) & 48 Saat Erken Uyarı Sistemi
+
+- **48 Saat Erken Bildirim:** Nöbete 48 saat kala henüz talip çıkmamış ilanlar için ilan sahibine *"İlanınıza henüz talip çıkmadı. Nöbete 48 saat kaldı"* push/sistem bildirimi gönderilir.
+- **36 Saat TTL Otomatik İptali (`SURESI_DOLDU`):** Nöbete 36 saat kala talip bulunup devir onaylanmamışsa sistem ilanı otomatik olarak zaman aşımına uğratır ve iptal eder. Nöbet yükümlülüğü asıl personelde kalır; servisin açıkta kalması önlenir.
+- **Arka Plan TTL Worker:** Sunucu tarafında periyodik çalışan zaman aşımı tarayıcısı (`runShiftPoolTtlWorker`) ile otomatik iptaller ve sistem bildirimleri tetiklenir.
+
+#### 3. 🚨 36 Saat Altı Acil Mazeret Eskalasyonu & RADPYS Nöbet Oto-İkame Motoru
+
+- **Acil Mazeret Başvurusu:** 36 saatten az süre kala gelişen kaza, hastalık veya acil mazeret durumlarında personel *"🚨 Acil Mazeret Bildir"* butonunu kullanarak mazeret türü, açıklaması ve resmi evrakını (sağlık raporu) sisteme yükler.
+- **Yönetici Aksiyon Merkezi Entegrasyonu:** Mazeret bildirimi doğrudan İdari Sorumlu / Yönetici Aksiyon Merkezi ekranına acil kırmızı bayrakla düşer.
+- **RADPYS Adalet Katsayılı Oto-İkame:** Yönetici onayıyla sistem, nöbet adalet katsayısı ve nöbet yükü en az olan personeli otomatik atar veya re'sen görevlendirme yapar.
+
+#### 4. 🛡️ Aylık 48 Saat Kota & Fazla Mesai Taban Denetimi
+
+- **Aylık 48 Saat Havuz Kotası:** Bir personelin bir takvim ayı içinde havuz üzerinden devredebileceği maksimum nöbet süresi **48 saat** ile sınırlandırılarak sistem suistimali engellendi.
+- **Zorunlu Taban Mesai Koruması:** Bir personelin karşılıksız devir yapabilmesi için taban mesaisini (160 saat) doldurmuş olması (devir sonrası kalan süresi >= taban mesai) şart koşuldu. Taban mesaisi eksik kalacak personele sistem sadece "Karşılıklı Takas" türünde ilan izni verir.
+
+#### 5. 💻 Web & Mobil Portalı Nöbet Pazaryeri (`ShiftPoolView.tsx` & Express REST API)
+
+- **Pazaryeri Ekranı:** Canlı 🟢/🚩 yasal kısıt denetim rozetleri (11 Saat Dinlenme, 48 Saat Haftalık Sınır, Çakışma, 130 Saat Aylık Şua Limiti), 36 saat geri sayım sayacı ve aylık kota ilerleme çubuğu eklendi.
+- **REST API Uç Noktaları:** `/api/nobet/havuz/liste`, `/api/nobet/havuz/ilan-ver`, `/api/nobet/havuz/talip-ol`, `/api/nobet/havuz/teklif-yanitla`, `/api/nobet/havuz/geri-cek`, `/api/nobet/havuz/acil-mazeret`, `/api/nobet/havuz/ozet` API'leri oluşturuldu.
+- **Gezinme Entegrasyonu:** Web portalı sol kenar çubuğuna `shift_pool` (YENİ rozetli) sekmesi eklendi; `ShiftChangeForm.tsx` ekranına havuz yönlendirme duyuru kutusu yerleştirildi.
+
+---
+
+## [4.1.2.7] - 2026-09-06
+
+### 🚀 Toplu Muayene Kokpiti, Harici Hekim Bireysel Zimmeti, 14 Donanım SVG Silüeti & Global QSS Temizliği
+
+#### 1. ⚡ Toplu Muayene ve Kalite Kontrol Kokpiti (`RkeTopluMuayeneDialog`)
+
+- **Seri Kalite Kontrol ve Muayene:** Onlarca koruyucu donanımın tek bir oturumda saniyeler içinde periyodik kontrolden geçirilmesini sağlayan Toplu Muayene Kokpiti devreye alındı.
+- **Merkezi Üst Panel Kontrolü:** Muayene Tarihi, Muayene Dönemi, Toplu Muayene Kararı (*Tam Uygun / Şartlı Kullanım / HEK*), 5 maddelik Fiziki Muayene Kriterleri ve Ortak Açıklama üst panelden belirlenir; tablodaki tüm seçili ekipmanlara tek tıkla uygulanır.
+- **Hücre İçi Girdi Sadeleştirmesi:** Tablo hücrelerindeki karmaşık combo ve metin kutuları kaldırılarak ekran hafifletildi; merkezi üst panel yönetimiyle sıfır hata ve maksimum işlem hızı sağlandı.
+
+#### 2. 👨‍⚕️ Bireysel Zimmette Harici & Farklı Anabilim Dalı Personel Desteği
+
+- **Yazılabilir ve Akıllı Tamamlamalı Personel Seçimi:** Ekle/Düzenle ve Zimmet Transfer diyaloglarındaki personel açılır kutuları düzenlenebilir (`editable=True`) yapıldı.
+- **Harici Hekim / Cerrah Desteği:** Aktif personel listesinde yer almayan cerrahlar, profesörler veya farklı anabilim dallarındaki (Ortopedi, Beyin Cerrahi, Genel Cerrahi vb.) hekimlerin isim ve unvanları serbestçe yazılabilir (Örn: *Prof. Dr. Ahmet Yılmaz (Ortopedi AD)*).
+- **Akıllı Tamamlama (`QCompleter`):** Listede kayıtlı personeller harf duyarsız aramayla anında filtrelenirken, harici isim girildiğinde `zimmetli_personel_id = NULL` ve `zimmetli_personel_ad_soyad` metniyle veritabanına ve transfer kütüğüne eksiksiz kaydedilir.
+- **Envanter Arama Entegrasyonu:** RKE yönetim ana tablosundaki arama motoruna `zimmetli_personel_ad_soyad` filtresi eklenerek hekim adına göre hızlı sorgulama sağlandı.
+
+#### 3. 🏢 Dinamik Departman & Alt Birim / Servis Hiyerarşisi
+
+- **Radyasyon ve Görüntüleme Alanları Filtresi:** RKE kayıt formundaki departman listesi sadece radyasyonlu ve skopi/cerrahi alanlar (Radyoloji, Nükleer Tıp, Radyasyon Onkolojisi, Cerrahi, Ortopedi, Anestezi vb.) ile sınırlandırıldı.
+- **Personel Modülü Standartı:** Personel modülü ile tam uyumlu dinamik "Üst Birim / Departman" ve "Alt Birim / Servis" hiyerarşisi uygulandı. Üst departman seçildiğinde ilgili alt servisler otomatik doldurulur ve serbest metin girişi desteklenir.
+
+#### 4. 🎨 14 Farklı Donanım Türü İçin Genişletilmiş Vektörel SVG Silüet Havuzu
+
+- **Eksiksiz Donanım Yelpazesi:** Önlük, yelek-etek, tiroid ve gonad koruyuculara ek olarak; **Bone (Ön/Arka), Kurşun Eldiven (Ön/Arka), Kurşun Gözlük (Ön/Arka), Masa Koruyucu Paravan (Ön/Arka), Mobil Paravan (Ön/Arka), Tavan Paravanı (Ön/Arka) ve Yüz Siperliği (Ön/Arka)** anatomik vektörel SVG silüetleri oluşturuldu.
+- **Platformlar Arası Senkronizasyon:** Hem PySide6 masaüstü kroki tuvaline (`resources/silhouettes/rke/`) hem de web saha/tablet portalına (`web_portal/public/silhouettes/rke/`) aktarıldı.
+
+#### 5. 🎨 Global QSS Standartı, Inline Stil Temizliği & Tabler SVG İkon Senkronizasyonu
+
+- **Inline Style Yasağı:** Proje genelindeki `.ui` XML dosyalarındaki ve Python controller'larındaki hardcoded renk ve stiller temizlenerek merkezi QSS (`resources/dark_theme.qss`, `ui/theme.py`) tasarım sistemine tam uyum sağlandı.
+- **Tabler SVG İkon Kütüphanesi:** Eksik olan `clipboard-check.svg`, `checks.svg`, `device-heart-monitor.svg`, `eye-check.svg` vb. ikonlar Tabler kaynaklarından `resources/icons/` altına kopyalandı, `resources.qrc` güncellenerek `resources_rc.py` derlendi.
+
+---
+
+## [4.1.2.6] - 2026-09-05
+
+### ⚡ Sadeleştirilmiş Çift Modlu RKE Muayene Kokpiti (Görsel/Fiziki & Gömülü Skopi Krokisi)
+
+#### 1. 🎛️ Tek Ekranda Çift Modlu Muayene Kokpiti (`RkeMuayeneDialog`)
+
+- **Diyalog İçinde Diyalog Karmaşasına Son:** Önceki çok adımlı akış (Diyalog -> Sekmeler -> Ayrı Kroki Pop-up'ı -> Aktar -> Fotoğraflar) tek ve modern bir arayüzde birleştirildi.
+- **Çift Mod Seçici:**
+  - **👁️ Görsel & Fiziki Muayene:** Sahada skopi çekilmeden yapılan periyodik fiziksel kontroller için 5 maddelik kontrol listesi (Dikiş/Kumaş, Askı/Toka, Kurşun Blok/Katlanma, Etiket/QR, Hijyen/Sıvı) ve *"⚡ Tüm Kriterleri Sağlam Olarak İşaretle"* kısayolu.
+  - **🩻 Skopi / X-Işını (DIN 6857-1):** Gömülü vektörel SVG anatomi silüeti üzerinde doğrudan tıklayarak kusur ekleme, silme, yüz değiştirme (Ön/Arka) ve DIN 6857-1 kural motoru.
+- **⚡ 1-Tıkla Kusursuz / Uygun Onayla (`btnHizliOnayla`):** Sağlam koruyucu donanımlar için tüm kontrolleri ve DIN kararını tek dokunuşla tamamlayan 5 saniyelik ultra hızlı kayıt akışı.
+
+#### 2. 📱 Saha Web & Tablet Portalı Senkronizasyonu (`RkeView.tsx`)
+
+- Web/tablet saha asistanına masaüstü ile birebir uyumlu çift mod seçici (Görsel & Fiziki vs Skopi Krokisi) ve hızlı fiziksel kontrol listesi eklendi.
+
+---
+
+## [4.1.2.5] - 2026-09-05
+
+### 🩻 Saha / Tablet QR-Barkod Muayene Asistanı, İnteraktif RKE Kusur Haritası & Modüler Servis Mimarisi
+
+#### 1. 🗺️ İnteraktif RKE Kusur Haritası & DIN 6857-1 Analitiği
+
+- **Vektörel SVG Anatomi Silüetleri:** Kurşun palto/önlük, yelek-etek, tiroid koruyucu ve gonad koruyucu için anatomik ön ve arka yüzey silüetleri (`resources/silhouettes/`) entegre edildi.
+- **Koordinat Bazlı Kusur İşaretleme:** Medikal fizikçilerin skopi altında tespit ettiği delik, çatlak, yıpranma, kurşun blok kayması ve askıda katlanma hasarlarını dokunarak veya fareyle silüet üzerinde hassas (x, y) koordinatlarıyla işaretlemesi sağlandı.
+- **Otomatik DIN 6857-1 & SKS 6.1 Karar Motoru:** Kritik gonad/tiroid bölgesinde sıfır tolerans (derhal HEK/Hurda), non-kritik alanlarda toplam hasar alanına göre anlık `KULLANIMA_UYGUN` (≤ 5 mm²), `SARTLI_KULLANIM` (5–15 mm²) ve `HEK_HURDAYA_AYIR` (> 15 mm² veya delik) kararları canlı olarak hesaplanır.
+
+#### 2. 📱 Saha ve Tablet Hızlı Muayene Web Portalı (`web_portal`)
+
+- **Mobil & Tablet Saha Asistanı (`SahaLandingView.tsx`):** Medikal fizikçilerin sahada laptop taşımadan tablet veya telefon üzerinden hızlı QR barkod taramasıyla ekipman sorgulayabilmesi ve muayene formuna erişebilmesi sağlandı.
+- **Web Tabanlı İnteraktif Kroki Canvas (`RkeKrokiCanvas.tsx`):** HTML5 Canvas üzerinde çoklu kusur ekleme, silme, kritik bölge bayraklama ve hasar alanı özelleştirme yetenekleri geliştirildi.
+- **Hızlı Muayene Kayıt API (`server.ts`):** `/api/rke/sorgula`, `/api/rke/muayene-kaydet` ve `/api/rke/siluetler/:ad` REST API uç noktaları oluşturularak sahadan anlık kayıt ve merkezi senkronizasyon tamamlandı.
+
+#### 3. 🖥️ PySide6 Masaüstü Kroki Diyaloğu & Muayene Entegrasyonu
+
+- **Masaüstü Kroki Kontrolcüsü (`RkeKrokiController`):** `rke_kroki_isaretleme_dialog.ui` arayüzü ile SVG render motoru, kusur listesi tablosu ve DIN 6857-1 anlık karar analitik paneli birleştirildi.
+- **Muayene Formu Entegrasyonu (`RkeMuayeneDialog`):** Muayene ekranına *"Kroki Üzerinde Kusur İşaretle"* butonu eklendi; krokide belirlenen hasar parametreleri ve kusur JSON haritası formdaki alanlara otomatik aktarılır.
+
+#### 4. 🗄️ PostgreSQL Şema Genişletmesi & Migration (`V20260905_1_rke_kusur_haritasi`)
+
+- **`rke_muayeneler` Tablosu Güncellemesi:** `kusur_haritasi_json`, `tablet_cihaz_bilgisi`, `muayene_konumu`, `kontrol_eden_arayuz` ve `onaylayan_arayuz` sütunları eklendi.
+- **Yeni `rke_muayene_kusurlar` İlişkisel Tablosu:** Muayenede işaretlenen her bir kusurun yüzey (ÖN/ARKA), kusur tipi, x/y oranları, hasar alanı (mm²), kritik bölge durumu ve açıklaması ilişkisel tabloda saklanır.
+
+#### 5. 📦 Servis Katmanı Modüler Mimarisi (`app/services/rke/`)
+
+- **Servis Paket Konsolidasyonu:** Dağınık durumdaki RKE servisleri (`rke_service.py`, `rke_kod_generator.py`, `rke_import_service.py`, `rke_saha_service.py`) kanonik `app/services/rke/` paketine taşındı.
+- **Geriye Dönük Uyumluluk Shim Katmanı:** Kök seviyedeki servis modülleri re-export shimleri ile korunarak projedeki tüm eski importlar güvenceye alındı.
+- **`ServiceRegistry` Entegrasyonu:** `ServiceRegistry` içerisine `rke_service` ve `rke_saha_service` kaydedildi.
+
+---
+
 ## [4.1.2.4] - 2026-08-27
 
 ### 🗺️ Mimari Kat Planı PDF Desteği, Cihaz Pin Kilitleme & Akıllı Breadcrumb Hızlı Geçiş Menüleri

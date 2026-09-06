@@ -1,7 +1,7 @@
 {
-  "version": "4.0.1.0",
-  "latest_demo_version": "4.0.1.0",
-  "release_date": "2026-08-22",
+  "version": "4.1.2.8",
+  "latest_demo_version": "4.1.2.8",
+  "release_date": "2026-09-06",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "Hizmet İçi Eğitim Yönetim Merkezi, çoktan seçmeli merkezi soru havuzu, akıllı kategori/eğitim arama filtreleri, Excel soru içe aktarma, Web Portalı & Mobil LMS online sınav motoru ve otomatik sertifikasyon onay akışı eklendi."
+  "changelog": "Nöbet Değişim Havuzu (Marketplace), 36 saat TTL zaman aşımı ve 48 saat erken uyarı kısıtları, acil mazeret eskalasyonu, fazla mesai taban koruması, aylık 48 saat kota ve Web Portalı pazar arayüzü eklendi."
 }
