@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4. İzin Yönetimi ve Şua İzni — RADPYS V4 Kılavuz</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header class="sl-header">
+  <div class="sl-header-left">
+    <button class="mobile-nav-toggle" id="mobileNavToggle" title="Menüyü Aç/Kapat">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <a href="index.html" class="brand-lockup">
+      <div class="brand-icon">R</div>
+      <div class="brand-title">RADPYS V4</div>
+      <span class="brand-badge">v4.1.2.8</span>
+    </a>
+  </div>
+
+  <div class="sl-header-right">
+    <div class="search-trigger" id="searchTrigger">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <span>Dokümantasyonda ara...</span>
+      <kbd class="search-kbd">Ctrl K</kbd>
+    </div>
+
+    <button class="btn-icon" id="themeToggleBtn" title="Temayı Değiştir (Açık / Koyu)">
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- MAIN LAYOUT -->
+<div class="sl-layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sl-sidebar" id="slSidebar">
+    <div style="margin-bottom: 1rem; padding: 0 4px;">
+      <a href="index.html" class="nav-page-link" style="padding-left: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Ana Karşılama Sayfası</span>
+      </a>
+    </div>
+    <nav id="sidebarNav">
+      
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>I. GENEL BİLGİLER VE KURULUM</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="01_kurulum.html" class="nav-page-link ">1. Kurulum ve Güvenlik İzinleri</a>
+                <a href="02_kullanici_ve_roller.html" class="nav-page-link ">2. Kullanıcı Yönetimi, Roller ve Lisans</a>
+              </div>
+            </div>
+            <div class="nav-part open">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>II. OPERASYONEL MODÜLLER</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="03_personel_modulu.html" class="nav-page-link ">3. Personel Modülü ve Özlük</a>
+                <a href="04_izin_ve_fhz_modulu.html" class="nav-page-link active">4. İzin Yönetimi ve Şua İzni</a>
+                <a href="05_dozimetre_ve_risk_analizi.html" class="nav-page-link ">5. Doz Takip ve Yasal Limitler</a>
+                <a href="06_nobet_cizelgesi_ve_havuz.html" class="nav-page-link ">6. Nöbet Çizelgesi & Değişim Havuzu</a>
+                <a href="07_olay_bildirim_ve_dof.html" class="nav-page-link ">7. Olay Bildirimi & DÖF/CAPA</a>
+                <a href="08_ortam_dozu_ve_kroki.html" class="nav-page-link ">8. Ortam Dozu & İnteraktif Kroki</a>
+                <a href="09_hizmet_ici_egitim_ve_lms.html" class="nav-page-link ">9. Hizmet İçi Eğitim & Sınav LMS</a>
+                <a href="10_tibbi_cihaz_ve_qr_portal.html" class="nav-page-link ">10. Tıbbi Cihaz & QR Arıza Portalı</a>
+                <a href="11_rke_ve_kalite_kontrol.html" class="nav-page-link ">11. Koruyucu Ekipman (RKE) & Kalite</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>III. KURUMSAL YÖNETİM VE RAPORLAMA</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="12_onay_ve_denetim_izi.html" class="nav-page-link ">12. Evrensel Onay & Audit Trail</a>
+                <a href="13_raporlar_ve_matbu_evrak.html" class="nav-page-link ">13. Rapor Merkezi & Şablon Marka</a>
+                <a href="14_tanimlamalar_ve_web_portal.html" class="nav-page-link ">14. Tanımlamalar & Web Portalı</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>IV. SİSTEM YÖNETİMİ VE VERİ İŞLEMLERİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="15_sistem_yonetimi_ve_yedekleme.html" class="nav-page-link ">15. Ayarlar, Veritabanı & İçe Aktarma</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>V. DESTEK VE GÜNCELLEME GEÇMİŞİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="16_sss_sorun_giderme.html" class="nav-page-link ">16. Sıkça Sorulan Sorular (SSS)</a>
+                <a href="17_surum_notlari.html" class="nav-page-link ">17. Sürüm Güncelleme Geçmişi</a>
+              </div>
+            </div>
+    </nav>
+  </aside>
+
+  <!-- CENTER CONTENT -->
+  <div class="sl-main-container">
+    <main class="sl-content">
+      <a id="bolum-4"></a>
+
+<h2>4. İzin Takip, Şua İzni ve Fiili Hizmet Takip Modülü ve Şua İzni Hak Ediş İşlemleri</h2>
+
+<h3>💡 İşlemin Amacı ve Ön Koşullar</h3>
+
+<p>İzin Modülü; personelin Yıllık İzin, Şua İzni (Sağlık İzni), Mazeret İzni ve Sağlık Raporu kayıtlarının oluşturulduğu, birim içi nöbet planlaması için izin takibinin yapıldığı ve raporlandığı bölümdür.</p>
+
+<blockquote class="callout">⚠️ <strong>Resmi İzin Kaydı Uyarısı:</strong> RADPYS V4 içerisinde tutulan izin kayıtları ve bakiye hesaplamaları, birim içi operasyonel nöbet çizelgelerinin hazırlanması ve radyasyon güvenliği takibi amacıyla kullanılır. Kurumun resmi idari ve hukuki izin kayıtları <strong>HBYS (Hastane Bilgi Yönetim Sistemi)</strong> veya <strong>PBYS (Personel Bilgi Yönetim Sistemi)</strong> üzerinde tutulmaktadır. Asıl ve resmi olarak bağlayıcı izin verileri kurum içi HBYS/PBYS kayıtlarıdır.</blockquote>
+
+RADPYS V4 sisteminde izin kayıtları veritabanına işlenerek nöbet çakışmaları ve NDK mevzuatına tabi <strong>Şua İzni (30 Gün)</strong> takibi operasyonel olarak yürütülür.
+<hr />
+<h3>🐾 4.1 İzin Kaydı Nasıl Oluşturulur ve Kaydedilir?</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Personel için izin kaydı (Yıllık İzin, Şua İzni, Mazeret vb.) oluşturmak, yerine bakacak vekil personeli tanımlamak ve izin bakiyesini anında güncellemektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>İzin Kayıt Ekranını Açın:</strong></li>
+<ul>
+<li>Sol dikey menüden <strong>İzin Modülü > İzin Listesi</strong> sekmesine gidin.</li>
+<li>Ekranın üst barında yer alan <strong>"İzin Ekle"</strong> butonuna tıklayın.</li>
+<li><strong>İzin Detaylarını Girin:</strong></li>
+<li><strong>Personel Seçimi:</strong> İzin kullanacak personeli listeden seçin.</li>
+<li><strong>İzin Türü:</strong> Açılır menüden izin türünü seçin (örn: <em>Yıllık İzin, Şua İzni, Mazeret İzni, Hastalık/Rapor İzni, Babalık İzni</em>).</li>
+<li><strong>Başlangıç ve Bitiş Tarihi:</strong> İznin başlayacağı ve biteceği tarihleri takvimden seçin. Sistem net süre gün sayısını otomatik hesaplayacaktır.</li>
+<li><strong>Onay Durumu Seçimi (2-Aşamalı İzin Onay Mekanizması):</strong></li>
+<li><strong>🟡 Ön Onaylı:</strong> Personel sözlü veya ön bildirimle izne çıkacağını ilettiğinde seçilir. İdari onay henüz resmileşmemiş olsa dahi nöbet motoru bu tarihleri çakışma yaşanmaması için otomatik bloklar.</li>
+<li><strong>🟢 Resmi Onaylı:</strong> İzin belgesi resmiyet kazandığında ve onaylandığında seçilir. Yasal Şua izni hakedişleri, Yıllık İzin düşümleri ve Fiili Hizmet Zammı (FHZ) cetvelleri <strong>yalnızca Resmi Onaylı</strong> olan izinleri dikkate alır.</li>
+<li><strong>Vekil Personel ve Açıklama Belirleyin:</strong></li>
+<li><strong>Yerine Bakacak Personel (Vekil):</strong> İzin süresince nöbet veya görevleri devralacak personeli seçin.</li>
+<li><strong>Açıklama / Adres:</strong> İzin süresince bulunacağı adres ve açıklama bilgisini girin.</li>
+<li><strong>Belge Ekleyin (Rapor veya Mazeret Belgesi Varsa):</strong></li>
+<li>Sağlık raporu veya resmi mazeret belgesi durumlarında <strong>"Dosya Seç"</strong> butonuna basarak rapor belgesini (PDF/Görsel) kayda ekleyin.</li>
+<li><strong>Kaydı Tamamlayın:</strong></li>
+<li><strong>"Kaydet"</strong> butonuna tıklayın. İzin kaydı sisteme işlenecektir. Toplu Aktarım (Excel/CSV) ile sisteme yüklenen geçmiş izin verileri otomatik olarak <strong><code>Resmi Onaylı</code></strong> kabul edilir.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 4.2 Şua İzni (Radyasyon İzni) ve Yıllık İzin Hak Edişleri Nasıl Hesaplanır?</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Radyasyon görevlilerinin NDK ve Sağlık Bakanlığı mevzuatı gereği hak kazandığı <strong>30 günlük kesintisiz Şua İzni</strong> ile hizmet yılına göre hesaplanan Yıllık İzin bakiyelerini görüntülemek ve toplu hesaplamaktır.</p>
+
+<blockquote class="callout">📌 <strong>Şua İzni Veri Doğrulama ve Hak Kazanma Esası:</strong> Şua İzni, geriye dönük fiili çalışma karşılığı kazanılan bir haktır <em>(devreden bir izin bakiyesi değildir)</em>. Personel önceki yılın çalışmasını tamamladığında ertesi yılda Şua İznini kullanmaya hak kazanır. Hesaplamada kullanılan çalışma süreleri <strong>kurum içi idari işler / özlük biriminden alınan resmi verilerle doğrulanarak</strong> sisteme işlenmelidir.</blockquote>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>İzin Hak Ediş Ekranına Gidin:</strong></li>
+<ul>
+<li>Sol menüden <strong>İzin Modülü > İzin Hak Edişleri</strong> sekmesine gidin.</li>
+<li><strong>Yıllık İzin Bakiye Tablosunu İnceleyin:</strong></li>
+<li>Tabloda personellerin <em>Yıl</em>, <em>Hakkedilen Gün</em> (O yıl kazanılan hak), <em>Devir Gün</em> (Geçen yıldan aktarılan bakiye), <em>Kullanılan Gün</em> ve net <em>Kalan Gün</em> (<code>[Hakkedilen] + [Devir] - [Kullanılan]</code>) sütunları yer alır.</li>
+<li><strong>Şua İzni Hak Ediş Yapısını İnceleyin:</strong></li>
+<li><strong>Hakedilen Şua İzni (Geçmiş Yıl Çalışma Karşılığı):</strong> Önceki yılın fiili çalışması tamamlanarak içinde bulunulan yılda kullanıma açılan resmi Şua İzni hakkıdır (Örn: 30 Gün).</li>
+<li><strong>Hesaplanan Şua İzni (Cari Yıl Birikimi):</strong> Personelin içinde bulunulan yıl içerisinde çalıştığı aylar boyunca biriktirmekte olduğu (ve ertesi yıl kullanıma açılacak) Şua İzni birikimidir.</li>
+<li><strong>Kullanılan Şua İzni:</strong> İçinde bulunulan yılda kullanıma açılan haktan fiilen kullanılan gün sayısıdır.</li>
+<li><strong>Kalan Şua İzni:</strong> <code>[Hakedilen Şua İzni] - [Kullanılan Şua İzni]</code> formülüyle hesaplanır.</li>
+<li><strong>Toplu Hak Ediş Hesaplama:</strong></li>
+<li>Ekranın üstündeki <strong>"Toplu Hesapla"</strong> butonuna basarak tüm personelin hizmet süresine göre (0-10 yıl: 20 gün, 10+ yıl: 30 gün) ve radyasyon grubuna göre Şua İzni hak edişlerini güncelleyin.</li>
+<li><strong>Manuel Hak Ediş Düzenleme:</strong></li>
+<li>Belirli bir personelin hak edişini düzeltmek için ilgili satıra çift tıklayın veya <strong>"Düzenle"</strong> butonuna basarak hak ediş gün sayılarını güncelleyip <strong>"Kaydet"</strong> butonuna basın.</li>
+</ul>
+</ol>
+<hr />
+<h3>⏳ 4.2.1 Şua İzni Zamanaşımı Takibi ve Yıl Sonu Erken Uyarı Paneli</h3>
+
+<h4>💡 Amaç</h4>
+Mevzuat gereği Şua izinleri cari takvim yılı (31 Aralık) sonuna kadar kesintisiz kullandırılmalıdır; sonraki yıla devretmez. Sistem, kullanılmayan izinlerin yanma riskini önceden tespit ederek idareye erken planlama imkanı sunar.
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+<ol>
+<li><strong>İzin Hak Edişleri</strong> tablosunda üst filtre panelinde yer alan <strong>"⏳ Zamanaşımı Yaklaşan Şua İzinleri"</strong> kutucuğunu işaretleyin.</li>
+<li>Tablo yalnızca kalan Şua izni bulunan ve zamanaşımı riski taşıyan personelleri listeler.</li>
+<li>Kalan gün sayısına göre sistem hücrelerde otomatik rozetler gösterir:</li>
+<ul>
+<li><code>[⏳ 45g]</code> (Turuncu Rozet): Yıl sonuna 60 günden az kaldığını gösterir.</li>
+<li><code>[🚨 15g]</code> (Kırmızı Rozet): Yıl sonuna 30 günden az kaldığını ve acil izin planlaması gerektiğini gösterir.</li>
+<li><code>[🚨 YANDI]</code>: 31 Aralık tarihi geçmiş ve kullanılmamış Şua izinlerinin yandığını gösterir.</li>
+<li>Hücre üzerine fare ile gelindiğinde detaylı yasal son kullanım tarihi ve kalan gün bilgisi tooltip olarak görüntülenir.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 4.3 Oluşturulan İzin Kaydı Nasıl Düzenlenir veya İptal Edilir / Silinir?</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Hatalı veya tarihi değişen izin kayıtlarını güncellemek ya da iptal edilen izinleri veritabanından silerek personelin hakkını iade etmektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>İzin Listesinden Kaydı Seçin:</strong></li>
+<ul>
+<li><strong>İzin Modülü > İzin Listesi</strong> ekranına gidin.</li>
+<li>Düzenlenecek veya silinecek izin kaydının satırına çift tıklayın veya satırı seçin.</li>
+<li><strong>Kayıt Düzenleme:</strong></li>
+<li>Ekrandaki <strong>"Düzenle"</strong> butonuna tıklayın. İzin tarihlerini veya türünü değiştirip <strong>"Kaydet"</strong> butonuna basarak güncelleyin. Kalan bakiye otomatik yeniden hesaplanır.</li>
+<li><strong>Kaydı İptal Etme / Silme:</strong></li>
+<li>İzni iptal etmek için satırı seçip <strong>"Sil"</strong> butonuna basın. Açılan onay penceresine <strong>"Evet"</strong> yanıtını verin. İzin silindiğinde düşülen gün sayısı personelin kalan bakiyesine <strong>otomatik iade edilir</strong>.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 4.4 Web Portalı Çevrimiçi İzin Talepleri ve Masaüstü Veritabanı Senkronizasyonu</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Saha çalışanlarının Web Portalı (<code>web_portal</code>) üzerinden oluşturduğu izin başvurularının Masaüstü RADPYS V4 veritabanına (PostgreSQL <code>radpys_db</code> <code>personel_izinler</code> tablosu) otomatik aktarılması, <strong>Onay Bekleyen Görevler Paneli</strong> üzerinden yöneticilerce incelenerek karara bağlanmasıdır.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Web Portalından İzin Talebinin İletilmesi:</strong></li>
+<ul>
+<li>Personel Web Portalı üzerinden <em>İzin Talep Formu</em> ile talebini iletir (<code>POST /api/izin/talep</code>).</li>
+<li><strong>Arka Plan Senkronizasyonu (<code>WebSyncService</code>):</strong></li>
+<li>Masaüstü RADPYS V4 arka plan senkronizasyon servisi (<code>WebSyncService</code>) web verilerini okuyarak <code>personel_izinler</code> tablosuna <code>onay_durumu = 'Beklemede'</code> etiketiyle işler ve yöneticiye anlık bildirim üretir.</li>
+<li><strong>Amir / Yönetici Onayı:</strong></li>
+<li>Masaüstü uygulamasında <strong>Yönetim > Onay Bekleyen Görevler > İzin Talepleri</strong> sekmesine gidin.</li>
+<li>Talebi inceleyip <strong>"Onayla"</strong> butonuna basarak izni onaylayın veya gerekçe yazarak <strong>"Reddet"</strong> butonuna basın.</li>
+<li><strong>Bakiye ve Takvim Güncellemesi:</strong></li>
+<li>Onaylanan izin kaydı otomatik olarak personelin bakiye düşümüne işlenir ve Birim Nöbet Çizelgesinde izinli gün olarak gösterilir.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 4.5 Yıl Sonu Devir İzin Bakiyeleri Yeni Yıla Nasıl Aktarılır?</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Yıl sonunda personelin kullanmadığı devir izin bakiyelerini yeni çalışma yılına aktarmak veya mevzuat gereği yanma süresi dolan izinleri dondurmaktır.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>İzin Hak Edişleri</strong> ekranına gidin.</li>
+<li>Ekranın sağ üst tarafında yer alan <strong>"Devir Aktar"</strong> butonuna tıklayın.</li>
+<li>Açılan onay diyalogunda yeni hedef yılı (örn: <em>2026</em>) seçin.</li>
+<li>Sistem, personellerin kalan izin günlerini yeni yılın <em>Devir Gün</em> sütununa aktaracak ve geçmiş yıl bakiyelerini arşivleyecektir.</li>
+</ol>
+<hr />
+<blockquote class="callout">💡 <strong>Sık Karşılaşılan Uyarılar ve Çözüm Adımları:</strong> Detaylı soru ve çözüm rehberi için bkz: <a href="RADPYS_V4_sss.md">RADPYS V4 SSS Dokümanı</a></blockquote>
+<hr />
+<h3>🐾 4.6 Fiili Hizmet Süresi Zammı (FHZ) ve Sağlık (Şua) İzni Hakediş Sihirbazı</h3>
+
+<h3>💡 İşlemin Amacı ve Ön Koşullar</h3>
+
+<blockquote class="callout">🎯 <strong>ASIL VE BİRİNCİL AMAÇ VURGUSU:</strong>  </blockquote>
+<blockquote class="callout">Fiili Hizmet Modülü ve Fiili Hizmet Hesaplama sürecinin <strong>ASIL VE BİRİNCİL AMACI, Sağlık (Şua) İznini (0-30 Gün) hesaplamaktır</strong>.  </blockquote>
+<blockquote class="callout">Sistemdeki fiili çalışma sürelerinin (gün/saat) kayıt altına alınması ve işlenmesi; radyasyonlu alanlarda görev yapan personellerin yıllık yasal <strong>Sağlık (Şua) İzni Gün Hakedişlerini</strong> kıstelyevm esasına (oran-orantı) göre doğru, adil ve mevzuata uygun şekilde tespit etmek amacıyla yapılmaktadır.</blockquote>
+
+<blockquote class="callout">ℹ️ <strong>SGK Emeklilik / Yıpranma Payı Ayrımı:</strong> RADPYS V4 bir emeklilik hizmet süresi zammı veya SGK yıpranma payı hesaplama yazılımı <strong>değildir</strong>. Sistem emeklilik kıdem süresi zammı hesaplamaz; yapılan tüm fiili hizmet hesaplamaları doğrudan personelin yıllık yasal <strong>Sağlık (Şua) İzni Gün Sayısını</strong> belirlemeye yöneliktir.</blockquote>
+<hr />
+<h4>🔀 4.6.1 Personel Asıl Birimi ve Nöbet Çizelgesi Arasındaki Hibrit (Hybrid) Hesaplama Mantığı</h4>
+
+<p>Radyasyonla çalışan sağlık personelleri kurum içerisinde tek bir alana sabit kalmayabilir; haftanın belirli gün ve gecelerinde farklı birimlerde (örn: Anjiyografi, Skopi, Nükleer Tıp, Tomografi, Acil Radyoloji) nöbet tutarken, nöbet dışı normal mesai günlerinde kendi kadrosunun bağlı olduğu <strong>Asıl Birimlerinde</strong> (örn: Genel Radyoloji) görev yapabilirler.</p>
+
+<p>RADPYS V4, hak kayıplarını ve mükerrer veri girişini önlemek için <strong>Hibrit (Hybrid) Hesaplama Yöntemini</strong> varsayılan akıllı algoritma olarak kullanır.</p>
+
+<h4>💡 Hibrit Hesaplama Yöntemi Nasıl Çalışır? (Katmanlı Öncelik Mimarisi)</h4>
+
+<div class="mermaid">
+flowchart TD
+    P1["1. ÖNCELİK (Manuel Override): Kullanıcının Girdiği Görevlendirmeler<br/>Yetkilinin manuel eklediği geçici birim atamaları en üsttedir"]
+    P2["2. ÖNCELİK (Nöbet Çizelgesi): Yayınlanmış Nöbet Planı Kayıtları<br/>Nöbet tutulan günlerde, nöbet tutulan birim ve saati çekilir"]
+    P3["3. ÖNCELİK (Asıl Birim / Tamamlama): Personel Özlük Kartı Birimi<br/>Nöbet yazılmayan mesai günleri personelin Asıl Birimiyle dolar"]
+
+P1 -->|Kayıt yoksa alt katmana geçer| P2
+    P2 -->|Nöbet yazılmayan mesai günlerinde| P3
+</div>
+
+<ol>
+<li><strong>1. Katman — Nöbet Çizelgesi Senkronizasyonu (Nöbetli Günler):</strong></li>
+<ul>
+<li>Sistem, ilgili ay içerisinde yayınlanmış nöbet çizelgesini tarar. Personelin nöbet tuttuğu tarih ve saat aralıklarını (örn: <em>Acil Skopi Nöbeti - 16 Saat</em>) tespit eder ve nöbet tutulan birimin radyasyon risk durumuna (Radyasyonlu Alan / Normal Alan) göre ilgili günleri nöbet birimiyle haritalandırır.</li>
+<li><strong>2. Katman — Asıl Birim ile Boşluk Tamamlama (Nöbet Dışı Mesai Günleri):</strong></li>
+<li>Nöbet planında nöbet yazılmayan, personelin boşta kalan diğer normal mesai günleri için personelin kadrosunun bağlı olduğu <strong>Asıl / Varsayılan Birim</strong> (Personel Özlük Kartındaki Alt Departman) ve standart günlük mesai saati (<em>7.0 saat</em>) otomatik olarak devreye girer.</li>
+<li><strong>3. Katman — Manuel Müdahale (Geçici Görevlendirme):</strong></li>
+<li>Yetkili kullanıcı belirli bir personel için özel bir tarih aralığında manuel bir görev dağılımı kaydı girdiğinde (örn: <em>10-15 Mayıs arası Anjiyo Görevi</em>), bu manuel kayıt hem nöbet hem de varsayılan birim atamalarının üzerine yazarak (override ederek) geçerli olur.</li>
+</ul>
+</ol>
+<hr />
+<h3>⚙️ Hesaplama Kaynağı Seçenekleri</h3>
+
+<p>Hesaplama ekranındaki <strong>"Hesaplama Kaynağı"</strong> açılır menüsünden kurumunuzun çalışma modeline göre 3 farklı yöntemden biri seçilebilir:</p>
+
+<ul>
+<li>🌟 <strong>Hibrit Yöntem (Varsayılan ve Önerilen):</strong> Nöbet çizelgeleri ile personelin asıl birimini ve manuel görevlendirmelerini akıllıca birleştirir.</li>
+<li>📋 <strong>Sadece Nöbet Çizelgeleri:</strong> Sadece onaylanıp yayınlanan nöbet planlarındaki nöbet birimlerini ve saatlerini esas alır.</li>
+<li>✍️ <strong>Sadece Manuel Görev Dağılımı:</strong> Nöbet planlarına bakılmaksızın yalnızca kullanıcının manuel girdiği görev dağılımlarını ve varsayılan birim kayıtlarını dikkate alır.</li>
+</ul>
+<hr />
+<h4>⚛️ Özel Durum: Dönem İçi Farklı Risk Grubu Nöbetleri (Örn: BT vs. MR Nöbetleri)</h4>
+
+<p>Bir personel aynı ay içerisinde hem <strong>Çalışma Koşulu A alanında (BT - Bilgisayarlı Tomografi)</strong> hem de <strong>Çalışma Koşulu B alanında (MR - Manyetik Rezonans)</strong> nöbet tutuyorsa sistem şu yasal ve teknik kuralı uygular:</p>
+
+<ul>
+<li><strong>BT (Bilgisayarlı Tomografi - Çalışma Koşulu A):</strong></li>
+<li>İyonlaştırıcı radyasyon içerdiği için BT nöbetinde çalışılan saatler, <strong>Şua İzni</strong> hesabına <strong>tam gün/saat olarak eklenir</strong>.</li>
+<li><strong>MR (Manyetik Rezonans - Çalışma Koşulu B):</strong></li>
+<li>MR cihazı manyetik alanla çalıştığı ve iyonlaştırıcı radyasyon içermediği için sistemde Çalışma Koşulu B (Radyasyonsuz) olarak tanımlıdır.</li>
+<li>Mevzuat gereği (Çalışma Koşulu B kontrolü), MR nöbetinde tutulan saatler <strong>Şua günü hesabından Otomatik Elenir (Dahil Edilmez)</strong>.</li>
+<li><strong>Asıl Görev Yeri Aylık Fiili Çalışma Süresi:</strong></li>
+<li>Personelin asıl birimi (kadro birimi) Genel Radyoloji (Çalışma Koşulu A) ise, MR tutmadığı nöbet dışı normal mesai günleri için 7.0 saatlik radyasyonlu çalışma hakkı hesabına eklenmeye devam eder.</li>
+</ul>
+<hr />
+<h4>🏥 Özel Durum: Asıl Birimi Çalışma Koşulu B Olup Çalışma Koşulu A Alanında Nöbet Tutan Personeller</h4>
+
+<p>Personelin kadrosunun bağlı olduğu <strong>Asıl Birim Çalışma Koşulu B</strong> (Örn: <em>MR Unit, Poliklinik, İdari Büro</em>) ancak ay içerisinde <strong>Çalışma Koşulu A Biriminde</strong> (Örn: <em>BT, Anjiyografi, Skopi</em>) nöbet tutuyorsa sistem şu şekilde çalışır:</p>
+
+<ol>
+<li><strong>Asıl Görev Yeri Aylık Fiili Çalışma Süresi (Çalışma Koşulu B):</strong></li>
+<ul>
+<li>Asıl birimi Çalışma Koşulu B olduğu için nöbet dışındaki asıl görev yeri aylık çalışma günleri <strong>radyasyonlu çalışma saatine DAHİL EDİLMEZ (0 saat eklenir)</strong>.</li>
+<li><strong>Fazla Mesai / Nöbet Günleri (Çalışma Koşulu A):</strong></li>
+<li>Nöbet çizelgesinde BT veya Anjiyo (Çalışma Koşulu A) nöbeti tuttuğu gün ve nöbet saati (örn: <em>16 veya 48 saat</em>) <strong>Radyasyonlu Fiili Çalışma Süresi olarak çekilir ve Şua hesabına eklenir</strong>.</li>
+<li><strong>Sonuç:</strong></li>
+<li>Personel haksız yere tüm aydan Şua almaz; <strong>yalnızca fiilen Çalışma Koşulu A alanında tuttuğu fazla mesai / nöbet saatlerinin toplamı oranında</strong> Şua İzni hakedişi kazanır.</li>
+</ul>
+</ol>
+<hr />
+<h4>📐 3-Adımlı İlerleme Sihirbazı (Wizard Workflow)</h4>
+
+<p>Fiili Hizmet Modülü ekranı, işlemlerin eksiksiz ve sırasıyla yapılabilmesi için üst kısımda <strong>Adım İlerleme Çubuğu (Step Progress Widget)</strong> ile <strong>"Geri"</strong> ve <strong>"İleri"</strong> navigasyon butonlarını içeren 3 adımlı sihirbaz yapısında tasarlanmıştır:</p>
+
+<ol>
+<li><strong>1. Adım: Görev Dağılımı</strong> (Aylık çalışma ve birim atamaları)</li>
+<li><strong>2. Adım: Fiili Hizmet Hesaplama</strong> (Dönem hakediş ve kilit işlemleri)</li>
+<li><strong>3. Adım: Puantaj Raporu</strong> (Kümülatif raporlama ve dışa aktarım)</li>
+</ol>
+<hr />
+<h4>🐾 Adım 1: Görev Dağılımı ve Çalışma Süreleri Girişi</h4>
+
+<h4>💡 Amaç</h4>
+
+<p>Personelin dönem (ay/yıl) bazında görev yaptığı birimleri, fiili çalışma saatlerini belirlemek, otomatik görev ataması yapmak ve taslak kayıtları toplu onaylamaktır.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Görev Dağılımı Sekmesini Açın:</strong></li>
+<ul>
+<li>Sol menüden <strong>Fiili Hizmet Modülü</strong> penceresini açın. Ekran ilk açıldığında üst sihirbaz çubuğunda 1. Adım olan <strong>"Görev Dağılımı"</strong> sekmesi aktif gelecektir.</li>
+<li><strong>Dönem ve Filtre Seçimi Yapın:</strong></li>
+<li>Ekranın üst filtre barından <code>Yıl</code> (örn: <em>2026</em>), <code>Dönem Ayı</code> ve <code>Hizmet Sınıfı</code> filtresini seçin.</li>
+<li>Dönemler arasında hızlı geçiş yapmak için <code>◀</code> <em>(Önceki Dönem)</em> ve <code>▶</code> <em>(Sonraki Dönem)</em> yön ok butonlarını kullanabilirsiniz.</li>
+<li><strong>Otomatik Görev Atama Yapın:</strong></li>
+<li>Tüm personellerin sistemde tanımlı varsayılan birimlerine göre dönem kayıtlarını oluşturmak için <strong>"Otomatik Görev Ata"</strong> butonuna tıklayın.</li>
+<li><strong>Manuel Görev Dağılımı Ekleyin veya Güncelleyin:</strong></li>
+<li>Ekranın sağındaki <strong>"Dağılım Kaydı"</strong> panelinden:</li>
+<li><strong>Personel ve Birim:</strong> Listeden personeli ve görev yaptığı birimi seçin.</li>
+<li><strong>Tarihler:</strong> <strong>Başlangıç</strong> ve <strong>Bitiş</strong> tarihlerini takvimden belirleyin.</li>
+<li><strong>Çalışma Saati:</strong> Günlük çalışma saatini girin <em>(Varsayılan: 7.0 saat; 0.5 adımlarla değiştirilebilir)</em>.</li>
+<li><strong>Onay Durumu:</strong> Kaydın onay durumunu seçip <strong>"Kaydet"</strong> butonuna basın.</li>
+<li>Yeni bir kayıt girmek için <strong>"Yeni"</strong>, seçili kaydı silmek için <strong>"Sil"</strong> butonunu kullanın.</li>
+<li><strong>Değişen Görev Yerlerini Filtreleyin:</strong></li>
+<li><strong>"Sadece Değişenler"</strong> onay kutusunu işaretleyerek, personeling varsayılan biriminden farklı bir yerde görev yaptığı (manuel müdahale edilmiş turuncu vurgulu) kayıtları süzebilirsiniz.</li>
+<li><strong>Toplu Onaylama Yapın:</strong></li>
+<li>Dönemdeki tüm taslak görev kayıtlarını tek tıkla onaylı duruma getirmek için <strong>"Toplu Onayla"</strong> butonuna basınız. <em>(Not: Hesaplama adımına geçmeden önce tüm kayıtların onaylanması gerekmektedir).</em></li>
+<li><strong>İkinci Adıma Geçin:</strong></li>
+<li>Ekranın sağ üst barındaki mavi renkli <strong>"İleri"</strong> butonuna basarak 2. Adım olan <em>Fiili Hizmet Hesaplama</em> ekranına ilerleyin.</li>
+</ul>
+</ol>
+<hr />
+<h4>🐾 Adım 2: Fiili Hizmet ve Sağlık (Şua) İzni Gün Hakediş Hesaplaması</h4>
+
+<h4>💡 Amaç (Asıl Amaç: Sağlık / Şua İzni Hakedişi)</h4>
+
+<p>Fiili Hizmet Hesaplama adımının <strong>asıl ve birincil amacı Sağlık (Şua) İzni hakedişini hesaplamaktır</strong>. Onaylı görev dağılımı verilerini işleyerek personellerin iyonlaştırıcı radyasyonlu alanlardaki aylık fiili çalışma saatlerini ve izin düşümlerini analiz eder; bu verilere dayanarak personelin hak kazandığı net <strong>Sağlık (Şua) İzni Gün Sayısını (0-30 Gün)</strong> üretir, dönemi kilitler ve hakediş belgelerini oluşturur.</p>
+
+<h4>🧮 Sağlık (Şua) İzni Hakediş Formülü Spesifikasyonu</h4>
+
+<p>🌴 <strong>Şua İzni Gün Hakediş Formülü (Kıstelyevm Esası):</strong>  
+Yıl sonunda hak edilecek 30 günlük yasal Şua İzni, personelin iyonlaştırıcı radyasyonlu alanda (BT, Röntgen, Skopi, Anjiyo) fiilen çalıştığı gün sayısına göre oranlanır:</p>
+
+<ul>
+<li>📐 <strong>Hesaplama Yöntemi:</strong> <code>(Radyasyonlu Alanda Çalışılan Gün Sayısı ÷ Yıllık Toplam Çalışılan Gün Sayısı) × 30 Gün</code>  </li>
+<li>💡 <strong>Pratik Örnek:</strong> Yıl içinde toplam 200 gün çalışan bir personel, bunun 100 gününü BT/Röntgen alanında geçirmişse <code>(100 ÷ 200) × 30 = 15 Gün</code> Şua İzni kazanır.</li>
+</ul>
+<hr />
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Hesaplama Kaynağını Belirleyin:</strong></li>
+<ul>
+<li>Ekranın üstündeki <strong>Hesaplama Kaynağı</strong> açılır menüsünden veri kaynağını (<em>Hibrit Yöntem</em>, <em>Görev Dağılımı</em> veya <em>Nöbet Çizelgesi</em>) seçin.</li>
+<li><strong>Hakediş Hesaplamasını Başlatın:</strong></li>
+<li><strong>"Fiili Hizmet Hesapla"</strong> butonuna tıklayın. Sistem personellerin aylık fiili günlerini, kullanılan izinlerini, FHZ zammını ve net <strong>ŞUA Gün</strong> değerlerini hesaplayıp tabloda listeleyecektir.</li>
+<li>⚠️ <strong>Resmileşmemiş İzin Emniyet Kilidi (Uyarı Dialogu):</strong> Eğer seçilen dönem içerisinde henüz idari onayı tamamlanmamış <strong>"Ön Onaylı"</strong> izin kaydı bulunuyorsa, sistem hesaplamayı durdurarak ekranınıza ikaz penceresi (<code>fhz_onaysiz_izin_uyari_dialog.ui</code>) çıkarır. <em>"İzinlere Git"</em> butonuna basarak ilgili izinlerin resmi evrak durumunu <em>"Resmi Onaylı"</em> yapabilir, ardından FHZ hesaplamasını güvenle yeniden çalıştırabilirsiniz.</li>
+<li><strong>Hesaplamayı Veritabanına Kaydedin:</strong></li>
+<li><strong>"Kaydet / Güncelle"</strong> butonuna basarak hesaplanan sonuçları sisteme kaydedin.</li>
+<li><strong>Dönemi veya Yılı Kilitleyin:</strong></li>
+<li>Hesaplaması tamamlanan ay için verilerin sonradan değiştirilmesini önlemek amacıyla <strong>"Dönemi Kilitle"</strong> butonuna basın. Yıl sonlarında tüm yıl verilerini dondurmak için <strong>"Yılı Kilitle"</strong> butonunu kullanın.</li>
+<li><strong>Hakediş Raporu Çıktısı Alın:</strong></li>
+<li>Dönem hakediş listesini kurumsal belgelere dönüştürmek için <strong>"Aylık Hakediş PDF"</strong> veya <strong>"Aylık Hakediş Excel"</strong> butonlarına tıklayın.</li>
+<li><strong>Üçüncü Adıma Geçin:</strong></li>
+<li>Sağ üstteki <strong>"İleri"</strong> butonuna basarak 3. Adım olan <em>Puantaj Raporu</em> ekranına geçin.</li>
+</ul>
+</ol>
+<hr />
+<h4>🐾 Adım 3: Puantaj ve Kümülatif Hakediş Raporlama</h4>
+
+<h4>💡 Amaç</h4>
+
+<p>Yıllık veya dönemsel bazda personellerin kümülatif çalışma saatlerini, toplam izin günlerini ve kazanılan kümülatif Şua günlerini tek tabloda raporlamak ve Excel formatında indirmektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Rapor Parametrelerini Seçin:</strong></li>
+<ul>
+<li><code>Rapor Yılı</code> ve <code>Dönem</code> seçimini yapın.</li>
+<li><strong>Raporu Oluşturun:</strong></li>
+<li><strong>"Raporu Oluştur"</strong> butonuna tıklayın.</li>
+<li><strong>Kümülatif Tabloyu İnceleyin:</strong></li>
+<li>Tabloda <em>Kimlik No</em>, <em>Adı Soyadı</em>, <em>Top Gün</em>, <em>Top İzin</em>, <em>Fiili Saat</em>, <em>Kümülatif Saat</em> ve <em>Hak Edilen ŞUA</em> sütunlarını inceleyin.</li>
+<li><strong>Excel İndirin:</strong></li>
+<li>Ekranın üstündeki <strong>"Excel İndir"</strong> butonuna basarak puantaj raporunu bilgisayarınıza indirin.</li>
+</ul>
+</ol>
+<hr />
+<blockquote class="callout">💡 <strong>Sık Karşılaşılan Uyarılar ve Çözüm Adımları:</strong> Detaylı soru ve çözüm rehberi için bkz: <a href="RADPYS_V4_sss.md">RADPYS V4 SSS Dokümanı</a></blockquote>
+<hr />
+<h3>🐾 4.6 Periyodik Sağlık Muayeneleri Takibi ve Periyodik Muayene Takibi</h3>
+
+<h3>💡 İşlemin Amacı ve Ön Koşullar</h3>
+
+<p>Sağlık Muayene Modülü; NDK (Nükleer Düzenleme Kurumu) ve Sağlık Bakanlığı mevzuatı uyarınca iyonlaştırıcı radyasyonla çalışan personellerin işe giriş, periyodik, şua izni öncesi/sonrası ve kontrol sağlık muayenelerini kayıt altına almak, uzmanlık branş onaylarını (Dahiliye, Dermatoloji, Göz) takip etmek ve periyodik muayene son tarihlerini izlemek amacıyla kullanılır.</p>
+
+<blockquote class="callout">⚠️ <strong>NDK ve Sağlık Bakanlığı Periyodik Muayene Zorunluluğu:</strong> Radyasyon görevlileri (Çalışma Koşulu A) mevzuat gereği <strong>yılda en az 1 kez (365 günde bir)</strong> periyodik sağlık taramasından (Kan tahlili, Periferik yayma, Göz katarakt muayenesi, Cildiye taraması) geçmek zorundadır. Geciken veya yaklaşan muayeneler sistemde otomatik renk kodlarıyla uyarılır.</blockquote>
+<hr />
+<h4>🐾 4.6.1 Yeni Sağlık Muayene Kaydı Nasıl Oluşturulur? (2-Adımlı Sihirbaz)</h4>
+
+<h4>💡 Amaç</h4>
+
+<p>Personelin yeni bir sağlık muayene kaydını 2 adımlı sihirbaz üzerinden uzmanlık branş onaylarıyla birlikte sisteme kaydetmek ve taranmış muayene formunu yüklemektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Sağlık Muayene Ekranını Açın:</strong></li>
+<ul>
+<li>Sol dikey menüden <strong>Sağlık Muayene Modülü > Sağlık Muayene Listesi</strong> sekmesine gidin.</li>
+<li><strong>Ekle Butonuna Basın:</strong></li>
+<li>Ekranın üst toolbar'ında yer alan <strong>"Ekle"</strong> butonuna basarak <em>Yeni Sağlık Muayenesi</em> diyalog penceresini açın.</li>
+<li><strong>1. Adım (Temel Muayene Bilgileri ve Personel Seçimi):</strong></li>
+<li><strong>Hizmet Sınıfı Filtresi:</strong> İsteğe bağlı olarak personelin hizmet sınıfını (<em>Radyasyon Görevlisi, Asistan Doktor, Akademik Personel vb.</em>) seçin.</li>
+<li><strong>Personel Seçimi:</strong> <code>TC / Ad ile Ara</code> arama kutusuna personelin adını veya TC Kimlik Numarasını yazarak personeli listeden seçin. Seçilen personelin <em>Departman</em> ve <em>Ünvan</em> bilgisi otomatik ekrana gelecektir.</li>
+<li><strong>Muayene Türü:</strong> Açılır menüden muayene amacını seçin (<em>İşe Giriş Muayenesi, Periyodik Muayene, Şua İzni Öncesi Muayene, Şua İzni Sonrası Muayene, Kontrol Muayenesi</em>).</li>
+<li><strong>Muayene Tarihi:</strong> Muayenenin yapıldığı tarihi takvimden seçin.</li>
+<li><strong>Sonraki Muayene Tarihi:</strong> Sistem muayene türüne göre (örn: <em>Periyodik Muayeneler için 1 yıl sonra</em>) bir sonraki muayene tarihini otomatik hesaplayarak metin kutusuna dolduracaktır.</li>
+<li><strong>İleri</strong> butonuna basarak 2. Adıma geçin.</li>
+<li><strong>2. Adım (Uzmanlık Branş Muayeneleri ve Karar):</strong></li>
+<li><strong>Dahiliye (İç Hastalıkları):</strong> Dahiliye uzmanınca muayene yapılmışsa <strong>"İmzalandı"</strong> onay kutusunu işaretleyin, branş sonucunu (<em>Uygun, Uygun Değil, Koşullu Uygun, Belirsiz</em>) ve muayene tarihini girin.</li>
+<li><strong>Dermatoloji (Cildiye):</strong> Dermatoloji muayenesi için <strong>"İmzalandı"</strong> kutusunu işaretleyin, sonucunu ve muayene tarihini seçin.</li>
+<li><strong>Göz Hastalıkları (Radyasyon Katarakt Riski):</strong> Göz muayenesi için <strong>"İmzalandı"</strong> kutusunu işaretleyin, branş sonucunu ve tarihini belirleyin.</li>
+<li><strong>Tavsiyeler / Notlar:</strong> Hekim tarafından belirtilen kısıtlamaları veya tavsiyeleri (örn: <em>Göz katarakt takibi önerilir, 6 ay sonra kontrol</em>) not alanına yazın.</li>
+<li><strong>Muayene Formu Yükleme:</strong> Islak imzalı taranmış muayene belgesini (PDF veya Görsel) eklemek için <strong>"Seç"</strong> butonuna basarak bilgisayarınızdan dosyayı seçin.</li>
+<li><strong>Kaydı Tamamlayın:</strong></li>
+<li><strong>"Kaydet"</strong> butonuna basarak muayene kaydını tamamlayın. Kayıt anında tabloya eklenecektir.</li>
+</ul>
+</ol>
+<hr />
+<h4>🐾 4.6.2 Muayene Listesinde Filtreleme, Geçmiş Muayeneler ve Durum Takibi</h4>
+
+<h4>💡 Amaç</h4>
+
+<p>Yaklaşan veya süresi geçen muayeneleri takip etmek, personelin geçmiş tüm tahlil/muayene dökümünü incelemek ve rapor belgesini indirmektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Muayene Durumuna Göre Filtreleme:</strong></li>
+<ul>
+<li>Ekranın üstündeki <strong>Muayene Durumu</strong> filtresinden seçim yapın:</li>
+<li><strong>Süresi Geçmiş (Kırmızı Vurgu):</strong> 1 yıllık periyodik muayene süresi dolmuş personeller.</li>
+<li><strong>Yaklaşıyor - 30 Gün (Sarı Vurgu):</strong> Muayene süresinin dolmasına 30 günden az kalan personeller.</li>
+<li><strong>Normal (Yeşil Vurgu):</strong> Muayenesi güncel olan personeller.</li>
+<li><strong>Genel Sonuç ve Muayene Türü Filtreleme:</strong></li>
+<li><strong>Sonuç</strong> filtresinden <em>Uygun</em>, <em>Uygun Değil</em> veya <em>Koşullu Uygun</em> kayıtlarını süzün.</li>
+<li><strong>Muayene Türü</strong> filtresinden sadece <em>Periyodik</em> veya <em>İşe Giriş</em> kayıtlarını süzün.</li>
+<li><strong>Personel Geçmiş Muayene Dökümü (Geçmiş Butonu):</strong></li>
+<li>Listeden ilgili personelin satırını seçin ve <strong>"Geçmiş"</strong> butonuna basarak <strong>Geçmiş Muayeneler Penceresini</strong> açın. Bu ekranda personelin geçmiş yıllarda olduğu tüm muayene türleri, muayene tarihleri, yapıldığı yer, hekim adı, sonuçlar ve notlar kronolojik tabloda görüntülenir.</li>
+<li><strong>Muayene Detayı ve Yüklenen Belgeyi Açma (Detay Butonu):</strong></li>
+<li>Satırı seçip <strong>"Detay"</strong> butonuna bastığınızda personelin muayene kartı ve yüklenen ıslak imzalı muayene formu görüntülenecektir.</li>
+<li><strong>Kayıt Silme (Sil Butonu):</strong></li>
+<li>Hatalı muayene kaydını silmek için satırı seçip <strong>"Sil"</strong> butonuna basın ve onay diyalogunda <em>"Evet"</em> seçeneğine tıklayın.</li>
+</ul>
+</ol>
+<hr />
+<blockquote class="callout">💡 <strong>Sık Karşılaşılan Uyarılar ve Çözüm Adımları:</strong> Detaylı soru ve çözüm rehberi için bkz: <a href="RADPYS_V4_sss.md">RADPYS V4 SSS Dokümanı</a></blockquote>
+
+      <!-- BOTTOM PAGINATION -->
+      <div class="docs-pagination">
+        
+            <a href="03_personel_modulu.html" class="page-card prev">
+              <span class="page-card-sub">← Önceki Konu</span>
+              <span class="page-card-title">3. Personel Modülü ve Özlük</span>
+            </a>
+        
+            <a href="05_dozimetre_ve_risk_analizi.html" class="page-card next">
+              <span class="page-card-sub">Sonraki Konu →</span>
+              <span class="page-card-title">5. Doz Takip ve Yasal Limitler</span>
+            </a>
+      </div>
+    </main>
+  </div>
+
+  <!-- RIGHT ON-THIS-PAGE TOC -->
+  <aside class="sl-right-toc">
+    <div class="toc-title">Bu Sayfada</div>
+    <ul class="toc-nav" id="rightTocNav"></ul>
+  </aside>
+
+</div>
+
+<!-- SEARCH MODAL (Ctrl + K) -->
+<div class="search-modal-backdrop" id="searchModal">
+  <div class="search-modal">
+    <div class="search-input-wrap">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="modalSearchInput" placeholder="Dokümantasyonda ara (başlık, konu veya anahtar kelime)..." autofocus />
+      <kbd class="search-kbd" style="font-size:0.7rem;">ESC</kbd>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="assets/docs.js"></script>
+</body>
+</html>

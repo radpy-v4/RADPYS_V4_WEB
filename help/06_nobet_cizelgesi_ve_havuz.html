@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6. Nöbet Çizelgesi & Değişim Havuzu — RADPYS V4 Kılavuz</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header class="sl-header">
+  <div class="sl-header-left">
+    <button class="mobile-nav-toggle" id="mobileNavToggle" title="Menüyü Aç/Kapat">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <a href="index.html" class="brand-lockup">
+      <div class="brand-icon">R</div>
+      <div class="brand-title">RADPYS V4</div>
+      <span class="brand-badge">v4.1.2.8</span>
+    </a>
+  </div>
+
+  <div class="sl-header-right">
+    <div class="search-trigger" id="searchTrigger">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <span>Dokümantasyonda ara...</span>
+      <kbd class="search-kbd">Ctrl K</kbd>
+    </div>
+
+    <button class="btn-icon" id="themeToggleBtn" title="Temayı Değiştir (Açık / Koyu)">
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- MAIN LAYOUT -->
+<div class="sl-layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sl-sidebar" id="slSidebar">
+    <div style="margin-bottom: 1rem; padding: 0 4px;">
+      <a href="index.html" class="nav-page-link" style="padding-left: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Ana Karşılama Sayfası</span>
+      </a>
+    </div>
+    <nav id="sidebarNav">
+      
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>I. GENEL BİLGİLER VE KURULUM</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="01_kurulum.html" class="nav-page-link ">1. Kurulum ve Güvenlik İzinleri</a>
+                <a href="02_kullanici_ve_roller.html" class="nav-page-link ">2. Kullanıcı Yönetimi, Roller ve Lisans</a>
+              </div>
+            </div>
+            <div class="nav-part open">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>II. OPERASYONEL MODÜLLER</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="03_personel_modulu.html" class="nav-page-link ">3. Personel Modülü ve Özlük</a>
+                <a href="04_izin_ve_fhz_modulu.html" class="nav-page-link ">4. İzin Yönetimi ve Şua İzni</a>
+                <a href="05_dozimetre_ve_risk_analizi.html" class="nav-page-link ">5. Doz Takip ve Yasal Limitler</a>
+                <a href="06_nobet_cizelgesi_ve_havuz.html" class="nav-page-link active">6. Nöbet Çizelgesi & Değişim Havuzu</a>
+                <a href="07_olay_bildirim_ve_dof.html" class="nav-page-link ">7. Olay Bildirimi & DÖF/CAPA</a>
+                <a href="08_ortam_dozu_ve_kroki.html" class="nav-page-link ">8. Ortam Dozu & İnteraktif Kroki</a>
+                <a href="09_hizmet_ici_egitim_ve_lms.html" class="nav-page-link ">9. Hizmet İçi Eğitim & Sınav LMS</a>
+                <a href="10_tibbi_cihaz_ve_qr_portal.html" class="nav-page-link ">10. Tıbbi Cihaz & QR Arıza Portalı</a>
+                <a href="11_rke_ve_kalite_kontrol.html" class="nav-page-link ">11. Koruyucu Ekipman (RKE) & Kalite</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>III. KURUMSAL YÖNETİM VE RAPORLAMA</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="12_onay_ve_denetim_izi.html" class="nav-page-link ">12. Evrensel Onay & Audit Trail</a>
+                <a href="13_raporlar_ve_matbu_evrak.html" class="nav-page-link ">13. Rapor Merkezi & Şablon Marka</a>
+                <a href="14_tanimlamalar_ve_web_portal.html" class="nav-page-link ">14. Tanımlamalar & Web Portalı</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>IV. SİSTEM YÖNETİMİ VE VERİ İŞLEMLERİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="15_sistem_yonetimi_ve_yedekleme.html" class="nav-page-link ">15. Ayarlar, Veritabanı & İçe Aktarma</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>V. DESTEK VE GÜNCELLEME GEÇMİŞİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="16_sss_sorun_giderme.html" class="nav-page-link ">16. Sıkça Sorulan Sorular (SSS)</a>
+                <a href="17_surum_notlari.html" class="nav-page-link ">17. Sürüm Güncelleme Geçmişi</a>
+              </div>
+            </div>
+    </nav>
+  </aside>
+
+  <!-- CENTER CONTENT -->
+  <div class="sl-main-container">
+    <main class="sl-content">
+      <a id="bolum-6"></a>
+
+<h2>6. Nöbet Modülü Yönetimi ve Nöbet Ayarları (Kısıtlar, Kurallar ve Algoritma Parametreleri)</h2>
+
+<h3>💡 İşlemin Amacı ve Ön Koşullar</h3>
+
+<p>Nöbet Modülü; radyoloji ve hastane birimlerinde görev yapan personellerin aylık nöbet çizelgelerinin (vardiyalarının) otomatik ve adil bir şekilde planlanmasını, mevzuat kısıtlarının (gebelik, emzirme, kıdem, yaş, sendika vb.) uygulanmasını, nöbet devir ve mazeret taleplerinin yönetilmesini sağlar.</p>
+
+<p>Nöbet planlama safhasında hata yapılmaması ve otomatik dağıtım motorunun doğru çalışabilmesi için <strong>Nöbet Ayarlarının</strong> eksiksiz ve doğru yapılandırılması gerekmektedir.</p>
+
+<blockquote class="callout">ℹ️ <strong>Nöbet Kısıt Hiyerarşisi ve Öncelik Mimarisi:</strong> RADPYS V4 otomatik nöbet dağıtım motoru (Scheduler), nöbet atamalarını gerçekleştirirken kuralları kesin bir öncelik hiyerarşisine göre denetler. (Ayrıntılı görsel editoryal şema için bkz: <a href="../diagrams/nobet_kisit_hiyerarsisi.html">Nöbet Kısıt Hiyerarşisi Şeması (HTML)</a>)</blockquote>
+
+<table><thead><tr><th>Öncelik Katmanı</th><th>Öncelik Seviyesi</th><th>Kural Kapsamı ve Detayları</th></tr></thead><tbody><tr><td>🚨 <strong>1. ÖNCELİK</strong></td></tr></tbody></table> <strong>Mutlak Yasal Mevzuat & Sağlık</strong> | Gebelik, Emzirme, Yaş/Kıdem Muafiyetleri, Gece Nöbeti Yasal Sınırları <em>(Asla İhlal Edilemez)</em> |
+| 🏥 <strong>2. ÖNCELİK</strong> | <strong>Birim Kuralları & Kapasite</strong> | Asgari / Azami Nöbetçi Sayısı, Departman Hizmet Kesintisizliği Eşikleri |
+| 🔄 <strong>3. ÖNCELİK</strong> | <strong>Vardiya & Rotasyon Kısıtları</strong> | Dinlenme Süreleri, Üst Üste Gece Vardiyası Engeli, Hizmet Sınıfı Kısıtları |
+| 📝 <strong>4. ÖNCELİK</strong> | <strong>Personel Mazeret & Devir</strong> | Yasal İzinler, Önceden Onaylanmış Nöbet Devir Talepleri, Mazeret İstekleri |
+| ⚖️ <strong>5. ÖNCELİK</strong> | <strong>Temel Ayarlar & Adalet Algoritması</strong> | Hafta Sonu / Bayram Adalet Dengesi Katsayıları, Geçmiş Nöbet Puanı Dengesi |
+<hr />
+<h3>🐾 6.1 Temel Nöbet Parametreleri</h3>
+
+<p>Bu ekrandan sistem genelindeki yaş/kıdem muafiyetleri, adalet dengeleme katsayıları, tavan fazla mesai limitleri ve planlama kuralları yapılandırılır.</p>
+
+<h4>📦 Otomatik Hazır Gelen (Seed) Yasal Kurallar</h4>
+
+<p>Sistem ilk kurulduğunda aşağıdaki tüm yasal kurallar veritabanında hazır yüklenir:</p>
+
+<ol>
+<li>⏱️ <strong>Haftalık Standart Memur Mesaisi (Saat):</strong> <em>(Varsayılan: 40.0 Saat - 657 S.K.)</em></li>
+<li>☢️ <strong>Haftalık Radyasyonlu Alan Mesaisi (Saat):</strong> <em>(Varsayılan: 35.0 Saat - Radyoloji)</em></li>
+<li>🤱 <strong>Emzirme İzni (İlk 6 Ay - Günlük):</strong> <em>(Varsayılan: 3.0 Saat)</em></li>
+<li>🤱 <strong>Emzirme İzni (İkinci 6 Ay - Günlük):</strong> <em>(Varsayılan: 1.5 Saat)</em></li>
+<li>🤰 <strong>Gebelik Muafiyeti (Günlük):</strong> <em>(Varsayılan: 0.0 Saat / Gece Muafiyeti %100)</em></li>
+<li>🏛️ <strong>Sendika İzni (Memur - Haftalık):</strong> <em>(Varsayılan: 4.0 Saat)</em></li>
+<li>🛠️ <strong>Sendika İzni (İşçi/Destek - Haftalık):</strong> <em>(Varsayılan: 2.0 Saat)</em></li>
+</ol>
+
+<h4>🛡️ Kurumsal Genel Kısıtların Silinmeye Karşı Korunması</h4>
+
+<ul>
+<li>🔒 <strong>Kurumsal Genel Kısıtlar (Tüm Sınıf / Tüm Birim):</strong> Hizmet sınıfı ve birim alanı boş olan kurumsal temel yasal kısıtlar <strong>SİLİNEMEZ</strong>. Yanlışlıkla silinip mevzuat boşluğu oluşması engellenir. Kullanıcı bu kuralların değerini güncelleyebilir veya pasife alabilir.</li>
+<li>🗑️ <strong>Birim veya Hizmet Sınıfı Özel Kısıtları:</strong> Kullanıcının belirli birimler (örn: <em>Radyoloji</em>) veya kadrolar için eklediği özel kısıtlar <strong>SERBESTÇE SİLİNEBİLİR</strong>.</li>
+</ul>
+
+<h4>🛠️ Sert (Hard) vs. Yumuşak (Soft) Kısıt Mimarisi</h4>
+
+<ul>
+<li>⛔ <strong>Sert Kısıtlar (Hard Constraints):</strong> Algoritmanın <strong>ASLA ihlal edemeyeceği</strong> mutlak kurallardır. Bir sert kısıt ihlal edilecekse algoritma o personele nöbet yazmaz. <em>(Örn: Gebelik muafiyeti, Nöbet ertesi 24s zorunlu dinlenme süresi)</em>.</li>
+<li>⚖️ <strong>Yumuşak Kısıtlar (Soft Constraints):</strong> Algoritmanın adaletli dağıtım yapmak için hedeflediği, ancak çaresiz kaldığında esnetebildiği esnek kurallardır. <em>(Örn: Hafta sonu nöbet adalet dengesi, Bayram nöbet eşitliği)</em>.</li>
+</ul>
+
+<h4>📋 Algoritma Kural Tipleri ("Kural Tipi" Açılır Listesi)</h4>
+
+<ul>
+<li><strong>Aylık Maksimum Nöbet:</strong> Bir personelin ayda alabileceği maksimum nöbet sayısı.</li>
+<li><strong>Üst Üste Nöbet Sınırı:</strong> Peş peşe günlerde tutulabilecek maksimum nöbet sınırı.</li>
+<li><strong>Nöbet Ertesi Dinlenme:</strong> Nöbet bittikten sonraki zorunlu dinlenme saati <em>(Varsayılan: 24.0 saat)</em>.</li>
+<li><strong>Hafta Sonu Limit:</strong> Ayda tutulabilecek maksimum cumartesi/pazar nöbet sayısı.</li>
+<li><strong>Bayram Limit:</strong> Resmi ve dini bayram günlerinde tutulabilecek maksimum nöbet sayısı.</li>
+</ul>
+<hr />
+<blockquote class="callout">💡 <strong>Sık Karşılaşılan Uyarılar ve Çözüm Adımları:</strong> Detaylı soru ve çözüm rehberi için bkz: <a href="RADPYS_V4_sss.md">RADPYS V4 SSS Dokümanı</a></blockquote>
+<hr />
+<h3>🐾 6.2 Nöbet Planlama ve Otomatik Çizelge Oluşturma Sihirbazı</h3>
+
+<p>Aylık nöbet ayarları ve kısıtlar yapılandırıldıktan sonra, aylık nöbet planını oluşturma işlemine geçilir.</p>
+
+<h4>1. Yeni Nöbet Planı Açma</h4>
+
+<ol>
+<li><strong>Nöbet Planları Ekranını Açın:</strong> Sol menüden <strong>Nöbet Modülü > Nöbet Plan Listesi</strong> sekmesine gidin.</li>
+<li><strong>"Yeni Plan"</strong> butonuna basarak diyalog penceresini açın.</li>
+<li><strong>Zorunlu Alanları Doldurun:</strong></li>
+<ul>
+<li><strong>Plan Adı:</strong> Anlaşılır bir isim verin (örn: <em>Haziran 2026 Radyoloji Tekniker Nöbet Planı</em>).</li>
+<li><strong>Yıl & Ay:</strong> Planın ait olduğu yılı ve ayı seçin.</li>
+<li><strong>Birim & Hizmet Sınıfı:</strong> Nöbet yazılacak birimi ve hizmet kadrosunu seçin.</li>
+<li>⚠️ <strong>Tekil Kombinasyon Kuralı:</strong> Sistem aynı Yıl + Ay + Birim + Hizmet Sınıfı kombinasyonunda 2 aktif plan oluşturulmasına izin vermez.</li>
+<li><strong>"Kaydet"</strong> butonuna basarak plan taslağını oluşturun.</li>
+</ul>
+</ol>
+
+<h4>2. 3-Adımlı Otomatik Nöbet Dağıtım Sihirbazı</h4>
+
+<p>Plan listeden seçilip <strong>"Planı Aç"</strong> veya <strong>"Otomatik Oluştur"</strong> butonuna basıldığında 3 adımlı dağıtım sihirbazı devreye girer:</p>
+
+<ul>
+<li><strong>1. Adım: Ön Kontrol ve Personel Hedef Saat Hesaplama (Temel Ayarlar)</strong>:</li>
+<li>Sistem ilgili ayın resmi tatil ve bayramlarını tarayarak net <strong>Fiili Çalışma Gün Sayısını</strong> ve personelin tutması gereken <strong>Aylık Hedef Çalışma Saatini</strong> (İş Günü x 7.0 Saat - İzinler) otomatik hesaplar ekrana basar.</li>
+<li>Birimde personel yetersizliği varsa <strong>"Çapraz Görevlendirme"</strong> butonuna basarak diğer birimlerden geçici nöbetçi personel çekebilirsiniz.</li>
+<li><strong>2. Adım: Otomatik Dağıtım Motorunun Çalıştırılması (Önizleme & Dağıtım)</strong>:</li>
+<li><strong>"Otomatik Dağıtımı Başlat"</strong> butonuna basıldığında Scheduler (Solver) motoru arka planda çalışır.</li>
+<li>Tüm Sert Kısıtlar (Süt izni, gebelik, 24s dinlenme vb.) %100 sıfır hatayla denetlenir.</li>
+<li>Yumuşak kısıtlarda adalet puan optimizasyonu yapılarak en dengeli vardiya matrisi oluşturulur.</li>
+<li><strong>3. Adım: Nöbet Çizelgesi Önizleme ve Taslağı Kaydetme (Plan Oluştur)</strong>:</li>
+<li>Oluşturulan aylık nöbet matrisi önizleme tablosunda gösterilir.</li>
+<li>Birim sorumlusu gerekirse hücrelere çift tıklayarak manuel nöbet değişikliği yapabilir.</li>
+<li><strong>"Taslağı Kaydet"</strong> butonuna basılarak çizelge veritabanına kaydedilir.</li>
+</ul>
+
+<h4>3. Nöbet Çizelgesi Detay Ekranı ve İşlemleri</h4>
+
+<p>Plan oluştuktan sonra çizelge kartı açılır:</p>
+
+<ul>
+<li><strong>Manuel Nöbet Ekleme / Düzenleme:</strong> Satır ve gün hücresine tıklayarak <strong>"Yeni Kayıt"</strong> veya <strong>"Kaydı Düzenle"</strong> butonları ile manuel vardiya yazabilirsiniz.</li>
+<li><strong>Nöbet Devir Talebi:</strong> Bir personel nöbetini değiştirmek istediğinde ilgili nöbet hücresi seçilip <strong>"Devir Talebi"</strong> butonuna basılır ve devredilecek personel seçilir.</li>
+<li><strong>Plan Onay ve Yayınlama Akışı:</strong></li>
+<li><strong>Taslak:</strong> Üzerinde çalışılan, personellere henüz ilan edilmemiş plan.</li>
+<li><strong>"Planı Onayla":</strong> Plan onaylandığında <em>Yayınlandı</em> statüsüne geçer ve personellerin mobil/web ekranlarında ilan edilir.</li>
+</ul>
+
+<ul>
+<li><strong>"Taslağa Dön":</strong> Yayınlanmış planda revizyon gerektiğinde yetkili kullanıcı planı tekrar taslağa çekebilir.</li>
+<li><strong>"Arşivle":</strong> Dönemi biten planlar arşive kaldırılır.</li>
+</ul>
+
+<h4>4. Otomatik Dağıtım Motorunun Boş Bıraktığı (Atanamayan) Slotların Doldurulması ve İkame Yönetimi</h4>
+
+<div class="mermaid">
+graph TD
+    A["🤖 Otomatik Nöbet Dağıtım Motoru (Solver)"] --> B{"Matematiksel Kısıt Çakışması Var mı?"}
+    B -- "Hayır (Başarılı)" --> C["🟢 Tam Kadro Nöbet Çizelgesi Üretildi"]
+    B -- "Evet (Kadro Yetersiz)" --> D["🔴 Boş Slot Uyarısı (Unassigned Shift)"]
+    D --> E1["1. Çapraz Görevlendirme (Geçici Personel Çek)"]
+    D --> E2["2. Kısıt Sertliğini / Mesai Limitlerini Esnet"]
+    D --> E3["3. Hücreye Çift Tıkla Manuel Amir Ataması Yap"]
+    D --> E4["4. Acil Mazeret ve İkame Diyalogunu Kullan"]
+    E1 --> C
+    E2 --> C
+    E3 --> C
+    E4 --> C
+</div>
+
+<p>Otomatik nöbet dağıtım motoru (Scheduler / Solver) çalıştırıldığında; birimdeki personel sayısının yetersiz olması, personellerin yasal muafiyetleri (gebelik, emzirme, 25 yıl kıdem), 24 saatlik nöbet ertesi zorunlu dinlenme kuralı veya yıllık izin/mazeret çakışmaları nedeniyle <strong>matematiksel olarak hiçbir personelin atanamadığı boş slotlar (unassigned shift slots)</strong> oluşabilir.</p>
+
+<p>Sistem bu boş kalan vardiya hücrelerini nöbet tablosunda 🔴 <strong>"Kadro Yetersiz / Boş Slot"</strong> uyarısıyla belirginleştirir. Bu boş slotları doldurmak için RADPYS V4 üzerinde 4 farklı çözüm ve ikame mekanizması sunulmaktadır:</p>
+
+<ol>
+<li>🔄 <strong>Çapraz Görevlendirme İle Komşu Birimlerden Geçici Personel Çekme:</strong></li>
+<ul>
+<li>Otomatik Dağıtım Sihirbazı 1. Adımında veya Nöbet Çizelgesi ekranında <strong>"Çapraz Görevlendirme"</strong> butonuna basın.</li>
+<li><strong>Birim Filtresi</strong> açılır menüsünden kurumdaki diğer uyumlu birimleri (örn: <em>MR, Poliklinik Röntgen, Mammografi, Anjiyografi, Nükleer Tıp</em>) seçin.</li>
+<li>Açılan listeden nöbet desteği verebilecek personelleri işaretleyip <strong>"Kaydet"</strong> butonuna basarak bu plana geçici nöbetçi kadrosu olarak dahil edin.</li>
+<li>Dağıtım motorunu tekrar çalıştırdığınızda (<strong>"Otomatik Dağıtımı Başlat"</strong>), motor bu geçici personelleri boş slotlara adil şekilde atayacaktır.</li>
+</ul>
+</ol>
+
+<ol>
+<li>⚖️ <strong>Kısıt Sertlik Derecelerini veya Mesai Limitlerini Geçici Esnetme:</strong></li>
+<ul>
+<li>Eğer boş slotlar fazla mesai tavanından kaynaklanıyorsa, <strong>Nöbet Ayarları > Temel Ayarlar</strong> ekranından <em>Maksimum Fazla Mesai Süresi</em> limitini (örn: 60 saatten 80 saate) veya <em>Ayda Max Hafta Sonu Nöbeti</em> yumuşak kısıtını geçici olarak esnetin.</li>
+<li><strong>Nöbet Ayarları > Yasal Kısıtlar</strong> ekranında ilgili kuralın kural tipini <em>Sert (Hard)</em> yerine <em>Yumuşak (Soft)</em> kısıta çevirin.</li>
+<li>Dağıtım motorunu yeniden çalıştırarak boş slotların otomatik dolmasını sağlayın.</li>
+</ul>
+</ol>
+
+<ol>
+<li>✍️ <strong>Hücre Bazlı Manuel Nöbet Atama / Düzenleme:</strong></li>
+<ul>
+<li>Nöbet çizelgesi ekranında boş kalan kırmızı hücreye çift tıklayın veya <strong>"Yeni Kayıt"</strong> / <strong>"Kaydı Düzenle"</strong> butonlarına basın.</li>
+<li>Açılan diyalogdan nöbetçi personeli manuel seçin. Sistem yasal kısıt aşımı varsa (örn: 24s dinlenme ihlali) uyarı basar; ancak amir/yönetici yetkisiyle atamaya onay vererek boş slotu manuel tamamlayabilirsiniz.</li>
+</ul>
+</ol>
+
+<ol>
+<li>🚨 <strong>Acil Mazeret ve İkame Yönetimi:</strong></li>
+<ul>
+<li>Nöbet planı yayınlandıktan sonra aniden gelişen sağlık raporu, mazeret veya acil izin nedeniyle boşalan slotlar için <strong>"Acil Mazeret & İkame"</strong> diyalogunu açın.</li>
+<li>Mazeretli personeli ve mazeret türünü seçin. Sistem personelin üzerindeki nöbetleri otomatik boşa çıkarır ve yerine ikame nöbetçi atamanız için öneri listesi sunar.</li>
+</ul>
+</ol>
+
+<ol>
+<li>⚡ <strong>Akıllı İkame Öneri Motoru İle Sağ Tık Hızlı Atama:</strong></li>
+<ul>
+<li>Nöbet Çizelgesi tablosundaki boş veya değiştirilmek istenen herhangi bir slota <strong>sağ tıklayın</strong>.</li>
+<li>Menüden <strong>"⚡ Akıllı İkame Ata (Önerilenler)"</strong> alt başlığını açın.</li>
+<li>Sistem yasal izinli, raporlu, çakışan nöbetli veya dinlenme kuralına takılanları eler; aylık hedef çalışma saati açığına ve hafta sonu dengesine göre en yüksek skora sahip ilk 3 personeli (örn: <em>Ahmet Kaya %95</em>) gerekçeleriyle listeler.</li>
+<li>Adaya tıklandığında personel tek tıkla slota atanır ve aylık yük saatleri anında güncellenir.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 6.3 Radyoloji Nöbet, Çalışma Saati ve Yasal Şua İzni Hesaplama Kuralları</h3>
+
+<blockquote class="callout">ℹ️ <strong>Önemli Not:</strong> RADPYS V4 bir maaş/bordro ödeme yazılımı <strong>değildir</strong>. Sistem parasal ücret hesaplamaz; Sağlık Bakanlığı ve NDK mevzuatına uygun olarak personelin <strong>aylık çalışma saatlerini, hedef mesai süresini, nöbet saat yükünü, fazla mesai saatlerini ve yasal Şua izni gün hakedişini</strong> takip eder.</blockquote>
+<hr />
+<h4>📊 1. Temel Çalışma Süreleri ve Birim Saat Katsayıları</h4>
+
+<ul>
+<li>☢️ <strong>Radyasyonlu Alan Çalışma Süresi (BT, Röntgen, Skopi, Anjiyo):</strong> Haftalık <strong>35 saat</strong> <em>(günlük 7 saat)</em> esas alınır.</li>
+<li>⏱️ <strong>Standart Memur Çalışma Süresi (MR, USG, Poliklinik):</strong> Haftalık <strong>40 saat</strong> <em>(günlük 8 saat)</em> esas alınır.</li>
+<li>🔄 <strong>Karma Birim Çalışması Dönüşüm Oranı:</strong> Personel ay içinde hem radyasyonlu (BT/Röntgen) hem normal alanda çalıştığında, BT/Röntgen saatleri standart mesaiye oranlanırken <strong>1,285 katı</strong> (35 saatlik esas) ile dönüştürülür.</li>
+<li>🏥 <strong>Riskli/Özellikli Birim Nöbet Yükü:</strong> Riskli birimlerde (Acil, Yoğun Bakım, Ameliyathane) tutulan nöbetler nöbet dengesi ve çizelgede Özellikli Birim Nöbet Saati olarak takip edilir.</li>
+<li>🌙 <strong>Gece Vardiyası (20:00 - 08:00):</strong> Gece saatlerinde tutulan nöbetler gece vardiyası kategorisinde adil nöbet dağılım puanına dahil edilir.</li>
+</ul>
+<hr />
+<h4>🛡️ 2. Nöbet ve Vardiya Engelleme Kuralları</h4>
+
+<ul>
+<li>🤰 <strong>Hamile Personel Koruması:</strong> Hamileliği belgelenen personel iyonlaştırıcı radyasyonlu birimlerde (BT, Röntgen vb.) görevlendirilemez ve gece vardiyasında (20:00 - 08:00) <strong>çalıştırılamaz</strong> <em>(Sistem otomatik engeller)</em>.</li>
+<li>🤱 <strong>Süt İzni ve Emzirme Koruması:</strong> Yasal süt izni kullanan kadın personel süt izni dönemi boyunca radyasyonlu alanlarda ve gece nöbetinde <strong>çalıştırılamaz</strong> <em>(Sistem otomatik engeller)</em>.</li>
+<li>👨‍⚕️ <strong>Asistan Doktor Nöbet Sınırı:</strong> Asistan doktorlara peş peşe veya 3 günde bir nöbet yazılamaz; iki nöbet arasında <strong>en az 2 tam gün</strong> dinlenme verilir.</li>
+<li>🎖️ <strong>25 Yıl Kıdem Muafiyeti:</strong> Meslekte 25 yılını dolduran personellere sistem otomatik gece nöbeti yazmaz; nöbet yazılması için amir onayı gerekir.</li>
+</ul>
+<hr />
+<h4>🧮 3. Hedef Çalışma Saati ve Fazla Mesai Saati Nasıl Hesaplanır?</h4>
+
+<p>Personelin aylık mesaisi gün bazlı değil, <strong>Vardiyadaki Aktif Çalışma Saatleri</strong> üzerinden hesaplanır:</p>
+
+<ol>
+<li><strong>Net Fiili İş Günü:</strong> Ayın toplam gün sayısından hafta sonları (Cumartesi/Pazar), resmi tatiller ve personelin iş gününe denk gelen izinleri düşülerek net çalışma gün sayısı bulunur.</li>
+<li><strong>Aylık Hedef Çalışma Saati:</strong>  </li>
+   <code>(Net İş Günü × Günlük Standart Mesai Saati) - Yasal İzin İndirimleri - Önceki Aydan Devreden Borç/Alacak</code>  
+   <em>(Günlük Standart Mesai: Radyasyon görevlileri için 7,0 saat, normal memurlar için 8,0 saattir. Süt izni, gebelik indirimi ve sendika izinleri doğrudan hedef saatten düşülür).</em>
+<li><strong>Fazla Mesai Saati Tespiti:</strong>  </li>
+   Personelin ay içinde fiilen tuttuğu nöbet saatleri toplamı, hesaplanan aylık hedef çalışma saatinden fazla ise aradaki saat farkı personelin <strong>Fazla Mesai Çalışma Saati</strong> olarak kaydedilir.
+</ol>
+<hr />
+<h4>🌴 4. Yıllık Şua (Sağlık) İzni Gün Hakedişi Nasıl Hesaplanır?</h4>
+
+<blockquote class="callout">🎯 <strong>Modül Ayırımı ve Asıl Amaç:</strong> Şua izinleri Nöbet Modülünden bağımsız olarak <strong>Fiili Hizmet Modülü</strong> üzerinden hesaplanır ve takip edilir. Fiili Hizmet Modülünün ve fiili hizmet hesaplama algoritmalarının <strong>asıl ve birincil amacı Sağlık (Şua) İzni hesaplamasıdır</strong>.</blockquote>
+
+<p>Radyasyon görevlilerinin yıl sonunda hak edeceği 30 günlük yasal Sağlık (Şua) İzni, <strong>Fiili Hizmet Modülü</strong> tarafından yıl içinde radyasyonlu birimlerde (BT, Röntgen, Skopi, Anjiyo) fiilen çalışılan gün sayısının yıllık toplam çalışılan gün sayısına oranlanmasıyla (Kıstelyevm esası) otomatik hesaplanır:</p>
+
+<ul>
+<li>📐 <strong>Hesaplama Yöntemi:</strong>  </li>
+  <code>(Radyasyonlu Birimde Çalışılan Gün Sayısı ÷ Yıllık Toplam Çalışılan Gün Sayısı) × 30 Gün</code>
+<li>💡 <strong>Pratik Örnek:</strong> Yıl içinde toplam 220 gün çalışan bir personel, bu sürenin 110 gününü BT/Röntgen biriminde geçirmişse:  </li>
+  <code>(110 ÷ 220) × 30 = 15 Gün</code> Şua İzni hak kazanır.
+</ul>
+<hr />
+<h4>🖥️ 5. Arayüzde Hesaplanan Değerlerin Takibi ve Ekran Karşılıkları</h4>
+
+<p>Hesaplanan tüm hedef çalışma saatleri, nöbet yükleri ve Şua izinleri kullanıcı arayüzünde ilgili modül ekranlarından takip edilir:</p>
+
+<ol>
+<li>📊 <strong>Nöbet Çizelge Detay & İnceleme Ekranı (<code>Nöbet Modülü > Nöbet Plan Listesi > Planı Aç / İncele</code>):</strong></li>
+<ul>
+<li>Çizelgenin altında yer alan <strong>Özet İstatistik Tablosunda</strong> her personel için anlık olarak:</li>
+<li>🟢 <strong><code>Hedef Süre (Saat)</code>:</strong> Hesaplanan net aylık hedef mesai saati.</li>
+<li>🔵 <strong><code>Fiili Çalışma (Saat)</code>:</strong> Ay içinde fiilen yazılan nöbetlerin saat toplamı.</li>
+<li>🟡 <strong><code>Fazla Mesai (Saat)</code>:</strong> Hedef saati aşan net fazla mesai saat yükü.</li>
+<li>📈 <strong><code>Nöbet Sayısı</code>:</strong> Personelin ayda tuttuğu vardiya adedi.</li>
+</ul>
+</ol>
+
+<ol>
+<li>🧙‍♂️ <strong>Otomatik Dağıtım Sihirbazı (<code>Nöbet Modülü > Otomatik Dağıt</code>):</strong></li>
+<ul>
+<li><strong>1. Adım (Temel Ayarlar & Ön Kontrol):</strong> Ayın tatil ve izinleri düşülerek personelin <strong>Aylık Hedef Çalışma Saati</strong> kartı gösterilir.</li>
+</ul>
+</ol>
+
+<ol>
+<li>⚖️ <strong>Borç & Alacak Mutabakat Ekranı (<code>Nöbet Modülü > Borç & Alacak Yönetimi</code>):</strong></li>
+<ul>
+<li>Geçmiş aylardan devreden saat borç ve alacakları <strong><code>Hedef Süre (Saat)</code></strong>, <strong><code>Fiili Çalışma (Saat)</code></strong> ve <strong><code>Fark / Devreden Mesai (Saat)</code></strong> sütunlarından takip edilir ve bir sonraki aya devredilir.</li>
+</ul>
+</ol>
+
+<ol>
+<li>☢️ <strong>Şua ve Fiili Hizmet Takip Ekranı (<code>Fiili Hizmet Modülü > Fiili Hizmet ve Şua Hakediş</code>):</strong></li>
+<ul>
+<li>Personelin radyasyonlu alanda (BT/Röntgen) çalıştığı gün oranıyla hesaplanan <strong><code>Şua İzni Hakediş Gün Sayısı (0-30 Gün)</code></strong> sütununda ve yıllık döküm tablosunda takip edilir.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 6.4 RADPYS V4 Web Portalı Nöbet ve Vardiya Ekranları (Çoklu Kullanıcı ve Mobil Erişim)</h3>
+
+<h4>💡 Amaç</h4>
+
+Kurumdaki tüm çalışanların (tekniker, fizikçi, uzman vb.) masaüstü uygulamasına ihtiyaç duymadan, web tarayıcısı veya mobil cihazlar üzerinden aylık birim nöbet çizelgelerini görüntülemesi, kişisel vardiyalarını takip etmesi, nöbet devir/takas talebi oluşturması ve onay süreçlerini yürütmesidir.
+<hr />
+<h4>🌐 Web Portalı Nöbet Ekranlarının Detaylı İşlevleri</h4>
+
+<p>##### 1. 🗓️ Birim Aylık Nöbet Çizelgesi ve Vardiya Takvimi Ekranı</p>
+
+<ul>
+<li><strong>Aylık Takvim Matrisi (Çizelge Sekmesi):</strong> Birimdeki tüm personellerin ilgili ay boyunca tutacağı vardiyaları (<em>Gündüz Vardiyası, Akşam Vardiyası, Gece Vardiyası, 24 Saatlik Nöbet, Acil Çağrı Nöbeti</em>) renk kodlarıyla takvim üzerinde gösterir.</li>
+<li><strong>Sadece Benim Nöbetlerim Filtresi:</strong> Personel tek bir tıkla yalnızca kendisine ait vardiyaları süzerek kişisel çalışma takvimini görüntüleyebilir.</li>
+<li><strong>Birim Özet ve Mesai İstatistikleri (Mesai Hesabı Sekmesi):</strong> İlgili birim çalışanlarının anlık <em>Aylık Hedef Çalışma Saati</em>, <em>Fiili Tutulan Nöbet Saati</em>, <em>Net Fazla Mesai Saati</em> ve <em>Toplam Nöbet Sayısı</em> kartlarını özet halinde sunar.</li>
+<li><strong>Birim İzin ve Mazeret Haritası (İzinler Sekmesi):</strong> Ay içinde birimde kimlerin yıllık izin, Şua izni veya mazeretli olduğunu takvim matrisi üstünde göstererek nöbet planlamasını şeffaflaştırır.</li>
+</ul>
+
+<p>##### 2. 🌟 Nöbet Değişim Havuzu (Marketplace) ve 36 Saat Güvenlik Kısıtları</p>
+
+<blockquote class="callout"><strong>Amaç:</strong> Personeller arasındaki birebir telefon trafiğini ve WhatsApp anlaşma pazarlıklarını sıfırlayarak nöbet devir ve takas süreçlerini adil, şeffaf ve anlık kural denetimli bir pazar yerine dönüştürmektir.</blockquote>
+
+<div class="mermaid">
+flowchart TD
+    A[Personel Nöbetini Havuza Bırakır<br/>(Aylık Max 48 Sa Sınırı)] --> B[Tüm Birim Personeline Anlık Bildirim]
+    B --> C[Nöbet Değişim Havuzu Panosu]
+    C --> D{Personel Havuzu İnceler}
+    D -->|Kısıtı Olan| D1[🚩 Kısıt Rozeti: Buton Pasif]
+    D -->|Kısıtı Olmayan| D2[🟢 Uygun: Tek Tıkla Talip Olur<br/>(İlk Gelen Alır / Kilitlenir)]
+    D2 --> E{İlan Sahibi Değerlendirir}
+    E -->|Kabul Etti| F[Birim Sorumlusu Onay Kuyruğu]
+    E -->|Reddetti| E1[İlan 36h Dolana Kadar Havuzda Kalır]
+    F -->|Onaylandı| G[✅ Nöbet Çizelgesi Otomatik Revize Olur]
+    C -->|Nöbete 48h Kala| H[ℹ️ Erken Uyarı: Son 12 Saat]
+    C -->|Nöbete 36h Kala & Talip Yok| I[⏱️ Otomatik Zaman Aşımı & İptal]
+    I --> J[Nöbet Asıl Sahibinde Kesinleşir]
+    J --> K[🚨 Acil Mazeret Bildir -> RADPYS Hazır Resen Atama Motoru]
+</div>
+
+<ul>
+<li><strong>📱 Telefon Trafiği Olmadan Havuz İlanı Verme:</strong></li>
+<li>Personel nöbetini havuza bırakırken <strong>"Karşılıklı Takas"</strong> veya <strong>"Açık Devir"</strong> opsiyonunu seçer. İstenirse karşılık istenen tarih aralığı (örn: <em>18–25 Ekim arası</em>) belirtilebilir.</li>
+<li>İlan açıldığı anda birimdeki tüm teknisyen/personellere otomatik sistem bildirimi iletilir.</li>
+<li><strong>🚩 Kişiye Özel Canlı Kısıt Rozetleri (Smart Flagging):</strong></li>
+<li>Havuz panosunu açan her personel, kart üzerinde kendi takvimine göre anlık rozet görür:</li>
+<li>🟢 <strong>Uygun (Talip Ol):</strong> Kısıt yok, tek tıkla talip olunabilir.</li>
+<li>🔴 <strong>Kısıt Rozeti:</strong> Neden talip olunamadığını gösterir (<em>“🚩 24 Saat Dinlenme Kuralı”</em>, <em>“🚩 Aynı Gün Nöbetiniz Var”</em>, <em>“🚩 İzinlisiniz”</em>). Buton otomatik pasifleşir.</li>
+<li><strong>⚡ İlk Gelen Alır (First-Come) & Teklif Reddi:</strong></li>
+<li>Kısıtı uyan ilk personelin teklifi kilitlenir. İlan sahibi teklifi reddederse ilan 36 saatlik süre dolana kadar yeni tekliflere açık kalmaya devam eder.</li>
+<li><strong>⏱️ 36 Saat TTL (Zaman Aşımı) & 48 Saat Erken Uyarı:</strong></li>
+<li><strong>48 Saat Kala:</strong> Personele <em>"Henüz talip çıkmadı, son 12 saat"</em> hatırlatması gönderilir.</li>
+<li><strong>36 Saat Kala:</strong> Eşleşmeyen ilanlar <strong>otomatik iptal edilir</strong>, nöbet asıl personelde kesinleşir (<em>"Nöbet sorumluluğu sizdedir"</em>).</li>
+<li><strong>🚨 Acil Mazeret & RADPYS Hazır Atama Motoru Entegrasyonu:</strong></li>
+<li>Zaman aşımına uğrayan nöbette personel sağlık/acil rapor nedeniyle gelemeyecekse, <em>"🚨 Acil Mazeret Bildir"</em> butonuna basarak doğrudan Birim Sorumlusuna iletir ve RADPYS'in hazır atama motoruyla yedek personel atanır.</li>
+<li><strong>⚖️ Yasal Fiili Çalışma Güvencesi & 48 Saat/Ay Kotası:</strong></li>
+<li>Bir personel ayda en fazla toplam <strong>48 saatlik</strong> nöbetini havuza bırakabilir.</li>
+<li><strong>Açık Devirde:</strong> Sadece hak edilmiş fazla mesaisi olanlar karşılıksız devir yapabilir; yasal taban çalışma süresini düşürecek açık devirler engellenerek takasa yönlendirilir.</li>
+</ul>
+
+<p>##### 3. 🔄 Birebir Nöbet Devir & Takas Formu Ekranı (Geleneksel P2P)</p>
+
+<ul>
+<li><strong>Birebir Doğrudan Devir:</strong> Önceden kendi aralarında anlaşmış iki personel için doğrudan kişiye özel devir ve takas formu olarak çalışmaya devam eder.</li>
+<li><strong>Talep Bilgileri:</strong> Devredilecek nöbet tarihi, vardiya türü, nöbeti devralacak hedef personel ve devir mazeret gerekçesi seçilerek onay işlemine gönderilir.</li>
+</ul>
+
+<p>##### 4. 🔔 2 Aşamalı Nöbet Devir Onay Paneli Ekranı</p>
+
+<div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor PersonelA as Devreden Personel (A)
+    actor PersonelB as Devralan Personel (B)
+    actor Admin as Birim Yöneticisi / Admin
+    
+    PersonelA->>PersonelB: 1. Nöbet Devir Talebi Oluşturur (Web / Masaüstü)
+    Note over PersonelB: 2. Bildirim Paneline Kart Düşer
+    alt Devralan Kabul Eder
+        PersonelB->>Admin: 3. Devralan Ön-Onay Verir (Kabul Et)
+        Note over Admin: 4. Onay Bekleyen Görevler Paneline Düşer
+        alt Yönetici Onaylar
+            Admin->>PersonelA: 5. Yönetici Nihai Onayı Verir
+            Note over PersonelA, PersonelB: 6. Nöbet Çizelgesi Otomatik Güncellenir
+        else Yönetici Reddeder
+            Admin->>PersonelA: Reddetme Gerekçesi İle Bildirim Gönderilir
+        end
+    else Devralan Reddeder
+        PersonelB->>PersonelA: 3. Devir Talebi Reddedildi Bildirimi
+    else Devralan İzinli / Erişilemiyor
+        Admin->>PersonelA: 3b. Yönetici Şifahi (Sözlü) Onay Bypass Kullanır
+    end
+</div>
+
+<ul>
+<li><strong>Bana Gelen Talepler (Devralan Personel Ön-Onayı):</strong> Bir çalışma arkadaşı nöbetini size devrettiğinde web paneline ve bildirim alanınıza anlık bilgilendirme kartı düşer. Kart üzerindeki <strong>"Kabul Et"</strong> veya <strong>"Reddet"</strong> butonlarıyla 1. aşama ön-onayı verilir.</li>
+<li><strong>Benim Gönderdiğim Talepler:</strong> Oluşturduğunuz devir taleplerinin durumunu (<em>Devralan Onayı Bekliyor, Admin Onayı Bekliyor, Reddedildi, İptal Edildi</em>) anlık takip edebilir; devralan personel henüz kabul etmeden önce <strong>"Talebi İptal Et"</strong> seçeneğiyle işlemi durdurabilirsiniz.</li>
+<li><strong>Yönetici / Admin Nihai Onayı:</strong> Devralan personelin onayladığı talepler doğrudan yöneticinin onay kuyruğuna düşer. Yönetici onayladığında nöbet otomatik olarak yeni personelin üzerine geçirilir.</li>
+<li><strong>Yönetici Şifahi Onay Bypass Seçeneği:</strong> Nöbeti devralan personel izinliyse veya sisteme erişemiyorsa, birim yöneticileri telefon/sözlü izni teyit ederek <strong>"Devralan Sözlü/Telefon İzni İle Onayla"</strong> butonuyla süreci beklemeden tamamlayabilir.</li>
+</ul>
+
+<p>##### 4. 📊 Kişisel Nöbet Dashboard ve Kısıtlar Ekranı</p>
+
+<ul>
+<li><strong>Yaklaşan Vardiyalarım:</strong> Önümüzdeki günlerde tutulacak nöbetleri sayaç ve harita bilgisiyle kart halinde gösterir.</li>
+<li><strong>Yasal Haklar ve Muafiyetler:</strong> Personelin tanımlı muafiyetlerini (<em>Gebelik, Süt İzni, 25 Yıl Kıdem Muafiyeti</em>) ve tavan fazla mesai limitini şeffaf bir şekilde listeler.</li>
+</ul>
+<hr />
+<h3>❓ Nöbet Planlama Sık Karşılaşılan Sorular</h3>
+
+<ul>
+<li><strong>Soru: İki personel peş peşe 2 gün nöbet tutabilir mi?</strong></li>
+<li><em>Cevap:</em> Hayır. Sistemde <em>Nöbet Ertesi Dinlenme</em> sert kısıtı aktif olduğu için 24 saatlik nöbet sonrası en az 24 saat zorunlu dinlenme verilir.</li>
+<li><strong>Soru: Yayınlanmış planda isim değişikliği yapıldığında hakediş saatleri ne olur?</strong></li>
+<li><em>Cevap:</em> Eğer <em>Onayda Otomatik Çizelge Güncelle</em> ayarı aktifse, devir onaylandığı anda nöbet çizelgesindeki isim otomatik güncellenir ve personellerin aylık hakediş/fazla mesai saatleri anında yeniden hesaplanır.</li>
+</ul>
+
+      <!-- BOTTOM PAGINATION -->
+      <div class="docs-pagination">
+        
+            <a href="05_dozimetre_ve_risk_analizi.html" class="page-card prev">
+              <span class="page-card-sub">← Önceki Konu</span>
+              <span class="page-card-title">5. Doz Takip ve Yasal Limitler</span>
+            </a>
+        
+            <a href="07_olay_bildirim_ve_dof.html" class="page-card next">
+              <span class="page-card-sub">Sonraki Konu →</span>
+              <span class="page-card-title">7. Olay Bildirimi & DÖF/CAPA</span>
+            </a>
+      </div>
+    </main>
+  </div>
+
+  <!-- RIGHT ON-THIS-PAGE TOC -->
+  <aside class="sl-right-toc">
+    <div class="toc-title">Bu Sayfada</div>
+    <ul class="toc-nav" id="rightTocNav"></ul>
+  </aside>
+
+</div>
+
+<!-- SEARCH MODAL (Ctrl + K) -->
+<div class="search-modal-backdrop" id="searchModal">
+  <div class="search-modal">
+    <div class="search-input-wrap">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="modalSearchInput" placeholder="Dokümantasyonda ara (başlık, konu veya anahtar kelime)..." autofocus />
+      <kbd class="search-kbd" style="font-size:0.7rem;">ESC</kbd>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="assets/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>12. Evrensel Onay & Audit Trail — RADPYS V4 Kılavuz</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header class="sl-header">
+  <div class="sl-header-left">
+    <button class="mobile-nav-toggle" id="mobileNavToggle" title="Menüyü Aç/Kapat">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <a href="index.html" class="brand-lockup">
+      <div class="brand-icon">R</div>
+      <div class="brand-title">RADPYS V4</div>
+      <span class="brand-badge">v4.1.2.8</span>
+    </a>
+  </div>
+
+  <div class="sl-header-right">
+    <div class="search-trigger" id="searchTrigger">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <span>Dokümantasyonda ara...</span>
+      <kbd class="search-kbd">Ctrl K</kbd>
+    </div>
+
+    <button class="btn-icon" id="themeToggleBtn" title="Temayı Değiştir (Açık / Koyu)">
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- MAIN LAYOUT -->
+<div class="sl-layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sl-sidebar" id="slSidebar">
+    <div style="margin-bottom: 1rem; padding: 0 4px;">
+      <a href="index.html" class="nav-page-link" style="padding-left: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Ana Karşılama Sayfası</span>
+      </a>
+    </div>
+    <nav id="sidebarNav">
+      
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>I. GENEL BİLGİLER VE KURULUM</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="01_kurulum.html" class="nav-page-link ">1. Kurulum ve Güvenlik İzinleri</a>
+                <a href="02_kullanici_ve_roller.html" class="nav-page-link ">2. Kullanıcı Yönetimi, Roller ve Lisans</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>II. OPERASYONEL MODÜLLER</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="03_personel_modulu.html" class="nav-page-link ">3. Personel Modülü ve Özlük</a>
+                <a href="04_izin_ve_fhz_modulu.html" class="nav-page-link ">4. İzin Yönetimi ve Şua İzni</a>
+                <a href="05_dozimetre_ve_risk_analizi.html" class="nav-page-link ">5. Doz Takip ve Yasal Limitler</a>
+                <a href="06_nobet_cizelgesi_ve_havuz.html" class="nav-page-link ">6. Nöbet Çizelgesi & Değişim Havuzu</a>
+                <a href="07_olay_bildirim_ve_dof.html" class="nav-page-link ">7. Olay Bildirimi & DÖF/CAPA</a>
+                <a href="08_ortam_dozu_ve_kroki.html" class="nav-page-link ">8. Ortam Dozu & İnteraktif Kroki</a>
+                <a href="09_hizmet_ici_egitim_ve_lms.html" class="nav-page-link ">9. Hizmet İçi Eğitim & Sınav LMS</a>
+                <a href="10_tibbi_cihaz_ve_qr_portal.html" class="nav-page-link ">10. Tıbbi Cihaz & QR Arıza Portalı</a>
+                <a href="11_rke_ve_kalite_kontrol.html" class="nav-page-link ">11. Koruyucu Ekipman (RKE) & Kalite</a>
+              </div>
+            </div>
+            <div class="nav-part open">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>III. KURUMSAL YÖNETİM VE RAPORLAMA</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="12_onay_ve_denetim_izi.html" class="nav-page-link active">12. Evrensel Onay & Audit Trail</a>
+                <a href="13_raporlar_ve_matbu_evrak.html" class="nav-page-link ">13. Rapor Merkezi & Şablon Marka</a>
+                <a href="14_tanimlamalar_ve_web_portal.html" class="nav-page-link ">14. Tanımlamalar & Web Portalı</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>IV. SİSTEM YÖNETİMİ VE VERİ İŞLEMLERİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="15_sistem_yonetimi_ve_yedekleme.html" class="nav-page-link ">15. Ayarlar, Veritabanı & İçe Aktarma</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>V. DESTEK VE GÜNCELLEME GEÇMİŞİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="16_sss_sorun_giderme.html" class="nav-page-link ">16. Sıkça Sorulan Sorular (SSS)</a>
+                <a href="17_surum_notlari.html" class="nav-page-link ">17. Sürüm Güncelleme Geçmişi</a>
+              </div>
+            </div>
+    </nav>
+  </aside>
+
+  <!-- CENTER CONTENT -->
+  <div class="sl-main-container">
+    <main class="sl-content">
+      <a id="bolum-12"></a>
+
+<h2>12. Onay Bekleyen Görevler Paneli (Evrensel Onay ve Veri Değişiklik Denetim Sistemi)</h2>
+
+<h3>💡 İşlemin Amacı ve Mimari Yapısı</h3>
+
+<p>RADPYS V4, kurumsal veri güvenliğini, veri doğruluğunu ve denetim izlenebilirliğini (<code>Audit Trail</code>) en üst düzeyde tutmak amacıyla <strong>Evrensel Onay ve Veri Değişikliği Denetim Sistemi</strong> ile donatılmıştır. Bu sistem; onay yetkisi kısıtlanmış kullanıcıların veya saha çalışanlarının sistemde yaptığı ekleme, düzenleme veya silme işlemlerini veritabanına doğrudan yazmak yerine geçici bir <strong>Onay Kuyruğuna</strong> aktarır. Yöneticiler tüm modüllerden gelen onay taleplerini tek bir merkezden inceler ve karara bağlar.</p>
+
+Masaüstü uygulamasında sol dikey navigasyon menüsünden <strong>Yönetim > Onay Bekleyen Görevler</strong> sekmesinden erişilir.
+<hr />
+<h3>🐾 12.1 4 Temel Onay Kategorisi ve Adım Adım Yönetim İş Akışı</h3>
+
+<h4>💡 Amaç</h4>
+
+Yöneticilerin ve amirlerin kurum genelinden gelen nöbet devir, gebelik/idari aksiyon, taslak nöbet planı ve veri değişiklik taleplerini kategoriler halinde inceleyip karara bağlamasını sağlamaktır. <em>(Not: İzin talepleri ve onayları doğrudan İzin Modülü > İzin Listesi ve İzin Hak Edişleri üzerinden yürütülmektedir).</em>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Onay Bekleyen Görevler Paneline Gidin:</strong></li>
+<ul>
+<li>Sol navigasyon menüsünden <strong>Yönetim > Onay Bekleyen Görevler</strong> sekmesine tıklayın.</li>
+<li><strong>Sol Kategori Menüsünden İlgili Alanı Seçin:</strong></li>
+<li>🔄 <strong>Nöbet Devirleri:</strong> Nöbetini devreden ve devralan personellerin onayından geçmiş (<code>Devralan Onaylı</code>) veya amir/yönetici nihai onayı bekleyen nöbet takas taleplerini listeler.</li>
+<li>🤰 <strong>Gebelik & İdari Aksiyonlar:</strong> Radyasyon çalışanlarının gebelik bildirimleri sonrası görev yeri değişikliği, nöbet ikameleri ve gündüz mesai dengelemesini 3 adımlı sihirbazla yürütür.</li>
+<li>🖨️ <strong>Nöbet Planları:</strong> Birim sorumluları tarafından hazırlanan ve yayına alınmak üzere yönetici onayına sunulan taslak nöbet planlarını listeler.</li>
+<li>⚙️ <strong>Veri Değişiklikleri:</strong> Onay kısıtlı rollerin (<code>onay_gerektirir = 1</code>) yaptığı personel özlük, eğitim, muayene veya evrak ekleme/düzenleme/silme taleplerini listeler.</li>
+<li><strong>Talep Detaylarını İnceleyin:</strong></li>
+<li>Sağ tablodan ilgili talep satırını seçin. Alt panelde personelin gerekçesi, başvuru tarihi ve talep detayları görüntülenir.</li>
+<li><strong>Onayla veya Reddet Butonlarını Kullanın:</strong></li>
+<li><strong>"Onayla"</strong> butonuna bastığınızda işlem onaylanır ve ilgili modül veritabanına otomatik işlenir.</li>
+<li><strong>"Reddet"</strong> butonuna basıldığında açılan diyalog penceresine <strong>Reddetme Gerekçesini</strong> yazarak işlemi reddedin. Başvuran personele otomatik sistem bildirimi oluşturulur.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 12.2 Veri Değişikliği Onay Kuyruğu ve Eski/Yeni Değer Karşılaştırması (Diff Görünümü)</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Onay gerektiren bir veri güncellemesinde (örn: personel özlük bilgisi değişikliği, nöbet kuralı değişikliği) eski veri ile yeni önerilen veriyi kıyaslayarak hatalı kayıt yapılmasını önlemektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Veri Değişiklikleri Kategorisini Seçin:</strong></li>
+<ul>
+<li>Onay Bekleyen Görevler Paneli sol menüsünden <strong>"Veri Değişiklikleri"</strong> sekmesine tıklayın.</li>
+<li><strong>Fark İnceleme Diyalogunu Açın:</strong></li>
+<li>Listeden veri değişikliği satırını seçerek <strong>"Fark İncele / Detay"</strong> butonuna basın.</li>
+<li><strong>Eski ve Yeni Değerleri Karşılaştırın:</strong></li>
+<li>Açılan <strong>Veri Karşılaştırma ve Fark Ekranında (Diff View)</strong>:</li>
+<li>🔴 <strong>Mevcut / Eski Değerler (Kırmızı Vurgu):</strong> Veritabanındaki halihazırda kayıtlı veri.</li>
+<li>🟢 <strong>Önerilen / Yeni Değerler (Yeşil Vurgu):</strong> Kullanıcının değiştirmek istediği yeni değerler.</li>
+<li><strong>Değişikliği Karara Bağlayın:</strong></li>
+<li>Değişiklikler doğruysa <strong>"Onayla ve Uygula"</strong> butonuna basarak veriyi güncelleyin. Yanlışsa <strong>"Talebi Reddet"</strong> butonuna basın.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 12.3 Yönetici Şifahi Onay Bypass Mekanizması (Nöbet Devirleri İçin)</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Devralan personelin izinli olması veya web portalına erişemediği durumlarda nöbet devir sürecinin tıkanmasını önlemektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Nöbet Devirleri Kategorisine Gidin:</strong></li>
+<ul>
+<li>Sol menüden <strong>"Nöbet Devirleri"</strong> kategorisini seçin.</li>
+<li><strong>Devralan Onayı Bekleyen Talebi Seçin:</strong></li>
+<li>Durumu henüz <em>Devralan Onayı Bekliyor</em> aşamasında olan talebi işaretleyin.</li>
+<li><strong>Şifahi Onay Seçeneğini Kullanın:</strong></li>
+<li><strong>"Devralan Sözlü/Telefon İzni İle Onayla"</strong> butonuna tıklayın.</li>
+<li>Sistem denetim günlüğüne <em>"Sözlü Onay İle Yönetici Tarafından Tamamlandı (Onaylayan Yöneticiniz)"</em> şerhini düşerek devir işlemini anında tamamlar.</li>
+</ul>
+</ol>
+<hr />
+<a id="bolum-8-4"></a>
+
+<h3>🐾 12.4 Gebelik ve Sağlık İdari Aksiyon Sihirbazı (Merkezi Yönetici Aksiyon Merkezi)</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Gebelik bildirimi yapan personelin boşalan nöbetlerine ikame atanması, yeni radyasyonsuz birimine geçişi ve eksik gündüz mesailerinin tamamlanmasını tek bir onay ekranından 3 adımlı sihirbazla atomik olarak çözmektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Aksiyon Merkezini Açın:</strong></li>
+<ul>
+<li><strong>Web Portal Üzerinden:</strong> Sol menüden <strong>"🎯 Yönetici Aksiyon Merkezi"</strong> sekmesine gidin.</li>
+<li><strong>Masaüstü Üzerinden:</strong> <strong>Onay Bekleyen Görevler > 🤰 Gebelik & İdari Aksiyonlar</strong> butonuna basın.</li>
+<li><strong>3 Adımlı Sihirbazı Çalıştırın ("Aksiyonları Düzenle & Onayla"):</strong></li>
+<li><strong>1️⃣ Adım (Görev Yeri Değişikliği):</strong> Personelin atanacağı radyasyonsuz birimi onaylayın <em>(Personelin tercihi vurgulanır)</em>.</li>
+<li><strong>2️⃣ Adım (Boşalan İkame Nöbetler):</strong> Personelin iptal edilen nöbet günlerine girmesi için diğer uygun çalışanlara nöbet devri/atamasını yapın veya kısmi otomatik nöbet motorunu çalıştırın.</li>
+<li><strong>3️⃣ Adım (Gündüz Vardiya Dengeleme):</strong> Personelin aylık yasal mesai hedefini (160s) doldurmak üzere eksik kalan saatler için radyasyonsuz gündüz mesaisi (08:00-16:00) atayın.</li>
+<li><strong>Onayla ve Tamamla:</strong></li>
+<li><strong>"Tüm Değişiklikleri Onayla & Kaydet"</strong> butonuna basın. Sistem görev yeri değişikliğini, nöbet ikamelerini ve gündüz vardiyalarını veritabanında tek işlem grubunda tamamlar.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 12.5 Evrensel Alt Tablo Onay Motoru ve Kapsamı</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Sistemdeki tüm personel alt modülleri (Evrak Kasası, Eğitim, Sertifika, Önceki Hizmetler, Sağlık Muayeneleri, Çalışma Kısıtları/Muafiyetler, Gebelik Takip, Cihaz Zimmet ve RGS Görevlendirmeleri) onay kuyruğuna entegre edilmiştir.</p>
+
+<ul>
+<li><strong>Yetkisiz / Saha Rolleri İçin (<code>onay_gerektirir = 1</code>):</strong> Eklenen veya düzenlenen alt kayıtlar doğrudan veritabanına işlenmez; <code>degisiklik_talepleri</code> tablosuna kaydedilerek yönetici onayına sunulur.</li>
+<li><strong>Yönetici Onayı:</strong> Yönetici masaüstündeki Onay Bekleyen Görevler ekranından talebi onayladığında, <code>ApprovalService</code> ilgili PostgreSQL tablosuna atomik transaction ile doğrudan yazar.</li>
+</ul>
+<hr />
+<h3>🐾 12.6 KVKK AES-256 Şifreli Evrak Kasası Onay & Aktarım Süreci</h3>
+
+<div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor Personel as Personel / Saha Çalışanı (Web)
+    participant Server as Web Portal Sunucusu (Node.js)
+    actor Admin as Yönetici (Masaüstü / Web)
+    participant Vault as KVKK Şifreli Kasa (stored_files)
+
+Personel->>Server: 1. Belge / Evrak Yükler (PDF, JPG, PNG)
+    Note over Server: 2. Dosya Geçici Staging Alanına Kaydedilir
+    Server->>Admin: 3. Onay Bekleyen Görevler Merkezine Bildirilir
+    alt Yönetici Onaylar
+        Admin->>Vault: 4. Onayla Butonuna Basılır
+        Note over Vault: 5. Dosya Okunur, AES-256 Fernet İle Şifrelenir ve DB Blob Olarak Kaydedilir (file-uuid)
+        Note over Server: 6. Geçici Disk Dosyası Otomatik Temizlenir
+    else Yönetici Reddeder
+        Admin->>Server: 4b. Reddetme Gerekçesi Girilir
+        Note over Server: Geçici Dosya Silinir, Talep İptal Edilir
+    end
+</div>
+
+<ol>
+<li><strong>Web Yükleme:</strong> Personel web portaldan belge yüklediğinde dosya geçici olarak sunucuda depolanır ve onay talebi oluşturulur.</li>
+<li><strong>Onaylama & Şifreleme:</strong> Yönetici onay butonuna bastığı an arka plandaki <code>ApprovalService._migrate_uploaded_file_to_vault</code> servisi devreye girer. Dosya okunur, <strong>AES-256 Fernet</strong> ile şifrelenir ve PostgreSQL <code>stored_files</code> tablosuna aktarılır.</li>
+<li><strong>Kalıcı <code>file-uuid</code>:</strong> <code>personel_belgeler</code> tablosuna güvenli <code>file-uuid</code> anahtarı yazılır ve geçici dosya temizlenir.</li>
+</ol>
+<hr />
+<h3>🐾 12.7 Silme Taleplerinin Onay Süreci (<code>Silme Onayı Bekliyor</code>)</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Hatalı veya kötü niyetli veri silinmelerini önlemek amacıyla standart personelin eğitim, evrak veya sağlık muayenesi silme talepleri onay sürecine bağlanmıştır.</p>
+
+<ol>
+<li><strong>Silme Başvurusu:</strong> Personel kendi profilinden bir belgeyi veya eğitimi silmek istediğinde kayıt veritabanından silinmez.</li>
+<li><strong>Onay Kuyruğuna Yönlendirme:</strong> Mevcut veri anlık kopyalanarak <code>islem_tipi = 'silme'</code> olarak <code>degisiklik_talepleri</code> tablosuna aktarılır ve kaydın durumu <strong><code>Silme Onayı Bekliyor</code></strong> olur.</li>
+<li><strong>Yönetici Kararı:</strong> Yönetici onaylarsa kayıt ve diskteki kopyası veritabanından kalıcı olarak silinir; reddederse kayıt olduğu gibi korunur.</li>
+</ol>
+
+      <!-- BOTTOM PAGINATION -->
+      <div class="docs-pagination">
+        
+            <a href="11_rke_ve_kalite_kontrol.html" class="page-card prev">
+              <span class="page-card-sub">← Önceki Konu</span>
+              <span class="page-card-title">11. Koruyucu Ekipman (RKE) & Kalite</span>
+            </a>
+        
+            <a href="13_raporlar_ve_matbu_evrak.html" class="page-card next">
+              <span class="page-card-sub">Sonraki Konu →</span>
+              <span class="page-card-title">13. Rapor Merkezi & Şablon Marka</span>
+            </a>
+      </div>
+    </main>
+  </div>
+
+  <!-- RIGHT ON-THIS-PAGE TOC -->
+  <aside class="sl-right-toc">
+    <div class="toc-title">Bu Sayfada</div>
+    <ul class="toc-nav" id="rightTocNav"></ul>
+  </aside>
+
+</div>
+
+<!-- SEARCH MODAL (Ctrl + K) -->
+<div class="search-modal-backdrop" id="searchModal">
+  <div class="search-modal">
+    <div class="search-input-wrap">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="modalSearchInput" placeholder="Dokümantasyonda ara (başlık, konu veya anahtar kelime)..." autofocus />
+      <kbd class="search-kbd" style="font-size:0.7rem;">ESC</kbd>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="assets/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3. Personel Modülü ve Özlük — RADPYS V4 Kılavuz</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header class="sl-header">
+  <div class="sl-header-left">
+    <button class="mobile-nav-toggle" id="mobileNavToggle" title="Menüyü Aç/Kapat">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <a href="index.html" class="brand-lockup">
+      <div class="brand-icon">R</div>
+      <div class="brand-title">RADPYS V4</div>
+      <span class="brand-badge">v4.1.2.8</span>
+    </a>
+  </div>
+
+  <div class="sl-header-right">
+    <div class="search-trigger" id="searchTrigger">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <span>Dokümantasyonda ara...</span>
+      <kbd class="search-kbd">Ctrl K</kbd>
+    </div>
+
+    <button class="btn-icon" id="themeToggleBtn" title="Temayı Değiştir (Açık / Koyu)">
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- MAIN LAYOUT -->
+<div class="sl-layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sl-sidebar" id="slSidebar">
+    <div style="margin-bottom: 1rem; padding: 0 4px;">
+      <a href="index.html" class="nav-page-link" style="padding-left: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Ana Karşılama Sayfası</span>
+      </a>
+    </div>
+    <nav id="sidebarNav">
+      
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>I. GENEL BİLGİLER VE KURULUM</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="01_kurulum.html" class="nav-page-link ">1. Kurulum ve Güvenlik İzinleri</a>
+                <a href="02_kullanici_ve_roller.html" class="nav-page-link ">2. Kullanıcı Yönetimi, Roller ve Lisans</a>
+              </div>
+            </div>
+            <div class="nav-part open">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>II. OPERASYONEL MODÜLLER</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="03_personel_modulu.html" class="nav-page-link active">3. Personel Modülü ve Özlük</a>
+                <a href="04_izin_ve_fhz_modulu.html" class="nav-page-link ">4. İzin Yönetimi ve Şua İzni</a>
+                <a href="05_dozimetre_ve_risk_analizi.html" class="nav-page-link ">5. Doz Takip ve Yasal Limitler</a>
+                <a href="06_nobet_cizelgesi_ve_havuz.html" class="nav-page-link ">6. Nöbet Çizelgesi & Değişim Havuzu</a>
+                <a href="07_olay_bildirim_ve_dof.html" class="nav-page-link ">7. Olay Bildirimi & DÖF/CAPA</a>
+                <a href="08_ortam_dozu_ve_kroki.html" class="nav-page-link ">8. Ortam Dozu & İnteraktif Kroki</a>
+                <a href="09_hizmet_ici_egitim_ve_lms.html" class="nav-page-link ">9. Hizmet İçi Eğitim & Sınav LMS</a>
+                <a href="10_tibbi_cihaz_ve_qr_portal.html" class="nav-page-link ">10. Tıbbi Cihaz & QR Arıza Portalı</a>
+                <a href="11_rke_ve_kalite_kontrol.html" class="nav-page-link ">11. Koruyucu Ekipman (RKE) & Kalite</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>III. KURUMSAL YÖNETİM VE RAPORLAMA</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="12_onay_ve_denetim_izi.html" class="nav-page-link ">12. Evrensel Onay & Audit Trail</a>
+                <a href="13_raporlar_ve_matbu_evrak.html" class="nav-page-link ">13. Rapor Merkezi & Şablon Marka</a>
+                <a href="14_tanimlamalar_ve_web_portal.html" class="nav-page-link ">14. Tanımlamalar & Web Portalı</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>IV. SİSTEM YÖNETİMİ VE VERİ İŞLEMLERİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="15_sistem_yonetimi_ve_yedekleme.html" class="nav-page-link ">15. Ayarlar, Veritabanı & İçe Aktarma</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>V. DESTEK VE GÜNCELLEME GEÇMİŞİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="16_sss_sorun_giderme.html" class="nav-page-link ">16. Sıkça Sorulan Sorular (SSS)</a>
+                <a href="17_surum_notlari.html" class="nav-page-link ">17. Sürüm Güncelleme Geçmişi</a>
+              </div>
+            </div>
+    </nav>
+  </aside>
+
+  <!-- CENTER CONTENT -->
+  <div class="sl-main-container">
+    <main class="sl-content">
+      <a id="bolum-3"></a>
+
+<h2>3. Personel Modülü Yönetimi ve Özlük Dosyası İşlemleri</h2>
+
+<h3>💡 İşlemin Amacı ve Ön Koşullar</h3>
+
+<p>Personel Modülü; kurumda çalışan radyasyon görevlilerinin ve sağlık personelinin kimlik, özlük, sicil, görev yeri, radyasyon risk grubu (Grup A / Grup B), gebelik/emzirme kısıtları ve eğitim/belge geçmişinin merkezi olarak yönetildiği bölümdür.</p>
+
+Bu modül üzerinden yapılan personel atamaları ve pasife alma işlemleri; <strong>Nöbet Çizelgelerini</strong>, <strong>Dozimetre Risk Analizlerini</strong>, <strong>Fiili Hizmet (Şua İzni) Hak Edişlerini</strong> ve <strong>Sağlık Periyodik Muayenelerini</strong> doğrudan etkiler.
+<hr />
+<h3>🐾 3.1 Yeni Personel Özlük Kaydı Nasıl Yapılır?</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Sisteme yeni başlayan bir personelin özlük, kimlik, iletişim, acil durum yakını, görev, eğitim ve belge bilgilerini 5 adımlı sihirbaz (Wizard) üzerinden eksiksiz kaydetmek ve otomatik kullanıcı hesabını oluşturmaktır.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Personel Ekleme Sihirbazını Açın:</strong></li>
+<ul>
+<li>Sol dikey menüden <strong>Personel Modülü > Personel Listesi</strong> sekmesine gidin.</li>
+<li>Ekranın sağ üst tarafında yer alan <strong>"Yeni Ekle"</strong> butonuna tıklayın. Açılan pencere 5 adımlı sihirbaz yapısındadır (<em>Kimlik</em>, <em>İletişim</em>, <em>Özlük</em>, <em>Eğitim</em>, <em>Belgeler</em>).</li>
+<li><strong>1. Adım (Kimlik Bilgileri):</strong></li>
+<li><strong>TC Kimlik No (11 hane):</strong> Personelin TC Kimlik Numarasını girin. <em>(Sistem yazarken aynı TC Kimlik No'ya sahip başka bir kaydın varlığını anlık denetler ve mükerrer kaydı engeller).</em></li>
+<li><strong>Adı ve Soyadı:</strong> Personelin adını ve soyadını girin.</li>
+<li><strong>Cinsiyet, Doğum Tarihi & Yeri:</strong> Doğum tarihi, doğum yeri, baba adı, ana adı ve medeni halini doldurun.</li>
+<li><strong>İleri</strong> butonuna tıklayarak sonraki adıma geçin.</li>
+<li><strong>2. Adım (İletişim ve Acil Durum Yakın Bilgileri):</strong></li>
+<li><strong>Kişisel İletişim:</strong> Personelin cep telefonu, e-posta adresi, ikametgah il, ilçe ve açık adres bilgilerini yazın.</li>
+<li><strong>Acil Durum Yakınları:</strong> Aynı sayfa altında yer alan <em>Acil Durum Yakını</em> alanından yakınlık derecesini (Eş, Anne, Baba, Çocuk vb.), ad soyad, telefon ve e-posta bilgilerini girerek <strong>"Yakın Ekle"</strong> butonuna tıklayın.</li>
+<li><strong>İleri</strong> butonuna basarak sonraki adıma geçin.</li>
+<li><strong>3. Adım (Özlük ve Kurumsal Görev Ataması):</strong></li>
+<li><strong>Sicil No:</strong> Personelin kurumsal sicil numarasını girin.</li>
+<li><strong>İşe Başlama Tarihi:</strong> Takvimden işe giriş tarihini seçin.</li>
+<li><strong>Departman / Birim:</strong> Personelin bağlı olduğu birimi (örn: <em>Radyoloji, Nükleer Tıp, Radyoterapi</em>) seçin.</li>
+<li><strong>Görev Unvanı:</strong> Personelin kadro unvanını (örn: <em>Radyoloji Teknikeri, Sağlık Fizikçisi, Uzman Dr.</em>) seçin.</li>
+<li><strong>Hizmet Tipi ve Görev Yeri:</strong> Çalışma şekli (Vardiyalı, Nöbetçi, Gündüz) ve görev yaptığı odayı/birimi seçin.</li>
+<li><strong>4. Adım (Eğitim Bilgileri):</strong></li>
+<li>Personelin mezun olduğu okul, bölüm, mezuniyet tarihi ve diploma/sertifika bilgilerini girerek eğitim tablosuna ekleyin.</li>
+<li><strong>5. Adım (Belgeler & Kaydı Tamamlama):</strong></li>
+<li><strong>Özlük Belgeleri:</strong> Personelin kimlik fotokopisi, sertifika veya sözleşme gibi özlük dosyalarını (PDF/Görsel) yükleyin.</li>
+<li>Formu kaydetmek için <strong>"Kaydet"</strong> butonuna tıklayın.</li>
+<li>Peş peşe birden fazla personel eklemek için <strong>"Kaydet ve Yeni"</strong> butonunu kullanabilirsiniz.</li>
+<li><em>(Sistem kayıt tamamlandığında personel için otomatik olarak <code>ayilmaz</code> kullanıcı adı ve <code>Ayilmaz123!</code> geçici şifresini oluşturur).</em></li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 3.2 Personel Listesinde Hızlı Arama, Filtreleme ve Dışa Aktarma Nasıl Yapılır?</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Yüzlerce personel arasından belirli kriterlere (Birim, Unvan, Durum) uyan kişileri anında bulmak ve listeyi Excel / PDF formatında raporlamaktır.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Arama Kutusu ile Anlık Arama:</strong> Ekranın üst kısmındaki <strong>Arama</strong> kutusuna personelin Adı, Soyadı, TC Kimlik Numarası veya Sicil Numarasını yazın. Siz yazdıkça tablo 250 milisaniye içinde anlık olarak süzülecektir.</li>
+<li><strong>Birim ve Unvan Filtreleme:</strong> <strong>Departman</strong> veya <strong>Unvan</strong> açılır menülerinden (ComboBox) sadece belirli bir birimde çalışan personeli (örn. <em>Nükleer Tıp</em>) listeleyin.</li>
+<li><strong>Durum Filtresi:</strong> <strong>Durum</strong> filtresinden <em>"Aktif"</em> veya <em>"Pasif"</em> (işten ayrılanlar) seçimi yapın.</li>
+<li><strong>Excel / Dışa Aktarma:</strong> Süzülen liste sonuçlarını bilgisayarınıza kaydetmek için ekranın üstündeki <strong>"Dışa Aktar"</strong> butonuna tıklayın ve kaydetme formatını (Excel/PDF) seçin.</li>
+</ol>
+<hr />
+<h3>🐾 3.3 Personel Detay Kartı ve Özlük Dosyası Formu Nasıl Görüntülenir ve Yazdırılır?</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Bir personelin kümülatif nöbet saatlerini, kalan şua iznini, son dozimetre okumasını ve özlük belgelerini tek ekrandan incelemek ve resmi <strong>Personel Bilgi Formu</strong> çıktısı almaktır.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Detay Kartını Açın:</strong> Personel Listesinde ilgili personelin bulunduğu satıra çift tıklayın veya satır sonundaki <strong>"Detay"</strong> butonuna basın.</li>
+<li><strong>Detay Sekmelerini İnceleyin:</strong></li>
+<ul>
+<li><strong>Özlük Bilgileri:</strong> Kimlik, sicil ve birim bilgileri.</li>
+<li><strong>Nöbet & İzin Özeti:</strong> Yıllık izin bakiyesi ve toplam çalışma süreleri.</li>
+<li><strong>Dozimetre Geçmişi:</strong> Personele ait geçmiş dönem dozimetre ölçüm değerleri.</li>
+<li><strong>Eğitim & Belgeler:</strong> Personelin aldığı hizmet içi eğitimler ve yüklenen özlük taramaları.</li>
+<li><strong>Personel Bilgi Formu Çıktısı Alın:</strong> Detay ekranının üstündeki <strong>"Personel Bilgi Formu Yazdır"</strong> butonuna basarak personelin tüm özlük özetini kurumsal kapaklı Word/PDF belgesi olarak indirin.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 3.4 İşten Ayrılan / İzinli Personel Kaydı Nasıl Pasife Alınır (Silme İşlemi)?</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Kurumdan ayrılan veya tayini çıkan personeli veritabanından kalıcı olarak silmeden <strong>Pasif</strong> duruma alarak geçmiş nöbet ve dozimetre kayıtlarının izlenebilirliğini (Audit Trail) korumaktır.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Personeli Seçin:</strong> Personel Listesi ekranından pasife alınacak personelin satırını seçin.</li>
+<li><strong>Pasife Alın / Sil:</strong> Ekranın alt veya üst barında bulunan <strong>"Sil" / "Pasife Al"</strong> butonuna tıklayın.</li>
+<li><strong>Onay Verin:</strong> Açılan onay penceresinde <em>"Personel pasife alınacaktır. İşlemi onaylıyor musunuz?"</em> sorusuna <strong>"Evet"</strong> yanıtını verin.</li>
+<li><strong>Otomatik Sonuç:</strong> Personel pasife alındığında, bu personele bağlı sisteme giriş kullanıcı hesabı da güvenlik amacıyla <strong>otomatik olarak pasife alınır ve kilitlenir</strong>.</li>
+</ol>
+<hr />
+<blockquote class="callout">💡 <strong>Sık Karşılaşılan Uyarılar ve Çözüm Adımları:</strong> Detaylı soru ve çözüm rehberi için bkz: <a href="RADPYS_V4_sss.md">RADPYS V4 SSS Dokümanı</a></blockquote>
+<hr /><hr />
+<h3>🐾 3.5 📦 KVKK Madde 11 Kişisel Veri İhraç Paketi İndirme (ZIP)</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>6698 Sayılı KVKK Madde 11 (Veri Sahibinin Hakları ve Kişisel Verilerin Taşınabilirliği) gereğince, seçili personelin sistemde kayıtlı tüm özlük, izin, dozimetre ve sağlık muayene verileri ile şifreli evrak kasasında (PostgreSQL <code>stored_files</code> tablosu) saklanan tüm orijinal belgelerini tek tıkla taşınabilir <code>.zip</code> paketi olarak bilgisayara indirmektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Personel Listesi Ekranına Gelin:</strong></li>
+<ul>
+<li>Sol navigasyon menüsünden <strong>Personel > Personel Listesi</strong> sekmesine tıklayın.</li>
+<li><strong>Personel Satırına Sağ Tıklayın:</strong></li>
+<li>Veri ihraç paketi oluşturulacak personelin satırı üzerinde farenin sağ tuşuna basın.</li>
+<li><strong>KVKK Veri İhraç Paketini Seçin:</strong></li>
+<li>Açılan bağlam menüsünden <strong><code>📦 KVKK Veri İhraç Paketi İndir (ZIP)...</code></strong> seçeneğine tıklayın.</li>
+<li><strong>Kaydetme Konumunu Belirleyin:</strong></li>
+<li>Dosya iletişim penceresinde ZIP paketinin kaydedileceği klasörü seçin (örn: <code>kvkk_export_12345678901.zip</code>).</li>
+<li><strong>Paket İçeriğini İnceleyin:</strong></li>
+<li>Oluşturulan ZIP arşivi açıldığında:</li>
+<li><code>personel_veri_ozeti.json</code>: Personelin tüm özlük, izin, dozimetre ve muayene verilerini okunabilir JSON formatında içerir.</li>
+<li><code>evraklar/</code>: Personelin sisteme yüklenmiş tüm diplomaları, sağlık raporları ve vesikalık fotoğrafı deşifre edilmiş orijinal formatlarında yer alır.</li>
+</ul>
+</ol>
+
+<blockquote class="callout">[!TIP]</blockquote>
+<blockquote class="callout"><strong>Veri Taşınabilirliği İpucu:</strong> KVKK ihraç paketi personelin kurumdan ayrılması durumunda kişisel verilerinin eksiksiz bir kopyasını kendisine teslim etmek için kullanılabilir.</blockquote>
+
+<h3>🐾 3.6 Gebelik & Sağlık Muafiyet Bildirim Süreci ve Otomatik Nöbet Düzenlemesi</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Kadın personelin gebelik bildiriminde bulunması, doktor raporunu dijital arşive işlemesi, radyasyon risk grubuna göre nöbetlerinin otomatik iptal edilmesi ve yöneticinin tek tıkla görev yeri atamasını tamamlamasını sağlamaktır.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Gebelik / Sağlık Muafiyet Bildirimi Oluşturma:</strong></li>
+<ul>
+<li><strong>Web Portal Üzerinden:</strong> Sol Yan Menüdeki <strong>"🤰 Gebelik & Sağlık Muafiyeti"</strong> sekmesine tıklayın. <em>(Admin ve Yönetici kullanıcıları kadın personeller arasından seçim yaparak bildirim oluşturabilir).</em></li>
+<li><strong>Masaüstü Uygulaması Üzerinden:</strong> <strong>Personel Detay</strong> sayfasındaki <strong>"🤰 Gebelik / Muafiyet Ekle"</strong> butonuna tıklayın.</li>
+<li><strong>Bildirim Detaylarını ve Doktor Raporunu Yükleyin:</strong></li>
+<li><strong>Bildirim Tarihi & Tahmini Bitiş Tarihi:</strong> Gebelik başlangıç ve tahmini bitiş tarihlerini girin.</li>
+<li><strong>Tercih Edilen Radyasyonsuz Birim:</strong> Personelin talep ettiği yeni birim tercihini seçin.</li>
+<li><strong>Doktor Raporu Yükleme:</strong> Gebelik raporunu (PDF/Resim) sisteme yükleyin <em>(Belge personelin dijital özlük dosyası arşivine otomatik senkronize edilir)</em>.</li>
+<li><strong>Alan Bazlı Otomatik Nöbet İptal Kuralları (Sistem Tarafından Otomatik Uygulanır):</strong></li>
+<li>☢️ <strong>Radyasyonlu Alan Personeli (<code>radyasyonlu_alan = 1</code>; Tomografi, Anjiyo, Skopi vb.):</strong> Gebelik bildirimi yapıldığı an, içinde bulunulan ay ve hazırlanmış sonraki ay içerisindeki <strong>GÜNDÜZ VE GECE TÜM NÖBETLER</strong> yasal zorunluluk gereği otomatik olarak <code>IPTAL_MAZERET</code> durumuna getirilir.</li>
+<li>🛡️ <strong>Radyasyonsuz Alan Personeli (<code>radyasyonlu_alan = 0</code>; Idari, Poliklinik vb.):</strong> Gündüz mesaileri korunur, <strong>SADECE GECE VE 24 SAATLİK NÖBETLER</strong> <code>IPTAL_MAZERET</code> yapılır.</li>
+<li><strong>Merkezi Yönetici Aksiyon Sihirbazı (İdarenin 1-Tıkla Tamamlaması):</strong></li>
+<li>Bildirim yapıldığı an <strong>🎯 Yönetici Aksiyon Merkezi (Manager Action Hub)</strong> ekranında yönetici için otomatik aksiyon kartı oluşturulur (Bkz. <a href="#bolum-8-4">Madde 8.4</a>).</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 3.7 Radyasyon Güvenliği Sorumlusu (RGS / RSO) Görevlendirme ve Sertifika Takibi</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Nükleer Düzenleme Kurumu (NDK) mevzuatı uyarınca radyasyon kaynaklarının bulunduğu departmanlarda görevlendirilen Radyasyon Güvenliği Sorumluları (RGS) ve Yardımcılarının (RGSY) resmi görevlendirme sürelerini, yetki belgelerini ve sertifika geçerlilik sürelerini (erken uyarı rozetleri ile) takip etmektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>RGS Görevlendirme Takip Ekranını Açın:</strong></li>
+<ul>
+<li>Sol navigasyon menüsünden <strong>Personel > RGS Görevlendirmeleri</strong> sekmesine tıklayın.</li>
+<li><strong>KPI Özet Kartlarını İnceleyin:</strong></li>
+<li><strong>Toplam RGS/RSO:</strong> Kurum genelinde tanımlı toplam görevlendirme sayısı.</li>
+<li><strong>Aktif Görevlendirmeler:</strong> Halen geçerli olan görevlendirmeler.</li>
+<li><strong>Sertifikası Yaklaşanlar:</strong> 60 gün içinde süresi dolacak NDK sertifikaları (🟡 Sarı rozet).</li>
+<li><strong>Sertifikası Dolanlar:</strong> Geçerlilik süresi bitmiş sertifikalar (🔴 Kırmızı rozet).</li>
+<li><strong>Yeni RGS Görevlendirmesi Ekleyin:</strong></li>
+<li>Üst araç çubuğundaki <strong>"Yeni Görevlendirme"</strong> butonuna tıklayın.</li>
+<li>Açılan formda:</li>
+<li><strong>Personel & Departman:</strong> Görevlendirilecek personeli ve birimi seçin.</li>
+<li><strong>Görev Tipi:</strong> Açılır menüden <em>Radyasyon Güvenliği Sorumlusu (RGS)</em> veya <em>RGS Yardımcısı (RGSY)</em> seçin.</li>
+<li><strong>Görev Başlangıç ve Bitiş Tarihi:</strong> Görevlendirme süresini takvimden belirleyin.</li>
+<li><strong>NDK Sertifika No & Geçerlilik Tarihi:</strong> Resmi NDK sertifika numarasını ve bitiş tarihini girin.</li>
+<li><strong>Resmi Görevlendirme Belgesi:</strong> NDK onay yazısını veya kurum içi görevlendirme evrakını (PDF) yükleyin <em>(Evrak şifreli kasaya kaydedilir)</em>.</li>
+<li><strong>"Kaydet"</strong> butonuna basarak işlemi tamamlayın.</li>
+<li><strong>Filtreleme ve Dışa Aktarma (CSV/Excel):</strong></li>
+<li><strong>Departman</strong>, <strong>Görev Tipi</strong> veya <strong>Sertifika Durumu</strong> filtresiyle listeyi daraltabilir; <strong>"CSV Dışa Aktar"</strong> butonuyla resmi denetim raporu çıktısı alabilirsiniz.</li>
+</ul>
+</ol>
+
+      <!-- BOTTOM PAGINATION -->
+      <div class="docs-pagination">
+        
+            <a href="02_kullanici_ve_roller.html" class="page-card prev">
+              <span class="page-card-sub">← Önceki Konu</span>
+              <span class="page-card-title">2. Kullanıcı Yönetimi, Roller ve Lisans</span>
+            </a>
+        
+            <a href="04_izin_ve_fhz_modulu.html" class="page-card next">
+              <span class="page-card-sub">Sonraki Konu →</span>
+              <span class="page-card-title">4. İzin Yönetimi ve Şua İzni</span>
+            </a>
+      </div>
+    </main>
+  </div>
+
+  <!-- RIGHT ON-THIS-PAGE TOC -->
+  <aside class="sl-right-toc">
+    <div class="toc-title">Bu Sayfada</div>
+    <ul class="toc-nav" id="rightTocNav"></ul>
+  </aside>
+
+</div>
+
+<!-- SEARCH MODAL (Ctrl + K) -->
+<div class="search-modal-backdrop" id="searchModal">
+  <div class="search-modal">
+    <div class="search-input-wrap">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="modalSearchInput" placeholder="Dokümantasyonda ara (başlık, konu veya anahtar kelime)..." autofocus />
+      <kbd class="search-kbd" style="font-size:0.7rem;">ESC</kbd>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="assets/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RADPYS V4 — Kullanım Kılavuzu ve Bilgi Merkezi</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header class="sl-header">
+  <div class="sl-header-left">
+    <button class="mobile-nav-toggle" id="mobileNavToggle" title="Menüyü Aç/Kapat">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <a href="index.html" class="brand-lockup">
+      <div class="brand-icon">R</div>
+      <div class="brand-title">RADPYS V4</div>
+      <span class="brand-badge">v4.1.2.8</span>
+    </a>
+  </div>
+
+  <div class="sl-header-right">
+    <div class="search-trigger" id="searchTrigger">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <span>Dokümantasyonda ara...</span>
+      <kbd class="search-kbd">Ctrl K</kbd>
+    </div>
+
+    <button class="btn-icon" id="themeToggleBtn" title="Temayı Değiştir (Açık / Koyu)">
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- MAIN LAYOUT -->
+<div class="sl-layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sl-sidebar" id="slSidebar">
+    <div style="margin-bottom: 1rem; padding: 0 4px;">
+      <a href="index.html" class="nav-page-link active" style="padding-left: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Ana Karşılama Sayfası</span>
+      </a>
+    </div>
+    <nav id="sidebarNav">
+      
+        <div class="nav-part open">
+          <div class="nav-part-header">
+            <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+            <span>I. GENEL BİLGİLER VE KURULUM</span>
+          </div>
+          <div class="nav-part-links">
+            <a href="01_kurulum.html" class="nav-page-link">1. Kurulum ve Güvenlik İzinleri</a>
+            <a href="02_kullanici_ve_roller.html" class="nav-page-link">2. Kullanıcı Yönetimi, Roller ve Lisans</a>
+          </div>
+        </div>
+        <div class="nav-part open">
+          <div class="nav-part-header">
+            <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+            <span>II. OPERASYONEL MODÜLLER</span>
+          </div>
+          <div class="nav-part-links">
+            <a href="03_personel_modulu.html" class="nav-page-link">3. Personel Modülü ve Özlük</a>
+            <a href="04_izin_ve_fhz_modulu.html" class="nav-page-link">4. İzin Yönetimi ve Şua İzni</a>
+            <a href="05_dozimetre_ve_risk_analizi.html" class="nav-page-link">5. Doz Takip ve Yasal Limitler</a>
+            <a href="06_nobet_cizelgesi_ve_havuz.html" class="nav-page-link">6. Nöbet Çizelgesi & Değişim Havuzu</a>
+            <a href="07_olay_bildirim_ve_dof.html" class="nav-page-link">7. Olay Bildirimi & DÖF/CAPA</a>
+            <a href="08_ortam_dozu_ve_kroki.html" class="nav-page-link">8. Ortam Dozu & İnteraktif Kroki</a>
+            <a href="09_hizmet_ici_egitim_ve_lms.html" class="nav-page-link">9. Hizmet İçi Eğitim & Sınav LMS</a>
+            <a href="10_tibbi_cihaz_ve_qr_portal.html" class="nav-page-link">10. Tıbbi Cihaz & QR Arıza Portalı</a>
+            <a href="11_rke_ve_kalite_kontrol.html" class="nav-page-link">11. Koruyucu Ekipman (RKE) & Kalite</a>
+          </div>
+        </div>
+        <div class="nav-part open">
+          <div class="nav-part-header">
+            <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+            <span>III. KURUMSAL YÖNETİM VE RAPORLAMA</span>
+          </div>
+          <div class="nav-part-links">
+            <a href="12_onay_ve_denetim_izi.html" class="nav-page-link">12. Evrensel Onay & Audit Trail</a>
+            <a href="13_raporlar_ve_matbu_evrak.html" class="nav-page-link">13. Rapor Merkezi & Şablon Marka</a>
+            <a href="14_tanimlamalar_ve_web_portal.html" class="nav-page-link">14. Tanımlamalar & Web Portalı</a>
+          </div>
+        </div>
+        <div class="nav-part open">
+          <div class="nav-part-header">
+            <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+            <span>IV. SİSTEM YÖNETİMİ VE VERİ İŞLEMLERİ</span>
+          </div>
+          <div class="nav-part-links">
+            <a href="15_sistem_yonetimi_ve_yedekleme.html" class="nav-page-link">15. Ayarlar, Veritabanı & İçe Aktarma</a>
+          </div>
+        </div>
+        <div class="nav-part open">
+          <div class="nav-part-header">
+            <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+            <span>V. DESTEK VE GÜNCELLEME GEÇMİŞİ</span>
+          </div>
+          <div class="nav-part-links">
+            <a href="16_sss_sorun_giderme.html" class="nav-page-link">16. Sıkça Sorulan Sorular (SSS)</a>
+            <a href="17_surum_notlari.html" class="nav-page-link">17. Sürüm Güncelleme Geçmişi</a>
+          </div>
+        </div>
+    </nav>
+  </aside>
+
+  <!-- CENTER CONTENT -->
+  <div class="sl-main-container">
+    <main class="sl-content">
+      <div style="padding: 2rem 0 1.5rem 0; text-align: center;">
+        <h1 style="border: none; margin-bottom: 0.5rem; font-size: 2.3rem;">RADPYS V4 Bilgi ve Yardım Merkezi</h1>
+        <p style="font-size: 1.05rem; max-width: 600px; margin: 0 auto 1.5rem auto;">Radyasyon Güvenliği, Tıbbi Cihaz, Doz Takip, Koruyucu Ekipman (RKE) ve Personel Yönetim Sistemi Operasyonel Kullanım Rehberi.</p>
+        <div style="display: inline-flex; gap: 0.75rem; justify-content: center;">
+          <a href="01_kurulum.html" style="padding: 9px 18px; border-radius: 8px; background: var(--sl-color-accent); color: #fff; text-decoration: none; font-weight: 600; font-size: 0.9rem;">Hızlı Başlangıç Rehberi</a>
+          <a href="16_sss_sorun_giderme.html" style="padding: 9px 18px; border-radius: 8px; background: var(--sl-color-bg-surface-raised); border: 1px solid var(--sl-color-border); color: var(--sl-color-text); text-decoration: none; font-weight: 600; font-size: 0.9rem;">Sıkça Sorulan Sorular</a>
+        </div>
+      </div>
+
+      <hr />
+
+      <h2 id="modul-katalogu">Modül Dokümantasyon Kataloğu</h2>
+      
+        <div style="margin: 2rem 0;">
+          <h2 style="font-size: 1.25rem; color: var(--sl-color-accent); margin-bottom: 1rem; border-bottom: 1px solid var(--sl-color-border); padding-bottom: 0.5rem;">I. GENEL BİLGİLER VE KURULUM</h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;">
+            <a href="01_kurulum.html" class="page-card">
+              <span class="page-card-sub">Rehber Dokümanı</span>
+              <span class="page-card-title">1. Kurulum ve Güvenlik İzinleri</span>
+              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Windows güvenlik izinleri, Inno Setup ve ilk kurulum adımları.</p>
+            </a>
+            <a href="02_kullanici_ve_roller.html" class="page-card">
+              <span class="page-card-sub">Rehber Dokümanı</span>
+              <span class="page-card-title">2. Kullanıcı Yönetimi, Roller ve Lisans</span>
+              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Admin oturumu, geçici şifreler, kullanıcı rolleri ve kademeli lisans yönetimi.</p>
+            </a>
+          </div>
+        </div>
+        <div style="margin: 2rem 0;">
+          <h2 style="font-size: 1.25rem; color: var(--sl-color-accent); margin-bottom: 1rem; border-bottom: 1px solid var(--sl-color-border); padding-bottom: 0.5rem;">II. OPERASYONEL MODÜLLER</h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;">
+            <a href="03_personel_modulu.html" class="page-card">
+              <span class="page-card-sub">Rehber Dokümanı</span>
+              <span class="page-card-title">3. Personel Modülü ve Özlük</span>
+              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Personel özlük dosyaları, dozimetre atama ve birim görevlendirmeleri.</p>
+            </a>
+            <a href="04_izin_ve_fhz_modulu.html" class="page-card">
+              <span class="page-card-sub">Rehber Dokümanı</span>
+              <span class="page-card-title">4. İzin Yönetimi ve Şua İzni</span>
+              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Şua izni hak edişi, 31 Aralık zaman aşımı uyarısı ve FHZ fiili hizmet takibi.</p>
+            </a>
+            <a href="05_dozimetre_ve_risk_analizi.html" class="page-card">
+              <span class="page-card-sub">Rehber Dokümanı</span>
+              <span class="page-card-title">5. Doz Takip ve Yasal Limitler</span>
+              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Dozimetre yükleme, NDK 20 mSv/50 mSv yasal limit uyarıları ve RD.F43 doz formu.</p>
+            </a>
+            <a href="06_nobet_cizelgesi_ve_havuz.html" class="page-card">
+              <span class="page-card-sub">Rehber Dokümanı</span>
+              <span class="page-card-title">6. Nöbet Çizelgesi & Değişim Havuzu</span>
+              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Otomatik nöbet dağıtım motoru, P2P devir havuzu ve 36 saat TTL kısıtı.</p>
+            </a>
+            <a href="07_olay_bildirim_ve_dof.html" class="page-card">
+              <span class="page-card-sub">Rehber Dokümanı</span>
+              <span class="page-card-title">7. Olay Bildirimi & DÖF/CAPA</span>
+              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">3-adımlı radyasyon olayı bildirimi, NDK 2. gün hatırlatıcısı ve DÖF aksiyonları.</p>
+            </a>
+            <a href="08_ortam_dozu_ve_kroki.html" class="page-card">
+              <span class="page-card-sub">Rehber Dokümanı</span>
+              <span class="page-card-title">8. Ortam Dozu & İnteraktif Kroki</span>
+              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Mimari PDF/PNG kat planları, canlı pinler ve SKS 6.1 alan izleme raporları.</p>
+            </a>
+            <a href="09_hizmet_ici_egitim_ve_lms.html" class="page-card">
+              <span class="page-card-sub">Rehber Dokümanı</span>
+              <span class="page-card-title">9. Hizmet İçi Eğitim & Sınav LMS</span>
+              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Kurumsal eğitim kataloğu, online sınav motoru ve sertifika uyum matrisi.</p>
+            </a>
+            <a href="10_tibbi_cihaz_ve_qr_portal.html" class="page-card">
+              <span class="page-card-sub">Rehber Dokümanı</span>
+              <span class="page-card-title">10. Tıbbi Cihaz & QR Arıza Portalı</span>
+              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Cihaz envanteri, NDK lisansı, kat planı pinleri ve telefon kamerasıyla QR arıza bildirimi.</p>
+            </a>
+            <a href="11_rke_ve_kalite_kontrol.html" class="page-card">
+              <span class="page-card-sub">Rehber Dokümanı</span>
+              <span class="page-card-title">11. Koruyucu Ekipman (RKE) & Kalite</span>
+              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">DIN 6857-1 kurşun önlük muayenesi, akıllı kodlama motoru ve KVKK röntgen kasası.</p>
+            </a>
+          </div>
+        </div>
+        <div style="margin: 2rem 0;">
+          <h2 style="font-size: 1.25rem; color: var(--sl-color-accent); margin-bottom: 1rem; border-bottom: 1px solid var(--sl-color-border); padding-bottom: 0.5rem;">III. KURUMSAL YÖNETİM VE RAPORLAMA</h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;">
+            <a href="12_onay_ve_denetim_izi.html" class="page-card">
+              <span class="page-card-sub">Rehber Dokümanı</span>
+              <span class="page-card-title">12. Evrensel Onay & Audit Trail</span>
+              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Yetkisiz değişiklikler için onay kuyruğu, görsel diff kıyaslama ve denetim izi.</p>
+            </a>
+            <a href="13_raporlar_ve_matbu_evrak.html" class="page-card">
+              <span class="page-card-sub">Rehber Dokümanı</span>
+              <span class="page-card-title">13. Rapor Merkezi & Şablon Marka</span>
+              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Word (docxtpl) ve Excel matbu şablonları, kurum logoları ve çok satırlı başlıklar.</p>
+            </a>
+            <a href="14_tanimlamalar_ve_web_portal.html" class="page-card">
+              <span class="page-card-sub">Rehber Dokümanı</span>
+              <span class="page-card-title">14. Tanımlamalar & Web Portalı</span>
+              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Lookup sabit tanımları, React PWA mobil web portalı ve REST API entegrasyonu.</p>
+            </a>
+          </div>
+        </div>
+        <div style="margin: 2rem 0;">
+          <h2 style="font-size: 1.25rem; color: var(--sl-color-accent); margin-bottom: 1rem; border-bottom: 1px solid var(--sl-color-border); padding-bottom: 0.5rem;">IV. SİSTEM YÖNETİMİ VE VERİ İŞLEMLERİ</h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;">
+            <a href="15_sistem_yonetimi_ve_yedekleme.html" class="page-card">
+              <span class="page-card-sub">Rehber Dokümanı</span>
+              <span class="page-card-title">15. Ayarlar, Veritabanı & İçe Aktarma</span>
+              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">PostgreSQL bakım/yedekleme, KVKK AES-256 kasası, tema ayarları ve akıllı Excel içe aktarma.</p>
+            </a>
+          </div>
+        </div>
+        <div style="margin: 2rem 0;">
+          <h2 style="font-size: 1.25rem; color: var(--sl-color-accent); margin-bottom: 1rem; border-bottom: 1px solid var(--sl-color-border); padding-bottom: 0.5rem;">V. DESTEK VE GÜNCELLEME GEÇMİŞİ</h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;">
+            <a href="16_sss_sorun_giderme.html" class="page-card">
+              <span class="page-card-sub">Rehber Dokümanı</span>
+              <span class="page-card-title">16. Sıkça Sorulan Sorular (SSS)</span>
+              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Tüm modüller için sık karşılaşılan uyarılar, hata mesajları ve adım adım çözüm rehberi.</p>
+            </a>
+            <a href="17_surum_notlari.html" class="page-card">
+              <span class="page-card-sub">Rehber Dokümanı</span>
+              <span class="page-card-title">17. Sürüm Güncelleme Geçmişi</span>
+              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">RADPYS V4.1.2.8 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.</p>
+            </a>
+          </div>
+        </div>
+    </main>
+  </div>
+
+  <!-- RIGHT ON-THIS-PAGE TOC -->
+  <aside class="sl-right-toc">
+    <div class="toc-title">Hızlı Gezinme</div>
+    <ul class="toc-nav" id="rightTocNav"></ul>
+  </aside>
+
+</div>
+
+<!-- SEARCH MODAL (Ctrl + K) -->
+<div class="search-modal-backdrop" id="searchModal">
+  <div class="search-modal">
+    <div class="search-input-wrap">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="modalSearchInput" placeholder="Dokümantasyonda ara (başlık, konu veya anahtar kelime)..." autofocus />
+      <kbd class="search-kbd" style="font-size:0.7rem;">ESC</kbd>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="assets/docs.js"></script>
+</body>
+</html>

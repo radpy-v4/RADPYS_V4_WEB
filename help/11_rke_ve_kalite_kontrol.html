@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11. Koruyucu Ekipman (RKE) & Kalite — RADPYS V4 Kılavuz</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header class="sl-header">
+  <div class="sl-header-left">
+    <button class="mobile-nav-toggle" id="mobileNavToggle" title="Menüyü Aç/Kapat">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <a href="index.html" class="brand-lockup">
+      <div class="brand-icon">R</div>
+      <div class="brand-title">RADPYS V4</div>
+      <span class="brand-badge">v4.1.2.8</span>
+    </a>
+  </div>
+
+  <div class="sl-header-right">
+    <div class="search-trigger" id="searchTrigger">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <span>Dokümantasyonda ara...</span>
+      <kbd class="search-kbd">Ctrl K</kbd>
+    </div>
+
+    <button class="btn-icon" id="themeToggleBtn" title="Temayı Değiştir (Açık / Koyu)">
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- MAIN LAYOUT -->
+<div class="sl-layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sl-sidebar" id="slSidebar">
+    <div style="margin-bottom: 1rem; padding: 0 4px;">
+      <a href="index.html" class="nav-page-link" style="padding-left: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Ana Karşılama Sayfası</span>
+      </a>
+    </div>
+    <nav id="sidebarNav">
+      
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>I. GENEL BİLGİLER VE KURULUM</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="01_kurulum.html" class="nav-page-link ">1. Kurulum ve Güvenlik İzinleri</a>
+                <a href="02_kullanici_ve_roller.html" class="nav-page-link ">2. Kullanıcı Yönetimi, Roller ve Lisans</a>
+              </div>
+            </div>
+            <div class="nav-part open">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>II. OPERASYONEL MODÜLLER</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="03_personel_modulu.html" class="nav-page-link ">3. Personel Modülü ve Özlük</a>
+                <a href="04_izin_ve_fhz_modulu.html" class="nav-page-link ">4. İzin Yönetimi ve Şua İzni</a>
+                <a href="05_dozimetre_ve_risk_analizi.html" class="nav-page-link ">5. Doz Takip ve Yasal Limitler</a>
+                <a href="06_nobet_cizelgesi_ve_havuz.html" class="nav-page-link ">6. Nöbet Çizelgesi & Değişim Havuzu</a>
+                <a href="07_olay_bildirim_ve_dof.html" class="nav-page-link ">7. Olay Bildirimi & DÖF/CAPA</a>
+                <a href="08_ortam_dozu_ve_kroki.html" class="nav-page-link ">8. Ortam Dozu & İnteraktif Kroki</a>
+                <a href="09_hizmet_ici_egitim_ve_lms.html" class="nav-page-link ">9. Hizmet İçi Eğitim & Sınav LMS</a>
+                <a href="10_tibbi_cihaz_ve_qr_portal.html" class="nav-page-link ">10. Tıbbi Cihaz & QR Arıza Portalı</a>
+                <a href="11_rke_ve_kalite_kontrol.html" class="nav-page-link active">11. Koruyucu Ekipman (RKE) & Kalite</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>III. KURUMSAL YÖNETİM VE RAPORLAMA</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="12_onay_ve_denetim_izi.html" class="nav-page-link ">12. Evrensel Onay & Audit Trail</a>
+                <a href="13_raporlar_ve_matbu_evrak.html" class="nav-page-link ">13. Rapor Merkezi & Şablon Marka</a>
+                <a href="14_tanimlamalar_ve_web_portal.html" class="nav-page-link ">14. Tanımlamalar & Web Portalı</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>IV. SİSTEM YÖNETİMİ VE VERİ İŞLEMLERİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="15_sistem_yonetimi_ve_yedekleme.html" class="nav-page-link ">15. Ayarlar, Veritabanı & İçe Aktarma</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>V. DESTEK VE GÜNCELLEME GEÇMİŞİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="16_sss_sorun_giderme.html" class="nav-page-link ">16. Sıkça Sorulan Sorular (SSS)</a>
+                <a href="17_surum_notlari.html" class="nav-page-link ">17. Sürüm Güncelleme Geçmişi</a>
+              </div>
+            </div>
+    </nav>
+  </aside>
+
+  <!-- CENTER CONTENT -->
+  <div class="sl-main-container">
+    <main class="sl-content">
+      <a id="bolum-11"></a>
+
+<h2>11. Radyasyon Koruyucu Ekipman (RKE) & DIN 6857-1 Kalite Kontrol Muayene Yönetimi</h2>
+
+<h3>💡 İşlemin Amacı ve Mevzuat Dayanağı</h3>
+
+<p>Radyasyon Koruyucu Ekipman (RKE) ve Kişisel Koruyucu Donanım (KKD) Modülü; sağlık tesisinde iyonlaştırıcı radyasyon alanlarında kullanılan tüm koruyucu önlükler, tiroid koruyucular, gonad koruyucular, kurşun gözlükler, kurşun eldivenler, masa altı perdeleri ve koruyucu paravanların <strong>envanterini, personele/birime zimmet durumunu ve uluslararası DIN 6857-1 / IEC 61331-3 standartlarına göre periyodik kalite kontrol muayenelerini</strong> yönetmek amacıyla geliştirilmiştir.</p>
+
+<p>Sağlık Bakanlığı SKS (Sağlıkta Kalite Standartları) ve NDK yönergeleri uyarınca, tüm radyasyon koruyucu donanımların yılda en az bir kez floroskopi/skopi veya radyografi cihazları altında fiziki bütünlük (çatlak, delik, kırılma, homojenite kaybı) kontrolünden geçirilmesi ve sonuçlarının resmi olarak kayıt altına alınması yasal zorunluluktur.</p>
+
+Masaüstü uygulamasında sol dikey navigasyon menüsünden:
+<ul>
+<li><strong>Koruyucu Ekipman (RKE) \> RKE Yönetimi</strong></li>
+<li><strong>Koruyucu Ekipman (RKE) \> RKE Muayene Listesi</strong></li>
+sekmelerinden erişilir.
+</ul>
+
+<div class="mermaid">
+graph TD
+    A["🛡️ RKE Envanteri Tanımlama"] --> B["🏷️ Otomatik RKE Kodu & QR Etiket"]
+    B --> C["👤 Personele / Birime Zimmetleme"]
+    C --> D["📅 Yıllık DIN 6857-1 Skopi Muayenesi"]
+    D --> E{"⚙️ Karar Motoru"}
+    E -- Kusursuz --> F["✅ UYGUN (Kullanıma Devam)"]
+    E -- Non-Kritik Kusur --> G["⚠️ ŞARTLI KULLANIM (Periyodik Takip)"]
+    E -- Kritik Bölge / Büyük Kusur --> H["🚨 HEK / HURDAYA AYIR (Kullanım Dışı)"]
+</div>
+<hr />
+<h3>🐾 11.1 Akıllı RKE Kodlama Motoru (Otomatik Kod Üretimi)</h3>
+
+<p>RADPYS V4, koruyucu ekipmanların kurum içinde standart ve karışıklığa mahal vermeyecek şekilde adlandırılması için <strong>Akıllı Kod Üretim Motoru (<code>RkeKodGenerator</code>)</strong> ile donatılmıştır.</p>
+
+<ul>
+<li><strong>Merkezi Kod Formatı:</strong> <code>RKE-[TürKodu]-[SıraNo]</code></li>
+<li><strong>Koruyucu Tür Kodları:</strong></li>
+<li><strong>Önlük (Ön Korumalı / Tam Korumalı):</strong> <code>RKE-O-001</code>, <code>RKE-O-002</code>...</li>
+<li><strong>Tiroid Koruyucu:</strong> <code>RKE-TK-001</code>, <code>RKE-TK-002</code>...</li>
+<li><strong>Gonad Koruyucu:</strong> <code>RKE-G-001</code>, <code>RKE-G-002</code>...</li>
+<li><strong>Kurşun Gözlük:</strong> <code>RKE-GOZ-001</code>...</li>
+<li><strong>Kurşun Eldiven:</strong> <code>RKE-E-001</code>...</li>
+<li><strong>Masa Yanı / Altı Perde:</strong> <code>RKE-P-001</code>...</li>
+<li><strong>Tekerlekli / Sabit Paravan:</strong> <code>RKE-PRV-001</code>...</li>
+</ul>
+
+<blockquote class="callout">💡 <strong>Otomatik Kod Tamamlama:</strong> Yeni bir koruyucu ekipman eklerken koruyucu türünü seçtiğinizde, sistem veritabanındaki en son numarayı tarayarak bir sonraki boş sıra numarasını otomatik olarak <code>RKE Kodu</code> alanına yazar.</blockquote>
+<hr />
+<h3>🐾 11.2 RKE Envanter Yönetimi ve Zimmet İşlemleri</h3>
+
+<strong>Koruyucu Ekipman (RKE) \> RKE Yönetimi</strong> ekranı; kurumdaki tüm koruyucu donanımların teknik özelliklerini, fiziksel konumlarını ve muayene durumlarını listeler.
+
+<h4>🛠️ Üst Araç Çubuğu (Toolbar) Butonları:</h4>
+<ul>
+<li><strong><code>[ + Yeni Ekipman ]</code>:</strong> Sisteme yeni koruyucu donanım tanımlama diyaloğunu (<code>RkeTanimDialog</code>) açar.</li>
+<li><strong><code>[ ✏️ Düzenle ]</code>:</strong> Seçili ekipmanın kurşun eşdeğeri, marka, model, lokasyon veya zimmet bilgilerini günceller.</li>
+<li><strong><code>[ 🗑️ Sil / HEK ]</code>:</strong> Ekipmanı servis dışı bırakır, arşive kaldırır veya Hurda/HEK statüsüne geçirir.</li>
+<li><strong><code>[ 🏷️ QR Etiket ]</code>:</strong> Seçili ekipman için dayanıklı 2D Karekod kimlik kartı ve etiket önizlemesini açar.</li>
+<li><strong><code>[ 📥 Excel İçe Aktar ]</code>:</strong> <code>Koruyucu Ekipmanlar (RKE).xlsx</code> şablonundaki toplu envanteri tek tıkla sisteme aktarır.</li>
+<li><strong><code>[ 📊 Excel Raporu ]</code>:</strong> Filtrelenmiş envanter listesini Excel (.xlsx) formatında dışa aktarır.</li>
+<li><strong><code>[ 🔍 Muayene Ekle ]</code>:</strong> Seçili ekipman için doğrudan yeni bir DIN 6857-1 Kalite Kontrol Muayenesi başlatır.</li>
+</ul>
+
+<h4>📋 Ekipman Tanımlama Kartı Alanları:</h4>
+<ol>
+<li><strong>RKE Kodu:</strong> Otomatik veya manuel girilen tekil ekipman kodu <em>(Örn: <code>RKE-O-008</code>)</em>.</li>
+<li><strong>Koruyucu Türü:</strong> Önlük, Tiroid, Gonad, Gözlük, Eldiven, Bone, Yüz Siperliği, Masa/Tavan/Mobil Paravan vb.</li>
+<li><strong>Kurşun Eşdeğeri (mm Pb):</strong> Ekipmanın nominal kurşun kalınlığı <em>(Ön: 0.50 mm Pb / Arka: 0.25 mm Pb vb.)</em>.</li>
+<li><strong>Beden / Boyut:</strong> S, M, L, XL, Standart, 60x100 cm, Ayarlanabilir vb.</li>
+<li><strong>Marka, Model & Seri No:</strong> Üretici firma ve imalat seri numarası.</li>
+<li><strong>Üretim & Hizmet Yılı:</strong> Ekipmanın yaş takibi, DIN ömür kuralları ve amortisman süresi için tarih kayıtları.</li>
+<li><strong>Üst Birim & Alt Birim / Servis:</strong> Ekipmanın fiziki olarak asılı bulunduğu departman ve servis <em>(Örn: Ameliyathane -> Ortopedi Masası 2, Radyoloji -> Anjiyo 1)</em>. Radyasyonlu alanlara göre filtrelenmiştir.</li>
+<li><strong>Bireysel Zimmet Personeli (Harici Hekim Desteği):</strong> Ekipman bireysel olarak bir çalışana tahsis edilmişse açılır kutudan seçilir. <strong>Farklı anabilim dalı hekimleri, cerrahlar veya kurum dışı uzmanlar için liste dışı isim serbestçe yazılabilir</strong> <em>(Örn: <code>Prof. Dr. Ahmet Yılmaz (Ortopedi AD)</code>)</em>. Ortak kullanımda ise <em>"— Bireysel Zimmet Yok (Birim Ortak) —"</em> seçilir.</li>
+<li><strong>Kullanım Durumu:</strong> <code>Aktif (Kullanımda)</code>, <code>Şartlı Kullanım</code>, <code>Bakımda / Onarımda</code>, <code>HEK (Hurda / Kullanım Dışı)</code>.</li>
+</ol>
+<hr />
+<h3>🐾 11.3 DIN 6857-1 Kalite Kontrol Muayenesi ve Otomatik Karar Motoru</h3>
+
+<p>DIN 6857-1 ve IEC 61331-3 standartları, koruyucu donanımların floroskopi veya radyografi altında taranarak kurşun katmanındaki kırılma, yırtılma ve deliklerin alan hesabına göre değerlendirilmesini öngörür.</p>
+
+<h4>🐾 Muayene Kaydı Ekleme Adımları:</h4>
+<ol>
+<li>Tablodan muayene edilecek ekipmanı seçip <strong>"Muayene Ekle"</strong> butonuna basın <em>(veya sağ tıklayıp Muayene Ekle seçin)</em>.</li>
+<li>Açılan <strong>RKE Kalite Kontrol Muayene Formu</strong> (<code>RkeMuayeneDialog</code>) penceresinde:</li>
+<ul>
+<li><strong>👁️ Görsel & Fiziki Muayene Modu:</strong> Skopi çekilmeden yapılan fiziksel kontroller için 5 maddelik kontrol listesi (Dikiş/Kumaş, Askı/Toka, Kurşun Blok/Katlanma, Etiket/QR, Hijyen/Sıvı) doldurulur. <em>"⚡ Tüm Kriterleri Sağlam Olarak İşaretle"</em> kısayolu ile anında onaylanabilir.</li>
+<li><strong>🩻 Skopi / X-Işını Modu:</strong> Ekipmanın anatomik SVG silüeti üzerinde tespit edilen delik/çatlak/hasar noktaları hassas koordinatlarla işaretlenir.</li>
+<li><strong>Hasar Bölgesi:</strong></li>
+<li>🔴 <strong>Kritik Bölge:</strong> Gonad, tiroid, sternum/göğüs ve arka omurga hattı gibi hayati organları koruyan alanlar.</li>
+<li>🟡 <strong>Non-Kritik Bölge:</strong> Etek uçları, omuz askıları ve kenar dikiş çevreleri.</li>
+<li><strong>Kusur Alanı (mm²):</strong> Skopi görüntüsünde tespit edilen toplam hasarlı alan büyüklüğü <em>(Örn: 0 mm², 8 mm², 25 mm²)</em>.</li>
+<li><strong>⚙️ Karar Motoru Otomatik Değerlendirmesi:</strong></li>
+   Sistem, girilen hasar bölgesi ve kusur alanı verilerine göre mevzuat kararını anlık olarak üretir:
+<li>🟢 <strong>UYGUN (KULLANILABİLİR):</strong> Kusur tespit edilmedi, homojenite tam. Bir sonraki muayene 1 yıl sonra.</li>
+<li>🟡 <strong>ŞARTLI KULLANILABİLİR (YILLIK / 6 AYLIK TAKİP):</strong> Non-kritik bölgede izin verilen tolerans dahilinde küçük kusur var. Periyodik izlemeye alındı.</li>
+<li>🔴 <strong>HEK / KULLANIM DIŞI (RED):</strong> Kritik bölgede delik/yırtık tespit edildi veya toplam kusur alanı standardı aştı. <strong>Ekipman derhal kullanımdan çekilir ve otomatik olarak HEK statüsüne alınır.</strong></li>
+<li><strong>"Kaydet ve Tamamla"</strong> veya <strong>"⚡ 1-Tıkla Uygun Onayla"</strong> butonuna basılarak muayene raporu sisteme işlenir.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 11.4 İnteraktif Kusur Haritası & 14 Donanım Türü SVG Silüeti</h3>
+
+RADPYS V4, Medikal Fizikçilerin sahada tablet veya masaüstünde skopi muayenesi yapabilmesi için <strong>14 farklı donanım türüne ait vektörel SVG anatomik silüet havuzu</strong> sunar:
+<ul>
+<li><strong>Kişisel Koruyucular:</strong> Kurşun Palto/Önlük (Ön/Arka), Yelek-Etek (Ön/Arka), Tiroid Koruyucu (Ön/Arka), Gonad Koruyucu (Ön/Arka), Kurşun Bone (Ön/Arka), Kurşun Eldiven (Ön/Arka), Kurşun Gözlük (Ön/Arka), Yüz Siperliği (Ön/Arka).</li>
+<li><strong>Kollektif / Alan Koruyucuları:</strong> Masa Altı Koruyucu Paravan (Ön/Arka), Mobil Tekerlekli Paravan (Ön/Arka), Tavana Monte Paravan (Ön/Arka).</li>
+</ul>
+
+<div class="mermaid">
+graph LR
+    A["📱 Mobil / Tablet / Masaüstü"] --> B["🩻 14 Donanım Vektörel SVG Silüeti"]
+    B --> C["📍 Dokunmatik Kusur İşaretleme (Ön / Arka)"]
+    C --> D["⚡ DIN 6857-1 Canlı Karar Analitiği"]
+    D --> E["💾 1-Tıkla Merkezi Veritabanı Kaydı"]
+</div>
+<hr />
+<h3>🐾 11.5 Toplu Muayene ve Kalite Kontrol Kokpiti</h3>
+
+Onlarca koruyucu donanımın yıllık periyodik kontrollerini tek bir oturumda saniyeler içinde tamamlamak için <strong>Toplu Muayene Kokpiti</strong> (<code>RkeTopluMuayeneDialog</code>) kullanılır:
+<ol>
+<li><strong>RKE Yönetimi \> Toplu Muayene</strong> butonuna basın.</li>
+<li>Açılan kokpitte muayene edilecek departmanı veya ekipman türünü filtreleyin.</li>
+<li>Üst kontrol panelinden:</li>
+<ul>
+<li><strong>Muayene Tarihi ve Dönemi:</strong> Kontrolün yapıldığı güncel tarih ve dönem adı seçilir.</li>
+<li><strong>Toplu Muayene Kararı:</strong> <code>Kullanıma Uygun (Sağlam)</code>, <code>Şartlı Kullanılabilir</code> veya <code>HEK (Hurdaya Ayır)</code>.</li>
+<li><strong>Fiziki Kontrol Maddeleri:</strong> Dikiş, askı, kurşun blok homojenliği, etiket ve hijyen kriterleri topluca onaylanır.</li>
+<li><strong>Ortak Açıklama:</strong> Kontrol notu girilir.</li>
+<li>Tablodan muayenesi tamamlanan ekipmanların kutucuklarını işaretleyin <em>(veya "Tümünü Seç" butonuna basın)</em>.</li>
+<li><strong>"⚡ Seçili Ekipmanları Toplu Kaydet"</strong> butonuna basarak tüm donanımların muayene tutanaklarını tek seferde sisteme işleyin.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 11.6 RKE Muayene Listesi ve KPI İstatistik Paneli</h3>
+
+<strong>Koruyucu Ekipman (RKE) \> RKE Muayene Listesi</strong> ekranı; sağlık kuruluşundaki tüm muayenelerin kronolojik geçmişini, kontrolü yaklaşan veya geciken ekipmanları tek bir ekranda raporlar.
+
+<h4>📊 Üst KPI Özet Kartları:</h4>
+<ul>
+<li>🛡️ <strong>Toplam Muayene Sayısı:</strong> Kurum bünyesinde yapılan toplam kontrol sayısı.</li>
+<li>🟢 <strong>Uygun (Kullanımda):</strong> Muayenesi başarılı olan güvenli donanımlar.</li>
+<li>🟡 <strong>Şartlı Kullanım:</strong> Yakın takipte olan ekipmanlar.</li>
+<li>🔴 <strong>HEK / Hurdaya Ayrılanlar:</strong> Güvensiz bulunup imha/hurda sürecine alınanlar.</li>
+<li>⏰ <strong>Muayenesi Yaklaşanlar / Gecikenler:</strong> Son muayenesinin üzerinden 11 aydan fazla geçmiş donanımlar <em>(Kırmızı uyarı rozetiyle amirlere erken bildirim gönderilir)</em>.</li>
+</ul>
+<hr />
+<h3>🐾 11.7 Toplu Excel İçe Aktarma (RKE ve Muayene Sihirbazları)</h3>
+
+Mevcut Excel envanterinizi sisteme saniyeler içinde aktarmak için:
+<ol>
+<li><strong>RKE Yönetimi \> Excel İçe Aktar</strong> butonuna basın.</li>
+<li>Excel dosyanızdaki sütunların (<em>RKE Kodu, Türü, Kurşun Eşdeğeri, Seri No, Birim, Zimmetli Personel</em>) şablona uygun olduğunu teyit edin.</li>
+<li><strong>"Aktarımı Başlat"</strong> butonuna basarak yüzlerce koruyucu ekipmanı tek tıkla veritabanına işleyin.</li>
+</ol>
+<hr />
+<h1>III. KURUMSAL YÖNETİM VE RAPORLAMA</h1>
+
+      <!-- BOTTOM PAGINATION -->
+      <div class="docs-pagination">
+        
+            <a href="10_tibbi_cihaz_ve_qr_portal.html" class="page-card prev">
+              <span class="page-card-sub">← Önceki Konu</span>
+              <span class="page-card-title">10. Tıbbi Cihaz & QR Arıza Portalı</span>
+            </a>
+        
+            <a href="12_onay_ve_denetim_izi.html" class="page-card next">
+              <span class="page-card-sub">Sonraki Konu →</span>
+              <span class="page-card-title">12. Evrensel Onay & Audit Trail</span>
+            </a>
+      </div>
+    </main>
+  </div>
+
+  <!-- RIGHT ON-THIS-PAGE TOC -->
+  <aside class="sl-right-toc">
+    <div class="toc-title">Bu Sayfada</div>
+    <ul class="toc-nav" id="rightTocNav"></ul>
+  </aside>
+
+</div>
+
+<!-- SEARCH MODAL (Ctrl + K) -->
+<div class="search-modal-backdrop" id="searchModal">
+  <div class="search-modal">
+    <div class="search-input-wrap">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="modalSearchInput" placeholder="Dokümantasyonda ara (başlık, konu veya anahtar kelime)..." autofocus />
+      <kbd class="search-kbd" style="font-size:0.7rem;">ESC</kbd>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="assets/docs.js"></script>
+</body>
+</html>

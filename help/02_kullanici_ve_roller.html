@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. Kullanıcı Yönetimi, Roller ve Lisans — RADPYS V4 Kılavuz</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header class="sl-header">
+  <div class="sl-header-left">
+    <button class="mobile-nav-toggle" id="mobileNavToggle" title="Menüyü Aç/Kapat">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <a href="index.html" class="brand-lockup">
+      <div class="brand-icon">R</div>
+      <div class="brand-title">RADPYS V4</div>
+      <span class="brand-badge">v4.1.2.8</span>
+    </a>
+  </div>
+
+  <div class="sl-header-right">
+    <div class="search-trigger" id="searchTrigger">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <span>Dokümantasyonda ara...</span>
+      <kbd class="search-kbd">Ctrl K</kbd>
+    </div>
+
+    <button class="btn-icon" id="themeToggleBtn" title="Temayı Değiştir (Açık / Koyu)">
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- MAIN LAYOUT -->
+<div class="sl-layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sl-sidebar" id="slSidebar">
+    <div style="margin-bottom: 1rem; padding: 0 4px;">
+      <a href="index.html" class="nav-page-link" style="padding-left: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Ana Karşılama Sayfası</span>
+      </a>
+    </div>
+    <nav id="sidebarNav">
+      
+            <div class="nav-part open">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>I. GENEL BİLGİLER VE KURULUM</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="01_kurulum.html" class="nav-page-link ">1. Kurulum ve Güvenlik İzinleri</a>
+                <a href="02_kullanici_ve_roller.html" class="nav-page-link active">2. Kullanıcı Yönetimi, Roller ve Lisans</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>II. OPERASYONEL MODÜLLER</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="03_personel_modulu.html" class="nav-page-link ">3. Personel Modülü ve Özlük</a>
+                <a href="04_izin_ve_fhz_modulu.html" class="nav-page-link ">4. İzin Yönetimi ve Şua İzni</a>
+                <a href="05_dozimetre_ve_risk_analizi.html" class="nav-page-link ">5. Doz Takip ve Yasal Limitler</a>
+                <a href="06_nobet_cizelgesi_ve_havuz.html" class="nav-page-link ">6. Nöbet Çizelgesi & Değişim Havuzu</a>
+                <a href="07_olay_bildirim_ve_dof.html" class="nav-page-link ">7. Olay Bildirimi & DÖF/CAPA</a>
+                <a href="08_ortam_dozu_ve_kroki.html" class="nav-page-link ">8. Ortam Dozu & İnteraktif Kroki</a>
+                <a href="09_hizmet_ici_egitim_ve_lms.html" class="nav-page-link ">9. Hizmet İçi Eğitim & Sınav LMS</a>
+                <a href="10_tibbi_cihaz_ve_qr_portal.html" class="nav-page-link ">10. Tıbbi Cihaz & QR Arıza Portalı</a>
+                <a href="11_rke_ve_kalite_kontrol.html" class="nav-page-link ">11. Koruyucu Ekipman (RKE) & Kalite</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>III. KURUMSAL YÖNETİM VE RAPORLAMA</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="12_onay_ve_denetim_izi.html" class="nav-page-link ">12. Evrensel Onay & Audit Trail</a>
+                <a href="13_raporlar_ve_matbu_evrak.html" class="nav-page-link ">13. Rapor Merkezi & Şablon Marka</a>
+                <a href="14_tanimlamalar_ve_web_portal.html" class="nav-page-link ">14. Tanımlamalar & Web Portalı</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>IV. SİSTEM YÖNETİMİ VE VERİ İŞLEMLERİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="15_sistem_yonetimi_ve_yedekleme.html" class="nav-page-link ">15. Ayarlar, Veritabanı & İçe Aktarma</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>V. DESTEK VE GÜNCELLEME GEÇMİŞİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="16_sss_sorun_giderme.html" class="nav-page-link ">16. Sıkça Sorulan Sorular (SSS)</a>
+                <a href="17_surum_notlari.html" class="nav-page-link ">17. Sürüm Güncelleme Geçmişi</a>
+              </div>
+            </div>
+    </nav>
+  </aside>
+
+  <!-- CENTER CONTENT -->
+  <div class="sl-main-container">
+    <main class="sl-content">
+      <a id="bolum-2"></a>
+
+<h2>2. Sisteme Giriş, Şifre Değiştirme ve Kullanıcı Yönetimi Nasıl Yapılır?</h2>
+
+<h3>💡 İşlemin Amacı</h3>
+
+Sisteme giriş ekranı, kullanıcının rolüne tanımlı yetkiler çerçevesinde uygulamaya erişmesini sağlar. İlk oturum açma, varsayılan admin şifresi, geçici şifre değiştirme ve şifre sıfırlama işlemleri bu ekrandan yönetilir.
+<hr />
+<h3>🔑 2.1 İlk Kurulumda Varsayılan Yönetici (Admin) Hesabı ve Şifresi Nerededir?</h3>
+
+<p>RADPYS V4 ilk kez yüklendiğinde ve çalıştırıldığında, veritabanı otomatik olarak tam yetkili bir <strong><code>admin</code></strong> hesabı oluşturur.</p>
+
+<h4>Admin Giriş Bilgilerine Erişim</h4>
+
+<ul>
+<li><strong>Kullanıcı Adı:</strong> <code>admin</code></li>
+<li><strong>Geçici Şifre Dosyası:</strong> İlk kurulum anında sistem, veritabanının bulunduğu klasörde (uygulama dizinindeki <code>data/</code> klasöründe) <strong><code>ilk_admin_bilgileri.txt</code></strong> adında bir metin dosyası otomatik oluşturur.</li>
+<li><strong>Varsayılan Parola Kuralı:</strong> Kurulumda oluşturulan parola <code>Admin123!</code> veya metin dosyasında belirtilen güçlü geçici paroladır.</li>
+</ul>
+<hr />
+<h3>🐾 2.2 Adım Adım Oturum Açma İş Akışı</h3>
+
+<ol>
+<li>Masaüstündeki <strong>RADPYS V4</strong> kısayoluna çift tıklayın.</li>
+<li>Açılan Giriş Penceresinde <strong>Kullanıcı Adı</strong> (<code>admin</code>) ve <strong>Şifre</strong> bilginizi girin.</li>
+<li><strong>"Giriş Yap"</strong> butonuna tıklayın.</li>
+</ol>
+<hr />
+<h3>🐾 Adım Adım İlk Girişte Şifre Değiştirme İş Akışı</h3>
+
+<ol>
+<li>Geçici şifrenizle ilk kez giriş yaptığınızda sistem otomatik olarak <strong>"Zorunlu Şifre Değiştirme"</strong> ekranını açar.</li>
+<li><strong>Mevcut Şifre</strong> alanına geçici şifrenizi girin.</li>
+<li><strong>Yeni Şifre</strong> ve <strong>Yeni Şifre (Tekrar)</strong> alanlarına en az 8 karakterden oluşan (büyük harf, küçük harf ve rakam içeren) yeni güçlü parolanızı girin.</li>
+<li><strong>"Şifreyi Güncelle"</strong> butonuna basarak işlemi tamamlayın. Artık yeni şifrenizle oturum açabilirsiniz.</li>
+</ol>
+<hr />
+<h3>🐾 Adım Adım Unutulan Şifreyi Sıfırlama İş Akışı</h3>
+
+<ol>
+<li>Giriş ekranındaki <strong>"Şifremi Unuttum"</strong> butonuna tıklayın.</li>
+<li>Açılan pencerede sistemde kayıtlı <strong>E-Posta Adresinizi</strong> ve <strong>Kullanıcı Adınızı</strong> girin.</li>
+<li>Yeni oluşturmak istediğiniz şifreyi iki kez girerek <strong>"Şifremi Sıfırla"</strong> butonuna basın.  </li>
+<em>(Not: E-posta veya kullanıcı adı sistemdeki kayıtla eşleşmezse uyarı alırsınız. Bu durumda sistem yöneticinizle iletişime geçmeniz gerekir.)</em>
+</ol>
+<hr />
+<blockquote class="callout">💡 <strong>Sık Karşılaşılan Uyarılar ve Çözüm Adımları:</strong> Detaylı soru ve çözüm rehberi için bkz: <a href="RADPYS_V4_sss.md">RADPYS V4 SSS Dokümanı</a></blockquote>
+<hr />
+<h3>🐾 2.3 Demo Sürümden Tam Sürüme (Lisans Aktivasyonu) Geçiş</h3>
+
+<h3>💡 İşlemin Amacı ve Ön Koşullar</h3>
+
+Uygulama ilk kurulduğunda kısıtlı <strong>Demo Modu</strong> (15 Gün Deneme Süresi, Maksimum 6 Personel Kaydı, Maksimum 3 Nöbet Planı) ile başlar. Tüm kısıtlamaları kaldırmak ve süresiz tam sürüme geçmek için size özel <strong>Lisans Anahtarı</strong> ile aktivasyon yapılmalıdır.
+<hr />
+<h3>🐾 Adım Adım Lisans Aktifleştirme İş Akışı</h3>
+
+<ol>
+<li><strong>Hakkında Penceresini Açın:</strong> RADPYS ana ekranının sağ üst köşesinde bulunan <strong>"Hakkında"</strong> butonuna tıklayın.</li>
+<li><strong>Cihaz Kimliğini Kopyalayın:</strong> Açılan karttaki <strong>Lisans ve Aktivasyon</strong> bölümünde yer alan benzersiz <strong>Cihaz Kimliği</strong> (örn. <code>RP-A1B2-C3D4-E5F6</code>) bilgisinin yanındaki <strong>"Kopyala"</strong> butonuna tıklayın.</li>
+<li><strong>Lisans Anahtarını Alın:</strong> Kopyaladığınız Cihaz Kimliğini yazılım temsilcinize ileterek size özel üretilen <strong>Lisans Anahtarını</strong> (örn. <code>LK-AS-PRO-PERM-...</code>) temin edin.</li>
+<li><strong>Lisans Anahtarını Girin ve Onaylayın:</strong></li>
+<ul>
+<li>Hakkında penceresindeki <strong>Lisans Anahtarı</strong> metin kutusuna anahtarı yapıştırın.</li>
+<li><strong>"Lisansı Aktifleştir"</strong> butonuna tıklayın.</li>
+<li><strong>Uygulamayı Yeniden Başlatın:</strong> <em>"Lisans Başarıyla Aktifleştirildi"</em> mesajını aldıktan sonra uygulamayı kapatıp yeniden açın. Başlık çubuğundaki <code>[DEMO SÜRÜMÜ]</code> ibaresi kalkacak ve tüm kısıtlamalar açılacaktır.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 2.4 Kurulum Sonrası Hızlı Başlangıç ve İçe Aktarım</h3>
+
+<h3>💡 İşlemin Amacı ve Ön Koşullar</h3>
+
+<p>RADPYS V4 ilk kurulduğunda veritabanı boş durumdadır. Tüm personeli ve geçmiş kayıtları tek tek elle girmek saatler sürebilir. Uygulama, <strong>Excel/CSV Toplu İçe Aktarma Sihirbazı</strong> ile yüzlerce personel kaydını, nöbet geçmişini ve muayene verilerini saniyeler içinde sisteme aktarmanızı sağlar.</p>
+
+İçe aktarımın sorunsuz tamamlanabilmesi ve veritabanındaki ilişkisel yapının (bağlı birimler, unvanlar, izinler) bozulmaması için <strong>doğru veri yükleme sırası</strong> izlenmelidir.
+<hr />
+<h3>📐 Önerilen Toplu Veri İçe Aktarım Sırası (Import Hiyerarşisi)</h3>
+
+<p>Veri aktarımının hatalara yol açmaması için işlemler <strong>kesinlikle aşağıdaki sırayla</strong> yapılmalıdır:</p>
+
+<div class="mermaid">
+flowchart TD
+    A["1. ADIM: Kurumsal Tanımlamalar<br/>(Departmanlar, Unvanlar, İzin Türleri)"] --> B["2. ADIM: Personel Ana Kayıtları<br/>(Özlük, Kimlik, Sicil ve Birim Ataması)"]
+    B --> C["3. ADIM: Kullanıcı Hesapları ve Rol Atamaları<br/>(Sisteme Giriş Hesapları ve Yetkiler)"]
+    C --> D["4. ADIM: Operasyonel Geçmiş Verileri<br/>(İzinler, Dozimetre ve Muayeneler)"]
+</div>
+
+<h4>1. Adım: Kurumsal Tanımlamalar (Lookup Tabloları)</h4>
+
+<ul>
+<li><strong>Neden İlk Sırada?</strong> Personel eklenirken personelin hangi birimde (Radyoloji, Nükleer Tıp vb.) ve hangi unvanda (Radyoloji Teknikeri, Uman Dr. vb.) olduğu seçilmelidir. Bu tablolar boş olursa personel atamaları eksik kalır.</li>
+<li><strong>Nasıl Yapılır?</strong> Sol menüden <em>Tanımlamalar (Lookup)</em> sekmesine gidin. Mevcut departman ve unvan listesini kontrol edin; eksik olanları manuel ekleyin veya Excel ile toplu yükleyin.</li>
+</ul>
+
+<h4>2. Adım: Personel Ana Kayıtları (Personel Modülü)</h4>
+
+<ul>
+<li><strong>Neden İkinci Sırada?</strong> Nöbetler, dozimetre ölçümleri, izinler ve sağlık muayeneleri doğrudan Personel TC / Sicil Numarasına bağlanır.</li>
+<li><strong>Nasıl Yapılır?</strong> <em>Personel Modülü > Personel Listesi > İçe Aktar</em> adımıyla hazırladığınız <code>personel_yukleme_sablonu.xlsx</code> dosyasını yükleyin.</li>
+</ul>
+
+<h4>3. Adım: Kullanıcı Hesapları ve Rol Atamaları (Kullanıcı Modülü)</h4>
+
+<ul>
+<li><strong>Neden Üçüncü Sırada?</strong> Sisteme giriş yapacak personellere (Yönetici, Birim Sorumlusu vb.) kullanıcı hesabı ve şifre tanımlamak için personel kaydının önceden var olması gerekir.</li>
+<li><strong>Nasıl Yapılır?</strong> <em>Kullanıcı Modülü > Kullanıcı Listesi</em> ekranından personellerle ilişkili kullanıcı hesaplarını oluşturun.</li>
+</ul>
+
+<h4>4. Adım: Operasyonel Geçmiş Verileri (İzin, Dozimetre, Sağlık)</h4>
+
+<ul>
+<li><strong>Sırasıyla:</strong></li>
+<li><strong>İzin Geçmişi:</strong> Kullanılan ve devreden şua/yıllık izin bakiyeleri.</li>
+<li><strong>Dozimetre Ölçüm Geçmişi:</strong> Ölçüm firmasından gelen geçmiş dozimetre sonuçları.</li>
+<li><strong>Sağlık Muayene Geçmişi:</strong> Periyodik sağlık muayene kayıtları.</li>
+</ul>
+<hr />
+<h3>🐾 Adım Adım Toplu Personel İçe Aktarma İş Akışı</h3>
+
+<ol>
+<li><strong>Örnek Şablonu İndirin:</strong></li>
+<ul>
+<li>Sol navigasyon menüsünden <strong>Personel Modülü > Personel Listesi</strong> ekranına gidin.</li>
+<li>Ekranın üst kısmındaki <strong>"İçe Aktar"</strong> butonuna tıklayın.</li>
+<li>Açılan pencerede <strong>"Örnek Şablon İndir"</strong> butonuna basarak <code>personel_yukleme_sablonu.xlsx</code> dosyasını bilgisayarınıza kaydedin.</li>
+<li><strong>Excel Dosyasını Doldurun:</strong></li>
+<li>İndirdiğiniz şablonu Excel ile açın.</li>
+<li><strong>TC Kimlik No (11 hane)</strong> ve <strong>Sicil No</strong> alanlarını eksiksiz doldurun <em>(Sistem bu verileri çakışmayı önlemek için benzersiz anahtar olarak kullanır)</em>.</li>
+<li>Tarih alanlarını <code>GG.AA.YYYY</code> (Örn: <code>15.06.1990</code>) formatında girin.</li>
+<li><em>(Not: Excel'e yazdığınız Departman veya Unvan bilgisi sistemde henüz tanımlı değilse, 1. Adımdaki tanımlamalar esnasında sistem tarafından otomatik oluşturulur).</em></li>
+<li><strong>Excel Dosyasını Yükleyin ve Doğrulayın:</strong></li>
+<li>İçe Aktar penceresindeki <strong>"Dosya Seç"</strong> butonuna tıklayarak hazırladığınız Excel dosyasını seçin.</li>
+<li>Sistem verileri önizleme tablosunda listeleyerek sütun eşleştirme kontrollerini hazırlar.</li>
+<li><strong>Aktarımı Başlatın:</strong></li>
+<li>Hatalı satır yoksa veya düzeltildikten sonra <strong>"Aktarımı Başlat"</strong> butonuna tıklayın.</li>
+<li>Aktarım bittiğinde ekranda <em>"X adet personel başarıyla aktarıldı"</em> özeti görüntülenecektir.</li>
+</ul>
+</ol>
+<hr />
+<h3>🔑 Toplu İçe Aktarım Sonrası Otomatik Oluşturulan Kullanıcı Hesapları ve Geçici Şifreler</h3>
+
+<p>Toplu personel içe aktarımı tamamlandığında sistem, her personel için otomatik olarak bir kullanıcı hesabı ve geçici şifre oluşturur.</p>
+
+<h4>1. Otomatik Kullanıcı Adı ve Geçici Şifre Formatı</h4>
+
+<ul>
+<li><strong>Kullanıcı Adı Formatı:</strong> Personelin Adının ilk harfi + Soyadı küçük harf ASCII formatında (Örn: <em>Ahmet Yılmaz</em> -> <code>ayilmaz</code>).</li>
+<li><strong>Geçici Şifre Formatı:</strong> <code>KullanıcıAdı123!</code> (Örn: Kullanıcı adı <code>ayilmaz</code> olan personel için geçici şifre: <code>Ayilmaz123!</code>).</li>
+</ul>
+
+<h4>2. Geçici Şifrelerin Kaydedildiği Yer ve Erişim</h4>
+
+<p>Sistem yöneticileri (Admin) oluşturulan toplu kullanıcı hesaplarına ve geçici şifre bilgilerine şu yöntemlerle ulaşabilir:</p>
+
+<ul>
+<li><strong>Kullanıcı Listesi Ekranı:</strong> Sol navigasyon menüsünden <strong>Kullanıcı Modülü > Kullanıcı Listesi</strong> sekmesine giderek tüm personelin otomatik açılan kullanıcı adlarını ve bağlı oldukları personeli görüntüleyebilirsiniz.</li>
+<li><strong>Aktarım İletişim Raporu:</strong> İçe aktarım tamamlandığında ekranda çıkan onay penceresinde oluşturulan geçici şifre listesi özetlenir.</li>
+</ul>
+
+<h4>3. İlk Girişte Şifre Değiştirme Zorunluluğu</h4>
+
+<p>Güvenlik standartları gereği otomatik oluşturulan tüm kullanıcı hesaplarında ilk giriş zorunluluğu aktiftir:</p>
+
+<ul>
+<li>Personel kendisine verilen geçici şifre ile (<code>AYilmaz123!</code>) ilk kez giriş yaptığında, sistem otomatik olarak <strong>"Şifre Değiştirme Penceresini"</strong> açar.</li>
+<li>Personel kendi kişisel şifresini belirlemeden sisteme giriş yapamaz.</li>
+</ul>
+<hr />
+<blockquote class="callout">💡 <strong>Sık Karşılaşılan Uyarılar ve Çözüm Adımları:</strong> Detaylı soru ve çözüm rehberi için bkz: <a href="RADPYS_V4_sss.md">RADPYS V4 SSS Dokümanı</a></blockquote>
+<hr />
+<h1>II. TEMEL OPERASYONEL MODÜLLER</h1>
+
+      <!-- BOTTOM PAGINATION -->
+      <div class="docs-pagination">
+        
+            <a href="01_kurulum.html" class="page-card prev">
+              <span class="page-card-sub">← Önceki Konu</span>
+              <span class="page-card-title">1. Kurulum ve Güvenlik İzinleri</span>
+            </a>
+        
+            <a href="03_personel_modulu.html" class="page-card next">
+              <span class="page-card-sub">Sonraki Konu →</span>
+              <span class="page-card-title">3. Personel Modülü ve Özlük</span>
+            </a>
+      </div>
+    </main>
+  </div>
+
+  <!-- RIGHT ON-THIS-PAGE TOC -->
+  <aside class="sl-right-toc">
+    <div class="toc-title">Bu Sayfada</div>
+    <ul class="toc-nav" id="rightTocNav"></ul>
+  </aside>
+
+</div>
+
+<!-- SEARCH MODAL (Ctrl + K) -->
+<div class="search-modal-backdrop" id="searchModal">
+  <div class="search-modal">
+    <div class="search-input-wrap">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="modalSearchInput" placeholder="Dokümantasyonda ara (başlık, konu veya anahtar kelime)..." autofocus />
+      <kbd class="search-kbd" style="font-size:0.7rem;">ESC</kbd>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="assets/docs.js"></script>
+</body>
+</html>

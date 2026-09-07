@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>14. Tanımlamalar & Web Portalı — RADPYS V4 Kılavuz</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header class="sl-header">
+  <div class="sl-header-left">
+    <button class="mobile-nav-toggle" id="mobileNavToggle" title="Menüyü Aç/Kapat">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <a href="index.html" class="brand-lockup">
+      <div class="brand-icon">R</div>
+      <div class="brand-title">RADPYS V4</div>
+      <span class="brand-badge">v4.1.2.8</span>
+    </a>
+  </div>
+
+  <div class="sl-header-right">
+    <div class="search-trigger" id="searchTrigger">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <span>Dokümantasyonda ara...</span>
+      <kbd class="search-kbd">Ctrl K</kbd>
+    </div>
+
+    <button class="btn-icon" id="themeToggleBtn" title="Temayı Değiştir (Açık / Koyu)">
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- MAIN LAYOUT -->
+<div class="sl-layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sl-sidebar" id="slSidebar">
+    <div style="margin-bottom: 1rem; padding: 0 4px;">
+      <a href="index.html" class="nav-page-link" style="padding-left: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Ana Karşılama Sayfası</span>
+      </a>
+    </div>
+    <nav id="sidebarNav">
+      
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>I. GENEL BİLGİLER VE KURULUM</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="01_kurulum.html" class="nav-page-link ">1. Kurulum ve Güvenlik İzinleri</a>
+                <a href="02_kullanici_ve_roller.html" class="nav-page-link ">2. Kullanıcı Yönetimi, Roller ve Lisans</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>II. OPERASYONEL MODÜLLER</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="03_personel_modulu.html" class="nav-page-link ">3. Personel Modülü ve Özlük</a>
+                <a href="04_izin_ve_fhz_modulu.html" class="nav-page-link ">4. İzin Yönetimi ve Şua İzni</a>
+                <a href="05_dozimetre_ve_risk_analizi.html" class="nav-page-link ">5. Doz Takip ve Yasal Limitler</a>
+                <a href="06_nobet_cizelgesi_ve_havuz.html" class="nav-page-link ">6. Nöbet Çizelgesi & Değişim Havuzu</a>
+                <a href="07_olay_bildirim_ve_dof.html" class="nav-page-link ">7. Olay Bildirimi & DÖF/CAPA</a>
+                <a href="08_ortam_dozu_ve_kroki.html" class="nav-page-link ">8. Ortam Dozu & İnteraktif Kroki</a>
+                <a href="09_hizmet_ici_egitim_ve_lms.html" class="nav-page-link ">9. Hizmet İçi Eğitim & Sınav LMS</a>
+                <a href="10_tibbi_cihaz_ve_qr_portal.html" class="nav-page-link ">10. Tıbbi Cihaz & QR Arıza Portalı</a>
+                <a href="11_rke_ve_kalite_kontrol.html" class="nav-page-link ">11. Koruyucu Ekipman (RKE) & Kalite</a>
+              </div>
+            </div>
+            <div class="nav-part open">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>III. KURUMSAL YÖNETİM VE RAPORLAMA</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="12_onay_ve_denetim_izi.html" class="nav-page-link ">12. Evrensel Onay & Audit Trail</a>
+                <a href="13_raporlar_ve_matbu_evrak.html" class="nav-page-link ">13. Rapor Merkezi & Şablon Marka</a>
+                <a href="14_tanimlamalar_ve_web_portal.html" class="nav-page-link active">14. Tanımlamalar & Web Portalı</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>IV. SİSTEM YÖNETİMİ VE VERİ İŞLEMLERİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="15_sistem_yonetimi_ve_yedekleme.html" class="nav-page-link ">15. Ayarlar, Veritabanı & İçe Aktarma</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>V. DESTEK VE GÜNCELLEME GEÇMİŞİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="16_sss_sorun_giderme.html" class="nav-page-link ">16. Sıkça Sorulan Sorular (SSS)</a>
+                <a href="17_surum_notlari.html" class="nav-page-link ">17. Sürüm Güncelleme Geçmişi</a>
+              </div>
+            </div>
+    </nav>
+  </aside>
+
+  <!-- CENTER CONTENT -->
+  <div class="sl-main-container">
+    <main class="sl-content">
+      <a id="bolum-14"></a>
+
+<h2>14. Tanımlamalar (Lookup / Sabit Veriler) Modülü</h2>
+
+<h3>💡 İşlemin Amacı ve Mimari Yapısı</h3>
+
+<p>Tanımlamalar Modülü; kurum bünyesindeki birimleri (departmanlar), personel ünvanlarını, hizmet sınıflarını, izin türlerini, resmi tatil takvimlerini ve kalite olay bildirimi sorumlularını merkezi olarak yapılandıran sistem altyapısıdır. Bu ekranda tanımlanan sabit veriler; personel kayıtlarında, otomatik nöbet dağıtım sihirbazında, Şua izni hesaplamalarında ve resmi raporlarda standart referans verisi olarak kullanılır.</p>
+
+Masaüstü uygulamasında sol dikey navigasyon menüsünden <strong>Yönetim > Tanımlamalar / Sabit Veriler</strong> sekmesinden erişilir.
+<hr />
+<h3>🐾 14.1 Departman ve Radyasyonlu Alan Sınıflandırması Tanımları</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Kurumdaki tıbbi ve idari birimleri tanımlamak, hiyerarşik üst departman bağlantılarını kurmak ve birimin radyasyonlu alan olup olmadığını belirlemektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Departman Tanımları Ekranına Geçin:</strong></li>
+<ul>
+<li>Tanımlamalar ekranında <strong>"Departman Tanımları"</strong> sekmesini seçin.</li>
+<li><strong>Yeni Departman Ekleme:</strong></li>
+<li><strong>"Yeni"</strong> butonuna basın. Sağ taraftaki <strong>Departman Detayı</strong> formu açılır.</li>
+<li><strong>Departman Bilgilerini Doldurun:</strong></li>
+<li><strong>Departman Adı & Kodu:</strong> Birimin adını (örn: <em>Bilgisayarlı Tomografi (BT-1)</em>) ve kurum içi kodunu girin.</li>
+<li><strong>Üst Departman:</strong> Açılır menüden bağlı olduğu ana kliniği seçin (örn: <em>Radynoloji Anabilim Dalı</em>).</li>
+<li><strong>Birim Sorumlusu:</strong> Birim amiri / sorumlu teknikerini seçin.</li>
+<li>☢️ <strong>Radyasyonlu Alan Bayrağı:</strong> Birimde iyonlaştırıcı radyasyon cihazı (BT, Röntgen, Skopi, Anjiyografi, Nükleer Tıp vb.) kullanılıyorsa <strong>"Radyasyonlu Alan"</strong> onay kutusunu işaretleyin.  </li>
+<li>⚠️ <em>Bu işaretleme, o birimde görev yapan personellerin haftalık mesaisini yasal 35 saat olarak ayarlar ve yıllık 30 günlük Şua İzni hakediş motorunu tetikler.</em></li>
+<li>📅 <strong>Nöbet Tutulan Birim Bayrağı:</strong> Birimde gece/vardiya nöbeti tutuluyorsa <strong>"Nöbet Tutulan Birim"</strong> kutusunu işaretleyin.</li>
+<li><strong>Kaydet ve Excel'e Aktar:</strong></li>
+<li><strong>"Kaydet"</strong> butonuna basarak birimi sisteme ekleyin. <strong>"Excel Aktar"</strong> butonuyla tüm departman listesini döküm alabilirsiniz.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 14.2 Ünvan ve Hizmet Sınıfı Tanımları</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Kurumdaki personel ünvanlarını ve yasal hizmet sınıflarını (SHS, GİH, THS) tanımlamaktır.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Ünvan Tanımları Ekranını Seçin:</strong></li>
+<ul>
+<li><strong>"Ünvan Tanımları"</strong> sekmesine geçin.</li>
+<li><strong>Ünvan Detaylarını Tanımlayın:</strong></li>
+<li><strong>Ünvan Adı & Kod:</strong> <em>Tıbbi Görüntüleme Teknikeri</em>, <em>Radyoloji Uzmanı</em>, <em>Tıbbi Fizik Uzmanı</em>, <em>Radyoloji Asistanı</em>, <em>Hemşire</em> vb. unvanları girin.</li>
+<li><strong>Hizmet Sınıfı:</strong> Açılır listeden yasal hizmet sınıfını seçin (<em>Sağlık Hizmetleri Sınıfı - SHS, Genel İdare Hizmetleri - GİH, Teknik Hizmetler Sınıfı - THS</em>).</li>
+<li><strong>Kaydı Tamamlayın:</strong></li>
+<li><strong>"Kaydet"</strong> butonuna basarak ünvanı aktifleştirin. Personel kayıt ekranında bu ünvanlar açılır menü olarak belirir.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 14.3 İzin Türleri ve Şua İzni Parametre Tanımları</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Kurumda kullanılan tüm izin tiplerini (Yıllık İzin, Sağlık İzni, Şua İzni, Mazeret İzni, Süt İzni) ve Şua izni hakediş kurallarını yapılandırmaktır.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>İzin Türleri Sekmesine Geçin:</strong></li>
+<ul>
+<li><strong>"İzin Türü Tanımları"</strong> sekmesini seçin.</li>
+<li><strong>İzin Kurallarını Belirleyin:</strong></li>
+<li><strong>İzin Adı & Kodu:</strong> İzin türünü tanımlayın (örn: <em>Sağlık (Şua) İzni</em>).</li>
+<li><strong>Yıllık Azami Limit:</strong> İznin yıl içindeki tavan gün sayısını girin (Şua izni için 30 gün).</li>
+<li><strong>Düşüş Önceliği ve Maaş/Hakediş Kesintisi:</strong> İznin yıllık izin bakiyesinden düşülüp düşülmeyeceğini ve Şua izni hakediş gün sayısını etkileyip etkilemeyeceğini belirleyin.</li>
+<li><strong>Değişiklikleri Kaydedin:</strong></li>
+<li><strong>"Kaydet"</strong> butonuna basarak izin parametrelerini güncelleyin.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 14.4 Resmi Tatiller ve İdari İzin Takvimi Tanımları</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Yıl içindeki Dini ve Millî Bayramları, resmi tatilleri, yarım gün arife günlerini ve idari izinleri tanımlayarak nöbet mesai katsayılarının ve hedef çalışma saatlerinin doğru hesaplanmasını sağlamaktır.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Resmi Tatil Takvimi Sekmesini Açın:</strong></li>
+<ul>
+<li><strong>"Resmi Tatil Tanımları"</strong> sekmesine tıklayın.</li>
+<li><strong>Yeni Tatil Günü Ekleme:</strong></li>
+<li><strong>"Yeni Tatil Ekle"</strong> butonuna basın.</li>
+<li><strong>Tatil Bilgilerini Girin:</strong></li>
+<li><strong>Tatil Adı:</strong> <em>29 Ekim Cumhuriyet Bayramı</em>, <em>Ramazan Bayramı Arife</em>, <em>15 Temmuz Demokrasi Günü</em> vb. yazın.</li>
+<li><strong>Tarih Aralığı:</strong> Başlangıç ve bitiş tarihlerini takvimden seçin.</li>
+<li><strong>Mesai Durumu:</strong> <em>Tam Gün Tatil</em>, <em>Yarım Gün Tatil (Arife)</em> veya <em>İdari İzin</em> durumunu seçin.</li>
+<li><strong>Takvime İşleyin:</strong></li>
+<li><strong>"Kaydet"</strong> butonuna bastığınızda seçilen tarihler otomatik olarak Nöbet ve Vardiya motorunda tatil katsayısıyla işlenir.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 14.5 Kalite & Olay Bildirimi Kategori Sorumluları Tanımları</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Web Portalından veya masaüstünden bildirilen olay ihlallerinin ilgili kalite ve RKG sorumlularına otomatik yönlendirilmesini sağlamaktır.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Kategori Sorumluları Sekmesine Geçin:</strong></li>
+<ul>
+<li><strong>"Olay Bildirimi Kategori Sorumluları"</strong> sekmesini seçin.</li>
+<li><strong>Kategori ve Sorumlu Eşleştirin:</strong></li>
+<li>Olay kategorisi seçin (<em>Radyasyon İhlali Çalışan, MR Güvenlik İhlali, Cihaz Arızası, Ramak Kala</em>).</li>
+<li>Karşısına incelemekle görevli Kalite Yöneticisini veya Radyasyon Koruma Görevlisini (RKG) atayın.</li>
+<li><strong>Kaydedin:</strong></li>
+<li><strong>"Kaydet"</strong> butonuna basarak olay bildirimlerinin ilgili sorumlunun sistem paneline otomatik yönlendirilmesini aktifleştirin.</li>
+</ul>
+</ol>
+<hr />
+<blockquote class="callout">💡 <strong>Sık Karşılaşılan Uyarılar ve Çözüm Adımları:</strong> Detaylı soru ve çözüm rehberi için bkz: <a href="RADPYS_V4_sss.md">RADPYS V4 SSS Dokümanı</a></blockquote>
+
+<a id="bolum-15"></a>
+
+<h2>15. Çoklu Kullanıcı Web Portalı ve REST API Senkronizasyon Modülü</h2>
+
+<h3>💡 İşlemin Amacı ve Mimari Yapısı</h3>
+
+<p>RADPYS V4, kurum içindeki ve kurum dışındaki tüm çalışanların sisteme eşzamanlı ve esnek bir şekilde erişebilmesi için hibrit bir mimaride tasarlanmıştır:</p>
+
+<ol>
+<li><strong>Masaüstü RADPYS V4 (PySide6 / Qt):</strong> Kurum yöneticileri, amirler, Radyasyon Koruma Görevlileri (RKG) ve Kalite Birimi tarafından veritabanı yönetimi, nöbet dağıtımı, dozimetre takibi ve resmi raporlama amacıyla yerel bilgisayarda kullanılır.</li>
+<li><strong>Çoklu Kullanıcı Web Portalı (<code>web_portal</code>):</strong> Tıbbi görüntüleme teknikerleri, doktorlar, fizikçiler ve diğer tüm çalışanlar tarafından web tarayıcıları (Chrome, Edge, Safari vb.) veya mobil cihazlar üzerinden anlık nöbet takibi, nöbet devri, olay bildirimi ve izin başvurusu yapmak amacıyla kullanılır.</li>
+</ol>
+
+<h4>🌐 Intranetten İnternete Güvenli Geçiş ve Bulut Yayınlama Esnekliği</h4>
+
+<p>Web Portalı mimarisi hem kurum içi yerel ağda (<strong>Intranet / LAN</strong>) hem de <strong>dış internete açık güvenli bulut ortamında (Internet / Cloud)</strong> çalışacak şekilde güncellenmiştir:</p>
+
+<ul>
+<li><strong>Yerel Ağ (Intranet / LAN):</strong> Hastane içi yerel IP adresi üzerinden hızlı yayınlama (örn: <code>http://192.168.1.100:3000</code>).</li>
+<li><strong>İnternet / Bulut (Internet / Cloud / Reverse Proxy):</strong> Cloudflare Tunnel, Nginx / Apache Reverse Proxy veya alan adı SSL sertifikası arkasında güvenli dış internet erişimi (örn: <code>https://portal.radpys.com.tr</code> veya <code>https://radpys.hastane.gov.tr</code>).</li>
+<li><strong>İlk Giriş Güvenlik Akışı:</strong> İlk kez oturum açan personeller (<code>ilkGiris === 1</code>) hem yerel ağda hem de internet ortamında sistem kilitlenmeden doğrudan şifre yenileme ekranına yönlendirilir.</li>
+<li><strong>Eşzamanlı İstek Güvenliği (<code>dbMutex</code>):</strong> Dış internetten aynı anda gelen çoklu isteklerde veri deposu bütünlüğü thread-safe mutex kilit altyapısı ile korunmaktadır.</li>
+</ul>
+
+İki sistem arasında güvenli REST API köprüsü çalışır; Web Portalında yapılan bir başvuru veya devir işlemi anında masaüstü veritabanına ve yönetici onay kuyruğuna yansır.
+<hr />
+<h3>🐾 15.1 Web Portalına Giriş ve Kullanıcı Rolleri</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Saha çalışanlarının herhangi bir ek yazılım kurmadan, web tarayıcısı üzerinden (hem kurum içi Intranet hem de dış Internet üzerinden) kendi kullanıcı adı/şifresiyle sisteme güvenli erişmesini sağlamaktır.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Web Portal Adresini Açın:</strong></li>
+<ul>
+<li>Bilgisayarınızın veya mobil cihazınızın web tarayıcısından kurum içi Intranet veya güvenli dış Internet <strong>RADPYS V4 Web Portalı</strong> adresini girin (örn: <code>http://192.168.1.100:3000</code> veya <code>https://radpys.hastane.gov.tr</code>).</li>
+<li><strong>Kullanıcı Girişi Yapın:</strong></li>
+<li><strong>Kullanıcı Adı / T.C. Kimlik No</strong> ve <strong>Şifre</strong> alanlarını doldurun.</li>
+<li><strong>"Giriş Yap"</strong> butonuna basın. Sistem JWT (JSON Web Token) kimlik doğrulaması yaparak sizi ana dashboard ekranına yönlendirir.</li>
+<li><em>(İlk kez giriş yapıyorsanız sistem sizi doğrudan Şifre Değiştirme ekranına yönlendirecektir).</em></li>
+<li><strong>Profil ve Rol Bilgisi:</strong></li>
+<li>Ekranın sağ üst köşesinde adınız, bağlı olduğunuz departman (örn: <em>BT-1 Kliniği</em>) ve rolünüz (<em>Saha Çalışanı / Tekniker</em>) görüntülenir.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 15.2 Web Portalı Modülleri ve Ekran İş Akışları</h3>
+
+<p>Web Portalı sol navigasyon panelinde çalışanların günlük operasyonlarını yürüteceği 5 ana modül bulunmaktadır:</p>
+
+<h4>1. 🏠 Kişisel Dashboard ve Anlık Bildirimler</h4>
+
+<ul>
+<li><strong>Yaklaşan Vardiyalarım:</strong> Personelin önümüzdeki günlerde tutacağı nöbetleri tarih, saat ve birim detaylarıyla listeler.</li>
+<li><strong>Aylık Mesai Özeti:</strong> Personelin ilgili aydaki hedef mesai saatini ve tamamlanan nöbet saati oranını dairesel grafik ile gösterir.</li>
+<li><strong>Okunmamış Bildirimler:</strong> Devir talepleri, onay durumları ve yönetici duyuruları anlık zil simgesinde gösterilir.</li>
+</ul>
+
+<h4>2. 🗓️ Birim Aylık Nöbet Çizelgesi ve İstatistikler</h4>
+
+<ul>
+<li>Birimdeki tüm çalışma arkadaşlarının aylık nöbet matrisini gösterir.</li>
+<li><strong>"Sadece Benim Nöbetlerim"</strong> anahtarı açılarak yalnızca şahsi vardiyalar süzülebilir.</li>
+<li><strong>"Mesai Hesabı"</strong> sekmesinden birimdeki personellerin aylık hedef süreleri ve fazla mesai durumları incelenebilir.</li>
+</ul>
+
+<h4>3. 🔄 Nöbet Devir ve Takas Formu</h4>
+
+<ul>
+<li>Nöbet çizelgesinden devredilmek istenen nöbet günü seçilir.</li>
+<li>Devralacak personel ve mazeret nedeni belirlenerek 1. aşama devir talebi oluşturulur.</li>
+<li>Devralan personel web ekranına düşen onay kartından <strong>"Kabul Et"</strong> butonuna bastığında talep otomatik olarak masaüstü yönetici onay kuyruğuna iletilir.</li>
+</ul>
+
+<h4>4. ⚠️ Radyasyon Güvenliği ve Olay Bildirimi (3-Adımlı Sihirbaz)</h4>
+
+<ul>
+<li>Olay tarihi, gerçekleştiği birim, etkilenen taraf, olay kategorisi ve olası kök nedenler 3 adımda seçilir.</li>
+<li>Gizlilik gerektiren durumlarda <strong>"Anonim Bildirim Yap"</strong> seçeneği işaretlenerek kimlik gizlenebilir.</li>
+<li>Gönderilen bildirim anında Masaüstü RADPYS V4 Kalite & DÖF ekranına ve RKG paneline düşer.</li>
+</ul>
+
+<h4>5. 🌴 Çevrimiçi İzin Talep Formu ve Amir Onay Akışı</h4>
+
+<h4>💡 Amaç</h4>
+
+<p>Saha çalışanlarının (radyoloji teknikerleri, uzmanlar, hemşireler) hastane iç ağından (Intranet) veya dış internet üzerinden mobil cihaz/web tarayıcısı ile Yıllık İzin, Şua İzni (Sağlık İzni), Mazeret İzni, Hastalık/Rapor İzni, Evlilik/Babalık İzni başvurularını çevrimiçi iletmesi, takvim günü bazlı izin sürelerini otomatik hesaplatması ve başvuru durumlarını (<code>Beklemede</code>, <code>Onaylandı</code>, <code>Reddedildi</code>, <code>İptal</code>) canlı takip etmesidir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Saha Formları veya Ana Ekrandan Formu Açın:</strong></li>
+<ul>
+<li>Web Portal sol navigasyon akordiyon menüsünden <strong>Saha Formları > İzin Talep Formu</strong> sekmesine veya ana karşılama ekranındaki <strong>"İzin Talep Formu"</strong> kartına tıklayın.</li>
+<li><strong>İzin Türünü Seçin:</strong></li>
+<li>Açılır menüden talep edilen izin türünü seçin:</li>
+<li><strong>Yıllık İzin:</strong> Hizmet kıdemine göre 20 veya 30 gün olarak hak edilen resmi izin.</li>
+<li><strong>Şua İzni (Işın İzni):</strong> Radyasyon görevlilerine tanınan kesintisiz 30 günlük yasal sağlık izni. <em>(Seçildiğinde ekranda mevzuat bilgilendirme uyarı rozeti belirir).</em></li>
+<li><strong>Mazeret / Evlilik / Babalık / Ölüm / Rapor İzni:</strong> Kurumsal ve sağlık mazeret başvuruları.</li>
+<li><strong>Başlangıç ve Bitiş Tarihlerini Belirleyin:</strong></li>
+<li><strong>İzin Başlangıç Tarihi</strong> ve <strong>İzin Bitiş Tarihi</strong> alanlarını takvim seçiciden işaretleyin.</li>
+<li>Sistem otomatik olarak takvim günü farkını hesaplayıp sağ alt köşedeki <strong>"Talep Edilen İzin Süresi"</strong> rozetinde gösterecektir. <em>(Eğer bitiş tarihi başlangıçtan önce seçilirse sistem kırmızı renkli <code>⚠️ Geçersiz Tarih</code> uyarısı vererek kaydı engeller).</em></li>
+<li><strong>Mazeret / Açıklama Notu Ekleyin:</strong></li>
+<li>İznin gerekçesini veya ulaşılabilecek iletişim bilgilerini açıklama kutusuna yazın.</li>
+<li><strong>Başvuruyu Gönderin:</strong></li>
+<li><strong>"İzin Talebini Gönder"</strong> butonuna basın. Talep anında veritabanına işlenerek Masaüstü RADPYS V4 veritabanına (PostgreSQL <code>radpys_db</code>) ve <strong>Onay Bekleyen Görevler Paneline</strong> iletilir.</li>
+<li><strong>Canlı Talep Takibi ve İptal İşlemi:</strong></li>
+<li>Ekranın sağ tarafındaki <strong>"İzin Taleplerim ve Durum Takibi"</strong> panelinden başvurunuzun son durumunu (<code>Beklemede</code>, <code>Onaylandı</code>, <code>Reddedildi</code>) ve varsa yöneticinin red nedenini anlık takip edin.</li>
+<li>Henüz <code>Beklemede</code> statüsündeki bir talebinizi vazgeçmeniz halinde satır yanındaki <strong>"Talebi İptal Et"</strong> butonuna basarak iptal edebilirsiniz.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 15.3 RADPYS Portal Başlatıcı (GUI Launcher) ve Web Servis Yönetimi</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Kurum sunucusunda veya ana bilgisayarda Web Portal Node.js REST API servisini grafik arayüzlü <strong>RADPYS Portal Launcher</strong> ile tek tıkla başlatmak, durdurmak, IP/port bilgilerini görmek ve canlı sistem loglarını izlemektir.</p>
+
+<h4>🐾 Adım Adım Portal Başlatma ve Yönetim İş Akışı</h4>
+
+<ol>
+<li><strong>Portal Launcher Uygulamasını Başlatın:</strong></li>
+<ul>
+<li>Masaüstündeki <strong>"RADPYS Portal Launcher"</strong> kısayoluna veya program dizinindeki <strong><code>RADPYS_Portal_Launcher.exe</code></strong> (veya <code>user_launcher/portal_launcher.py</code>) dosyasına çift tıklayın.</li>
+<li><strong>Servisi Tek Tıkla Başlatın (<code>[ ▶ Portali Başlat ]</code>):</strong></li>
+<li>Launcher arayüzünde yeşil renkli <strong>"▶ Portali Başlat"</strong> butonuna basın.</li>
+<li>Sistem otomatik olarak Node.js ortamını ve <code>web_portal</code> paketini denetler, port çakışması yoksa sunucuyu <code>3000</code> numaralı portta devreye alır.</li>
+<li>Durum rozeti anında 🟢 <strong>"RUNNING / PORTAL AKTİF"</strong> olarak güncellenir.</li>
+<li><strong>Yerel Ağ IP Adresi ve Doğrudan Erişim (<code>[ 🌐 Portala Git ]</code>):</strong></li>
+<li>Launcher penceresinde sistemin LAN IP adresi otomatik tespit edilerek gösterilir (Örn: <code>http://192.168.1.100:3000</code>).</li>
+<li><strong>"🌐 Portala Git"</strong> butonuna basarak doğrudan varsayılan web tarayıcınızda açabilirsiniz. Kurum yerel ağındaki diğer telefon, tablet ve bilgisayarlar bu adrese bağlanabilir.</li>
+<li><strong>Canlı Akış Logları ve Durdurma:</strong></li>
+<li>Ekrandaki konsol panelinden API isteklerini, gelen bağlantıları ve senkronizasyon hareketlerini anlık izleyebilirsiniz.</li>
+<li>Hizmeti sonlandırmak istediğinizde kırmızı <strong>"⏹ Portali Durdur"</strong> butonuna basmanız yeterlidir.</li>
+<li>İsteğe bağlı olarak Launcher penceresini sağ üstteki küçült butonuyla <strong>Windows Sistem Tepsisine (System Tray)</strong> alarak arka planda sessiz çalışmasını sağlayabilirsiniz.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 15.4 Mobil Saha Veri Girişi & PWA (Progressive Web App) Kurulumu</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Nöbetçi radyoloji teknikerleri ve hekimlerin, akıllı telefon veya tabletlerinden web tarayıcısına ihtiyaç duymadan, uygulama mağazası (App Store / Play Store) indirmesi olmadan tek tıkla RADPYS Portal uygulamasını cihazlarına yerel uygulama gibi kurması ve nöbet devir-teslim verilerini girmesidir.</p>
+
+<h4>🐾 Adım Adım Mobil Cihaza Yükleme İş Akışı</h4>
+
+<ol>
+<li><strong>Mobil Tarayıcı ile Portala Erişin:</strong></li>
+<ul>
+<li>Cihazınızın tarayıcısından (Android Chrome / iOS Safari) kurum portal adresinizi (örn. <code>https://radpys.hastaneadi.local</code>) açın.</li>
+<li><strong>Uygulamayı Ana Ekrana Ekleyin (PWA Kurulumu):</strong></li>
+<li><strong>Android (Chrome):</strong> Ekranın altında çıkan <em>"RADPYS Portal Uygulamasını Yükle"</em> istemine veya sağ üst menüdeki <em>"Ana Ekrana Ekle"</em> seçeneğine tıklayın.</li>
+<li><strong>iOS (Safari):</strong> Alt kısımdaki <strong>Paylaş (Share)</strong> simgesine basın, açılan menüden <strong>"Ana Ekrana Ekle"</strong> seçeneğine dokunun.</li>
+<li><strong>Ana Ekrardan Tek Tıkla Başlatın:</strong></li>
+<li>Cihazınızın ana ekranına <strong>RADPYS Portal</strong> logosu yüklenecektir. Dokunduğunuzda uygulama adres çubuğu olmadan tam ekran (standalone) olarak açılacaktır.</li>
+</ul>
+</ol>
+
+<blockquote class="callout">🔒 <strong>Çevrimdışı Güvenlik Notu:</strong> PWA uygulaması açıldığında canlı nöbet verileri KVKK gereğince internet/ağ bağlantısı olmadan gösterilmez. İnternet kesildiğinde ekranda güvenli çevrimdışı bildirim sayfası gösterilir.</blockquote>
+<hr />
+<h3>🐾 15.5 Saha ve Tablet Muayene Portalı (QR/Barkod Okuma & İnteraktif Kroki)</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Medikal Fizik Uzmanlarının ve Radyasyon Koruma Görevlilerinin (RKG); sahada (Skopi, Anjiyo, Röntgen odalarında) yanlarında dizüstü bilgisayar taşımadan, akıllı telefon veya tablet kamerasından QR okutarak koruyucu ekipman (RKE) muayenesini saniyeler içinde tamamlamasıdır.</p>
+
+<h4>🐾 Adım Adım Saha Muayene İş Akışı:</h4>
+
+<ol>
+<li><strong>Saha Portalı Girişi:</strong> Web portalında sol navigasyon veya mobil ana sayfadan <strong>"📱 Saha Asistanı"</strong> (veya <strong>"🛡️ RKE Muayene"</strong>) sekmesine tıklayın.</li>
+<li><strong>Kamera ile QR Barkod Okutma:</strong></li>
+<ul>
+<li>Ekrandaki <strong>"📷 QR Kod Tara"</strong> butonuna basarak cihaz kamerasını kurşun önlüğün üzerindeki karekoda tutun <em>(veya arama kutusuna ekipman kodunu yazın, örn: <code>RKE-O-001</code>)</em>.</li>
+<li><strong>Ekipman Bilgilerini Doğrulama:</strong></li>
+<li>Sistem anında ekipmanın türünü, kurşun eşdeğerini (0.50 mm Pb), bağlı departmanı ve önceki muayene geçmişini ekrana getirir.</li>
+<li><strong>Dokunmatik Kusur Haritasını Açma:</strong></li>
+<li><strong>"Kusur Haritası / Kroki"</strong> sekmesine dokunarak anatomik SVG silüetini görüntüleyin.</li>
+<li>Skopi altındaki kusurları parmağınızla önlük üzerinde işaretleyin (Delik, Çatlak, Blok Kayması).</li>
+<li><strong>DIN 6857-1 Kararını Onaylama ve Kaydetme:</strong></li>
+<li>Sistem hasar alanını ve organ riskini hesaplayarak sonucu (<code>KULLANIMA_UYGUN</code>, <code>SARTLI_KULLANIM</code>, <code>HEK_HURDAYA_AYIR</code>) gösterir.</li>
+<li><strong>"Muayeneyi Kaydet"</strong> butonuna dokunduğunuzda kayıt anında merkezi PostgreSQL veritabanına işlenir.</li>
+</ul>
+</ol>
+<hr />
+<blockquote class="callout">💡 <strong>Sık Karşılaşılan Uyarılar ve Çözüm Adımları:</strong> Detaylı soru ve çözüm rehberi için bkz: <a href="RADPYS_V4_sss.md">RADPYS V4 SSS Dokümanı</a></blockquote>
+
+      <!-- BOTTOM PAGINATION -->
+      <div class="docs-pagination">
+        
+            <a href="13_raporlar_ve_matbu_evrak.html" class="page-card prev">
+              <span class="page-card-sub">← Önceki Konu</span>
+              <span class="page-card-title">13. Rapor Merkezi & Şablon Marka</span>
+            </a>
+        
+            <a href="15_sistem_yonetimi_ve_yedekleme.html" class="page-card next">
+              <span class="page-card-sub">Sonraki Konu →</span>
+              <span class="page-card-title">15. Ayarlar, Veritabanı & İçe Aktarma</span>
+            </a>
+      </div>
+    </main>
+  </div>
+
+  <!-- RIGHT ON-THIS-PAGE TOC -->
+  <aside class="sl-right-toc">
+    <div class="toc-title">Bu Sayfada</div>
+    <ul class="toc-nav" id="rightTocNav"></ul>
+  </aside>
+
+</div>
+
+<!-- SEARCH MODAL (Ctrl + K) -->
+<div class="search-modal-backdrop" id="searchModal">
+  <div class="search-modal">
+    <div class="search-input-wrap">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="modalSearchInput" placeholder="Dokümantasyonda ara (başlık, konu veya anahtar kelime)..." autofocus />
+      <kbd class="search-kbd" style="font-size:0.7rem;">ESC</kbd>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="assets/docs.js"></script>
+</body>
+</html>

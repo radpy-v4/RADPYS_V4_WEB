@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>9. Hizmet İçi Eğitim & Sınav LMS — RADPYS V4 Kılavuz</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header class="sl-header">
+  <div class="sl-header-left">
+    <button class="mobile-nav-toggle" id="mobileNavToggle" title="Menüyü Aç/Kapat">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <a href="index.html" class="brand-lockup">
+      <div class="brand-icon">R</div>
+      <div class="brand-title">RADPYS V4</div>
+      <span class="brand-badge">v4.1.2.8</span>
+    </a>
+  </div>
+
+  <div class="sl-header-right">
+    <div class="search-trigger" id="searchTrigger">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <span>Dokümantasyonda ara...</span>
+      <kbd class="search-kbd">Ctrl K</kbd>
+    </div>
+
+    <button class="btn-icon" id="themeToggleBtn" title="Temayı Değiştir (Açık / Koyu)">
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- MAIN LAYOUT -->
+<div class="sl-layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sl-sidebar" id="slSidebar">
+    <div style="margin-bottom: 1rem; padding: 0 4px;">
+      <a href="index.html" class="nav-page-link" style="padding-left: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Ana Karşılama Sayfası</span>
+      </a>
+    </div>
+    <nav id="sidebarNav">
+      
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>I. GENEL BİLGİLER VE KURULUM</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="01_kurulum.html" class="nav-page-link ">1. Kurulum ve Güvenlik İzinleri</a>
+                <a href="02_kullanici_ve_roller.html" class="nav-page-link ">2. Kullanıcı Yönetimi, Roller ve Lisans</a>
+              </div>
+            </div>
+            <div class="nav-part open">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>II. OPERASYONEL MODÜLLER</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="03_personel_modulu.html" class="nav-page-link ">3. Personel Modülü ve Özlük</a>
+                <a href="04_izin_ve_fhz_modulu.html" class="nav-page-link ">4. İzin Yönetimi ve Şua İzni</a>
+                <a href="05_dozimetre_ve_risk_analizi.html" class="nav-page-link ">5. Doz Takip ve Yasal Limitler</a>
+                <a href="06_nobet_cizelgesi_ve_havuz.html" class="nav-page-link ">6. Nöbet Çizelgesi & Değişim Havuzu</a>
+                <a href="07_olay_bildirim_ve_dof.html" class="nav-page-link ">7. Olay Bildirimi & DÖF/CAPA</a>
+                <a href="08_ortam_dozu_ve_kroki.html" class="nav-page-link ">8. Ortam Dozu & İnteraktif Kroki</a>
+                <a href="09_hizmet_ici_egitim_ve_lms.html" class="nav-page-link active">9. Hizmet İçi Eğitim & Sınav LMS</a>
+                <a href="10_tibbi_cihaz_ve_qr_portal.html" class="nav-page-link ">10. Tıbbi Cihaz & QR Arıza Portalı</a>
+                <a href="11_rke_ve_kalite_kontrol.html" class="nav-page-link ">11. Koruyucu Ekipman (RKE) & Kalite</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>III. KURUMSAL YÖNETİM VE RAPORLAMA</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="12_onay_ve_denetim_izi.html" class="nav-page-link ">12. Evrensel Onay & Audit Trail</a>
+                <a href="13_raporlar_ve_matbu_evrak.html" class="nav-page-link ">13. Rapor Merkezi & Şablon Marka</a>
+                <a href="14_tanimlamalar_ve_web_portal.html" class="nav-page-link ">14. Tanımlamalar & Web Portalı</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>IV. SİSTEM YÖNETİMİ VE VERİ İŞLEMLERİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="15_sistem_yonetimi_ve_yedekleme.html" class="nav-page-link ">15. Ayarlar, Veritabanı & İçe Aktarma</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>V. DESTEK VE GÜNCELLEME GEÇMİŞİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="16_sss_sorun_giderme.html" class="nav-page-link ">16. Sıkça Sorulan Sorular (SSS)</a>
+                <a href="17_surum_notlari.html" class="nav-page-link ">17. Sürüm Güncelleme Geçmişi</a>
+              </div>
+            </div>
+    </nav>
+  </aside>
+
+  <!-- CENTER CONTENT -->
+  <div class="sl-main-container">
+    <main class="sl-content">
+      <a id="bolum-9"></a>
+
+<h2>9. Hizmet İçi Eğitim, Sınav Soruları Havuzu, Online Sınav ve Uyum Takip Modülü</h2>
+
+<h3>💡 İşlemin Amacı ve Ön Koşullar</h3>
+
+<p>Sağlık Bakanlığı, Çalışma ve Sosyal Güvenlik Bakanlığı ile Nükleer Düzenleme Kurumu (NDK) mevzuatları uyarınca radyasyon çalışanları ve hastane personelinin zorunlu periyodik eğitimleri (Radyasyondan Korunma, İSG, Temel Yaşam Desteği vb.) alması, sınav değerlendirmelerinden geçmesi ve geçerlilik sürelerinin takip edilmesi yasal bir zorunluluktur.</p>
+
+<strong>Hizmet İçi Eğitim Yönetim Modülü</strong>, kurumsal eğitim kataloğunun oluşturulmasını, personellere toplu veya bireysel eğitim atanmasını, sınav soru havuzunun kurgulanmasını, personellerin web portalı üzerinden online eğitim dökümanlarını inceleyip sınavları tamamlamasını ve departman bazlı yasal eğitim uyumunun (Compliance) tek ekrandan raporlanmasını sağlar.
+<hr />
+<h3>🐾 9.1 Eğitim Kataloğu ve Materyal Tanımlama</h3>
+
+<h4>💡 Amacı</h4>
+
+<p>Kurumda verilecek eğitimlerin süreleri, baraj puanları, geçerlilik periyotları ve eğitim materyalleri (PDF, sunum, video linki) bu ekrandan tanımlanır.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li>Sol navigasyon menüsünden <strong>"Kalite & İSG > Hizmet İçi Eğitim"</strong> ekranını açın.</li>
+<li>Üst sekmelerden <strong>"Eğitim Kataloğu"</strong> sekmesine geçin.</li>
+<li>Sağdaki <strong>"Eğitim Türü Tanımla / Düzenle"</strong> formunu doldurun:</li>
+<ul>
+<li><strong>Eğitim Adı (\<em>):</strong> Eğitimin resmi adını girin (Örn: </em>Radyasyondan Korunma ve Kalite Standartları*).</li>
+<li><strong>Kategori (Lookup):</strong> Sistem tanımlarından gelen kategoriyi seçin (<em>Radyasyon Güvenliği, İSG, Tıbbi Cihaz, Kalite vb.</em>).</li>
+<li><strong>Geçerlilik Süresi (Ay):</strong> Sertifikanın geçerlilik süresini ay olarak girin (Yıllık eğitimler için <code>12</code>, süresiz eğitimler için <code>0</code>).</li>
+<li><strong>Zorunlu Eğitim mi?:</strong> Uyum raporunda departman personelleri için zorunlu sayılması için işaretleyin.</li>
+<li><strong>Sınav Aktif mi? & Baraj Puanı (%):</strong> Eğitimin online sınav gerektirip gerektirmediğini ve geçme notunu (Örn: <code>%70</code>) belirleyin.</li>
+<li><strong>Eğitim Dökümanı / Materyali:</strong> Personelin çalışacağı PDF sunumu veya eğitim dokümanını <strong>"Dosya Seç..."</strong> butonu ile sisteme yükleyin (Dosya KVKK Evrak Kasasında şifrelenir).</li>
+<li><strong>Video / Web Bağlantısı:</strong> İsteğe bağlı olarak eğitim videosu linkini girin.</li>
+<li><strong>"Kaydet"</strong> butonuna tıklayarak eğitimi kataloğa ekleyin.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 9.2 Sınav Soruları Havuzu Yönetimi ve Otomatik Soru Bağlama</h3>
+
+<h4>💡 Amacı</h4>
+
+<p>Sınavlı eğitimler için çoktan seçmeli (A, B, C, D) soru bankası oluşturulmasını ve soruların hedef eğitimlere atanmasını sağlar.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>"Sınav Soruları Havuzu"</strong> sekmesine geçin.</li>
+<li>Üst araç çubuğundan <strong>"Kategori"</strong> ve <strong>"Eğitim Başlığı"</strong> seçin. <em>(Not: Açılır kutuya doğrudan yazı yazarak arama yapabilirsiniz).</em></li>
+<li>Sağ paneldeki soru formundan:</li>
+<ul>
+<li><strong>Soru Metni (\*):</strong> Soruyu girin.</li>
+<li><strong>A, B, C, D Seçenekleri (\*):</strong> Şıkları eksiksiz doldurun.</li>
+<li><strong>Doğru Cevap (\*):</strong> Doğru şıkkı (A, B, C, D) belirleyin.</li>
+<li><strong>"Kaydet"</strong> butonuna basın. Soru otomatik olarak eğitimin kategorisiyle merkezi soru bankasına işlenir ve eğitime bağlanır.</li>
+<li><strong>Toplu / Pratik İşlemler:</strong></li>
+<li><strong>Başka Eğitimden Kopyala... :</strong> Daha önce tanımlanmış başka bir eğitimin tüm sınav sorularını tek tıkla mevcut eğitime kopyalayabilirsiniz.</li>
+<li><strong>Excel'den Soru Yükle & Şablon İndir:</strong> Hazırlanan standart soru şablonu ile yüzlerce soruyu saniyeler içinde içe aktarabilirsiniz.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 9.3 Toplu ve Bireysel Personel Eğitim Ataması</h3>
+
+<h4>💡 Amacı</h4>
+
+<p>Belirli bir birimdeki veya unvandaki personellere zorunlu eğitimlerin atanması ve son tamamlama tarihinin belirlenmesi.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>"Toplu Eğitim Atama"</strong> sekmesine geçin.</li>
+<li><strong>"Atanacak Eğitim"</strong> açılır kutusundan eğitimi seçin.</li>
+<li><strong>"Son Tamamlama Tarihi"</strong> belirleyin (Varsayılan olarak 30 gün sonrası gelir).</li>
+<li>Sol filtre çubuğundan <strong>Birim</strong> ve <strong>Hizmet Türü</strong> seçerek hedef personelleri süzün.</li>
+<li>Tablodan atanacak personelleri işaretleyin (veya <strong>"Tümünü Seç"</strong> butonuna basın).</li>
+<li><strong>"Seçili Personellere Toplu Ata"</strong> butonuna tıklayarak atamaları tamamlayın. Personellere bildirim gönderilir ve atamalar web portalında görünür.</li>
+</ol>
+<hr />
+<h3>🐾 9.4 Online Sınav ve Tamamlama Süreci (Web Portal & Masaüstü)</h3>
+
+<h4>💡 Amacı</h4>
+
+<p>Personelin eğitim dokümanını inceleyip sınavı tamamlaması ve sertifikasyon kaydının oluşturulması.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Web Portalı Üzerinden:</strong></li>
+<ul>
+<li>Personel <code>http://sunucu-ip:3000</code> adresinden kendi TC kimlik ve şifresiyle portala giriş yapar.</li>
+<li><strong>"Eğitimlerim & Sınavlar"</strong> sekmesinden kendisine atanan eğitimi seçer.</li>
+<li>Eğitim dokümanını ve videosunu inceledikten sonra <strong>"Sınava Başla"</strong> butonuna tıklar.</li>
+<li>Soruları cevaplayıp <strong>"Sınavı Bitir"</strong> butonuna basar.</li>
+<li><strong>Otomatik Değerlendirme & Onay:</strong></li>
+<li>Sınav motoru anında puanı hesaplar.</li>
+<li>Baraj puanı (örn: %70) aşıldığında sistem personelin eğitimini otomatik olarak <strong>"Tamamlandı"</strong> durumuna getirir ve sertifika geçerlilik tarihini hesaplar.</li>
+<li>Değişiklik, denetim kaydı için <strong>"Onay Bekleyen Görevler"</strong> kuyruğuna iletilir.</li>
+<li><strong>Harici Eğitim / Manuel Belge Girişi:</strong></li>
+<li>Kurum dışından alınan sertifikalar için <strong>"Tamamlama & Belge Girişi"</strong> sekmesinden personel, eğitim, tarih ve sertifika PDF dosyası seçilip doğrudan kaydedilebilir.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 9.5 Departman Eğitim Uyum Raporu ve Yasal Denetim Takibi</h3>
+
+<h4>💡 Amacı</h4>
+
+<p>Sağlık Bakanlığı ve NDK teftişlerinde personellerin zorunlu eğitim eksikliklerini ve yaklaşan geçerlilik tarihlerini tek ekranda analiz etmek.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>"Eğitim Uyum Raporu"</strong> sekmesine geçin.</li>
+<li>Filtre seçeneklerinden <strong>Birim</strong>, <strong>Eğitim Türü</strong> ve <strong>Uyum Durumu</strong> (<em>Aktif, Süresi Yaklaşıyor, Süresi Doldu, Hiç Alınmamış</em>) seçin.</li>
+<li><strong>"Uyum Raporunu Filtrele"</strong> butonuna basın.</li>
+<li><strong>Renkli Durum Göstergeleri:</strong></li>
+<ul>
+<li>🟢 <strong>Yeşil (Aktif):</strong> Eğitimi tamamlanmış ve geçerlilik süresi devam ediyor.</li>
+<li>🟠 <strong>Turuncu (Süresi Yaklaşıyor):</strong> Eğitimin bitmesine 30 günden az kalmış (Erken uyarı bildirimi üretilir).</li>
+<li>🔴 <strong>Kırmızı (Süresi Doldu / Alınmamış):</strong> Yasal süresi dolmuş veya hiç eğitim almamış personel.</li>
+<li><strong>"Excel Raporu İndir"</strong> butonuyla resmi denetim listesini dışa aktarın.</li>
+</ul>
+</ol>
+<hr />
+<h3>❓ Sık Karşılaşılan Uyarılar ve Çözümleri</h3>
+
+<ul>
+<li><strong>"Lütfen sorunun ekleneceği eğitim başlığını seçiniz" Uyarısı:</strong> → Üst kısımdan bir eğitim seçilmeden soru kaydı yapılmaya çalışılmıştır.</li>
+<li><strong>"Tüm seçenekler (A, B, C, D) doldurulmalıdır" Uyarısı:</strong> → Soru seçeneklerinden biri boş bırakılmıştır.</li>
+<li><strong>"Geçerlilik süresi doldu" Bildirimi:</strong> → Sistem, geçerlilik bitimine 15 gün ve 3 gün kala yöneticiye ve personele otomatik uyarı bildirimi üretir.</li>
+</ul>
+
+      <!-- BOTTOM PAGINATION -->
+      <div class="docs-pagination">
+        
+            <a href="08_ortam_dozu_ve_kroki.html" class="page-card prev">
+              <span class="page-card-sub">← Önceki Konu</span>
+              <span class="page-card-title">8. Ortam Dozu & İnteraktif Kroki</span>
+            </a>
+        
+            <a href="10_tibbi_cihaz_ve_qr_portal.html" class="page-card next">
+              <span class="page-card-sub">Sonraki Konu →</span>
+              <span class="page-card-title">10. Tıbbi Cihaz & QR Arıza Portalı</span>
+            </a>
+      </div>
+    </main>
+  </div>
+
+  <!-- RIGHT ON-THIS-PAGE TOC -->
+  <aside class="sl-right-toc">
+    <div class="toc-title">Bu Sayfada</div>
+    <ul class="toc-nav" id="rightTocNav"></ul>
+  </aside>
+
+</div>
+
+<!-- SEARCH MODAL (Ctrl + K) -->
+<div class="search-modal-backdrop" id="searchModal">
+  <div class="search-modal">
+    <div class="search-input-wrap">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="modalSearchInput" placeholder="Dokümantasyonda ara (başlık, konu veya anahtar kelime)..." autofocus />
+      <kbd class="search-kbd" style="font-size:0.7rem;">ESC</kbd>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="assets/docs.js"></script>
+</body>
+</html>

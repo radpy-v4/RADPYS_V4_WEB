@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>17. Sürüm Güncelleme Geçmişi — RADPYS V4 Kılavuz</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header class="sl-header">
+  <div class="sl-header-left">
+    <button class="mobile-nav-toggle" id="mobileNavToggle" title="Menüyü Aç/Kapat">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <a href="index.html" class="brand-lockup">
+      <div class="brand-icon">R</div>
+      <div class="brand-title">RADPYS V4</div>
+      <span class="brand-badge">v4.1.2.8</span>
+    </a>
+  </div>
+
+  <div class="sl-header-right">
+    <div class="search-trigger" id="searchTrigger">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <span>Dokümantasyonda ara...</span>
+      <kbd class="search-kbd">Ctrl K</kbd>
+    </div>
+
+    <button class="btn-icon" id="themeToggleBtn" title="Temayı Değiştir (Açık / Koyu)">
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- MAIN LAYOUT -->
+<div class="sl-layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sl-sidebar" id="slSidebar">
+    <div style="margin-bottom: 1rem; padding: 0 4px;">
+      <a href="index.html" class="nav-page-link" style="padding-left: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Ana Karşılama Sayfası</span>
+      </a>
+    </div>
+    <nav id="sidebarNav">
+      
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>I. GENEL BİLGİLER VE KURULUM</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="01_kurulum.html" class="nav-page-link ">1. Kurulum ve Güvenlik İzinleri</a>
+                <a href="02_kullanici_ve_roller.html" class="nav-page-link ">2. Kullanıcı Yönetimi, Roller ve Lisans</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>II. OPERASYONEL MODÜLLER</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="03_personel_modulu.html" class="nav-page-link ">3. Personel Modülü ve Özlük</a>
+                <a href="04_izin_ve_fhz_modulu.html" class="nav-page-link ">4. İzin Yönetimi ve Şua İzni</a>
+                <a href="05_dozimetre_ve_risk_analizi.html" class="nav-page-link ">5. Doz Takip ve Yasal Limitler</a>
+                <a href="06_nobet_cizelgesi_ve_havuz.html" class="nav-page-link ">6. Nöbet Çizelgesi & Değişim Havuzu</a>
+                <a href="07_olay_bildirim_ve_dof.html" class="nav-page-link ">7. Olay Bildirimi & DÖF/CAPA</a>
+                <a href="08_ortam_dozu_ve_kroki.html" class="nav-page-link ">8. Ortam Dozu & İnteraktif Kroki</a>
+                <a href="09_hizmet_ici_egitim_ve_lms.html" class="nav-page-link ">9. Hizmet İçi Eğitim & Sınav LMS</a>
+                <a href="10_tibbi_cihaz_ve_qr_portal.html" class="nav-page-link ">10. Tıbbi Cihaz & QR Arıza Portalı</a>
+                <a href="11_rke_ve_kalite_kontrol.html" class="nav-page-link ">11. Koruyucu Ekipman (RKE) & Kalite</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>III. KURUMSAL YÖNETİM VE RAPORLAMA</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="12_onay_ve_denetim_izi.html" class="nav-page-link ">12. Evrensel Onay & Audit Trail</a>
+                <a href="13_raporlar_ve_matbu_evrak.html" class="nav-page-link ">13. Rapor Merkezi & Şablon Marka</a>
+                <a href="14_tanimlamalar_ve_web_portal.html" class="nav-page-link ">14. Tanımlamalar & Web Portalı</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>IV. SİSTEM YÖNETİMİ VE VERİ İŞLEMLERİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="15_sistem_yonetimi_ve_yedekleme.html" class="nav-page-link ">15. Ayarlar, Veritabanı & İçe Aktarma</a>
+              </div>
+            </div>
+            <div class="nav-part open">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>V. DESTEK VE GÜNCELLEME GEÇMİŞİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="16_sss_sorun_giderme.html" class="nav-page-link ">16. Sıkça Sorulan Sorular (SSS)</a>
+                <a href="17_surum_notlari.html" class="nav-page-link active">17. Sürüm Güncelleme Geçmişi</a>
+              </div>
+            </div>
+    </nav>
+  </aside>
+
+  <!-- CENTER CONTENT -->
+  <div class="sl-main-container">
+    <main class="sl-content">
+      <a id="bolum-21"></a>
+
+<h2>21. Sürüm Notları ve Güncelleme Geçmişi (Update Log)</h2>
+
+<h3>🏪 RADPYS V4.1.2.8 (Sürüm 4.1.2.8 — Nöbet Değişim Havuzu, 36 Saat TTL Kısıtı & Web Portal Pazaryeri)</h3>
+
+<ul>
+<li>🏪 <strong>Nöbet Değişim Havuzu (Shift Marketplace & P2P Değişim Pazarı):</strong></li>
+<li>Personellerin telefon/WhatsApp trafiğine girmeden sistem havuzuna nöbet devir veya takas ilanı bırakabilmesi sağlandı.</li>
+<li>İlk gelen talip ilanı geçici olarak rezerve eder (<code>TEKLIF_GELDI</code>); teklif reddedilirse ilan 36 saat TTL kuralı dolana kadar havuzda yeni taliplere açık kalmaya devam eder.</li>
+<li>⏱️ <strong>36 Saat Güvenlik Kısıtı (TTL) & 48 Saat Erken Uyarı:</strong></li>
+<li>Nöbete 48 saat kala talipsiz ilanlar için ilan sahibine erken uyarı bildirimi iletilir.</li>
+<li>Nöbete 36 saat kala talip bulunamayan ilanlar otomatik olarak zaman aşımına uğratılıp iptal edilir (<code>SURESI_DOLDU</code>); nöbet yükümlülüğü asıl personelde kalır.</li>
+<li>🚨 <strong>Acil Mazeret Bildirimi & RADPYS Nöbet Oto-İkame:</strong></li>
+<li>36 saatten az kala oluşan acil mazeretler (sağlık/kaza) için tek tıkla resmi sağlık raporu yüklenerek durum Yönetici Aksiyon Merkezi'ne eskalasyon yapılır.</li>
+<li>RADPYS Nöbet Motoru adalet katsayısı ve nöbet yükü en az olan yedek personeli otomatik atar.</li>
+<li>🛡️ <strong>Aylık 48 Saat Devir Kotası & Fazla Mesai Taban Koruması:</strong></li>
+<li>Bir personelin takvim ayı içinde havuzdan en fazla 48 saat nöbet devredebilmesi ve karşılıksız devir için 160 saat taban mesaiyi tamamlamış olması şartı yürürlüğe girdi.</li>
+<li>💻 <strong>Web Portalı Pazaryeri Arayüzü (<code>ShiftPoolView.tsx</code>):</strong></li>
+<li>Canlı 🟢/🚩 yasal kısıt denetim rozetleri (11 Saat Dinlenme, 48 Saat Haftalık Sınır, Çakışma, 130 Saat Aylık Şua Limiti), geri sayım sayacı ve kota ilerleme çubuğuyla zenginleştirilmiş pazar ekranı devreye alındı.</li>
+</ul>
+
+<h3>🗺️ RADPYS V4.1.2.4 (Sürüm 4.1.2.4 — Mimari Kat Planı PDF Desteği, Cihaz Pin Kilitleme & Akıllı Breadcrumb Menüleri)</h3>
+
+<ul>
+<li>📄 <strong>Mimari Kat Planı / Kroki PDF Desteği (<code>pypdfium2</code>):</strong></li>
+<li>Ortam Ölçüm Krokileri ve Departman Kat Planları havuzuna PNG/JPG formatlarının yanı sıra standart mimari çizim formatı olan <strong><code>.pdf</code> dosyalarının doğrudan yüklenmesi</strong> ve yüksek çözünürlüklü <code>QPixmap</code> olarak sahneye aktarılması sağlandı.</li>
+<li>Çok sayfalı ve tek sayfalı PDF planlarının ilk sayfası otomatik işlenerek ölçeklenebilir vektörel netlikte tuvale yerleştirilir.</li>
+<li>🩻 <strong>Cihaz Yönetimi Kat Planı Veri Yükleme & Kayıt Bütünlüğü:</strong></li>
+<li>Cihaz düzenleme formundaki 4. Kat Planı sekmesinde veritabanı anahtarları tekilleştirildi; düzenleme modunda kroki, oda ve pin konumu eksiksiz yüklenir.</li>
+<li><code>_set_combo_by_data</code> sayısal ID ve string veri dönüşümleri normalize edilerek açılır kutuların doğru indekste açılması sağlandı.</li>
+<li>🔒 <strong>Cihaz Kat Planı Pin Kilitleme / Taşıma Güvenlik Modu:</strong></li>
+<li>Cihaz Ekle/Düzenle ekranındaki 4. Kat Planı araç çubuğuna pin kilitleme butonu (<code>btnCihazPinKilitle</code>) entegre edildi (Açılışta varsayılan olarak <strong>Kilitli</strong> gelir).</li>
+<li>Kilitli modda haritada serbestçe gezilirken pinin yanlışlıkla kayması engellendi; taşıma modunda pin serbestçe konumlandırılabilir.</li>
+<li>🧭 <strong>Üst Araç Çubuğu Breadcrumb Yaşam Döngüsü & Otomatik Gizlenme:</strong></li>
+<li>Açık olan tüm alt pencereler kapatıldığında üst breadcrumb navigasyonunun masaüstü arka planında asılı kalması önlendi; içerik sıfırlanıp bileşen otomatik olarak gizlenir (<code>setVisible(False)</code>).</li>
+<li>⚡ <strong>Akıllı Breadcrumb Kategori Hızlı Geçiş Açılır Menüleri:</strong></li>
+<li>Breadcrumb üzerindeki üst modül kategorilerine (<em>Kalite Yönetimi</em>, <em>Cihaz Yönetimi</em>, <em>Personel Modülü</em>, <em>Nöbet Planları</em>, <em>İzin Modülü</em>, <em>Sistem Yönetimi</em>) tıklandığında ilgili kategorinin tüm alt ekranlarını listeleyen şık, karanlık tema uyumlu açılır menü eklendi.</li>
+<li>Kök <code>RADPYS V4</code> öğesine tıklandığında açık tüm alt pencereler kapatılarak temiz karşılama ekranına dönülmesi sağlandı.</li>
+<li>🌐 <strong>Web Portal Durum Çubuğu Hata İyileştirmesi:</strong></li>
+<li><code>app_controller.py</code> içindeki eski tanımsız değişken referansları temizlenerek Node.js Web Portal durum kontrolü stabilize edildi.</li>
+</ul>
+<hr />
+<h3>🚀 RADPYS V4.1.2.2 (Sürüm 4.1.2.2 — Akıllı Dry-Run İçe Aktarma, Resmi RD.F43 Doz Formu, Nöbet İkame Motoru, Şua Erken Uyarı & NDK 2. Gün Hatırlatıcısı)</h3>
+
+<ul>
+<li>📥 <strong>Toplu İçe Aktarma Akıllı Ön Doğrulama (Dry-Run) & In-Place Hücre Düzeltme:</strong></li>
+<li>Excel/CSV yüklemelerinde veritabanına yazmadan önce format ve mükerrerlik denetimi (🟢 Geçerli, 🟡 Mükerrer, 🔴 Hatalı).</li>
+<li>Hatalı satırların Excel'e dönmeden doğrudan önizleme tablosu üzerinde çift tıklanarak anlık düzenlenebilmesi.</li>
+<li>Akıllı çakışma çözümleri (<em>"Mükerrerleri Güncelle / Merge"</em>, <em>"Mükerrerleri Atla / Skip"</em>).</li>
+<li>📑 <strong>Resmi RD.F43 Doz Araştırma Formu & Dinamik Doz Hesaplama Sihirbazı:</strong></li>
+<li>NDK / RADKOR resmi standartlarında 2 sayfalık matbu Word araştırma formu üretimi (<code>docxtpl</code>).</li>
+<li>10 iş günü yasal araştırma süresi rozeti (hafta sonlarını atlayan sayaç).</li>
+<li>Doz Hızı ($\mu\text{Sv/sa}$) $\times$ Unutulma Süresi formülü ile tahmini doz hesaplama motoru.</li>
+<li>⚡ <strong>Nöbet Çizelgesi Otomatik İkame Öneri Motoru:</strong></li>
+<li>Çizelge tablosunda boş slota sağ tıklandığında <em>"⚡ Akıllı İkame Ata"</em> menüsü.</li>
+<li>İzin/rapor/çakışma ve 24 saat dinlenme kuralı filtrelemesi; aylık saat açığı ve hafta sonu adaletine göre 0-100 arası skorlama ve tek tıkla slota atama.</li>
+<li>⏳ <strong>Şua İzni Zamanaşımı & Erken Uyarı Paneli:</strong></li>
+<li>31 Aralık öncesi kalan Şua izinlerinin yanmasını önlemek için otomatik erken uyarı rozetleri (<code> [⏳ 45g]</code>, <code> [🚨 15g]</code>, <code> [🚨 YANDI]</code>) ve tek tık hızlı filtreleme.</li>
+<li>🔔 <strong>Kalite & Olay Bildirimi 2. Gün NDK Hatırlatıcısı:</strong></li>
+<li>3 günlük yasal sürenin 2. gününe girildiğinde (<code>gecen_gun >= 2</code>) Admin ve Yönetici rollerine otomatik sistem uyarısı ve süre aşımı alarmı.</li>
+<li>🦺 <strong>RKE Karar Motoru Tekilleştirme (SSOT):</strong></li>
+<li>DIN 6857-1, IEC 61331 ve SKS 6.1 standartlarında merkezi kural motoru (<code>evaluate_rke_inspection_rules</code>) ile masaüstü ve web arayüzlerinin tam senkronizasyonu.</li>
+</ul>
+<hr />
+<h3>📊 RADPYS V4.1.2.1 (Sürüm 4.1.2.1 — Yeni Rapor Kataloğu, Çok Satırlı Dinamik Kurum Başlıkları & Şablon Marka Yönetimi)</h3>
+
+<ul>
+<li>📑 <strong>4 Yeni Kurumsal Rapor Kataloğu (<code>REPORT_REGISTRY</code> & <code>ReportEngine</code>):</strong></li>
+<li>🔬 <strong>Cihaz Lisans ve Kalibrasyon Takip Raporu (<code>cihaz_lisans_kalibrasyon</code>):</strong> NDK lisans bitişleri, periyodik kalite kontrol (QC) ve kalibrasyon takip çizelgesi.</li>
+<li>🦺 <strong>Radyasyon Koruyucu Ekipman (RKE) Muayene Çizelgesi (<code>rke_muayene_cizelgesi</code>):</strong> DIN 6857-1 / SKS standartlarında kurşun önlük, tiroid ve koruyucu donanımların yıllık muayene ve sağlamlık dökümü.</li>
+<li>☢️ <strong>Radyasyon Alanları Ortam Dozu Denetim Raporu (<code>ortam_dozu_denetim</code>):</strong> Alan izleme, oda arka plan ve dedektör ölçümlerinin yasal sınır uygunluk denetim raporu.</li>
+<li>📍 <strong>Fiziksel Konum ve Oda Bazlı Envanter Raporu (<code>fiziksel_konum_envanter</code>):</strong> Bina, kat ve oda bazında yerleşik cihaz, RKE ve görevli personel envanter dökümü.</li>
+<li><strong>Otomatik Şablon Güncellemesi (<code>template_updater.py</code>):</strong> <code>data/templates/</code> altındaki 40 şablon (<code>.docx</code>, <code>.xlsx</code>) otomatik üretildi ve güncellendi.</li>
+<li>🏛️ <strong>Dinamik Kurumsal Marka & Kategori Bazlı Şablon Filtreleme:</strong></li>
+<li>Sabit "Sağlık Bakanlığı" metinleri kaldırılarak veritabanı ayarlarından (<code>program_ayarlari</code>) gelen dinamik <code>BASLIK_1</code>, <code>BASLIK_2</code>, <code>LOGO_1</code> ve <code>LOGO_2</code> yapısına geçildi.</li>
+<li>Şablonların kategoriye göre filtrelenmesi (<code>cmbTemplateCategory</code>), tek tıkla açılması (<code>Aç</code>) ve orijinal haline sıfırlanması (<code>Yeniden Oluştur</code>).</li>
+<li>Şablona özel override karmaşıklığı kaldırılarak tek merkezli, sade ve kullanıcı dostu marka yönetimi sağlandı.</li>
+<li>✍️ <strong>Çok Satırlı Başlık Desteği & Word XML <code><w:br/></code> Satır Kırılımı:</strong></li>
+<li><code>Kurum Başlık 1</code> ve <code>Kurum Başlık 2</code> girişleri <code>QPlainTextEdit</code> ile Enter destekli çok satırlı hale getirildi.</li>
+<li><code>docxtpl.Listing</code> entegrasyonuyla Word ve PDF çıktılarında çok satırlı başlıklar gerçek XML <code><w:br/></code> satır sonları olarak alt alta üretilir.</li>
+<li>🐛 <strong>Ek Hata Düzeltmeleri (Hotfix):</strong></li>
+<li>Olay bildirim servisinde <code>list_olay_lookups</code> uyumsuzluğu ve <code>QTableWidgetItem</code> datetime tip hatası giderildi.</li>
+</ul>
+<hr />
+<h3>🛡️ RADPYS V4.1.2 (Sürüm 4.1.2.0 — Koruyucu Donanım / RKE Yönetimi, DIN 6857-1 Kalite Kontrol, Akıllı Kodlama & Toplu İçe Aktarma)</h3>
+
+<ul>
+<li>🛡️ <strong>Koruyucu Ekipman (RKE) ve KKD Yönetim Merkezi:</strong></li>
+<li><code>rke_envanter</code>, <code>rke_muayeneler</code> ve <code>rke_zimmet_hareketleri</code> tabloları ile tam donanım envanter takibi.</li>
+<li>Canlı KPI Kartları: Toplam Envanter, Kullanıma Uygun (Aktif), Şartlı Kullanım, Muayenesi Yaklaşanlar (≤30 Gün), Muayenesi Geçenler ve HEK / Hurda ekipman sayıları.</li>
+<li>Gelişmiş filtreleme: Ekipman türü, Departman/Birim, Durum ve Muayene Periyodu filtreleri; arama çubuğu ve Tabler SVG ikonları ile zenginleştirilmiş modern toolbar.</li>
+<li>🤖 <strong>Akıllı Kodlama Motoru (Lookup-First Smart Code Generator):</strong></li>
+<li><strong>Departman / Koruyucu No Formülü:</strong> <code>[AnaBilimDaliKodu]-[BirimKodu]-[KoruyucuCinsiKodu]-[SıraNo]</code> <em>(Örn: <code>ANZ-AML-Ö-001</code>, <code>RAD-ACL-TK-004</code>)</em>.</li>
+<li><strong>Merkezi RKE Kodu Formülü:</strong> <code>RKE-[KoruyucuCinsi]-[SıraNo]</code> <em>(Örn: <code>RKE-O-001</code>, <code>RKE-TK-015</code>)</em>.</li>
+<li>Sistem Tanımları (Lookup) öncelikli dinamik çözümleme: Departman veya Ekipman Türü kodları değiştirildiğinde formül otomatik olarak güncel tanım kodlarını baz alır.</li>
+<li>🔍 <strong>DIN 6857-1 & Sağlık Bakanlığı SKS 6.1 Kalite Kontrol Muayene Motoru:</strong></li>
+<li>Muayene Giriş Ekranı (<code>RkeMuayeneDialog</code>): Skopi cihazı seçimi, test gerilimi (kVp), hasar bölgesi (Kritik/Non-Kritik), kusur alanı (mm²), dinamik klinik bulgular ve önerilen aksiyon seçimi.</li>
+<li>Otomatik Karar Motoru: Hasar alanı ve kritik bölge kuralına göre anlık <code>KULLANIMA_UYGUN</code>, <code>SARTLI_KULLANIM</code> veya <code>HEK_HURDAYA_AYIR</code> kararı üretimi.</li>
+<li>RKE Muayene Listesi Sayfası (<code>RkeMuayeneListesiController</code>): Tüm muayene kayıtları, dinamik filtreleme, KPI özet paneli ve muayene geçmişi takibi.</li>
+<li>🔒 <strong>KVKK AES-256 Şifreli Fotoğraf & Röntgen Muayene Kasası:</strong></li>
+<li>Skopi/röntgen ve fiziksel muayene fotoğrafları <code>stored_files</code> tablosunda AES-256 Fernet ile şifrelenir; galeride doğrudan şifresi çözülerek yüksek çözünürlükte incelenir.</li>
+<li>🏛️ <strong>Konsolide Sistem Tanımları (<code>rke_tanimlari</code>) & Tekil Menü:</strong></li>
+<li>Ekipman Türleri, Muayene Bulguları, Hasar Bölgeleri ve Markalar tek bir konsolide arayüzden yönetilir.</li>
+<li>📥 <strong>Toplu Veri İçe Aktarma (Excel / CSV Import) Entegrasyonu:</strong></li>
+<li><strong>Cihaz Listesi (Radyoloji)</strong>, <strong>Koruyucu Ekipman (RKE) Listesi</strong> ve <strong>RKE Muayene & Kalite Kontrol</strong> kayıtları için tam otomatik toplu veri aktarım modları. Otomatik kod tamamlama ve durum normalizasyonu desteği.</li>
+</ul>
+<hr />
+<h3>🏥 RADPYS V4.1.0 (Sürüm 4.1.0.0 — Tıbbi Cihaz Envanteri, NDK Lisansı, Kalite Kontrol & Mobil QR Arıza Portalı)</h3>
+
+<ul>
+<li>🩻 <strong>Tıbbi Cihaz Envanteri & 3'lü Hızlı Filtreleme:</strong></li>
+<li><code>Tümü</code>, <code>Radyasyonlu (X-Ray)</code>, <code>Radyasyonsuz (MR/USG)</code> hızlı filtreleri, NDK lisansı, marka/model, seri no, tüp seri no ve garanti takibi.</li>
+<li>Üst toolbar (<code>Yeni Cihaz</code>, <code>Düzenle</code>, <code>Sil / HEK</code>) ve zengin sağ tık menüsü (<code>✏️ Düzenle</code>, <code>🗑️ Sil/HEK</code>, <code>🏷️ QR Etiket</code>).</li>
+<li>🏷️ <strong>Cihaz Karekod (QR) Etiketi Modülü (<code>CihazQrDialog</code>):</strong></li>
+<li>Dinamik LAN IP algılama ile 2D karekod üretimi (<code>http://LAN_IP:3000/?cihaz=KOD</code>).</li>
+<li>Zebra/barkod etiket yazıcılarına veya ofis yazıcılarına doğrudan yazdırma ve yüksek çözünürlüklü PNG kaydetme.</li>
+<li>📱 <strong>Web & Mobil Portal Entegre Hızlı Arıza Bildirimi (<code>CihazArizaView</code>):</strong></li>
+<li>Sahada telefon kamerasıyla QR okutulduğunda cihaz otomatik seçili anında arıza bildirim ekranı.</li>
+<li>Biyomedikal/teknik servis müdahale, parça değişimi, tüp seri no güncelleme ve arıza kapatma akışı.</li>
+<li>🏛️ <strong>NDK Resmi Denetim Çizelgesi & Excel Entegrasyonu:</strong></li>
+<li>Sağlık Bakanlığı ve NDK resmi denetimlerine sunulan standart formatlı Excel denetim çizelgesi ve Excel'den toplu içe aktarma sihirbazı.</li>
+</ul>
+<hr />
+<h3>☢️ RADPYS V4.0.2 (Sürüm 4.0.2.0 — Ortam Dozu & İnteraktif Kroki)</h3>
+
+<ul>
+<li>🗺️ <strong>Masaüstü & Web İnteraktif Mimari Plan Krokisi:</strong></li>
+<li>Tek sayfalı vektörel PDF ve PNG/JPG kat planlarını <code>QGraphicsScene</code> ve Web Tuvalinde donanım hızlandırmalı sunma.</li>
+<li>Sınırsız fare tekerleğiyle yakınlaştırma (Wheel Zoom), tuvali tut-sürükle (Pan/Drag) ve tek tıkla "Ekrana Sığdır".</li>
+<li>Çift katmanlı parlayan halo rozetli canlı pinler, sürükle-bırak oda konumlandırma ve pin kilitleme.</li>
+<li>📍 <strong>Departman Koduna Göre Sayaçlı Otomatik Nokta Kodu:</strong></li>
+<li>Birim ön ekiyle kurumsal standartta nokta kodu üretimi (Örn: <code>RAD_ACL_RNT_01</code>, <code>TEK_SOR_BT_01</code>).</li>
+<li>📊 <strong>SKS 6.1 ve NDK Doz Eşikleri & Resmi Excel Raporu:</strong></li>
+<li><em>Denetimli Alan</em>, <em>Gözetimli Alan</em> ve <em>Halka Açık Alan</em> NDK eşik kontrolleri (Normal, Uyarı, Limit Aşımı).</li>
+<li>Sağlık Bakanlığı denetimlerine uygun tek tıkla resmi SKS Excel rapor dışa aktarımı.</li>
+<li>🌐 <strong>Web Portalı & Tablet/Mobil Alan İzleme:</strong></li>
+<li>Yetkili rollere (<code>admin</code>, <code>sorumlu</code>, <code>rks</code>, <code>rso</code>) özel canlı kroki, haritaya tıklayarak yeni nokta tanımlama ve pinden anlık ölçüm kaydetme.</li>
+</ul>
+<hr />
+<h3>🎓 RADPYS V4.0.1 (Sürüm 4.0.1.0 — Hizmet İçi Eğitim & Online Sınav LMS)</h3>
+
+<ul>
+<li>📚 <strong>Hizmet İçi Eğitim Yönetim Merkezi:</strong></li>
+<li>Departman bazlı yasal eğitim geçerlilik ve uyum raporu (Compliance Matrix).</li>
+<li>Toplu eğitim atama, erken uyarı bildirimleri (15 gün ve 3 gün kala) ve AES-256 şifreli sertifika kasası.</li>
+<li>Kurumsal eğitim kataloğu, video/PDF materyal yükleme ve sistem tanımları kategori entegrasyonu.</li>
+<li>📝 <strong>Sınav Soruları Havuzu & Akıllı Filtreleme:</strong></li>
+<li>Çoktan seçmeli (A, B, C, D) soru bankası, canlı kategori filtresi ve yazarak arama yapılabilir (auto-complete) eğitim açılır kutusu.</li>
+<li>Başka eğitimden tek tıkla soru kopyalama ve Excel'den toplu soru yükleme/şablon indirme.</li>
+<li>🌐 <strong>Web Portalı Entegre Online Sınav Motoru (LMS):</strong></li>
+<li>Personellerin web ve mobil üzerinden eğitim dökümanlarını inceleyip sınavları tamamlayabildiği self-servis arayüz.</li>
+<li>Sunucu tarafı otomatik puanlama, baraj notu doğrulaması ve Evrensel Onay Sistemi entegrasyonu.</li>
+</ul>
+<hr />
+<h3>🐘 RADPYS V4.0 (Sürüm 4.0.0 — PostgreSQL Kurumsal Veritabanı & PWA)</h3>
+
+<ul>
+<li>🐘 <strong>PostgreSQL 14+/16 Kurumsal Mimarisi (<code>psycopg3</code>):</strong></li>
+<li>Çok kullanıcılı, yüksek eşzamanlılıklı ve ACID uyumlu ilişkisel veritabanı motoru.</li>
+<li>Otomatik <code>VACUUM ANALYZE</code>, <code>REINDEX</code>, <code>pg_dump</code> ve <code>pg_restore</code> tam yedekleme araçları.</li>
+<li>🌐 <strong>React + Vite + Tailwind + PWA Web Portalı:</strong></li>
+<li>Mobil ana ekrana yüklenebilir (Installable) çevrimdışı önbellek korumalı PWA desteği.</li>
+<li>🛡️ <strong>Görsel Diff Destekli Evrensel Onay Sistemi:</strong></li>
+<li>Tüm alt tablolarda yetkisiz değişiklikleri onay kuyruğuna aktaran ve yan yana kıyaslama sunan onay paneli.</li>
+<li>🔒 <strong>KVKK AES-256 Fernet Şifreli Evrak Kasası (<code>stored_files</code>):</strong></li>
+<li>Yüklenen belgeleri PostgreSQL veritabanında AES-256 ile şifreleyen ve tarayıcıda doğrudan açan belge motoru.</li>
+</ul>
+<hr />
+<h3>🚀 RADPYS V4 (Sürüm 3.0.0 — Kurumsal Sürüm)</h3>
+
+<ul>
+<li>🌐 <strong>Çoklu Kullanıcı Web Portalı Entegrasyonu (<code>web_portal</code>):</strong></li>
+<li>Saha çalışanları, teknikerler ve doktorlar için React + Node.js tabanlı duyarlı (responsive) web portalı erişimi.</li>
+<li>Mobil uyumlu Nöbet Çizelgesi takvim matrisi ve kişisel vardiya takibi.</li>
+<li>⚠️ <strong>3-Adımlı Radyasyon Güvenliği ve Olay Bildirim Sihirbazı:</strong></li>
+<li>Web portalı ve masaüstünden 3 adımda ramak kala / radyasyon ihlali bildirimi.</li>
+<li>Anonim bildirim yapma seçeneği ve masaüstü DÖF/CAPA aksiyon takip paneli.</li>
+<li>🛡️ <strong>Evrensel Onay ve Veri Değişikliği Denetim Sistemi (<code>Audit Trail</code>):</strong></li>
+<li>Yetkisiz rollerin veri değişikliklerini onay kuyruğuna aktaran yapı.</li>
+<li>Eski/Yeni veri değerlerini yan yana kıyaslayan <strong>Diff Görünüm Diyaloğu</strong>.</li>
+<li>🔐 <strong>PostgreSQL & KVKK Fernet 256-Bit AES Şifreli Evrak Kasası:</strong></li>
+<li>KVKK ve kişisel sağlık verilerini askeri düzeyde koruyan şifreleme altyapısı (<code>stored_files</code>).</li>
+<li>Otomatik <strong>VACUUM</strong>, <strong>REINDEX</strong> ve <code>pg_dump / pg_restore</code> veritabanı bakım araçları.</li>
+<li>🤖 <strong>Gelişmiş Otomatik Nöbet Dağıtım Motoru (Scheduler / Solver):</strong></li>
+<li>Yasal Şua izni, gebelik/emzirme koruması, 25 yıl kıdem muafiyeti ve 24 saatlik dinlenme kısıtlarını gözeterek otomatik vardiya yazan solver altyapısı.</li>
+<li>Çapraz görevlendirme ile komşu birimlerden geçici personel çekme ve boş slot doldurma mekanizmaları.</li>
+<li>📊 <strong>SKS 6.1 SRG11.02 & NDK Mevzuat Uyum Motoru:</strong></li>
+<li>Sağlık Bakanlığı SKS standartlarına tam uyumlu kümülatif doz takip formu ve Şua İzni kıstelyevm hesaplama motoru.</li>
+<li>🎨 <strong>Karanlık / Aydınlık Tema Motoru (Dark/Light Mode):</strong></li>
+<li>Gece nöbetlerinde göz yormayan HSL tailormade Karanlık Tema tercihi.</li>
+</ul>
+
+      <!-- BOTTOM PAGINATION -->
+      <div class="docs-pagination">
+        
+            <a href="16_sss_sorun_giderme.html" class="page-card prev">
+              <span class="page-card-sub">← Önceki Konu</span>
+              <span class="page-card-title">16. Sıkça Sorulan Sorular (SSS)</span>
+            </a>
+        
+      </div>
+    </main>
+  </div>
+
+  <!-- RIGHT ON-THIS-PAGE TOC -->
+  <aside class="sl-right-toc">
+    <div class="toc-title">Bu Sayfada</div>
+    <ul class="toc-nav" id="rightTocNav"></ul>
+  </aside>
+
+</div>
+
+<!-- SEARCH MODAL (Ctrl + K) -->
+<div class="search-modal-backdrop" id="searchModal">
+  <div class="search-modal">
+    <div class="search-input-wrap">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="modalSearchInput" placeholder="Dokümantasyonda ara (başlık, konu veya anahtar kelime)..." autofocus />
+      <kbd class="search-kbd" style="font-size:0.7rem;">ESC</kbd>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="assets/docs.js"></script>
+</body>
+</html>

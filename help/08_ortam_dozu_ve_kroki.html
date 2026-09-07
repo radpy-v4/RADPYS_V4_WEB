@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8. Ortam Dozu & İnteraktif Kroki — RADPYS V4 Kılavuz</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header class="sl-header">
+  <div class="sl-header-left">
+    <button class="mobile-nav-toggle" id="mobileNavToggle" title="Menüyü Aç/Kapat">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <a href="index.html" class="brand-lockup">
+      <div class="brand-icon">R</div>
+      <div class="brand-title">RADPYS V4</div>
+      <span class="brand-badge">v4.1.2.8</span>
+    </a>
+  </div>
+
+  <div class="sl-header-right">
+    <div class="search-trigger" id="searchTrigger">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <span>Dokümantasyonda ara...</span>
+      <kbd class="search-kbd">Ctrl K</kbd>
+    </div>
+
+    <button class="btn-icon" id="themeToggleBtn" title="Temayı Değiştir (Açık / Koyu)">
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- MAIN LAYOUT -->
+<div class="sl-layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sl-sidebar" id="slSidebar">
+    <div style="margin-bottom: 1rem; padding: 0 4px;">
+      <a href="index.html" class="nav-page-link" style="padding-left: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Ana Karşılama Sayfası</span>
+      </a>
+    </div>
+    <nav id="sidebarNav">
+      
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>I. GENEL BİLGİLER VE KURULUM</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="01_kurulum.html" class="nav-page-link ">1. Kurulum ve Güvenlik İzinleri</a>
+                <a href="02_kullanici_ve_roller.html" class="nav-page-link ">2. Kullanıcı Yönetimi, Roller ve Lisans</a>
+              </div>
+            </div>
+            <div class="nav-part open">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>II. OPERASYONEL MODÜLLER</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="03_personel_modulu.html" class="nav-page-link ">3. Personel Modülü ve Özlük</a>
+                <a href="04_izin_ve_fhz_modulu.html" class="nav-page-link ">4. İzin Yönetimi ve Şua İzni</a>
+                <a href="05_dozimetre_ve_risk_analizi.html" class="nav-page-link ">5. Doz Takip ve Yasal Limitler</a>
+                <a href="06_nobet_cizelgesi_ve_havuz.html" class="nav-page-link ">6. Nöbet Çizelgesi & Değişim Havuzu</a>
+                <a href="07_olay_bildirim_ve_dof.html" class="nav-page-link ">7. Olay Bildirimi & DÖF/CAPA</a>
+                <a href="08_ortam_dozu_ve_kroki.html" class="nav-page-link active">8. Ortam Dozu & İnteraktif Kroki</a>
+                <a href="09_hizmet_ici_egitim_ve_lms.html" class="nav-page-link ">9. Hizmet İçi Eğitim & Sınav LMS</a>
+                <a href="10_tibbi_cihaz_ve_qr_portal.html" class="nav-page-link ">10. Tıbbi Cihaz & QR Arıza Portalı</a>
+                <a href="11_rke_ve_kalite_kontrol.html" class="nav-page-link ">11. Koruyucu Ekipman (RKE) & Kalite</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>III. KURUMSAL YÖNETİM VE RAPORLAMA</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="12_onay_ve_denetim_izi.html" class="nav-page-link ">12. Evrensel Onay & Audit Trail</a>
+                <a href="13_raporlar_ve_matbu_evrak.html" class="nav-page-link ">13. Rapor Merkezi & Şablon Marka</a>
+                <a href="14_tanimlamalar_ve_web_portal.html" class="nav-page-link ">14. Tanımlamalar & Web Portalı</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>IV. SİSTEM YÖNETİMİ VE VERİ İŞLEMLERİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="15_sistem_yonetimi_ve_yedekleme.html" class="nav-page-link ">15. Ayarlar, Veritabanı & İçe Aktarma</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>V. DESTEK VE GÜNCELLEME GEÇMİŞİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="16_sss_sorun_giderme.html" class="nav-page-link ">16. Sıkça Sorulan Sorular (SSS)</a>
+                <a href="17_surum_notlari.html" class="nav-page-link ">17. Sürüm Güncelleme Geçmişi</a>
+              </div>
+            </div>
+    </nav>
+  </aside>
+
+  <!-- CENTER CONTENT -->
+  <div class="sl-main-container">
+    <main class="sl-content">
+      <a id="bolum-8"></a>
+
+<h2>8. Radyasyon Ortam Dozu Ölçümleri, İnteraktif Kroki ve SKS 6.1 Alan İzleme Sistemi</h2>
+
+<h3>💡 İşlemin Amacı ve Yasal / SKS Dayanağı</h3>
+
+<p>Sağlık Bakanlığı Sağlıkta Kalite Standartları (<strong>SKS Hastane v6.1 - SRG11.02</strong>) ve Nükleer Düzenleme Kurumu (<strong>NDK Radyasyon Güvenliği Yönetmeliği</strong>) uyarınca, iyonlaştırıcı radyasyon kaynaklarının kullanıldığı birimlerde (Röntgen, BT, Anjiyografi, Skopi, Nükleer Tıp vb.) ortam radyasyon doz hızlarının periyodik olarak ölçülmesi, denetimli ve gözetimli alan sınırlarının harita üzerinde izlenmesi ve eşik aşımlarının kayıt altına alınması yasal bir zorunluluktur.</p>
+
+<strong>Radyasyon Ortam Dozu & İnteraktif Kroki Modülü</strong>, kurumun mimari kat planları (vektörel PDF veya yüksek çözünürlüklü görsel) üzerinde radyasyon izleme noktalarını canlı pinler halinde haritalandırmayı, periyodik doz ölçümlerini kaydetmeyi, eşik kontrollerini (Normal, Uyarı, Limit Aşımı) otomatik yürütmeyi ve Sağlık Bakanlığı denetimlerine hazır <strong>SKS Resmi Excel Raporu</strong> üretmeyi sağlar.
+<hr />
+<h3>🐾 8.1 Masaüstü İnteraktif Kroki Tuvali, Plan Yükleme ve Canlı Pin Yönetimi</h3>
+
+<h4>💡 Amacı</h4>
+
+<p>Birim mimari planlarının sisteme aktarılması, oda bazlı sabit doz izleme noktalarının harita üzerinde işaretlenmesi ve koordinatlarının yönetilmesidir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Ortam Dozu Ekranını Açın:</strong></li>
+<ul>
+<li>Sol navigasyon panelinden <strong>Kalite Yönetimi > Ortam Dozu Ölçümleri</strong> (<code>btnOrtamDozu</code>) butonuna tıklayın.</li>
+<li><strong>Birim / Departman Seçimi:</strong></li>
+<li>Üst kontrol çubuğundaki <strong>"Birim / Departman"</strong> (<code>comboDepartman</code>) açılır listesinden incelemek veya plan yüklemek istediğiniz radyasyonlu birimi seçin.</li>
+<li><strong>Mimari Plan / Kroki Yükleme (<code>btnKrokiYukle</code>):</strong></li>
+<li>Üst bardaki <strong>"Kroki Yükle"</strong> (veya <em>"Krokisi Değiştir"</em>) butonuna basın.</li>
+<li>Bilgisayarınızdan mimari kat planına ait tek sayfalı vektörel <strong>PDF</strong> dosyasını veya <strong>PNG / JPG</strong> görselini seçin. Sistem dosyayı otomatik render ederek grafik tuvaline (<code>QGraphicsScene</code>) yükler.</li>
+<li><strong>Haritada Gezinme ve Yakınlaştırma (Pan & Wheel Zoom):</strong></li>
+<li><strong>Zoom:</strong> Fare tekerleğini ileri/geri kaydırarak haritada sınırsız yakınlaşıp uzaklaşabilirsiniz.</li>
+<li><strong>Pan (Kaydırma):</strong> Farenin sol tuşuna basılı tutarak planı dilediğiniz yöne sürükleyebilirsiniz.</li>
+<li><strong>Ekrana Sığdır (<code>btnZoomFit</code>):</strong> Haritayı tek tıkla ilk merkez konumuna döndürür.</li>
+<li><strong>Yeni Ölçüm Noktası Tanımlama (<code>btnYeniNokta</code>):</strong></li>
+<li><strong>Yöntem 1 (Haritadan):</strong> Mimari plan üzerinde noktanın bulunacağı odaya/alana <strong>farenin sağ tuşuyla</strong> tıklayın ve açılan menüden <strong>"Bu Konuma Yeni Nokta Ekle..."</strong> seçeneğini seçin.</li>
+<li><strong>Yöntem 2 (Butondan):</strong> Üst bardaki <strong>"Yeni Nokta Ekle"</strong> (<code>btnYeniNokta</code>) butonuna tıklayın.</li>
+<li><strong>Nokta Bilgilerini Doldurun:</strong></li>
+<li><strong>Nokta Kodu:</strong> Departman koduna göre otomatik artan profesyonel sayaç önerilir (Örn: <code>RAD_ACL_RNT_01</code>, <code>TEK_SOR_BT_01</code>).</li>
+<li><strong>Nokta Tanımı:</strong> Açıklayıcı konum girin (Örn: <em>BT Kumanda Masası Kurşun Cam Arkası</em>).</li>
+<li><strong>Alan Sınıfı (NDK):</strong> <em>Denetimli Alan</em>, <em>Gözetimli Alan</em> veya <em>Halka Açık Alan</em> seçildiğinde NDK standart uyarı (2.5 / 0.5 / 0.1 µSv/h) ve limit (10.0 / 2.5 / 0.5 µSv/h) eşikleri otomatik dolar.</li>
+<li><strong>"Kaydet"</strong> butonuna bastığınızda çift katmanlı parlayan canlı pin (<code>KrokiPinItem</code>) haritada yerini alır.</li>
+<li><strong>Pinleri Taşıma ve Kilitleme:</strong></li>
+<li>Pinlerin kilit simgesi açıkken farenin sol tuşuyla tutup sürükleyerek oda içindeki yerini değiştirebilirsiniz.</li>
+<li>Düzenleme bittiğinde alt bardaki <strong>"Pinleri Kilitle"</strong> (<code>btnPinKilitle</code>) butonuna basarak pinleri sabitleyebilirsiniz.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 8.2 Periyodik Doz Ölçümü Kaydetme ve Eşik Değerlendirmesi</h3>
+
+<h4>💡 Amacı</h4>
+
+<p>Kalibre edilmiş çevre dedektörleriyle (örn: Fluke 451B) periyodik olarak yapılan doz hızı (µSv/h) ölçümlerini sisteme işlemek ve limit kontrollerini gerçekleştirmektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Ölçüm Giriş Formunu Açın:</strong></li>
+<ul>
+<li><strong>Pratik Yol (Haritadan):</strong> Mimari plan üzerindeki ilgili <strong>pine çift tıklayın</strong>.</li>
+<li><strong>Buton Yolu:</strong> Üst bardaki <strong>"+ Ölçüm Kaydet"</strong> (<code>btnYeniOlcum</code>) butonuna basın.</li>
+<li><strong>Ölçüm Değerlerini Girin:</strong></li>
+<li><strong>Ölçülen Doz Hızı (\*):</strong> Cihazda okunan değeri µSv/h cinsinden girin (Örn: <code>0.450</code>).</li>
+<li><strong>Doğal Arka Plan:</strong> Arka plan doz değerini girin (Varsayılan: <code>0.100</code> µSv/h).</li>
+<li><strong>Ölçüm Tarihi & Cihazı:</strong> Ölçüm tarihini ve kullanılan dedektörün model/seri numarasını girin.</li>
+<li><strong>Notlar:</strong> Opsiyonel çekim/zırhlama notlarını ekleyin.</li>
+<li><strong>"Ölçümü Kaydet"</strong> butonuna basın. Sistem anlık olarak doz değerini değerlendirir:</li>
+<li>🟢 <strong>Normal (Güvenli):</strong> Doz hızı uyarı eşiğinin altındadır. Pin yeşil yanar.</li>
+<li>🟡 <strong>Uyarı:</strong> Doz hızı uyarı eşiğini aşmıştır. Pin sarı yanar.</li>
+<li>🔴 <strong>Limit Aşımı:</strong> Doz hızı yasal limit eşiğini aşmıştır. Pin kırmızı yanar.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 8.3 SKS 6.1 Resmi Excel Denetim Raporu Dışa Aktarımı</h3>
+
+<h4>💡 Amacı</h4>
+
+<p>Sağlık Bakanlığı SKS ve NDK denetimlerinde ibraz edilmek üzere birimin tüm ölçüm geçmişini, alan sınıflarını ve eşik durumlarını resmi kurumsal Excel formatında indirmektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>"SKS Raporu (Excel)"</strong> (<code>btnSksExcelExport</code>) butonuna tıklayın.</li>
+<li>Kaydedilecek dosya konumunu seçin.</li>
+<li>Sistem; kurum başlığı, birim adı, ölçüm noktaları, ölçülen dozlar ve durum değerlendirmelerini içeren hazır formatlı <code>.xlsx</code> dosyasını üretir.</li>
+</ol>
+<hr />
+<h3>🐾 8.4 Web Portalı ve Mobil Cihazlardan Alan İzleme (<code>OrtamDozuView.tsx</code>)</h3>
+
+<h4>💡 Amacı</h4>
+
+<p>Saha teknisyenleri, Birim Sorumluları ve Radyasyon Koruma Sorumlularının (RKS/RSO) tablet, telefon veya web tarayıcısı üzerinden krokileri canlı izlemesi ve anlık ölçüm girebilmesidir.</p>
+
+<h4>🐾 Adım Adım İş Akışı (Web Portal)</h4>
+
+<ol>
+<li><strong>Web Portalına Giriş:</strong> Web portalında oturum açın (<code>admin</code>, <code>sorumlu</code>, <code>rks</code>, <code>rso</code> yetkili roller).</li>
+<li><strong>Menüden Açın:</strong> Sol menüden <strong>Radyasyon & Alan İzleme > Ortam Dozu Ölçümleri</strong> sekmesine gidin.</li>
+<li><strong>Canlı Harita Gezintisi:</strong></li>
+<ul>
+<li>Masaüstünde tanımlanmış krokiler ve pinler pixel-perfect olarak yüklenir.</li>
+<li>Fareyi basılı tutup sürükleyerek planı kaydırabilir, tekerlekle %50-%400 arası yakınlaşabilirsiniz.</li>
+<li><strong>Haritadan Yeni Nokta Ekleme (<code>+ Yeni Nokta Ekle</code>):</strong></li>
+<li>Üstteki sarı/yeşil <strong>"+ Yeni Nokta Ekle"</strong> butonuna basın (İmleç hedef şeklini alır).</li>
+<li>Planda istediğiniz odaya sol tıklayın. Tıklanan yerin koordinatları ve departman kodlu nokta kodu (örn: <code>RAD_ACL_RNT_02</code>) otomatik dolarak formu açar.</li>
+<li><strong>Pinden Tek Tıkla Doz Girişi:</strong></li>
+<li>Haritadaki herhangi bir pine tıklayarak ölçüm modalını açın, doz değerini girip kaydedin. Harita ve rozet anında güncellenir.</li>
+</ul>
+</ol>
+<hr />
+<h3>❓ Ortam Dozu ve Kroki Sık Karşılaşılan Sorular</h3>
+
+<ul>
+<li><strong>Soru: PDF mimari plan yüklediğimde harita net görünür mü?</strong></li>
+<li><em>Cevap:</em> Evet. Sistem vektörel PDF planlarını yüksek çözünürlüklü donanım render'ı ile açar; zoom yapıldığında piksellenme yapmaz.</li>
+<li><strong>Soru: Web portalda krokisi olmayan bir birim seçtiğimde ne olur?</strong></li>
+<li><em>Cevap:</em> Sistem krokisi olan diğer birimleri öneren hızlı geçiş butonları gösterir.</li>
+</ul>
+
+      <!-- BOTTOM PAGINATION -->
+      <div class="docs-pagination">
+        
+            <a href="07_olay_bildirim_ve_dof.html" class="page-card prev">
+              <span class="page-card-sub">← Önceki Konu</span>
+              <span class="page-card-title">7. Olay Bildirimi & DÖF/CAPA</span>
+            </a>
+        
+            <a href="09_hizmet_ici_egitim_ve_lms.html" class="page-card next">
+              <span class="page-card-sub">Sonraki Konu →</span>
+              <span class="page-card-title">9. Hizmet İçi Eğitim & Sınav LMS</span>
+            </a>
+      </div>
+    </main>
+  </div>
+
+  <!-- RIGHT ON-THIS-PAGE TOC -->
+  <aside class="sl-right-toc">
+    <div class="toc-title">Bu Sayfada</div>
+    <ul class="toc-nav" id="rightTocNav"></ul>
+  </aside>
+
+</div>
+
+<!-- SEARCH MODAL (Ctrl + K) -->
+<div class="search-modal-backdrop" id="searchModal">
+  <div class="search-modal">
+    <div class="search-input-wrap">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="modalSearchInput" placeholder="Dokümantasyonda ara (başlık, konu veya anahtar kelime)..." autofocus />
+      <kbd class="search-kbd" style="font-size:0.7rem;">ESC</kbd>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="assets/docs.js"></script>
+</body>
+</html>

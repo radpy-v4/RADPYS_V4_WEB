@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>15. Ayarlar, Veritabanı & İçe Aktarma — RADPYS V4 Kılavuz</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header class="sl-header">
+  <div class="sl-header-left">
+    <button class="mobile-nav-toggle" id="mobileNavToggle" title="Menüyü Aç/Kapat">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <a href="index.html" class="brand-lockup">
+      <div class="brand-icon">R</div>
+      <div class="brand-title">RADPYS V4</div>
+      <span class="brand-badge">v4.1.2.8</span>
+    </a>
+  </div>
+
+  <div class="sl-header-right">
+    <div class="search-trigger" id="searchTrigger">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <span>Dokümantasyonda ara...</span>
+      <kbd class="search-kbd">Ctrl K</kbd>
+    </div>
+
+    <button class="btn-icon" id="themeToggleBtn" title="Temayı Değiştir (Açık / Koyu)">
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- MAIN LAYOUT -->
+<div class="sl-layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sl-sidebar" id="slSidebar">
+    <div style="margin-bottom: 1rem; padding: 0 4px;">
+      <a href="index.html" class="nav-page-link" style="padding-left: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Ana Karşılama Sayfası</span>
+      </a>
+    </div>
+    <nav id="sidebarNav">
+      
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>I. GENEL BİLGİLER VE KURULUM</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="01_kurulum.html" class="nav-page-link ">1. Kurulum ve Güvenlik İzinleri</a>
+                <a href="02_kullanici_ve_roller.html" class="nav-page-link ">2. Kullanıcı Yönetimi, Roller ve Lisans</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>II. OPERASYONEL MODÜLLER</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="03_personel_modulu.html" class="nav-page-link ">3. Personel Modülü ve Özlük</a>
+                <a href="04_izin_ve_fhz_modulu.html" class="nav-page-link ">4. İzin Yönetimi ve Şua İzni</a>
+                <a href="05_dozimetre_ve_risk_analizi.html" class="nav-page-link ">5. Doz Takip ve Yasal Limitler</a>
+                <a href="06_nobet_cizelgesi_ve_havuz.html" class="nav-page-link ">6. Nöbet Çizelgesi & Değişim Havuzu</a>
+                <a href="07_olay_bildirim_ve_dof.html" class="nav-page-link ">7. Olay Bildirimi & DÖF/CAPA</a>
+                <a href="08_ortam_dozu_ve_kroki.html" class="nav-page-link ">8. Ortam Dozu & İnteraktif Kroki</a>
+                <a href="09_hizmet_ici_egitim_ve_lms.html" class="nav-page-link ">9. Hizmet İçi Eğitim & Sınav LMS</a>
+                <a href="10_tibbi_cihaz_ve_qr_portal.html" class="nav-page-link ">10. Tıbbi Cihaz & QR Arıza Portalı</a>
+                <a href="11_rke_ve_kalite_kontrol.html" class="nav-page-link ">11. Koruyucu Ekipman (RKE) & Kalite</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>III. KURUMSAL YÖNETİM VE RAPORLAMA</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="12_onay_ve_denetim_izi.html" class="nav-page-link ">12. Evrensel Onay & Audit Trail</a>
+                <a href="13_raporlar_ve_matbu_evrak.html" class="nav-page-link ">13. Rapor Merkezi & Şablon Marka</a>
+                <a href="14_tanimlamalar_ve_web_portal.html" class="nav-page-link ">14. Tanımlamalar & Web Portalı</a>
+              </div>
+            </div>
+            <div class="nav-part open">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>IV. SİSTEM YÖNETİMİ VE VERİ İŞLEMLERİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="15_sistem_yonetimi_ve_yedekleme.html" class="nav-page-link active">15. Ayarlar, Veritabanı & İçe Aktarma</a>
+              </div>
+            </div>
+            <div class="nav-part ">
+              <div class="nav-part-header">
+                <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <span>V. DESTEK VE GÜNCELLEME GEÇMİŞİ</span>
+              </div>
+              <div class="nav-part-links">
+                <a href="16_sss_sorun_giderme.html" class="nav-page-link ">16. Sıkça Sorulan Sorular (SSS)</a>
+                <a href="17_surum_notlari.html" class="nav-page-link ">17. Sürüm Güncelleme Geçmişi</a>
+              </div>
+            </div>
+    </nav>
+  </aside>
+
+  <!-- CENTER CONTENT -->
+  <div class="sl-main-container">
+    <main class="sl-content">
+      <a id="bolum-16"></a>
+
+<h2>16. Merkezi Bildirim ve Durum Çubuğu Sistemi</h2>
+
+<h3>💡 İşlemin Amacı ve Mimari Yapısı</h3>
+
+<p>RADPYS V4; kullanıcıların sistemdeki kritik olaylardan (dozimetre limit aşımları, nöbet devir talepleri, onay bekleyen izinler, DÖF görevlendirmeleri vb.) anında haberdar olması için iki kademeli bir bildirim ve durum izleme mimarisi kullanır:</p>
+
+<ol>
+<li><strong>Anlık Pop-Up Bildirimleri (Toast / Snackbar):</strong> Ekranın köşesinde belirip kullanıcının çalışmasını bölmeden (non-blocking) birkaç saniye sonra kaybolan durum mesajları.</li>
+<li><strong>Merkezi Bildirim Paneli ve Rozet Sayacı (Notification Center):</strong> Ekranın sağ üst köşesindeki Zil imgesinde okunmamış bildirim sayısını (badge) anlık gösteren ve tıklandığında detaylı bildirim listesini açan diyalog.</li>
+<li><strong>Alt Durum Çubuğu (Status Bar):</strong> Veritabanı bağlantı durumu, aktif kullanıcı/rol ve REST API servis durumunu anlık gösteren panel.</li>
+</ol>
+<hr />
+<h3>🐾 16.1 Anlık Pop-Up Bildirimleri (Toast / Snackbar Mesajları)</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Yapılan kaydetme, güncelleme veya silme işlemlerinin sonucunu kullanıcı ekranını kilitlemeden (diyalog penceresi açmadan) hızlıca teyit etmektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı ve Renk Kodları</h4>
+
+<p>Sistemde herhangi bir işlem yapıldığında (örn: personel kaydı, nöbet devir talebi oluşturma) ekranın sağ üst/alt köşesinde 3 saniyelik hafif bir bildirim kartı belirir:</p>
+
+<ul>
+<li>🟢 <strong>Başarı Mesajları (Yeşil Toast):</strong> İşlemin başarıyla tamamlandığını gösterir (örn: <em>Personel kaydı başarıyla güncellendi</em>).</li>
+<li>🔴 <strong>Hata / Tehlike Mesajları (Kırmızı Toast):</strong> Kritik kısıt ihlallerini ve işlem hatalarını gösterir (örn: <em>Nöbet ertesi dinlenme kuralı ihlali nedeniyle kayıt yapılamadı</em>).</li>
+<li>🟡 <strong>Uyarı Mesajları (Sarı Toast):</strong> Dikkat edilmesi gereken anomalileri bildirir (örn: <em>Personelin yıllık fazla mesai tavanına 5 saat kaldı</em>).</li>
+<li>🔵 <strong>Bilgilendirme Mesajları (Mavi Toast):</strong> Sistem içi genel duyuruları aktarır (örn: <em>Arka plan veritabanı yedeği alındı</em>).</li>
+</ul>
+<hr />
+<h3>🐾 16.2 Merkezi Bildirim Paneli ve Açılır Zil Ekranı (Notification Center)</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Kullanıcıya veya amire yönlendirilen tüm olay, izin, devir ve mevzuat uyarılarını tek bir merkezde toplamak ve ilgili ekrana hızlı navigasyon sağlamaktır.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Zil Bildirim Simgesini Kontrol Edin:</strong></li>
+<ul>
+<li>Ekranın sağ üst başlık çubuğunda yer alan <strong>Zil İkonu (Bildirimler)</strong> üzerinde kırmızı dairesel okunmamış bildirim rozet sayısı (badge) görüntülenir (örn: <code>3</code>).</li>
+<li>Bildirim sayacı her 30 saniyede bir arka planda otomatik güncellenir.</li>
+<li><strong>Bildirim Panelini Açın:</strong></li>
+<li><strong>Zil İkonuna</strong> tıklayın. Ekranın sağ üst köşesinden aşağıya doğru <strong>Merkezi Bildirim Penceresi</strong> açılır.</li>
+<li><strong>Bildirim Listesini İnceleyin:</strong></li>
+<li>Bildirim kartlarında olayın başlığı, açıklaması, tarihi ve kategorisi (<em>Nöbet Devir, İzin Talebi, Dozimetre Anomali, DÖF Görevlendirme</em>) renkli ikonlarla gösterilir.</li>
+<li><strong>Bildirime Tıklayarak İlgili Modüle Geçin:</strong></li>
+<li>Bir bildirim kartına tıkladığınızda:</li>
+<li>Bildirim otomatik olarak <strong>"Okundu"</strong> durumuna geçer ve rozet sayısı 1 azalır.</li>
+<li>Sistem sizi doğrudan ilgili işlem ekranına yönlendirir (örn: <em>Nöbet Devir Bildirimine</em> tıklandığında direkt <em>Onay Bekleyen Görevler > Nöbet Devirleri</em> sayfası açılır).</li>
+<li><strong>Toplu Temizleme İşlemleri:</strong></li>
+<li><strong>"Tümünü Okundu İşaretle"</strong> butonuna basarak tüm bildirimleri tek tıkla okundu yapabilirsiniz.</li>
+<li><strong>"Tümünü Temizle"</strong> butonuyla bildirim geçmişini boşaltabilirsiniz.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 16.3 Alt Durum Çubuğu (Status Bar) ve Sistem Durum Göstergeleri</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Uygulamanın en altındaki durum çubuğunda veritabanı, servis ve kullanıcı sağlık durumunu anlık olarak izlemektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<p>Ekranın en alt bandında soldan sağa doğru şu durum göstergeleri yer alır:</p>
+
+<ul>
+<li>🔐 <strong>Veritabanı Durumu:</strong> Kurumsal PostgreSQL veritabanı ve KVKK Fernet AES-256 şifreli evrak kasası bağlantı durumunu gösterir (🟢 <em>Veritabanı Bağlı / Güvenli</em>).</li>
+<li>👤 <strong>Aktif Kullanıcı Bilgisi:</strong> Giriş yapan kullanıcının adını ve rolünü gösterir (örn: <em>Kullanıcı: Ahmet Yılmaz (Birim Yöneticisi)</em>).</li>
+<li>🌐 <strong>REST API Servis Durumu:</strong> Web Portalı sunucusunun çalışıp çalışmadığını gösterir (🟢 <em>Web API Aktif (Port 8000)</em>).</li>
+<li>⏳ <strong>Asenkron Görev / Arka Plan İlerleme Çubuğu:</strong> Toplu Excel içe aktarma veya otomatik nöbet dağıtım sihirbazı çalışırken ilerleme yüzdesini (%65) ve işlem durumunu gösterir.</li>
+</ul>
+<hr />
+<h3>🐾 16.4 Üst Araç Çubuğu Hiyerarşik Gezinti (Breadcrumb) ve Hızlı Geçiş Açılır Menüleri</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Kullanıcının uygulama içerisinde hangi modülde ve ekranda olduğunu anlık izlemesi, üst kategorilere tıkladığında alt sayfalara doğrudan açılır menü ile erişmesi ve ana masaüstüne tek tıkla dönebilmesidir.</p>
+
+<div class="mermaid">
+graph LR
+    A["🏠 RADPYS V4 (Ana Sayfa)"] -->|Tıkla: Tüm pencereleri kapat| B["Masaüstü"]
+    C["📁 Kategori (Örn: Kalite Yönetimi)"] -->|Tıkla: Açılır Menü| D["Ortam Dozu / Hizmet İçi Eğitim"]
+    E["📄 Aktif Sayfa (Örn: Ortam Dozu_Kroki)"] -->|Mevcut Konum| F["Sabit Başlık"]
+</div>
+
+<h4>🧭 Kullanım ve Akıllı Davranış Kuralları:</h4>
+
+<ol>
+<li><strong>Otomatik Gizlenme (Akıllı Yaşam Döngüsü):</strong></li>
+<ul>
+<li>Açık olan tüm alt pencereler kapatıldığında üst breadcrumb navigasyonu arka planda asılı kalmaz; otomatik olarak temizlenir ve gizlenir (<code>setVisible(False)</code>).</li>
+<li>Yeni bir sayfa açıldığında hiyerarşik yol anında belirir.</li>
+<li><strong><code>RADPYS V4</code> Kök Butonu:</strong></li>
+<li>Breadcrumb'ın en başındaki <code>RADPYS V4</code> veya <code>Ana Sayfa</code> butonuna tıklandığında açık tüm sayfalar kapatılarak temiz ana masaüstü ekranına dönülür.</li>
+<li><strong>Kategori Hızlı Geçiş Menüleri (<code>QMenu</code>):</strong></li>
+<li>Ara kategorilere (<em>Kalite Yönetimi</em>, <em>Cihaz Yönetimi</em>, <em>Personel Modülü</em>, <em>Nöbet Planları</em>, <em>İzin Modülü</em>, <em>Sistem Yönetimi</em>) tıklandığında ilgili modül grubunun altındaki tüm sayfaları içeren şık bir açılır menü (Dropdown) belirir.</li>
+<li>Örneğin <strong>Kalite Yönetimi</strong> tıklandığında açılan menüden doğrudan <em>Ortam Dozu ve İnteraktif Kroki</em> veya <em>Hizmet İçi Eğitim & LMS</em> ekranına tek tıkla geçiş yapılabilir.</li>
+</ul>
+</ol>
+<hr />
+<blockquote class="callout">💡 <strong>Sık Karşılaşılan Uyarılar ve Çözüm Adımları:</strong> Detaylı soru ve çözüm rehberi için bkz: <a href="RADPYS_V4_sss.md">RADPYS V4 SSS Dokümanı</a></blockquote>
+
+<a id="bolum-17"></a>
+
+<h2>17. Program Ayarları & Temalar (Karanlık/Aydınlık Görünüm Yönetimi)</h2>
+
+<h3>💡 İşlemin Amacı ve Mimari Yapısı</h3>
+
+<p>Program Ayarları ve Temalar modülü; uygulamanın görsel temasını (Karanlık/Aydınlık mod), sistem genelinde çalışan çalışma parametrelerini (izin düşüş kuralları, dozimetre anomali eşikleri, otomatik yedekleme sıklığı vb.) ve kullanıcı arayüzü tercihlerini kişiselleştirmek amacıyla tasarlanmıştır.</p>
+
+Masaüstü uygulamasında sol dikey navigasyon menüsünden <strong>Yönetim > Program Ayarları</strong> sekmesinden erişilir.
+<hr />
+<h3>🐾 17.1 Karanlık Mode (Dark Mode) ve Aydınlık Tema Geçişi</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Gece nöbetinde çalışan radyoloji personelinin göz yorulmasını önlemek veya gündüz mesaisinde yüksek okunabilirlik sağlamak için arayüz temasını tek tıkla değiştirmektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Tema İkonunu Bulun:</strong></li>
+<ul>
+<li>Ekranın sağ üst tarafında yer alan <strong>Güneş / Ay (Tema Değiştir)</strong> butonunu bulun.</li>
+<li><strong>Temayı Değiştirin:</strong></li>
+<li><strong>Ay Simgesine (Karanlık Moda Geç)</strong> bastığınızda arayüz anında modern, göz yormayan koyu mavi/gri <strong>Karanlık Tema (Dark Mode)</strong> rengine bürünür.</li>
+<li><strong>Güneş Simgesine (Aydınlık Moda Geç)</strong> bastığınızda arayüz ferah <strong>Aydınlık Tema (Light Mode)</strong> rengine döner.</li>
+<li><strong>Kalıcı Hatırlatma:</strong></li>
+<li>Seçilen tema tercihi veritabanına otomatik kaydedilir; uygulamayı kapatıp açtığınızda son seçtiğiniz tema ile açılır.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 17.2 Sistem Çalışma Parametreleri ve Konfigürasyon Yönetimi</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Yazılımın temel çalışma kurallarını ve sistem anahtarlarını dinamik olarak yapılandırmaktır.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Program Ayarları Sayfasına Geçin:</strong></li>
+<ul>
+<li>Sol navigasyon panelinden <strong>Yönetim > Program Ayarları</strong> sekmesine tıklayın.</li>
+<li><strong>Arama ve Filtreleme Yapın:</strong></li>
+<li>Üstteki arama kutusuna değiştirmek istediğiniz parametrenin adını veya anahtar kelimesini yazın (örn: <em>doz_limiti</em>, <em>yedekleme_sifresi</em>, <em>bildirim_suresi</em>).</li>
+<li><strong>Kategori Seçimi:</strong></li>
+<li>Tablo üzerindeki kategorilerden (<em>Genel, İzin, Dozimetre, Nöbet, Güvenlik, Sistem</em>) ilgili alanı seçin.</li>
+<li><strong>Ayar Detayını Düzenleyin:</strong></li>
+<li>Tablodan ayar satırına tıkladığınızda sağdaki <strong>Ayar Detayı</strong> paneli açılır.</li>
+<li><strong>Ayar Değeri:</strong> Parametrenin yeni değerini girin veya açılır menüden seçin.</li>
+<li><strong>Açıklama:</strong> Ayarın ne işe yaradığı detaylıca açıklanır.</li>
+<li><strong>Değişiklikleri Kaydedin:</strong></li>
+<li><strong>"Kaydet"</strong> butonuna basarak yeni ayarı aktifleştirin. Sistem gerekli durumlarda yeniden başlatma gerektirmeden konfigürasyonu anında uygular.</li>
+</ul>
+</ol>
+<hr />
+<blockquote class="callout">💡 <strong>Sık Karşılaşılan Uyarılar ve Çözüm Adımları:</strong> Detaylı soru ve çözüm rehberi için bkz: <a href="RADPYS_V4_sss.md">RADPYS V4 SSS Dokümanı</a></blockquote>
+
+<a id="bolum-18"></a>
+
+<h2>18. Veritabanı Modülü & PostgreSQL Bakım ve Yedekleme</h2>
+
+<h3>💡 İşlemin Amacı ve Mimari Yapısı</h3>
+
+<p>RADPYS V4 veritabanı altyapısı; KVKK ve kişisel sağlık verilerini koruma kanunlarına tam uyumlu olarak <strong>kurumsal PostgreSQL veritabanı ve KVKK Fernet (AES-256-CBC) şifreli evrak kasası (stored_files)</strong> ile korunmaktadır. Yetkisiz kişilerin veya üçüncü taraf yazılımların belgelere ve verilere doğrudan erişmesi engellenmiştir.</p>
+
+<p>Veritabanı Bakım ve Yedekleme Modülü; olası donanım arızalarına, veri kayıplarına veya çökme durumlarına karşı şifreli yedek almayı, geçmiş yedeğe geri dönmeyi (restore) ve veritabanı performansını optimize etmeyi sağlar.</p>
+
+Masaüstü uygulamasında sol dikey navigasyon menüsünden <strong>Yönetim > Veritabanı & Bakım</strong> sekmesinden erişilir.
+<hr />
+<h3>🐾 18.1 Şifreli Veritabanı ve Dosya Yedekleme İş Akışı</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Sistemdeki tüm personel, izin, nöbet, dozimetre ve olay verilerinin anlık şifreli yedeğini oluşturmaktır.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Veritabanı Bakım ve Yedekleme Ekranına Geçin:</strong></li>
+<ul>
+<li>Sol dikey menüden <strong>Yönetim > Veritabanı & Bakım</strong> sekmesine tıklayın.</li>
+<li><strong>Veritabanını Yedekleyin:</strong></li>
+<li><strong>"Veritabanı Yedekle"</strong> butonuna basın.</li>
+<li>Sistem o anki tüm kayıtları tarih ve saat damgası ekleyerek (örn: <code>radpys_db_backup_20260812_083000.dump</code>) şifreli arşiv dosyası olarak kaydeder.</li>
+<li><strong>Ekli Dosyaları Arşivleyin:</strong></li>
+<li>Sisteme yüklenmiş matbu dilekçeleri, sağlık muayene raporlarını ve kurum içi tutanakları yedeklemek için <strong>"Dosyaları Yedekle"</strong> butonuna basın. Yüklenmiş tüm dosyalar sıkıştırılmış arşiv paketi olarak dışa aktarılır.</li>
+<li><strong>Yedek Listesini Yenileyin:</strong></li>
+<li><strong>"Yenile"</strong> butonuna basarak sol paneldeki <strong>Veritabanı Yedekleri</strong> tablosunda oluşturulan yeni yedeğin tarihini, dosya boyutunu ve durumunu kontrol edin.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 18.2 Geçmiş Yedekten Geri Yükleme (Restore) İş Akışı</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Yanlışlıkla silinen verileri kurtarmak veya sistemi geçmişteki kararlı bir yedek noktasına geri döndürmektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Yedek Satırını Seçin:</strong></li>
+<ul>
+<li>Sol taraftaki <strong>Veritabanı Yedekleri</strong> tablosundan geri dönmek istediğiniz yedek kaydını işaretleyin.</li>
+<li><strong>Geri Yükleme İşlemini Başlatın:</strong></li>
+<li>İlgili satırdaki <strong>"Geri Yükle"</strong> butonuna basın.</li>
+<li><strong>Güvenlik Onayını Verin:</strong></li>
+<li>Sistem öncelikle mevcut halihazırdaki veritabanının otomatik <em>Güvenlik Yedeğini</em> alır.</li>
+<li>Açılan onay uyarısında <strong>"Evet, Geri Yükle"</strong> butonuna basarak işlemi tamamlayın. Uygulama veritabanı bağlantısını yenileyerek seçilen yedek noktasına geri döner.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 18.3 Veritabanı Bakım ve Performans İyileştirme Araçları</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Zamanla genişleyen veritabanının dosya boyutunu küçültmek, sorgulama hızını artırmak ve yapısal sağlığını doğrulamaktır.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<p>Sağ paneldeki <strong>Sistem Bakım Araçları</strong> kartı üzerinden 3 temel bakım aracı çalıştırılabilir:</p>
+
+<ol>
+<li>🧹 <strong>Boyut Optimize Et (VACUUM):</strong></li>
+<ul>
+<li><strong>"Boyut Optimize Et (VACUUM)"</strong> butonuna basın.</li>
+<li>Veritabanında silinen kayıtların kapladığı atık boş alanı temizler, veritabanı dosya boyutunu küçültür ve disk alanını rahatlatır.</li>
+<li>🏥 <strong>Bütünlük Kontrolü Çalıştır (Integrity Check):</strong></li>
+<li><strong>"Bütünlük Kontrolü Çalıştır"</strong> butonuna basın.</li>
+<li>Veritabanının fiziksel yapısında veri bozulması (corruption) veya indeks çakışması olup olmadığını tarar ve sağlık raporu basar.</li>
+<li>⚡ <strong>İndeksleri Yenile (REINDEX):</strong></li>
+<li><strong>"İndeksleri Yenile (REINDEX)"</strong> butonuna basın.</li>
+<li>Arama, filtreleme ve raporlama sorgularının çalışma hızını artıran veritabanı indekslerini yeniden inşa eder.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 18.4 Tehlikeli Bölge: Veritabanı Sıfırlama Mekanizması</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Yıl sonu devirlerinde veya test sonrasında tüm kullanıcı ve operasyon verilerini temizleyerek sistemi fabrika ayarlarına döndürmektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Tehlikeli Bölge Kartını İnceleyin:</strong></li>
+<ul>
+<li>Ekranın sağ altındaki <strong>Tehlikeli Bölge</strong> kartını bulun.</li>
+<li><strong>Sıfırlama Butonuna Basın:</strong></li>
+<li><strong>"Veritabanını Sıfırla"</strong> butonuna tıklayın.</li>
+<li><strong>Kapsam Açıklaması ve 2 Aşamalı Güvenlik Onayı:</strong></li>
+<li>⚠️ <em>Sıfırlama işlemi; tüm personelleri, nöbetleri, izinleri, dozimetre ölçümlerini ve kalite ihlal kayıtlarını siler. Ancak sistem sabitleri, tanımlamalar, program ayarları ve yönetici hesabı korunur.</em></li>
+<li><strong>1. Aşama (Metin Onayı):</strong> Açılan ilk doğrulama penceresindeki kutucuğa büyük harflerle <strong>SIFIRLA</strong> yazarak onaylayın.</li>
+<li><strong>2. Aşama (Şifre Onayı):</strong> Ardından açılan Sudo güvenlik penceresine oturum açtığınız <strong>Sistem Yöneticisi Parolanızı</strong> girerek sıfırlama işlemini tamamlayın.</li>
+</ul>
+</ol>
+<hr />
+<blockquote class="callout">💡 <strong>Sık Karşılaşılan Uyarılar ve Çözüm Adımları:</strong> Detaylı soru ve çözüm rehberi için bkz: <a href="RADPYS_V4_sss.md">RADPYS V4 SSS Dokümanı</a></blockquote>
+<hr />
+<h3>🐾 18.5 🔓 PostgreSQL Veritabanı ve Yedek Yönetimi</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Kurumun verilerini başka bir sunucuya veya yedek merkezine aktarmak istemesi durumunda, standart <code>pg_dump</code> veya SQL dışa aktarım araçlarıyla tüm veritabanı kayıtlarını ve şifreli dosya kasasını (<code>stored_files</code>) taşınabilir paketler olarak ihraç etmektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Veritabanı Bakım Ekranına Geçin:</strong></li>
+<ul>
+<li>Sol menüden <strong>Yönetim > Veritabanı & Bakım</strong> sekmesine tıklayın.</li>
+<li><strong>Veritabanı Yedekle Butonuna Basın:</strong></li>
+<li><strong><code>Veritabanı Yedekle</code></strong> butonuna basarak anlık PostgreSQL <code>.dump</code> yedeği oluşturun.</li>
+<li><strong>Dışa Aktarma:</strong></li>
+<li>Yedekler tablosundan ilgili yedeği seçip <strong>"Dışa Aktar"</strong> butonuna basarak bilgisayarınızdaki herhangi bir güvenli klasöre kaydedin.</li>
+</ul>
+</ol>
+
+<blockquote class="callout">[!TIP]</blockquote>
+<blockquote class="callout"><strong>PostgreSQL Standartları:</strong> Alınan <code>.dump</code> dosyaları pgAdmin, DBeaver veya <code>pg_restore</code> komutu ile tüm PostgreSQL sunucularına kolaylıkla geri yüklenebilir.</blockquote>
+<hr />
+<h3>🐾 18.6 🛡️ KVKK Dosya Erişim ve İşlem İzi Logu (Audit Log)</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Hangi yetkilinin ne zaman hangi evrakı görüntülediğini, deşifre ettiğini, sildiğini veya dışa aktardığını KVKK Madde 12 uyarınca geriye dönük denetlemektir.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Yönetim > Veritabanı & Bakım</strong> ekranına gelin.</li>
+<li><strong><code>🛡️ KVKK Dosya Günlüğü</code></strong> butonuna basın.</li>
+<li>Açılan <strong>KVKK Dosya İşlem ve Erişim Log Paneli</strong> diyalogunda:</li>
+<ul>
+<li><code>STORE</code>: Yeni dosya yükleme işlemi</li>
+<li><code>READ</code>: Şifreli dosyanın geçici çözülüp açılması</li>
+<li><code>DELETE</code>: Dosyanın silinmesi (30 günlük soft-delete)</li>
+<li><code>PURGE</code>: Dosyanın kalıcı imha edilmesi</li>
+   aksiyonlarını zaman damgası ve kullanıcı bilgisiyle sorgulayın.
+</ul>
+</ol>
+
+<a id="bolum-19"></a>
+
+<h2>19. Toplu İçe Aktarma (Excel / CSV Import) Sihirbazları</h2>
+
+<h3>💡 İşlemin Amacı ve Mimari Yapısı</h3>
+
+<p>Toplu Veri Aktarım Sihirbazı; kuruma yeni katılan çok sayıda personeli, geçmiş dozimetre okuma dozlarını veya hazır nöbet listelerini tek tek elle girmek yerine Excel (.xlsx, .xls) veya CSV (.csv) dosyalarından topluca veritabanına aktarmak amacıyla tasarlanmış 4 adımlı akıllı aktarım modülüdür.</p>
+
+<p>Sistem, yüklenen dosyayı veritabanına aktarırken veri hatalarını, mükerrer T.C. Kimlik Numaralarını ve geçersiz kayıtları otomatik tespit eder; aktarılamayan satırları işlem sonunda detaylı hata raporu (.csv) olarak sunar.</p>
+
+Masaüstü uygulamasında sol dikey navigasyon menüsünden <strong>Yönetim > Toplu İçe Aktarma</strong> sekmesinden erişilir.
+<hr />
+<h3>🐾 19.1 4-Adımlı Toplu Aktarım Sihirbazı İş Akışı</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Dış kaynaktan (Excel / CSV) gelen verileri belirlenen modüle göre eşleştirip toplu olarak sisteme aktarmaktır.</p>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<p>##### 1. Adım: Aktarım Modülü Seçimi ve Dosya Yükleme</p>
+
+<ol>
+<li><strong>Aktarım Ekranına Geçin:</strong></li>
+<ul>
+<li>Sol dikey menüden <strong>Yönetim > Toplu İçe Aktarma</strong> sekmesine tıklayın (<code>ui/pages/admin/system/import_page.ui</code>).</li>
+<li><strong>Aktarım Modülünü Seçin:</strong></li>
+<li>Sol listeden aktaracağınız veri türünü seçin (<em>Personel Listesi</em>, <em>Geçmiş İzin Bilgileri</em>, <em>İzin Hakedişleri</em>, <em>Fiili Hizmet Süreleri</em>, <em>Sağlık Muayeneleri</em>, <em>Nöbet Planları</em>, <em>Roller</em>, <em>Modüller/Yetkiler</em>, <em>Departmanlar</em>, <em>Unvanlar</em> vb.).</li>
+<li><strong>Şablon İndirin (İsteğe Bağlı):</strong></li>
+<li><strong>"Şablonlar"</strong> butonuna basarak örnek dosya formatını inceleyin.</li>
+<li><strong>Dosyayı Seçin:</strong></li>
+<li><strong>"Gözat"</strong> (<code>browseButton</code>) butonuna basarak Excel (.xlsx, .xls) veya CSV (.csv) dosyanızı seçin (veya dosyayı ekrana sürükleyip bırakın).</li>
+<li><strong>"İleri"</strong> butonuna basarak sütun eşleştirme adımına geçin.</li>
+</ul>
+</ol>
+<hr />
+##### 2. Adım: Sütun Eşleştirme ve Önizleme (Column Mapping & Raw Preview)
+
+<ol>
+<li><strong>Sütun Eşleştirmelerini Kontrol Edin:</strong></li>
+<ul>
+<li>Sistem, dosyanızdaki sütun başlıkları ile veri alanlarını (Alias ve Etiket eşleştirmeleriyle) otomatik eşleştirir.</li>
+<li>Zorunlu alanlar kırmızı yıldız (<code><em></code>) ile belirtilmiştir (örn: </em>Ad Soyad \<strong>, *TC No \</strong>). Otomatik eşleşmeyen alanları açılır menülerden (<code>QComboBox</code>) manuel seçin.</li>
+<li><strong>"İleri"</strong> butonuna basarak Önizleme & Doğrulama adımına geçin.</li>
+</ul>
+</ol>
+<hr />
+##### 3. Adım: Akıllı Ön Doğrulama (Dry-Run), Rozetler ve Tablo Üzerinde Düzenleme
+
+<ol>
+<li><strong>Otomatik Dry-Run Taraması:</strong></li>
+<ul>
+<li>Sistem henüz veritabanına yazmadan önce tüm veriyi analiz eder ve satırlara anlık durum rozeti atar:</li>
+<li><code>🟢 Geçerli</code>: Veritabanına aktarıma tam hazır ve geçerli satırlar.</li>
+<li><code>🟡 Mükerrer</code>: TC Kimlik, Cihaz Kodu veya Dozimetre No veritabanında zaten kayıtlı olan satırlar.</li>
+<li><code>🔴 Hatalı</code>: Eksik zorunlu alan veya geçersiz biçim içeren satırlar.</li>
+<li><strong>Tablo Üzerinde Doğrudan Düzenleme (In-Place Edit):</strong></li>
+<li>Hatalı veya mükerrer satırları düzeltmek için Excel dosyasına geri dönmenize gerek yoktur.</li>
+<li>Önizleme tablosundaki ilgili hücreye <strong>çift tıklayarak</strong> veriyi doğrudan düzenleyebilirsiniz; sistem düzenleme sonrası satırı anında yeniden doğrular.</li>
+<li><strong>Çakışma Stratejisi Seçimi:</strong></li>
+<li>Mükerrer kayıtlar için <strong>"Çakışma Stratejisi"</strong> açılır kutusundan tercihinizi yapın:</li>
+<li><em>"Mükerrerleri Güncelle (Merge)"</em>: Sistemdeki mevcut kaydı yeni gelen bilgilerle günceller.</li>
+<li><em>"Mükerrerleri Atla (Skip)"</em>: Mevcut kaydı korur, dosyadaki satırı atlar.</li>
+<li><strong>"Aktarımı Başlat"</strong> butonuna basın.</li>
+</ul>
+</ol>
+<hr />
+##### 4. Adım: Sonuç Özeti ve Hata Detay Raporu
+
+<ol>
+<li><strong>Aktarım Sonucunu İnceleyin:</strong></li>
+<ul>
+<li>İşlem tamamlandığında özet bilgi görüntülenir:</li>
+<li><em>Başarılı Kayıt Sayısı</em></li>
+<li><em>Hatalı Kayıt Sayısı</em></li>
+<li><strong>Hata Raporu İndirin (Varsa):</strong></li>
+<li>Eğer aktarılamayan hatalı satırlar varsa <strong>"Hata Raporunu Aç (.csv)"</strong> (<code>btnOpenErrorReport</code>) butonu görünür. Bu rapora tıklayarak hangi satırda ne hatası alındığını (ör. geçersiz veri formatı, yetkisiz alan vb.) CSV formatında inceleyebilirsiniz.</li>
+<li><strong>Kullanıcı Hesap Bilgilerini İndirin (Personel Aktarımı İse):</strong></li>
+<li>Otomatik kullanıcı hesabı oluşturulmuşsa <strong>"Kullanıcı Hesap Bilgilerini İndir (.txt)"</strong> (<code>btnExportCredentials</code>) butonu görünür.</li>
+<li><strong>"Tamamla"</strong> veya <strong>"Yeni Aktarım"</strong> butonuna basarak işlemi sonlandırın.</li>
+</ul>
+</ol>
+<hr />
+<blockquote class="callout">💡 <strong>Sık Karşılaşılan Uyarılar ve Çözüm Adımları:</strong> Detaylı soru ve çözüm rehberi için bkz: <a href="RADPYS_V4_sss.md">RADPYS V4 SSS Dokümanı</a></blockquote>
+
+      <!-- BOTTOM PAGINATION -->
+      <div class="docs-pagination">
+        
+            <a href="14_tanimlamalar_ve_web_portal.html" class="page-card prev">
+              <span class="page-card-sub">← Önceki Konu</span>
+              <span class="page-card-title">14. Tanımlamalar & Web Portalı</span>
+            </a>
+        
+            <a href="16_sss_sorun_giderme.html" class="page-card next">
+              <span class="page-card-sub">Sonraki Konu →</span>
+              <span class="page-card-title">16. Sıkça Sorulan Sorular (SSS)</span>
+            </a>
+      </div>
+    </main>
+  </div>
+
+  <!-- RIGHT ON-THIS-PAGE TOC -->
+  <aside class="sl-right-toc">
+    <div class="toc-title">Bu Sayfada</div>
+    <ul class="toc-nav" id="rightTocNav"></ul>
+  </aside>
+
+</div>
+
+<!-- SEARCH MODAL (Ctrl + K) -->
+<div class="search-modal-backdrop" id="searchModal">
+  <div class="search-modal">
+    <div class="search-input-wrap">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="modalSearchInput" placeholder="Dokümantasyonda ara (başlık, konu veya anahtar kelime)..." autofocus />
+      <kbd class="search-kbd" style="font-size:0.7rem;">ESC</kbd>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script src="assets/docs.js"></script>
+</body>
+</html>
