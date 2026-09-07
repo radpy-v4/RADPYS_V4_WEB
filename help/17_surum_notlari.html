@@ -159,7 +159,7 @@
 <li>Cihaz düzenleme formundaki 4. Kat Planı sekmesinde veritabanı anahtarları tekilleştirildi; düzenleme modunda kroki, oda ve pin konumu eksiksiz yüklenir.</li>
 <li><code>_set_combo_by_data</code> sayısal ID ve string veri dönüşümleri normalize edilerek açılır kutuların doğru indekste açılması sağlandı.</li>
 <li>🔒 <strong>Cihaz Kat Planı Pin Kilitleme / Taşıma Güvenlik Modu:</strong></li>
-<li>Cihaz Ekle/Düzenle ekranındaki 4. Kat Planı araç çubuğuna pin kilitleme butonu (<code>btnCihazPinKilitle</code>) entegre edildi (Açılışta varsayılan olarak <strong>Kilitli</strong> gelir).</li>
+<li>Cihaz Ekle/Düzenle ekranındaki 4. Kat Planı araç çubuğuna <strong>Pin Kilitleme</strong> butonu entegre edildi (Açılışta varsayılan olarak <strong>Kilitli</strong> gelir).</li>
 <li>Kilitli modda haritada serbestçe gezilirken pinin yanlışlıkla kayması engellendi; taşıma modunda pin serbestçe konumlandırılabilir.</li>
 <li>🧭 <strong>Üst Araç Çubuğu Breadcrumb Yaşam Döngüsü & Otomatik Gizlenme:</strong></li>
 <li>Açık olan tüm alt pencereler kapatıldığında üst breadcrumb navigasyonunun masaüstü arka planında asılı kalması önlendi; içerik sıfırlanıp bileşen otomatik olarak gizlenir (<code>setVisible(False)</code>).</li>
@@ -203,7 +203,7 @@
 <li><strong>Otomatik Şablon Güncellemesi (<code>template_updater.py</code>):</strong> <code>data/templates/</code> altındaki 40 şablon (<code>.docx</code>, <code>.xlsx</code>) otomatik üretildi ve güncellendi.</li>
 <li>🏛️ <strong>Dinamik Kurumsal Marka & Kategori Bazlı Şablon Filtreleme:</strong></li>
 <li>Sabit "Sağlık Bakanlığı" metinleri kaldırılarak veritabanı ayarlarından (<code>program_ayarlari</code>) gelen dinamik <code>BASLIK_1</code>, <code>BASLIK_2</code>, <code>LOGO_1</code> ve <code>LOGO_2</code> yapısına geçildi.</li>
-<li>Şablonların kategoriye göre filtrelenmesi (<code>cmbTemplateCategory</code>), tek tıkla açılması (<code>Aç</code>) ve orijinal haline sıfırlanması (<code>Yeniden Oluştur</code>).</li>
+<li>Şablonların <strong>Kategori</strong> açılır kutusuna göre filtrelenmesi, tek tıkla açılması (<strong>"Aç"</strong>) ve orijinal haline sıfırlanması (<strong>"Yeniden Oluştur"</strong>).</li>
 <li>Şablona özel override karmaşıklığı kaldırılarak tek merkezli, sade ve kullanıcı dostu marka yönetimi sağlandı.</li>
 <li>✍️ <strong>Çok Satırlı Başlık Desteği & Word XML <code><w:br/></code> Satır Kırılımı:</strong></li>
 <li><code>Kurum Başlık 1</code> ve <code>Kurum Başlık 2</code> girişleri <code>QPlainTextEdit</code> ile Enter destekli çok satırlı hale getirildi.</li>

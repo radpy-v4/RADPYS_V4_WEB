@@ -146,29 +146,29 @@
 <h4>🐾 Adım Adım İş Akışı</h4>
 
 <ol>
-<li><strong>Ortam Dozu Ekranını Açın:</strong></li>
+<li><strong>Ekranı Açın:</strong></li>
 <ul>
-<li>Sol navigasyon panelinden <strong>Kalite Yönetimi > Ortam Dozu Ölçümleri</strong> (<code>btnOrtamDozu</code>) butonuna tıklayın.</li>
-<li><strong>Birim / Departman Seçimi:</strong></li>
-<li>Üst kontrol çubuğundaki <strong>"Birim / Departman"</strong> (<code>comboDepartman</code>) açılır listesinden incelemek veya plan yüklemek istediğiniz radyasyonlu birimi seçin.</li>
-<li><strong>Mimari Plan / Kroki Yükleme (<code>btnKrokiYukle</code>):</strong></li>
-<li>Üst bardaki <strong>"Kroki Yükle"</strong> (veya <em>"Krokisi Değiştir"</em>) butonuna basın.</li>
-<li>Bilgisayarınızdan mimari kat planına ait tek sayfalı vektörel <strong>PDF</strong> dosyasını veya <strong>PNG / JPG</strong> görselini seçin. Sistem dosyayı otomatik render ederek grafik tuvaline (<code>QGraphicsScene</code>) yükler.</li>
-<li><strong>Haritada Gezinme ve Yakınlaştırma (Pan & Wheel Zoom):</strong></li>
-<li><strong>Zoom:</strong> Fare tekerleğini ileri/geri kaydırarak haritada sınırsız yakınlaşıp uzaklaşabilirsiniz.</li>
-<li><strong>Pan (Kaydırma):</strong> Farenin sol tuşuna basılı tutarak planı dilediğiniz yöne sürükleyebilirsiniz.</li>
-<li><strong>Ekrana Sığdır (<code>btnZoomFit</code>):</strong> Haritayı tek tıkla ilk merkez konumuna döndürür.</li>
-<li><strong>Yeni Ölçüm Noktası Tanımlama (<code>btnYeniNokta</code>):</strong></li>
-<li><strong>Yöntem 1 (Haritadan):</strong> Mimari plan üzerinde noktanın bulunacağı odaya/alana <strong>farenin sağ tuşuyla</strong> tıklayın ve açılan menüden <strong>"Bu Konuma Yeni Nokta Ekle..."</strong> seçeneğini seçin.</li>
-<li><strong>Yöntem 2 (Butondan):</strong> Üst bardaki <strong>"Yeni Nokta Ekle"</strong> (<code>btnYeniNokta</code>) butonuna tıklayın.</li>
-<li><strong>Nokta Bilgilerini Doldurun:</strong></li>
-<li><strong>Nokta Kodu:</strong> Departman koduna göre otomatik artan profesyonel sayaç önerilir (Örn: <code>RAD_ACL_RNT_01</code>, <code>TEK_SOR_BT_01</code>).</li>
-<li><strong>Nokta Tanımı:</strong> Açıklayıcı konum girin (Örn: <em>BT Kumanda Masası Kurşun Cam Arkası</em>).</li>
-<li><strong>Alan Sınıfı (NDK):</strong> <em>Denetimli Alan</em>, <em>Gözetimli Alan</em> veya <em>Halka Açık Alan</em> seçildiğinde NDK standart uyarı (2.5 / 0.5 / 0.1 µSv/h) ve limit (10.0 / 2.5 / 0.5 µSv/h) eşikleri otomatik dolar.</li>
-<li><strong>"Kaydet"</strong> butonuna bastığınızda çift katmanlı parlayan canlı pin (<code>KrokiPinItem</code>) haritada yerini alır.</li>
-<li><strong>Pinleri Taşıma ve Kilitleme:</strong></li>
-<li>Pinlerin kilit simgesi açıkken farenin sol tuşuyla tutup sürükleyerek oda içindeki yerini değiştirebilirsiniz.</li>
-<li>Düzenleme bittiğinde alt bardaki <strong>"Pinleri Kilitle"</strong> (<code>btnPinKilitle</code>) butonuna basarak pinleri sabitleyebilirsiniz.</li>
+<li>Sol navigasyon panelinden <strong>Kalite Yönetimi > Ortam Dozu Ölçümleri</strong> menü seçeneğine tıklayın.</li>
+<li><strong>Kroki Tuvali (Canvas) Alanı:</strong> Ortada interaktif mimari plan ve oda yerleşim alanı görüntülenir.</li>
+<li><strong>Mimari Plan / Kroki Yükleme ("Plan / Kroki Yükle" Butonu):</strong></li>
+<li>Üst araç çubuğundaki <strong>"Plan / Kroki Yükle"</strong> butonuna basın.</li>
+<li>Desteklenen formatlarda (<em>PNG, JPG, JPEG, BMP veya Vektörel PDF</em>) hazırlanmış hastane/ünite kat planı dosyasını seçin.</li>
+<li>Plan anında ekrana yüklenir ve orantılı biçimde ölçeklenir.</li>
+<li><strong>Harita Üzerinde Gezinme:</strong></li>
+<li><strong>Yakınlaştırma / Uzaklaştırma (Zoom):</strong> Fare tekerleği (Mouse Wheel) ile yakınlaşıp uzaklaşabilirsiniz.</li>
+<li><strong>Kaydırma (Pan):</strong> Harita üzerinde farenin sol tuşuna basılı tutarak sürükleyin.</li>
+<li><strong>"Ekrana Sığdır" Butonu:</strong> Haritayı tek tıkla ilk merkez konumuna döndürür.</li>
+<li><strong>Yeni Ölçüm Noktası Tanımlama ("Yeni Nokta Ekle" Butonu):</strong></li>
+<li><strong>Yöntem 1 (Çift Tıklama - En Hızlı):</strong> Harita üzerinde doz ölçüm noktasının bulunduğu konuma (örn: <em>BT Kumanda Odası Arkası, Radyoloji Koridoru Kapı Önü, Skopi Camı Önü</em>) çift tıklayın.</li>
+<li><strong>Yöntem 2 (Butondan):</strong> Üst bardaki <strong>"Yeni Nokta Ekle"</strong> butonuna tıklayın.</li>
+<li>Açılan formda:</li>
+<li><strong>Nokta Adı / Kodu:</strong> Anlaşılır bir kod ve isim verin (örn: <code>BT1-KUMANDA</code>, <code>SKOPI-KAPI-01</code>).</li>
+<li><strong>İlişkili Birim:</strong> Bu noktanın ait olduğu odayı/birimi seçin.</li>
+<li><strong>Açıklama / Konum Notu:</strong> Detaylı konum bilgisi ekleyin.</li>
+<li><strong>"Kaydet"</strong> butonuna basıldığında ilgili koordinatta canlı durum pini (Mavi/Yeşil/Sarı/Kırmızı) belirir.</li>
+<li><strong>Pin Konumu Taşıma ve Kilitleme:</strong></li>
+<li>Bir pini harita üzerinde farklı bir noktaya taşımak için sol tuşla basılı tutup sürükleyin (Drag & Drop).</li>
+<li>Düzenleme bittiğinde alt bardaki <strong>"Pinleri Kilitle"</strong> butonuna basarak pinleri sabitleyebilirsiniz.</li>
 </ul>
 </ol>
 <hr />
@@ -181,19 +181,22 @@
 <h4>🐾 Adım Adım İş Akışı</h4>
 
 <ol>
-<li><strong>Ölçüm Giriş Formunu Açın:</strong></li>
+<li><strong>Ölçüm Giriş Ekranını Açın:</strong></li>
 <ul>
-<li><strong>Pratik Yol (Haritadan):</strong> Mimari plan üzerindeki ilgili <strong>pine çift tıklayın</strong>.</li>
-<li><strong>Buton Yolu:</strong> Üst bardaki <strong>"+ Ölçüm Kaydet"</strong> (<code>btnYeniOlcum</code>) butonuna basın.</li>
+<li><strong>Harita Üzerinden:</strong> Haritadaki ilgili ölçüm pinine tıklayın ve beliren mini kartta <strong>"Ölçüm Ekle"</strong> seçeneğine basın.</li>
+<li><strong>Buton Yolu:</strong> Üst bardaki <strong>"+ Ölçüm Kaydet"</strong> butonuna basın.</li>
 <li><strong>Ölçüm Değerlerini Girin:</strong></li>
-<li><strong>Ölçülen Doz Hızı (\*):</strong> Cihazda okunan değeri µSv/h cinsinden girin (Örn: <code>0.450</code>).</li>
-<li><strong>Doğal Arka Plan:</strong> Arka plan doz değerini girin (Varsayılan: <code>0.100</code> µSv/h).</li>
-<li><strong>Ölçüm Tarihi & Cihazı:</strong> Ölçüm tarihini ve kullanılan dedektörün model/seri numarasını girin.</li>
-<li><strong>Notlar:</strong> Opsiyonel çekim/zırhlama notlarını ekleyin.</li>
-<li><strong>"Ölçümü Kaydet"</strong> butonuna basın. Sistem anlık olarak doz değerini değerlendirir:</li>
-<li>🟢 <strong>Normal (Güvenli):</strong> Doz hızı uyarı eşiğinin altındadır. Pin yeşil yanar.</li>
-<li>🟡 <strong>Uyarı:</strong> Doz hızı uyarı eşiğini aşmıştır. Pin sarı yanar.</li>
-<li>🔴 <strong>Limit Aşımı:</strong> Doz hızı yasal limit eşiğini aşmıştır. Pin kırmızı yanar.</li>
+<li><strong>Ölçüm Tarihi / Saati:</strong> Ölçümün yapıldığı zamanı seçin.</li>
+<li><strong>Ölçülen Doz Hızı (µSv/saat):</strong> Kalibre radyasyon dedektörü (Geiger/İyon Odası) ekranında okunan dozu girin (örn: <code>0.18 µSv/h</code>, <code>2.45 µSv/h</code>).</li>
+<li><strong>Çalışma Durumu:</strong> Ölçüm anındaki cihaz durumunu seçin (<em>Şutlama Anı, Bekleme / Arka Plan, Kalibrasyon</em>).</li>
+<li><strong>Ölçüm Yapan Personel:</strong> Ölçümü alan Medikal Fizik Uzmanı veya Radyasyon Görevlisini seçin.</li>
+<li><strong>Kullanılan Cihaz & Kalibrasyon Tarihi:</strong> Dozimetri dedektörünün seri numarası ve geçerli kalibrasyon tarihini seçin.</li>
+<li><strong>Anlık Eşik Analizi ve Uyarı Seviyeleri:</strong></li>
+<li>Değer girildiği anda sistem SKS 6.1 ve NDK sınırlarına göre otomatik değerlendirme yapar:</li>
+<li>🟢 <strong>Normal / Güvenli (< 0.5 µSv/h):</strong> Yeşil Rozet — Yıllık halk ve personel limitlerinin altındadır.</li>
+<li>🟡 <strong>Dikkat / İnceleme (0.5 – 2.0 µSv/h):</strong> Sarı Rozet — Denetimli alan sınırına yaklaşılmaktadır.</li>
+<li>🔴 <strong>Limit Aşımı / Alarm (> 2.0 µSv/h):</strong> Kırmızı Rozet — SKS alarm seviyesidir; sistem otomatik DÖF başlatma önerisi sunar.</li>
+<li><strong>"Kaydet"</strong> butonuna basarak ölçümü veritabanına ekleyin. Haritadaki pin rengi ölçümün sonucuna göre anında güncellenir.</li>
 </ul>
 </ol>
 <hr />
@@ -201,14 +204,15 @@
 
 <h4>💡 Amacı</h4>
 
-<p>Sağlık Bakanlığı SKS ve NDK denetimlerinde ibraz edilmek üzere birimin tüm ölçüm geçmişini, alan sınıflarını ve eşik durumlarını resmi kurumsal Excel formatında indirmektir.</p>
+<p>Sağlık Bakanlığı SKS (Sağlıkta Kalite Standartları) Denetimlerinde istenen yıllık ortam dozu ölçüm dökümünü, cihaz kalibrasyon sertifika tarihlerini ve trend analizlerini resmi Excel formatında tek tıkla üretmektir.</p>
 
 <h4>🐾 Adım Adım İş Akışı</h4>
 
 <ol>
-<li><strong>"SKS Raporu (Excel)"</strong> (<code>btnSksExcelExport</code>) butonuna tıklayın.</li>
-<li>Kaydedilecek dosya konumunu seçin.</li>
-<li>Sistem; kurum başlığı, birim adı, ölçüm noktaları, ölçülen dozlar ve durum değerlendirmelerini içeren hazır formatlı <code>.xlsx</code> dosyasını üretir.</li>
+<li><strong>"SKS Raporu (Excel)"</strong> butonuna tıklayın.</li>
+<li>Açılan diyalogda raporlamak istediğiniz <strong>Yıl</strong>, <strong>Dönem (Aylık/3 Aylık/Yıllık)</strong> ve <strong>Birimleri</strong> seçin.</li>
+<li><strong>"Dışa Aktar"</strong> butonuna basın ve dosyanın kaydedileceği klasörü seçin.</li>
+<li>Sistem tüm ölçüm kayıtlarını, eşik aşımlarını, dedektör kalibrasyon geçerlilik durumlarını ve özet istatistik tablosunu içeren profesyonel SKS Excel dosyasını üretir ve otomatik açar.</li>
 </ol>
 <hr />
 <h3>🐾 8.4 Web Portalı ve Mobil Cihazlardan Alan İzleme (<code>OrtamDozuView.tsx</code>)</h3>
