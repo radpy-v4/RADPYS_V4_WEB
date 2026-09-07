@@ -1486,26 +1486,7 @@ function setTheme(theme, save = true) {
     localStorage.setItem('radpys_doc_theme', theme);
   }
 
-  if (typeof mermaid !== 'undefined') {
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: theme === 'dark' ? 'dark' : 'default',
-      themeVariables: theme === 'dark' ? {
-        primaryColor: '#1e293b',
-        primaryBorderColor: '#60a5fa',
-        primaryTextColor: '#f1f5f9',
-        lineColor: '#94a3b8',
-        background: '#0b0f19',
-        fontFamily: 'Inter, sans-serif'
-      } : {
-        primaryColor: '#eff6ff',
-        primaryBorderColor: '#2563eb',
-        primaryTextColor: '#0f172a',
-        lineColor: '#64748b',
-        fontFamily: 'Inter, sans-serif'
-      }
-    });
-  }
+  renderMermaid(theme);
 }
 
 document.getElementById('themeToggleBtn')?.addEventListener('click', () => {
@@ -1682,6 +1663,41 @@ document.querySelectorAll('.nav-part-header').forEach(header => {
   });
 });
 
-/* 6. INITIALIZATION */
+/* 6. MERMAID RENDERING ENGINE */
+let originalMermaidSources = new Map();
+
+function renderMermaid(theme) {
+  if (typeof mermaid === 'undefined') return;
+  
+  const mTheme = theme === 'light' ? 'default' : 'dark';
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: mTheme,
+    securityLevel: 'loose',
+    fontFamily: 'Inter, -apple-system, sans-serif'
+  });
+
+  const nodes = document.querySelectorAll('.mermaid');
+  if (!nodes.length) return;
+
+  // Cache original text for re-rendering on theme toggle
+  nodes.forEach((node, index) => {
+    if (!originalMermaidSources.has(index)) {
+      originalMermaidSources.set(index, node.textContent.trim());
+    } else {
+      node.removeAttribute('data-processed');
+      node.innerHTML = originalMermaidSources.get(index);
+    }
+  });
+
+  try {
+    mermaid.run();
+  } catch (err) {
+    console.warn('Mermaid render warning:', err);
+  }
+}
+
+/* 7. INITIALIZATION */
 initTheme();
 buildRightToc();
+renderMermaid(document.documentElement.getAttribute('data-theme') || 'dark');

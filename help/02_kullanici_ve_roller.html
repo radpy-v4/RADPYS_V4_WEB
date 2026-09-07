@@ -207,12 +207,12 @@ Uygulama ilk kurulduğunda kısıtlı <strong>Demo Modu</strong> (15 Gün Deneme
 
 <p>Veri aktarımının hatalara yol açmaması için işlemler <strong>kesinlikle aşağıdaki sırayla</strong> yapılmalıdır:</p>
 
-<div class="mermaid">
+<pre class="mermaid">
 flowchart TD
     A["1. ADIM: Kurumsal Tanımlamalar<br/>(Departmanlar, Unvanlar, İzin Türleri)"] --> B["2. ADIM: Personel Ana Kayıtları<br/>(Özlük, Kimlik, Sicil ve Birim Ataması)"]
     B --> C["3. ADIM: Kullanıcı Hesapları ve Rol Atamaları<br/>(Sisteme Giriş Hesapları ve Yetkiler)"]
     C --> D["4. ADIM: Operasyonel Geçmiş Verileri<br/>(İzinler, Dozimetre ve Muayeneler)"]
-</div>
+</pre>
 
 <h4>1. Adım: Kurumsal Tanımlamalar (Lookup Tabloları)</h4>
 

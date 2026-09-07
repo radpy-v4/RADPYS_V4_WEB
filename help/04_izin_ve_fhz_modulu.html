@@ -292,15 +292,15 @@ Mevzuat gereği Şua izinleri cari takvim yılı (31 Aralık) sonuna kadar kesin
 
 <h4>💡 Hibrit Hesaplama Yöntemi Nasıl Çalışır? (Katmanlı Öncelik Mimarisi)</h4>
 
-<div class="mermaid">
+<pre class="mermaid">
 flowchart TD
     P1["1. ÖNCELİK (Manuel Override): Kullanıcının Girdiği Görevlendirmeler<br/>Yetkilinin manuel eklediği geçici birim atamaları en üsttedir"]
     P2["2. ÖNCELİK (Nöbet Çizelgesi): Yayınlanmış Nöbet Planı Kayıtları<br/>Nöbet tutulan günlerde, nöbet tutulan birim ve saati çekilir"]
     P3["3. ÖNCELİK (Asıl Birim / Tamamlama): Personel Özlük Kartı Birimi<br/>Nöbet yazılmayan mesai günleri personelin Asıl Birimiyle dolar"]
 
-P1 -->|Kayıt yoksa alt katmana geçer| P2
+    P1 -->|Kayıt yoksa alt katmana geçer| P2
     P2 -->|Nöbet yazılmayan mesai günlerinde| P3
-</div>
+</pre>
 
 <ol>
 <li><strong>1. Katman — Nöbet Çizelgesi Senkronizasyonu (Nöbetli Günler):</strong></li>

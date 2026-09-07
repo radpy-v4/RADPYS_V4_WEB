@@ -245,7 +245,7 @@
 
 <h4>4. Otomatik Dağıtım Motorunun Boş Bıraktığı (Atanamayan) Slotların Doldurulması ve İkame Yönetimi</h4>
 
-<div class="mermaid">
+<pre class="mermaid">
 graph TD
     A["🤖 Otomatik Nöbet Dağıtım Motoru (Solver)"] --> B{"Matematiksel Kısıt Çakışması Var mı?"}
     B -- "Hayır (Başarılı)" --> C["🟢 Tam Kadro Nöbet Çizelgesi Üretildi"]
@@ -258,7 +258,7 @@ graph TD
     E2 --> C
     E3 --> C
     E4 --> C
-</div>
+</pre>
 
 <p>Otomatik nöbet dağıtım motoru (Scheduler / Solver) çalıştırıldığında; birimdeki personel sayısının yetersiz olması, personellerin yasal muafiyetleri (gebelik, emzirme, 25 yıl kıdem), 24 saatlik nöbet ertesi zorunlu dinlenme kuralı veya yıllık izin/mazeret çakışmaları nedeniyle <strong>matematiksel olarak hiçbir personelin atanamadığı boş slotlar (unassigned shift slots)</strong> oluşabilir.</p>
 
@@ -415,22 +415,22 @@ Kurumdaki tüm çalışanların (tekniker, fizikçi, uzman vb.) masaüstü uygul
 
 <blockquote class="callout"><strong>Amaç:</strong> Personeller arasındaki birebir telefon trafiğini ve WhatsApp anlaşma pazarlıklarını sıfırlayarak nöbet devir ve takas süreçlerini adil, şeffaf ve anlık kural denetimli bir pazar yerine dönüştürmektir.</blockquote>
 
-<div class="mermaid">
+<pre class="mermaid">
 flowchart TD
-    A[Personel Nöbetini Havuza Bırakır<br/>(Aylık Max 48 Sa Sınırı)] --> B[Tüm Birim Personeline Anlık Bildirim]
-    B --> C[Nöbet Değişim Havuzu Panosu]
-    C --> D{Personel Havuzu İnceler}
-    D -->|Kısıtı Olan| D1[🚩 Kısıt Rozeti: Buton Pasif]
-    D -->|Kısıtı Olmayan| D2[🟢 Uygun: Tek Tıkla Talip Olur<br/>(İlk Gelen Alır / Kilitlenir)]
-    D2 --> E{İlan Sahibi Değerlendirir}
-    E -->|Kabul Etti| F[Birim Sorumlusu Onay Kuyruğu]
-    E -->|Reddetti| E1[İlan 36h Dolana Kadar Havuzda Kalır]
-    F -->|Onaylandı| G[✅ Nöbet Çizelgesi Otomatik Revize Olur]
-    C -->|Nöbete 48h Kala| H[ℹ️ Erken Uyarı: Son 12 Saat]
-    C -->|Nöbete 36h Kala & Talip Yok| I[⏱️ Otomatik Zaman Aşımı & İptal]
-    I --> J[Nöbet Asıl Sahibinde Kesinleşir]
-    J --> K[🚨 Acil Mazeret Bildir -> RADPYS Hazır Resen Atama Motoru]
-</div>
+    A["Personel Nöbetini Havuza Bırakır<br/>(Aylık Max 48 Sa Sınırı)"] --> B["Tüm Birim Personeline Anlık Bildirim"]
+    B --> C["Nöbet Değişim Havuzu Panosu"]
+    C --> D{"Personel Havuzu İnceler"}
+    D -->|Kısıtı Olan| D1["🚩 Kısıt Rozeti: Buton Pasif"]
+    D -->|Kısıtı Olmayan| D2["🟢 Uygun: Tek Tıkla Talip Olur<br/>(İlk Gelen Alır / Kilitlenir)"]
+    D2 --> E{"İlan Sahibi Değerlendirir"}
+    E -->|Kabul Etti| F["Birim Sorumlusu Onay Kuyruğu"]
+    E -->|Reddetti| E1["İlan 36h Dolana Kadar Havuzda Kalır"]
+    F -->|Onaylandı| G["✅ Nöbet Çizelgesi Otomatik Revize Olur"]
+    C -->|Nöbete 48h Kala| H["ℹ️ Erken Uyarı: Son 12 Saat"]
+    C -->|Nöbete 36h Kala ve Talip Yok| I["⏱️ Otomatik Zaman Aşımı ve İptal"]
+    I --> J["Nöbet Asıl Sahibinde Kesinleşir"]
+    J --> K["🚨 Acil Mazeret Bildir / Hazır Resen Atama Motoru"]
+</pre>
 
 <ul>
 <li><strong>📱 Telefon Trafiği Olmadan Havuz İlanı Verme:</strong></li>
@@ -461,7 +461,7 @@ flowchart TD
 
 <p>##### 4. 🔔 2 Aşamalı Nöbet Devir Onay Paneli Ekranı</p>
 
-<div class="mermaid">
+<pre class="mermaid">
 sequenceDiagram
     autonumber
     actor PersonelA as Devreden Personel (A)
@@ -484,7 +484,7 @@ sequenceDiagram
     else Devralan İzinli / Erişilemiyor
         Admin->>PersonelA: 3b. Yönetici Şifahi (Sözlü) Onay Bypass Kullanır
     end
-</div>
+</pre>
 
 <ul>
 <li><strong>Bana Gelen Talepler (Devralan Personel Ön-Onayı):</strong> Bir çalışma arkadaşı nöbetini size devrettiğinde web paneline ve bildirim alanınıza anlık bilgilendirme kartı düşer. Kart üzerindeki <strong>"Kabul Et"</strong> veya <strong>"Reddet"</strong> butonlarıyla 1. aşama ön-onayı verilir.</li>

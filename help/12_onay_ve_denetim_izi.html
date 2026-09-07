@@ -242,7 +242,7 @@ Yöneticilerin ve amirlerin kurum genelinden gelen nöbet devir, gebelik/idari a
 <hr />
 <h3>🐾 12.6 KVKK AES-256 Şifreli Evrak Kasası Onay & Aktarım Süreci</h3>
 
-<div class="mermaid">
+<pre class="mermaid">
 sequenceDiagram
     autonumber
     actor Personel as Personel / Saha Çalışanı (Web)
@@ -250,18 +250,18 @@ sequenceDiagram
     actor Admin as Yönetici (Masaüstü / Web)
     participant Vault as KVKK Şifreli Kasa (stored_files)
 
-Personel->>Server: 1. Belge / Evrak Yükler (PDF, JPG, PNG)
+    Personel->>Server: 1. Belge / Evrak Yükler (PDF, JPG, PNG)
     Note over Server: 2. Dosya Geçici Staging Alanına Kaydedilir
     Server->>Admin: 3. Onay Bekleyen Görevler Merkezine Bildirilir
     alt Yönetici Onaylar
         Admin->>Vault: 4. Onayla Butonuna Basılır
-        Note over Vault: 5. Dosya Okunur, AES-256 Fernet İle Şifrelenir ve DB Blob Olarak Kaydedilir (file-uuid)
+        Note over Vault: 5. Dosya Okunur, AES-256 Fernet İle Şifrelenir ve DB Blob Olarak Kaydedilir
         Note over Server: 6. Geçici Disk Dosyası Otomatik Temizlenir
     else Yönetici Reddeder
         Admin->>Server: 4b. Reddetme Gerekçesi Girilir
         Note over Server: Geçici Dosya Silinir, Talep İptal Edilir
     end
-</div>
+</pre>
 
 <ol>
 <li><strong>Web Yükleme:</strong> Personel web portaldan belge yüklediğinde dosya geçici olarak sunucuda depolanır ve onay talebi oluşturulur.</li>

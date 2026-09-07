@@ -131,15 +131,15 @@
 
 <h2>7. Radyasyon Güvenliği, Olay Bildirim ve DÖF (Düzeltici Önleyici Faaliyet) Modülü</h2>
 
-<div class="mermaid">
+<pre class="mermaid">
 graph LR
-    subgraph Web Portalı (Saha Çalışanları)
+    subgraph sub1 ["Web Portalı (Saha Çalışanları)"]
         A1["1. Adım: Temel Bilgiler ve Birim"] --> A2["2. Adım: Kategori ve Kök Neden"]
         A2 --> A3["3. Adım: Açıklamalar ve Acil Müdahale"]
         A3 --> A4["🚀 Olayı Gönder (Anonim/İsimli)"]
     end
     
-    subgraph Masaüstü RADPYS V4 (Kalite Birimi ve RKG)
+    subgraph sub2 ["Masaüstü RADPYS V4 (Kalite Birimi ve RKG)"]
         A4 --> B1["📥 İnceleme Paneline Düşer"]
         B1 --> B2["🔍 Kök Neden Analizi ve İnceleme"]
         B2 --> B3{"DÖF Gerekli mi?"}
@@ -147,7 +147,7 @@ graph LR
         B3 -- Hayır --> C2["✅ Kapanış Notu Gir ve Kapat"]
         C1 --> C3["🎯 Aksiyon Tamamlandı ve Etkinlik Değerlendirmesi"]
     end
-</div>
+</pre>
 
 <h3>💡 İşlemin Amacı ve Mimari Yapısı</h3>
 
