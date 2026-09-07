@@ -13,7 +13,7 @@
     { href: "moduller.html", label: "Modüller" },
     { href: "gelistirme-planlari.html", label: "Yol Haritası" },
     { href: "fiyatlandirma.html", label: "Fiyatlandırma" },
-    { href: "dokumanlar.html", label: "Dokümanlar" },
+    { href: "help/index.html", label: "Dokümanlar" },
     { href: "kaynaklar.html", label: "Kaynaklar" },
     { href: "hakkimizda.html", label: "Hakkımızda" },
     { href: "iletisim.html", label: "İletişim" },
@@ -24,7 +24,7 @@
   function navMarkup() {
     const links = NAV_LINKS.map(
       (l) =>
-        `<a href="${l.href}" class="nav-link text-sm text-slate-300 hover:text-white transition-colors ${currentPath === l.href ? "active text-white" : ""
+        `<a href="${l.href}" class="nav-link text-sm text-slate-300 hover:text-white transition-colors ${currentPath === l.href || (l.href.includes("help") && location.pathname.includes("/help/")) ? "active text-white" : ""
         }">${l.label}</a>`
     ).join("");
 
@@ -91,7 +91,7 @@
                 <li><a href="moduller.html" class="hover:text-white">Modüller</a></li>
                 <li><a href="gelistirme-planlari.html" class="hover:text-white">Ar-Ge & Yol Haritası</a></li>
                 <li><a href="fiyatlandirma.html" class="hover:text-white">Fiyatlandırma</a></li>
-                <li><a href="dokumanlar.html" class="hover:text-white">Dokümanlar & Kılavuz</a></li>
+                <li><a href="help/index.html" class="hover:text-white">Dokümanlar & Kılavuz</a></li>
               </ul>
             </div>
             <div>
