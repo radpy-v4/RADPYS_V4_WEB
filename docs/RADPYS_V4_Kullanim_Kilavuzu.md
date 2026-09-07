@@ -1161,19 +1161,19 @@ Kurumdaki tüm çalışanların (tekniker, fizikçi, uzman vb.) masaüstü uygul
 
 #### 🌐 Web Portalı Nöbet Ekranlarının Detaylı İşlevleri
 
-##### 1. 🗓️ Birim Aylık Nöbet Çizelgesi ve Vardiya Takvimi Ekranı
+##### 1. Birim Aylık Nöbet Çizelgesi ve Vardiya Takvimi Ekranı
 
 * **Aylık Takvim Matrisi (Çizelge Sekmesi):** Birimdeki tüm personellerin ilgili ay boyunca tutacağı vardiyaları (*Gündüz Vardiyası, Akşam Vardiyası, Gece Vardiyası, 24 Saatlik Nöbet, Acil Çağrı Nöbeti*) renk kodlarıyla takvim üzerinde gösterir.
 * **Sadece Benim Nöbetlerim Filtresi:** Personel tek bir tıkla yalnızca kendisine ait vardiyaları süzerek kişisel çalışma takvimini görüntüleyebilir.
 * **Birim Özet ve Mesai İstatistikleri (Mesai Hesabı Sekmesi):** İlgili birim çalışanlarının anlık *Aylık Hedef Çalışma Saati*, *Fiili Tutulan Nöbet Saati*, *Net Fazla Mesai Saati* ve *Toplam Nöbet Sayısı* kartlarını özet halinde sunar.
 * **Birim İzin ve Mazeret Haritası (İzinler Sekmesi):** Ay içinde birimde kimlerin yıllık izin, Şua izni veya mazeretli olduğunu takvim matrisi üstünde göstererek nöbet planlamasını şeffaflaştırır.
 
-##### 2. 🔄 Nöbet Devir & Takas Talebi Formu Ekranı
+##### 2. Nöbet Devir & Takas Talebi Formu Ekranı
 
 * **Devir Talebi Oluşturma:** Nöbet matrisi üzerinden devredilmek istenen vardiya hücresine tıklanarak veya sol menüdeki **"Nöbet Devir Talebi"** formuna gidilerek devir işlemi başlatılır.
 * **Talep Bilgileri:** Devredilecek nöbet tarihi, vardiya türü, nöbeti devralacak hedef personel ve devir mazeret gerekçesi seçilerek onay işlemine gönderilir.
 
-##### 3. 🔔 2 Aşamalı Nöbet Devir Onay Paneli Ekranı
+##### 3. İki Aşamalı Nöbet Devir Onay Paneli Ekranı
 
 ```mermaid
 sequenceDiagram
@@ -1182,21 +1182,23 @@ sequenceDiagram
     actor PersonelB as Devralan Personel (B)
     actor Admin as Birim Yöneticisi / Admin
     
-    PersonelA->>PersonelB: 1. Nöbet Devir Talebi Oluşturur (Web / Masaüstü)
-    Note over PersonelB: 2. Bildirim Paneline Kart Düşer
+    PersonelA->>PersonelB: Nöbet Devir Talebi Gönderir
+    Note right of PersonelB: Bildirim Paneline Talep Kartı Düşer
+    
     alt Devralan Kabul Eder
-        PersonelB->>Admin: 3. Devralan Ön-Onay Verir (Kabul Et)
-        Note over Admin: 4. Onay Bekleyen Görevler Paneline Düşer
+        PersonelB->>Admin: Ön-Onay Verir (Kabul Et)
+        Note right of Admin: Onay Bekleyen Görevler Paneline Düşer
+        
         alt Yönetici Onaylar
-            Admin->>PersonelA: 5. Yönetici Nihai Onayı Verir
-            Note over PersonelA, PersonelB: 6. Nöbet Çizelgesi Otomatik Güncellenir
+            Admin->>PersonelA: Nihai Onay Bildirimi
+            Admin->>PersonelB: Nöbet Çizelgesi Güncellendi Bildirimi
         else Yönetici Reddeder
-            Admin->>PersonelA: Reddetme Gerekçesi İle Bildirim Gönderilir
+            Admin->>PersonelA: Red Gerekçesi Bildirimi
         end
     else Devralan Reddeder
-        PersonelB->>PersonelA: 3. Devir Talebi Reddedildi Bildirimi
+        PersonelB->>PersonelA: Talep Reddedildi Bildirimi
     else Devralan İzinli / Erişilemiyor
-        Admin->>PersonelA: 3b. Yönetici Şifahi (Sözlü) Onay Bypass Kullanır
+        Admin->>PersonelA: Yönetici Şifahi (Sözlü) Onay Bypass Uygular
     end
 ```
 
@@ -1205,7 +1207,7 @@ sequenceDiagram
 * **Yönetici / Admin Nihai Onayı:** Devralan personelin onayladığı talepler doğrudan yöneticinin onay kuyruğuna düşer. Yönetici onayladığında nöbet otomatik olarak yeni personelin üzerine geçirilir.
 * **Yönetici Şifahi Onay Bypass Seçeneği:** Nöbeti devralan personel izinliyse veya sisteme erişemiyorsa, birim yöneticileri telefon/sözlü izni teyit ederek **"Devralan Sözlü/Telefon İzni İle Onayla"** butonuyla süreci beklemeden tamamlayabilir.
 
-##### 4. 📊 Kişisel Nöbet Dashboard ve Kısıtlar Ekranı
+##### 4. Kişisel Nöbet Dashboard ve Kısıtlar Ekranı
 
 * **Yaklaşan Vardiyalarım:** Önümüzdeki günlerde tutulacak nöbetleri sayaç ve harita bilgisiyle kart halinde gösterir.
 * **Yasal Haklar ve Muafiyetler:** Personelin tanımlı muafiyetlerini (*Gebelik, Süt İzni, 25 Yıl Kıdem Muafiyeti*) ve tavan fazla mesai limitini şeffaf bir şekilde listeler.
