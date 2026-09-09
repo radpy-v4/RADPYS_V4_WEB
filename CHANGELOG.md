@@ -1,5 +1,75 @@
 # CHANGELOG
 
+## [4.1.2.9] - 2026-09-09
+
+### ☢️ Dozimetre Takip Sistemi, RDF-4.3 Doz Araştırma Formu, Cihaz & RKE İçe Aktarma, 40 Matbu Şablon & Yerel HTML Yardım Merkezi
+
+#### 1. 🩻 Dozimetre Takip Sistemi & Resmi RD.F43 Doz Araştırma Formu (`DozimetreTakipController`)
+
+- **Dozimetre Takip ve İnceleme Paneli:** `DozimetreTakipController`, `dozimetre_takip_main_tab.py` ve `dozimetre_import_controller.py` mimarisiyle dozimetre ölçümlerinin listelenmesi, kümülatif doz hesaplamaları ve birim bazlı radyasyon risk analizi devreye alındı.
+- **Toplu Dozimetre İçe Aktarma Sihirbazı (`dozimetre_import_page.ui`):** Dozimetre laboratuvarlarından (TENMAK, RADAT vb.) gelen Excel raporlarının otomatik sütun eşleme ve geçerlilik denetimiyle sisteme aktarılması sağlandı.
+- **Resmi RD.F43 Doz Araştırma Formu (`DozArastirmaFormController`):**
+  - TAEK / TENMAK ve NDK resmi mevzuatına tam uyumlu 2 sayfalık matbu Doz Araştırma Formu (RDF-4.3) entegre edildi (`ui/pages/personel/doz_arastirma_form_dialog.ui`).
+  - 10 iş günü yasal araştırma süresi sayacı (hafta sonlarını atlayan sayaç).
+  - Doz Hızı ($\mu\text{Sv/sa}$) $\times$ Unutulma Süresi (saat) formülüyle tahmini doz hesaplama motoru.
+  - `docxtpl` motoru ile kurum logoları ve çok satırlı başlıklar içeren resmi Word (`.docx`) belgesi üretimi (`tests/test_doz_arastirma_formu_rdf43.py`).
+
+#### 2. 🔬 Tıbbi Cihaz Yönetimi, Tablo Arındırması (`V20260909_1`) & Excel İçe Aktarımı
+
+- **Veritabanı Tablo Arındırma Migration'ı (`V20260909_1_cihaz_tablo_arindirma.py`):** `cihazlar` ve ilişkili tablolardaki mükerrer ve artık alanlar şemadan arındırıldı; `CihazRepository` ve `CihazService` sorguları normalize edilerek performans artışı sağlandı.
+- **Toplu Cihaz Envanteri İçe Aktarım Servisi (`CihazImportService`):**
+  - Excel listelerinden cihaz künyesi, NDK lisans numarası, marka/model, seri no ve oda bilgilerini içe aktaran servis mimarisi (`app/services/cihaz/cihaz_import_service.py`, `cihaz_mixin.py`).
+  - Lookup tabanlı akıllı çözümleme ve mükerrer kayıt koruması.
+
+#### 3. 🛡️ Koruyucu Ekipman (RKE) Envanteri, Kodlama Motoru & Zimmet Transferi
+
+- **RKE Envanter Yönetim Servisi (`RkeService`):** Koruyucu ekipmanların periyodik muayene, sağlamlık, koşullu kullanım ve HEK durumlarının tek merkezden takibi (`app/services/rke/rke_service.py`).
+- **Akıllı RKE Kod Üretici Motoru (`rke_kod_generator.py`):**
+  - Standart kurumsal kod formülü: `[AnaBilimDali]-[Birim]-[Cins]-[SıraNo]` ve `RKE-[Cins]-[SıraNo]`.
+  - Dinamik tanım öncelikli (Lookup-First) otomatik benzersiz kod üretimi.
+- **RKE Zimmet Transferi & Hareket Takibi (`rke_zimmet_dialog.ui`, `rke_zimmet_dialog.py`):**
+  - Ekipmanların personeller veya birimler arası teslim/tesellüm devir işlemlerinin denetim izi (`rke_zimmet_hareketleri`) ile kayıt altına alınması.
+- **RKE Toplu İçe Aktarım Entegrasyonu (`rke_mixin.py`, `lookup_resolver_mixin.py`):**
+  - Excel'den koruyucu donanım künyesi ve kalite kontrol muayene dökümlerinin otomatik eşleştirilerek aktarımı.
+
+#### 4. 📑 40 Adet Kurumsal Matbu Rapor Şablonu & Genişletilmiş `ExportService`
+
+- **40 Yeni Kurumsal Şablon (`data/templates/`):**
+  - `cihaz_lisans_kalibrasyon`, `rke_muayene_cizelgesi`, `ortam_dozu_denetim`, `fiziksel_konum_envanter`, `doz_asimi_inceleme`, `dozimetre_kumulatif_sks`, `dozimetre_olcum_raporu`, `gebe_personel_doz_takip`, `fiili_hizmet_aylik_hakedis`, `nobet_hakedis`, `izin_bakiye_raporu`, `saglik_muayene_raporu`, `olay_bildirim_trend`, `radyoaktif_atik_envanter`, `rgk_karar_takip` vb.
+  - Hem Word (`.docx` / Jinja2 / `docxtpl`) hem Excel (`.xlsx` / `openpyxl`) formatlarında hazır kurumsal şablon havuzu.
+- **Merkezi Dışa Aktarım Servisi (`ExportService`):**
+  - `app/services/system/export_service.py` modülü baştan sona yeniden yapılandırılarak tüm operasyonel modüller için yüksek kaliteli raporlama altyapısı sağlandı.
+
+#### 5. 📚 CodeIgniter Stili Yerel HTML Bilgi ve Yardım Merkezi (`docs/help/`)
+
+- **17 Modüler HTML Yardım Dokümanı:**
+  - `01_kurulum.html` - `17_surum_notlari.html` ve `index.html`.
+  - Sayfa içi gerçek zamanlı tam metin arama motoru (Ctrl+K entegrasyonu, arama indeksi).
+  - CodeIgniter stili dikey akordeon navigasyon, genişletilebilir ve sürüklenebilir kenar çubuğu.
+  - Mermaid.js operasyonel iş akışı diyagramları ve Sıkça Sorulan Sorular (`RADPYS_V4_sss.md`) çapraz bağlantıları.
+- **Otomatik Dokümantasyon Derleyici (`scripts/build_help_site.py`):**
+  - Markdown ana kullanım kılavuzunu (`RADPYS_V4_Kullanim_Kilavuzu.md`) statik HTML yardım merkezine dönüştüren derleme sistemi.
+
+#### 6. 🚀 Master Dağıtım Orkestrasyonu (`deploy/publish_release.py`) & Cloudflare R2
+
+- **Uçtan Uca Yayınlama Orkestratörü:**
+  - Tek komutla sürüm doğrulama, policy denetimleri (`policy_checks.py`), şema bütünlük testleri, sürüm dosyaları senkronizasyonu, web portalı derleme ve Inno Setup kurulum paketi oluşturma.
+- **Cloudflare R2 Dağıtım Entegrasyonu (`upload_to_r2.py`):**
+  - Kurulum dosyası (`RADPYS_Setup_latest.exe`) ve sürüm manifest dosyasını Cloudflare R2 nesne depolama alanına yükleyen otomatik boru hattı.
+- **Test İzolasyon Denetleyicisi (`scripts/lint_test_isolation.py`):**
+  - Test süitinde ortam değişkeni ve dosya izolasyonunu denetleyen statik analiz aracı.
+- **Web Portal Senkronizasyon Köprüsü (`scripts/sync_web_to_radpys_db.py`):**
+  - Web portalından gelen olay bildirimleri ve nöbet devirlerini yerel veritabanına senkronize eden köprü betik.
+
+#### 7. 🔑 Çevrimdışı Lisanslama & Faz 9 Test Bütünlüğü
+
+- **Çevrimdışı Lisans Üretim Aracı (`tools/generate_license_keys.py`):**
+  - Kurumsal lisans anahtarları ve aktivasyon kodları üretimi sağlayan güvenli yardımcı araç.
+- **Faz 9 Test Paketi:**
+  - `tests/test_cihaz_ui_and_notif.py`, `tests/test_doz_arastirma_formu_rdf43.py`, `tests/test_dozimetre_takip_controller_metrics.py`, `tests/test_import_lookup_resolver.py`, `tests/test_rke_kod_generator.py` ile yüksek test güvencesi.
+
+---
+
 ## [4.1.2.8] - 2026-09-06
 
 ### 🏪 Nöbet Değişim Havuzu (Shift Marketplace), 36 Saat Güvenlik Kısıtları (TTL) & Web Portalı Pazaryeri Arayüzü

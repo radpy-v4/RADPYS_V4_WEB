@@ -1,7 +1,8 @@
 {
-  "version": "4.1.2.8",
-  "latest_demo_version": "4.1.2.8",
-  "release_date": "2026-09-06",
+  "version": "4.1.2.9",
+  "latest_demo_version": "4.1.2.9",
+  "release_date": "2026-09-09",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "Nöbet Değişim Havuzu (Marketplace), 36 saat TTL zaman aşımı ve 48 saat erken uyarı kısıtları, acil mazeret eskalasyonu, fazla mesai taban koruması, aylık 48 saat kota ve Web Portalı pazar arayüzü eklendi."
+  "changelog": "Dozimetre Takip Sistemi, RDF-4.3 Doz Araştırma Formu, Cihaz & RKE İçe Aktarma, 40 Matbu Evrak Şablonu, Yerel HTML Yardım Merkezi ve Dağıtım Orkestrasyonu eklendi.",
+  "notes": "Nöbet havuzu ve kroki optimizasyonları"
 }
