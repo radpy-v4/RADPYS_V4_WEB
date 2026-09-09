@@ -18,7 +18,7 @@
     <a href="index.html" class="brand-lockup">
       <div class="brand-icon">R</div>
       <div class="brand-title">RADPYS V4</div>
-      <span class="brand-badge">v4.1.2.8</span>
+      <span class="brand-badge">v4.1.2.9</span>
     </a>
   </div>
 
@@ -200,9 +200,11 @@ RADPYS V4 sisteminde izin kayıtları veritabanına işlenerek nöbet çakışma
 <h3>⏳ 4.2.1 Şua İzni Zamanaşımı Takibi ve Yıl Sonu Erken Uyarı Paneli</h3>
 
 <h4>💡 Amaç</h4>
-Mevzuat gereği Şua izinleri cari takvim yılı (31 Aralık) sonuna kadar kesintisiz kullandırılmalıdır; sonraki yıla devretmez. Sistem, kullanılmayan izinlerin yanma riskini önceden tespit ederek idareye erken planlama imkanı sunar.
+
+<p>Mevzuat gereği Şua izinleri cari takvim yılı (31 Aralık) sonuna kadar kesintisiz kullandırılmalıdır; sonraki yıla devretmez. Sistem, kullanılmayan izinlerin yanma riskini önceden tespit ederek idareye erken planlama imkanı sunar.</p>
 
 <h4>🐾 Adım Adım İş Akışı</h4>
+
 <ol>
 <li><strong>İzin Hak Edişleri</strong> tablosunda üst filtre panelinde yer alan <strong>"⏳ Zamanaşımı Yaklaşan Şua İzinleri"</strong> kutucuğunu işaretleyin.</li>
 <li>Tablo yalnızca kalan Şua izni bulunan ve zamanaşımı riski taşıyan personelleri listeler.</li>
@@ -235,20 +237,20 @@ Mevzuat gereği Şua izinleri cari takvim yılı (31 Aralık) sonuna kadar kesin
 </ul>
 </ol>
 <hr />
-<h3>🐾 4.4 Web Portalı Çevrimiçi İzin Talepleri ve Masaüstü Veritabanı Senkronizasyonu</h3>
+<h3>🐾 4.4 Web Portalı Çevrimiçi İzin Talepleri ve Masaüstü Senkronizasyonu</h3>
 
 <h4>💡 Amaç</h4>
 
-<p>Saha çalışanlarının Web Portalı (<code>web_portal</code>) üzerinden oluşturduğu izin başvurularının Masaüstü RADPYS V4 veritabanına (PostgreSQL <code>radpys_db</code> <code>personel_izinler</code> tablosu) otomatik aktarılması, <strong>Onay Bekleyen Görevler Paneli</strong> üzerinden yöneticilerce incelenerek karara bağlanmasıdır.</p>
+<p>Saha çalışanlarının Web Portalı üzerinden oluşturduğu izin başvurularının Masaüstü RADPYS V4 sistemine otomatik aktarılması, <strong>Onay Bekleyen Görevler Paneli</strong> üzerinden yöneticilerce incelenerek karara bağlanmasıdır.</p>
 
 <h4>🐾 Adım Adım İş Akışı</h4>
 
 <ol>
 <li><strong>Web Portalından İzin Talebinin İletilmesi:</strong></li>
 <ul>
-<li>Personel Web Portalı üzerinden <em>İzin Talep Formu</em> ile talebini iletir (<code>POST /api/izin/talep</code>).</li>
-<li><strong>Arka Plan Senkronizasyonu (<code>WebSyncService</code>):</strong></li>
-<li>Masaüstü RADPYS V4 arka plan senkronizasyon servisi (<code>WebSyncService</code>) web verilerini okuyarak <code>personel_izinler</code> tablosuna <code>onay_durumu = 'Beklemede'</code> etiketiyle işler ve yöneticiye anlık bildirim üretir.</li>
+<li>Personel Web Portalı üzerinden <em>İzin Talep Formu</em> ile talebini iletir.</li>
+<li><strong>Otomatik Sistem Senkronizasyonu:</strong></li>
+<li>Masaüstü RADPYS V4 arka plan senkronizasyonu web verilerini okuyarak izin taleplerini onay bekleyen görevler listesine işler ve yöneticiye anlık bildirim üretir.</li>
 <li><strong>Amir / Yönetici Onayı:</strong></li>
 <li>Masaüstü uygulamasında <strong>Yönetim > Onay Bekleyen Görevler > İzin Talepleri</strong> sekmesine gidin.</li>
 <li>Talebi inceleyip <strong>"Onayla"</strong> butonuna basarak izni onaylayın veya gerekçe yazarak <strong>"Reddet"</strong> butonuna basın.</li>
@@ -419,7 +421,7 @@ Yıl sonunda hak edilecek 30 günlük yasal Şua İzni, personelin iyonlaştır�
 <li>Ekranın üstündeki <strong>Hesaplama Kaynağı</strong> açılır menüsünden veri kaynağını (<em>Hibrit Yöntem</em>, <em>Görev Dağılımı</em> veya <em>Nöbet Çizelgesi</em>) seçin.</li>
 <li><strong>Hakediş Hesaplamasını Başlatın:</strong></li>
 <li><strong>"Fiili Hizmet Hesapla"</strong> butonuna tıklayın. Sistem personellerin aylık fiili günlerini, kullanılan izinlerini, FHZ zammını ve net <strong>ŞUA Gün</strong> değerlerini hesaplayıp tabloda listeleyecektir.</li>
-<li>⚠️ <strong>Resmileşmemiş İzin Emniyet Kilidi (Uyarı Dialogu):</strong> Eğer seçilen dönem içerisinde henüz idari onayı tamamlanmamış <strong>"Ön Onaylı"</strong> izin kaydı bulunuyorsa, sistem hesaplamayı durdurarak ekranınıza ikaz penceresi (<code>fhz_onaysiz_izin_uyari_dialog.ui</code>) çıkarır. <em>"İzinlere Git"</em> butonuna basarak ilgili izinlerin resmi evrak durumunu <em>"Resmi Onaylı"</em> yapabilir, ardından FHZ hesaplamasını güvenle yeniden çalıştırabilirsiniz.</li>
+<li>⚠️ <strong>Resmileşmemiş İzin Emniyet Kilidi (Uyarı Dialogu):</strong> Eğer seçilen dönem içerisinde henüz idari onayı tamamlanmamış <strong>"Ön Onaylı"</strong> izin kaydı bulunuyorsa, sistem hesaplamayı durdurarak ekranınıza ikaz penceresi çıkarır. <em>"İzinlere Git"</em> butonuna basarak ilgili izinlerin resmi evrak durumunu <em>"Resmi Onaylı"</em> yapabilir, ardından FHZ hesaplamasını güvenle yeniden çalıştırabilirsiniz.</li>
 <li><strong>Hesaplamayı Veritabanına Kaydedin:</strong></li>
 <li><strong>"Kaydet / Güncelle"</strong> butonuna basarak hesaplanan sonuçları sisteme kaydedin.</li>
 <li><strong>Dönemi veya Yılı Kilitleyin:</strong></li>

@@ -202,7 +202,7 @@ const SEARCH_INDEX = [
     "path": "4. İzin Yönetimi ve Şua İzni"
   },
   {
-    "title": "🐾 4.4 Web Portalı Çevrimiçi İzin Talepleri ve Masaüstü Veritabanı Senkronizasyonu",
+    "title": "🐾 4.4 Web Portalı Çevrimiçi İzin Talepleri ve Masaüstü Senkronizasyonu",
     "desc": "Şua izni hak edişi, 31 Aralık zaman aşımı uyarısı ve FHZ fiili hizmet takibi.",
     "url": "04_izin_ve_fhz_modulu.html",
     "path": "4. İzin Yönetimi ve Şua İzni"
@@ -256,7 +256,7 @@ const SEARCH_INDEX = [
     "path": "5. Doz Takip ve Yasal Limitler"
   },
   {
-    "title": "🐾 5.1 Dozimetre Ölçüm Takibi ve Manuel Ölçüm Girişi",
+    "title": "🐾 5.1 Dozimetre Ölçüm Takibi, KPI Metrikleri ve Manuel Ölçüm Girişi",
     "desc": "Dozimetre yükleme, NDK 20 mSv/50 mSv yasal limit uyarıları ve RD.F43 doz formu.",
     "url": "05_dozimetre_ve_risk_analizi.html",
     "path": "5. Doz Takip ve Yasal Limitler"
@@ -310,7 +310,7 @@ const SEARCH_INDEX = [
     "path": "6. Nöbet Çizelgesi & Değişim Havuzu"
   },
   {
-    "title": "🐾 6.3 Radyoloji Nöbet, Çalışma Saati ve Yasal Şua İzni Hesaplama Kuralları",
+    "title": "5.3 Radyoloji Nöbet, Çalışma Saati ve Yasal Şua İzni Hesaplama Kuralları",
     "desc": "Otomatik nöbet dağıtım motoru, P2P devir havuzu ve 36 saat TTL kısıtı.",
     "url": "06_nobet_cizelgesi_ve_havuz.html",
     "path": "6. Nöbet Çizelgesi & Değişim Havuzu"
@@ -394,7 +394,7 @@ const SEARCH_INDEX = [
     "path": "8. Ortam Dozu & İnteraktif Kroki"
   },
   {
-    "title": "🐾 8.4 Web Portalı ve Mobil Cihazlardan Alan İzleme (`OrtamDozuView.tsx`)",
+    "title": "🐾 8.4 Web Portalı ve Mobil Cihazlardan Alan İzleme Ekranı",
     "desc": "Mimari PDF/PNG kat planları, canlı pinler ve SKS 6.1 alan izleme raporları.",
     "url": "08_ortam_dozu_ve_kroki.html",
     "path": "8. Ortam Dozu & İnteraktif Kroki"
@@ -496,6 +496,12 @@ const SEARCH_INDEX = [
     "path": "10. Tıbbi Cihaz & QR Arıza Portalı"
   },
   {
+    "title": "🐾 10.6 Excel'den Toplu Cihaz Envanteri İçe Aktarım Süreci ve Akıllı Lookup Eşleştirme",
+    "desc": "Cihaz envanteri, NDK lisansı, kat planı pinleri ve telefon kamerasıyla QR arıza bildirimi.",
+    "url": "10_tibbi_cihaz_ve_qr_portal.html",
+    "path": "10. Tıbbi Cihaz & QR Arıza Portalı"
+  },
+  {
     "title": "11. Koruyucu Ekipman (RKE) & Kalite",
     "desc": "DIN 6857-1 kurşun önlük muayenesi, akıllı kodlama motoru ve KVKK röntgen kasası.",
     "url": "11_rke_ve_kalite_kontrol.html",
@@ -545,6 +551,18 @@ const SEARCH_INDEX = [
   },
   {
     "title": "🐾 11.7 Toplu Excel İçe Aktarma (RKE ve Muayene Sihirbazları)",
+    "desc": "DIN 6857-1 kurşun önlük muayenesi, akıllı kodlama motoru ve KVKK röntgen kasası.",
+    "url": "11_rke_ve_kalite_kontrol.html",
+    "path": "11. Koruyucu Ekipman (RKE) & Kalite"
+  },
+  {
+    "title": "🐾 11.8 RKE Zimmet Transferi ve Devir Süreci",
+    "desc": "DIN 6857-1 kurşun önlük muayenesi, akıllı kodlama motoru ve KVKK röntgen kasası.",
+    "url": "11_rke_ve_kalite_kontrol.html",
+    "path": "11. Koruyucu Ekipman (RKE) & Kalite"
+  },
+  {
+    "title": "🐾 11.9 Akıllı RKE Kod Jeneratörü ve Kurumsal Kodlama Motoru",
     "desc": "DIN 6857-1 kurşun önlük muayenesi, akıllı kodlama motoru ve KVKK röntgen kasası.",
     "url": "11_rke_ve_kalite_kontrol.html",
     "path": "11. Koruyucu Ekipman (RKE) & Kalite"
@@ -629,6 +647,12 @@ const SEARCH_INDEX = [
   },
   {
     "title": "🐾 13.3 Rapor Şablonları, Dinamik Çok Satırlı Başlıklar ve Logo Yönetimi",
+    "desc": "Word (docxtpl) ve Excel matbu şablonları, kurum logoları ve çok satırlı başlıklar.",
+    "url": "13_raporlar_ve_matbu_evrak.html",
+    "path": "13. Rapor Merkezi & Şablon Marka"
+  },
+  {
+    "title": "🐾 13.4 Kurumsal 40 Şablon Matbu Rapor Kataloğu ve Dosya Eşleme Tablosu",
     "desc": "Word (docxtpl) ve Excel matbu şablonları, kurum logoları ve çok satırlı başlıklar.",
     "url": "13_raporlar_ve_matbu_evrak.html",
     "path": "13. Rapor Merkezi & Şablon Marka"
@@ -815,6 +839,24 @@ const SEARCH_INDEX = [
   },
   {
     "title": "🐾 19.1 4-Adımlı Toplu Aktarım Sihirbazı İş Akışı",
+    "desc": "PostgreSQL bakım/yedekleme, KVKK AES-256 kasası, tema ayarları ve akıllı Excel içe aktarma.",
+    "url": "15_sistem_yonetimi_ve_yedekleme.html",
+    "path": "15. Ayarlar, Veritabanı & İçe Aktarma"
+  },
+  {
+    "title": "🐾 19.2 Cihaz Envanteri ve NDK Lisansları Toplu İçe Aktarımı",
+    "desc": "PostgreSQL bakım/yedekleme, KVKK AES-256 kasası, tema ayarları ve akıllı Excel içe aktarma.",
+    "url": "15_sistem_yonetimi_ve_yedekleme.html",
+    "path": "15. Ayarlar, Veritabanı & İçe Aktarma"
+  },
+  {
+    "title": "🐾 19.3 Koruyucu Ekipman (RKE) ve Muayene Kayıtları Toplu İçe Aktarımı",
+    "desc": "PostgreSQL bakım/yedekleme, KVKK AES-256 kasası, tema ayarları ve akıllı Excel içe aktarma.",
+    "url": "15_sistem_yonetimi_ve_yedekleme.html",
+    "path": "15. Ayarlar, Veritabanı & İçe Aktarma"
+  },
+  {
+    "title": "🐾 19.4 Dinamik Lookup Çözümleyici ve Akıllı Eşleştirme Yeteneği",
     "desc": "PostgreSQL bakım/yedekleme, KVKK AES-256 kasası, tema ayarları ve akıllı Excel içe aktarma.",
     "url": "15_sistem_yonetimi_ve_yedekleme.html",
     "path": "15. Ayarlar, Veritabanı & İçe Aktarma"
@@ -1397,67 +1439,73 @@ const SEARCH_INDEX = [
   },
   {
     "title": "17. Sürüm Güncelleme Geçmişi",
-    "desc": "RADPYS V4.1.2.8 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
+    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
+    "url": "17_surum_notlari.html",
+    "path": "17. Sürüm Güncelleme Geçmişi"
+  },
+  {
+    "title": "☢️ RADPYS V4.1.2.9 (Sürüm 4.1.2.9 — Dozimetre Takip Sistemi, RDF-4.3 Doz Formu, Cihaz & RKE İçe Aktarım, 40 Matbu Şablon & Yerel HTML Yardım Merkezi)",
+    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
     "url": "17_surum_notlari.html",
     "path": "17. Sürüm Güncelleme Geçmişi"
   },
   {
     "title": "🏪 RADPYS V4.1.2.8 (Sürüm 4.1.2.8 — Nöbet Değişim Havuzu, 36 Saat TTL Kısıtı & Web Portal Pazaryeri)",
-    "desc": "RADPYS V4.1.2.8 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
+    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
     "url": "17_surum_notlari.html",
     "path": "17. Sürüm Güncelleme Geçmişi"
   },
   {
     "title": "🗺️ RADPYS V4.1.2.4 (Sürüm 4.1.2.4 — Mimari Kat Planı PDF Desteği, Cihaz Pin Kilitleme & Akıllı Breadcrumb Menüleri)",
-    "desc": "RADPYS V4.1.2.8 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
+    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
     "url": "17_surum_notlari.html",
     "path": "17. Sürüm Güncelleme Geçmişi"
   },
   {
     "title": "🚀 RADPYS V4.1.2.2 (Sürüm 4.1.2.2 — Akıllı Dry-Run İçe Aktarma, Resmi RD.F43 Doz Formu, Nöbet İkame Motoru, Şua Erken Uyarı & NDK 2. Gün Hatırlatıcısı)",
-    "desc": "RADPYS V4.1.2.8 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
+    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
     "url": "17_surum_notlari.html",
     "path": "17. Sürüm Güncelleme Geçmişi"
   },
   {
     "title": "📊 RADPYS V4.1.2.1 (Sürüm 4.1.2.1 — Yeni Rapor Kataloğu, Çok Satırlı Dinamik Kurum Başlıkları & Şablon Marka Yönetimi)",
-    "desc": "RADPYS V4.1.2.8 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
+    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
     "url": "17_surum_notlari.html",
     "path": "17. Sürüm Güncelleme Geçmişi"
   },
   {
     "title": "🛡️ RADPYS V4.1.2 (Sürüm 4.1.2.0 — Koruyucu Donanım / RKE Yönetimi, DIN 6857-1 Kalite Kontrol, Akıllı Kodlama & Toplu İçe Aktarma)",
-    "desc": "RADPYS V4.1.2.8 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
+    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
     "url": "17_surum_notlari.html",
     "path": "17. Sürüm Güncelleme Geçmişi"
   },
   {
     "title": "🏥 RADPYS V4.1.0 (Sürüm 4.1.0.0 — Tıbbi Cihaz Envanteri, NDK Lisansı, Kalite Kontrol & Mobil QR Arıza Portalı)",
-    "desc": "RADPYS V4.1.2.8 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
+    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
     "url": "17_surum_notlari.html",
     "path": "17. Sürüm Güncelleme Geçmişi"
   },
   {
     "title": "☢️ RADPYS V4.0.2 (Sürüm 4.0.2.0 — Ortam Dozu & İnteraktif Kroki)",
-    "desc": "RADPYS V4.1.2.8 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
+    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
     "url": "17_surum_notlari.html",
     "path": "17. Sürüm Güncelleme Geçmişi"
   },
   {
     "title": "🎓 RADPYS V4.0.1 (Sürüm 4.0.1.0 — Hizmet İçi Eğitim & Online Sınav LMS)",
-    "desc": "RADPYS V4.1.2.8 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
+    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
     "url": "17_surum_notlari.html",
     "path": "17. Sürüm Güncelleme Geçmişi"
   },
   {
     "title": "🐘 RADPYS V4.0 (Sürüm 4.0.0 — PostgreSQL Kurumsal Veritabanı & PWA)",
-    "desc": "RADPYS V4.1.2.8 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
+    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
     "url": "17_surum_notlari.html",
     "path": "17. Sürüm Güncelleme Geçmişi"
   },
   {
     "title": "🚀 RADPYS V4 (Sürüm 3.0.0 — Kurumsal Sürüm)",
-    "desc": "RADPYS V4.1.2.8 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
+    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
     "url": "17_surum_notlari.html",
     "path": "17. Sürüm Güncelleme Geçmişi"
   }

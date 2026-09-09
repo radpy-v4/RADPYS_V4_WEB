@@ -18,7 +18,7 @@
     <a href="index.html" class="brand-lockup">
       <div class="brand-icon">R</div>
       <div class="brand-title">RADPYS V4</div>
-      <span class="brand-badge">v4.1.2.8</span>
+      <span class="brand-badge">v4.1.2.9</span>
     </a>
   </div>
 
@@ -209,13 +209,52 @@ Masaüstü uygulamasında sol dikey menüden <strong>Cihaz Yönetimi</strong> se
 <li><strong>2. NDK Lisans Bilgileri:</strong> Lisans Numarası, Lisans Durumu, Lisans Başlangıç/Bitiş Tarihleri, Birim Sorumlusu ve RKS Personeli seçimi.</li>
 <li><strong>3. Garanti & Bakım:</strong> Yetkili servis firması, garanti başlangıç/bitiş tarihleri ve periyodik bakım sözleşmesi detayları.</li>
 <li><strong>4. Kat Planı Pin Kilitleme Modu (İnteraktif Yerleşim):</strong></li>
+</ol>
+
 <ul>
 <li>Cihazın hastane veya departman içindeki fiziki konumunu kat planı / mimari kroki üzerinde sabitlemek için bu sekme kullanılır.</li>
 <li>Plan yüklendikten sonra cihaz pini ilgili odaya sürüklenip bırakılır.</li>
 <li><strong>"Pinleri Kilitle" Butonu:</strong> Konumlandırma tamamlandığında yanlışlıkla taşınmaları engellemek için pini kilitler.</li>
 <li><strong>"Ekrana Sığdır" Butonu:</strong> Kat planını pencere boyutuna tam sığdırır.</li>
+</ul>
+
+<ol>
 <li><strong>5. Arıza ve Bakım Geçmişi:</strong></li>
+</ol>
+
+<ul>
 <li>Cihaza ait tüm arıza bildirimleri, bakım kayıtları, kalibrasyon dökümleri ve QR kod üzerinden teknisyenlerin girdiği servis notları kronolojik olarak listelenir.</li>
+</ul>
+<hr />
+<h3>🐾 10.6 Excel'den Toplu Cihaz Envanteri İçe Aktarım Süreci ve Akıllı Lookup Eşleştirme</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Hastanede bulunan onlarca veya yüzlerce görüntüleme cihazının (Radyoloji, Nükleer Tıp, MR, USG vb.) künyesini, NDK lisans bilgilerini, marka/model, seri no ve oda tanımlarını tek bir Excel dosyasından (<code>Lisanslı Cihazlar.xlsx</code>) topluca veritabanına aktarmaktır.</p>
+
+<h4>🛠️ Akıllı Eşleştirme ve İçe Aktarım Altyapısı</h4>
+
+<p>Toplu aktarım motoru, Excel dosyasını işlerken dinamik Lookup entegrasyonu kullanır:</p>
+
+<ul>
+<li><strong>Cihaz Türü / Kaynak Grubu Eşleme:</strong> Radyasyonlu (<code>BT</code>, <code>Röntgen</code>, <code>Mamografi</code>, <code>Anjiyo</code>, <code>C-Kollu Skopi</code>, <code>SPECT</code>, <code>PET-CT</code>) ve Radyasyonsuz (<code>MR</code>, <code>USG</code>) cihaz sınıflarını otomatik kategorize eder.</li>
+<li><strong>NDK Lisans Durum Çözümleme:</strong> Metin olarak girilen lisans durumlarını (<code>Lisanslı</code>, <code>Başvuru Yapıldı</code>, <code>Eksik Husus Bildirildi</code>, <code>Süresi Doldu</code>) sistem sabitleriyle eşleştirir.</li>
+<li><strong>Hiyerarşik Lokasyon Eşleme:</strong> Anabilim Dalı, Üst Birim, Alt Servis, Bina, Kat ve Oda bilgilerini veritabanındaki mevcut kayıtlarla akıllı olarak bağlar; bulunmayan lokasyonlar için yeni tanım önerir.</li>
+<li><strong>Veritabanı Kayıt Bütünlüğü:</strong> Envanter tablosunda arındırılmış şema yapısı sayesinde mükerrer cihaz kayıtları önlenir; seri numarası veya demirbaş numarası bazında çakışma denetimi yapılır.</li>
+</ul>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>İçe Aktar Butonuna Basın:</strong> Cihaz Yönetimi ana ekranında üst toolbar'da yer alan <strong><code>[ 📥 Excel İçe Aktar ]</code></strong> butonuna tıklayın.</li>
+<li><strong>Excel Dosyası Seçimi:</strong> Cihaz envanter tablosunu içeren <code>.xlsx</code> dosyasını seçin.</li>
+<li><strong>Önizleme ve Sütun Doğrulama:</strong></li>
+<ul>
+<li>Cihaz Adı, Türü, Marka, Model, Seri No, Bulunduğu Departman, Oda ve NDK Lisans Bitiş Tarihi sütunları doğrulanır.</li>
+<li><strong>Çakışma Stratejisi Belirleyin:</strong></li>
+<li><em>"Mevcut Cihazları Güncelle"</em>: Aynı seri no veya koda sahip cihazların lisans ve oda bilgilerini günceller.</li>
+<li><em>"Sadece Yeni Cihazları Ekle"</em>: Mükerrerleri atlayarak yeni cihazları sisteme kaydeder.</li>
+<li><strong>Aktarımı Tamamlayın:</strong> <strong>"Aktarımı Başlat"</strong> butonuna basıldığında tüm cihazlar tek seferde veritabanına işlenir; NDK vize bitiş tarihlerine göre erken uyarı bildirimleri anında devreye girer.</li>
 </ul>
 </ol>
 

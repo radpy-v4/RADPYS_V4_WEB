@@ -18,7 +18,7 @@
     <a href="index.html" class="brand-lockup">
       <div class="brand-icon">R</div>
       <div class="brand-title">RADPYS V4</div>
-      <span class="brand-badge">v4.1.2.8</span>
+      <span class="brand-badge">v4.1.2.9</span>
     </a>
   </div>
 
@@ -219,11 +219,21 @@ Masaüstü uygulamasında sol dikey navigasyon menüsünden <strong>Raporlar > R
 <li><strong>Şablon Seçimi:</strong> İncelenecek şablonu seçin; <strong>"Aç"</strong> butonuyla varsayılan ofis programınızda doğrudan görüntüleyin veya <strong>"Yeniden Oluştur"</strong> ile fabrika ayarlarına döndürün.</li>
 <li><strong>Çok Satırlı Kurum Başlıklarını Girin (Enter ile Alt Alta Satırlar):</strong></li>
 <li><strong>☑ Kurum Başlık 1:</strong> Kurumun ana hiyerarşik başlığını girin. <strong>Enter</strong> tuşuna basarak alt alta satırlar oluşturabilirsiniz:</li>
-     <pre><code>T.C. İSTANBUL ÜNİVERSİTESİ
+</ul>
+</ol>
+
+<pre><code>T.C. İSTANBUL ÜNİVERSİTESİ
      İSTANBUL TIP FAKÜLTESİ</code></pre>
+
+<ul>
 <li><strong>☑ Kurum Başlık 2:</strong> Kliniğin veya anabilim dalının adını girin:</li>
-     <pre><code>RADYOLOJİ ANABİLİM DALI BAŞKANLIĞI</code></pre>
+</ul>
+
+<pre><code>RADYOLOJİ ANABİLİM DALI BAŞKANLIĞI</code></pre>
+
+<ol>
 <li><strong>Kurum Logolarını Belirleyin:</strong></li>
+<ul>
 <li><strong>☑ Kurum Logo 1 (Sol Logo):</strong> <strong>Gözat...</strong> butonuna basarak kurumun ana amblemini/logosunu (PNG/JPG) seçin.</li>
 <li><strong>☑ Kurum Logo 2 (Sağ Logo):</strong> Fakülte veya hastane ikinci logosunu seçin.</li>
 <li><strong>Canlı Önizleme ve Kayıt:</strong></li>
@@ -232,6 +242,16 @@ Masaüstü uygulamasında sol dikey navigasyon menüsünden <strong>Raporlar > R
 <li><em>Not: Sistem, Word (<code>docxtpl.Listing</code>) motoru sayesinde başlıklarda Enter ile geçtiğiniz tüm satırları Word ve PDF çıktılarında gerçek <code><w:br/></code> satır sonları olarak alt alta kusursuz biçimde basar.</em></li>
 </ul>
 </ol>
+<hr />
+<h3>🐾 13.4 Kurumsal 40 Şablon Matbu Rapor Kataloğu ve Dosya Eşleme Tablosu</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>RADPYS V4, bünyesinde hem Word (<code>.docx</code>) hem de Excel (<code>.xlsx</code>) formatında hazırlanmış <strong>40 adet kurumsal ve resmi standart rapor şablonu</strong> barındırır. Tüm şablonlar dinamik kurum logosu, çok satırlı kurum başlığı, mevzuat dipnotları ve imza blokları ile donatılmıştır.</p>
+
+<h4>📑 Tam Kurumsal Şablon Matrisi</h4>
+
+<div class="table-container"><table><thead><tr><th>No</th><th>Rapor Adı</th><th>Modül / Alan</th><th>Şablon Dosyaları</th><th>Açıklama ve Mevzuat Referansı</th></tr></thead><tbody><tr><td>1</td><td><strong>Cihaz Lisans & Kalibrasyon Takip</strong></td><td>Cihaz Yönetimi</td><td><code>cihaz_lisans_kalibrasyon.docx</code> / <code>.xlsx</code></td><td>NDK vize bitişleri, periyodik QC ve kalibrasyon takip çizelgesi.</td></tr><tr><td>2</td><td><strong>RKE Muayene Çizelgesi</strong></td><td>Koruyucu Ekipman</td><td><code>rke_muayene_cizelgesi.docx</code> / <code>.xlsx</code></td><td>DIN 6857-1 / SKS kurşun önlük ve donanım yıllık sağlamlık dökümü.</td></tr><tr><td>3</td><td><strong>Ortam Dozu Denetim Raporu</strong></td><td>Ortam Dozu</td><td><code>ortam_dozu_denetim.docx</code> / <code>.xlsx</code></td><td>Alan izleme, oda arka plan ve dedektör ölçüm eşik denetim raporu.</td></tr><tr><td>4</td><td><strong>Fiziksel Konum ve Oda Envanteri</strong></td><td>Envanter & Yönetim</td><td><code>fiziksel_konum_envanter.docx</code> / <code>.xlsx</code></td><td>Bina, kat ve oda bazında yerleşik cihaz, RKE ve görevli personel dökümü.</td></tr><tr><td>5</td><td><strong>Doz Aşımı İnceleme Raporu</strong></td><td>Dozimetre</td><td><code>doz_asimi_inceleme.docx</code> / <code>.xlsx</code></td><td>Tek periyotta >5 mSv anomali veya 20 mSv kümülatif aşım resmi inceleme tutanağı.</td></tr><tr><td>6</td><td><strong>SKS Kümülatif Doz Takip Raporu</strong></td><td>Dozimetre</td><td><code>dozimetre_kumulatif_sks.docx</code> / <code>.xlsx</code></td><td>Sağlık Bakanlığı SKS SRG11.02 resmi kümülatif dozimetre takip formu.</td></tr><tr><td>7</td><td><strong>Dozimetre Ölçüm Takip Raporu</strong></td><td>Dozimetre</td><td><code>dozimetre_olcum_raporu.docx</code> / <code>.xlsx</code></td><td>Personel dönemsel ölçüm dökümleri ve laboratuvar okuma raporu.</td></tr><tr><td>8</td><td><strong>Gebe Personel Doz & Çalışma Takip</strong></td><td>Dozimetre & İdari</td><td><code>gebe_personel_doz_takip.docx</code> / <code>.xlsx</code></td><td>Gebelik bildirimi sonrası aylık 1 mSv fetüs dozu ve mesai takip cetveli.</td></tr><tr><td>9</td><td><strong>Fiili Hizmet Aylık Hak Ediş</strong></td><td>İzin & FHZ</td><td><code>fiili_hizmet_aylik_hakedis.docx</code> / <code>.xlsx</code></td><td>5510 Sayılı Kanun kapsamı fiili hizmet günleri ve Şua İzni hak ediş bordrosu.</td></tr><tr><td>10</td><td><strong>Nöbet Hak Ediş & Puantaj</strong></td><td>Nöbet Planlama</td><td><code>nobet_hakedis.docx</code> / <code>.xlsx</code></td><td>Personel hedef mesai, fiili nöbet saatleri, fazla mesai ve adalet katsayıları.</td></tr><tr><td>11</td><td><strong>Personel İzin Bakiye Raporu</strong></td><td>İzin Modülü</td><td><code>izin_bakiye_raporu.docx</code> / <code>.xlsx</code></td><td>Yıllık izin, Şua izni, mazeret ve devir izin gün bakiyeleri dökümü.</td></tr><tr><td>12</td><td><strong>Personel Sağlık Muayene Raporu</strong></td><td>Sağlık & Kalite</td><td><code>saglik_muayene_raporu.docx</code> / <code>.xlsx</code></td><td>Yıllık periyodik dahiliye, dermatoloji ve göz katarakt tarama sonuçları.</td></tr><tr><td>13</td><td><strong>Sağlık Muayene Gecikme Çizelgesi</strong></td><td>Sağlık & Kalite</td><td><code>saglik_muayene_gecikme.docx</code> / <code>.xlsx</code></td><td>Süresi dolan veya 30 gün kalan periyodik muayene erken uyarı takip listesi.</td></tr><tr><td>14</td><td><strong>Olay Bildirim & Trend Raporu</strong></td><td>Kalite & DÖF</td><td><code>olay_bildirim_trend.docx</code> / <code>.xlsx</code></td><td>Radyasyon kazaları, ramak kala bildirimleri ve DÖF kök neden analizi.</td></tr><tr><td>15</td><td><strong>Radyoaktif Atık Envanter & İmha</strong></td><td>Atık & Çevre</td><td><code>radyoaktif_atik_envanter.docx</code> / <code>.xlsx</code></td><td>Nükleer Tıp ve laboratuvar radyoaktif atık depolama ve imha takip tutanağı.</td></tr><tr><td>16</td><td><strong>RGK Karar ve Faaliyet Takip</strong></td><td>Kurul & Yönetim</td><td><code>rgk_karar_takip.docx</code> / <code>.xlsx</code></td><td>Radyasyon Güvenliği Komitesi periyodik toplantı kararları ve aksiyon cetveli.</td></tr><tr><td>17</td><td><strong>Personel Listesi ve Görev Dağılımı</strong></td><td>Personel Modülü</td><td><code>personel_listesi.docx</code> / <code>.xlsx</code></td><td>Kurum geneli personel kadro, unvan, birim ve çalışma koşulu A/B listesi.</td></tr><tr><td>18</td><td><strong>Personel Kimlik ve İletişim Rehberi</strong></td><td>Personel Modülü</td><td><code>personel_kimlik_iletisim.docx</code> / <code>.xlsx</code></td><td>Acil durum telefonları, kan grupları ve kurum içi iletişim rehberi.</td></tr><tr><td>19</td><td><strong>Hizmet İçi Eğitim Durum Raporu</strong></td><td>Eğitim & LMS</td><td><code>egitim_durum_raporu.docx</code> / <code>.xlsx</code></td><td>Personel yasal eğitim tamamlama, sınav puanı ve sertifika uyum matrisi.</td></tr><tr><td>20</td><td><strong>Genel Rapor Şablonu</strong></td><td>Rapor Merkezi</td><td><code>rapor_sablonu.docx</code> / <code>.xlsx</code></td><td>Kurumsal antetli, üst ve alt bilgili serbest matbu evrak ana şablonu.</td></tr></tbody></table></div>
 <hr />
 <blockquote class="callout">💡 <strong>Sık Karşılaşılan Uyarılar ve Çözüm Adımları:</strong> Detaylı soru ve çözüm rehberi için bkz: <a href="16_sss_sorun_giderme.html">RADPYS V4 SSS Dokümanı</a></blockquote>
 

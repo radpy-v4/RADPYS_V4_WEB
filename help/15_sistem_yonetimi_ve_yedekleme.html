@@ -18,7 +18,7 @@
     <a href="index.html" class="brand-lockup">
       <div class="brand-icon">R</div>
       <div class="brand-title">RADPYS V4</div>
-      <span class="brand-badge">v4.1.2.8</span>
+      <span class="brand-badge">v4.1.2.9</span>
     </a>
   </div>
 
@@ -215,7 +215,7 @@ graph LR
     E["📄 Aktif Sayfa (Örn: Ortam Dozu_Kroki)"] -->|Mevcut Konum| F["Sabit Başlık"]
 </pre>
 
-<h4>🧭 Kullanım ve Akıllı Davranış Kuralları:</h4>
+<h4>🧭 Kullanım ve Akıllı Davranış Kuralları</h4>
 
 <ol>
 <li><strong>Otomatik Gizlenme (Akıllı Yaşam Döngüsü):</strong></li>
@@ -224,7 +224,7 @@ graph LR
 <li>Yeni bir sayfa açıldığında hiyerarşik yol anında belirir.</li>
 <li><strong><code>RADPYS V4</code> Kök Butonu:</strong></li>
 <li>Breadcrumb'ın en başındaki <code>RADPYS V4</code> veya <code>Ana Sayfa</code> butonuna tıklandığında açık tüm sayfalar kapatılarak temiz ana masaüstü ekranına dönülür.</li>
-<li><strong>Kategori Hızlı Geçiş Menüleri (<code>QMenu</code>):</strong></li>
+<li><strong>Kategori Hızlı Geçiş Menüleri:</strong></li>
 <li>Ara kategorilere (<em>Kalite Yönetimi</em>, <em>Cihaz Yönetimi</em>, <em>Personel Modülü</em>, <em>Nöbet Planları</em>, <em>İzin Modülü</em>, <em>Sistem Yönetimi</em>) tıklandığında ilgili modül grubunun altındaki tüm sayfaları içeren şık bir açılır menü (Dropdown) belirir.</li>
 <li>Örneğin <strong>Kalite Yönetimi</strong> tıklandığında açılan menüden doğrudan <em>Ortam Dozu ve İnteraktif Kroki</em> veya <em>Hizmet İçi Eğitim & LMS</em> ekranına tek tıkla geçiş yapılabilir.</li>
 </ul>
@@ -453,12 +453,12 @@ Masaüstü uygulamasında sol dikey navigasyon menüsünden <strong>Yönetim > T
 
 <h4>🐾 Adım Adım İş Akışı</h4>
 
-<h5>1. Adım: Aktarım Modülü Seçimi ve Dosya Yükleme</h5>
+<p>##### 1. Adım: Aktarım Modülü Seçimi ve Dosya Yükleme</p>
 
 <ol>
 <li><strong>Aktarım Ekranına Geçin:</strong></li>
 <ul>
-<li>Sol dikey menüden <strong>Yönetim > Toplu İçe Aktarma</strong> sekmesine tıklayın (<code>ui/pages/admin/system/import_page.ui</code>).</li>
+<li>Sol dikey menüden <strong>Yönetim > Toplu İçe Aktarma</strong> sekmesine tıklayın.</li>
 <li><strong>Aktarım Modülünü Seçin:</strong></li>
 <li>Sol listeden aktaracağınız veri türünü seçin (<em>Personel Listesi</em>, <em>Geçmiş İzin Bilgileri</em>, <em>İzin Hakedişleri</em>, <em>Fiili Hizmet Süreleri</em>, <em>Sağlık Muayeneleri</em>, <em>Nöbet Planları</em>, <em>Roller</em>, <em>Modüller/Yetkiler</em>, <em>Departmanlar</em>, <em>Unvanlar</em> vb.).</li>
 <li><strong>Şablon İndirin (İsteğe Bağlı):</strong></li>
@@ -469,18 +469,18 @@ Masaüstü uygulamasında sol dikey navigasyon menüsünden <strong>Yönetim > T
 </ul>
 </ol>
 <hr />
-<h5>2. Adım: Sütun Eşleştirme ve Önizleme (Column Mapping & Raw Preview)</h5>
+##### 2. Adım: Sütun Eşleştirme ve Önizleme (Column Mapping & Raw Preview)
 
 <ol>
 <li><strong>Sütun Eşleştirmelerini Kontrol Edin:</strong></li>
 <ul>
 <li>Sistem, dosyanızdaki sütun başlıkları ile veri alanlarını (Alias ve Etiket eşleştirmeleriyle) otomatik eşleştirir.</li>
-<li>Zorunlu alanlar kırmızı yıldız (<code><em></code>) ile belirtilmiştir (örn: </em>Ad Soyad \<strong>, *TC No \</strong>). Otomatik eşleşmeyen alanları açılır menülerden (<code>QComboBox</code>) manuel seçin.</li>
+<li>Zorunlu alanlar kırmızı yıldız (<code><em></code>) ile belirtilmiştir (örn: </em>Ad Soyad \<strong>, *TC No \</strong>). Otomatik eşleşmeyen alanları açılır menülerden manuel seçin.</li>
 <li><strong>"İleri"</strong> butonuna basarak Önizleme & Doğrulama adımına geçin.</li>
 </ul>
 </ol>
 <hr />
-<h5>3. Adım: Akıllı Ön Doğrulama (Dry-Run), Rozetler ve Tablo Üzerinde Düzenleme</h5>
+##### 3. Adım: Akıllı Ön Doğrulama (Dry-Run), Rozetler ve Tablo Üzerinde Düzenleme
 
 <ol>
 <li><strong>Otomatik Dry-Run Taraması:</strong></li>
@@ -500,7 +500,7 @@ Masaüstü uygulamasında sol dikey navigasyon menüsünden <strong>Yönetim > T
 </ul>
 </ol>
 <hr />
-<h5>4. Adım: Sonuç Özeti ve Hata Detay Raporu</h5>
+##### 4. Adım: Sonuç Özeti ve Hata Detay Raporu
 
 <ol>
 <li><strong>Aktarım Sonucunu İnceleyin:</strong></li>
@@ -515,6 +515,41 @@ Masaüstü uygulamasında sol dikey navigasyon menüsünden <strong>Yönetim > T
 <li><strong>"Tamamla"</strong> veya <strong>"Yeni Aktarım"</strong> butonuna basarak işlemi sonlandırın.</li>
 </ul>
 </ol>
+<hr />
+<h3>🐾 19.2 Cihaz Envanteri ve NDK Lisansları Toplu İçe Aktarımı</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Hastane bünyesindeki tüm görüntüleme ve tanı cihazlarının Excel dökümünden tek seferde aktarılması ve NDK lisanslarının otomatik ilişkilendirilmesidir.</p>
+
+<ul>
+<li><strong>Desteklenen Alanlar:</strong> Cihaz Kodu, Cihaz Adı, Cihaz Türü/Kaynak Grubu (Radyoloji, MR, USG), Marka, Model, Seri No, Tüp Seri No, Taşınır No, Bulunduğu Bina/Kat/Oda, NDK Lisans No, Lisans Durumu ve Lisans Bitiş Tarihi.</li>
+<li><strong>Akıllı Cihaz Sınıflandırma:</strong> Cihaz türüne göre sistem otomatik olarak iyonlaştırıcı radyasyonlu cihazlar için NDK lisans zorunluluğunu ve erken uyarı alarmlarını devreye alır.</li>
+</ul>
+<hr />
+<h3>🐾 19.3 Koruyucu Ekipman (RKE) ve Muayene Kayıtları Toplu İçe Aktarımı</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Yüzlerce kurşun önlük, tiroid koruyucu ve donanımın geçmiş floroskopi/skopi muayene sonuçlarıyla birlikte sisteme topluca yüklenmesidir.</p>
+
+<ul>
+<li><strong>Donanım ve Muayene Ayrımı:</strong> Ekipman künyesi (<code>rke_envanter</code>) ile geçmiş periyodik muayene tutanakları (<code>rke_muayeneler</code>) bağımsız veya birleşik aktarılabilir.</li>
+<li><strong>Otomatik Kod Üretimi Entegrasyonu:</strong> Excel'de RKE kodu boş bırakılmışsa sistem akıllı kod jeneratörünü çağırarak birim ve ekipman türü bazlı kurumsal kodları (örn: <code>ANZ-AML-Ö-001</code>) otomatik üretir.</li>
+<li><strong>DIN 6857-1 Karar Dönüşümü:</strong> Excel'deki eski muayene kararları standart <code>KULLANIMA_UYGUN</code>, <code>SARTLI_KULLANIM</code> ve <code>HEK_HURDAYA_AYIR</code> durumlarına normalize edilir.</li>
+</ul>
+<hr />
+<h3>🐾 19.4 Dinamik Lookup Çözümleyici ve Akıllı Eşleştirme Yeteneği</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Dış kaynaklı Excel dosyalarında farklı yazılmış olabilecek departman adları, unvanlar veya ekipman türlerini veritabanındaki resmi tanımlarla otomatik olarak eşleştirmektir.</p>
+
+<ul>
+<li><strong>Büyük/Küçük Harf ve Türkçe Karakter Duyarsız Eşleşme:</strong> <em>'radyoloji'</em>, <em>'RADYOLOJİ'</em>, <em>'Radyoloji Anabilim Dalı'</em> gibi varyasyonlar tek bir resmi departman tanımıyla eşleştirilir.</li>
+<li><strong>Kod ve Ad Bazlı Hibrit Tarama:</strong> Sistem hücredeki veriyi hem birim kodu (<code>RAD_BT</code>) hem de birim adı (<em>"Bilgisayarlı Tomografi"</em>) üzerinden çapraz sorgular.</li>
+<li><strong>Öneri ve Yeni Tanım Oluşturma:</strong> Eşleşmeyen yeni bir birim veya marka tespit edildiğinde kullanıcıya tek tıkla yeni Lookup tanımı oluşturma veya mevcut bir tanımla eşleme seçeneği sunulur.</li>
+</ul>
 <hr />
 <blockquote class="callout">💡 <strong>Sık Karşılaşılan Uyarılar ve Çözüm Adımları:</strong> Detaylı soru ve çözüm rehberi için bkz: <a href="16_sss_sorun_giderme.html">RADPYS V4 SSS Dokümanı</a></blockquote>
 

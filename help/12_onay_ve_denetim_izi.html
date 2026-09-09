@@ -18,7 +18,7 @@
     <a href="index.html" class="brand-lockup">
       <div class="brand-icon">R</div>
       <div class="brand-title">RADPYS V4</div>
-      <span class="brand-badge">v4.1.2.8</span>
+      <span class="brand-badge">v4.1.2.9</span>
     </a>
   </div>
 
@@ -237,7 +237,7 @@ Yöneticilerin ve amirlerin kurum genelinden gelen nöbet devir, gebelik/idari a
 
 <ul>
 <li><strong>Yetkisiz / Saha Rolleri İçin (<code>onay_gerektirir = 1</code>):</strong> Eklenen veya düzenlenen alt kayıtlar doğrudan veritabanına işlenmez; <code>degisiklik_talepleri</code> tablosuna kaydedilerek yönetici onayına sunulur.</li>
-<li><strong>Yönetici Onayı:</strong> Yönetici masaüstündeki Onay Bekleyen Görevler ekranından talebi onayladığında, <code>ApprovalService</code> ilgili PostgreSQL tablosuna atomik transaction ile doğrudan yazar.</li>
+<li><strong>Yönetici Onayı:</strong> Yönetici masaüstündeki Onay Bekleyen Görevler ekranından talebi onayladığında, sistem ilgili PostgreSQL tablosuna güvenli işlem (transaction) ile doğrudan yazar.</li>
 </ul>
 <hr />
 <h3>🐾 12.6 KVKK AES-256 Şifreli Evrak Kasası Onay & Aktarım Süreci</h3>
@@ -265,7 +265,7 @@ sequenceDiagram
 
 <ol>
 <li><strong>Web Yükleme:</strong> Personel web portaldan belge yüklediğinde dosya geçici olarak sunucuda depolanır ve onay talebi oluşturulur.</li>
-<li><strong>Onaylama & Şifreleme:</strong> Yönetici onay butonuna bastığı an arka plandaki <code>ApprovalService._migrate_uploaded_file_to_vault</code> servisi devreye girer. Dosya okunur, <strong>AES-256 Fernet</strong> ile şifrelenir ve PostgreSQL <code>stored_files</code> tablosuna aktarılır.</li>
+<li><strong>Onaylama & Şifreleme:</strong> Yönetici onay butonuna bastığı an evrak kasası servisi devreye girer. Dosya okunur, <strong>AES-256</strong> ile şifrelenir ve güvenli evrak kasasına aktarılır.</li>
 <li><strong>Kalıcı <code>file-uuid</code>:</strong> <code>personel_belgeler</code> tablosuna güvenli <code>file-uuid</code> anahtarı yazılır ve geçici dosya temizlenir.</li>
 </ol>
 <hr />

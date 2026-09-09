@@ -18,7 +18,7 @@
     <a href="index.html" class="brand-lockup">
       <div class="brand-icon">R</div>
       <div class="brand-title">RADPYS V4</div>
-      <span class="brand-badge">v4.1.2.8</span>
+      <span class="brand-badge">v4.1.2.9</span>
     </a>
   </div>
 
@@ -131,6 +131,35 @@
 
 <h2>21. Sürüm Notları ve Güncelleme Geçmişi (Update Log)</h2>
 
+<h3>☢️ RADPYS V4.1.2.9 (Sürüm 4.1.2.9 — Dozimetre Takip Sistemi, RDF-4.3 Doz Formu, Cihaz & RKE İçe Aktarım, 40 Matbu Şablon & Yerel HTML Yardım Merkezi)</h3>
+
+<ul>
+<li>🩻 <strong>Dozimetre Takip Sistemi & Resmi RD.F43 Doz Araştırma Formu:</strong></li>
+<li>Dozimetre Takip ve Toplu İçe Aktarma arayüzleri ile kurum personelinin dönemsel kişisel dozimetre ölçümlerinin listelenmesi, kümülatif doz risk analizi ve Excel'den toplu içe aktarımı sağlandı.</li>
+<li>TAEK / TENMAK ve NDK resmi standartlarında 2 sayfalık matbu <strong>RD.F43 Doz Araştırma Formu</strong> entegre edildi.</li>
+<li>10 iş günü yasal araştırma süresi sayacı, kaza/unutulma süresi tahmini doz hesaplama motoru ve Word matbu evrak çıktısı devreye alındı.</li>
+<li>🔬 <strong>Tıbbi Cihaz Yönetimi, Veritabanı Optimizasyonu & Excel İçe Aktarımı:</strong></li>
+<li>Cihazlar ve ilişkili tablolardaki mükerrer/artık alanlar temizlendi; veritabanı sorguları normalize edildi.</li>
+<li>Cihaz İçe Aktarma Sihirbazı ile Excel listelerinden cihaz künyesi, NDK lisansı, marka/model, seri no ve oda verileri akıllı çözümlemeyle aktarılır.</li>
+<li>🛡️ <strong>Koruyucu Ekipman (RKE) Envanteri, Kodlama Motoru & Zimmet Transferi:</strong></li>
+<li>DIN 6857-1 / SKS standartlarında kurumsal akıllı kodlama motoru (<code>[Birim]-[Cins]-[SıraNo]</code>) hayata geçirildi.</li>
+<li>Ekipmanların teslim/tesellüm ve devir süreçleri Zimmet Devir Formu ve denetim iziyle kayıt altına alındı.</li>
+<li>Excel'den RKE envanteri ve muayene kayıtlarının toplu içe aktarımı tamamlandı.</li>
+<li>📑 <strong>40 Adet Kurumsal Matbu Rapor Şablonu & Güçlü Dışa Aktarım:</strong></li>
+<li>Dozimetre, Cihaz, RKE, Nöbet, İzin, Ortam Dozu ve Olay Bildirim modülleri için 40 adet Word (<code>.docx</code>) ve Excel (<code>.xlsx</code>) kurumsal şablon sisteme kazandırıldı.</li>
+<li>Kurumsal rapor dökümü ve dışa aktarım motoru baştan sona güçlendirildi.</li>
+<li>📚 <strong>CodeIgniter Stili Yerel HTML Bilgi ve Yardım Dokümantasyon Merkezi (<code>docs/help/</code>):</strong></li>
+<li>17 modüler HTML konusu ve ana karşılama sayfası (<code>index.html</code>) ile modern çevrimdışı dokümantasyon portalı oluşturuldu.</li>
+<li>Sayfa içi anlık tam metin arama (Ctrl+K), CodeIgniter stili dikey akordeon menü, Mermaid.js akış şemaları ve SSS çapraz referansları eklendi.</li>
+<li>Kılavuzdan otomatik yerel statik HTML yardım merkezi üretim altyapısı kuruldu.</li>
+<li>🚀 <strong>Master Dağıtım Süreci & Cloudflare R2:</strong></li>
+<li>Tek komutla sürüm doğrulama, testler, sürüm senkronizasyonu, web portal derleme ve Inno Setup kurulum paketi oluşturan master orkestratör eklendi.</li>
+<li>Cloudflare R2 kovanına kurulum dosyası (<code>RADPYS_Setup_latest.exe</code>) ve sürüm manifesti yükleyen dağıtım boru hattı kuruldu.</li>
+<li>🔑 <strong>Çevrimdışı Lisanslama Aracı & Faz 9 Test Bütünlüğü:</strong></li>
+<li>Kurumsal lisans anahtarı ve aktivasyon kodu üretim altyapısı eklendi.</li>
+<li>Kapsamlı Faz 9 test paketi ile sistem güvenilirliği ve şema bütünlüğü doğrulandı.</li>
+</ul>
+<hr />
 <h3>🏪 RADPYS V4.1.2.8 (Sürüm 4.1.2.8 — Nöbet Değişim Havuzu, 36 Saat TTL Kısıtı & Web Portal Pazaryeri)</h3>
 
 <ul>
@@ -145,7 +174,7 @@
 <li>RADPYS Nöbet Motoru adalet katsayısı ve nöbet yükü en az olan yedek personeli otomatik atar.</li>
 <li>🛡️ <strong>Aylık 48 Saat Devir Kotası & Fazla Mesai Taban Koruması:</strong></li>
 <li>Bir personelin takvim ayı içinde havuzdan en fazla 48 saat nöbet devredebilmesi ve karşılıksız devir için 160 saat taban mesaiyi tamamlamış olması şartı yürürlüğe girdi.</li>
-<li>💻 <strong>Web Portalı Pazaryeri Arayüzü (<code>ShiftPoolView.tsx</code>):</strong></li>
+<li>💻 <strong>Web Portalı Pazaryeri Arayüzü:</strong></li>
 <li>Canlı 🟢/🚩 yasal kısıt denetim rozetleri (11 Saat Dinlenme, 48 Saat Haftalık Sınır, Çakışma, 130 Saat Aylık Şua Limiti), geri sayım sayacı ve kota ilerleme çubuğuyla zenginleştirilmiş pazar ekranı devreye alındı.</li>
 </ul>
 
@@ -153,7 +182,7 @@
 
 <ul>
 <li>📄 <strong>Mimari Kat Planı / Kroki PDF Desteği (<code>pypdfium2</code>):</strong></li>
-<li>Ortam Ölçüm Krokileri ve Departman Kat Planları havuzuna PNG/JPG formatlarının yanı sıra standart mimari çizim formatı olan <strong><code>.pdf</code> dosyalarının doğrudan yüklenmesi</strong> ve yüksek çözünürlüklü <code>QPixmap</code> olarak sahneye aktarılması sağlandı.</li>
+<li>Ortam Ölçüm Krokileri ve Departman Kat Planları havuzuna PNG/JPG formatlarının yanı sıra standart mimari çizim formatı olan <strong><code>.pdf</code> dosyalarının doğrudan yüklenmesi</strong> ve yüksek çözünürlüklü olarak ekrana aktarılması sağlandı.</li>
 <li>Çok sayfalı ve tek sayfalı PDF planlarının ilk sayfası otomatik işlenerek ölçeklenebilir vektörel netlikte tuvale yerleştirilir.</li>
 <li>🩻 <strong>Cihaz Yönetimi Kat Planı Veri Yükleme & Kayıt Bütünlüğü:</strong></li>
 <li>Cihaz düzenleme formundaki 4. Kat Planı sekmesinde veritabanı anahtarları tekilleştirildi; düzenleme modunda kroki, oda ve pin konumu eksiksiz yüklenir.</li>
@@ -167,7 +196,7 @@
 <li>Breadcrumb üzerindeki üst modül kategorilerine (<em>Kalite Yönetimi</em>, <em>Cihaz Yönetimi</em>, <em>Personel Modülü</em>, <em>Nöbet Planları</em>, <em>İzin Modülü</em>, <em>Sistem Yönetimi</em>) tıklandığında ilgili kategorinin tüm alt ekranlarını listeleyen şık, karanlık tema uyumlu açılır menü eklendi.</li>
 <li>Kök <code>RADPYS V4</code> öğesine tıklandığında açık tüm alt pencereler kapatılarak temiz karşılama ekranına dönülmesi sağlandı.</li>
 <li>🌐 <strong>Web Portal Durum Çubuğu Hata İyileştirmesi:</strong></li>
-<li><code>app_controller.py</code> içindeki eski tanımsız değişken referansları temizlenerek Node.js Web Portal durum kontrolü stabilize edildi.</li>
+<li>Sistem içindeki tanımsız referanslar temizlenerek Web Portal durum kontrolü stabilize edildi.</li>
 </ul>
 <hr />
 <h3>🚀 RADPYS V4.1.2.2 (Sürüm 4.1.2.2 — Akıllı Dry-Run İçe Aktarma, Resmi RD.F43 Doz Formu, Nöbet İkame Motoru, Şua Erken Uyarı & NDK 2. Gün Hatırlatıcısı)</h3>
@@ -185,7 +214,7 @@
 <li>Çizelge tablosunda boş slota sağ tıklandığında <em>"⚡ Akıllı İkame Ata"</em> menüsü.</li>
 <li>İzin/rapor/çakışma ve 24 saat dinlenme kuralı filtrelemesi; aylık saat açığı ve hafta sonu adaletine göre 0-100 arası skorlama ve tek tıkla slota atama.</li>
 <li>⏳ <strong>Şua İzni Zamanaşımı & Erken Uyarı Paneli:</strong></li>
-<li>31 Aralık öncesi kalan Şua izinlerinin yanmasını önlemek için otomatik erken uyarı rozetleri (<code> [⏳ 45g]</code>, <code> [🚨 15g]</code>, <code> [🚨 YANDI]</code>) ve tek tık hızlı filtreleme.</li>
+<li>31 Aralık öncesi kalan Şua izinlerinin yanmasını önlemek için otomatik erken uyarı rozetleri (<code>[⏳ 45g]</code>, <code>[🚨 15g]</code>, <code>[🚨 YANDI]</code>) ve tek tık hızlı filtreleme.</li>
 <li>🔔 <strong>Kalite & Olay Bildirimi 2. Gün NDK Hatırlatıcısı:</strong></li>
 <li>3 günlük yasal sürenin 2. gününe girildiğinde (<code>gecen_gun >= 2</code>) Admin ve Yönetici rollerine otomatik sistem uyarısı ve süre aşımı alarmı.</li>
 <li>🦺 <strong>RKE Karar Motoru Tekilleştirme (SSOT):</strong></li>
@@ -200,16 +229,16 @@
 <li>🦺 <strong>Radyasyon Koruyucu Ekipman (RKE) Muayene Çizelgesi (<code>rke_muayene_cizelgesi</code>):</strong> DIN 6857-1 / SKS standartlarında kurşun önlük, tiroid ve koruyucu donanımların yıllık muayene ve sağlamlık dökümü.</li>
 <li>☢️ <strong>Radyasyon Alanları Ortam Dozu Denetim Raporu (<code>ortam_dozu_denetim</code>):</strong> Alan izleme, oda arka plan ve dedektör ölçümlerinin yasal sınır uygunluk denetim raporu.</li>
 <li>📍 <strong>Fiziksel Konum ve Oda Bazlı Envanter Raporu (<code>fiziksel_konum_envanter</code>):</strong> Bina, kat ve oda bazında yerleşik cihaz, RKE ve görevli personel envanter dökümü.</li>
-<li><strong>Otomatik Şablon Güncellemesi (<code>template_updater.py</code>):</strong> <code>data/templates/</code> altındaki 40 şablon (<code>.docx</code>, <code>.xlsx</code>) otomatik üretildi ve güncellendi.</li>
+<li><strong>Otomatik Şablon Güncellemesi:</strong> 40 kurumsal şablon (<code>.docx</code>, <code>.xlsx</code>) otomatik üretildi ve güncellendi.</li>
 <li>🏛️ <strong>Dinamik Kurumsal Marka & Kategori Bazlı Şablon Filtreleme:</strong></li>
 <li>Sabit "Sağlık Bakanlığı" metinleri kaldırılarak veritabanı ayarlarından (<code>program_ayarlari</code>) gelen dinamik <code>BASLIK_1</code>, <code>BASLIK_2</code>, <code>LOGO_1</code> ve <code>LOGO_2</code> yapısına geçildi.</li>
 <li>Şablonların <strong>Kategori</strong> açılır kutusuna göre filtrelenmesi, tek tıkla açılması (<strong>"Aç"</strong>) ve orijinal haline sıfırlanması (<strong>"Yeniden Oluştur"</strong>).</li>
 <li>Şablona özel override karmaşıklığı kaldırılarak tek merkezli, sade ve kullanıcı dostu marka yönetimi sağlandı.</li>
 <li>✍️ <strong>Çok Satırlı Başlık Desteği & Word XML <code><w:br/></code> Satır Kırılımı:</strong></li>
-<li><code>Kurum Başlık 1</code> ve <code>Kurum Başlık 2</code> girişleri <code>QPlainTextEdit</code> ile Enter destekli çok satırlı hale getirildi.</li>
+<li><code>Kurum Başlık 1</code> ve <code>Kurum Başlık 2</code> girişleri Enter tuşu destekli çok satırlı hale getirildi.</li>
 <li><code>docxtpl.Listing</code> entegrasyonuyla Word ve PDF çıktılarında çok satırlı başlıklar gerçek XML <code><w:br/></code> satır sonları olarak alt alta üretilir.</li>
 <li>🐛 <strong>Ek Hata Düzeltmeleri (Hotfix):</strong></li>
-<li>Olay bildirim servisinde <code>list_olay_lookups</code> uyumsuzluğu ve <code>QTableWidgetItem</code> datetime tip hatası giderildi.</li>
+<li>Olay bildirim modülünde filtreleme ve tarih-saat tip uyumsuzlukları giderildi.</li>
 </ul>
 <hr />
 <h3>🛡️ RADPYS V4.1.2 (Sürüm 4.1.2.0 — Koruyucu Donanım / RKE Yönetimi, DIN 6857-1 Kalite Kontrol, Akıllı Kodlama & Toplu İçe Aktarma)</h3>
@@ -224,9 +253,9 @@
 <li><strong>Merkezi RKE Kodu Formülü:</strong> <code>RKE-[KoruyucuCinsi]-[SıraNo]</code> <em>(Örn: <code>RKE-O-001</code>, <code>RKE-TK-015</code>)</em>.</li>
 <li>Sistem Tanımları (Lookup) öncelikli dinamik çözümleme: Departman veya Ekipman Türü kodları değiştirildiğinde formül otomatik olarak güncel tanım kodlarını baz alır.</li>
 <li>🔍 <strong>DIN 6857-1 & Sağlık Bakanlığı SKS 6.1 Kalite Kontrol Muayene Motoru:</strong></li>
-<li>Muayene Giriş Ekranı (<code>RkeMuayeneDialog</code>): Skopi cihazı seçimi, test gerilimi (kVp), hasar bölgesi (Kritik/Non-Kritik), kusur alanı (mm²), dinamik klinik bulgular ve önerilen aksiyon seçimi.</li>
+<li>Muayene Giriş Ekranı: Skopi cihazı seçimi, test gerilimi (kVp), hasar bölgesi (Kritik/Non-Kritik), kusur alanı (mm²), dinamik klinik bulgular ve önerilen aksiyon seçimi.</li>
 <li>Otomatik Karar Motoru: Hasar alanı ve kritik bölge kuralına göre anlık <code>KULLANIMA_UYGUN</code>, <code>SARTLI_KULLANIM</code> veya <code>HEK_HURDAYA_AYIR</code> kararı üretimi.</li>
-<li>RKE Muayene Listesi Sayfası (<code>RkeMuayeneListesiController</code>): Tüm muayene kayıtları, dinamik filtreleme, KPI özet paneli ve muayene geçmişi takibi.</li>
+<li>RKE Muayene Listesi Sayfası: Tüm muayene kayıtları, dinamik filtreleme, KPI özet paneli ve muayene geçmişi takibi.</li>
 <li>🔒 <strong>KVKK AES-256 Şifreli Fotoğraf & Röntgen Muayene Kasası:</strong></li>
 <li>Skopi/röntgen ve fiziksel muayene fotoğrafları <code>stored_files</code> tablosunda AES-256 Fernet ile şifrelenir; galeride doğrudan şifresi çözülerek yüksek çözünürlükte incelenir.</li>
 <li>🏛️ <strong>Konsolide Sistem Tanımları (<code>rke_tanimlari</code>) & Tekil Menü:</strong></li>
@@ -241,10 +270,10 @@
 <li>🩻 <strong>Tıbbi Cihaz Envanteri & 3'lü Hızlı Filtreleme:</strong></li>
 <li><code>Tümü</code>, <code>Radyasyonlu (X-Ray)</code>, <code>Radyasyonsuz (MR/USG)</code> hızlı filtreleri, NDK lisansı, marka/model, seri no, tüp seri no ve garanti takibi.</li>
 <li>Üst toolbar (<code>Yeni Cihaz</code>, <code>Düzenle</code>, <code>Sil / HEK</code>) ve zengin sağ tık menüsü (<code>✏️ Düzenle</code>, <code>🗑️ Sil/HEK</code>, <code>🏷️ QR Etiket</code>).</li>
-<li>🏷️ <strong>Cihaz Karekod (QR) Etiketi Modülü (<code>CihazQrDialog</code>):</strong></li>
+<li>🏷️ <strong>Cihaz Karekod (QR) Etiketi Modülü:</strong></li>
 <li>Dinamik LAN IP algılama ile 2D karekod üretimi (<code>http://LAN_IP:3000/?cihaz=KOD</code>).</li>
 <li>Zebra/barkod etiket yazıcılarına veya ofis yazıcılarına doğrudan yazdırma ve yüksek çözünürlüklü PNG kaydetme.</li>
-<li>📱 <strong>Web & Mobil Portal Entegre Hızlı Arıza Bildirimi (<code>CihazArizaView</code>):</strong></li>
+<li>📱 <strong>Web & Mobil Portal Entegre Hızlı Arıza Bildirimi:</strong></li>
 <li>Sahada telefon kamerasıyla QR okutulduğunda cihaz otomatik seçili anında arıza bildirim ekranı.</li>
 <li>Biyomedikal/teknik servis müdahale, parça değişimi, tüp seri no güncelleme ve arıza kapatma akışı.</li>
 <li>🏛️ <strong>NDK Resmi Denetim Çizelgesi & Excel Entegrasyonu:</strong></li>
@@ -255,7 +284,7 @@
 
 <ul>
 <li>🗺️ <strong>Masaüstü & Web İnteraktif Mimari Plan Krokisi:</strong></li>
-<li>Tek sayfalı vektörel PDF ve PNG/JPG kat planlarını <code>QGraphicsScene</code> ve Web Tuvalinde donanım hızlandırmalı sunma.</li>
+<li>Tek sayfalı vektörel PDF ve PNG/JPG kat planlarını etkileşimli grafik sahnesinde ve Web Tuvalinde donanım hızlandırmalı sunma.</li>
 <li>Sınırsız fare tekerleğiyle yakınlaştırma (Wheel Zoom), tuvali tut-sürükle (Pan/Drag) ve tek tıkla "Ekrana Sığdır".</li>
 <li>Çift katmanlı parlayan halo rozetli canlı pinler, sürükle-bırak oda konumlandırma ve pin kilitleme.</li>
 <li>📍 <strong>Departman Koduna Göre Sayaçlı Otomatik Nokta Kodu:</strong></li>

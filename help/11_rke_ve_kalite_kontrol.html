@@ -18,7 +18,7 @@
     <a href="index.html" class="brand-lockup">
       <div class="brand-icon">R</div>
       <div class="brand-title">RADPYS V4</div>
-      <span class="brand-badge">v4.1.2.8</span>
+      <span class="brand-badge">v4.1.2.9</span>
     </a>
   </div>
 
@@ -137,7 +137,8 @@
 
 <p>Sağlık Bakanlığı SKS (Sağlıkta Kalite Standartları) ve NDK yönergeleri uyarınca, tüm radyasyon koruyucu donanımların yılda en az bir kez floroskopi/skopi veya radyografi cihazları altında fiziki bütünlük (çatlak, delik, kırılma, homojenite kaybı) kontrolünden geçirilmesi ve sonuçlarının resmi olarak kayıt altına alınması yasal zorunluluktur.</p>
 
-Masaüstü uygulamasında sol dikey navigasyon menüsünden:
+<p>Masaüstü uygulamasında sol dikey navigasyon menüsünden:</p>
+
 <ul>
 <li><strong>Koruyucu Ekipman (RKE) \> RKE Yönetimi</strong></li>
 <li><strong>Koruyucu Ekipman (RKE) \> RKE Muayene Listesi</strong></li>
@@ -177,9 +178,10 @@ graph TD
 
 <strong>Koruyucu Ekipman (RKE) \> RKE Yönetimi</strong> ekranı; kurumdaki tüm koruyucu donanımların teknik özelliklerini, fiziksel konumlarını ve muayene durumlarını listeler.
 
-<h4>🛠️ Üst Araç Çubuğu (Toolbar) Butonları:</h4>
+<h4>🛠️ Üst Araç Çubuğu (Toolbar) Butonları</h4>
+
 <ul>
-<li><strong><code>[ + Yeni Ekipman ]</code>:</strong> Sisteme yeni koruyucu donanım tanımlama diyaloğunu (<code>RkeTanimDialog</code>) açar.</li>
+<li><strong><code>[ + Yeni Ekipman ]</code>:</strong> Sisteme yeni koruyucu donanım tanımlama formunu açar.</li>
 <li><strong><code>[ ✏️ Düzenle ]</code>:</strong> Seçili ekipmanın kurşun eşdeğeri, marka, model, lokasyon veya zimmet bilgilerini günceller.</li>
 <li><strong><code>[ 🗑️ Sil / HEK ]</code>:</strong> Ekipmanı servis dışı bırakır, arşive kaldırır veya Hurda/HEK statüsüne geçirir.</li>
 <li><strong><code>[ 🏷️ QR Etiket ]</code>:</strong> Seçili ekipman için dayanıklı 2D Karekod kimlik kartı ve etiket önizlemesini açar.</li>
@@ -188,7 +190,8 @@ graph TD
 <li><strong><code>[ 🔍 Muayene Ekle ]</code>:</strong> Seçili ekipman için doğrudan yeni bir DIN 6857-1 Kalite Kontrol Muayenesi başlatır.</li>
 </ul>
 
-<h4>📋 Ekipman Tanımlama Kartı Alanları:</h4>
+<h4>📋 Ekipman Tanımlama Kartı Alanları</h4>
+
 <ol>
 <li><strong>RKE Kodu:</strong> Otomatik veya manuel girilen tekil ekipman kodu <em>(Örn: <code>RKE-O-008</code>)</em>.</li>
 <li><strong>Koruyucu Türü:</strong> Önlük, Tiroid, Gonad, Gözlük, Eldiven, Bone, Yüz Siperliği, Masa/Tavan/Mobil Paravan vb.</li>
@@ -205,10 +208,11 @@ graph TD
 
 <p>DIN 6857-1 ve IEC 61331-3 standartları, koruyucu donanımların floroskopi veya radyografi altında taranarak kurşun katmanındaki kırılma, yırtılma ve deliklerin alan hesabına göre değerlendirilmesini öngörür.</p>
 
-<h4>🐾 Muayene Kaydı Ekleme Adımları:</h4>
+<h4>🐾 Muayene Kaydı Ekleme Adımları</h4>
+
 <ol>
 <li>Tablodan muayene edilecek ekipmanı seçip <strong>"Muayene Ekle"</strong> butonuna basın <em>(veya sağ tıklayıp Muayene Ekle seçin)</em>.</li>
-<li>Açılan <strong>RKE Kalite Kontrol Muayene Formu</strong> (<code>RkeMuayeneDialog</code>) penceresinde:</li>
+<li>Açılan <strong>RKE Kalite Kontrol Muayene Formu</strong> penceresinde:</li>
 <ul>
 <li><strong>👁️ Görsel & Fiziki Muayene Modu:</strong> Skopi çekilmeden yapılan fiziksel kontroller için 5 maddelik kontrol listesi (Dikiş/Kumaş, Askı/Toka, Kurşun Blok/Katlanma, Etiket/QR, Hijyen/Sıvı) doldurulur. <em>"⚡ Tüm Kriterleri Sağlam Olarak İşaretle"</em> kısayolu ile anında onaylanabilir.</li>
 <li><strong>🩻 Skopi / X-Işını Modu:</strong> Ekipmanın anatomik SVG silüeti üzerinde tespit edilen delik/çatlak/hasar noktaları hassas koordinatlarla işaretlenir.</li>
@@ -227,7 +231,8 @@ graph TD
 <hr />
 <h3>🐾 11.4 İnteraktif Kusur Haritası & 14 Donanım Türü SVG Silüeti</h3>
 
-RADPYS V4, Medikal Fizikçilerin sahada tablet veya masaüstünde skopi muayenesi yapabilmesi için <strong>14 farklı donanım türüne ait vektörel SVG anatomik silüet havuzu</strong> sunar:
+<p>RADPYS V4, Medikal Fizikçilerin sahada tablet veya masaüstünde skopi muayenesi yapabilmesi için <strong>14 farklı donanım türüne ait vektörel SVG anatomik silüet havuzu</strong> sunar:</p>
+
 <ul>
 <li><strong>Kişisel Koruyucular:</strong> Kurşun Palto/Önlük (Ön/Arka), Yelek-Etek (Ön/Arka), Tiroid Koruyucu (Ön/Arka), Gonad Koruyucu (Ön/Arka), Kurşun Bone (Ön/Arka), Kurşun Eldiven (Ön/Arka), Kurşun Gözlük (Ön/Arka), Yüz Siperliği (Ön/Arka).</li>
 <li><strong>Kollektif / Alan Koruyucuları:</strong> Masa Altı Koruyucu Paravan (Ön/Arka), Mobil Tekerlekli Paravan (Ön/Arka), Tavana Monte Paravan (Ön/Arka).</li>
@@ -243,7 +248,8 @@ graph LR
 <hr />
 <h3>🐾 11.5 Toplu Muayene ve Kalite Kontrol Kokpiti</h3>
 
-Onlarca koruyucu donanımın yıllık periyodik kontrollerini tek bir oturumda saniyeler içinde tamamlamak için <strong>Toplu Muayene Kokpiti</strong> (<code>RkeTopluMuayeneDialog</code>) kullanılır:
+<p>Onlarca koruyucu donanımın yıllık periyodik kontrollerini tek bir oturumda saniyeler içinde tamamlamak için <strong>Toplu Muayene Kokpiti</strong> kullanılır:</p>
+
 <ol>
 <li><strong>RKE Yönetimi \> Toplu Muayene</strong> butonuna basın.</li>
 <li>Açılan kokpitte muayene edilecek departmanı veya ekipman türünü filtreleyin.</li>
@@ -262,7 +268,8 @@ Onlarca koruyucu donanımın yıllık periyodik kontrollerini tek bir oturumda s
 
 <strong>Koruyucu Ekipman (RKE) \> RKE Muayene Listesi</strong> ekranı; sağlık kuruluşundaki tüm muayenelerin kronolojik geçmişini, kontrolü yaklaşan veya geciken ekipmanları tek bir ekranda raporlar.
 
-<h4>📊 Üst KPI Özet Kartları:</h4>
+<h4>📊 Üst KPI Özet Kartları</h4>
+
 <ul>
 <li>🛡️ <strong>Toplam Muayene Sayısı:</strong> Kurum bünyesinde yapılan toplam kontrol sayısı.</li>
 <li>🟢 <strong>Uygun (Kullanımda):</strong> Muayenesi başarılı olan güvenli donanımlar.</li>
@@ -273,12 +280,70 @@ Onlarca koruyucu donanımın yıllık periyodik kontrollerini tek bir oturumda s
 <hr />
 <h3>🐾 11.7 Toplu Excel İçe Aktarma (RKE ve Muayene Sihirbazları)</h3>
 
-Mevcut Excel envanterinizi sisteme saniyeler içinde aktarmak için:
+<p>Mevcut Excel envanterinizi sisteme saniyeler içinde aktarmak için:</p>
+
 <ol>
 <li><strong>RKE Yönetimi \> Excel İçe Aktar</strong> butonuna basın.</li>
 <li>Excel dosyanızdaki sütunların (<em>RKE Kodu, Türü, Kurşun Eşdeğeri, Seri No, Birim, Zimmetli Personel</em>) şablona uygun olduğunu teyit edin.</li>
 <li><strong>"Aktarımı Başlat"</strong> butonuna basarak yüzlerce koruyucu ekipmanı tek tıkla veritabanına işleyin.</li>
 </ol>
+<hr />
+<h3>🐾 11.8 RKE Zimmet Transferi ve Devir Süreci</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Kurumda görevli hekimlere veya birimlere tahsis edilmiş kurşun önlük, tiroid koruyucu veya koruyucu donanımların personel değişikliği, birim rotasyonu veya klinik devir durumlarında teslim/tesellüm hareketlerini resmi denetim iziyle (<code>Audit Trail</code>) kayıt altına almaktır.</p>
+
+<h4>🛠️ Zimmet Mimarisi ve Harici Hekim Desteği</h4>
+
+<ul>
+<li><strong>Bireysel ve Ortak Zimmet Ayrımı:</strong> Ekipmanlar bir personele bireysel zimmetlenebileceği gibi <em>"— Bireysel Zimmet Yok (Birim Ortak) —"</em> seçeneği ile doğrudan birime/servise tahsis edilebilir.</li>
+<li><strong>Harici Hekim / Cerrah Desteği:</strong> Ameliyathane veya cerrahi branşlarda görev yapan ancak kadrosu farklı anabilim dalında bulunan hekimler (Ortopedi, Beyin Cerrahi, Kalp Damar vb.) için açılır kutu yazılabilir (<code>editable=True</code>) formattadır. Serbestçe yazılan cerrah isim ve unvanları <code>zimmetli_personel_id = NULL</code> ve <code>zimmetli_personel_ad_soyad</code> metniyle veritabanına ve transfer kütüğüne kaydedilir.</li>
+<li><strong>Hareket Kütüğü (<code>rke_zimmet_hareketleri</code>):</strong> Yapılan her transfer; devir tarihi, önceki zimmetli, yeni zimmetli, devir gerekçesi ve işlemi gerçekleştiren yetkili kullanıcı bilgileriyle arşivlenir.</li>
+</ul>
+
+<h4>🐾 Adım Adım İş Akışı</h4>
+
+<ol>
+<li><strong>Ekipmanı Seçin:</strong> RKE Yönetimi tablosunda devredilecek ekipman satırını seçin.</li>
+<li><strong>Zimmet Transfer Butonuna Basın:</strong> Üst araç çubuğundaki <strong>"Zimmet Transfer"</strong> butonuna tıklayın <em>(veya sağ tıklayıp Zimmet Devret seçin)</em> .</li>
+<li><strong>Mevcut Bilgileri İnceleyin:</strong> Diyalog ekranında ekipmanın Kodu, Cinsi, Markası ve Halihazırdaki Zimmet Bilgisi otomatik gelir.</li>
+<li><strong>Yeni Zimmetliyi Belirleyin:</strong></li>
+<ul>
+<li><strong>Kurum İçi Personel:</strong> Açılır menüden personeli aratarak seçin.</li>
+<li><strong>Harici Cerrah / Uzman:</strong> Listede bulunmayan hekimin adını, unvanını ve kliniğini serbestçe yazın <em>(Örn: <code>Doç. Dr. Selim Kaya (KVC Kliniği)</code>)</em>.</li>
+<li><strong>Birim Ortak Kullanımı:</strong> Ortak kullanım için <em>"— Bireysel Zimmet Yok (Birim Ortak) —"</em> seçin.</li>
+<li><strong>Devir Tarihi ve Gerekçe:</strong> Transfer tarihini takvimden belirleyin; devir gerekçesini (örn: <em>Klinik rotasyonu, yeni göreve başlama, ameliyathane tahsisi</em>) yazın.</li>
+<li><strong>"Transferi Onayla"</strong> butonuna basarak işlemi tamamlayın. Tablodaki zimmet sütunları ve ekipman künyesi anında güncellenir.</li>
+</ul>
+</ol>
+<hr />
+<h3>🐾 11.9 Akıllı RKE Kod Jeneratörü ve Kurumsal Kodlama Motoru</h3>
+
+<h4>💡 Amaç</h4>
+
+<p>Her koruyucu ekipman için kurum ve uluslararası standartlara uygun, mükerrersiz, departman ve donanım türü bazlı kurumsal takip kodlarını otomatik olarak üretmektir.</p>
+
+<h4>🛠️ Akıllı Kodlama Formülü ve Lookup-First Mimarisi</h4>
+
+<p>Sistem, akıllı kod jeneratörü üzerinden iki farklı kurumsal kodlama formülü sunar:</p>
+
+<ol>
+<li><strong>Departman / Birim Bazlı Kod Formülü:</strong>  </li>
+   <code>[AnaBilimDaliKodu]-[BirimKodu]-[KoruyucuCinsiKodu]-[SıraNo]</code>  
+<ul>
+<li><em>Örnek:</em> <code>ANZ-AML-Ö-001</code> <em>(Anestezi Ameliyathane Önlük No: 001)</em>  </li>
+<li><em>Örnek:</em> <code>RAD-ACL-TK-004</code> <em>(Radyoloji Acil Tiroid Koruyucu No: 004)</em></li>
+<li><strong>Merkezi RKE Kodu Formülü:</strong>  </li>
+   <code>RKE-[KoruyucuCinsi]-[SıraNo]</code>  
+<li><em>Örnek:</em> <code>RKE-O-001</code>, <code>RKE-TK-015</code>, <code>RKE-BG-003</code></li>
+</ul>
+</ol>
+
+<ul>
+<li><strong>Lookup-First Çözümleme:</strong> Ekipman formu üzerinde Departman veya Ekipman Cinsi açılır kutusundan seçim yapıldığı anda sistem Sistem Tanımları (Lookup) tablosundaki güncel kısaltmaları okur ve sıradaki benzersiz sayaç numarasını bularak kod alanına anında yazar.</li>
+<li><strong>Manuel Düzenleme Özgürlüğü:</strong> Üretilen kod öneri niteliğindedir; kullanıcı isterse kurumsal demirbaş numarasına göre kodu manuel olarak değiştirebilir. Sistem kayıt anında mükerrerlik denetimi yapar.</li>
+</ul>
 <hr />
 <h1>III. KURUMSAL YÖNETİM VE RAPORLAMA</h1>
 

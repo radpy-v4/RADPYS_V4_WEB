@@ -18,7 +18,7 @@
     <a href="index.html" class="brand-lockup">
       <div class="brand-icon">R</div>
       <div class="brand-title">RADPYS V4</div>
-      <span class="brand-badge">v4.1.2.8</span>
+      <span class="brand-badge">v4.1.2.9</span>
     </a>
   </div>
 
@@ -139,11 +139,7 @@
 
 <blockquote class="callout">ℹ️ <strong>Nöbet Kısıt Hiyerarşisi ve Öncelik Mimarisi:</strong> RADPYS V4 otomatik nöbet dağıtım motoru (Scheduler), nöbet atamalarını gerçekleştirirken kuralları kesin bir öncelik hiyerarşisine göre denetler. (Ayrıntılı görsel editoryal şema için bkz: <a href="../diagrams/nobet_kisit_hiyerarsisi.html">Nöbet Kısıt Hiyerarşisi Şeması (HTML)</a>)</blockquote>
 
-<table><thead><tr><th>Öncelik Katmanı</th><th>Öncelik Seviyesi</th><th>Kural Kapsamı ve Detayları</th></tr></thead><tbody><tr><td>🚨 <strong>1. ÖNCELİK</strong></td></tr></tbody></table> <strong>Mutlak Yasal Mevzuat & Sağlık</strong> | Gebelik, Emzirme, Yaş/Kıdem Muafiyetleri, Gece Nöbeti Yasal Sınırları <em>(Asla İhlal Edilemez)</em> |
-| 🏥 <strong>2. ÖNCELİK</strong> | <strong>Birim Kuralları & Kapasite</strong> | Asgari / Azami Nöbetçi Sayısı, Departman Hizmet Kesintisizliği Eşikleri |
-| 🔄 <strong>3. ÖNCELİK</strong> | <strong>Vardiya & Rotasyon Kısıtları</strong> | Dinlenme Süreleri, Üst Üste Gece Vardiyası Engeli, Hizmet Sınıfı Kısıtları |
-| 📝 <strong>4. ÖNCELİK</strong> | <strong>Personel Mazeret & Devir</strong> | Yasal İzinler, Önceden Onaylanmış Nöbet Devir Talepleri, Mazeret İstekleri |
-| ⚖️ <strong>5. ÖNCELİK</strong> | <strong>Temel Ayarlar & Adalet Algoritması</strong> | Hafta Sonu / Bayram Adalet Dengesi Katsayıları, Geçmiş Nöbet Puanı Dengesi |
+<div class="table-container"><table><thead><tr><th>Öncelik Katmanı</th><th>Öncelik Seviyesi</th><th>Kural Kapsamı ve Detayları</th></tr></thead><tbody><tr><td>🚨 <strong>1. ÖNCELİK</strong></td><td><strong>Mutlak Yasal Mevzuat & Sağlık</strong></td><td>Gebelik, Emzirme, Yaş/Kıdem Muafiyetleri, Gece Nöbeti Yasal Sınırları <em>(Asla İhlal Edilemez)</em></td></tr><tr><td>🏥 <strong>2. ÖNCELİK</strong></td><td><strong>Birim Kuralları & Kapasite</strong></td><td>Asgari / Azami Nöbetçi Sayısı, Departman Hizmet Kesintisizliği Eşikleri</td></tr><tr><td>🔄 <strong>3. ÖNCELİK</strong></td><td><strong>Vardiya & Rotasyon Kısıtları</strong></td><td>Dinlenme Süreleri, Üst Üste Gece Vardiyası Engeli, Hizmet Sınıfı Kısıtları</td></tr><tr><td>📝 <strong>4. ÖNCELİK</strong></td><td><strong>Personel Mazeret & Devir</strong></td><td>Yasal İzinler, Önceden Onaylanmış Nöbet Devir Talepleri, Mazeret İstekleri</td></tr><tr><td>⚖️ <strong>5. ÖNCELİK</strong></td><td><strong>Temel Ayarlar & Adalet Algoritması</strong></td><td>Hafta Sonu / Bayram Adalet Dengesi Katsayıları, Geçmiş Nöbet Puanı Dengesi</td></tr></tbody></table></div>
 <hr />
 <h3>🐾 6.1 Temel Nöbet Parametreleri</h3>
 
@@ -300,16 +296,16 @@ graph TD
 </ol>
 
 <ol>
-<li>⚡ <strong>Akıllı İkame Öneri Motoru İle Sağ Tık Hızlı Atama:</strong></li>
+<li><strong>Akıllı İkame Öneri Motoru İle Sağ Tık Hızlı Atama:</strong></li>
 <ul>
 <li>Nöbet Çizelgesi tablosundaki boş veya değiştirilmek istenen herhangi bir slota <strong>sağ tıklayın</strong>.</li>
-<li>Menüden <strong>"⚡ Akıllı İkame Ata (Önerilenler)"</strong> alt başlığını açın.</li>
+<li>Menüden <strong>"Akıllı İkame Ata (Önerilenler)"</strong> alt başlığını açın.</li>
 <li>Sistem yasal izinli, raporlu, çakışan nöbetli veya dinlenme kuralına takılanları eler; aylık hedef çalışma saati açığına ve hafta sonu dengesine göre en yüksek skora sahip ilk 3 personeli (örn: <em>Ahmet Kaya %95</em>) gerekçeleriyle listeler.</li>
 <li>Adaya tıklandığında personel tek tıkla slota atanır ve aylık yük saatleri anında güncellenir.</li>
 </ul>
 </ol>
 <hr />
-<h3>🐾 6.3 Radyoloji Nöbet, Çalışma Saati ve Yasal Şua İzni Hesaplama Kuralları</h3>
+<h3>5.3 Radyoloji Nöbet, Çalışma Saati ve Yasal Şua İzni Hesaplama Kuralları</h3>
 
 <blockquote class="callout">ℹ️ <strong>Önemli Not:</strong> RADPYS V4 bir maaş/bordro ödeme yazılımı <strong>değildir</strong>. Sistem parasal ücret hesaplamaz; Sağlık Bakanlığı ve NDK mevzuatına uygun olarak personelin <strong>aylık çalışma saatlerini, hedef mesai süresini, nöbet saat yükünü, fazla mesai saatlerini ve yasal Şua izni gün hakedişini</strong> takip eder.</blockquote>
 <hr />
@@ -402,7 +398,7 @@ Kurumdaki tüm çalışanların (tekniker, fizikçi, uzman vb.) masaüstü uygul
 <hr />
 <h4>🌐 Web Portalı Nöbet Ekranlarının Detaylı İşlevleri</h4>
 
-<h5>1. Birim Aylık Nöbet Çizelgesi ve Vardiya Takvimi Ekranı</h5>
+<p>##### 1. Birim Aylık Nöbet Çizelgesi ve Vardiya Takvimi Ekranı</p>
 
 <ul>
 <li><strong>Aylık Takvim Matrisi (Çizelge Sekmesi):</strong> Birimdeki tüm personellerin ilgili ay boyunca tutacağı vardiyaları (<em>Gündüz Vardiyası, Akşam Vardiyası, Gece Vardiyası, 24 Saatlik Nöbet, Acil Çağrı Nöbeti</em>) renk kodlarıyla takvim üzerinde gösterir.</li>
@@ -411,7 +407,7 @@ Kurumdaki tüm çalışanların (tekniker, fizikçi, uzman vb.) masaüstü uygul
 <li><strong>Birim İzin ve Mazeret Haritası (İzinler Sekmesi):</strong> Ay içinde birimde kimlerin yıllık izin, Şua izni veya mazeretli olduğunu takvim matrisi üstünde göstererek nöbet planlamasını şeffaflaştırır.</li>
 </ul>
 
-<h5>2. Nöbet Değişim Havuzu (Marketplace) ve 36 Saat Güvenlik Kısıtları</h5>
+<p>##### 2. Nöbet Değişim Havuzu (Marketplace) ve 36 Saat Güvenlik Kısıtları</p>
 
 <blockquote class="callout"><strong>Amaç:</strong> Personeller arasındaki birebir telefon trafiğini ve WhatsApp anlaşma pazarlıklarını sıfırlayarak nöbet devir ve takas süreçlerini adil, şeffaf ve anlık kural denetimli bir pazar yerine dönüştürmektir.</blockquote>
 
@@ -452,14 +448,14 @@ flowchart TD
 <li><strong>Açık Devirde:</strong> Sadece hak edilmiş fazla mesaisi olanlar karşılıksız devir yapabilir; yasal taban çalışma süresini düşürecek açık devirler engellenerek takasa yönlendirilir.</li>
 </ul>
 
-<h5>3. Birebir Nöbet Devir & Takas Formu Ekranı (Geleneksel P2P)</h5>
+<p>##### 3. Birebir Nöbet Devir & Takas Formu Ekranı (Geleneksel P2P)</p>
 
 <ul>
 <li><strong>Birebir Doğrudan Devir:</strong> Önceden kendi aralarında anlaşmış iki personel için doğrudan kişiye özel devir ve takas formu olarak çalışmaya devam eder.</li>
 <li><strong>Talep Bilgileri:</strong> Devredilecek nöbet tarihi, vardiya türü, nöbeti devralacak hedef personel ve devir mazeret gerekçesi seçilerek onay işlemine gönderilir.</li>
 </ul>
 
-<h5>4. 2 Aşamalı Nöbet Devir Onay Paneli Ekranı</h5>
+<p>##### 4. İki Aşamalı Nöbet Devir Onay Paneli Ekranı</p>
 
 <pre class="mermaid">
 sequenceDiagram
@@ -468,22 +464,23 @@ sequenceDiagram
     actor PersonelB as Devralan Personel (B)
     actor Admin as Birim Yöneticisi / Admin
     
-    PersonelA->>PersonelB: Nöbet Devir Talebi Oluşturur (Web / Masaüstü)
-    Note right of PersonelB: Bildirim Paneline Kart Düşer
+    PersonelA->>PersonelB: Nöbet Devir Talebi Gönderir
+    Note right of PersonelB: Bildirim Paneline Talep Kartı Düşer
+    
     alt Devralan Kabul Eder
-        PersonelB->>Admin: Devralan Ön-Onay Verir (Kabul Et)
+        PersonelB->>Admin: Ön-Onay Verir (Kabul Et)
         Note right of Admin: Onay Bekleyen Görevler Paneline Düşer
+        
         alt Yönetici Onaylar
-            Admin->>PersonelA: Yönetici Nihai Onayı Verir (Devir Tamamlandı)
+            Admin->>PersonelA: Nihai Onay Bildirimi
             Admin->>PersonelB: Nöbet Çizelgesi Güncellendi Bildirimi
-            Note right of PersonelB: Çizelge ve Saat Hakedişleri Otomatik Revize Olur
         else Yönetici Reddeder
-            Admin->>PersonelA: Reddetme Gerekçesi İle Bildirim Gönderilir
+            Admin->>PersonelA: Red Gerekçesi Bildirimi
         end
     else Devralan Reddeder
-        PersonelB->>PersonelA: Devir Talebi Reddedildi Bildirimi
+        PersonelB->>PersonelA: Talep Reddedildi Bildirimi
     else Devralan İzinli / Erişilemiyor
-        Admin->>PersonelA: Yönetici Şifahi (Sözlü) Onay Bypass Kullanır
+        Admin->>PersonelA: Yönetici Şifahi (Sözlü) Onay Bypass Uygular
     end
 </pre>
 
@@ -494,7 +491,7 @@ sequenceDiagram
 <li><strong>Yönetici Şifahi Onay Bypass Seçeneği:</strong> Nöbeti devralan personel izinliyse veya sisteme erişemiyorsa, birim yöneticileri telefon/sözlü izni teyit ederek <strong>"Devralan Sözlü/Telefon İzni İle Onayla"</strong> butonuyla süreci beklemeden tamamlayabilir.</li>
 </ul>
 
-<h5>5. Kişisel Nöbet Dashboard ve Kısıtlar Ekranı</h5>
+<p>##### 5. Kişisel Nöbet Dashboard ve Kısıtlar Ekranı</p>
 
 <ul>
 <li><strong>Yaklaşan Vardiyalarım:</strong> Önümüzdeki günlerde tutulacak nöbetleri sayaç ve harita bilgisiyle kart halinde gösterir.</li>
