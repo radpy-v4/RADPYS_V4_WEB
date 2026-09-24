@@ -34,7 +34,7 @@ cp .env.example .env
 
 `.env` içeriğini doldurun:
 
-```
+```*
 PORT=3000
 HOST=127.0.0.1
 API_TOKEN=<en az 16 karakterlik rastgele bir değer — SECURE_API_TOKEN_2026 KULLANMAYIN>
@@ -61,12 +61,15 @@ curl http://127.0.0.1:3000/api/health
 ### Sunucu olarak sürekli çalıştırma
 
 #### Seçenek 1 — Grafik Arayüzlü Başlatıcı (RADPYS Portal Launcher - Önerilen Windows Çözümü)
+
 Windows sunucularda veya ana bilgisayarda paketle gelen `RADPYS_Portal_Launcher.exe` (veya `user_launcher/portal_launcher.py`) uygulamasını kullanabilirsiniz:
+
 - **`[ ▶ Portali Başlat ]`** butonu ile tek tıkla servisi ayağa kaldırır.
 - LAN IP adresini otomatik tespit eder (`http://192.168.X.X:3000`), sağlık kontrolünü (`/api/health`) izler ve canlı akış loglarını gösterir.
 - Sistem tepsisine (Tray) küçülerek arka planda sessiz çalışabilir.
 
 #### Seçenek 2 — Process Manager (PM2)
+
 Terminal kapandığında uygulamanın durmaması için bir process manager kullanılabilir:
 
 ```bash
@@ -107,7 +110,7 @@ sudo apt update && sudo apt install caddy
 
 `/etc/caddy/Caddyfile` içeriği:
 
-```
+```*
 radpys.hastaneadi.com {
     reverse_proxy 127.0.0.1:3000
 }
@@ -189,7 +192,7 @@ sudo ufw deny 3000/tcp   # zaten localhost'a bağlı olduğu için ek güvenlik 
 - **Sertifika yenileme:** Caddy otomatik; nginx+certbot için sistemde bir `certbot.timer`/cron zaten kurulur, ayda bir kontrol edilmesi önerilir.
 - **Log rotasyonu:** `logs/web_access.log` dosyası zamanla büyür. `logrotate` ile haftalık/aylık rotasyon önerilir (örnek `/etc/logrotate.d/radpys`):
 
-  ```
+  ```*
   /path/to/web_portal/logs/*.log {
       weekly
       rotate 8
@@ -215,7 +218,8 @@ RADPYS V4 Saha Veri Giriş Portalı; saha çalışanlarının (nöbetçi teknike
 
 ### 📱 Mobil Cihazlara Yükleme (Ana Ekrana Ekleme)
 
-* **Android (Chrome):** Siteye girildiğinde beliren *"Ana ekrana ekle"* veya *"Uygulamayı Yükle"* istemine tıklayın.
+- **Android (Chrome):** Siteye girildiğinde beliren *"Ana ekrana ekle"* veya *"Uygulamayı Yükle"* istemine tıklayın.
+
 - **iOS (Safari):** Alt menüdeki **Paylaş (Share)** simgesine dokunup **"Ana Ekrana Ekle"** seçeneğini seçin.
 
 ---
@@ -233,5 +237,6 @@ Web Portalı, personellerin kendilerine atanan zorunlu eğitim dokümanlarını 
 
 ### 🔒 Güvenlik & Doğrulama
 
-* Personeller yalnızca kendilerine atanan eğitimlerin sınav sorularına erişebilir.
+- Personeller yalnızca kendilerine atanan eğitimlerin sınav sorularına erişebilir.
+
 - Doğru cevap anahtarı istemciye (client) asla gönderilmez; puanlama ve değerlendirme sunucu tarafında (`server.ts`) güvenli şekilde hesaplanır.

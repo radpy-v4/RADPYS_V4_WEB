@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,39 +32,69 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <style>
-    pre, code { font-family: 'JetBrains Mono', monospace; }
-    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
-    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 9999px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.6); }
+    pre,
+    code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.35);
+      border-radius: 9999px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.6);
+    }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
+
+<body
+  class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
 
   <!-- TOP HEADER NAVBAR (Wide Fluid Layout) -->
-  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+  <header
+    class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
     <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between gap-4">
-      
+
       <!-- Brand & Version -->
       <div class="flex items-center gap-3">
-        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Menüyü Aç/Kapat">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <button id="mobileMenuBtn"
+          class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+          title="Menüyü Aç/Kapat">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
         </button>
 
         <a href="index.html" class="flex items-center gap-3 group">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+          <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.2</span>
+              RADPYS <span
+                class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.2</span>
             </span>
-            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Karar Destek Portalı</span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Karar Destek
+              Portalı</span>
           </div>
         </a>
       </div>
@@ -72,28 +103,44 @@
       <div class="flex-1 max-w-xl hidden md:block">
         <div class="relative">
           <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
           </div>
-          <input 
-            type="text" 
-            placeholder="Dokümanda ara... (Örn: Fiili hizmet, Şua izni, 50 saat, 30 gün tavanı, Koşul A, 15-14 dönemi, yıllık kilit, onaysız izin...)" 
-            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition"
-          >
+          <input type="text"
+            placeholder="Dokümanda ara... (Örn: Fiili hizmet, Şua izni, 50 saat, 30 gün tavanı, Koşul A, 15-14 dönemi, yıllık kilit, onaysız izin...)"
+            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition">
           <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-            <kbd class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600 font-semibold">Ctrl+K</kbd>
+            <kbd
+              class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600 font-semibold">Ctrl+K</kbd>
           </div>
         </div>
       </div>
 
       <!-- Theme & Action Buttons -->
       <div class="flex items-center gap-3">
-        <button id="themeToggle" class="p-2.5 rounded-xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Tema Değiştir">
-          <svg id="themeIconSun" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-          <svg id="themeIconMoon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <button id="themeToggle"
+          class="p-2.5 rounded-xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+          title="Tema Değiştir">
+          <svg id="themeIconSun" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <svg id="themeIconMoon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
         </button>
 
-        <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        <a href="index.html"
+          class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
           <span>Tüm Modüller</span>
         </a>
       </div>
@@ -101,10 +148,13 @@
   </header>
 
   <!-- SUB-MODULE / BREADCRUMB CONTEXT BAR -->
-  <div class="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur sticky top-16 z-30">
-    <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between py-2.5 text-xs font-semibold">
+  <div
+    class="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur sticky top-16 z-30">
+    <div
+      class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between py-2.5 text-xs font-semibold">
       <div class="flex items-center gap-2 overflow-x-auto">
-        <a href="10_nobet_borc_alacak_ve_fazla_mesai.html" class="text-slate-500 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition shrink-0">
+        <a href="10_nobet_borc_alacak_ve_fazla_mesai.html"
+          class="text-slate-500 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition shrink-0">
           Modül 10: Nöbet Borç / Alacak & Fazla Mesai
         </a>
         <span class="text-slate-300 dark:text-slate-700">/</span>
@@ -112,7 +162,8 @@
           ☢️ Modül 11: Fiili Hizmet & Şua Hesaplama (FHZ)
         </span>
         <span class="text-slate-300 dark:text-slate-700">/</span>
-        <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html" class="text-slate-500 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition shrink-0">
+        <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html"
+          class="text-slate-500 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition shrink-0">
           Modül 12: Dozimetre Takibi & RDF-43
         </a>
       </div>
@@ -126,55 +177,68 @@
   <div class="flex-1 max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 py-8 flex gap-8">
 
     <!-- LEFT SIDEBAR: NAVIGATION -->
-    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar">
+    <aside id="sidebarNav"
+      class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar">
       <div class="mb-4">
-        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3">21 Modül Rehberi</span>
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3">21 Modül
+          Rehberi</span>
       </div>
 
       <nav class="space-y-1 text-sm font-medium">
-        <a href="01_kurulum_ve_ilk_giris.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <a href="01_kurulum_ve_ilk_giris.html"
+          class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           <span class="font-mono text-xs opacity-60">01</span>
           <span>Kurulum & İlk Giriş</span>
         </a>
-        <a href="02_kullanici_ve_rol_yonetimi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <a href="02_kullanici_ve_rol_yonetimi.html"
+          class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           <span class="font-mono text-xs opacity-60">02</span>
           <span>Kullanıcı & Roller</span>
         </a>
-        <a href="03_sistem_ayarlari_ve_tanimlamalar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <a href="03_sistem_ayarlari_ve_tanimlamalar.html"
+          class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           <span class="font-mono text-xs opacity-60">03</span>
           <span>Sistem Ayarları & Tanımlar</span>
         </a>
-        <a href="04_veritabani_bakim_ve_guvenlik.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <a href="04_veritabani_bakim_ve_guvenlik.html"
+          class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           <span class="font-mono text-xs opacity-60">04</span>
           <span>Veritabanı, Bakım & Güvenlik</span>
         </a>
-        <a href="05_personel_yonetimi_ve_toplu_aktarim.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <a href="05_personel_yonetimi_ve_toplu_aktarim.html"
+          class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           <span class="font-mono text-xs opacity-60">05</span>
           <span>Personel & Excel Aktarım</span>
         </a>
-        <a href="06_izin_yonetimi_ve_hakedis.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <a href="06_izin_yonetimi_ve_hakedis.html"
+          class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           <span class="font-mono text-xs opacity-60">06</span>
           <span>İzin Yönetimi & Şua Hakediş</span>
         </a>
-        <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html"
+          class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           <span class="font-mono text-xs opacity-60">07</span>
           <span>Nöbet Ayarları & Kısıtlar</span>
         </a>
-        <a href="08_nobet_hazirlik_ve_solver_motoru.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <a href="08_nobet_hazirlik_ve_solver_motoru.html"
+          class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           <span class="font-mono text-xs opacity-60">08</span>
           <span>Nöbet Dağıtım Solver Motoru</span>
         </a>
-        <a href="09_nobet_devir_ikame_ve_acil_mazeret.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <a href="09_nobet_devir_ikame_ve_acil_mazeret.html"
+          class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           <span class="font-mono text-xs opacity-60">09</span>
           <span>Nöbet Devir & Mazeret</span>
         </a>
-        <a href="10_nobet_borc_alacak_ve_fazla_mesai.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <a href="10_nobet_borc_alacak_ve_fazla_mesai.html"
+          class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           <span class="font-mono text-xs opacity-60">10</span>
           <span>Nöbet Borç / Alacak & Fazla Mesai</span>
         </a>
 
         <!-- 11 AKTİF -->
-        <a href="#genel-bakis" class="flex items-center justify-between px-3 py-2.5 rounded-xl bg-cyan-50 text-cyan-800 dark:bg-cyan-950/60 dark:text-cyan-300 font-semibold border-l-4 border-cyan-600">
+        <a href="#genel-bakis"
+          class="flex items-center justify-between px-3 py-2.5 rounded-xl bg-cyan-50 text-cyan-800 dark:bg-cyan-950/60 dark:text-cyan-300 font-semibold border-l-4 border-cyan-600">
           <div class="flex items-center gap-2.5">
             <span class="font-mono text-xs text-cyan-600 dark:text-cyan-400 font-bold">11</span>
             <span>Fiili Hizmet & Şua (FHZ)</span>
@@ -182,46 +246,56 @@
           <span class="w-2 h-2 rounded-full bg-cyan-600 animate-pulse"></span>
         </a>
 
-        <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html"
+          class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           <span class="font-mono text-xs opacity-60">12</span>
           <span>Dozimetre Takibi & RD.F43</span>
         </a>
-        <a href="13_saglik_muayeneleri_ve_periyodik_takip.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <a href="13_saglik_muayeneleri_ve_periyodik_takip.html"
+          class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           <span class="font-mono text-xs opacity-60">13</span>
           <span>Sağlık Muayeneleri & Takip</span>
         </a>
-        <a href="14_ortam_dozu_ve_kroki_haritasi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <a href="14_ortam_dozu_ve_kroki_haritasi.html"
+          class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           <span class="font-mono text-xs opacity-60">14</span>
           <span>Ortam Dozu & Kroki Haritası</span>
         </a>
-        <a href="15_olay_bildirimi_ve_dof_capa.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <a href="15_olay_bildirimi_ve_dof_capa.html"
+          class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           <span class="font-mono text-xs opacity-60">15</span>
           <span>Olay Bildirimi & DÖF / CAPA</span>
         </a>
-        <a href="16_rgs_rso_gorevlendirme_ve_sertifika.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <a href="16_rgs_rso_gorevlendirme_ve_sertifika.html"
+          class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           <span class="font-mono text-xs opacity-60">16</span>
           <span>RGS / RSO Görevlendirme</span>
         </a>
-        <a href="17_hizmet_ici_egitim_ve_online_sinav.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <a href="17_hizmet_ici_egitim_ve_online_sinav.html"
+          class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           <span class="font-mono text-xs opacity-60">17</span>
           <span>Hizmet İçi Eğitim & Sınav</span>
         </a>
 
         <!-- CANLI VE PLANLANAN MODÜLLER -->
         <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800/60 space-y-1">
-          <a href="18_tibbi_cihaz_ve_ndk_lisans_envanteri.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <a href="18_tibbi_cihaz_ve_ndk_lisans_envanteri.html"
+            class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
             <span class="font-mono text-xs opacity-60">18</span>
             <span>Tıbbi Cihaz & NDK Lisans</span>
           </a>
-          <a href="19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <a href="19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html"
+            class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
             <span class="font-mono text-xs opacity-60">19</span>
             <span>Cihaz Arıza, Bakım & QC</span>
           </a>
-          <a href="20_rke_koruyucu_ekipman_ve_din6857.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <a href="20_rke_koruyucu_ekipman_ve_din6857.html"
+            class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
             <span class="font-mono text-xs opacity-60">20</span>
             <span>RKE & DIN 6857 Muayene</span>
           </a>
-          <a href="21_merkezi_onaylar_ve_rapor_merkezi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <a href="21_merkezi_onaylar_ve_rapor_merkezi.html"
+            class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
             <span class="font-mono text-xs opacity-60">21</span>
             <span>Merkezi Onay & Raporlar</span>
           </a>
@@ -234,7 +308,8 @@
 
       <!-- HERO INTRO -->
       <section id="genel-bakis" class="space-y-4">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-cyan-100 dark:bg-cyan-900/60 text-cyan-800 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800">
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-cyan-100 dark:bg-cyan-900/60 text-cyan-800 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800">
           <span>Modül 11</span>
           <span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
           <span>SGK Yıpranma & Şua İzni Hakedişi</span>
@@ -245,31 +320,43 @@
         </h1>
 
         <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-          Bu modül; radyoloji ve nükleer tıp çalışanlarının <strong>5510 Sayılı Kanun</strong> kapsamındaki <em>Fiili Hizmet Süresi Zammı (FHZ / Yıpranma Payı)</em> puantajlarını ve Sağlık Bakanlığı'nın mevzuat baremlerine göre <em>Sağlık İzni (Şua İzni)</em> hakedişlerini <strong>3 adımlı entegre bir sihirbaz</strong> üzerinden yönetir. Personellerin çalıştığı radyasyonlu birimlere, nöbet çizelgelerine ve resmi onaylı izinlerine göre net fiili çalışma saatlerini, yıpranma sürelerini ve yıllık Şua günlerini hesaplayıp kilit altına alır.
+          Bu modül; radyoloji ve nükleer tıp çalışanlarının <strong>5510 Sayılı Kanun</strong> kapsamındaki <em>Fiili
+            Hizmet Süresi Zammı (FHZ / Yıpranma Payı)</em> puantajlarını ve Sağlık Bakanlığı'nın mevzuat baremlerine
+          göre <em>Sağlık İzni (Şua İzni)</em> hakedişlerini <strong>3 adımlı entegre bir sihirbaz</strong> üzerinden
+          yönetir. Personellerin çalıştığı radyasyonlu birimlere, nöbet çizelgelerine ve resmi onaylı izinlerine göre
+          net fiili çalışma saatlerini, yıpranma sürelerini ve yıllık Şua günlerini hesaplayıp kilit altına alır.
         </p>
       </section>
 
       <!-- VİZYONDER HIZLI REÇETE (20 SANİYE KURALI) -->
       <section id="hizli-recete" class="mb-10">
-        <div class="p-6 rounded-2xl bg-gradient-to-br from-cyan-900/10 via-slate-900/5 to-blue-900/10 dark:from-cyan-950/40 dark:via-slate-900/40 dark:to-blue-950/40 border border-cyan-200 dark:border-cyan-800/50 shadow-sm">
+        <div
+          class="p-6 rounded-2xl bg-gradient-to-br from-cyan-900/10 via-slate-900/5 to-blue-900/10 dark:from-cyan-950/40 dark:via-slate-900/40 dark:to-blue-950/40 border border-cyan-200 dark:border-cyan-800/50 shadow-sm">
           <div class="flex items-center gap-3 mb-4">
             <div class="w-8 h-8 rounded-lg bg-cyan-600 text-white flex items-center justify-center font-bold text-sm">
               20s
             </div>
-            <h2 class="text-xl font-bold text-slate-900 dark:text-white">Vizyonder Hızlı Karar Reçetesi (FHZ & Şua Özeti)</h2>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white">Vizyonder Hızlı Karar Reçetesi (FHZ & Şua
+              Özeti)</h2>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
-            <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+            <div
+              class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
               <span class="font-bold text-cyan-600 dark:text-cyan-400 block mb-1">1. Dönem Döngüsünü Seçin</span>
-              Kurumunuzun bordro takvimine göre 15-14 SGK dönemini veya takvim ayını seçin. Onaylı izin günleri fiili süreden otomatik arındırılır.
+              Kurumunuzun bordro takvimine göre 15-14 SGK dönemini veya takvim ayını seçin. Onaylı izin günleri fiili
+              süreden otomatik arındırılır.
             </div>
-            <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+            <div
+              class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
               <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-1">2. 50 Saate 1 Gün Baremi</span>
-              Sistem personelin radyasyonlu birimdeki fiili çalışma saatlerini hesaplar; her 50 tam saat için 1 tam gün Şua izni otomatik tahakkuk ettirilir.
+              Sistem personelin radyasyonlu birimdeki fiili çalışma saatlerini hesaplar; her 50 tam saat için 1 tam gün
+              Şua izni otomatik tahakkuk ettirilir.
             </div>
-            <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+            <div
+              class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
               <span class="font-bold text-blue-600 dark:text-blue-400 block mb-1">3. Sıralı Kilit & Yıllık Tavan</span>
-              Geçmiş aylar kilitlenmeden cari ay kilitlenemez. Yıllık toplamda 30 günlük yasal tavan aşılamaz; yıl sonunda yönetici tek tıkla yıllık kilidi onaylar.
+              Geçmiş aylar kilitlenmeden cari ay kilitlenemez. Yıllık toplamda 30 günlük yasal tavan aşılamaz; yıl
+              sonunda yönetici tek tıkla yıllık kilidi onaylar.
             </div>
           </div>
         </div>
@@ -283,58 +370,87 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
           <!-- KPI 1: 50 Saate 1 Gün -->
-          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+          <div
+            class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold font-mono uppercase tracking-wider text-cyan-600 dark:text-cyan-400">Şua Hak Ediş Baremi</span>
+              <span class="text-xs font-bold font-mono uppercase tracking-wider text-cyan-600 dark:text-cyan-400">Şua
+                Hak Ediş Baremi</span>
               <span class="p-1.5 rounded-lg bg-cyan-50 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
               </span>
             </div>
-            <div class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">50.0 <span class="text-sm font-sans font-semibold text-slate-400">saat = 1 gün</span></div>
+            <div class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">50.0 <span
+                class="text-sm font-sans font-semibold text-slate-400">saat = 1 gün</span></div>
             <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-              Sağlık Bakanlığı baremleri gereğince personelin fiilen radyasyon alanında çalıştığı her 50 saat için 1 tam gün Şua izni hakedilir.
+              Sağlık Bakanlığı baremleri gereğince personelin fiilen radyasyon alanında çalıştığı her 50 saat için 1 tam
+              gün Şua izni hakedilir.
             </p>
           </div>
 
           <!-- KPI 2: Yıllık 30 Gün Tavanı -->
-          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+          <div
+            class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold font-mono uppercase tracking-wider text-rose-600 dark:text-rose-400">Yıllık Azami Tavan</span>
+              <span class="text-xs font-bold font-mono uppercase tracking-wider text-rose-600 dark:text-rose-400">Yıllık
+                Azami Tavan</span>
               <span class="p-1.5 rounded-lg bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
               </span>
             </div>
-            <div class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">30.0 <span class="text-sm font-sans font-semibold text-slate-400">gün/yıl</span></div>
+            <div class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">30.0 <span
+                class="text-sm font-sans font-semibold text-slate-400">gün/yıl</span></div>
             <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-              Personel ne kadar fiili çalışma yaparsa yapsın, bir takvim yılı içinde kazanılabilecek Şua İzni azami 30 gün ile sınırlandırılmıştır.
+              Personel ne kadar fiili çalışma yaparsa yapsın, bir takvim yılı içinde kazanılabilecek Şua İzni azami 30
+              gün ile sınırlandırılmıştır.
             </p>
           </div>
 
           <!-- KPI 3: Koşul A vs Koşul B -->
-          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+          <div
+            class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Çalışma Koşulu</span>
-              <span class="p-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+              <span
+                class="text-xs font-bold font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Çalışma
+                Koşulu</span>
+              <span
+                class="p-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
               </span>
             </div>
             <div class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">Koşul A / B</div>
             <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-              Koşul A (7.0s radyasyon, Şua hakkı var) ile Koşul B (8.0s idari/destek, Şua hakkı yok) kurumsal rejimlere göre tam ayrıştırılır.
+              Koşul A (7.0s radyasyon, Şua hakkı var) ile Koşul B (8.0s idari/destek, Şua hakkı yok) kurumsal rejimlere
+              göre tam ayrıştırılır.
             </p>
           </div>
 
           <!-- KPI 4: 15-14 Bordro Dönemi -->
-          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+          <div
+            class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold font-mono uppercase tracking-wider text-amber-600 dark:text-amber-400">SGK Bordro Döngüsü</span>
+              <span class="text-xs font-bold font-mono uppercase tracking-wider text-amber-600 dark:text-amber-400">SGK
+                Bordro Döngüsü</span>
               <span class="p-1.5 rounded-lg bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
               </span>
             </div>
-            <div class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">15 - 14 <span class="text-sm font-sans font-semibold text-slate-400">dönemi</span></div>
+            <div class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">15 - 14 <span
+                class="text-sm font-sans font-semibold text-slate-400">dönemi</span></div>
             <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-              SGK 5510 standardı uyarınca her ayın 15'i ile bir sonraki ayın 14'ü arası hesaplanır. Ayarlar sekmesinden esnetilebilir.
+              SGK 5510 standardı uyarınca her ayın 15'i ile bir sonraki ayın 14'ü arası hesaplanır. Ayarlar sekmesinden
+              esnetilebilir.
             </p>
           </div>
         </div>
@@ -346,7 +462,8 @@
           <span>3. 3 Adımlı Entegre Puantaj Sihirbazı İş Akışı</span>
         </h2>
 
-        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm overflow-x-auto">
+        <div
+          class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm overflow-x-auto">
           <pre class="mermaid text-center">
 graph TD
     A["Bordro Dönemi Seçimi: 15.AA - 14.AA"] --> B["1. Adım: Görev Dağılımı"]
@@ -381,10 +498,12 @@ graph TD
           <span>4. 5N1K Kural ve Arayüz Bileşen Envanteri</span>
         </h2>
 
-        <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+        <div
+          class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
           <table class="w-full text-left text-sm border-collapse">
             <thead>
-              <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50/75 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 font-semibold">
+              <tr
+                class="border-b border-slate-200 dark:border-slate-800 bg-slate-50/75 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 font-semibold">
                 <th class="py-3.5 px-4">Arayüz Bileşeni</th>
                 <th class="py-3.5 px-4">Görevi ve Amacı (NE/NEDEN)</th>
                 <th class="py-3.5 px-4">Formül / Mantık (NASIL)</th>
@@ -397,66 +516,107 @@ graph TD
               <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
                 <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Sihirbaz Adım Göstergesi]</td>
                 <td class="py-3.5 px-4">3 adımlı iş akışını (Görev Dağılımı ➔ Hesaplama ➔ Rapor) yönlendirmek.</td>
-                <td class="py-3.5 px-4">Adım tıklandığında sekme değişir; dönem parametreleri sekmeler arası senkronize edilir.</td>
+                <td class="py-3.5 px-4">Adım tıklandığında sekme değişir; dönem parametreleri sekmeler arası senkronize
+                  edilir.</td>
                 <td class="py-3.5 px-4">Adım çubuğuna tıklandığında</td>
-                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Nöbet Sorumlusu, Amir</span></td>
-                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
+                <td class="py-3.5 px-4"><span
+                    class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Nöbet
+                    Sorumlusu, Amir</span></td>
+                <td class="py-3.5 px-4"><span
+                    class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span>
+                </td>
               </tr>
               <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
                 <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Yıl] & [Ay] Seçimi</td>
                 <td class="py-3.5 px-4">5510 Sayılı Kanun kapsamındaki 15-14 bordro dönemini seçmek.</td>
-                <td class="py-3.5 px-4">15.ay ile 14.(ay+1) aralığı dinamik hesaplanır. Ayarlar sekmesinden esnetilebilir.</td>
+                <td class="py-3.5 px-4">15.ay ile 14.(ay+1) aralığı dinamik hesaplanır. Ayarlar sekmesinden
+                  esnetilebilir.</td>
                 <td class="py-3.5 px-4">Açılır kutu veya chevron değiştiğinde</td>
-                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Sorumlu, Mutemet</span></td>
-                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
+                <td class="py-3.5 px-4"><span
+                    class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Sorumlu,
+                    Mutemet</span></td>
+                <td class="py-3.5 px-4"><span
+                    class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span>
+                </td>
               </tr>
               <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
                 <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Sadece Değişenleri Göster]</td>
                 <td class="py-3.5 px-4">Asıl birimi dışında görevlendirilen personelleri hızlıca süzmek.</td>
-                <td class="py-3.5 px-4">Kadro birimi ile görev yeri farklı olan satırları filtreler; kırmızı renkle vurgular.</td>
+                <td class="py-3.5 px-4">Kadro birimi ile görev yeri farklı olan satırları filtreler; kırmızı renkle
+                  vurgular.</td>
                 <td class="py-3.5 px-4">Onay kutusu işaretlendiğinde</td>
-                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Birim Sorumlusu</span></td>
-                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
+                <td class="py-3.5 px-4"><span
+                    class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Birim
+                    Sorumlusu</span></td>
+                <td class="py-3.5 px-4"><span
+                    class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span>
+                </td>
               </tr>
               <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
                 <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Otomatik Görev Ata]</td>
                 <td class="py-3.5 px-4">Dönemdeki personellerin görev yerlerini tek tıkla otomatik doldurmak.</td>
-                <td class="py-3.5 px-4">Personelin varsayılan birimini ve nöbet çizelgesini tarayarak taslak dağılım üretir.</td>
+                <td class="py-3.5 px-4">Personelin varsayılan birimini ve nöbet çizelgesini tarayarak taslak dağılım
+                  üretir.</td>
                 <td class="py-3.5 px-4">Butona tıklandığında</td>
-                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Nöbet Sorumlusu</span></td>
-                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
+                <td class="py-3.5 px-4"><span
+                    class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Nöbet
+                    Sorumlusu</span></td>
+                <td class="py-3.5 px-4"><span
+                    class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span>
+                </td>
               </tr>
               <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
                 <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Onayla ve Hesaplamaya Geç]</td>
                 <td class="py-3.5 px-4">Taslak görev dağılımlarını onaylayıp 2. Adıma (Hesaplama) aktarmak.</td>
-                <td class="py-3.5 px-4">Taslak satırları 'Onaylı' yapar ve sekmeyi otomatik olarak [Fiili Hizmet Hesaplama] sekmesine taşır.</td>
+                <td class="py-3.5 px-4">Taslak satırları 'Onaylı' yapar ve sekmeyi otomatik olarak [Fiili Hizmet
+                  Hesaplama] sekmesine taşır.</td>
                 <td class="py-3.5 px-4">Butona tıklandığında</td>
-                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Birim Sorumlusu, Amir</span></td>
-                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
+                <td class="py-3.5 px-4"><span
+                    class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Birim
+                    Sorumlusu, Amir</span></td>
+                <td class="py-3.5 px-4"><span
+                    class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span>
+                </td>
               </tr>
               <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
                 <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Dönemi Kilitle] / [Kilidi Aç]</td>
-                <td class="py-3.5 px-4">Hesaplanmış ayın fiili hizmet puantajını kesinleştirip yetkisiz değişiklikleri engellemek.</td>
-                <td class="py-3.5 px-4">Önceki dönemin kilit durumunu denetler; otomatik kayıt yapar ve dönemi kilitler/açar.</td>
+                <td class="py-3.5 px-4">Hesaplanmış ayın fiili hizmet puantajını kesinleştirip yetkisiz değişiklikleri
+                  engellemek.</td>
+                <td class="py-3.5 px-4">Önceki dönemin kilit durumunu denetler; otomatik kayıt yapar ve dönemi
+                  kilitler/açar.</td>
                 <td class="py-3.5 px-4">Butona tıklandığında</td>
-                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Birim Sorumlusu, Amir</span></td>
-                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
+                <td class="py-3.5 px-4"><span
+                    class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Birim
+                    Sorumlusu, Amir</span></td>
+                <td class="py-3.5 px-4"><span
+                    class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span>
+                </td>
               </tr>
               <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
                 <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Yıllık Kilidi Kapat] / [Aç]</td>
                 <td class="py-3.5 px-4">Yılın tüm aylarını ve Şua izni hakedişlerini kalıcı dondurmak.</td>
-                <td class="py-3.5 px-4">Sadece Admin/Süpervizör yetkisiyle çalışır; önceki yıl kontrolü yapar ve tüm yılı kilitler.</td>
+                <td class="py-3.5 px-4">Sadece Admin/Süpervizör yetkisiyle çalışır; önceki yıl kontrolü yapar ve tüm
+                  yılı kilitler.</td>
                 <td class="py-3.5 px-4">Butona tıklandığında</td>
-                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-400">Sistem Yöneticisi (Admin)</span></td>
-                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
+                <td class="py-3.5 px-4"><span
+                    class="px-2 py-0.5 rounded text-xs font-semibold bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-400">Sistem
+                    Yöneticisi (Admin)</span></td>
+                <td class="py-3.5 px-4"><span
+                    class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span>
+                </td>
               </tr>
               <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
                 <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Excel İndir]</td>
                 <td class="py-3.5 px-4">SGK ve mutemetlik onaylı resmi puantaj dökümünü Excel formatında almak.</td>
-                <td class="py-3.5 px-4">Kimlik no, ad soyad, SGK günü, izin, fiili saat ve Şua günlerini Excel'e aktarır.</td>
+                <td class="py-3.5 px-4">Kimlik no, ad soyad, SGK günü, izin, fiili saat ve Şua günlerini Excel'e
+                  aktarır.</td>
                 <td class="py-3.5 px-4">Butona tıklandığında</td>
-                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Mutemet, İdari Amir</span></td>
-                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
+                <td class="py-3.5 px-4"><span
+                    class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Mutemet,
+                    İdari Amir</span></td>
+                <td class="py-3.5 px-4"><span
+                    class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -470,78 +630,118 @@ graph TD
         </h2>
 
         <!-- Adım A: Görev Dağılımı -->
-        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+        <div
+          class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
           <div class="flex items-center gap-3">
-            <span class="w-8 h-8 rounded-full bg-cyan-500 text-white font-bold flex items-center justify-center font-mono">1</span>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Dönemsel Görev Dağılımını İnceleme ve Otomatik Görev Atama</h3>
+            <span
+              class="w-8 h-8 rounded-full bg-cyan-500 text-white font-bold flex items-center justify-center font-mono">1</span>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Dönemsel Görev Dağılımını İnceleme ve Otomatik
+              Görev Atama</h3>
           </div>
           <ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 pl-2">
             <li>Sol ana menüden <strong>[Fiili Hizmet ve Şua]</strong> modülüne tıklayın.</li>
             <li>Sihirbaz göstergesinde <strong>1. Adım: Görev Dağılımı</strong> sekmesinde olduğunuzu doğrulayın.</li>
-            <li><strong>[Yıl]</strong> ve <strong>[Ay]</strong> kutularından SGK bordro dönemini seçin (Dönem tarihleri altta <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-cyan-600 dark:text-cyan-400">15.AA.YYYY - 14.AA.YYYY</code> olarak görünür).</li>
-            <li>Eğer dönemin görev dağılımı henüz oluşturulmamışsa, üst paneldeki <strong>[Otomatik Görev Ata]</strong> butonuna tıklayın. Sistem personellerin kadro birimlerini ve nöbet çizelgelerini tarayarak taslak dağılımları tek tıkla oluşturur.</li>
-            <li>Farklı bir birimde geçici çalışan personelleri incelemek için <strong>[Sadece Değişenleri Göster]</strong> kutusunu işaretleyin (Farklı birim görevlendirmeleri kırmızı renkle vurgulanır).</li>
-            <li>Özel görevlendirme tanımlamak için personelin satırını seçip <strong>[Düzenle]</strong> butonuna basın (veya yeni bir satır için <strong>[Yeni Görev]</strong> butonuna tıklayın); açılan modal pencerede tarih aralığı, birim ve günlük çalışma saatini (0-24s) girip onaylayın.</li>
+            <li><strong>[Yıl]</strong> ve <strong>[Ay]</strong> kutularından SGK bordro dönemini seçin (Dönem tarihleri
+              altta <code
+                class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-cyan-600 dark:text-cyan-400">15.AA.YYYY - 14.AA.YYYY</code>
+              olarak görünür).</li>
+            <li>Eğer dönemin görev dağılımı henüz oluşturulmamışsa, üst paneldeki <strong>[Otomatik Görev Ata]</strong>
+              butonuna tıklayın. Sistem personellerin kadro birimlerini ve nöbet çizelgelerini tarayarak taslak
+              dağılımları tek tıkla oluşturur.</li>
+            <li>Farklı bir birimde geçici çalışan personelleri incelemek için <strong>[Sadece Değişenleri
+                Göster]</strong> kutusunu işaretleyin (Farklı birim görevlendirmeleri kırmızı renkle vurgulanır).</li>
+            <li>Özel görevlendirme tanımlamak için personelin satırını seçip <strong>[Düzenle]</strong> butonuna basın
+              (veya yeni bir satır için <strong>[Yeni Görev]</strong> butonuna tıklayın); açılan modal pencerede tarih
+              aralığı, birim ve günlük çalışma saatini (0-24s) girip onaylayın.</li>
           </ol>
         </div>
 
         <!-- Adım B: Toplu Onay ve Hesaplamaya Geçiş -->
-        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+        <div
+          class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
           <div class="flex items-center gap-3">
-            <span class="w-8 h-8 rounded-full bg-cyan-500 text-white font-bold flex items-center justify-center font-mono">2</span>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Toplu Onay ve Fiili Hizmet Hesaplamaya Geçiş</h3>
+            <span
+              class="w-8 h-8 rounded-full bg-cyan-500 text-white font-bold flex items-center justify-center font-mono">2</span>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Toplu Onay ve Fiili Hizmet Hesaplamaya Geçiş
+            </h3>
           </div>
           <p class="text-sm text-slate-600 dark:text-slate-300">
-            Görev dağılım listesini gözden geçirdikten sonra sağ üstteki <strong>[Onayla ve Hesaplamaya Geç]</strong> butonuna tıklayın. Sistem tüm taslak satırları resmi onay durumuna geçirir ve sihirbazı otomatik olarak <strong>2. Adım: Fiili Hizmet Hesaplama</strong> ekranına aktarır.
+            Görev dağılım listesini gözden geçirdikten sonra sağ üstteki <strong>[Onayla ve Hesaplamaya Geç]</strong>
+            butonuna tıklayın. Sistem tüm taslak satırları resmi onay durumuna geçirir ve sihirbazı otomatik olarak
+            <strong>2. Adım: Fiili Hizmet Hesaplama</strong> ekranına aktarır.
           </p>
         </div>
 
         <!-- Adım C: Hesaplama ve Kilit -->
-        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+        <div
+          class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
           <div class="flex items-center gap-3">
-            <span class="w-8 h-8 rounded-full bg-cyan-500 text-white font-bold flex items-center justify-center font-mono">3</span>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Fiili Hizmet Hesaplama, Kilit Güvenliği ve Şua Hakedişleri</h3>
+            <span
+              class="w-8 h-8 rounded-full bg-cyan-500 text-white font-bold flex items-center justify-center font-mono">3</span>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Fiili Hizmet Hesaplama, Kilit Güvenliği ve Şua
+              Hakedişleri</h3>
           </div>
           <div class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
             <p>
-              <strong>Fiili Hizmet Hesaplama</strong> ekranında seçili dönemin iş günü, resmi tatil ve personelin nöbet/görev saatleri harmanlanarak tablo otomatik doldurulur:
+              <strong>Fiili Hizmet Hesaplama</strong> ekranında seçili dönemin iş günü, resmi tatil ve personelin
+              nöbet/görev saatleri harmanlanarak tablo otomatik doldurulur:
             </p>
             <ul class="list-disc list-inside pl-4 space-y-1">
-              <li><strong>Çalışma Koşulu:</strong> Radyasyonlu alanda çalışan personelde <code class="px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono">Koşul A</code> (7.0 saat), idari alandakilerde <code class="px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono">Koşul B</code> (8.0 saat) olarak listelenir.</li>
-              <li><strong>Brüt İş Günü &amp; İzin Düşümü:</strong> Ay içi mesai günleri hesaplanır; personelin resmi onaylı izinleri düşülerek net çalışma günleri gösterilir.</li>
-              <li><strong>Net Fiili Çalışma Saati:</strong> Fiilen radyasyonlu alanda icra edilen nöbet ve mesai saatlerinin net toplamıdır.</li>
-              <li><strong>Hesaplanan Şua İzni (Gün):</strong> Her 50 fiili radyasyon saatine 1 gün olarak hesaplanır (Yıllık 30 gün tavanı aşıldığında sistem otomatik tavan kısıtı koyar).</li>
+              <li><strong>Çalışma Koşulu:</strong> Radyasyonlu alanda çalışan personelde <code
+                  class="px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono">Koşul A</code> (7.0 saat), idari
+                alandakilerde <code class="px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono">Koşul B</code>
+                (8.0 saat) olarak listelenir.</li>
+              <li><strong>Brüt İş Günü &amp; İzin Düşümü:</strong> Ay içi mesai günleri hesaplanır; personelin resmi
+                onaylı izinleri düşülerek net çalışma günleri gösterilir.</li>
+              <li><strong>Net Fiili Çalışma Saati:</strong> Fiilen radyasyonlu alanda icra edilen nöbet ve mesai
+                saatlerinin net toplamıdır.</li>
+              <li><strong>Hesaplanan Şua İzni (Gün):</strong> Her 50 fiili radyasyon saatine 1 gün olarak hesaplanır
+                (Yıllık 30 gün tavanı aşıldığında sistem otomatik tavan kısıtı koyar).</li>
             </ul>
 
             <!-- Alert: Onaysız İzin Uyarısı -->
-            <div class="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 text-amber-900 dark:text-amber-200 space-y-1">
+            <div
+              class="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 text-amber-900 dark:text-amber-200 space-y-1">
               <div class="font-bold flex items-center gap-2">
-                <svg class="w-4 h-4 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                <svg class="w-4 h-4 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
                 <span>Onaysız İzin Güvenlik Uyarısı (FhzOnaysizIzinUyariDialog)</span>
               </div>
               <p class="text-xs leading-relaxed">
-                Eğer dönem içinde henüz resmi onayı tamamlanmamış (taslak veya ön onaylı) izinler varsa sistem yasal hatayı önlemek adına hesaplamayı durdurur. Bu durumda <strong>İzin Yönetimi</strong> sayfasına geçerek izinlere resmi onay verdikten sonra hesaplama ekranına dönünüz.
+                Eğer dönem içinde henüz resmi onayı tamamlanmamış (taslak veya ön onaylı) izinler varsa sistem yasal
+                hatayı önlemek adına hesaplamayı durdurur. Bu durumda <strong>İzin Yönetimi</strong> sayfasına geçerek
+                izinlere resmi onay verdikten sonra hesaplama ekranına dönünüz.
               </p>
             </div>
 
             <p>
-              Sonuçlar doğrulandığında üst araç çubuğundaki <strong>[Dönemi Kilitle]</strong> butonuna tıklayın. Sistem bir önceki dönemin kilitli olup olmadığını kontrol eder ve dönemi yetkisiz değişikliklere kapatır.
+              Sonuçlar doğrulandığında üst araç çubuğundaki <strong>[Dönemi Kilitle]</strong> butonuna tıklayın. Sistem
+              bir önceki dönemin kilitli olup olmadığını kontrol eder ve dönemi yetkisiz değişikliklere kapatır.
             </p>
           </div>
         </div>
 
         <!-- Adım D: Yıllık Kilit ve Puantaj Raporu -->
-        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+        <div
+          class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
           <div class="flex items-center gap-3">
-            <span class="w-8 h-8 rounded-full bg-cyan-500 text-white font-bold flex items-center justify-center font-mono">4</span>
+            <span
+              class="w-8 h-8 rounded-full bg-cyan-500 text-white font-bold flex items-center justify-center font-mono">4</span>
             <h3 class="text-lg font-bold text-slate-900 dark:text-white">Yıllık Kilit ve SGK Puantaj Raporu Alma</h3>
           </div>
           <div class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
             <p>
-              Yılın 12 dönemi de tamamlandıktan sonra, Sistem Yöneticisi (Admin) tarafından <strong>[Yıllık Kilidi Kapat]</strong> butonuna basılarak tüm yıl dondurulur ve Şua izinleri İzin Modülü'ne aktarılmak üzere kesinleştirilir.
+              Yılın 12 dönemi de tamamlandıktan sonra, Sistem Yöneticisi (Admin) tarafından <strong>[Yıllık Kilidi
+                Kapat]</strong> butonuna basılarak tüm yıl dondurulur ve Şua izinleri İzin Modülü'ne aktarılmak üzere
+              kesinleştirilir.
             </p>
             <p>
-              <strong>3. Adım: Puantaj Raporu</strong> sekmesine geçildiğinde SGK ve mutemetlik onaylı nihai icmal tablosu açılır. <strong>[Excel İndir]</strong> butonuna basılarak resmi bildirim cetveli bilgisayara aktarılır.
+              <strong>3. Adım: Puantaj Raporu</strong> sekmesine geçildiğinde SGK ve mutemetlik onaylı nihai icmal
+              tablosu açılır. <strong>[Excel İndir]</strong> butonuna basılarak resmi bildirim cetveli bilgisayara
+              aktarılır.
             </p>
           </div>
         </div>
@@ -554,7 +754,8 @@ graph TD
         </h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div
+            class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
             <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <span class="p-2 rounded-xl bg-cyan-100 dark:bg-cyan-950 text-cyan-600 dark:text-cyan-400">🖥️</span>
               <span>Masaüstü Uygulaması (Yetkili Merkez)</span>
@@ -568,25 +769,33 @@ graph TD
             </ul>
           </div>
 
-          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div
+            class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
             <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <span class="p-2 rounded-xl bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400">🌐</span>
+              <span
+                class="p-2 rounded-xl bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400">🌐</span>
               <span>Web & Mobil Portal (Şua Karnesi & Risk İzleme)</span>
             </h3>
             <div class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
-              <p>Personeller ve idareciler tarayıcı üzerinden <strong>Personel Şua Karnesi</strong> paneline erişerek radyasyon yükünü takip eder:</p>
+              <p>Personeller ve idareciler tarayıcı üzerinden <strong>Personel Şua Karnesi</strong> paneline erişerek
+                radyasyon yükünü takip eder:</p>
               <div class="space-y-2 text-xs">
-                <div class="p-2.5 rounded-xl bg-rose-50 dark:bg-rose-950/50 border border-rose-200 dark:border-rose-800 flex items-center justify-between">
+                <div
+                  class="p-2.5 rounded-xl bg-rose-50 dark:bg-rose-950/50 border border-rose-200 dark:border-rose-800 flex items-center justify-between">
                   <span class="font-bold text-rose-800 dark:text-rose-300">🔴 Yüksek Risk (Kalan &ge; 20 Gün)</span>
-                  <span class="text-rose-600 dark:text-rose-400">İzinlerin yanma riski yüksek, acil planlama gerekli</span>
+                  <span class="text-rose-600 dark:text-rose-400">İzinlerin yanma riski yüksek, acil planlama
+                    gerekli</span>
                 </div>
-                <div class="p-2.5 rounded-xl bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800 flex items-center justify-between">
+                <div
+                  class="p-2.5 rounded-xl bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800 flex items-center justify-between">
                   <span class="font-bold text-amber-800 dark:text-amber-300">🟡 Orta Risk (Kalan 1 - 19 Gün)</span>
                   <span class="text-amber-600 dark:text-amber-400">Yıl sonuna kadar dengeli kullanım önerilir</span>
                 </div>
-                <div class="p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 flex items-center justify-between">
+                <div
+                  class="p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 flex items-center justify-between">
                   <span class="font-bold text-emerald-800 dark:text-emerald-300">🟢 Uyumlu (Kalan 0 Gün)</span>
-                  <span class="text-emerald-600 dark:text-emerald-400">Hak edilen tüm Şua izinleri başarıyla kullandırıldı</span>
+                  <span class="text-emerald-600 dark:text-emerald-400">Hak edilen tüm Şua izinleri başarıyla
+                    kullandırıldı</span>
                 </div>
               </div>
             </div>
@@ -608,8 +817,10 @@ graph TD
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
           <!-- Mit 1 -->
-          <div class="rounded-2xl border border-red-200 dark:border-red-900/40 bg-gradient-to-br from-red-50/50 via-white to-slate-50 dark:from-red-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
-            <div class="flex items-center gap-2 text-red-600 dark:text-red-400 font-bold text-xs uppercase tracking-wider mb-2">
+          <div
+            class="rounded-2xl border border-red-200 dark:border-red-900/40 bg-gradient-to-br from-red-50/50 via-white to-slate-50 dark:from-red-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
+            <div
+              class="flex items-center gap-2 text-red-600 dark:text-red-400 font-bold text-xs uppercase tracking-wider mb-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -626,21 +837,26 @@ graph TD
                 Doğru Yasal Kural:
               </span>
               <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                Sağlık Bakanlığı baremleri ve Danıştay içtihatları gereğince bir takvim yılında kazanılabilecek azami Şua İzni <strong>30 gündür</strong>. 30 günü aşan hesaplamalar mevzuat tavanına sabitlenir.
+                Sağlık Bakanlığı baremleri ve Danıştay içtihatları gereğince bir takvim yılında kazanılabilecek azami
+                Şua İzni <strong>30 gündür</strong>. 30 günü aşan hesaplamalar mevzuat tavanına sabitlenir.
               </p>
             </div>
           </div>
 
           <!-- Mit 2 -->
-          <div class="rounded-2xl border border-amber-200 dark:border-amber-900/40 bg-gradient-to-br from-amber-50/50 via-white to-slate-50 dark:from-amber-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
-            <div class="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wider mb-2">
+          <div
+            class="rounded-2xl border border-amber-200 dark:border-amber-900/40 bg-gradient-to-br from-amber-50/50 via-white to-slate-50 dark:from-amber-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
+            <div
+              class="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wider mb-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
               <span>Yaygın Yanılgı (Mit 2)</span>
             </div>
             <p class="text-xs font-semibold text-slate-800 dark:text-slate-100 mb-3 italic">
-              "Personel yıllık izinli veya sağlık raporlu olduğu günlerde de Fiili Hizmet Zammı (yıpranma) kazanmaya devam eder."
+              "Personel yıllık izinli veya sağlık raporlu olduğu günlerde de Fiili Hizmet Zammı (yıpranma) kazanmaya
+              devam eder."
             </p>
             <div class="border-t border-amber-200/60 dark:border-amber-900/40 pt-3">
               <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 mb-1">
@@ -650,16 +866,20 @@ graph TD
                 Doğru Yasal Kural:
               </span>
               <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                5510 Sayılı Kanunun 40. maddesi uyarınca yıpranma payı yalnızca personelin radyasyon kaynağıyla <em>fiilen çalıştığı</em> günler için verilir. İzin ve rapor günleri puantajdan kesinlikle düşülür.
+                5510 Sayılı Kanunun 40. maddesi uyarınca yıpranma payı yalnızca personelin radyasyon kaynağıyla
+                <em>fiilen çalıştığı</em> günler için verilir. İzin ve rapor günleri puantajdan kesinlikle düşülür.
               </p>
             </div>
           </div>
 
           <!-- Mit 3 -->
-          <div class="rounded-2xl border border-blue-200 dark:border-blue-900/40 bg-gradient-to-br from-blue-50/50 via-white to-slate-50 dark:from-blue-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
-            <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold text-xs uppercase tracking-wider mb-2">
+          <div
+            class="rounded-2xl border border-blue-200 dark:border-blue-900/40 bg-gradient-to-br from-blue-50/50 via-white to-slate-50 dark:from-blue-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
+            <div
+              class="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold text-xs uppercase tracking-wider mb-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <span>Yaygın Yanılgı (Mit 3)</span>
             </div>
@@ -674,7 +894,8 @@ graph TD
                 Doğru Yasal Kural:
               </span>
               <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                SGK bildirim bütünlüğü gereği dönemler atlanarak kilitlenemez. RADPYS kural motoru, bir önceki ay kilitlenmeden cari ayın kilitlenmesine kesinlikle izin vermez.
+                SGK bildirim bütünlüğü gereği dönemler atlanarak kilitlenemez. RADPYS kural motoru, bir önceki ay
+                kilitlenmeden cari ayın kilitlenmesine kesinlikle izin vermez.
               </p>
             </div>
           </div>
@@ -688,33 +909,44 @@ graph TD
         </h2>
 
         <div class="space-y-3">
-          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+          <div
+            class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
             <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <span class="text-cyan-600 dark:text-cyan-400">Soru 1:</span>
-              <span>Bir dönemi kilitlemek istediğimde "Bir önceki dönem kilitlenmeden bu dönem kilitlenemez" hatası alıyorum. Neden?</span>
+              <span>Bir dönemi kilitlemek istediğimde "Bir önceki dönem kilitlenmeden bu dönem kilitlenemez" hatası
+                alıyorum. Neden?</span>
             </h3>
             <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Mevzuat ve SGK denetim bütünlüğü gereğince dönemler atlanarak kilitlenemez. Önceki aylara ait eksik puantajların tamamlanıp kilitlenmesi zorunludur. Geçmiş ayları sırasıyla kilitleyerek cari aya ulaşabilirsiniz.
+              Mevzuat ve SGK denetim bütünlüğü gereğince dönemler atlanarak kilitlenemez. Önceki aylara ait eksik
+              puantajların tamamlanıp kilitlenmesi zorunludur. Geçmiş ayları sırasıyla kilitleyerek cari aya
+              ulaşabilirsiniz.
             </p>
           </div>
 
-          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+          <div
+            class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
             <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <span class="text-cyan-600 dark:text-cyan-400">Soru 2:</span>
-              <span>Personelin o yılki fiili radyasyon çalışması 1.800 saat (36 gün Şua) çıktı, fakat sistem 30 gün yazdı. Bir hesaplama hatası mı var?</span>
+              <span>Personelin o yılki fiili radyasyon çalışması 1.800 saat (36 gün Şua) çıktı, fakat sistem 30 gün
+                yazdı. Bir hesaplama hatası mı var?</span>
             </h3>
             <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Hayır, bu bir hata değildir. Sağlık Bakanlığı'nın mevzuat baremleri uyarınca bir takvim yılı içerisinde kazanılabilecek Şua İzni toplamı <strong>azami 30 gün</strong> ile sınırlandırılmıştır. 30 günü aşan kısımlarda sistem yasal tavan kısıtını uygular.
+              Hayır, bu bir hata değildir. Sağlık Bakanlığı'nın mevzuat baremleri uyarınca bir takvim yılı içerisinde
+              kazanılabilecek Şua İzni toplamı <strong>azami 30 gün</strong> ile sınırlandırılmıştır. 30 günü aşan
+              kısımlarda sistem yasal tavan kısıtını uygular.
             </p>
           </div>
 
-          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+          <div
+            class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
             <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <span class="text-cyan-600 dark:text-cyan-400">Soru 3:</span>
               <span>Yıllık Kilidi Kapat butonunu neden göremiyorum veya tıklayamıyorum?</span>
             </h3>
             <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Yıllık kilit işlemi, geçmişe dönük tüm puantajı ve Şua hakedişlerini kalıcı olarak dondurduğundan (RED-09 emniyet kilidi), yalnızca <strong>Sistem Yöneticisi (Admin)</strong> veya <strong>Süpervizör</strong> rolüne sahip kullanıcılar tarafından yürütülebilir.
+              Yıllık kilit işlemi, geçmişe dönük tüm puantajı ve Şua hakedişlerini kalıcı olarak dondurduğundan (RED-09
+              emniyet kilidi), yalnızca <strong>Sistem Yöneticisi (Admin)</strong> veya <strong>Süpervizör</strong>
+              rolüne sahip kullanıcılar tarafından yürütülebilir.
             </p>
           </div>
         </div>
@@ -723,13 +955,19 @@ graph TD
       <!-- NAVIGATION FOOTER -->
       <footer class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800">
         <div class="grid sm:grid-cols-2 gap-4">
-          <a href="10_nobet_borc_alacak_ve_fazla_mesai.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition group">
+          <a href="10_nobet_borc_alacak_ve_fazla_mesai.html"
+            class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition group">
             <span class="text-xs font-mono uppercase text-slate-400 block mb-1">← Önceki Doküman</span>
-            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">10. Nöbet Borç / Alacak & Fazla Mesai</span>
+            <span
+              class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">10.
+              Nöbet Borç / Alacak & Fazla Mesai</span>
           </a>
-          <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition text-right group">
+          <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html"
+            class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition text-right group">
             <span class="text-xs font-mono uppercase text-slate-400 block mb-1">Sonraki Doküman →</span>
-            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">12. Dozimetre Takibi & RD.F43</span>
+            <span
+              class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">12.
+              Dozimetre Takibi & RD.F43</span>
           </a>
         </div>
       </footer>
@@ -739,27 +977,48 @@ graph TD
     <!-- RIGHT ASIDE: TABLE OF CONTENTS -->
     <aside class="hidden xl:block w-64 shrink-0 py-8 pl-6 border-l border-slate-200 dark:border-slate-800">
       <div class="sticky top-24 space-y-4">
-        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-3">Bu Sayfada</span>
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-3">Bu
+          Sayfada</span>
         <ul class="space-y-2.5 text-sm">
-          <li><a href="#genel-bakis" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">1. Genel Bakış & Yasal Çerçeve</a></li>
-          <li><a href="#hizli-recete" class="hover:text-cyan-600 transition block text-cyan-600 dark:text-cyan-400 font-semibold">⚡ 20s Hızlı Karar Reçetesi</a></li>
-          <li><a href="#kpi-kartlari" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">2. Temel Eşikler & Yasal Baremler</a></li>
-          <li><a href="#is-akisi-semasi" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">3. 3 Adımlı Sihirbaz İş Akışı</a></li>
-          <li><a href="#5n1k-tablosu" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">4. 5N1K Bileşen Envanteri</a></li>
-          <li><a href="#kullanim-rehberi" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">5. Adım Adım İşlem Rehberi</a></li>
-          <li><a href="#hibrit-entegrasyon" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">6. Web Portalı Şua Karnesi</a></li>
-          <li><a href="#mit-avcilari" class="hover:text-cyan-600 transition block text-amber-600 dark:text-amber-400 font-semibold">🕵️ Mit Avcısı & Kritik Kurallar</a></li>
-          <li><a href="#sss-ve-sorun-giderme" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">7. Sıkça Sorulan Sorular & Kilitler</a></li>
+          <li><a href="#genel-bakis" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">1.
+              Genel Bakış & Yasal Çerçeve</a></li>
+          <li><a href="#hizli-recete"
+              class="hover:text-cyan-600 transition block text-cyan-600 dark:text-cyan-400 font-semibold">⚡ 20s Hızlı
+              Karar Reçetesi</a></li>
+          <li><a href="#kpi-kartlari" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">2.
+              Temel Eşikler & Yasal Baremler</a></li>
+          <li><a href="#is-akisi-semasi"
+              class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">3. 3 Adımlı Sihirbaz İş
+              Akışı</a></li>
+          <li><a href="#5n1k-tablosu" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">4.
+              5N1K Bileşen Envanteri</a></li>
+          <li><a href="#kullanim-rehberi"
+              class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">5. Adım Adım İşlem
+              Rehberi</a></li>
+          <li><a href="#hibrit-entegrasyon"
+              class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">6. Web Portalı Şua
+              Karnesi</a></li>
+          <li><a href="#mit-avcilari"
+              class="hover:text-cyan-600 transition block text-amber-600 dark:text-amber-400 font-semibold">🕵️ Mit
+              Avcısı & Kritik Kurallar</a></li>
+          <li><a href="#sss-ve-sorun-giderme"
+              class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">7. Sıkça Sorulan Sorular &
+              Kilitler</a></li>
         </ul>
 
         <!-- Quick Document Info Box -->
-        <div class="p-4 rounded-2xl bg-cyan-50/60 dark:bg-cyan-950/30 border border-cyan-200/80 dark:border-cyan-800/60 space-y-2.5 mt-6">
+        <div
+          class="p-4 rounded-2xl bg-cyan-50/60 dark:bg-cyan-950/30 border border-cyan-200/80 dark:border-cyan-800/60 space-y-2.5 mt-6">
           <div class="flex items-center gap-2 text-cyan-800 dark:text-cyan-300 font-bold text-xs">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
             <span>Kurumsal Esneklik Notu</span>
           </div>
           <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-            Sistem varsayılanı olarak <strong>15-14 SGK dönemini</strong> kullanır. Kurumunuzun mutemetlik takvimine göre bu aralık <em>Genel Ayarlar &gt; Fiili Hizmet Ayarları</em> sekmesinden kolayca değiştirilebilir.
+            Sistem varsayılanı olarak <strong>15-14 SGK dönemini</strong> kullanır. Kurumunuzun mutemetlik takvimine
+            göre bu aralık <em>Genel Ayarlar &gt; Fiili Hizmet Ayarları</em> sekmesinden kolayca değiştirilebilir.
           </p>
         </div>
       </div>
@@ -768,7 +1027,8 @@ graph TD
   </div>
 
   <!-- FOOTER -->
-  <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
+  <footer
+    class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
       <p>© 2024–2026 RADPYS Geliştirme Ekibi — Sağlık Bilgi Güvenliği & KVKK Standartları ile Korunmaktadır.</p>
     </div>
@@ -807,4 +1067,5 @@ graph TD
     }
   </script>
 </body>
+
 </html>

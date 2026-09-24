@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RADPYS V4 — Bütünleşik İlişkisel Şema Animasyonu</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+        body {
+            background-color: #080c16;
+            color: #e2e8f0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+        }
+        #canvas {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+            cursor: grab;
+        }
+        #canvas:active {
+            cursor: grabbing;
+        }
+
+        /* Üst Başlık & Kontrol Paneli */
+        .hud-panel {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(13, 20, 36, 0.88);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+            max-width: 430px;
+            pointer-events: auto;
+            z-index: 10;
+        }
+        .hud-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #38bdf8;
+            margin-bottom: 6px;
+        }
+        .badge {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            font-weight: 600;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+        .hud-desc {
+            font-size: 12px;
+            color: #94a3b8;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .controls-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        button {
+            background: #1e293b;
+            color: #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 7px 12px;
+            font-size: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+        button:hover {
+            background: #334155;
+            border-color: #38bdf8;
+            color: #fff;
+        }
+        button.active {
+            background: #0284c7;
+            border-color: #38bdf8;
+            color: #fff;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .search-input {
+            width: 100%;
+            background: #0f172a;
+            border: 1px solid #334155;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #f1f5f9;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .search-input:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 8px rgba(56, 189, 248, 0.2);
+        }
+
+        /* Sağ Alt Modül Lejantı */
+        .legend-panel {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(13, 20, 36, 0.88);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 14px 18px;
+            font-size: 11px;
+            z-index: 10;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+        }
+        .legend-title {
+            font-weight: 700;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 10px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 5px;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+        .legend-color {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        /* Sağ Üst İstatistik */
+        .stats-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(13, 20, 36, 0.88);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-size: 12px;
+            z-index: 10;
+            display: flex;
+            gap: 20px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #38bdf8;
+        }
+        .stat-label {
+            font-size: 10px;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+
+        /* Node Detay Tooltip */
+        #tooltip {
+            position: absolute;
+            display: none;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid #38bdf8;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 12px;
+            pointer-events: none;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            max-width: 280px;
+        }
+        #tooltip .tt-title {
+            font-weight: 700;
+            color: #38bdf8;
+            margin-bottom: 4px;
+            font-size: 13px;
+        }
+        #tooltip .tt-group {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-bottom: 6px;
+        }
+        #tooltip .tt-conns {
+            font-size: 11px;
+            color: #cbd5e1;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HUD Kontrolleri -->
+    <div class="hud-panel">
+        <div class="hud-title">
+            <span>⚡ RADPYS V4 Şema Animasyonu</span>
+            <span class="badge">Bütünleşik Model</span>
+        </div>
+        <div class="hud-desc">
+            Veritabanındaki tüm tablolar tek bir bütünsel ilişkisel ağ simülasyonunda canlı olarak çalıştırılmaktadır.
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" class="search-input" placeholder="Tablo adı ara (örn: personeller, nobet...)" />
+        </div>
+
+        <div class="slider-box" style="margin-bottom: 12px; background: rgba(15, 23, 42, 0.6); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.08);">
+            <div style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 6px;">
+                <span>Alan Genişliği / Yayılımı:</span>
+                <span id="lblSpread" style="color: #38bdf8; font-weight: 700;">%180</span>
+            </div>
+            <input type="range" id="sliderSpread" min="80" max="320" value="180" style="width: 100%; accent-color: #38bdf8; cursor: pointer;">
+        </div>
+
+        <div class="controls-row">
+            <button id="btnOrbit" class="active">🎥 Sinematik Kamera (Açık)</button>
+            <button id="btnParticles" class="active">✨ Parçacık Akışı</button>
+            <button id="btnPhysics" class="active">⏸️ Fizik Duraklat</button>
+            <button id="btnReset">🎯 Ortala</button>
+        </div>
+        <div style="font-size: 11px; color: #64748b;">
+            💡 <b>İpucu:</b> Genişlik çubuğu ile düğümleri istediğiniz kadar açabilir, fare tekerleğiyle yakınlaşabilirsiniz.
+        </div>
+    </div>
+
+    <!-- İstatistik Sayacı -->
+    <div class="stats-panel">
+        <div class="stat-item">
+            <div class="stat-value" id="valTables">0</div>
+            <div class="stat-label">Toplam Tablo</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value" id="valRelations">0</div>
+            <div class="stat-label">İlişki (Bağ)</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value" id="valModules">8</div>
+            <div class="stat-label">Modül Grubu</div>
+        </div>
+    </div>
+
+    <!-- Modül Grubu Lejantı -->
+    <div class="legend-panel">
+        <div class="legend-title">Modül Grupları</div>
+        <div class="legend-item"><span class="legend-color" style="background: #38bdf8;"></span> Personel & İK & Sağlık</div>
+        <div class="legend-item"><span class="legend-color" style="background: #818cf8;"></span> Organizasyon & Mekan</div>
+        <div class="legend-item"><span class="legend-color" style="background: #f59e0b;"></span> Nöbet & Vardiya & İzin</div>
+        <div class="legend-item"><span class="legend-color" style="background: #10b981;"></span> Fiili Hizmet (FHZ / Şua)</div>
+        <div class="legend-item"><span class="legend-color" style="background: #ef4444;"></span> Tıbbi Cihaz & Kalibrasyon</div>
+        <div class="legend-item"><span class="legend-color" style="background: #ec4899;"></span> Koruyucu Ekipman (RKE/KKD)</div>
+        <div class="legend-item"><span class="legend-color" style="background: #14b8a6;"></span> Dozimetri & Ortam Dozu</div>
+        <div class="legend-item"><span class="legend-color" style="background: #a855f7;"></span> Çekirdek, RBAC & Kasa</div>
+    </div>
+
+    <div id="tooltip">
+        <div class="tt-title">tablo_adi</div>
+        <div class="tt-group">Modül Grubu</div>
+        <div class="tt-conns">Bağlantılar: 0</div>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <script>
+        // ====================================================================
+        // 1. ŞEMA VERİLERİ (BÜTÜNLEŞİK TABLOLAR & İLİŞKİLER)
+        // ====================================================================
+        const GROUPS = {
+            PER: { name: 'Personel & İK', color: '#38bdf8' },
+            ORG: { name: 'Organizasyon & Mekan', color: '#818cf8' },
+            NOB: { name: 'Nöbet & Vardiya', color: '#f59e0b' },
+            FHZ: { name: 'Fiili Hizmet & Şua', color: '#10b981' },
+            CIH: { name: 'Tıbbi Cihaz & QC', color: '#ef4444' },
+            RKE: { name: 'RKE & KKD', color: '#ec4899' },
+            DOZ: { name: 'Dozimetri & Ortam', color: '#14b8a6' },
+            COR: { name: 'Çekirdek & Güvenlik', color: '#a855f7' }
+        };
+
+        const rawNodes = [
+            // Organizasyon
+            { id: 'departmanlar', group: 'ORG', isCore: true, radius: 25 },
+            { id: 'krokiler', group: 'ORG', radius: 14 },
+            { id: 'departman_krokileri', group: 'ORG', radius: 12 },
+            { id: 'fiziksel_konumlar', group: 'ORG', radius: 16 },
+            { id: 'anabilim_dali_kategori_sorumlulari', group: 'ORG', radius: 13 },
+
+            // Personel & İK & Sağlık
+            { id: 'personeller', group: 'PER', isCore: true, radius: 28 },
+            { id: 'unvanlar', group: 'PER', radius: 16 },
+            { id: 'personel_belgeler', group: 'PER', radius: 13 },
+            { id: 'personel_yakinlari', group: 'PER', radius: 12 },
+            { id: 'personel_gecmisi', group: 'PER', radius: 12 },
+            { id: 'personel_calisma_kisitlari', group: 'PER', radius: 14 },
+            { id: 'rgs_gorevlendirmeler', group: 'PER', radius: 15 },
+            { id: 'personel_saglik_muayene', group: 'PER', radius: 16 },
+            { id: 'saglik_muayene_revizyon_log', group: 'PER', radius: 11 },
+            { id: 'saglik_erisim_log', group: 'PER', radius: 11 },
+            { id: 'personel_egitimler', group: 'PER', radius: 12 },
+            { id: 'egitim_katalogu', group: 'PER', radius: 15 },
+            { id: 'egitim_atamalari', group: 'PER', radius: 14 },
+            { id: 'soru_bankasi', group: 'PER', radius: 13 },
+            { id: 'egitim_sinav_sorulari', group: 'PER', radius: 12 },
+            { id: 'egitim_sorulari', group: 'PER', radius: 11 },
+            { id: 'egitim_kategorileri', group: 'PER', radius: 11 },
+            { id: 'personel_hizmet_ici_egitim', group: 'PER', radius: 14 },
+
+            // Nöbet, Vardiya & İzin
+            { id: 'nobet_planlari', group: 'NOB', isCore: true, radius: 22 },
+            { id: 'nobet_cizelgesi', group: 'NOB', isCore: true, radius: 26 },
+            { id: 'nobet_turleri', group: 'NOB', radius: 15 },
+            { id: 'nobet_degisim_havuzu', group: 'NOB', radius: 16 },
+            { id: 'nobet_devirler', group: 'NOB', radius: 14 },
+            { id: 'nobet_mazeret_log', group: 'NOB', radius: 14 },
+            { id: 'nobet_mazeret_log_detay', group: 'NOB', radius: 12 },
+            { id: 'nobet_ayarlari', group: 'NOB', radius: 12 },
+            { id: 'nobet_takvim_kurallari', group: 'NOB', radius: 11 },
+            { id: 'nobet_kisitlari', group: 'NOB', radius: 13 },
+            { id: 'nobet_yasal_kisitlar', group: 'NOB', radius: 12 },
+            { id: 'nobet_gecici_personel', group: 'NOB', radius: 12 },
+            { id: 'nobet_aylik_ozet', group: 'NOB', radius: 13 },
+            { id: 'personel_nobet_borc_alacak', group: 'NOB', radius: 14 },
+            { id: 'personel_nobet_istekleri', group: 'NOB', radius: 14 },
+            { id: 'personel_izinler', group: 'NOB', isCore: true, radius: 18 },
+            { id: 'izin_turleri', group: 'NOB', radius: 14 },
+            { id: 'izin_haklari', group: 'NOB', radius: 14 },
+            { id: 'izin_gecmisi', group: 'NOB', radius: 11 },
+            { id: 'tatil_takvimi', group: 'NOB', radius: 12 },
+
+            // Fiili Hizmet (FHZ / Şua)
+            { id: 'personel_fiili_gorev_dagilim', group: 'FHZ', radius: 13 },
+            { id: 'personel_fiili_hizmet_aylik', group: 'FHZ', isCore: true, radius: 16 },
+            { id: 'fiili_hizmet_ozet', group: 'FHZ', radius: 13 },
+            { id: 'personel_sua_hakedis_aylik', group: 'FHZ', radius: 14 },
+            { id: 'fiili_hizmet_donem_kilitleri', group: 'FHZ', radius: 12 },
+            { id: 'fiili_hizmet_yillik_kilitler', group: 'FHZ', radius: 11 },
+
+            // Tıbbi Cihaz & QC & Bakım
+            { id: 'cihazlar', group: 'CIH', isCore: true, radius: 24 },
+            { id: 'cihaz_lisanslari', group: 'CIH', radius: 16 },
+            { id: 'cihaz_bakim_garanti', group: 'CIH', radius: 14 },
+            { id: 'cihaz_konumlari', group: 'CIH', radius: 13 },
+            { id: 'cihaz_dokumanlari', group: 'CIH', radius: 13 },
+            { id: 'cihaz_arizalar', group: 'CIH', isCore: true, radius: 16 },
+            { id: 'cihaz_kalite_kontrolleri', group: 'CIH', radius: 15 },
+            { id: 'kurumsal_tesis_lisanslari', group: 'CIH', radius: 13 },
+            { id: 'personel_cihaz_zimmet', group: 'CIH', radius: 13 },
+
+            // Koruyucu Ekipman (RKE / KKD)
+            { id: 'rke_envanter', group: 'RKE', isCore: true, radius: 22 },
+            { id: 'rke_muayeneler', group: 'RKE', isCore: true, radius: 18 },
+            { id: 'rke_muayene_kusurlar', group: 'RKE', radius: 14 },
+            { id: 'rke_muayene_belgeleri', group: 'RKE', radius: 13 },
+            { id: 'rke_zimmet_hareketleri', group: 'RKE', radius: 14 },
+            { id: 'rke_karar_esikleri', group: 'RKE', radius: 12 },
+
+            // Dozimetri & Ortam Dozu & Olay
+            { id: 'personel_dozimetre', group: 'DOZ', isCore: true, radius: 20 },
+            { id: 'dozimetre_aksiyonlar', group: 'DOZ', radius: 14 },
+            { id: 'arastirma_formu', group: 'DOZ', radius: 15 },
+            { id: 'kullanim_detay', group: 'DOZ', radius: 13 },
+            { id: 'ortam_olcum_noktalari', group: 'DOZ', radius: 16 },
+            { id: 'ortam_dozu_olcumleri', group: 'DOZ', radius: 15 },
+            { id: 'olay_bildirimler', group: 'DOZ', isCore: true, radius: 18 },
+            { id: 'olay_lookup', group: 'DOZ', radius: 13 },
+            { id: 'olay_dof_takip', group: 'DOZ', radius: 14 },
+            { id: 'olay_belgeler', group: 'DOZ', radius: 12 },
+            { id: 'olay_bildirim_gecmisi', group: 'DOZ', radius: 11 },
+            { id: 'olay_bildirim_secimler', group: 'DOZ', radius: 11 },
+
+            // Çekirdek, RBAC & Depo
+            { id: 'kullanicilar', group: 'COR', isCore: true, radius: 18 },
+            { id: 'roller', group: 'COR', radius: 16 },
+            { id: 'rol_yetkileri', group: 'COR', radius: 13 },
+            { id: 'rol_eylem_yetkileri', group: 'COR', radius: 12 },
+            { id: 'stored_files', group: 'COR', isCore: true, radius: 22 },
+            { id: 'files_audit', group: 'COR', radius: 12 },
+            { id: 'system_lookups', group: 'COR', isCore: true, radius: 20 },
+            { id: 'bildirimler', group: 'COR', radius: 14 },
+            { id: 'kullanici_bildirimler', group: 'COR', radius: 13 },
+            { id: 'kullanici_durum_gecmisi', group: 'COR', radius: 11 },
+            { id: 'giris_kayitlari', group: 'COR', radius: 12 },
+            { id: 'degisiklik_talepleri', group: 'COR', radius: 14 },
+            { id: 'moduller', group: 'COR', radius: 12 },
+            { id: 'program_ayarlari', group: 'COR', radius: 12 },
+            { id: 'program_ayarlari_gecmisi', group: 'COR', radius: 10 },
+            { id: 'app_metadata', group: 'COR', radius: 10 },
+            { id: 'rapor_sablon_alan_yapilandirmasi', group: 'COR', radius: 10 },
+            { id: 'rapor_sablon_marka_ayari', group: 'COR', radius: 10 },
+            { id: 'rapor_uretim_log', group: 'COR', radius: 11 }
+        ];
+
+        const rawLinks = [
+            // Departman
+            { source: 'departmanlar', target: 'krokiler' },
+            { source: 'departman_krokileri', target: 'departmanlar' },
+            { source: 'fiziksel_konumlar', target: 'departmanlar' },
+            { source: 'anabilim_dali_kategori_sorumlulari', target: 'departmanlar' },
+            { source: 'anabilim_dali_kategori_sorumlulari', target: 'personeller' },
+
+            // Personel
+            { source: 'personeller', target: 'departmanlar' },
+            { source: 'personeller', target: 'unvanlar' },
+            { source: 'personeller', target: 'fiziksel_konumlar' },
+            { source: 'personel_belgeler', target: 'personeller' },
+            { source: 'personel_yakinlari', target: 'personeller' },
+            { source: 'personel_gecmisi', target: 'personeller' },
+            { source: 'personel_calisma_kisitlari', target: 'personeller' },
+            { source: 'rgs_gorevlendirmeler', target: 'personeller' },
+            { source: 'rgs_gorevlendirmeler', target: 'personel_belgeler' },
+            { source: 'personel_saglik_muayene', target: 'personeller' },
+            { source: 'saglik_muayene_revizyon_log', target: 'personel_saglik_muayene' },
+            { source: 'saglik_erisim_log', target: 'personeller' },
+            { source: 'personel_egitimler', target: 'personeller' },
+
+            // LMS
+            { source: 'egitim_atamalari', target: 'egitim_katalogu' },
+            { source: 'egitim_atamalari', target: 'personeller' },
+            { source: 'egitim_sinav_sorulari', target: 'egitim_katalogu' },
+            { source: 'egitim_sinav_sorulari', target: 'soru_bankasi' },
+            { source: 'egitim_sorulari', target: 'egitim_katalogu' },
+            { source: 'personel_hizmet_ici_egitim', target: 'personeller' },
+            { source: 'personel_hizmet_ici_egitim', target: 'egitim_katalogu' },
+            { source: 'personel_hizmet_ici_egitim', target: 'stored_files' },
+            { source: 'egitim_katalogu', target: 'stored_files' },
+
+            // Nöbet & Vardiya
+            { source: 'nobet_planlari', target: 'departmanlar' },
+            { source: 'nobet_cizelgesi', target: 'nobet_planlari' },
+            { source: 'nobet_cizelgesi', target: 'personeller' },
+            { source: 'nobet_cizelgesi', target: 'nobet_turleri' },
+            { source: 'nobet_cizelgesi', target: 'cihazlar' },
+            { source: 'nobet_turleri', target: 'departmanlar' },
+            { source: 'nobet_degisim_havuzu', target: 'nobet_cizelgesi' },
+            { source: 'nobet_devirler', target: 'nobet_cizelgesi' },
+            { source: 'nobet_devirler', target: 'personeller' },
+            { source: 'nobet_mazeret_log', target: 'nobet_planlari' },
+            { source: 'nobet_mazeret_log', target: 'personeller' },
+            { source: 'nobet_mazeret_log_detay', target: 'nobet_mazeret_log' },
+            { source: 'nobet_mazeret_log_detay', target: 'nobet_cizelgesi' },
+            { source: 'nobet_gecici_personel', target: 'personeller' },
+            { source: 'nobet_gecici_personel', target: 'departmanlar' },
+            { source: 'nobet_aylik_ozet', target: 'personeller' },
+            { source: 'personel_nobet_borc_alacak', target: 'personeller' },
+            { source: 'personel_nobet_istekleri', target: 'personeller' },
+            { source: 'nobet_kisitlari', target: 'departmanlar' },
+
+            // İzinler
+            { source: 'personel_izinler', target: 'personeller' },
+            { source: 'personel_izinler', target: 'izin_turleri' },
+            { source: 'izin_haklari', target: 'personeller' },
+            { source: 'izin_haklari', target: 'izin_turleri' },
+            { source: 'izin_gecmisi', target: 'personel_izinler' },
+
+            // Fiili Hizmet
+            { source: 'personel_fiili_gorev_dagilim', target: 'personeller' },
+            { source: 'personel_fiili_gorev_dagilim', target: 'departmanlar' },
+            { source: 'personel_fiili_hizmet_aylik', target: 'personeller' },
+            { source: 'fiili_hizmet_ozet', target: 'personeller' },
+            { source: 'personel_sua_hakedis_aylik', target: 'personeller' },
+            { source: 'personel_fiili_hizmet_aylik', target: 'fiili_hizmet_donem_kilitleri' },
+
+            // Cihaz
+            { source: 'cihazlar', target: 'departmanlar' },
+            { source: 'cihazlar', target: 'fiziksel_konumlar' },
+            { source: 'cihazlar', target: 'system_lookups' },
+            { source: 'cihaz_konumlari', target: 'cihazlar' },
+            { source: 'cihaz_lisanslari', target: 'cihazlar' },
+            { source: 'cihaz_lisanslari', target: 'personeller' },
+            { source: 'cihaz_lisanslari', target: 'stored_files' },
+            { source: 'cihaz_bakim_garanti', target: 'cihazlar' },
+            { source: 'cihaz_bakim_garanti', target: 'stored_files' },
+            { source: 'cihaz_dokumanlari', target: 'cihazlar' },
+            { source: 'cihaz_dokumanlari', target: 'stored_files' },
+            { source: 'cihaz_dokumanlari', target: 'personeller' },
+            { source: 'cihaz_arizalar', target: 'cihazlar' },
+            { source: 'cihaz_arizalar', target: 'personeller' },
+            { source: 'cihaz_arizalar', target: 'stored_files' },
+            { source: 'cihaz_kalite_kontrolleri', target: 'cihazlar' },
+            { source: 'cihaz_kalite_kontrolleri', target: 'personeller' },
+            { source: 'cihaz_kalite_kontrolleri', target: 'stored_files' },
+            { source: 'kurumsal_tesis_lisanslari', target: 'stored_files' },
+            { source: 'personel_cihaz_zimmet', target: 'personeller' },
+            { source: 'personel_cihaz_zimmet', target: 'cihazlar' },
+
+            // RKE
+            { source: 'rke_envanter', target: 'system_lookups' },
+            { source: 'rke_envanter', target: 'departmanlar' },
+            { source: 'rke_envanter', target: 'fiziksel_konumlar' },
+            { source: 'rke_muayeneler', target: 'rke_envanter' },
+            { source: 'rke_muayene_kusurlar', target: 'rke_muayeneler' },
+            { source: 'rke_muayene_belgeleri', target: 'rke_muayeneler' },
+            { source: 'rke_muayene_belgeleri', target: 'stored_files' },
+            { source: 'rke_zimmet_hareketleri', target: 'rke_envanter' },
+            { source: 'rke_zimmet_hareketleri', target: 'departmanlar' },
+
+            // Dozimetri & Ortam
+            { source: 'personel_dozimetre', target: 'personeller' },
+            { source: 'dozimetre_aksiyonlar', target: 'personeller' },
+            { source: 'arastirma_formu', target: 'personeller' },
+            { source: 'kullanim_detay', target: 'arastirma_formu' },
+            { source: 'ortam_olcum_noktalari', target: 'departmanlar' },
+            { source: 'ortam_dozu_olcumleri', target: 'ortam_olcum_noktalari' },
+            { source: 'ortam_dozu_olcumleri', target: 'personeller' },
+
+            // Olay & DÖF
+            { source: 'olay_bildirimler', target: 'departmanlar' },
+            { source: 'olay_bildirimler', target: 'personeller' },
+            { source: 'olay_bildirimler', target: 'cihazlar' },
+            { source: 'olay_bildirimler', target: 'rke_envanter' },
+            { source: 'olay_bildirimler', target: 'olay_lookup' },
+            { source: 'olay_dof_takip', target: 'olay_bildirimler' },
+            { source: 'olay_belgeler', target: 'olay_bildirimler' },
+            { source: 'olay_bildirim_gecmisi', target: 'olay_bildirimler' },
+            { source: 'olay_bildirim_secimler', target: 'olay_bildirimler' },
+
+            // Çekirdek
+            { source: 'kullanicilar', target: 'roller' },
+            { source: 'kullanicilar', target: 'personeller' },
+            { source: 'rol_yetkileri', target: 'roller' },
+            { source: 'rol_eylem_yetkileri', target: 'roller' },
+            { source: 'files_audit', target: 'stored_files' },
+            { source: 'kullanici_bildirimler', target: 'kullanicilar' },
+            { source: 'kullanici_bildirimler', target: 'bildirimler' },
+            { source: 'kullanici_durum_gecmisi', target: 'kullanicilar' },
+            { source: 'giris_kayitlari', target: 'kullanicilar' },
+            { source: 'degisiklik_talepleri', target: 'kullanicilar' }
+        ];
+
+        document.getElementById('valTables').textContent = rawNodes.length;
+        document.getElementById('valRelations').textContent = rawLinks.length;
+
+        // ====================================================================
+        // 2. FİZİK & ANİMASYON MOTORU (CANVAS 2D)
+        // ====================================================================
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        let spreadScale = 1.8;
+        let camera = {
+            x: 0,
+            y: 0,
+            zoom: 0.52
+        };
+
+        let isOrbitActive = true;
+        let isParticlesActive = true;
+        let isPhysicsActive = true;
+        let orbitAngle = 0;
+        let filterQuery = '';
+
+        const groupAngles = {
+            PER: 0,
+            ORG: Math.PI * 0.25,
+            NOB: Math.PI * 0.5,
+            FHZ: Math.PI * 0.75,
+            CIH: Math.PI * 1.0,
+            RKE: Math.PI * 1.25,
+            DOZ: Math.PI * 1.5,
+            COR: Math.PI * 1.75
+        };
+
+        const nodeMap = new Map();
+        const nodes = rawNodes.map(n => {
+            const baseAngle = groupAngles[n.group] || 0;
+            // Çekirdek tablolar iç çemberde, modül tabloları ilgili sektörün dış yayında geniş dağılır
+            const dist = n.isCore ? (340 * spreadScale + (Math.random() - 0.5) * 60) : (580 * spreadScale + Math.random() * 260 * spreadScale);
+            const spread = (Math.random() - 0.5) * 0.65;
+            const node = {
+                ...n,
+                x: Math.cos(baseAngle + spread) * dist,
+                y: Math.sin(baseAngle + spread) * dist,
+                vx: 0,
+                vy: 0,
+                degree: 0,
+                color: GROUPS[n.group]?.color || '#38bdf8'
+            };
+            nodeMap.set(n.id, node);
+            return node;
+        });
+
+        const links = rawLinks.map(l => {
+            const source = nodeMap.get(l.source);
+            const target = nodeMap.get(l.target);
+            if (source) source.degree++;
+            if (target) target.degree++;
+            return { source, target, particles: [] };
+        }).filter(l => l.source && l.target);
+
+        links.forEach(l => {
+            for (let i = 0; i < 2; i++) {
+                l.particles.push({
+                    t: Math.random(),
+                    speed: 0.003 + Math.random() * 0.005
+                });
+            }
+        });
+
+        let draggedNode = null;
+        let hoveredNode = null;
+        let isPanning = false;
+        let startPan = { x: 0, y: 0 };
+
+        canvas.addEventListener('mousedown', (e) => {
+            const mouse = screenToWorld(e.clientX, e.clientY);
+            const hit = findNodeAt(mouse.x, mouse.y);
+            if (hit) {
+                draggedNode = hit;
+            } else {
+                isPanning = true;
+                startPan = { x: e.clientX - camera.x, y: e.clientY - camera.y };
+            }
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (draggedNode) {
+                const mouse = screenToWorld(e.clientX, e.clientY);
+                draggedNode.x = mouse.x;
+                draggedNode.y = mouse.y;
+                draggedNode.vx = 0;
+                draggedNode.vy = 0;
+            } else if (isPanning) {
+                camera.x = e.clientX - startPan.x;
+                camera.y = e.clientY - startPan.y;
+            } else {
+                const mouse = screenToWorld(e.clientX, e.clientY);
+                hoveredNode = findNodeAt(mouse.x, mouse.y);
+                updateTooltip(e.clientX, e.clientY, hoveredNode);
+            }
+        });
+
+        window.addEventListener('mouseup', () => {
+            draggedNode = null;
+            isPanning = false;
+        });
+
+        canvas.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const factor = e.deltaY < 0 ? 1.1 : 0.9;
+            camera.zoom = Math.max(0.15, Math.min(3.0, camera.zoom * factor));
+        });
+
+        function screenToWorld(sx, sy) {
+            return {
+                x: (sx - width / 2 - camera.x) / camera.zoom,
+                y: (sy - height / 2 - camera.y) / camera.zoom
+            };
+        }
+
+        function findNodeAt(wx, wy) {
+            for (let i = nodes.length - 1; i >= 0; i--) {
+                const n = nodes[i];
+                const dx = n.x - wx;
+                const dy = n.y - wy;
+                if (dx * dx + dy * dy < (n.radius + 6) * (n.radius + 6)) {
+                    return n;
+                }
+            }
+            return null;
+        }
+
+        const tooltip = document.getElementById('tooltip');
+        function updateTooltip(sx, sy, node) {
+            if (!node) {
+                tooltip.style.display = 'none';
+                return;
+            }
+            tooltip.style.display = 'block';
+            tooltip.style.left = (sx + 15) + 'px';
+            tooltip.style.top = (sy + 15) + 'px';
+            tooltip.querySelector('.tt-title').textContent = node.id;
+            tooltip.querySelector('.tt-title').style.color = node.color;
+            tooltip.querySelector('.tt-group').textContent = GROUPS[node.group]?.name || '';
+            tooltip.querySelector('.tt-conns').textContent = `Bağlantı Sayısı: ${node.degree} ilişki`;
+        }
+
+        function stepPhysics() {
+            if (!isPhysicsActive) return;
+
+            const repulsion = 5200 * spreadScale;
+            const springLength = 175 * spreadScale;
+            const springK = 0.022;
+            const centerGravity = 0.0005; // Merkeze çöküşü önlemek için minimuma indirildi
+
+            // 1. Düğümler arası itme ve çakışma önleme
+            for (let i = 0; i < nodes.length; i++) {
+                const n1 = nodes[i];
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const n2 = nodes[j];
+                    const dx = n2.x - n1.x;
+                    const dy = n2.y - n1.y;
+                    const distSq = dx * dx + dy * dy + 100;
+                    const dist = Math.sqrt(distSq);
+                    
+                    const force = repulsion / distSq;
+                    const fx = (dx / dist) * force;
+                    const fy = (dy / dist) * force;
+
+                    n1.vx -= fx;
+                    n1.vy -= fy;
+                    n2.vx += fx;
+                    n2.vy += fy;
+
+                    // Çakışma önleyici sert tampon (Collision buffer)
+                    const minDist = (n1.radius + n2.radius + 40) * (spreadScale / 1.6);
+                    if (dist < minDist) {
+                        const overlap = (minDist - dist) * 0.35;
+                        const ox = (dx / dist) * overlap;
+                        const oy = (dy / dist) * overlap;
+                        n1.vx -= ox;
+                        n1.vy -= oy;
+                        n2.vx += ox;
+                        n2.vy += oy;
+                    }
+                }
+            }
+
+            // 2. Yay bağ kuvveti
+            for (let i = 0; i < links.length; i++) {
+                const l = links[i];
+                const dx = l.target.x - l.source.x;
+                const dy = l.target.y - l.source.y;
+                const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+                const force = (dist - springLength) * springK;
+                const fx = (dx / dist) * force;
+                const fy = (dy / dist) * force;
+
+                l.source.vx += fx;
+                l.source.vy += fy;
+                l.target.vx -= fx;
+                l.target.vy -= fy;
+            }
+
+            // 3. Modül sektörel çekim merkezi ve sönümleme
+            for (let i = 0; i < nodes.length; i++) {
+                const n = nodes[i];
+                if (n === draggedNode) continue;
+
+                // Her grubun kendi radyal merkezine hafif çekimi (modül kümelenmesi)
+                const baseAngle = groupAngles[n.group] || 0;
+                const sectorDist = n.isCore ? (320 * spreadScale) : (580 * spreadScale);
+                const sectorX = Math.cos(baseAngle) * sectorDist;
+                const sectorY = Math.sin(baseAngle) * sectorDist;
+
+                n.vx += (sectorX - n.x) * 0.0012;
+                n.vy += (sectorY - n.y) * 0.0012;
+
+                // Yumuşak genel merkez çekimi
+                n.vx -= n.x * centerGravity;
+                n.vy -= n.y * centerGravity;
+
+                // Sürtünme sönümü
+                n.vx *= 0.86;
+                n.vy *= 0.86;
+
+                n.x += n.vx;
+                n.y += n.vy;
+            }
+        }
+
+        function draw() {
+            stepPhysics();
+
+            if (isOrbitActive && !draggedNode && !isPanning) {
+                orbitAngle += 0.0015;
+                camera.x = Math.sin(orbitAngle) * 30;
+                camera.y = Math.cos(orbitAngle * 0.7) * 20;
+            }
+
+            ctx.clearRect(0, 0, width, height);
+
+            ctx.save();
+            ctx.translate(width / 2 + camera.x, height / 2 + camera.y);
+            ctx.scale(camera.zoom, camera.zoom);
+
+            drawBackgroundGrid();
+
+            // Bağlantı Çizgileri
+            for (let i = 0; i < links.length; i++) {
+                const l = links[i];
+                const isHovered = hoveredNode && (hoveredNode === l.source || hoveredNode === l.target);
+                const isMatch = filterQuery && (l.source.id.includes(filterQuery) || l.target.id.includes(filterQuery));
+
+                ctx.beginPath();
+                ctx.moveTo(l.source.x, l.source.y);
+                ctx.lineTo(l.target.x, l.target.y);
+
+                if (isHovered || isMatch) {
+                    ctx.strokeStyle = '#38bdf8';
+                    ctx.lineWidth = 2.2;
+                    ctx.shadowColor = '#38bdf8';
+                    ctx.shadowBlur = 10;
+                } else {
+                    ctx.strokeStyle = 'rgba(148, 163, 184, 0.12)';
+                    ctx.lineWidth = 1.0;
+                    ctx.shadowBlur = 0;
+                }
+                ctx.stroke();
+
+                if (isParticlesActive && (isHovered || !hoveredNode)) {
+                    l.particles.forEach(p => {
+                        p.t += p.speed;
+                        if (p.t > 1) p.t = 0;
+                        const px = l.source.x + (l.target.x - l.source.x) * p.t;
+                        const py = l.source.y + (l.target.y - l.source.y) * p.t;
+
+                        ctx.beginPath();
+                        ctx.arc(px, py, isHovered ? 2.8 : 1.6, 0, Math.PI * 2);
+                        ctx.fillStyle = isHovered ? '#38bdf8' : l.source.color;
+                        ctx.shadowColor = l.source.color;
+                        ctx.shadowBlur = 6;
+                        ctx.fill();
+                    });
+                }
+            }
+
+            // Düğümler (Nodes)
+            for (let i = 0; i < nodes.length; i++) {
+                const n = nodes[i];
+                const isHovered = (hoveredNode === n);
+                const isConnected = hoveredNode && links.some(l => (l.source === n && l.target === hoveredNode) || (l.target === n && l.source === hoveredNode));
+                const isMatch = filterQuery && n.id.toLowerCase().includes(filterQuery);
+
+                let alpha = 1.0;
+                if (filterQuery && !isMatch) alpha = 0.2;
+                if (hoveredNode && !isHovered && !isConnected && !filterQuery) alpha = 0.25;
+
+                ctx.save();
+                ctx.globalAlpha = alpha;
+
+                if (n.isCore || isHovered || isMatch) {
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, n.radius + (isHovered ? 8 : 4), 0, Math.PI * 2);
+                    ctx.strokeStyle = n.color;
+                    ctx.lineWidth = isHovered ? 3 : 1.5;
+                    ctx.shadowColor = n.color;
+                    ctx.shadowBlur = isHovered ? 24 : 14;
+                    ctx.stroke();
+                }
+
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+                ctx.fillStyle = isHovered ? '#fff' : (n.isCore ? n.color : '#0f172a');
+                ctx.strokeStyle = n.color;
+                ctx.lineWidth = 2;
+                ctx.fill();
+                ctx.stroke();
+
+                if (!n.isCore && !isHovered) {
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, 3, 0, Math.PI * 2);
+                    ctx.fillStyle = n.color;
+                    ctx.fill();
+                }
+
+                // Tablo İsmi Etiketi (Kapsül Arka Planlı, Net Okunabilir)
+                const labelText = n.id;
+                ctx.font = `${n.isCore ? 'bold 11px' : '10px'} -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, monospace`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+
+                const textWidth = ctx.measureText(labelText).width;
+                const pillH = 17;
+                const pillY = n.y + n.radius + 12;
+
+                // Kapsül kutusu
+                ctx.beginPath();
+                if (ctx.roundRect) {
+                    ctx.roundRect(n.x - textWidth / 2 - 6, pillY - pillH / 2, textWidth + 12, pillH, 5);
+                } else {
+                    ctx.rect(n.x - textWidth / 2 - 6, pillY - pillH / 2, textWidth + 12, pillH);
+                }
+                ctx.fillStyle = isHovered ? 'rgba(14, 165, 233, 0.35)' : 'rgba(10, 15, 28, 0.82)';
+                ctx.strokeStyle = isHovered ? '#38bdf8' : 'rgba(255, 255, 255, 0.1)';
+                ctx.lineWidth = 1;
+                ctx.fill();
+                ctx.stroke();
+
+                // Metin
+                ctx.fillStyle = isHovered ? '#ffffff' : (n.isCore ? '#f8fafc' : '#cbd5e1');
+                ctx.fillText(labelText, n.x, pillY);
+
+                ctx.restore();
+            }
+
+            ctx.restore();
+            requestAnimationFrame(draw);
+        }
+
+        function hexToRgba(hex, alpha) {
+            if (!hex || hex[0] !== '#') return `rgba(56, 189, 248, ${alpha})`;
+            const r = parseInt(hex.slice(1, 3), 16) || 0;
+            const g = parseInt(hex.slice(3, 5), 16) || 0;
+            const b = parseInt(hex.slice(5, 7), 16) || 0;
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        }
+
+        function drawBackgroundGrid() {
+            ctx.save();
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.02)';
+            ctx.lineWidth = 1;
+            const size = 140;
+            const count = 30;
+
+            for (let x = -count * size; x <= count * size; x += size) {
+                ctx.beginPath();
+                ctx.moveTo(x, -count * size);
+                ctx.lineTo(x, count * size);
+                ctx.stroke();
+            }
+            for (let y = -count * size; y <= count * size; y += size) {
+                ctx.beginPath();
+                ctx.moveTo(-count * size, y);
+                ctx.lineTo(count * size, y);
+                ctx.stroke();
+            }
+
+            // Modül Sektör Haleleri & Başlıkları
+            Object.entries(groupAngles).forEach(([grpKey, angle]) => {
+                const grp = GROUPS[grpKey];
+                if (!grp) return;
+                const cx = Math.cos(angle) * (580 * spreadScale);
+                const cy = Math.sin(angle) * (580 * spreadScale);
+                const haloRadius = Math.max(100, 300 * (spreadScale / 1.6));
+
+                // Dairesel sektör aurası
+                const grad = ctx.createRadialGradient(cx, cy, 10, cx, cy, haloRadius);
+                grad.addColorStop(0, hexToRgba(grp.color, 0.07));
+                grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+                ctx.fillStyle = grad;
+                ctx.beginPath();
+                ctx.arc(cx, cy, haloRadius, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Sektör Etiketi
+                ctx.font = 'bold 15px -apple-system, BlinkMacSystemFont, Segoe UI, Roboto';
+                ctx.textAlign = 'center';
+                ctx.fillStyle = hexToRgba(grp.color, 0.35);
+                ctx.fillText(grp.name.toUpperCase(), cx, cy - (haloRadius * 0.75));
+            });
+
+            ctx.restore();
+        }
+
+        const btnOrbit = document.getElementById('btnOrbit');
+        btnOrbit.addEventListener('click', () => {
+            isOrbitActive = !isOrbitActive;
+            btnOrbit.classList.toggle('active', isOrbitActive);
+            btnOrbit.textContent = isOrbitActive ? '🎥 Sinematik Kamera (Açık)' : '🎥 Sinematik Kamera (Kapalı)';
+        });
+
+        const btnParticles = document.getElementById('btnParticles');
+        btnParticles.addEventListener('click', () => {
+            isParticlesActive = !isParticlesActive;
+            btnParticles.classList.toggle('active', isParticlesActive);
+        });
+
+        const btnPhysics = document.getElementById('btnPhysics');
+        btnPhysics.addEventListener('click', () => {
+            isPhysicsActive = !isPhysicsActive;
+            btnPhysics.classList.toggle('active', isPhysicsActive);
+            btnPhysics.textContent = isPhysicsActive ? '⏸️ Fizik Duraklat' : '▶️ Fizik Başlat';
+        });
+
+        const btnReset = document.getElementById('btnReset');
+        btnReset.addEventListener('click', () => {
+            camera.x = 0;
+            camera.y = 0;
+            camera.zoom = 0.52;
+        });
+
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            filterQuery = e.target.value.trim().toLowerCase();
+        });
+
+        // Dinamik Yayılım / Alan Genişliği Sürgüsü
+        const sliderSpread = document.getElementById('sliderSpread');
+        const lblSpread = document.getElementById('lblSpread');
+        sliderSpread.addEventListener('input', (e) => {
+            const oldScale = spreadScale;
+            const val = parseInt(e.target.value);
+            spreadScale = val / 100;
+            lblSpread.textContent = `%${val}`;
+
+            // Düğümleri mevcut konumlarından merkeze göre orantılı olarak genişlet/daralt
+            const ratio = spreadScale / oldScale;
+            nodes.forEach(n => {
+                if (n !== draggedNode) {
+                    n.x *= ratio;
+                    n.y *= ratio;
+                }
+            });
+        });
+
+        requestAnimationFrame(draw);
+    </script>
+</body>
+</html>

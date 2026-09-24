@@ -84,10 +84,10 @@
       <div class="relative container-narrow">
         <span class="section-label">Modüller & Yetenekler</span>
         <h1 class="mt-6 font-display text-5xl md:text-7xl leading-[1] tracking-[-0.03em]">
-          <span class="reveal-mask d1"><span>14+ entegre modül,</span></span>
+          <span class="reveal-mask d1"><span>22 entegre modül,</span></span>
           <span class="reveal-mask d2"><span>sıfır karmaşa.</span></span>
         </h1>
-        <p class="reveal mt-8 max-w-2xl text-slate-300 text-lg">Masaüstü ve mobil web ortamında çalışan her modül bağımsız çalışabilir — hepsi birlikte ise radyoloji ve radyasyon güvenliği süreçlerinizde tek bir gerçek kaynak (Single Source of Truth) oluşturur.</p>
+        <p class="reveal mt-8 max-w-2xl text-slate-300 text-lg">Masaüstü ve mobil web ortamında çalışan 22 entegre modül — hepsi birlikte radyoloji ve radyasyon güvenliği süreçlerinizde tek bir gerçek kaynak (Single Source of Truth) oluşturur.</p>
       </div>
     </section>
 
@@ -131,159 +131,253 @@
   <script>
     const MODULE_DETAILS = [
       {
-        n: "01", name: "Nöbet Planlaması & Otomatik Dağıtım Motoru", tag: "Adil, şeffaf, kısıt-bilinçli ve hatasız.",
-        img: "images/cover_nobet_planlama.jpg",
+        n: "01", name: "Kurulum, Başlatma ve İlk Giriş", tag: "Win32 tekil kilit, Ed25519 lisanslama ve Evrensel Arama.",
+        img: "help/assets/img/01_login_page.png",
         features: [
-          "Otomatik Solver motoru ile saniyeler içinde aylık nöbet çizelgesi üretimi",
-          "Mevzuat kısıtları (Süt izni, gebelik, 24s dinlenme, 25 yıl kıdem muafiyeti)",
-          "Çapraz görevlendirme ile komşu birimlerden geçici personel çekme",
-          "Web Portalı ve Mobil üzerinden 2 aşamalı nöbet devir / takas onay akışı"
+          "Win32 API tabanlı tekil uygulama kilidi (Local\\RADPYS_V4_MAIN_APP_MUTEX) ile çoklu çakışmaları engelleme",
+          "Ed25519 asimetrik kriptografi ile çevrimdışı doğrulanabilir kurum lisans kontrolü",
+          "İlk girişte zorunlu parola değişimi, karmaşıklık politikası ve Şifremi Unuttum e-posta sıfırlama",
+          "Ctrl+K kısayoluyla çalışan hızlı Evrensel Arama (Command Palette) ve animasyonlu bildirim merkezi"
         ],
-        benefit: "Ekipte adalet algısını yükseltir. Yönetici, 4 saatlik karmaşık planlamayı 4 dakikada hatasız tamamlar.",
+        benefit: "Veri tabanı bağlantı güvenliği, UAC servis başlatma ve tekil oturum garantisi ile sorunsuz başlangıç sağlar.",
       },
       {
-        n: "02", name: "Dozimetre Takibi & Risk Analizi", tag: "Her periyotta kümülatif içgörü ve erken uyarı.",
-        img: "images/cover_dozimetre_analiz.jpg",
+        n: "02", name: "Kullanıcı ve Rol Yönetimi (RBAC)", tag: "Çok katmanlı rol hiyerarşisi ve 4-Göz denetim ilkesi.",
+        img: "help/assets/img/02_kullanici_yonetim_page.png",
         features: [
-          "Hp(10), Hp(0.07), Hp(3) ve Ekstremite doz ölçüm takibi",
-          "NDK Yıllık 20 mSv ve tek okumada 2 mSv / 5 mSv anomali erken uyarıları",
-          "Dönemsel karşılaştırma ve birim radyasyon risk haritası (Risk Skoru)",
-          "Akredite ölçüm firmalarından Excel/PDF toplu içe aktarma sihirbazı"
+          "12 sistem rolü ve her modül için bağımsız CRUD (Okuma, Yazma, Güncelleme, Silme) matrisi",
+          "4-Göz İlkesi: Yetkisiz personelin kritik veri girişlerini yönetici onay kuyruğuna düşürme",
+          "Birim bazlı dinamik görünürlük filtreleri ve geçici görevlendirme yetki devri",
+          "Kullanıcı aktivasyon/pasifasyon yönetimi ve oturum zaman aşımı kontrolleri"
         ],
-        benefit: "Klasörler dolusu kağıt dozimetre raporları tarih olur. NDK denetimlerine 2 dakikada hazır hale gelirsiniz.",
+        benefit: "Hastanenin hiyerarşik yapısına tam uyumlu yetkilendirme sağlar; izinsiz müdahaleleri kaynağında engeller.",
       },
       {
-        n: "03", name: "İzin Yönetimi & 2-Aşamalı Onay Mekanizması", tag: "Ön onay, resmi onay ve takvim netliği.",
-        img: "images/cover_nobet_planlama.jpg",
+        n: "03", name: "Sistem Ayarları ve Dinamik Tanımlamalar", tag: "Kurumsal kimlik, antetli şablonlar ve esnek lookuplar.",
+        img: "help/assets/img/03_templates_page.png",
         features: [
-          "Yıllık, Şua, mazeret ve sağlık raporu izinleri",
-          "2 Aşamalı İzin Onayı (🟡 Ön Onaylı ile nöbet kilitleme / 🟢 Resmi Onaylı)",
-          "Web Portalı üzerinden çevrimiçi izin başvurusu ve anlık durum takibi",
-          "Yıl sonu devir izin bakiyelerini yeni yıla otomatik aktarma"
+          "Kurum Başlık 1-2 ve çift logo entegrasyonu ile resmi Word ve PDF belgelerine dinamik antet basımı",
+          "Ağaç yapısında hiyerarşik departmanlar, alt servisler ve sorumlu amir eşlemeleri",
+          "Mimari kat planı krokilerini departmanlarla ilişkilendirme ve ölçeklendirme",
+          "Tıbbi cihaz türleri, koruyucu ekipman sınıfları ve tatil takvimi dinamik parametreleri"
         ],
-        benefit: "İzin çakışmaları sıfıra iner. Ekibin izin bakiyeleri ve vekilleri şeffaf biçimde izlenir.",
+        benefit: "Kurum kimliği değişimlerinde tüm matbu evraklar tek merkezden güncellenir; kod müdahalesine gerek kalmaz.",
       },
       {
-        n: "04", name: "Fiili Hizmet & Şua İzni Hakediş Sihirbazı", tag: "Hibrit hesaplama — 0-30 gün Şua izni tespiti.",
-        img: "images/cover_mevzuat_kanunlar.jpg",
+        n: "04", name: "Veritabanı Bakım, Güvenlik ve Denetim İzi", tag: "Otomatik pg_dump, WAL arşivleme ve AES-256 şifreli evrak kasası.",
+        img: "help/assets/img/04_veritabani_bakim_ve_guvenlik.png",
         features: [
-          "Asıl amaç: Kıstelyevm esasına göre yasal Sağlık (Şua) İzni gün sayısını hesaplama",
-          "Hibrit Model: Nöbet çizelgesi (BT/Anjiyo) ile personelin kadro birimini akıllı harmanlama",
-          "Çalışma Koşulu A (BT/Röntgen) ve Koşulu B (MR) ayrımı ile adil hakediş",
-          "3 Adımlı Sihirbaz: Görev Dağılımı ➔ Hakediş Hesaplama ➔ Puantaj Raporu"
+          "Otomatik ve manuel PostgreSQL pg_dump tam veritabanı yedekleme ve tek tıkla geri yükleme",
+          "KVKK 6698 uyumlu AES-256 Fernet şifreleme ile sağlık raporlarını ve belgeleri stored_files kasasında saklama",
+          "Kriptografik SHA-256 zinciriyle mühürlenen değiştirilemez sistem denetim izi (Audit Trail)",
+          "Büyük veri tabloları için VACUUM, ANALYZE ve indeks yeniden oluşturma bakım sihirbazı"
         ],
-        benefit: "Personelin radyasyonlu alandaki fiili çalışma günleri hatasız tespit edilir; hak kayıpları ve denetim cezaları önlenir.",
+        benefit: "Veri kaybı riskini sıfıra indirir; KVKK ve resmi teftişlerde kriptografik kanıt niteliğinde log sunar.",
       },
       {
-        n: "05", name: "Sağlık Muayeneleri & Periyodik Taramalar", tag: "NDK 365 gün kuralı — Periyodikler kaçmaz.",
-        img: "images/cover_mevzuat_kanunlar.jpg",
+        n: "05", name: "Personel Yönetimi ve Toplu İçe Aktarım", tag: "Dinamik özlük kartı, sinonim eşlemeli Excel aktarımı ve KVKK ihracı.",
+        img: "help/assets/img/05_personel_list.png",
         features: [
-          "İşe giriş, periyodik, şua izni öncesi/sonrası sağlık muayene kayıtları",
-          "Dahiliye, Dermatoloji ve Göz branş uzman onayları takibi",
-          "Süresi geçen (🔴) ve 30 gün kalan (🟡) muayenelerde renk kodlu erken uyarılar",
-          "Taranmış ıslak imzalı muayene evrakını yükleme ve kronolojik geçmiş dökümü"
+          "Personel özlük kartı, mezuniyet, unvan, radyasyon çalışma sınıfı (A/B) ve T.C. doğrulama",
+          "Akıllı Excel İçe Aktarma Motoru: Sütun ve unvan sinonimlerini otomatik eşleyerek yüzlerce personeli tek seferde yükleme",
+          "KVKK Madde 11 Kişisel Veri İhraç Paketi: Tek tıkla personelin tüm geçmişini ve şifreli evraklarını ZIP indirme",
+          "Dinamik arama, birim hiyerarşisi filtreleme ve fotoğraf yükleme desteği"
         ],
-        benefit: "Sağlık Bakanlığı ve NDK teftişlerinde 'eksik sağlık muayenesi' bulgusu tamamen ortadan kalkar.",
+        benefit: "Personel havuzu dakikalar içinde sisteme aktarılır; özlük ve radyasyon sicili tek kartta birleşir.",
       },
       {
-        n: "06", name: "Radyasyon Güvenliği, Olay Bildirimi & DÖF", tag: "SKS 6.1 esaslı olay bildirimi ve CAPA aksiyonları.",
-        img: "images/cover_ndk_kilavuzlar.jpg",
+        n: "06", name: "İzin Yönetimi ve Şua Hakedişleri", tag: "35s/40s hibrit oranlı şua motoru ve 2-aşamalı onay akışı.",
+        img: "help/assets/img/izin_list.png",
         features: [
-          "Web Portalı üzerinden 3 adımda hızlı ve anonim bildirim imkanı",
-          "Kök neden analizi, etkilenen taraf ve olay şiddet derecelendirmesi",
-          "Düzeltici Önleyici Faaliyet (DÖF) aksiyon yönetimi ve sorumlu atama",
-          "Resmi kurumsal olay inceleme ve etkinlik değerlendirme tutanağı çıktısı"
+          "Yıllık, Şua, mazeret, sağlık raporu ve analık izinleri için merkezi takip",
+          "2-Aşamalı İzin Onay Zinciri: Ön Onaylı (nöbet planlamasını kilitler) ve Resmi Onaylı",
+          "Cari Takvim Yılı Koruması: Şua izinlerinin ertesi yıla devretmesini engelleyen yasal uyarılar",
+          "Web Portalı üzerinden personelin izin talebi açabilmesi ve amirin anlık onaylayabilmesi"
         ],
-        benefit: "Radyasyon kazaları ve ramak kala olaylar anında kayıt altına alınır, kalite süreçleri eksiksiz yürütülür.",
+        benefit: "İzin çakışmaları sıfıra iner; Sağlık (Şua) izni hak kayıpları ve zamanaşımı riskleri tamamen önlenir.",
       },
       {
-        n: "07", name: "NDK 72 Saatlik Yasal Bildirim Süreç Takibi", tag: "72 saat yasal bildirim garantisi.",
-        img: "images/cover_ndk_kilavuzlar.jpg",
+        n: "07", name: "Nöbet Ayarları ve Kısıt Hiyerarşisi", tag: "Sert/yumuşak kısıtlar, adalet ağırlıkları ve slot bazlı kurallar.",
+        img: "help/assets/img/nobet_ayarlar_main.png",
         features: [
-          "Radyasyon olaylarında 3 takvim günü (72 saat) yasal süre takibi",
-          "Otomatik son tarih hesaplama ve panelde renk kodlu (🔴 Gecikmede / 🟠 Son Gün) uyarılar",
-          "Masaüstü ve web yönetiminde tek tıkla resmi NDK bildirim durumu kaydı",
-          "Kurumsal denetim logları ve resmi NDK bildirim arşivi"
+          "Haftalık 35 saat (Radyasyon) ve 40 saat (İdari) standart çalışma parametreleri",
+          "Sert Kısıtlar (Yasal Zorunluluk): 24s dinlenme, süt izni, gebelik ve 25 yıl kıdem muafiyeti",
+          "Yumuşak Kısıtlar & Adalet Ağırlıkları: Hafta sonu ve resmi bayram nöbetlerinin ekip içinde eşit dağıtımı",
+          "Birim ve slot bazında asgari tekniker sayısı, modalite yetkinliği ve nöbet tipleri"
         ],
-        benefit: "Geciken resmi bildirimlerden kaynaklanan ağır idari ve cezai yaptırımların önüne geçilir.",
+        benefit: "Yönetici nöbet kurallarını esnekçe belirler; solver motoru hiçbir personelin hakkını çiğnemeden plan üretir.",
       },
       {
-        n: "08", name: "Gebelik Bildirimi & Yönetici Aksiyon Merkezi", tag: "Otomatik nöbet iptali ve 3 adımlı ikame sihirbazı.",
-        img: "images/cover_mevzuat_kanunlar.jpg",
+        n: "08", name: "Nöbet Hazırlık ve Solver Optimizasyon Motoru", tag: "Google OR-Tools CP-SAT motoru ile saniyeler içinde adil çizelge.",
+        img: "help/assets/img/08_nobet_cizelge_dialog.png",
         features: [
-          "Doktor raporu yüklendiği an radyasyonlu alan personelinin tüm nöbetlerini otomatik iptal etme",
-          "Radyasyonsuz birim tercihi ve personelin güvenli alana aktarılması",
-          "Yönetici Aksiyon Merkezi (Action Hub): Boşalan nöbetlere ikame atama ve gündüz mesaisi tamamlama",
-          "KVKK şifreli dijital özlük dosyasına doktor raporu senkronizasyonu"
+          "Matematiksel CP-SAT kısıt çözücü motor ile saniyeler içinde binlerce değişkeni optimize etme",
+          "Çapraz Görevlendirme: Personel yetersizliğinde komşu birimlerden yetkin personel çekebilme",
+          "İnteraktif Çizelge Matrisi: Hücre bazında manuel değişiklik, sürükle-bırak ve anlık kural denetimi",
+          "Aylık nöbet planını resmi yayına alma ve personelin Web Portalında anında ilan etme"
         ],
-        benefit: "Hamile çalışanların yasal hakları ve radyasyon güvenliği sıfır hata ile korunur; amir nöbet krizini tek ekrandan çözer.",
+        benefit: "Eski yöntemlerle günler süren nöbet planlama stresi 4 dakikaya iner; ekipte mutlak adalet algısı sağlanır.",
       },
       {
-        n: "09", name: "Radyasyon Koruyucu Ekipman (RKE) & DIN 6857-1 Muayene", tag: "Kurşun önlük envanteri, akıllı kodlama ve skopi kalite kontrolü.",
-        img: "images/cover_ndk_kilavuzlar.jpg",
+        n: "09", name: "Nöbet Devir, İkame ve Acil Mazeret Yönetimi", tag: "3 aşamalı devir onayı, acil ikame sihirbazı ve Web Portal havuzu.",
+        img: "help/assets/img/09_nobet_devir_listesi.png",
         features: [
-          "Önlük, tiroid, gonad, gözlük, eldiven ve paravan envanteri & zimmet takibi",
-          "Akıllı Kodlama Motoru: Kurumsal standartta otomatik kod üretimi (RKE-O-001)",
-          "DIN 6857-1 / IEC 61331-3 Skopi Muayenesi: Hasar bölgesi ve kusur alanına (mm²) göre otomatik karar (Uygun / Şartlı / HEK)",
-          "2D Karekod (QR) etiket yazdırma, canlı KPI özet kartları ve Excel aktarım"
+          "3 Aşamalı Devir Zinciri: Devralan personel portal onayı ➔ Birim Sorumlusu ➔ Hizmet Sorumlusu",
+          "Web Portal Nöbet Değişim Havuzu: Personellerin vardiyalarını ilan edip karşılıklı becayiş yapabilmesi",
+          "Acil Mazeret ve Gebelik İkame Sihirbazı: Raporlu personelin boşalan nöbetlerine tek tıkla ikame atama",
+          "Nöbet devirlerinde yasal dinlenme süresi (16s/24s) aşım bariyeri"
         ],
-        benefit: "Hastanenin tüm koruyucu donanımları kontrol altında tutulur; delik/yırtık kurşun önlük kullanımı engellenir.",
+        benefit: "Sözlü nöbet takaslarının yarattığı kaos son bulur; tüm vardiya değişiklikleri resmi onay zincirinden geçer.",
       },
       {
-        n: "10", name: "Radyasyon Ortam Dozu, İnteraktif Kroki & SKS 6.1", tag: "Kat planı üzerinde canlı pinler ve resmi SKS Excel raporu.",
-        img: "images/cover_dozimetre_analiz.jpg",
+        n: "10", name: "Nöbet Borç / Alacak ve Fazla Mesai", tag: "Kıstelyevm hedef hesaplama, 60s kurumsal kota ve Sudo dönem kilidi.",
+        img: "help/assets/img/10_nobet_borc_alacak_ana_tablo.png",
         features: [
-          "Vektörel PDF / CAD kat planlarını interaktif tuvale yükleme, sınırsız Zoom & Pan",
-          "Mimari plan üstünde canlı parlayan ölçüm noktası pinleri (Denetimli, Gözetimli, Halka Açık)",
-          "Pinden tek tıkla dedektör (µSv/h) dozu girme ve anlık yasal limit değerlendirmesi",
-          "Tek tıkla Sağlık Bakanlığı SKS 6.1 SRG11.02 Resmi Excel Denetim Raporu üretimi",
-          "Web Portalı ve Tablet/Mobil üzerinden sahada canlı alan izleme (OrtamDozuView)"
+          "Kıstelyevm ve tatil düşümlü yasal hedef saat hesaplama; artı/eksi kümülatif bakiye renkleri",
+          "Bireysel FM Dağıtım Modalı (FMOdemeSecimDialog): 60s tükenmişlik önleme kotası veya 130s yasal tavan",
+          "Toplu işlem seçenekleri: Seçili ekibe tek tıkla kurumsal kota uygulama veya sonraki aya devretme",
+          "Kesinleşmiş dönem kilidi ve SudoDialogController yönetici şifresiyle güvenli düzeltme yetkisi",
+          "Mutemetlik için Normal FM ve Bayram FM ayrıştırılmış 5 sütunlu resmi bildirim cetveli"
         ],
-        benefit: "Denetimlerde kat planları ve doz ölçüm noktaları interaktif olarak sergilenir; teftişten tam puan alınır.",
+        benefit: "Fazla mesai bordro hesaplamaları şeffaflaşır; fazla mesai ödemeleri ve devirler sıfır muhasebe hatasıyla yürütülür.",
       },
       {
-        n: "11", name: "Tıbbi Cihaz Envanteri & Mobil QR Hızlı Arıza Portalı", tag: "NDK lisansları, 2D QR etiketler ve sahada anında arıza bildirimi.",
-        img: "images/cover_ndk_kilavuzlar.jpg",
+        n: "11", name: "Fiili Hizmet ve Şua Hakediş Hesaplama", tag: "Koşul A/B ayrımı, onaysız izin güvenlik bariyeri ve SGK puantajı.",
+        img: "help/assets/img/11_1_fiili_hizmet_hesaplama_ana_ekran.png",
         features: [
-          "BT, Röntgen, Anjiyo, Skopi, Mamografi, MR, USG envanteri & 3'lü hızlı filtreleme",
-          "Otomatik yerel IP algılamalı 2D QR Karekod etiket üretimi ve yazdırma",
-          "Mobil QR Arıza Portalı: Sahada telefonla cihaza QR okutulduğunda cihaz seçili form açılması",
-          "Biyomedikal teknik servis müdahale takibi, parça değişimi ve NDK Resmi Denetim Çizelgesi"
+          "3 Adımlı Sihirbaz: Görev Listesi Dağılımı ➔ Fiili Hizmet Hesaplama ➔ SGK Puantaj Raporu",
+          "Koşul A (7.0s radyasyonlu alan) ve Koşul B (8.0s idari alan) hibrit çalışma oranı ayrımı",
+          "Onaysız İzin Güvenlik Bariyeri: Taslak izinleri tespit ederek resmi hesaplama öncesi operatörü durdurma",
+          "Sıralı dönem kilidi ve Sistem Yöneticisi yetkili Yıllık Kilit ile cari yılı dondurma",
+          "SGK ve mutemetlik onaylı resmi Excel ve PDF puantaj rapor cetveli üretimi"
         ],
-        benefit: "Cihaz arızaları saniyeler içinde teknik ekibe ulaşır; NDK lisans süreleri hiç kaçırılmaz.",
+        benefit: "Radyasyon çalışanlarının fiili hizmet zamları (FHZ) ve Şua izinleri kuruşu kuruşuna, günü gününe yasal güvencede.",
       },
       {
-        n: "12", name: "Hizmet İçi Eğitim, Soru Bankası & Online Sınav LMS", tag: "Merkezi soru bankası, online sınav motoru ve uyum matrisi.",
-        img: "images/cover_mevzuat_kanunlar.jpg",
+        n: "12", name: "Dozimetre Takibi ve RD.F43 Doz Araştırma", tag: "Hp(10)/Hp(0.07)/Hp(3) analitiği, NDK 72s süreci ve tahkikat formu.",
+        img: "help/assets/img/12_1_dozimetre_list.png",
         features: [
-          "Kurumsal eğitim kataloğu, video ve PDF materyal yükleme",
-          "Çoktan seçmeli (A, B, C, D) soru havuzu, eğitimden eğitime soru kopyalama ve Excel import",
-          "Web Portalı üzerinden personelin online dökümanı çalışıp sınava girmesi (%70 baraj)",
-          "Departman Eğitim Uyum Raporu (Compliance Matrix) ve yaklaşan sürelerde erken uyarı"
+          "Hp(10) tüm vücut, Hp(0.07) cilt/göz ve Hp(3) ekstremite kümülatif doz ölçüm takibi",
+          "NDK Yıllık 20 mSv yasal sınırı ve aylık 2 mSv / 5 mSv anomali erken uyarı rozetleri",
+          "Yasal Tahkikat: 20 mSv aşımında otomatik 10 iş günü sayacı ve resmi RD.F43 Doz Araştırma Formu",
+          "Akredite dozimetre laboratuvarlarından (TAEK/NDK) Excel ve PDF toplu içe aktarma sihirbazı"
         ],
-        benefit: "Sağlık Bakanlığı ve NDK zorunlu periyodik eğitimleri otomatik takip edilir, sınav sertifikaları güvenle arşivlenir.",
+        benefit: "Yıllık doz aşımı riski aylar öncesinden tespit edilir; NDK teftişlerinde 72 saatlik bildirim cezaları önlenir.",
       },
       {
-        n: "13", name: "Evrensel Onay & Veri Değişiklik Denetim Sistemi", tag: "Audit Trail ve yan yana görsel Diff Karşılaştırma.",
-        img: "images/cover_mevzuat_kanunlar.jpg",
+        n: "13", name: "Sağlık Muayeneleri ve Periyodik Taramalar", tag: "NDK 365 gün kuralı, branş uzman hekim onayları ve şifreli evrak.",
+        img: "help/assets/img/muayene_list.png",
         features: [
-          "5 Onay Kategorisi: İzin Talepleri, Nöbet Devirleri, Nöbet İstekleri, Nöbet Planları, Veri Değişiklikleri",
-          "Görsel Diff View: Eski ve önerilen yeni verileri yan yana kırmızı/yeşil renkle karşılaştırma",
-          "Yetkisiz kullanıcı veri girişlerini onay kuyruğuna aktaran güvenlik katmanı",
-          "Yönetici Şifahi (Sözlü) Onay Bypass mekanizması ile tıkanmayan iş akışı"
+          "İşe giriş, periyodik kontrol, şua izni öncesi ve doz aşımı sonrası özel sağlık taramaları",
+          "Dahiliye, Dermatoloji ve Göz branş uzman onaylarının ve tetkik bulgularının takibi",
+          "Süresi Dolan (<0 gün) ve Yaklaşan (0-30 gün) muayenelerde renk kodlu erken uyarılar",
+          "AES-256 şifreli dosya kasasında ıslak imzalı hekim raporu arşivleme ve tek tıkla önizleme"
         ],
-        benefit: "Yetkisiz veri değişiklikleri engellenir; kurumsal veri bütünlüğü ve denetim izlenebilirliği %100 güvenceye alınır.",
+        benefit: "Radyasyon personelinin sağlık durumu 365 gün kesintisiz korunur; denetimlerde eksik muayene bulgusu çıkmaz.",
       },
       {
-        n: "14", name: "Rapor Merkezi, Dinamik Başlıklar & KVKK Evrak Kasası", tag: "Kurumsal matbu formlar, çok satırlı başlıklar ve AES-256 kasa.",
-        img: "images/cover_mevzuat_kanunlar.jpg",
+        n: "14", name: "Ortam Dozu, İnteraktif Kroki ve SKS 6.1", tag: "Mimari planda canlı pinler, QR pasaportu ve SRG11.02 Excel raporu.",
+        img: "help/assets/img/14_1_ortam_dozu_kroki_haritasi_ana_ekran.png",
         features: [
-          "7 Ana Kategori: Personel, Dozimetre, İzin, Nöbet, Sağlık, Cihaz/RKE, Lokasyon raporları",
-          "Dinamik Çok Satırlı Kurum Başlıkları (<w:br/>) ve Çift Logo desteği ile kurumsal Word/PDF çıktısı",
-          "KVKK Madde 11 Kişisel Veri İhraç Paketi: Tek tıkla personelin tüm verilerini ve evraklarını ZIP indirme",
-          "PostgreSQL stored_files tablosunda AES-256 Fernet ile şifreli evrak depolama ve erişim logu"
+          "Vektörel PDF / CAD mimari kat planını interaktif sahneye yükleme, sınırsız Zoom ve Pan",
+          "Denetimli, Gözetimli ve Halka Açık alan ölçüm pinleri üzerinde canlı radyasyon eşik analizi",
+          "Her ölçüm noktası için benzersiz QR pasaportu üretme ve mobil kamera ile sahada doz okuma",
+          "Tek tıkla Sağlık Bakanlığı SKS 6.1 SRG11.02 resmi denetim Excel çizelgesi üretimi"
         ],
-        benefit: "Kurumun ihtiyaç duyduğu tüm matbu evraklar saniyeler içinde hazır; veri güvenliği en üst standartta.",
+        benefit: "Hastanenin radyasyon sızıntı haritası canlı izlenir; kalite denetimlerinde teftiş heyetine interaktif kroki sunulur.",
+      },
+      {
+        n: "15", name: "Olay Bildirimi ve DÖF (CAPA) Yönetimi", tag: "Web Portal hızlı bildirim, kök neden analizi ve NDK 72s geri sayımı.",
+        img: "help/assets/img/15_1_olay_bildirim_ve_dof_yonetimi_ana_ekran.png",
+        features: [
+          "Web Portalı üzerinden 3 adımda kolay, şeffaf ve anonim istenmeyen olay bildirimi",
+          "SKS 6.1 Uyumlu DÖF (Düzeltici Önleyici Faaliyet): Kök neden, aksiyon sorumlusu ve termin takibi",
+          "NDK 72 Saatlik Resmi Bildirim Sayacı: Süre aşımını engelleyen kırmızı/turuncu geri sayım rozetleri",
+          "Resmi kurumsal Olay İnceleme ve DÖF Faaliyet Değerlendirme Tutanağı çıktısı"
+        ],
+        benefit: "Ramak kala olaylar ve kazalar hızla çözümlenir; kalite yönetim döngüsü ve yasal bildirimler sıfır ceza ile tamamlanır.",
+      },
+      {
+        n: "16", name: "RGS / RSO Görevlendirme ve Sertifika Takibi", tag: "Bakanlık ve NDK görevlendirme yazıları, unvanlar ve vize takibi.",
+        img: "help/assets/img/16_1_rgs_gorevlendirme_ana_liste.png",
+        features: [
+          "Radyasyondan Korunma Sorumlusu (RKS) ve Radyasyon Güvenliği Sorumlusu (RGS) atama kayıtları",
+          "Sertifika türü, veriliş tarihi, geçerlilik süresi ve 60 günlük vize erken uyarı alarmları",
+          "Geçerli / Süresi Dolan / İptal Edilen görevlendirmelerin renk kodlu durum rozetleri",
+          "Resmi kurum içi görevlendirme ve Bakanlık onay yazılarının şifreli evrak kasasında saklanması"
+        ],
+        benefit: "Kurumun radyasyon güvenliği organizasyon şeması yasal güvencede tutulur; yetki boşluğu oluşması engellenir.",
+      },
+      {
+        n: "17", name: "Hizmet İçi Eğitim, Soru Bankası ve Online Sınav LMS", tag: "Soru havuzu, Excel import, entegre video/PDF oynatıcı ve online sınav.",
+        img: "help/assets/img/17_1_1_hizmet_ici_egitim_uyum_matrisi.png",
+        features: [
+          "Zorunlu eğitim kataloğu, video ve PDF materyalleri için HTTP Range stream destekli oynatıcı",
+          "4 seçenekli görselli soru bankası, Excel'den toplu soru yükleme ve eğitimler arası soru kopyalama",
+          "Web Portalı üzerinden personelin materyalleri inceleyip online sınava girmesi (%70 baraj puanı)",
+          "Kurum geneli Personel-Eğitim Çapraz Uyum Matrisi (Compliance Matrix) ve renkli Excel raporu"
+        ],
+        benefit: "Zorunlu radyasyon güvenliği eğitimleri sıfır kağıtla tamamlanır; sertifikalandırma süreci otomatik yürütülür.",
+      },
+      {
+        n: "18", name: "Tıbbi Cihaz ve NDK Lisans Envanteri", tag: "4 renkli lisans rozeti, akıllı kod üreteci, kat planı pini ve HEK arşivi.",
+        img: "help/assets/img/18_1_cihaz_envanteri_yonetimi.png",
+        features: [
+          "Kaynak grubu (X-Ray, Radyasyonsuz, Medikal, Ölçüm) bazında tüm hastane donanım künyesi",
+          "4 Renkli NDK Lisans Vize Takibi: Yeşil (>60g), Sarı (16-60g), Turuncu (0-15g) ve Kırmızı (<0g)",
+          "Akıllı Cihaz Kodu Generator (XRAY-RAD-BT-01) ve mimari kat planına pin yerleştirip kilitleme",
+          "Kullanım kılavuzları ve zırhlama raporları için AES-256 şifreli evrak kasası ve resmi NDK Excel çizelgesi",
+          "HEK (Hurda) Arşivi: Ekonomik ömrü biten cihazı arşive kaldırma ve Word (.docx) Hurda Tutanağı üretimi"
+        ],
+        benefit: "Hastanenin tüm radyolojik ve medikal donanımı harita üzerinde kayıtlıdır; lisanssız cihaz çalıştırma riski sıfırlanır.",
+      },
+      {
+        n: "19", name: "Cihaz Arıza, Bakım ve Kalite Kontrol (QC)", tag: "Tüp değişimi senkronizasyonu, QC karantina kilidi ve mobil QR arıza.",
+        img: "help/assets/img/19_1_cihaz_ariza_bakim_ve_kalite_kontrol_qc.png",
+        features: [
+          "Arıza Bildirimi: Benzersiz ARZ-YYYY-XXX takip kodu ve cihazın otomatik 'Arızalı' statüsüne geçmesi",
+          "X-Işını Tüp Değişimi Entegrasyonu: Servis müdahalesinde yeni tüp seri no'sunu cihaz künyesine otomatik işleme",
+          "QC Test Takibi: Günlük, Aylık, Yıllık Kalibrasyon ve Zırhlama testlerinin 3 renkli geçerlilik rozetleri",
+          "RED-UI-CIHAZ-01 Güvenlik Kilidi: Test sonucu 'Uygun Değil' girildiğinde cihazı anında karantinaya alma",
+          "Web Portalı Saha Mobil Konsolu: 6 arıza semptom kategorisi ve QR kod okutarak hızlı servis müdahalesi"
+        ],
+        benefit: "Cihaz duruş süreleri en aza iner; standart dışı radyasyon yayan cihazların hasta çekiminde kullanılması engellenir.",
+      },
+      {
+        n: "20", name: "Radyasyon Koruyucu Ekipman (RKE) & DIN 6857", tag: "Skopi SVG kusur krokisi, mm² karar motoru ve SKS 6.1 Excel cetveli.",
+        img: "help/assets/img/20_rke_ana_yonetim.png",
+        features: [
+          "Önlük, tiroid, gonad, gözlük ve paravan envanteri; RKE-Ö-RAD-001 formatında akıllı kodlama",
+          "DIN 6857-1 / SKS 6.1 Skopi Muayenesi: İnteraktif SVG vücut silüeti üzerinde tıklayarak delik/çatlak pini koyma",
+          "Otomatik Matematik Karar Motoru: Kritik bölgede >0 mm² ise HEK; non-kritikte ≤5 mm² Uygun, 5-15 mm² Şartlı, >15 mm² HEK",
+          "10+ Yıl Yaş Kuralı: 10 yaşını dolduran kurşun kompozit donanımları otomatik hurdaya ayırma",
+          "Toplu Muayene Kokpiti, RKS çift aşamalı mühürleme ve Sağlık Bakanlığı SKS 6.1 resmi Excel cetveli"
+        ],
+        benefit: "Delinmiş veya yırtılmış kurşun önlük kullanımı tamamen engellenir; çalışan sağlığı uluslararası normlarla korunur.",
+      },
+      {
+        n: "21", name: "Merkezi Onaylar ve Kurumsal Rapor Merkezi", tag: "5 sekmeli onay paneli, görsel Diff karşılaştırması ve 17 resmi rapor.",
+        img: "help/assets/img/modul21_onay_merkezi.png",
+        features: [
+          "5 Onay Kategorisi: İzin Talepleri, Nöbet Devirleri, Nöbet İstekleri, Nöbet Planları ve Veri Değişiklikleri",
+          "Görsel Diff Dialog: 4-göz kuralında eski (kırmızı) ve yeni (yeşil) değerleri yan yana karşılaştırıp onaylama",
+          "Sağlık Muayenesi Doğrulama: Personel beyanlarını işyeri hekimi/RKS inceleme ekranına zorunlu yönlendirme",
+          "Kurumsal Rapor Merkezi: 17 resmi raporu PDF, Excel (.xlsx) ve antetli Word (.docx) formatında anında üretme",
+          "Şablon Yönetimi: docxtpl motoruyla kurum çift logo ve antet yer tutucularını dinamik işleme"
+        ],
+        benefit: "Tüm yönetimsel onaylar tek panelde toplanır; kurumun ihtiyaç duyduğu tüm resmi dökümler tek tıkla üretilir.",
+      },
+      {
+        n: "22", name: "Web Portalı ve Yönetici Gösterge Panelleri (Dashboards)", tag: "20 analitik dashboard, 60s akıllı önbellek ve karar destek grafikleri.",
+        img: "help/assets/img/22_1_web_portal_genel_bakis_dashboard.png",
+        features: [
+          "20 Modüler Gösterge Paneli: Nöbet Dağılımı, Dozimetre Risk Trendi, Sağlık & SKS Uyumu, RKE Kusur Haritası ve Cihaz Duruş Süresi",
+          "60 Saniye In-Memory Akıllı Önbellek: Ağır analitik sorguları bellekten 10ms altında ultra hızlı yanıtlama",
+          "Bağımsız Sunucu İzleyici: Masaüstü durum çubuğundan 8s döngüyle Port 3000 sağlık kontrolü ve otomatik başlatma",
+          "Zorlamalı Yenileme (Bypass Cache): Yönetici tek tıkla canlı veritabanı sorgusunu tetikleme yetkisi",
+          "Excel ve PDF Dışa Aktarma: Tüm dashboard grafik ve tablolarını tek tıkla raporlama"
+        ],
+        benefit: "Radyoloji ve nükleer tıp kliniklerinin tüm yönetimsel ve operasyonel nabzı tek ekranda; anlık karar desteğiyle sıfır risk.",
       },
     ];
 
@@ -319,36 +413,33 @@
       <div class="reveal is-visible grid lg:grid-cols-12 gap-10 lg:gap-16 items-center ${i % 2 === 1 ? "lg:[direction:rtl]" : ""}">
         <div class="lg:col-span-7 relative" style="direction:ltr">
           <div class="absolute -inset-6 pointer-events-none" style="background:radial-gradient(circle at 30% 20%, rgba(34,211,238,0.28), transparent 70%); filter:blur(30px)"></div>
-          <div class="relative rounded-2xl overflow-hidden border border-white/10 glass">
-            <div class="flex items-center justify-between px-4 py-2.5 border-b border-white/5" style="background:rgba(0,0,0,0.3)">
-              <div class="flex gap-1.5"><span class="w-2 h-2 rounded-full bg-rose-400/60"></span><span class="w-2 h-2 rounded-full bg-amber-400/60"></span><span class="w-2 h-2 rounded-full bg-emerald-400/60"></span></div>
-              <span class="font-mono text-[10px] tracking-[0.22em] text-slate-400 uppercase">radpys v4 / ${m.name.toLowerCase()}</span>
-              <span class="text-neon-teal">▶</span>
+          <div class="relative rounded-2xl overflow-hidden border border-white/10 glass shadow-2xl">
+            <div class="flex items-center justify-between px-4 py-2.5 border-b border-white/5" style="background:rgba(0,0,0,0.5)">
+              <div class="flex gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span><span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span><span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span></div>
+              <span class="font-mono text-[11px] tracking-[0.2em] text-cyan-300 font-semibold uppercase">RADPYS V4 / MODÜL ${m.n}</span>
+              <span class="text-neon-teal text-xs">● AKTİF</span>
             </div>
-            <div class="relative bg-black/40" style="aspect-ratio:16/10">
-              <img src="${m.img}" alt="${m.name}" loading="lazy" style="width:100%; height:100%; object-fit:cover; opacity:0.7; mix-blend-mode:luminosity" />
-              <div class="absolute inset-0" style="background:linear-gradient(45deg, rgba(20,184,166,0.1), transparent, rgba(139,92,246,0.2))"></div>
-              <div class="absolute inset-0 grid place-items-center">
-                <div class="glass rounded-full p-4">
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg>
-                </div>
-              </div>
-              <span class="absolute left-4 bottom-4 font-mono text-[10px] uppercase tracking-[0.24em] text-slate-300/80">RADPYS V4 Kurumsal Modül</span>
+            <div class="relative bg-slate-950 p-2 flex items-center justify-center min-h-[300px] sm:min-h-[360px]" style="background:#090d16">
+              <img src="${m.img}" alt="${m.name}" loading="lazy" class="rounded-xl w-full h-auto max-h-[380px] object-contain shadow-lg border border-white/5 transition-all duration-300 hover:scale-[1.01]" />
+            </div>
+            <div class="px-4 py-2.5 border-t border-white/5 bg-slate-900/60 flex items-center justify-between text-[11px] font-mono text-slate-400">
+              <span class="text-slate-300">Ekran: ${m.img.split('/').pop()}</span>
+              <a href="help/${m.n === '21' ? '21_merkezi_onaylar_ve_rapor_merkezi.html' : m.n === '20' ? '20_rke_koruyucu_ekipman_ve_din6857.html' : m.n === '19' ? '19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html' : m.n === '18' ? '18_tibbi_cihaz_ve_ndk_lisans_envanteri.html' : m.n === '17' ? '17_hizmet_ici_egitim_ve_online_sinav.html' : m.n === '16' ? '16_rgs_rso_gorevlendirme_ve_sertifika.html' : m.n === '15' ? '15_olay_bildirimi_ve_dof_capa.html' : m.n === '14' ? '14_ortam_dozu_ve_kroki_haritasi.html' : m.n === '13' ? '13_saglik_muayeneleri_ve_periyodik_takip.html' : m.n === '12' ? '12_dozimetre_takibi_ve_rdf43_arastirma.html' : m.n === '11' ? '11_fiili_hizmet_ve_sua_hesaplama.html' : m.n === '10' ? '10_nobet_borc_alacak_ve_fazla_mesai.html' : m.n === '09' ? '09_nobet_devir_ikame_ve_acil_mazeret.html' : m.n === '08' ? '08_nobet_hazirlik_ve_solver_motoru.html' : m.n === '07' ? '07_nobet_ayarlari_ve_kisit_hiyerarsisi.html' : m.n === '06' ? '06_izin_yonetimi_ve_hakedis.html' : m.n === '05' ? '05_personel_yonetimi_ve_toplu_aktarim.html' : m.n === '04' ? '04_veritabani_bakim_ve_guvenlik.html' : m.n === '03' ? '03_sistem_ayarlari_ve_tanimlamalar.html' : m.n === '02' ? '02_kullanici_ve_rol_yonetimi.html' : '01_kurulum_ve_ilk_giris.html'}" class="text-neon-cyan hover:underline inline-flex items-center gap-1 font-sans font-medium">Rehberi Aç →</a>
             </div>
           </div>
         </div>
         <div class="lg:col-span-5" style="direction:ltr">
           <div class="flex items-center gap-3">
-            <span class="chapter-number" style="font-size:3.75rem; line-height:1">${m.n}</span>
+            <span class="chapter-number text-neon-teal font-display" style="font-size:3.75rem; line-height:1">${m.n}</span>
           </div>
-          <h2 class="mt-5 font-display text-2xl md:text-3xl lg:text-4xl tracking-tight">${m.name}</h2>
-          <p class="mt-2 text-base md:text-lg text-neon-cyan">${m.tag}</p>
+          <h2 class="mt-4 font-display text-2xl md:text-3xl lg:text-4xl tracking-tight text-white">${m.name}</h2>
+          <p class="mt-2 text-base md:text-lg text-neon-cyan font-medium">${m.tag}</p>
           <ul class="mt-6 space-y-2.5">
-            ${m.features.map(f => `<li class="flex gap-3 text-slate-300 text-sm md:text-base"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;flex-shrink:0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>${f}</span></li>`).join("")}
+            ${m.features.map(f => `<li class="flex gap-3 text-slate-300 text-sm md:text-base"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:3px;flex-shrink:0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>${f}</span></li>`).join("")}
           </ul>
-          <div class="mt-6 p-4 border-l-2 rounded-r-lg" style="border-color:rgba(20,184,166,0.6); background:rgba(20,184,166,0.05)">
-            <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-neon-teal block mb-1">Fayda & Katkı</span>
-            <p class="text-sm text-slate-300 leading-relaxed">${m.benefit}</p>
+          <div class="mt-6 p-4 border-l-2 rounded-r-xl" style="border-color:rgba(20,184,166,0.8); background:rgba(20,184,166,0.08)">
+            <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-neon-teal block mb-1 font-bold">Klinik Katkı & Yasal Güvence</span>
+            <p class="text-sm text-slate-200 leading-relaxed">${m.benefit}</p>
           </div>
         </div>
       </div>

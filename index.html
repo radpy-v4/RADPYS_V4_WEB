@@ -306,6 +306,46 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Canlı Arayüz & Gerçek Ekran Görüntüleri Vitrini -->
+                        <div class="border-t border-white/10 bg-slate-950/80 p-5 md:p-7">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                                        <span class="font-mono text-xs text-slate-200 font-semibold tracking-wider uppercase">Canlı Yazılım Arayüzünden Gerçek Ekran Görüntüleri</span>
+                                    </div>
+                                    <p class="text-xs text-slate-400 mt-1">Stok görsel değil; hastanelerde çalışan gerçek RADPYS V4 PySide6 ve PWA arayüzü</p>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
+                                    <span class="px-2.5 py-1 rounded bg-teal-500/10 border border-teal-500/30 text-teal-300 font-semibold">21 Entegre Modül</span>
+                                    <a href="moduller.html" class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-300 hover:underline">Tümünü İncele →</a>
+                                </div>
+                            </div>
+
+                            <!-- Ekran Sekmeleri -->
+                            <div class="flex flex-wrap gap-2 mb-4" id="hero-screen-tabs">
+                                <button type="button" onclick="switchHeroScreen(0)" class="hero-screen-tab px-3 py-1.5 rounded-lg text-xs font-mono transition-all bg-teal-500/20 text-teal-300 border border-teal-500/40">Nöbet Solver Motoru</button>
+                                <button type="button" onclick="switchHeroScreen(1)" class="hero-screen-tab px-3 py-1.5 rounded-lg text-xs font-mono transition-all bg-white/5 text-slate-400 hover:text-white border border-white/5">İnteraktif Doz Krokisi</button>
+                                <button type="button" onclick="switchHeroScreen(2)" class="hero-screen-tab px-3 py-1.5 rounded-lg text-xs font-mono transition-all bg-white/5 text-slate-400 hover:text-white border border-white/5">DIN 6857 RKE Muayene</button>
+                                <button type="button" onclick="switchHeroScreen(3)" class="hero-screen-tab px-3 py-1.5 rounded-lg text-xs font-mono transition-all bg-white/5 text-slate-400 hover:text-white border border-white/5">Dozimetre & NDK Takibi</button>
+                                <button type="button" onclick="switchHeroScreen(4)" class="hero-screen-tab px-3 py-1.5 rounded-lg text-xs font-mono transition-all bg-white/5 text-slate-400 hover:text-white border border-white/5">Cihaz & QC Yönetimi</button>
+                                <button type="button" onclick="switchHeroScreen(5)" class="hero-screen-tab px-3 py-1.5 rounded-lg text-xs font-mono transition-all bg-white/5 text-slate-400 hover:text-white border border-white/5">Merkezi Onay & Diff</button>
+                                <button type="button" onclick="switchHeroScreen(6)" class="hero-screen-tab px-3 py-1.5 rounded-lg text-xs font-mono transition-all bg-white/5 text-slate-400 hover:text-white border border-white/5">Web Dashboardlar</button>
+                            </div>
+
+                            <!-- Ekran Görüntüsü Önizleme Kartı -->
+                            <div class="relative rounded-xl overflow-hidden border border-white/10 bg-slate-900/90 group shadow-2xl">
+                                <img id="hero-screen-img" src="help/assets/img/modul08_solver_cozum_ekrani.png" alt="RADPYS V4 Canlı Ekran Görüntüsü" class="w-full h-auto max-h-[540px] object-cover object-top transition-all duration-300 cursor-pointer" onclick="window.location.href='moduller.html#m-08'">
+                                <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-slate-950 via-slate-950/85 to-transparent flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                    <div>
+                                        <div id="hero-screen-title" class="font-display font-bold text-white text-sm md:text-base">Modül 08: Otomatik Nöbet Solver Motoru & Kısıt Çözücü</div>
+                                        <div id="hero-screen-desc" class="text-xs text-slate-300 font-mono mt-0.5">CBC / PuLP tabanlı matematiksel kısıt optimizasyonu ve adil nöbet dağıtım matrisi.</div>
+                                    </div>
+                                    <a id="hero-screen-link" href="moduller.html#m-08" class="flex-shrink-0 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-teal-500 hover:bg-teal-400 text-slate-950 text-xs font-bold transition-colors">Modül Detayını İncele →</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -346,7 +386,7 @@
                 <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
                     <div>
                         <span class="section-label"><span class="text-slate-500">02</span>&nbsp;Modüller & Yetenekler</span>
-                        <h2 class="reveal mt-6 font-display text-4xl md:text-5xl tracking-tight">14+ Entegre Modül. <br
+                        <h2 class="reveal mt-6 font-display text-4xl md:text-5xl tracking-tight">21 Entegre Modül. <br
                                 class="hidden md:block"><span class="text-neon-cyan">Tek gerçek kaynak.</span></h2>
                     </div>
                     <a href="moduller.html"
@@ -617,23 +657,105 @@
         </div>`
             ).join("");
 
-            // Modules grid
+            // Modules grid (21 Modules)
             document.getElementById("module-grid").innerHTML = MODULES.map(
                 (m) => `
-        <div class="reveal card card-lift p-7 h-full flex flex-col justify-between">
+        <a href="moduller.html#m-${m.tag}" class="reveal card card-lift p-7 h-full flex flex-col justify-between group cursor-pointer border border-white/5 hover:border-teal-500/40 transition-all duration-300 block">
           <div>
             <div class="flex items-start justify-between">
-              <div class="w-11 h-11 rounded-xl grid place-items-center" style="background:rgba(20,184,166,0.1); border:1px solid rgba(20,184,166,0.25); color:#5eead4">
+              <div class="w-11 h-11 rounded-xl grid place-items-center group-hover:scale-110 transition-transform" style="background:rgba(20,184,166,0.1); border:1px solid rgba(20,184,166,0.25); color:#5eead4">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${m.icon}"/></svg>
               </div>
-              <span class="font-mono text-[10px] tracking-[0.25em] text-slate-500">${m.tag}</span>
+              <div class="flex items-center gap-1">
+                <span class="font-mono text-[10px] tracking-[0.25em] text-slate-500 group-hover:text-teal-400 transition-colors">MODÜL ${m.tag}</span>
+                <span class="text-xs text-slate-600 group-hover:text-teal-400 group-hover:translate-x-0.5 transition-all">↗</span>
+              </div>
             </div>
-            <h3 class="mt-6 font-display text-xl md:text-2xl">${m.name}</h3>
+            <h3 class="mt-6 font-display text-xl md:text-2xl group-hover:text-teal-300 transition-colors">${m.name}</h3>
             <p class="mt-2 text-sm text-slate-400 leading-relaxed">${m.desc}</p>
           </div>
-          <div class="mt-6 h-px w-full" style="background:linear-gradient(90deg,rgba(20,184,166,0.3),transparent)"></div>
-        </div>`
+          <div class="mt-6 pt-3 flex items-center justify-between border-t border-white/5">
+            <span class="text-xs font-mono text-teal-400/90 group-hover:underline">Detayları Gör →</span>
+            <span class="text-[11px] text-slate-500 font-mono">21 Modül Ekosistemi</span>
+          </div>
+        </a>`
             ).join("");
+
+            // Hero Screen Gallery
+            const HERO_SCREENS = [
+                {
+                    title: "Modül 08: Otomatik Nöbet Solver Motoru & Kısıt Çözücü",
+                    desc: "CBC / PuLP tabanlı matematiksel kısıt optimizasyonu ve adil nöbet dağıtım matrisi.",
+                    img: "help/assets/img/modul08_solver_cozum_ekrani.png",
+                    link: "moduller.html#m-08"
+                },
+                {
+                    title: "Modül 14: Ortam Dozu & İnteraktif Mimari Plan Krokisi",
+                    desc: "CAD/PDF kat planında canlı radyasyon pinleri, QR pasaportları ve SKS 6.1 SRG11.02 Excel raporu.",
+                    img: "help/assets/img/14_1_ortam_dozu_kroki_haritasi_ana_ekran.png",
+                    link: "moduller.html#m-14"
+                },
+                {
+                    title: "Modül 20: RKE Kurşun Koruyucu Ekipman & DIN 6857 Skopi",
+                    desc: "İnteraktif silüet üzerinde mm² delik/çatlak tespiti, otomatik HEK kararı ve SKS muayene cetveli.",
+                    img: "help/assets/img/modul20_rke_skopi_muayene.png",
+                    link: "moduller.html#m-20"
+                },
+                {
+                    title: "Modül 12: Dozimetre Takibi & NDK 72 Saatlik Resmi Bildirim",
+                    desc: "20 mSv limit aşımında otomatik RD.F43 araştırma formu, 10 iş günü sayacı ve NDK Form A-1 üretimi.",
+                    img: "help/assets/img/12_1_dozimetre_takibi_ana_ekran.png",
+                    link: "moduller.html#m-12"
+                },
+                {
+                    title: "Modül 19: Tıbbi Cihaz Arıza, Bakım & Kalite Kontrol (QC)",
+                    desc: "Karekodla arıza kaydı, X-ışını tüp değişimi senkronizasyonu ve QC güvenlik karantina kilidi.",
+                    img: "help/assets/img/19_1_cihaz_ariza_bakim_ve_kalite_kontrol_qc.png",
+                    link: "moduller.html#m-19"
+                },
+                {
+                    title: "Modül 21: Merkezi Onaylar & Kurumsal Rapor Merkezi",
+                    desc: "5 sekmeli onay paneli, 4-göz görsel Diff View karşılaştırması ve 17 resmi kurum raporu.",
+                    img: "help/assets/img/modul21_onay_merkezi.png",
+                    link: "moduller.html#m-21"
+                },
+                {
+                    title: "Modül 22: Web Portalı & 20 Yönetici Gösterge Paneli",
+                    desc: "Express/React tabanlı 20 analitik dashboard, 60s bellek önbelleği ve anlık karar destek grafikleri.",
+                    img: "help/assets/img/02_portal_launcher_paneli_on.png",
+                    link: "moduller.html#m-22"
+                }
+            ];
+
+            window.switchHeroScreen = function(idx) {
+                const s = HERO_SCREENS[idx];
+                if (!s) return;
+                const img = document.getElementById("hero-screen-img");
+                const title = document.getElementById("hero-screen-title");
+                const desc = document.getElementById("hero-screen-desc");
+                const link = document.getElementById("hero-screen-link");
+                
+                if (img) {
+                    img.style.opacity = '0';
+                    setTimeout(() => {
+                        img.src = s.img;
+                        img.onclick = () => window.location.href = s.link;
+                        img.style.opacity = '1';
+                    }, 150);
+                }
+                if (title) title.textContent = s.title;
+                if (desc) desc.textContent = s.desc;
+                if (link) link.href = s.link;
+
+                const btns = document.querySelectorAll(".hero-screen-tab");
+                btns.forEach((btn, i) => {
+                    if (i === idx) {
+                        btn.className = "hero-screen-tab px-3 py-1.5 rounded-lg text-xs font-mono transition-all bg-teal-500/20 text-teal-300 border border-teal-500/40";
+                    } else {
+                        btn.className = "hero-screen-tab px-3 py-1.5 rounded-lg text-xs font-mono transition-all bg-white/5 text-slate-400 hover:text-white border border-white/5";
+                    }
+                });
+            };
 
             // Stats
             const items = [
