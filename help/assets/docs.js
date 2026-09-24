@@ -130,7 +130,7 @@ const SEARCH_INDEX = [
     "path": "3. Personel Modülü ve Özlük"
   },
   {
-    "title": "🐾 3.2 Personel Listesinde Hızlı Arama, Filtreleme ve Dışa Aktarma Nasıl Yapılır?",
+    "title": "🐾 3.2 Personel Listesinde Hızlı Arama, Filtreleme, Yazdırma ve Dışa Aktarma Nasıl Yapılır?",
     "desc": "Personel özlük dosyaları, dozimetre atama ve birim görevlendirmeleri.",
     "url": "03_personel_modulu.html",
     "path": "3. Personel Modülü ve Özlük"
@@ -161,6 +161,12 @@ const SEARCH_INDEX = [
   },
   {
     "title": "🐾 3.7 Radyasyon Güvenliği Sorumlusu (RGS / RSO) Görevlendirme ve Sertifika Takibi",
+    "desc": "Personel özlük dosyaları, dozimetre atama ve birim görevlendirmeleri.",
+    "url": "03_personel_modulu.html",
+    "path": "3. Personel Modülü ve Özlük"
+  },
+  {
+    "title": "🐾 3.8 İşten Ayrılış Kaydı ve KVKK Mevzuat Arşiv Paketi İhracı (A4 PDF + JSON)",
     "desc": "Personel özlük dosyaları, dozimetre atama ve birim görevlendirmeleri.",
     "url": "03_personel_modulu.html",
     "path": "3. Personel Modülü ve Özlük"
@@ -700,6 +706,12 @@ const SEARCH_INDEX = [
     "path": "14. Tanımlamalar & Web Portalı"
   },
   {
+    "title": "🐾 14.6 Akıllı Sütun Boyutlandırması, 34px Kompakt Tablo Düzeni ve Form Ergonomisi",
+    "desc": "Lookup sabit tanımları, React PWA mobil web portalı ve REST API entegrasyonu.",
+    "url": "14_tanimlamalar_ve_web_portal.html",
+    "path": "14. Tanımlamalar & Web Portalı"
+  },
+  {
     "title": "İşlemin Amacı ve Mimari Yapısı",
     "desc": "Lookup sabit tanımları, React PWA mobil web portalı ve REST API entegrasyonu.",
     "url": "14_tanimlamalar_ve_web_portal.html",
@@ -731,6 +743,12 @@ const SEARCH_INDEX = [
   },
   {
     "title": "🐾 15.5 Saha ve Tablet Muayene Portalı (QR/Barkod Okuma & İnteraktif Kroki)",
+    "desc": "Lookup sabit tanımları, React PWA mobil web portalı ve REST API entegrasyonu.",
+    "url": "14_tanimlamalar_ve_web_portal.html",
+    "path": "14. Tanımlamalar & Web Portalı"
+  },
+  {
+    "title": "🐾 15.6 Web Portalı Kurumsal Analitik Yönetici Dashboardları (20 Pano)",
     "desc": "Lookup sabit tanımları, React PWA mobil web portalı ve REST API entegrasyonu.",
     "url": "14_tanimlamalar_ve_web_portal.html",
     "path": "14. Tanımlamalar & Web Portalı"
@@ -1012,6 +1030,30 @@ const SEARCH_INDEX = [
     "path": "16. Sıkça Sorulan Sorular (SSS)"
   },
   {
+    "title": "4.11 Web Portalı \"Farazi İzin Planı\" Nedir ve 3 Görünüm Modu Nasıl Kullanılır?",
+    "desc": "Tüm modüller için sık karşılaşılan uyarılar, hata mesajları ve adım adım çözüm rehberi.",
+    "url": "16_sss_sorun_giderme.html",
+    "path": "16. Sıkça Sorulan Sorular (SSS)"
+  },
+  {
+    "title": "4.12 Farazi İzin Projeksiyonunda Mazeret ve Hastalık/Rapor İzinleri Neden Hesaba Katılmaz?",
+    "desc": "Tüm modüller için sık karşılaşılan uyarılar, hata mesajları ve adım adım çözüm rehberi.",
+    "url": "16_sss_sorun_giderme.html",
+    "path": "16. Sıkça Sorulan Sorular (SSS)"
+  },
+  {
+    "title": "4.14 Web Portalında \"İzin Durumu\" Panosu ile \"Farazi İzin\" Panosu Arasındaki Fark Nedir?",
+    "desc": "Tüm modüller için sık karşılaşılan uyarılar, hata mesajları ve adım adım çözüm rehberi.",
+    "url": "16_sss_sorun_giderme.html",
+    "path": "16. Sıkça Sorulan Sorular (SSS)"
+  },
+  {
+    "title": "4.15 Web Portalı Şua İzni Hak Ediş Paneli (`/dashboard/sua`) Nasıl Hesaplanır, Kazanım/Kullanım Yılı ve 50 Saat Kuralı Nedir?",
+    "desc": "Tüm modüller için sık karşılaşılan uyarılar, hata mesajları ve adım adım çözüm rehberi.",
+    "url": "16_sss_sorun_giderme.html",
+    "path": "16. Sıkça Sorulan Sorular (SSS)"
+  },
+  {
     "title": "5.1 ☢️ \"NDK Yıllık Limit Aşımı (>20 mSv)\" uyarısı alındığında ne yapılmalıdır?",
     "desc": "Tüm modüller için sık karşılaşılan uyarılar, hata mesajları ve adım adım çözüm rehberi.",
     "url": "16_sss_sorun_giderme.html",
@@ -1270,6 +1312,30 @@ const SEARCH_INDEX = [
     "path": "16. Sıkça Sorulan Sorular (SSS)"
   },
   {
+    "title": "12.5 Farazi İzin Planı sayfasında geçmiş izin verileri neden varsayılan olarak Son 4 Yıl (2023–2026) ile taranmaktadır?",
+    "desc": "Tüm modüller için sık karşılaşılan uyarılar, hata mesajları ve adım adım çözüm rehberi.",
+    "url": "16_sss_sorun_giderme.html",
+    "path": "16. Sıkça Sorulan Sorular (SSS)"
+  },
+  {
+    "title": "12.6 Nöbet & Tatil Takviminde bazı idari veya poliklinik birimleri neden listede görünmemektedir?",
+    "desc": "Tüm modüller için sık karşılaşılan uyarılar, hata mesajları ve adım adım çözüm rehberi.",
+    "url": "16_sss_sorun_giderme.html",
+    "path": "16. Sıkça Sorulan Sorular (SSS)"
+  },
+  {
+    "title": "12.7 Farazi İzin Planı sayfasındaki \"Hizmet Sınıfı\" filtresi nasıl çalışır ve ne işe yarar?",
+    "desc": "Tüm modüller için sık karşılaşılan uyarılar, hata mesajları ve adım adım çözüm rehberi.",
+    "url": "16_sss_sorun_giderme.html",
+    "path": "16. Sıkça Sorulan Sorular (SSS)"
+  },
+  {
+    "title": "12.8 Farazi İzin Planında KPI kartlarına tıklandığında ne olur ve neden simülatör kutusu kaldırıldı?",
+    "desc": "Tüm modüller için sık karşılaşılan uyarılar, hata mesajları ve adım adım çözüm rehberi.",
+    "url": "16_sss_sorun_giderme.html",
+    "path": "16. Sıkça Sorulan Sorular (SSS)"
+  },
+  {
     "title": "13.1 \"Okunmamış Bildiriminiz Bulunmaktadır\" uyarısı",
     "desc": "Tüm modüller için sık karşılaşılan uyarılar, hata mesajları ve adım adım çözüm rehberi.",
     "url": "16_sss_sorun_giderme.html",
@@ -1439,73 +1505,7 @@ const SEARCH_INDEX = [
   },
   {
     "title": "17. Sürüm Güncelleme Geçmişi",
-    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
-    "url": "17_surum_notlari.html",
-    "path": "17. Sürüm Güncelleme Geçmişi"
-  },
-  {
-    "title": "☢️ RADPYS V4.1.2.9 (Sürüm 4.1.2.9 — Dozimetre Takip Sistemi, RDF-4.3 Doz Formu, Cihaz & RKE İçe Aktarım, 40 Matbu Şablon & Yerel HTML Yardım Merkezi)",
-    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
-    "url": "17_surum_notlari.html",
-    "path": "17. Sürüm Güncelleme Geçmişi"
-  },
-  {
-    "title": "🏪 RADPYS V4.1.2.8 (Sürüm 4.1.2.8 — Nöbet Değişim Havuzu, 36 Saat TTL Kısıtı & Web Portal Pazaryeri)",
-    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
-    "url": "17_surum_notlari.html",
-    "path": "17. Sürüm Güncelleme Geçmişi"
-  },
-  {
-    "title": "🗺️ RADPYS V4.1.2.4 (Sürüm 4.1.2.4 — Mimari Kat Planı PDF Desteği, Cihaz Pin Kilitleme & Akıllı Breadcrumb Menüleri)",
-    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
-    "url": "17_surum_notlari.html",
-    "path": "17. Sürüm Güncelleme Geçmişi"
-  },
-  {
-    "title": "🚀 RADPYS V4.1.2.2 (Sürüm 4.1.2.2 — Akıllı Dry-Run İçe Aktarma, Resmi RD.F43 Doz Formu, Nöbet İkame Motoru, Şua Erken Uyarı & NDK 2. Gün Hatırlatıcısı)",
-    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
-    "url": "17_surum_notlari.html",
-    "path": "17. Sürüm Güncelleme Geçmişi"
-  },
-  {
-    "title": "📊 RADPYS V4.1.2.1 (Sürüm 4.1.2.1 — Yeni Rapor Kataloğu, Çok Satırlı Dinamik Kurum Başlıkları & Şablon Marka Yönetimi)",
-    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
-    "url": "17_surum_notlari.html",
-    "path": "17. Sürüm Güncelleme Geçmişi"
-  },
-  {
-    "title": "🛡️ RADPYS V4.1.2 (Sürüm 4.1.2.0 — Koruyucu Donanım / RKE Yönetimi, DIN 6857-1 Kalite Kontrol, Akıllı Kodlama & Toplu İçe Aktarma)",
-    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
-    "url": "17_surum_notlari.html",
-    "path": "17. Sürüm Güncelleme Geçmişi"
-  },
-  {
-    "title": "🏥 RADPYS V4.1.0 (Sürüm 4.1.0.0 — Tıbbi Cihaz Envanteri, NDK Lisansı, Kalite Kontrol & Mobil QR Arıza Portalı)",
-    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
-    "url": "17_surum_notlari.html",
-    "path": "17. Sürüm Güncelleme Geçmişi"
-  },
-  {
-    "title": "☢️ RADPYS V4.0.2 (Sürüm 4.0.2.0 — Ortam Dozu & İnteraktif Kroki)",
-    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
-    "url": "17_surum_notlari.html",
-    "path": "17. Sürüm Güncelleme Geçmişi"
-  },
-  {
-    "title": "🎓 RADPYS V4.0.1 (Sürüm 4.0.1.0 — Hizmet İçi Eğitim & Online Sınav LMS)",
-    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
-    "url": "17_surum_notlari.html",
-    "path": "17. Sürüm Güncelleme Geçmişi"
-  },
-  {
-    "title": "🐘 RADPYS V4.0 (Sürüm 4.0.0 — PostgreSQL Kurumsal Veritabanı & PWA)",
-    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
-    "url": "17_surum_notlari.html",
-    "path": "17. Sürüm Güncelleme Geçmişi"
-  },
-  {
-    "title": "🚀 RADPYS V4 (Sürüm 3.0.0 — Kurumsal Sürüm)",
-    "desc": "RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.",
+    "desc": "Sürüm takibi, CHANGELOG.md, update.md ve teknik sürüm geçmişi referansları.",
     "url": "17_surum_notlari.html",
     "path": "17. Sürüm Güncelleme Geçmişi"
   }

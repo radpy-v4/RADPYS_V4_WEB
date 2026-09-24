@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>18. Tıbbi Cihaz ve NDK Lisans Envanteri — RADPYS v4 Kullanım Kılavuzu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfeff',
+              100: '#cffafe',
+              200: '#a5f3fc',
+              500: '#06b6d4',
+              600: '#0891b2',
+              700: '#0e7490',
+              900: '#164e63',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    pre, code { font-family: 'JetBrains Mono', monospace; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 9999px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.6); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- TOP HEADER NAVBAR (Wide Fluid Layout) -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Version -->
+      <div class="flex items-center gap-3">
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Menüyü Aç/Kapat">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.2</span>
+            </span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Karar Destek Portalı</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick Search Bar (Ctrl+K) -->
+      <div class="flex-1 max-w-xl hidden md:block">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input 
+            type="text" 
+            placeholder="Dokümanda ara... (Örn: NDK lisansı, vize süresi, X-Ray, BT, kroki pinleme, HEK tutanağı, QR etiket...)" 
+            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition"
+          >
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <kbd class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600 font-semibold">Ctrl+K</kbd>
+          </div>
+        </div>
+      </div>
+
+      <!-- Theme & Action Buttons -->
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" class="p-2.5 rounded-xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Tema Değiştir">
+          <svg id="themeIconSun" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="themeIconMoon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+
+        <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span>Tüm Modüller</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER (Fluid & Wide Layout) -->
+  <div class="flex-1 max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 flex gap-8">
+
+    <!-- LEFT SIDEBAR: NAVIGATION -->
+    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar">
+      <div class="mb-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3">21 Modül Rehberi</span>
+      </div>
+
+      <nav class="space-y-1 text-sm font-medium">
+        <a href="01_kurulum_ve_ilk_giris.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">01</span>
+          <span>Kurulum & İlk Giriş</span>
+        </a>
+        <a href="02_kullanici_ve_rol_yonetimi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">02</span>
+          <span>Kullanıcı & Roller</span>
+        </a>
+        <a href="03_sistem_ayarlari_ve_tanimlamalar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">03</span>
+          <span>Sistem Ayarları & Tanımlar</span>
+        </a>
+        <a href="04_veritabani_bakim_ve_guvenlik.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">04</span>
+          <span>Veritabanı, Bakım & Güvenlik</span>
+        </a>
+        <a href="05_personel_yonetimi_ve_toplu_aktarim.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">05</span>
+          <span>Personel & Excel Aktarım</span>
+        </a>
+        <a href="06_izin_yonetimi_ve_hakedis.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">06</span>
+          <span>İzin Yönetimi & Şua Hakediş</span>
+        </a>
+        <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">07</span>
+          <span>Nöbet Ayarları & Kısıtlar</span>
+        </a>
+        <a href="08_nobet_hazirlik_ve_solver_motoru.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">08</span>
+          <span>Nöbet Hazırlık & Solver</span>
+        </a>
+        <a href="09_nobet_devir_ikame_ve_acil_mazeret.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">09</span>
+          <span>Nöbet Devir & Mazeret</span>
+        </a>
+        <a href="10_nobet_borc_alacak_ve_fazla_mesai.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">10</span>
+          <span>Nöbet Borç / Alacak & Fazla Mesai</span>
+        </a>
+        <a href="11_fiili_hizmet_ve_sua_hesaplama.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">11</span>
+          <span>Fiili Hizmet & Şua (FHZ)</span>
+        </a>
+        <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">12</span>
+          <span>Dozimetre Takibi & RD.F43</span>
+        </a>
+        <a href="13_saglik_muayeneleri_ve_periyodik_takip.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">13</span>
+          <span>Sağlık Muayeneleri & Takip</span>
+        </a>
+        <a href="14_ortam_dozu_ve_kroki_haritasi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">14</span>
+          <span>Ortam Dozu & Kroki Haritası</span>
+        </a>
+        <a href="15_olay_bildirimi_ve_dof_capa.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">15</span>
+          <span>Olay Bildirimi & DÖF / CAPA</span>
+        </a>
+        <a href="16_rgs_rso_gorevlendirme_ve_sertifika.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">16</span>
+          <span>RGS / RSO Görevlendirme</span>
+        </a>
+        <a href="17_hizmet_ici_egitim_ve_online_sinav.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">17</span>
+          <span>Hizmet İçi Eğitim & Sınav</span>
+        </a>
+
+        <!-- 18 AKTİF -->
+        <a href="#overview" class="flex items-center justify-between px-3 py-2.5 rounded-xl bg-cyan-50 text-cyan-800 dark:bg-cyan-950/60 dark:text-cyan-300 font-semibold border-l-4 border-cyan-600">
+          <div class="flex items-center gap-2.5">
+            <span class="font-mono text-xs text-cyan-600 dark:text-cyan-400 font-bold">18</span>
+            <span>Cihaz & NDK Lisans</span>
+          </div>
+          <span class="w-2 h-2 rounded-full bg-cyan-600 animate-pulse"></span>
+        </a>
+
+        <a href="19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">19</span>
+          <span>Cihaz Arıza & Kalite (QC)</span>
+        </a>
+
+        <a href="20_rke_koruyucu_ekipman_ve_din6857.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">20</span>
+          <span>RKE & DIN 6857 Muayene</span>
+        </a>
+
+        <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800/60 space-y-1">
+          <a href="21_merkezi_onaylar_ve_rapor_merkezi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <span class="font-mono text-xs opacity-60">21</span>
+            <span>Merkezi Onay & Raporlar</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- CENTER COLUMN: CORE DOCUMENTATION (Wide & Readable) -->
+    <main class="flex-1 min-w-0 py-8">
+      
+      <!-- Breadcrumb & Badges -->
+      <nav class="flex items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
+        <a href="index.html" class="hover:text-cyan-600 transition">Kılavuz Ana Sayfası</a>
+        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span>Cihaz ve Envanter Yönetimi</span>
+        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">18. Tıbbi Cihaz ve NDK Lisans Envanteri</span>
+      </nav>
+
+      <!-- Main Header -->
+      <header id="overview" class="mb-8 border-b border-slate-200 dark:border-slate-800 pb-6">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-3">
+          <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+            Tıbbi Cihaz ve NDK Lisans Envanteri
+          </h1>
+          <div class="flex items-center gap-2.5">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span> NDK & SKS 6.1 Uyumlu
+            </span>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+              Tahmini Okuma: 4 Dakika
+            </span>
+          </div>
+        </div>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
+          Hastaneler ve radyoloji merkezlerindeki iyonlaştırıcı radyasyon yayan (X-Ray, Tomografi, Anjiyografi, Skopi, Mamografi) ve radyasyonsuz medikal (MR, USG) tüm cihazların teknik künyelerinin yönetildiği, Nükleer Düzenleme Kurumu (NDK) lisans ve vize sürelerinin 6 ay - 45 gün - 30 gün kademeli erken uyarı sistemiyle takip edildiği, cihazların mimari kat planları (kroki) üzerine koordinatla sabitlendiği, teknik kılavuzların AES-256 şifreli Evrak Kasasında korunduğu ve hurdaya ayrılan cihazların resmi HEK tutanağıyla arşivlendiği entegre donanım yönetim merkezidir.
+        </p>
+
+        <div class="mt-4 text-xs sm:text-sm flex items-center gap-2 text-slate-500 dark:text-slate-400">
+          <span><strong>Yasal Güvence:</strong> Sağlık Bakanlığı Sağlıkta Kalite Standartları (SKS 6.1) ve NDK Radyasyon Güvenliği Mevzuatı uyarınca ruhsatsız veya vizesi dolmuş cihazlar karantina uyarısına alınır.</span>
+        </div>
+      </header>
+
+      <!-- 1. HIZLI REÇETE KUTUSU + 4 METRİK HAPI (VIZYONDER UX) -->
+      <section id="quick-recipe" class="mb-10">
+        <div class="p-6 sm:p-7 rounded-3xl bg-cyan-50/70 dark:bg-cyan-950/30 border border-cyan-200/90 dark:border-cyan-800/60 shadow-md">
+          
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2.5 text-cyan-900 dark:text-cyan-200 font-bold text-sm sm:text-base">
+              <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              <span>Kısa Reçete: Yeni Cihaz Tanımlama ve NDK Lisansı Bağlama</span>
+            </div>
+            <span class="text-xs font-mono px-2.5 py-1 rounded bg-cyan-200/80 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-300 font-bold">20 SANİYELİK AKIŞ</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5 text-xs sm:text-sm">
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
+              <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider text-[11px]">1. İstenen Sonuç</span>
+              <p class="text-slate-700 dark:text-slate-200 font-medium">
+                Cihazın resmi NDK lisansıyla envantere kaydedilmesi, erken uyarı alarmına bağlanması ve QR künyesinin üretilmesi.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
+              <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider text-[11px]">2. Yapılacak İşlem</span>
+              <p class="text-slate-700 dark:text-slate-200 font-medium">
+                <strong>[Yeni Cihaz]</strong> butonuna tıklayın. 1. Sekmede Birim ve Türü seçin; Seri No ve Demirbaş No girin. 2. Sekmede NDK Lisans No ve Vize Tarihini yazıp <strong>[Cihazı Kaydet]</strong> butonuna basın.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
+              <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider text-[11px]">3. Sistem Etkisi & Güvence</span>
+              <p class="text-slate-700 dark:text-slate-200 font-medium">
+                Cihaz Kodu otomatik üretilir ve kilitlenir. Vize bitimine 6 ay kala erken uyarı başlar; 45 gün ve 30 gün eşiklerinde alarm rengi değişir. Hiçbir eski veri ezilmez.
+              </p>
+            </div>
+          </div>
+
+          <!-- 4 METRİK HAPI (METRIC PILLS) -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-cyan-200/60 dark:border-cyan-800/40">
+            <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+              <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Vize Takip Alarmı</span>
+              <span class="text-sm sm:text-base font-black text-cyan-600 dark:text-cyan-400 font-mono">6 Ay / 45G / 30G</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+              <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Yetkili Rol</span>
+              <span class="text-sm sm:text-base font-black text-slate-700 dark:text-slate-200">Biyomedikal / RGS / RKS</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+              <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Cihaz Kodu Kuralı</span>
+              <span class="text-sm sm:text-base font-black text-emerald-600">Sistem Üretir (Kilitli)</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+              <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Platform</span>
+              <span class="text-sm sm:text-base font-black text-purple-600">🖥️ Masaüstü + 📱 Web / QR</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 2. MİT AVCISI (YANLIŞ ALGIYI YIKAN GÖRSEL KART) -->
+      <section id="myth-buster" class="mb-10">
+        <div class="p-6 rounded-3xl bg-amber-50/70 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/50 shadow-sm">
+          <div class="flex items-center gap-2.5 text-amber-800 dark:text-amber-300 font-bold text-sm sm:text-base mb-3">
+            <svg class="w-5 h-5 text-amber-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            <span>Kritik Sahada Yanlış Bilinen Kural (Mit Avcısı)</span>
+          </div>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-3 text-sm">
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-rose-200 dark:border-rose-900/40 text-rose-900 dark:text-rose-200 leading-relaxed">
+              <span class="font-bold block mb-1">❌ Yanlış Algı:</span>
+              <em>"Cihaz kodunu kendi istediğim gibi değiştirebilirim; artık kullanılmayan eski bir cihazı da sistemden kalıcı olarak silebilir veya yok edebilirim."</em>
+            </div>
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-emerald-200 dark:border-emerald-900/40 text-emerald-900 dark:text-emerald-200 leading-relaxed">
+              <span class="font-bold block mb-1">✅ Gerçek Sistem Mantığı:</span>
+              Cihaz Kodu ilişkisel veri bütünlüğünü korumak için <strong>sistem tarafından otomatik üretilir ve kilitlidir</strong>. Kurum içi demirbaş veya ÇKYS takibi için formdaki <strong>Demirbaş No</strong> alanı kullanılır. Ayrıca sistemde cihazlar asla kalıcı silinmez; geçmiş kalite kontrol, arıza ve dozimetri izini korumak için <strong>[Sil / HEK]</strong> butonuyla Hurda Arşivine kaldırılır.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. 5N1K KURAL VE AYAR ÇÖZÜMLEME TABLOSU -->
+      <section id="matrix-5n1k" class="mb-12">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+              <span class="w-3 h-3 rounded bg-cyan-600"></span> 5N1K Kural ve Ayar Çözümleme Tablosu
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+              Tıbbi cihaz envanteri, NDK lisanslama, kat planı sabitleme ve HEK hurda arşivi operasyonel kontrolleri.
+            </p>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm bg-white dark:bg-slate-900">
+          <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-left text-sm border-collapse min-w-[760px]">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-100/75 dark:bg-slate-800/60 text-slate-700 dark:text-slate-200 font-bold text-xs uppercase tracking-wider">
+                  <th class="py-3.5 px-4">NE? (Ekran Kontrolü)</th>
+                  <th class="py-3.5 px-4">NEDEN? (Amacı)</th>
+                  <th class="py-3.5 px-4">NASIL? (Çalışma Mantığı)</th>
+                  <th class="py-3.5 px-4">NE ZAMAN?</th>
+                  <th class="py-3.5 px-4">KİM?</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                  <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                    Yeni Cihaz Tanımlama<br>
+                    <span class="text-xs font-normal text-slate-400 font-mono">[Yeni Cihaz Butonu]</span>
+                  </td>
+                  <td class="py-3.5 px-4">Hastaneye teslim alınan cihazın teknik künyesini ve lisansını açmak.</td>
+                  <td class="py-3.5 px-4">5 sekmeli sihirbaz açılır: Genel Künye, NDK Lisans, Garanti, Kat Planı ve Şifreli Evrak Kasası doldurulur.</td>
+                  <td class="py-3.5 px-4">Yeni cihaz alımında veya devralındığında.</td>
+                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Biyomedikal / RGS</span></td>
+                </tr>
+
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                  <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                    NDK Lisans ve Vize Takibi<br>
+                    <span class="text-xs font-normal text-slate-400 font-mono">[2. Sekme: Lisans Bilgileri]</span>
+                  </td>
+                  <td class="py-3.5 px-4">İyonlaştırıcı radyasyon yayan cihazın yasal ruhsat takvimini kurmak.</td>
+                  <td class="py-3.5 px-4">Lisans No ve vize geçerlilik tarihi girilir. Sistem 6 ay, 45 gün ve 30 gün erken uyarı alarmları üretir.</td>
+                  <td class="py-3.5 px-4">Cihaz kaydedilirken veya lisans yenilendiğinde.</td>
+                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">RGS / RKS Sorumlusu</span></td>
+                </tr>
+
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                  <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                    Kat Planına Sabitleme<br>
+                    <span class="text-xs font-normal text-slate-400 font-mono">[4. Sekme: Kat Planı & Pin Kilitli]</span>
+                  </td>
+                  <td class="py-3.5 px-4">Cihazın oda içindeki mimari koordinatını sabitlemek ve kroki haritasında göstermek.</td>
+                  <td class="py-3.5 px-4">Birim krokisi açılır, fareyle pini yerleştirilip [Pin Kilitli] butonuyla kilitlenir.</td>
+                  <td class="py-3.5 px-4">Sabit X-Ray, BT veya Anjiyo kurulumunda.</td>
+                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Biyomedikal / RGS</span></td>
+                </tr>
+
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                  <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                    AES-256 Şifreli Evrak Kasası<br>
+                    <span class="text-xs font-normal text-slate-400 font-mono">[5. Sekme: Kılavuzlar ve Belgeler]</span>
+                  </td>
+                  <td class="py-3.5 px-4">Kullanım kılavuzu, servis şeması ve CE belgelerini KVKK uyumlu şifreli saklamak.</td>
+                  <td class="py-3.5 px-4">Yüklenen PDF/dosyalar AES-256 Fernet ile şifrelenir; istendiğinde şifresi çözülüp görüntülenir.</td>
+                  <td class="py-3.5 px-4">Teknik evrak teslim alındığında.</td>
+                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Tüm Kullanıcılar</span></td>
+                </tr>
+
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                  <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                    Dinamik QR Etiket Basımı<br>
+                    <span class="text-xs font-normal text-slate-400 font-mono">[QR Etiket Butonu]</span>
+                  </td>
+                  <td class="py-3.5 px-4">Cihaz gövdesine yapıştırılacak karekodlu kimlik etiketini üretmek.</td>
+                  <td class="py-3.5 px-4">Web Portal yönlendirmesi içeren QR künyesi basılır; mobil kamera ile okutulduğunda servis ekranı açılır.</td>
+                  <td class="py-3.5 px-4">Cihaz sahaya yerleştirildiğinde.</td>
+                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Tekniker / Biyomedikal</span></td>
+                </tr>
+
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                  <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                    HEK Hurda Arşivi ve Çıkış Tutanağı<br>
+                    <span class="text-xs font-normal text-slate-400 font-mono">[Sil / HEK & Hurda Tutanağı Butonları]</span>
+                  </td>
+                  <td class="py-3.5 px-4">Ekonomik ömrü biten cihazı arşivleyip resmi komisyon tutanağı üretmek.</td>
+                  <td class="py-3.5 px-4">Cihaz HEK arşivine kaldırılır; geçmiş denetim izi korunur. Resmi Word (.docx) Hurda Tutanağı tek tıkla üretilir.</td>
+                  <td class="py-3.5 px-4">Cihaz hurdaya ayrıldığında veya devredildiğinde.</td>
+                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Sistem Yöneticisi</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. SÜREÇ AKIŞ ŞEMASI (MERMAID.JS) -->
+      <section id="workflow" class="mb-12">
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-3">
+          <span class="w-3 h-3 rounded bg-cyan-600"></span> Cihaz Yaşam Döngüsü ve İş Akış Şeması (Mermaid)
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
+          Aşağıdaki şema, tıbbi cihazın sisteme ilk kaydından otomatik kodlamaya, NDK vize erken uyarı alarmlarından HEK hurda arşivine kadar tüm yaşam döngüsünü göstermektedir.
+        </p>
+
+        <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-x-auto">
+          <div class="mermaid">
+flowchart TD
+    A["Tıbbi Cihaz Envanter Ekranı"] --> B["[Yeni Cihaz] Butonu"]
+    B --> C["1. Genel Künye: Kaynak Grubu + Birim + Tür Seçimi"]
+    C --> D["Akıllı Cihaz Kodu Otomatik Üretilir (Kilitli)"]
+    D --> E["Seri No, Demirbaş No ve Tüp No Girişi"]
+    
+    E --> F["2. NDK Lisans ve RKS Sorumluları"]
+    F --> G{"Kaynak Radyasyonlu mu?"}
+    G -- "Evet" --> H["NDK Lisans No / Başvuru Aşamasında"]
+    G -- "Hayır (MR/USG)" --> I["Lisans Muaf"]
+    
+    H --> J["3. Garanti ve Bakım Sözleşmesi Süreleri"]
+    I --> J
+    
+    J --> K["4. Kat Planı: Mimari Krokiye Cihaz Pini Yerleştirme & Kilitleme"]
+    K --> L["5. Kılavuzlar ve Belgeler: AES-256 Şifreli Evrak Kasasına Yükleme"]
+    L --> M["[Cihazı Kaydet] Butonu"]
+    
+    M --> N["NDK Lisans Vize Takip Motoru"]
+    N --> O{"Kalan Lisans Süresi"}
+    O -- "> 60 Gün" --> P["Yeşil Rozet: Vize Güvende"]
+    O -- "180 - 46 Gün" --> Q["Erken Uyarı Süreci Devrede"]
+    O -- "45 - 31 Gün" --> R["Sarı Rozet: Süresi Yaklaşıyor Alarmı"]
+    O -- "30 - 0 Gün" --> S["Turuncu Rozet: Kritik Eşik Alarmı"]
+    O -- "< 0 Gün" --> T["Kırmızı Rozet: Yasal İhlal Uyarısı"]
+    
+    M --> U["[QR Etiket] Basımı"]
+    U --> V["Mobil Web Portal Barkod Tarama & Arıza Bildirimi"]
+    
+    M --> W["Ekonomik Ömrü Dolan Cihaz: [Sil / HEK] Butonu"]
+    W --> X["Hurda Arşivine Kaldırılır (Fiziki Silme Yok)"]
+    X --> Y["[Hurda Tutanağı] Resmi Word (.docx) Çıktısı"]
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. EKRAN REHBERİ (SENTETİK VERİ ETİKETLİ GÖRSELLER) -->
+      <section id="screenshots" class="mb-12">
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+          <span class="w-3 h-3 rounded bg-cyan-600"></span> Ekran Konumları ve Görsel Rehber
+        </h2>
+
+        <!-- Görsel 1: Cihaz Envanteri Ekranı -->
+        <figure class="my-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
+          <div class="p-3 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
+            <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
+              🖥️ Ekran Konumu: <strong class="text-slate-900 dark:text-white font-semibold">Cihaz Yönetimi > Tıbbi Cihaz ve Lisans Envanteri</strong>
+            </span>
+            <span class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">Canlı Envanter Tablosu</span>
+          </div>
+          <div class="p-4 flex justify-center bg-slate-50 dark:bg-slate-950">
+            <div class="w-full max-w-3xl p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm space-y-4">
+              <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+                <span class="font-bold text-sm text-slate-800 dark:text-slate-100">Aktif Tıbbi Cihaz Envanteri</span>
+                <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-semibold font-mono">12 Cihaz Aktif</span>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
+                <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+                  <span class="text-slate-400 block mb-1">Cihaz Kodu:</span>
+                  <span class="font-bold font-mono text-slate-900 dark:text-white">XRAY-ACL-ANJ-01</span>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+                  <span class="text-slate-400 block mb-1">NDK Lisans No:</span>
+                  <span class="font-mono text-slate-900 dark:text-white">NDK-2024-XRAY-088</span>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+                  <span class="text-slate-400 block mb-1">Vize Durumu:</span>
+                  <span class="font-bold text-emerald-600">Geçerli (>60 Gün)</span>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+                  <span class="text-slate-400 block mb-1">Kat Planı:</span>
+                  <span class="font-semibold text-cyan-600">[Pin Kilitli]</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki seri numaraları, lisans kodları ve kurum bilgileri test amaçlı sentetik veridir.</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- 6. ADIM ADIM OPERASYONEL EYLEM AKIŞI -->
+      <section id="step-by-step" class="mb-12">
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+          <span class="w-3 h-3 rounded bg-cyan-600"></span> Adım Adım Operasyonel Eylem Akışı
+        </h2>
+
+        <div class="space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+            <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 1: Yeni Cihaz Künyesi ve Akıllı Kodlama</strong>
+            Sol ana menüden <strong>[Tıbbi Cihaz ve Lisans Envanteri]</strong> ekranını açın. Araç çubuğundaki <strong>[Yeni Cihaz]</strong> butonuna tıklayın. 1. Sekmede Kaynak Grubu (X-Ray, Radyasyonsuz, Medikal, Ölçüm), Birim ve Cihaz Türünü seçin. Sistem otomatik olarak sıradaki akıllı Cihaz Kodunu (örn: <code>XRAY-ACL-ANJ-01</code>) üretir. Seri No ve kurum Demirbaş No alanlarını doldurun.
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+            <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 2: NDK Lisans Bilgileri ve Sorumluları Belirleme</strong>
+            2. Sekmeye geçin. Radyasyonlu cihazlar için NDK Lisans Numarası ve lisans geçerlilik bitiş tarihini girin. Henüz resmi ruhsat çıkmamışsa durumu <em>"Lisans Başvuru Aşamasında"</em> olarak işaretleyin. Kurumdaki sertifikalı uzmanlar arasından <strong>RKS Sorumlusu</strong> ve klinik <strong>Birim Sorumlusu</strong>'nu seçin.
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+            <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 3: Kat Planına Pini Yerleştirme ve Kilitleme</strong>
+            4. Sekmeye (Kat Planı) geçin. Birime ait mimari kroki üzerinde fareyle cihazın bulunduğu odaya tıklayarak veya pini sürükleyerek tam konumunu işaretleyin. Pinin kaymasını önlemek için <strong>[Pin Kilitli]</strong> butonuna basın.
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+            <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 4: Kılavuzları Şifreli Kasaya Yükleme ve Kaydetme</strong>
+            5. Sekmede cihazın kullanım kılavuzu veya teknik servis şeması dosyasını <strong>[Dosya Seç]</strong> ile bağlayıp formun altındaki <strong>[Cihazı Kaydet]</strong> butonuna tıklayın. Cihaz anında canlı envantere işlenir ve erken uyarı motoru devreye girer.
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+            <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 5: QR Etiket Basımı ve HEK Hurda Arşivi</strong>
+            Tablodan cihazı seçip üstteki <strong>[QR Etiket]</strong> butonuyla etiket yazıcısına çıktı gönderin. Cihazın ekonomik ömrü bittiğinde ise <strong>[Sil / HEK]</strong> butonuyla arşive kaldırın; HEK Arşivi ekranından komisyonun imzalayacağı resmi Word (.docx) Hurda Tutanağını tek tıkla üretin.
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. HİBRİT PLATFORM MATRİSİ -->
+      <section id="hybrid-platform" class="mb-12">
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+          <span class="w-3 h-3 rounded bg-cyan-600"></span> Hibrit Platform Matrisi (Masaüstü vs Web Portal)
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-3">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-500"></span>
+              Masaüstü Uygulaması (Yetkili Yönetim Merkezi)
+            </h3>
+            <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+              <li>• Yeni cihaz kaydı, teknik künye ve kilitli akıllı kod üretimi.</li>
+              <li>• NDK lisanslama, vize süresi ve RKS/Birim sorumlusu atamaları.</li>
+              <li>• Mimari kat planı krokisi üzerinde pin sabitleme ve kilitleme.</li>
+              <li>• AES-256 şifreli evrak kasasına teknik kılavuz yükleme ve indirme.</li>
+              <li>• Excel toplu içe/dışa aktarım ve resmi Word (.docx) HEK Hurda Tutanağı.</li>
+            </ul>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-3">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+              Web Portalı & Mobil Barkod (Saha Personeli Görünümü)
+            </h3>
+            <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+              <li>• Kamera ile cihaz QR barkodunu tarayarak cihaz künyesini sahada açma.</li>
+              <li>• Cihazın son Kalite Kontrol (QC) onay ve geçerlilik durumunu teyit etme.</li>
+              <li>• Sahadan arıza bildirimi oluşturma ve arıza sayısını izleme.</li>
+              <li>• Ortam Dozu Kroki Haritasında sabit cihazların oda yerleşimini izleme.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. SIKÇA SORULAN SORULAR AKORDEONU (FAQ) -->
+      <section id="faq" class="mb-14">
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-5">
+          <span class="w-3 h-3 rounded bg-cyan-600"></span> Sıkça Sorulan Sorular ve Saha Çözümleri
+        </h2>
+
+        <div class="space-y-3" id="faqAccordion">
+          <!-- Soru 1 -->
+          <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+            <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+              <span>NDK lisans vize sürelerinde erken uyarı alarmları ne zaman devreye girer?</span>
+              <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
+              NDK resmi yenileme bürokrasisinin ortalama 2-3 ay sürmesi nedeniyle erken uyarı süreci lisans bitimine <strong>6 ay (180 gün)</strong> kala başlar. Vize süresine <strong>45 gün</strong> kala sistem "Süresi Yaklaşıyor" sarı alarmı verir. Kalan gün <strong>30 gün ve altına</strong> indiğinde ise acil başvuru gerektiren "Kritik Eşik" turuncu alarmı devreye girer. Süresi dolan cihazlar ise kırmızı renkle işaretlenerek yöneticiye raporlanır.
+            </p>
+          </details>
+
+          <!-- Soru 2 -->
+          <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+            <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+              <span>Cihaz kodunu neden kendimiz serbestçe belirleyemiyoruz?</span>
+              <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
+              RADPYS V4, cihazları arıza, kalite kontrol, dozimetre maruziyeti ve kroki sistemlerine bağlarken benzersiz ve standart bir format (<code>XRAY-ACL-ANJ-01</code> gibi) kullanır. Kodun elle düzenlenmesi mükerrer kayıtlara ve ilişkisel veri kopmalarına yol açabileceğinden kilitlenmiştir. Kurum içi demirbaş veya Sağlık Bakanlığı ÇKYS takibi için formdaki <strong>Demirbaş No</strong> alanı kullanılır.
+            </p>
+          </details>
+
+          <!-- Soru 3 -->
+          <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+            <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+              <span>Yeni bir X-Ray cihazı tanımlarken NDK Lisans Numarası girmek şart mıdır?</span>
+              <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
+              <strong>Evet.</strong> Mevzuat gereği iyonlaştırıcı radyasyon yayan cihazların sisteme ruhsatsız kaydedilmesine izin verilmez. Ancak cihaz yeni kurulmuş ve ruhsat süreci devam ediyorsa Lisans Durumu kutusundan <em>"Lisans Başvuru Aşamasında"</em> seçeneği işaretlenerek yasal süreç kayıt altına alınabilir. MR ve USG gibi radyasyonsuz cihazlarda ise lisans şartı aranmaz.
+            </p>
+          </details>
+
+          <!-- Soru 4 -->
+          <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+            <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+              <span>Yanlışlıkla [Sil / HEK] butonuna basılan bir cihaz nasıl kurtarılır?</span>
+              <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
+              Sistem cihazları fiziksel olarak silmediği için hiçbir veri kaybolmaz. Üst menüden <strong>HEK ve Hizmet Dışı Cihaz Arşivi</strong> ekranını açın. Listeden ilgili cihazı seçip <strong>[Tekrar Aktif Statüsüne Al]</strong> butonuna tıklayın. Cihaz anında tüm geçmiş kayıtlarıyla birlikte ana aktif envanter tablosuna geri döner.
+            </p>
+          </details>
+
+          <!-- Soru 5 -->
+          <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+            <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+              <span>Mobil ve seyyar röntgen cihazlarına kroki pini koymak zorunlu mudur?</span>
+              <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
+              <strong>Hayır.</strong> Mobil/seyyar cihazlar acil, ameliyathane veya yoğun bakım gibi farklı birimlerde sürekli yer değiştirdiği için kat planına sabit pin yerleştirilmesi opsiyoneldir. Sabit X-Ray, BT ve Anjiyo cihazlarında ise mimari zırhlama ve ortam dozu ölçüm doğruluğu için kroki pini konulması önerilir.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- FOOTER PREV / NEXT -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <a href="17_hizmet_ici_egitim_ve_online_sinav.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">← Önceki Doküman</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">17. Hizmet İçi Eğitim & Sınav</span>
+          </a>
+          <a href="19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition text-right group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">Sonraki Doküman →</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">19. Cihaz Arıza, Bakım ve Kalite (QC)</span>
+          </a>
+        </div>
+      </footer>
+
+    </main>
+
+    <!-- RIGHT ASIDE: TABLE OF CONTENTS -->
+    <aside class="hidden xl:block w-64 shrink-0 py-8 pl-6 border-l border-slate-200 dark:border-slate-800">
+      <div class="sticky top-24 space-y-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-3">Bu Sayfada</span>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#quick-recipe" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">Hızlı Reçete</a></li>
+          <li><a href="#myth-buster" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">Mit Avcısı</a></li>
+          <li><a href="#matrix-5n1k" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">5N1K Tablosu</a></li>
+          <li><a href="#workflow" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">Süreç Akış Şeması</a></li>
+          <li><a href="#screenshots" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">Ekran Rehberi</a></li>
+          <li><a href="#step-by-step" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">Adım Adım Eylem</a></li>
+          <li><a href="#hybrid-platform" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">Hibrit Platform</a></li>
+          <li><a href="#faq" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">Sıkça Sorulan Sorular</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
+    <div class="max-w-[1720px] mx-auto px-6">
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi — Sağlık Bilgi Güvenliği & KVKK Standartları ile Korunmaktadır.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Theme Toggle Logic
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const htmlEl = document.documentElement;
+
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      htmlEl.classList.add('dark');
+    } else {
+      htmlEl.classList.remove('dark');
+    }
+
+    themeToggleBtn?.addEventListener('click', () => {
+      if (htmlEl.classList.contains('dark')) {
+        htmlEl.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        htmlEl.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      renderMermaidDiagrams();
+    });
+
+    function renderMermaidDiagrams() {
+      const isDark = htmlEl.classList.contains('dark');
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: isDark ? 'dark' : 'neutral',
+        fontFamily: 'Inter, system-ui, sans-serif',
+        fontSize: 14,
+        securityLevel: 'loose',
+        flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
+      });
+
+      const nodes = document.querySelectorAll('.mermaid');
+      if (nodes.length > 0) {
+        mermaid.run({ nodes: nodes }).catch(err => console.error("Mermaid hatası:", err));
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', renderMermaidDiagrams);
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebarNav = document.getElementById('sidebarNav');
+    if (mobileMenuBtn && sidebarNav) {
+      mobileMenuBtn.addEventListener('click', () => {
+        sidebarNav.classList.toggle('-translate-x-full');
+      });
+    }
+  </script>
+</body>
+</html>

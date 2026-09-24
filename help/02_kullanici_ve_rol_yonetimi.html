@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02. Kullanıcı ve Rol Yönetimi — RADPYS v4 Kullanım Kılavuzu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfeff',
+              100: '#cffafe',
+              200: '#a5f3fc',
+              500: '#06b6d4',
+              600: '#0891b2',
+              700: '#0e7490',
+              900: '#164e63',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    pre, code { font-family: 'JetBrains Mono', monospace; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 9999px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.6); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- TOP HEADER NAVBAR (Wide Fluid Layout) -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Version -->
+      <div class="flex items-center gap-3">
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Menüyü Aç/Kapat">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.2</span>
+            </span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Karar Destek Portalı</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick Search Bar (Ctrl+K) -->
+      <div class="flex-1 max-w-xl hidden md:block">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input 
+            type="text" 
+            placeholder="Dokümanda ara... (Örn: Kullanıcı ekleme, kilit kaldırma, rol yetki şablonu...)" 
+            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition"
+          >
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <kbd class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600 font-semibold">Ctrl+K</kbd>
+          </div>
+        </div>
+      </div>
+
+      <!-- Theme & Action Buttons -->
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" class="p-2.5 rounded-xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Tema Değiştir">
+          <svg id="themeIconSun" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="themeIconMoon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+
+        <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span>Tüm Modüller</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER (Fluid & Wide Layout) -->
+  <div class="flex-1 max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 flex gap-8">
+
+    <!-- LEFT SIDEBAR: NAVIGATION -->
+    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar">
+      <div class="mb-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3">21 Modül Rehberi</span>
+      </div>
+
+      <nav class="space-y-1 text-sm font-medium">
+        <a href="01_kurulum_ve_ilk_giris.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">01</span>
+          <span>Kurulum & İlk Giriş</span>
+        </a>
+        <!-- 02 AKTİF -->
+        <a href="#overview" class="flex items-center justify-between px-3 py-2.5 rounded-xl bg-cyan-50 text-cyan-800 dark:bg-cyan-950/60 dark:text-cyan-300 font-semibold border-l-4 border-cyan-600">
+          <div class="flex items-center gap-2.5">
+            <span class="font-mono text-xs text-cyan-600 dark:text-cyan-400 font-bold">02</span>
+            <span>Kullanıcı & Roller</span>
+          </div>
+          <span class="w-2 h-2 rounded-full bg-cyan-600 animate-pulse"></span>
+        </a>
+        <a href="03_sistem_ayarlari_ve_tanimlamalar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">03</span>
+          <span>Sistem Ayarları & Tanımlar</span>
+        </a>
+        <a href="04_veritabani_bakim_ve_guvenlik.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">04</span>
+          <span>Veritabanı, Bakım & Güvenlik</span>
+        </a>
+        <a href="05_personel_yonetimi_ve_toplu_aktarim.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">05</span>
+          <span>Personel & Excel Aktarım</span>
+        </a>
+        <a href="06_izin_yonetimi_ve_hakedis.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">06</span>
+          <span>İzin Yönetimi & Şua Hakediş</span>
+        </a>
+        <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">07</span>
+          <span>Nöbet Ayarları & Kısıtlar</span>
+        </a>
+        <a href="08_nobet_hazirlik_ve_solver_motoru.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">08</span>
+          <span>Nöbet Dağıtım Solver Motoru</span>
+        </a>
+        <a href="09_nobet_devir_ikame_ve_acil_mazeret.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">09</span>
+          <span>Nöbet Devir & Mazeret</span>
+        </a>
+        <a href="10_nobet_borc_alacak_ve_fazla_mesai.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">10</span>
+          <span>Nöbet Borç / Alacak & Fazla Mesai</span>
+        </a>
+        <a href="11_fiili_hizmet_ve_sua_hesaplama.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">11</span>
+          <span>Fiili Hizmet & Şua (FHZ)</span>
+        </a>
+        <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">12</span>
+          <span>Dozimetre Takibi & RD.F43</span>
+        </a>
+        <a href="13_saglik_muayeneleri_ve_periyodik_takip.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">13</span>
+          <span>Sağlık Muayeneleri & Takip</span>
+        </a>
+        <a href="14_ortam_dozu_ve_kroki_haritasi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">14</span>
+          <span>Ortam Dozu & Kroki Haritası</span>
+        </a>
+        <a href="15_olay_bildirimi_ve_dof_capa.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">15</span>
+          <span>Olay Bildirimi & DÖF / CAPA</span>
+        </a>
+        <a href="16_rgs_rso_gorevlendirme_ve_sertifika.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">16</span>
+          <span>RGS / RSO Görevlendirme</span>
+        </a>
+        <a href="17_hizmet_ici_egitim_ve_online_sinav.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">17</span>
+          <span>Hizmet İçi Eğitim & Sınav</span>
+        </a>
+
+        <!-- PLANLANAN MODÜLLER -->
+        <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800/60 space-y-1 opacity-50">
+          <span class="flex items-center gap-2.5 px-3 py-1 text-xs text-slate-400 cursor-not-allowed">
+            <span class="font-mono text-[10px]">18</span> Cihaz & NDK Lisans (Plan)
+          </span>
+          <span class="flex items-center gap-2.5 px-3 py-1 text-xs text-slate-400 cursor-not-allowed">
+            <span class="font-mono text-[10px]">19</span> Arıza & Bakım QC (Plan)
+          </span>
+          <span class="flex items-center gap-2.5 px-3 py-1 text-xs text-slate-400 cursor-not-allowed">
+            <span class="font-mono text-[10px]">20</span> RKE & DIN 6857 (Plan)
+          </span>
+          <span class="flex items-center gap-2.5 px-3 py-1 text-xs text-slate-400 cursor-not-allowed">
+            <span class="font-mono text-[10px]">21</span> Onay & Rapor Merkezi (Plan)
+          </span>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- CENTER COLUMN: CORE DOCUMENTATION (Wide & Readable) -->
+    <main class="flex-1 min-w-0 py-8">
+      
+      <!-- Breadcrumb & Badges -->
+      <nav class="flex items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
+        <a href="index.html" class="hover:text-cyan-600 transition">Kılavuz Ana Sayfası</a>
+        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span>Başlangıç ve Sistem Altyapısı</span>
+        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">02. Kullanıcı ve Rol Yönetimi</span>
+      </nav>
+
+      <!-- Main Header -->
+      <header id="overview" class="mb-8 border-b border-slate-200 dark:border-slate-800 pb-6">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-3">
+          <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+            Kullanıcı ve Rol Yönetimi
+          </h1>
+          <div class="flex items-center gap-2.5">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span> SKS 6.1 & Bilgi Güvenliği Uyumlu
+            </span>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+              Tahmini Okuma: 4 Dakika
+            </span>
+          </div>
+        </div>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
+          Rol Tabanlı Erişim Kontrolü (RBAC), modül düzeyinde 4 kademeli yetki ve veri kapsamı matrisi (Miras, Kendisi, Departman, Tümü), hatalı şifreyle kilitlenen personelin hesap kilidini kaldırma ve güvenli rol klonlama işlemlerini yönetmenizi sağlar.
+        </p>
+
+        <div class="mt-4 text-xs sm:text-sm flex items-center gap-2 text-slate-500 dark:text-slate-400">
+          <span><strong>Erişim Kuralı:</strong> Bu modüldeki yetki ve hesap yönetimi ekranları yalnızca kurum içi <strong>Masaüstü Uygulaması</strong> üzerinden ve <strong>Sistem Yöneticisi (Admin)</strong> yetkisiyle kullanılabilir.</span>
+        </div>
+      </header>
+
+      <!-- 1. HIZLI REÇETE KUTUSU + 4 METRİK HAPI (VIZYONDER UX) -->
+      <section id="quick-recipe" class="mb-10">
+        <div class="p-6 sm:p-7 rounded-3xl bg-cyan-50/70 dark:bg-cyan-950/30 border border-cyan-200/90 dark:border-cyan-800/60 shadow-md">
+          
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2.5 text-cyan-900 dark:text-cyan-200 font-bold text-sm sm:text-base">
+              <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              <span>Kısa Reçete: Yeni Kullanıcı Açma ve Departman Yetkisi Atama</span>
+            </div>
+            <span class="text-xs font-mono px-2.5 py-1 rounded bg-cyan-200/80 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-300 font-bold">20 SANİYELİK AKIŞ</span>
+          </div>
+
+          <p class="text-sm text-slate-700 dark:text-slate-200 mb-5 leading-relaxed">
+            <strong>Yapılacak İşlem:</strong> <strong>[Kullanıcı İşlemleri]</strong> sekmesinden <strong>[Yeni Kullanıcı]</strong> butonuna tıklayın. Kullanıcı adı, e-posta, kurumdaki görevine uygun rolü ve sağlık personeli ise <strong>[Personel Bağlantısı]</strong>'nı seçerek en az 8 karakterli geçici şifresini kaydedin.<br>
+            <strong>Sistem Güvencesi:</strong> Personelin nöbet, izin ve dozimetre takipleri doğrudan özlük kartıyla entegre olur; personelin veri görme/düzenleme sınırları rolüne tanımlı kapsam kuralına (Kendisi veya Kendi Departmanı) göre anında kilitlenir.
+          </p>
+
+          <!-- 4 METRİK HAPI (METRIC PILLS) -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-cyan-200/60 dark:border-cyan-800/40">
+            <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+              <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Erişim Modeli</span>
+              <span class="text-sm sm:text-base font-black text-cyan-600 dark:text-cyan-400 font-mono">RBAC & Kapsam</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+              <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Yetkili Rol</span>
+              <span class="text-sm sm:text-base font-black text-slate-700 dark:text-slate-200">Sistem Yöneticisi</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+              <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Şifre Kuralı</span>
+              <span class="text-sm sm:text-base font-black text-amber-600 font-mono">Min. 8 Karakter</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+              <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Platform</span>
+              <span class="text-sm sm:text-base font-black text-emerald-600">🖥️ Masaüstü</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 2. MİT AVCISI (YANLIŞ ALGIYI YIKAN GÖRSEL KART) -->
+      <section id="myth-buster" class="mb-10">
+        <div class="p-6 rounded-3xl bg-amber-50/70 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/50 shadow-sm">
+          <div class="flex items-center gap-2.5 text-amber-800 dark:text-amber-300 font-bold text-sm sm:text-base mb-3">
+            <svg class="w-5 h-5 text-amber-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            <span>Kritik Sahada Yanlış Bilinen Kural (Mit Avcısı)</span>
+          </div>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-3 text-sm">
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-rose-200 dark:border-rose-900/40 text-rose-900 dark:text-rose-200 leading-relaxed">
+              <span class="font-bold block mb-1">❌ Yanlış Algı:</span>
+              <em>"İşten ayrılan personelin hesabını sildim, geçmişe ait onayladığı nöbetler ve girdiği dozimetre ölçümleri sistemden silindi veya bozuldu."</em>
+            </div>
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-emerald-200 dark:border-emerald-900/40 text-emerald-900 dark:text-emerald-200 leading-relaxed">
+              <span class="font-bold block mb-1">✅ Gerçek Sistem Mantığı:</span>
+              RADPYS'de fiziksel veri silme işlemi <strong>yoktur</strong>. Arayüzdeki eylemler kullanıcı hesabını kalıcı olarak silmez, doğrudan <strong>Pasif</strong> durumuna alır. Personelin onayladığı nöbetler, kaydettiği radyasyon ölçümleri ve tüm denetim izi geçmişi veri tabanında eksiksiz ve yasal olarak korunur.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. 5N1K KURAL VE AYAR ÇÖZÜMLEME TABLOSU -->
+      <section id="matrix-5n1k" class="mb-12">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+              <span class="w-3 h-3 rounded bg-cyan-600"></span> 5N1K Kural ve Ayar Çözümleme Tablosu
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+              Kullanıcı yönetimi, sistem rolleri ve yetki matrisindeki tüm kontrollerin operasyonel kuralları.
+            </p>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm bg-white dark:bg-slate-900">
+          <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-left text-sm border-collapse min-w-[760px]">
+              <thead>
+                <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-100/75 dark:bg-slate-800/60 text-slate-700 dark:text-slate-200 font-bold text-xs uppercase tracking-wider">
+                  <th class="py-3.5 px-4">NE? (Ekran Kontrolü)</th>
+                  <th class="py-3.5 px-4">NEDEN? (Amacı)</th>
+                  <th class="py-3.5 px-4">NASIL? (Çalışma Mantığı)</th>
+                  <th class="py-3.5 px-4">NE ZAMAN?</th>
+                  <th class="py-3.5 px-4">KİM?</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                  <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                    Yeni Kullanıcı Tanımlama<br>
+                    <span class="text-xs font-normal text-slate-400 font-mono">[Yeni Kullanıcı Butonu]</span>
+                  </td>
+                  <td class="py-3.5 px-4">Personele sisteme giriş hakkı vermek.</td>
+                  <td class="py-3.5 px-4">Kullanıcı adı, ad soyad, rol ve en az 8 karakterli ilk şifre girilerek kaydedilir.</td>
+                  <td class="py-3.5 px-4">Yeni personel göreve başladığında.</td>
+                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Sistem Yöneticisi</span></td>
+                </tr>
+
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                  <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                    Personel Bağlantısı<br>
+                    <span class="text-xs font-normal text-slate-400 font-mono">[Personel Bağlantısı Açılır Kutusu]</span>
+                  </td>
+                  <td class="py-3.5 px-4">Kullanıcıyı sağlık özlük kartına bağlamak.</td>
+                  <td class="py-3.5 px-4">Listeden personel seçilir. Bağlantı kurulmazsa hesap yalnızca operatör olur; nöbet ve dozimetreye giremez.</td>
+                  <td class="py-3.5 px-4">Sağlık personeline hesap tanımlanırken.</td>
+                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Sistem Yöneticisi</span></td>
+                </tr>
+
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                  <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                    Hesap Kilidini Kaldırma<br>
+                    <span class="text-xs font-normal text-slate-400 font-mono">[Kilidi Kaldır Butonu]</span>
+                  </td>
+                  <td class="py-3.5 px-4">Hatalı şifreyle kilitlenen hesabı açmak.</td>
+                  <td class="py-3.5 px-4">Kilitli kullanıcı seçilip butona basılır; hatalı deneme sayacı ve zaman kilidi anında sıfırlanır.</td>
+                  <td class="py-3.5 px-4">Personel şifresini art arda yanlış girip bloke olduğunda.</td>
+                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Sistem Yöneticisi</span></td>
+                </tr>
+
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                  <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                    Hesabı Pasife Alma<br>
+                    <span class="text-xs font-normal text-slate-400 font-mono">[Aktif/Pasif Butonu]</span>
+                  </td>
+                  <td class="py-3.5 px-4">Yetkiyi dondururken geçmiş kayıtları korumak.</td>
+                  <td class="py-3.5 px-4">Kullanıcı seçilip pasife alınır. Fiziksel silme yapılmaz; personelin geçmiş işlem izi bozulmadan korunur.</td>
+                  <td class="py-3.5 px-4">Personel ayrıldığında veya yetkisi durdurulduğunda.</td>
+                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Sistem Yöneticisi</span></td>
+                </tr>
+
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                  <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                    Kendi Hesabını ve Admin'i Koruma<br>
+                    <span class="text-xs font-normal text-slate-400 font-mono">[Sistem Güvenlik Kilidi]</span>
+                  </td>
+                  <td class="py-3.5 px-4">Sistemin yöneticisiz kalmasını engellemek.</td>
+                  <td class="py-3.5 px-4">Açık oturum sahibi kendi hesabını pasife alamaz. Ana Admin kullanıcısı ve rolü asla pasife alınamaz.</td>
+                  <td class="py-3.5 px-4">Yanlışlıkla işlem yapılmaya çalışıldığında.</td>
+                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300">Otomatik Kilit</span></td>
+                </tr>
+
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                  <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                    Rol Klonlama (Kopyalama)<br>
+                    <span class="text-xs font-normal text-slate-400 font-mono">[İşlemler > Seçileni Kopyala]</span>
+                  </td>
+                  <td class="py-3.5 px-4">Mevcut bir rolün tüm yetkilerini çoğaltmak.</td>
+                  <td class="py-3.5 px-4">Kaynak rolün tüm modül okuma/yazma/silme ve kapsam ayarları yeni role birebir aktarılır.</td>
+                  <td class="py-3.5 px-4">Benzer yetkilere sahip yeni bir unvan profili oluşturulurken.</td>
+                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Sistem Yöneticisi</span></td>
+                </tr>
+
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                  <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                    Okuma Yetkisi Bağımlılık Motoru<br>
+                    <span class="text-xs font-normal text-slate-400 font-mono">[Yetki Matrisi Onay Kutuları]</span>
+                  </td>
+                  <td class="py-3.5 px-4">Mantıksız yetki dağılımlarını önlemek.</td>
+                  <td class="py-3.5 px-4">Yazma, Güncelleme veya Silme açılınca Okuma zorunlu açılır; Okuma kapatılınca tümü anında kapanır.</td>
+                  <td class="py-3.5 px-4">Yetki kutuları işaretlenirken.</td>
+                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Sistem Yöneticisi</span></td>
+                </tr>
+
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                  <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                    Modül Düzeyinde Kapsam (Scope)<br>
+                    <span class="text-xs font-normal text-slate-400 font-mono">[Miras / Kendisi / Departman / Tümü]</span>
+                  </td>
+                  <td class="py-3.5 px-4">Veri görme sınırını modül bazında özelleştirmek.</td>
+                  <td class="py-3.5 px-4">Miras seçilirse rolün genel ayarı geçerli olur; istendiğinde belirli modüller 'Kendi Departmanı' veya 'Tümü'ne genişletilir.</td>
+                  <td class="py-3.5 px-4">Modül bazlı özel veri kısıtlaması gerektiğinde.</td>
+                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Sistem Yöneticisi</span></td>
+                </tr>
+
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                  <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                    Hazır Yetki Şablonları<br>
+                    <span class="text-xs font-normal text-slate-400 font-mono">[Şablon Uygula Açılır Kutusu]</span>
+                  </td>
+                  <td class="py-3.5 px-4">Matrisi saniyeler içinde doldurmak.</td>
+                  <td class="py-3.5 px-4">"Sadece Okuma", "Operasyon" veya "Tam Yetki" şablonu tüm modül satırlarına topluca uygulanır.</td>
+                  <td class="py-3.5 px-4">Yeni bir role hızlı yetki atarken.</td>
+                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Sistem Yöneticisi</span></td>
+                </tr>
+
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                  <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                    Roller Arası Canlı Kıyaslama<br>
+                    <span class="text-xs font-normal text-slate-400 font-mono">[Karşılaştır Butonu]</span>
+                  </td>
+                  <td class="py-3.5 px-4">İki rol arasındaki yetki farklarını denetlemek.</td>
+                  <td class="py-3.5 px-4">Seçilen hedef rol ile mevcut durum kıyaslanır; yetki farkı olan satırlar renkli olarak vurgulanır.</td>
+                  <td class="py-3.5 px-4">Yetki çakışmalarını tespit ederken.</td>
+                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Sistem Yöneticisi</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. SÜREÇ AKIŞ ŞEMASI (MERMAID.JS) -->
+      <section id="workflow" class="mb-12">
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-3">
+          <span class="w-3 h-3 rounded bg-cyan-600"></span> Rol Tabanlı Yetki ve Kapsam Mantığı (Mermaid)
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
+          Aşağıdaki şema, bir personelin sisteme girişinden itibaren rol yetkilerinin ve 4 kademeli veri kapsamının arka planda nasıl çözümlendiğini göstermektedir.
+        </p>
+
+        <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-x-auto">
+          <div class="mermaid">
+flowchart TD
+    A["Kullanıcı Oturum Açar"] --> B{"Rolü Nedir?"}
+    
+    B -->|Admin| C["Tam Sistem Yetkisi<br/>Tüm Modüller Açık"]
+    B -->|"Standart Rol"| D["Modül Yetki Matrisi Kontrolü"]
+    
+    D --> E{"Okuma Yetkisi Var mı?"}
+    E -->|Hayır| F["Modül / Sekme Gizlenir"]
+    E -->|Evet| G["Modül Kullanıma Açılır"]
+    
+    G --> H{"Yazma / Silme İzni?"}
+    H -->|Var| I["Kayıt Ekle / Güncelle / Pasife Al"]
+    H -->|Yok| J["Sadece İnceleme Kipi"]
+    
+    G --> K{"Modül Kapsamı Nedir?"}
+    K -->|Miras| L["Rolün Genel Kapsamını Uygula"]
+    K -->|Kendisi| M["Sadece Kendi Sicil Kayıtları"]
+    K -->|Departman| N["Kendi Birimindeki Tüm Kayıtlar"]
+    K -->|Tümü| O["Tüm Kurum Verilerini Görme"]
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. EKRAN REHBERİ (SENTETİK VERİ ETİKETLİ GÖRSELLER) -->
+      <section id="screenshots" class="mb-12">
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+          <span class="w-3 h-3 rounded bg-cyan-600"></span> Ekran Konumları ve Görsel Rehber
+        </h2>
+
+        <!-- Görsel 1: Kullanıcı Yönetim Sayfası -->
+        <figure class="my-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
+          <div class="p-3 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
+            <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
+              🖥️ Ekran Konumu: <strong class="text-slate-900 dark:text-white font-semibold">Yönetici Paneli > Kullanıcı ve Rol Yönetimi > Kullanıcı İşlemleri</strong>
+            </span>
+            <span class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">Kullanıcı Listesi & Eylemler</span>
+          </div>
+          <div class="p-4 flex justify-center bg-slate-50 dark:bg-slate-950">
+            <img src="assets/img/02_kullanici_yonetim_page.png" alt="Kullanıcı Yönetimi Ekranı" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+          </div>
+          <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki kullanıcı isimleri, unvanlar ve e-posta adresleri tamamen test amaçlı sentetik veridir. Gerçek kişi veya kurum kayıtlarıyla benzerlikler tesadüfidir.</span>
+          </figcaption>
+        </figure>
+
+        <!-- Görsel 2: Modül Yetkileri Sayfası -->
+        <figure class="my-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
+          <div class="p-3 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
+            <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
+              🖥️ Ekran Konumu: <strong class="text-slate-900 dark:text-white font-semibold">Yönetici Paneli > Kullanıcı ve Rol Yönetimi > Modül Yetkileri</strong>
+            </span>
+            <span class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">Yetki & Kapsam Matrisi</span>
+          </div>
+          <div class="p-4 flex justify-center bg-slate-50 dark:bg-slate-950">
+            <img src="assets/img/02_modul_yetkileri_page.png" alt="Modül Yetkileri Matrisi" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+          </div>
+          <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki yetki şablonları, modül izinleri ve kapsam yapılandırmaları test ortamı simülasyonudur.</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- 6. ADIM ADIM OPERASYONEL EYLEM AKIŞI -->
+      <section id="step-by-step" class="mb-12">
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+          <span class="w-3 h-3 rounded bg-cyan-600"></span> Adım Adım Operasyonel Eylem Akışı
+        </h2>
+
+        <div class="space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+            <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 1: Yeni Kullanıcı Tanımlama ve İlk Şifre Atama</strong>
+            Sol ana menüden <strong>[Kullanıcı ve Rol Yönetimi]</strong> penceresini açın. <strong>[Kullanıcı İşlemleri]</strong> sekmesinde <strong>[Yeni Kullanıcı]</strong> butonuna tıklayın. Kullanıcı adını, ad soyadı ve e-posta adresini girin. Sağlık personeli ise <strong>[Personel Bağlantısı]</strong> kutusundan personeli eşleyin. En az 8 karakterli ilk şifresini yazıp <strong>[Kaydet]</strong> butonuna basın.
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+            <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 2: Hatalı Şifreyle Kilitlenen Hesabı Açma</strong>
+            Kullanıcı listesindeki arama kutusuna personelin adını yazarak satırını bulun. Yanlış giriş sayısını aşmış personelin satırına tıkladığınızda yukarıdaki <strong>[Kilidi Kaldır]</strong> butonu aktifleşir. Butona tıklayıp onay verdiğinizde kilit saniyeler içinde kaldırılır.
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+            <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 3: Yeni Rol Oluşturma veya Mevcut Rolü Klonlama</strong>
+            <strong>[Sistem Rolleri]</strong> sekmesine geçin. Sıfırdan bir rol açmak için <strong>[Yeni Rol Ekle]</strong> butonuna basabilirsiniz. Eğer mevcut bir unvanın (Örn: *Kıdemli Tekniker*) yetkilerini türetmek istiyorsanız ilgili role tıklayıp <strong>[İşlemler] > [Seçileni Kopyala]</strong> seçeneğiyle tüm yetkileri tek tıkla yeni role çoğaltın.
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+            <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 4: Modül Yetki Matrisini Düzenleme ve Şablon Uygulama</strong>
+            <strong>[Modül Yetkileri]</strong> sekmesine geçin. Yetkilerini düzenleyeceğiniz rolü seçin. 20 modülü tek tek ayarlamak yerine üstteki <strong>[Şablon]</strong> açılır kutusundan <em>Operasyon</em> veya <em>Sadece Okuma</em> seçip <strong>[Şablon Uygula]</strong> butonuna tıklayın. Özel modüllerde Okuma/Yazma kutularını ve Kapsam radyo butonlarını (Miras, Kendisi, Departman, Tümü) seçip sağ alttaki <strong>[Kaydet]</strong> butonuna basın.
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+            <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 5: İki Rolün Yetkilerini Canlı Karşılaştırma</strong>
+            İki görev profili arasındaki yetki farklarını denetlemek için <strong>[Karşılaştır]</strong> kutusundan ikinci bir rol seçip <strong>[Karşılaştır]</strong> butonuna tıklayın. Açılan pencerede yetkileri veya kapsamları farklı olan tüm modül satırları vurgulu renkle listelenir.
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. SIKÇA SORULAN SORULAR AKORDEONU (FAQ) -->
+      <section id="faq" class="mb-14">
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-5">
+          <span class="w-3 h-3 rounded bg-cyan-600"></span> Sıkça Sorulan Sorular ve Takılma Yönetimi
+        </h2>
+
+        <div class="space-y-3" id="faqAccordion">
+          <!-- Soru 1 -->
+          <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+            <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+              <span>Personel kartına bağlamadığım bir kullanıcı nöbet yazabilir veya nöbet listesinde görünebilir mi?</span>
+              <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
+              <strong>Hayır.</strong> Bir kullanıcı hesabının nöbet çizelgesinde aday olarak yer alabilmesi, izin talep edebilmesi veya kişisel dozimetre ölçümlerinin işlenebilmesi için mutlaka <strong>[Personel Bağlantısı]</strong> yapılmış olması gerekir. Personele bağlanmayan hesaplar yalnızca bağımsız bir operatör/yönetici hesabı olarak çalışır.
+            </p>
+          </details>
+
+          <!-- Soru 2 -->
+          <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+            <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+              <span>Personel kurumdan ayrıldığında kullanıcı kaydını tamamen silebilir miyim?</span>
+              <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
+              RADPYS'de fiziksel veri silme işlemi bulunmaz. Kullanıcıyı listeden seçip <strong>[Pasif Yap]</strong> butonuna bastığınızda hesabın sisteme girişi derhal kesilir. Ancak kullanıcının geçmişte onayladığı nöbetler ve kaydettiği işlemler denetim izinde bozulmadan korunur.
+            </p>
+          </details>
+
+          <!-- Soru 3 -->
+          <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+            <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+              <span>Bir role Yazma yetkisi vermek istediğimde neden Okuma yetkisi otomatik olarak işaretleniyor?</span>
+              <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
+              RADPYS Yetki Bağımlılık Motoru gereğince bir modülü görüntüleme (Okuma) yetkisi olmayan bir personelin o modülde yeni kayıt oluşturması veya düzenleme yapması mantıksal olarak imkansızdır. Bu nedenle Yazma, Güncelleme veya Silme kutularından biri açıldığında Okuma yetkisi otomatik olarak kilitli şekilde açılır.
+            </p>
+          </details>
+
+          <!-- Soru 4 -->
+          <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+            <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+              <span>"Miras" kapsamı seçildiğinde personelin yetki alanı neye göre belirlenir?</span>
+              <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
+              Modül yetki tablosundaki <strong>Miras</strong> seçeneği, ilgili modülün rolün genel ayarlarında tanımlanmış olan veri sınırını (Kendisi, Kendi Departmanı veya Tümü) doğrudan uygulamasını sağlar. Eğer belirli bir modül için farklı bir kural uygulamak isterseniz satırdaki radyo butonunu doğrudan <strong>[Kendisi]</strong>, <strong>[Departman]</strong> veya <strong>[Tümü]</strong> olarak değiştirebilirsiniz.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- FOOTER PREV / NEXT -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <a href="01_kurulum_ve_ilk_giris.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">← Önceki Doküman</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">01. Kurulum, Başlatma ve İlk Giriş</span>
+          </a>
+          <a href="03_sistem_ayarlari_ve_tanimlamalar.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition text-right group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">Sonraki Doküman →</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">03. Sistem Ayarları ve Tanımlamalar</span>
+          </a>
+        </div>
+      </footer>
+
+    </main>
+
+    <!-- RIGHT ASIDE: TABLE OF CONTENTS -->
+    <aside class="hidden xl:block w-64 shrink-0 py-8 pl-6 border-l border-slate-200 dark:border-slate-800">
+      <div class="sticky top-24 space-y-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-3">Bu Sayfada</span>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#quick-recipe" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">Hızlı Reçete</a></li>
+          <li><a href="#myth-buster" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">Mit Avcısı</a></li>
+          <li><a href="#matrix-5n1k" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">5N1K Tablosu</a></li>
+          <li><a href="#workflow" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">Süreç Akış Şeması</a></li>
+          <li><a href="#screenshots" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">Ekran Rehberi</a></li>
+          <li><a href="#step-by-step" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">Adım Adım Eylem</a></li>
+          <li><a href="#faq" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">Sıkça Sorulan Sorular</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
+    <div class="max-w-[1720px] mx-auto px-6">
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi — Sağlık Bilgi Güvenliği & KVKK Standartları ile Korunmaktadır.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Theme Toggle Logic
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const htmlEl = document.documentElement;
+
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      htmlEl.classList.add('dark');
+    } else {
+      htmlEl.classList.remove('dark');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      if (htmlEl.classList.contains('dark')) {
+        htmlEl.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        htmlEl.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      renderMermaidDiagrams();
+    });
+
+    function renderMermaidDiagrams() {
+      const isDark = htmlEl.classList.contains('dark');
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: isDark ? 'dark' : 'neutral',
+        fontFamily: 'Inter, system-ui, sans-serif',
+        fontSize: 14,
+        securityLevel: 'loose',
+        flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
+      });
+
+      const nodes = document.querySelectorAll('.mermaid');
+      if (nodes.length > 0) {
+        mermaid.run({ nodes: nodes }).catch(err => console.error("Mermaid hatası:", err));
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', renderMermaidDiagrams);
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebarNav = document.getElementById('sidebarNav');
+    if (mobileMenuBtn && sidebarNav) {
+      mobileMenuBtn.addEventListener('click', () => {
+        sidebarNav.classList.toggle('-translate-x-full');
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>14. Ortam Dozu ve Kroki Haritası — RADPYS v4 Kullanım Kılavuzu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfeff',
+              100: '#cffafe',
+              200: '#a5f3fc',
+              500: '#06b6d4',
+              600: '#0891b2',
+              700: '#0e7490',
+              900: '#164e63',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    pre, code { font-family: 'JetBrains Mono', monospace; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 9999px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.6); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- TOP HEADER NAVBAR (Wide Fluid Layout) -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Version -->
+      <div class="flex items-center gap-3">
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Menüyü Aç/Kapat">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.2</span>
+            </span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Karar Destek Portalı</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick Search Bar (Ctrl+K) -->
+      <div class="flex-1 max-w-xl hidden md:block">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input 
+            type="text" 
+            placeholder="Dokümanda ara... (Örn: Ortam dozu, Kroki haritası, Denetimli alan, Gözetimli alan, Limit aşımı, QR pasaport, SKS Excel...)" 
+            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition"
+          >
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <kbd class="px-2 py-0.5 text-[10px] font-mono font-semibold bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded text-slate-500 dark:text-slate-400 shadow-sm">Ctrl K</kbd>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header Action Buttons -->
+      <div class="flex items-center gap-2.5">
+        <button id="themeToggleBtn" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Tema Değiştir (Koyu/Açık)">
+          <svg id="themeIconSun" class="w-5 h-5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="themeIconMoon" class="w-5 h-5 block dark:hidden text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+
+        <a href="index.html" class="px-3.5 py-1.5 text-xs font-semibold rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span>Modüller</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- BODY CONTENT (Fluid 1720px Grid) -->
+  <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 py-8 flex-1 flex gap-8">
+    
+    <!-- LEFT SIDEBAR: NAVIGATION -->
+    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar">
+      <div class="mb-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3">21 Modül Rehberi</span>
+      </div>
+
+      <nav class="space-y-1 text-sm font-medium">
+        <a href="01_kurulum_ve_ilk_giris.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">01</span>
+          <span>Kurulum & İlk Giriş</span>
+        </a>
+        <a href="02_kullanici_ve_rol_yonetimi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">02</span>
+          <span>Kullanıcı & Roller</span>
+        </a>
+        <a href="03_sistem_ayarlari_ve_tanimlamalar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">03</span>
+          <span>Sistem Ayarları & Tanımlar</span>
+        </a>
+        <a href="04_veritabani_bakim_ve_guvenlik.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">04</span>
+          <span>Veritabanı, Bakım & Güvenlik</span>
+        </a>
+        <a href="05_personel_yonetimi_ve_toplu_aktarim.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">05</span>
+          <span>Personel & Excel Aktarım</span>
+        </a>
+        <a href="06_izin_yonetimi_ve_hakedis.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">06</span>
+          <span>İzin Yönetimi & Şua Hakediş</span>
+        </a>
+        <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">07</span>
+          <span>Nöbet Ayarları & Kısıtlar</span>
+        </a>
+        <a href="08_nobet_hazirlik_ve_solver_motoru.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">08</span>
+          <span>Nöbet Dağıtım Solver Motoru</span>
+        </a>
+        <a href="09_nobet_devir_ikame_ve_acil_mazeret.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">09</span>
+          <span>Nöbet Devir & Mazeret</span>
+        </a>
+        <a href="10_nobet_borc_alacak_ve_fazla_mesai.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">10</span>
+          <span>Nöbet Borç / Alacak & Fazla Mesai</span>
+        </a>
+        <a href="11_fiili_hizmet_ve_sua_hesaplama.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">11</span>
+          <span>Fiili Hizmet & Şua (FHZ)</span>
+        </a>
+        <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">12</span>
+          <span>Dozimetre Takibi & RD.F43</span>
+        </a>
+        <a href="13_saglik_muayeneleri_ve_periyodik_takip.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">13</span>
+          <span>Sağlık Muayeneleri & Takip</span>
+        </a>
+
+        <!-- 14 AKTİF -->
+        <a href="#genel-bakis" class="flex items-center justify-between px-3 py-2.5 rounded-xl bg-cyan-50 text-cyan-800 dark:bg-cyan-950/60 dark:text-cyan-300 font-semibold border-l-4 border-cyan-600">
+          <div class="flex items-center gap-2.5">
+            <span class="font-mono text-xs text-cyan-600 dark:text-cyan-400 font-bold">14</span>
+            <span>Ortam Dozu & Kroki Haritası</span>
+          </div>
+          <span class="w-2 h-2 rounded-full bg-cyan-600 animate-pulse"></span>
+        </a>
+
+        <a href="15_olay_bildirimi_ve_dof_capa.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">15</span>
+          <span>Olay Bildirimi & DÖF / CAPA</span>
+        </a>
+        <a href="16_rgs_rso_gorevlendirme_ve_sertifika.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">16</span>
+          <span>RGS / RSO Görevlendirme</span>
+        </a>
+        <a href="17_hizmet_ici_egitim_ve_online_sinav.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">17</span>
+          <span>Hizmet İçi Eğitim & Sınav</span>
+        </a>
+
+        <!-- CANLI VE PLANLANAN MODÜLLER -->
+        <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800/60 space-y-1">
+          <a href="18_tibbi_cihaz_ve_ndk_lisans_envanteri.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <span class="font-mono text-xs opacity-60">18</span>
+            <span>Tıbbi Cihaz & NDK Lisans</span>
+          </a>
+          <a href="19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <span class="font-mono text-xs opacity-60">19</span>
+            <span>Cihaz Arıza, Bakım & QC</span>
+          </a>
+          <a href="20_rke_koruyucu_ekipman_ve_din6857.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <span class="font-mono text-xs opacity-60">20</span>
+            <span>RKE & DIN 6857 Muayene</span>
+          </a>
+          <a href="21_merkezi_onaylar_ve_rapor_merkezi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <span class="font-mono text-xs opacity-60">21</span>
+            <span>Merkezi Onay & Raporlar</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-1 min-w-0 space-y-12">
+      
+      <!-- HERO SECTION -->
+      <section id="genel-bakis" class="space-y-6">
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">MODÜL 14</span>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300">SKS 6.1 Standartları</span>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300">NDK RSGD-KLV-005</span>
+        </div>
+
+        <div class="space-y-3">
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+            14. Ortam Dozu ve Kroki Haritası
+          </h1>
+          <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-5xl">
+            Kurumun mimari kat planları (vektörel PDF veya yüksek çözünürlüklü görsel) üzerinde radyasyon izleme noktalarını ve sabit cihaz konumlarını canlı pinler halinde haritalandıran, periyodik saçılma dozu ölçümlerini kaydeden, yasal eşik kontrollerini otomatik denetleyen, limit aşımında anında DÖF başlatan ve kapı QR pasaport etiketleri üreten modüldür.
+          </p>
+        </div>
+
+        <!-- 4 KPI BENTO CARDS -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
+            <span class="text-xs font-semibold uppercase tracking-wider text-rose-600 dark:text-rose-400 font-mono">Denetimli Alan Eşiği</span>
+            <div class="text-2xl font-black text-slate-900 dark:text-white font-mono">2.50 / 10.0 µSv/h</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">>6 mSv/yıl giriş kontrollü radyasyon alanı eşikleri.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
+            <span class="text-xs font-semibold uppercase tracking-wider text-amber-500 font-mono">Gözetimli Alan Eşiği</span>
+            <div class="text-2xl font-black text-slate-900 dark:text-white font-mono">1.00 / 2.50 µSv/h</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">1-6 mSv/yıl kumanda masası ve paravan arkası eşikleri.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
+            <span class="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-mono">Halka Açık Alan</span>
+            <div class="text-2xl font-black text-slate-900 dark:text-white font-mono">0.25 / 0.50 µSv/h</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">&lt;1 mSv/yıl bekleme salonu ve koridor eşikleri.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
+            <span class="text-xs font-semibold uppercase tracking-wider text-cyan-600 dark:text-cyan-400 font-mono">Kalibrasyon Emniyeti</span>
+            <div class="text-2xl font-black text-slate-900 dark:text-white font-mono">RED-02</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Süresi dolmuş cihazla resmi ölçüm girişi engellenir.</p>
+          </div>
+        </div>
+
+        <!-- IMPORTANT NOTE: DOOR QR SCAN PROTOCOL -->
+        <div class="p-5 rounded-2xl bg-cyan-50/80 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-800/60 flex items-start gap-3.5">
+          <div class="p-2 rounded-xl bg-cyan-500 text-white shrink-0 mt-0.5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div class="space-y-1 text-sm text-cyan-950 dark:text-cyan-200 leading-relaxed">
+            <strong class="font-bold">Saha Operasyon Standardı (Oda Kapı QR Pasaportu):</strong>
+            <p>
+              Radyasyon güvenliği ve SKS kalite protokolü gereğince, sistemden basılan QR pasaport etiketleri <strong>öncelikle radyasyon odalarının giriş kapılarına</strong> yapıştırılır. Saha personeli (RKS/tekniker) tablet veya telefon kamerasıyla kapıdaki QR kodu okuttuğunda, o odaya kayıtlı tüm ortam izleme noktaları anında mobil ekranda listelenir; personel ilgili noktayı seçerek doğrudan sahada hızlı doz girişi gerçekleştirir.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- VİZYONDER HIZLI REÇETE (20 SANİYE KURALI) -->
+      <section id="hizli-recete" class="mb-10">
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-cyan-900/10 via-slate-900/5 to-blue-900/10 dark:from-cyan-950/40 dark:via-slate-900/40 dark:to-blue-950/40 border border-cyan-200 dark:border-cyan-800/50 shadow-sm">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 rounded-lg bg-cyan-600 text-white flex items-center justify-center font-bold text-sm">
+              20s
+            </div>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white">Vizyonder Hızlı Karar Reçetesi (Ortam Dozu & RKS Özeti)</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+            <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+              <span class="font-bold text-cyan-600 dark:text-cyan-400 block mb-1">1. Kat Planını ve Pinleri Konumlandırın</span>
+              Vektörel PDF veya yüksek çözünürlüklü krokiyi yükleyin. Denetimli ve gözetimli alan sınıflarına göre izleme noktalarını haritaya iğneleyin.
+            </div>
+            <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+              <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-1">2. Kalibre Dedektörle Ölçüm Girin</span>
+              Yalnızca kalibrasyonu geçerli survey meter ile ölçüm yapın (RED-02). Sistem girilen değeri alan eşiğiyle kıyaslayıp anında yeşil/sarı/kırmızı renklendirir.
+            </div>
+            <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+              <span class="font-bold text-blue-600 dark:text-blue-400 block mb-1">3. Kapı QR ve Otomatik DÖF</span>
+              Radyasyon kapısına yapıştırılan QR kod ile mobilden ölçüm yapın. Limit aşımı tespit edildiğinde sistem ilgili birime anında otomatik DÖF başlatır.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: UI CONTROLS & 5N1K TABLE -->
+      <section id="bilesenler" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>2. Arayüz Bileşenleri ve 5N1K Tablosu</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Ortam Dozu ve Kroki Haritası modülündeki ekran kontrolleri, butonlar ve harita eylemlerinin işlevsel kullanım matrisi:
+          </p>
+        </div>
+
+        <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 border-b border-slate-200 dark:border-slate-700">
+              <tr>
+                <th class="p-3.5 font-bold">NE? (Bileşen)</th>
+                <th class="p-3.5 font-bold">NEDEN? (Amaç)</th>
+                <th class="p-3.5 font-bold">NEREDE? (Konum)</th>
+                <th class="p-3.5 font-bold">NASIL? (Çalışma Mantığı)</th>
+                <th class="p-3.5 font-bold">NE ZAMAN?</th>
+                <th class="p-3.5 font-bold">KİM?</th>
+                <th class="p-3.5 font-bold">DURUM</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-bold text-slate-900 dark:text-white font-mono">[Birim / Departman]</td>
+                <td class="p-3.5">İncelenecek radyasyon alanını belirlemek.</td>
+                <td class="p-3.5">Filtre Çubuğu Sol</td>
+                <td class="p-3.5">Seçilen birimin kat krokisini, noktalarını ve cihazlarını yükler.</td>
+                <td class="p-3.5">Ekran açıldığında / değişimde.</td>
+                <td class="p-3.5">RKS / Birim Sorumlusu</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Aktif</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-bold text-slate-900 dark:text-white font-mono">[Ölçüm Kaydet]</td>
+                <td class="p-3.5">Periyodik doz ölçümünü sisteme girmek.</td>
+                <td class="p-3.5">Ana Araç Çubuğu</td>
+                <td class="p-3.5">Nokta, tarih, doz hızı, cihaz ve personeli kaydeder; kalibrasyon denetler.</td>
+                <td class="p-3.5">Periyodik ölçümde.</td>
+                <td class="p-3.5">RKS / Fizikçi / Tekniker</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Aktif</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-bold text-slate-900 dark:text-white font-mono">[Yeni Nokta Ekle]</td>
+                <td class="p-3.5">Krokide yeni doz izleme noktası açmak.</td>
+                <td class="p-3.5">Ana Araç Çubuğu</td>
+                <td class="p-3.5">Ardışık kod üretir (<code class="font-mono">{DEP}-OD-01</code>), alan sınıfı eşiklerini atar.</td>
+                <td class="p-3.5">Yeni oda/mahal eklendiğinde.</td>
+                <td class="p-3.5">RKS / Sistem Yöneticisi</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Aktif</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-bold text-slate-900 dark:text-white font-mono">[Kroki Yükle / Değiştir]</td>
+                <td class="p-3.5">Mimari kat planı dosyasını bağlamak.</td>
+                <td class="p-3.5">Ana Araç Çubuğu</td>
+                <td class="p-3.5">PDF/PNG dosyasını yükler, şifreli kasada saklar, birimle eşleştirir.</td>
+                <td class="p-3.5">Plan atama veya revizyonda.</td>
+                <td class="p-3.5">RKS / Sistem Yöneticisi</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Aktif</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-bold text-slate-900 dark:text-white font-mono">[Karekod / Etiket Bas]</td>
+                <td class="p-3.5">Kapı veya nokta QR etiketi üretmek.</td>
+                <td class="p-3.5">Ana Araç Çubuğu</td>
+                <td class="p-3.5">Oda kapı pasaportu veya tekil nokta etiketi diyaloğunu açar.</td>
+                <td class="p-3.5">Fiziksel levha asılırken.</td>
+                <td class="p-3.5">RKS / İSG Uzmanı</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Aktif</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-bold text-slate-900 dark:text-white font-mono">[SKS Raporu (Excel)]</td>
+                <td class="p-3.5">SKS 6.1 resmi denetim çıktısı almak.</td>
+                <td class="p-3.5">Ana Araç Çubuğu</td>
+                <td class="p-3.5">Renk kodlu, kurum antetli resmi denetim Excel dosyasını (<code class="font-mono">.xlsx</code>) üretir.</td>
+                <td class="p-3.5">Kalite denetimlerinde.</td>
+                <td class="p-3.5">Kalite Birimi / RKS</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Aktif</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-bold text-slate-900 dark:text-white font-mono">[Pinler Kilitli / Taşıma]</td>
+                <td class="p-3.5">Pinlerin kazara kaymasını önlemek.</td>
+                <td class="p-3.5">Kroki Tuvali Altı</td>
+                <td class="p-3.5">Kilitliyken sürüklemeyi engeller; açıldığında koordinat taşımaya izin verir.</td>
+                <td class="p-3.5">Pin yerleşimi yapılırken.</td>
+                <td class="p-3.5">Yetkili Kullanıcı</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Aktif</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-bold text-slate-900 dark:text-white font-mono">[Oda Alanını Belirle]</td>
+                <td class="p-3.5">Krokide zırhlı oda sınırını çizmek.</td>
+                <td class="p-3.5">Kroki Tuvali Altı</td>
+                <td class="p-3.5">Çizim modunu açar; fareyle seçilen dikdörtgeni odanın sınırları yapar.</td>
+                <td class="p-3.5">Birim sınırları çizilirken.</td>
+                <td class="p-3.5">RKS / Sistem Yöneticisi</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Aktif</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-bold text-slate-900 dark:text-white font-mono">[Nokta Silme Engeli]</td>
+                <td class="p-3.5">Kalite denetim geçmişini korumak.</td>
+                <td class="p-3.5">Servis Katmanı</td>
+                <td class="p-3.5">Üzerinde kayıtlı ölçüm bulunan noktaların silinmesini kesinlikle engeller.</td>
+                <td class="p-3.5">Silme talebinde.</td>
+                <td class="p-3.5">Sistem Motoru</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300">Emniyet Kilidi</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION 3: KROKI CANVAS & NAVIGATION -->
+      <section id="kroki-tuvali" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>3. İnteraktif Kroki Tuvali ve Canlı Harita</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Radyasyon alanlarının canlı harita üzerinde yönetimi, çok katmanlı görselleştirme ve pürüzsüz gezinme özellikleri:
+          </p>
+        </div>
+
+        <!-- SCREENSHOT: ANA EKRAN -->
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm bg-white dark:bg-slate-900 p-2">
+          <img src="assets/img/14_1_ortam_dozu_kroki_haritasi_ana_ekran.png" alt="Ortam Dozu ve İnteraktif Kroki Haritası Ana Ekranı" class="w-full h-auto rounded-xl">
+          <p class="text-xs text-center text-slate-500 dark:text-slate-400 py-2">Görsel 14.1: İnteraktif mimari kroki tuvali, zırhlı oda sınırları, canlı renkli ölçüm pinleri ve KPI göstergeleri.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-500"></span> Pürüzsüz Yakınlaşma (Zoom)
+            </h4>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Fare tekerleğini ileri çevirerek imlecin bulunduğu odaya yüksek çözünürlükte yakınlaşabilir, geri çevirerek tüm kat planına dönebilirsiniz.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span> Serbest Gezinme (Pan)
+            </h4>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Sol fare tuşunu basılı tutup sürükleyerek (ScrollHandDrag) harita tuvalinde kaydırma çubuklarına gerek kalmadan akıcı şekilde dolaşabilirsiniz.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Sabit Cihaz Pinleri
+            </h4>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              BT, Skopi, X-Ray veya LINAC cihazları kendilerine ait SVG modalite simgeleriyle harita üzerinde sabitlenir; oda numarası ve künyesi gösterilir.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: AREA CLASSES & THRESHOLDS -->
+      <section id="alan-siniflari" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>4. NDK Alan Sınıfları ve Yasal Doz Eşikleri</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            NDK RSGD-KLV-005 kılavuzuna göre üç temel alan sınıfı ve otomatik alarm eşikleri:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-rose-200 dark:border-rose-900/50 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded-md text-xs font-bold font-mono bg-rose-100 text-rose-800 dark:bg-rose-900/60 dark:text-rose-300">[D] DENETİMLİ ALAN</span>
+              <span class="text-xs font-bold text-rose-600 dark:text-rose-400 font-mono">>6 mSv/yıl</span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              X-ışını tüpünün bulunduğu çekim odaları, zırhlı tedavi odaları ve sıcak laboratuvarlar.
+            </p>
+            <div class="space-y-1.5 pt-2 border-t border-slate-100 dark:border-slate-800 text-xs font-mono">
+              <div class="flex justify-between"><span>Uyarı Eşiği:</span><strong class="text-amber-500">2.50 µSv/h</strong></div>
+              <div class="flex justify-between"><span>Limit Eşiği:</span><strong class="text-rose-600">10.00 µSv/h</strong></div>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-amber-200 dark:border-amber-900/50 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded-md text-xs font-bold font-mono bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300">[G] GÖZETİMLİ ALAN</span>
+              <span class="text-xs font-bold text-amber-600 dark:text-amber-400 font-mono">1-6 mSv/yıl</span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Denetimli alana bitişik teknisyen kumanda odası, kurşun cam arkası ve hazırlık mahalli.
+            </p>
+            <div class="space-y-1.5 pt-2 border-t border-slate-100 dark:border-slate-800 text-xs font-mono">
+              <div class="flex justify-between"><span>Uyarı Eşiği:</span><strong class="text-amber-500">1.00 µSv/h</strong></div>
+              <div class="flex justify-between"><span>Limit Eşiği:</span><strong class="text-rose-600">2.50 µSv/h</strong></div>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-emerald-200 dark:border-emerald-900/50 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded-md text-xs font-bold font-mono bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">[H] HALKA AÇIK ALAN</span>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 font-mono">&lt;1 mSv/yıl</span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Hasta bekleme salonları, servis koridorları, hekim odaları ve meskenler.
+            </p>
+            <div class="space-y-1.5 pt-2 border-t border-slate-100 dark:border-slate-800 text-xs font-mono">
+              <div class="flex justify-between"><span>Uyarı Eşiği:</span><strong class="text-amber-500">0.25 µSv/h</strong></div>
+              <div class="flex justify-between"><span>Limit Eşiği:</span><strong class="text-rose-600">0.50 µSv/h</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: DOSE MEASUREMENT & CALIBRATION LOCK -->
+      <section id="doz-olcum" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>5. Doz Ölçümü Kaydetme ve Kalibrasyon Emniyeti (RED-02)</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Periyodik ölçüm giriş adımları ve kalibrasyon kontrolü emniyet mekanizması:
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4">
+          <ol class="space-y-3 text-sm text-slate-600 dark:text-slate-300 list-decimal list-inside leading-relaxed">
+            <li>Üst araç çubuğundaki <strong>[Ölçüm Kaydet]</strong> butonuna tıklayın veya harita üzerindeki ilgili ölçüm noktası pinine çift tıklayın.</li>
+            <li>Açılan pencerede <strong>Ölçüm Noktası</strong>, <strong>Ölçüm Tarihi</strong>, ölçülen <strong>Doz Hızı ($\mu\text{Sv/h}$)</strong> ve <strong>Doğal Arka Plan</strong> değerlerini girin.</li>
+            <li>Kullanılan ölçüm aletinin marka, model ve seri numarasını yazın; ölçümü yapan personeli seçin.</li>
+            <li><strong>Kalibrasyon Emniyet Kilidi (RED-02):</strong> Sistem, kullanılan cihazın veritabanında kayıtlı kalibrasyon süresini kontrol eder. Kalibrasyon süresi dolmuşsa sistem ölçüm kaydını emniyet kilidiyle reddeder:
+              <div class="my-2 p-3 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800/60 text-xs font-mono text-rose-800 dark:text-rose-300">
+                HATA: Kullanılan ölçüm cihazının kalibrasyon geçerlilik süresi dolmuştur. NDK ve SKS kalite standartları gereğince kalibrasyonu geçmiş cihazla resmi ölçüm kaydedilemez.
+              </div>
+            </li>
+            <li>Bilgiler eksiksiz ise <strong>[Ölçümü Kaydet]</strong> butonuna basarak işlemi tamamlayın.</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- SECTION 6: LIMIT EXCEED & DOF INTEGRATION -->
+      <section id="dof-olay" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>6. Limit Aşımı Alarmı ve Otomatik DÖF Entegrasyonu</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Doz limitleri aşıldığında sistemin devreye soktuğu otomatik güvenlik ve kalite mekanizması:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500"></span> Otomatik Olay Bildirimi
+            </h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Ölçülen doz değeri ilgili noktanın limit eşiğini aştığı anda sistem arka planda <strong>Olay Bildirimi (Modül 15)</strong> modülüne otomatik kayıt oluşturur:
+            </p>
+            <ul class="text-xs text-slate-500 dark:text-slate-400 space-y-1 list-disc list-inside">
+              <li>Olay Tanımı: Nokta kodu, ölçülen doz ve yasal limit bilgisi.</li>
+              <li>Olay Sonucu: "Orta Zarar" olarak derecelendirilir.</li>
+              <li>Acil Müdahale: "Girişler sınırlandırıldı, zırhlama kontrolü başlatıldı."</li>
+              <li>NDK Bildirim Bayrağı: Doz limitin 3 katını aşarsa zorunlu kılınır.</li>
+            </ul>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-indigo-500"></span> Otomatik DÖF Ataması
+            </h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Sistem yalnızca olay kaydı açmakla kalmaz; kalite yönetim süreci uyarınca sorumlu personele doğrudan düzeltici işlem görevi yükler:
+            </p>
+            <ul class="text-xs text-slate-500 dark:text-slate-400 space-y-1 list-disc list-inside">
+              <li>Faaliyet Tipi: "Düzeltici Önleyici Faaliyet (DÖF)"</li>
+              <li>Açıklama: "Ortam dozu limit aşımı zırhlama ve sızıntı incelemesi"</li>
+              <li>Sorumlu: Ölçümü yapan personel veya RKS sorumlusu</li>
+              <li>DÖF Kapatma Kilidi: Sorun giderilip DÖF kapatılana dek olay açık kalır.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: DOOR QR & SKS EXCEL -->
+      <section id="qr-sks" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>7. Karekod (QR) Pasaport Etiketi ve SKS Excel Raporu</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Fiziksel kapı/nokta levhalandırması ve Sağlık Bakanlığı kalite denetim çıktısı:
+          </p>
+        </div>
+
+        <!-- SCREENSHOT: QR DIALOG -->
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm bg-white dark:bg-slate-900 p-2 max-w-xl mx-auto">
+          <img src="assets/img/14_2_ortam_dozu_qr_pasaport_etiketi_dialog.png" alt="Ortam Dozu QR Pasaport Etiketi" class="w-full h-auto rounded-xl">
+          <p class="text-xs text-center text-slate-500 dark:text-slate-400 py-2">Görsel 14.2: Radyasyon alanı ve ölçüm noktası termal QR pasaport etiketi penceresi.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base">Oda Kapı QR Pasaportu</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Üstteki <strong>[Karekod / Etiket Bas]</strong> butonuna tıklayıp <em>Oda Kapı Karekod Etiketi Bas</em> seçeneğini belirleyin. Çıktı alınan etiket radyasyon odasının giriş kapısına yapıştırılır. Termal etiket yazıcıdan anında yazdırılabilir veya PNG olarak dışa aktarılabilir.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+            <h3 class="font-bold text-slate-900 dark:text-white text-base">SKS 6.1 Resmi Excel Denetim Raporu</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              <strong>[SKS Raporu (Excel)]</strong> butonuna basıldığında sistem; kurum antetini, birim adını, ölçüm noktası kodlarını, alan sınıflarını, ölçüm tarihlerini, ölçülen dozları ve eşikleri içeren, limit aşımını kırmızı, uyarıları sarı renkle vurgulayan resmi Excel raporunu (<code class="font-mono">.xlsx</code>) üretir.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: HYBRID TABLET FIELD WORKFLOW -->
+      <section id="hibrit-portal" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>8. Hibrit Saha Tablet Akışı ve Web Portalı</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Masaüstü yönetim kokpiti ile mobil saha uygulamasının çift yönlü senkronizasyonu:
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm text-cyan-600 dark:text-cyan-400">1. Masaüstü Yönetim Merkezi (PySide6)</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                Kat planı PDF dosyalarının yüklendiği, oda sınırlarının çizildiği, sabit cihazların konumlandırıldığı, yasal eşik limitlerinin belirlendiği, pin kilitlerinin açılıp kapandığı ve resmi denetim Excel raporlarının alındığı ana merkezdir.
+              </p>
+            </div>
+
+            <div class="space-y-2">
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm text-indigo-600 dark:text-indigo-400">2. Saha Mobil Portalı (Tablet / Telefon)</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                Saha teknisyeni kapıdaki QR kodu tablet kamerasıyla okutur; ekranda odaya ait zırhlı kroki ve ölçüm noktaları listelenir. Teknisyen cihazdan okuduğu dozu doğrudan sahada girer; veri anında masaüstü sistemine ve web analitik paneline yansır.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 9: FLOWCHART -->
+      <section id="akis-diyagrami" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>9. Karar Akış Şeması</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Ortam dozu ölçümü, eşik denetimi ve otomatik olay sürecinin mantıksal işleyiş şeması:
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm overflow-x-auto">
+          <div class="mermaid text-center">
+flowchart TD
+    A["Kat Planı / Kroki Yükleme (PDF / Görsel)"] --> B["Oda Sınırlarını Belirleme ve Cihaz Sabitleme"]
+    B --> C["Ölçüm Noktaları Tanımlama (NDK Alan Sınıfları)"]
+    C --> D["Oda Kapı QR Pasaport Etiketi Basımı"]
+    D --> E["Mobil / Masaüstü Periyodik Doz Ölçümü Girişi"]
+    E --> F{"Cihaz Kalibrasyonu Geçerli mi?"}
+    F -- "Hayır" --> G["Ölçüm Reddedilir (Kalibrasyon Uyarısı)"]
+    F -- "Evet" --> H{"Doz Eşik Kontrolü"}
+    H -- "Doz <= Uyarı Eşiği" --> I["Normal (Yeşil Pin)"]
+    H -- "Uyarı < Doz <= Limit" --> J["Uyarı (Sarı Pin)"]
+    H -- "Doz > Limit Eşiği" --> K["Limit Aşımı (Kırmızı Pin)"]
+    K --> L["Otomatik Olay Bildirimi ve DÖF Başlatma"]
+    I --> M["SKS 6.1 Resmi Excel Denetim Raporu"]
+    J --> M
+    L --> M
+          </div>
+        </div>
+      </section>
+
+      <!-- YANLIŞ ALGIYI YIKAN "MİT AVCISI" (MYTH-BUSTING) KARTLARI -->
+      <section id="mit-avcilari" class="mb-12">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="p-1.5 rounded-lg bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </span>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white">Ortam Güvenliği & Mit Avcısı (Kritik Kurallar)</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Mit 1 -->
+          <div class="rounded-2xl border border-red-200 dark:border-red-900/40 bg-gradient-to-br from-red-50/50 via-white to-slate-50 dark:from-red-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
+            <div class="flex items-center gap-2 text-red-600 dark:text-red-400 font-bold text-xs uppercase tracking-wider mb-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              <span>Yaygın Yanılgı (Mit 1)</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-800 dark:text-slate-100 mb-3 italic">
+              "Kalibrasyon geçerlilik süresi 1-2 hafta geçmiş radyasyon ölçüm cihazı ile acil durumlarda resmi ortam dozu kaydı yapılabilir."
+            </p>
+            <div class="border-t border-red-200/60 dark:border-red-900/40 pt-3">
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 mb-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Doğru Yasal Kural:
+              </span>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                NDK mevzuatı ve RED-02 güvenlik kilidi gereğince kalibrasyon süresi dolmuş hiçbir cihazla sisteme resmi ölçüm girilemez; sistem ölçüm kaydını kesin olarak engeller.
+              </p>
+            </div>
+          </div>
+
+          <!-- Mit 2 -->
+          <div class="rounded-2xl border border-amber-200 dark:border-amber-900/40 bg-gradient-to-br from-amber-50/50 via-white to-slate-50 dark:from-amber-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
+            <div class="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wider mb-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              <span>Yaygın Yanılgı (Mit 2)</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-800 dark:text-slate-100 mb-3 italic">
+              "Kapıdaki QR kod sadece personelin bilgi alması içindir; ölçüm girmek için masaüstü yazılımı zorunludur."
+            </p>
+            <div class="border-t border-amber-200/60 dark:border-amber-900/40 pt-3">
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 mb-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Doğru Yasal Kural:
+              </span>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Oda kapısındaki QR kod doğrudan mobil tarayıcıda hızlı doz giriş arayüzünü açar. RKS veya tekniker masaüstüne dönmeden sahada cep telefonuyla ölçümü anında tamamlar.
+              </p>
+            </div>
+          </div>
+
+          <!-- Mit 3 -->
+          <div class="rounded-2xl border border-blue-200 dark:border-blue-900/40 bg-gradient-to-br from-blue-50/50 via-white to-slate-50 dark:from-blue-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
+            <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold text-xs uppercase tracking-wider mb-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Yaygın Yanılgı (Mit 3)</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-800 dark:text-slate-100 mb-3 italic">
+              "Ölçüm geçmişi olan bir radyasyon izleme noktası kroki planı değiştiğinde kolayca silinebilir."
+            </p>
+            <div class="border-t border-blue-200/60 dark:border-blue-900/40 pt-3">
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 mb-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Doğru Yasal Kural:
+              </span>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                SKS 6.1 ve denetim izi gereğince üzerinde geçmiş ölçüm verisi bulunan hiçbir nokta silinemez; yalnızca 'Pasif'e alınabilir veya taşınabilir.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 10: FAQ (SSS) -->
+      <section id="sss" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>10. Sıkça Sorulan Sorular (SSS)</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Ortam Dozu ve Kroki Haritası modülüyle ilgili en sık karşılaşılan sorular ve yanıtları:
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">
+              ❓ Mimari kat planı olarak vektörel PDF dosyası yükleyebilir miyim?
+            </h4>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              <strong>Evet.</strong> RADPYS v4 mimarisi PNG, JPG ve BMP resimlerinin yanı sıra vektörel mimari <code class="font-mono">.pdf</code> kat planlarını doğrudan destekler. Yüklenen PDF dosyasının ilk sayfası yüksek çözünürlükte render edilerek grafik tuvaline aktarılır.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">
+              ❓ Haritadaki pinlerin fareyle gezinirken kazara kayması nasıl önlenir?
+            </h4>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Varsayılan olarak harita <strong>[Pinler Kilitli]</strong> modunda açılır. Bu moddayken pinler sabitlenmiştir; fareyle sürüklenseniz dahi koordinatları değişmez. Konumları değiştirmek için butona basarak <strong>[Taşıma Aktif]</strong> moduna geçmeniz gerekir.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">
+              ❓ Ölçüm geçmişi olan bir noktayı yanlışlıkla silmek mümkün müdür?
+            </h4>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              <strong>Hayır.</strong> SKS 6.1 ve NDK kalite denetim izlerinin korunması amacıyla, üzerinde en az bir adet kayıtlı doz ölçümü bulunan noktaların silinmesi sistem tarafından emniyet kilidiyle engellenir.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">
+              ❓ Cihaz kalibrasyon süresi dolduğunda ne yapılmalıdır?
+            </h4>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Kalibrasyon geçerlilik süresi dolmuş bir survey meter ile ölçüm girilemez (RED-02). Cihaz yetkili kalibrasyon merkezine (örn: TENMAK SSDL) gönderilmeli ve kalibrasyon tamamlandığında cihaz kartındaki tarih güncellenmelidir.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- NAVIGATION FOOTER -->
+      <footer class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <a href="13_saglik_muayeneleri_ve_periyodik_takip.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">← Önceki Doküman</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">13. Sağlık Muayeneleri & Takip</span>
+          </a>
+          <a href="15_olay_bildirimi_ve_dof_capa.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition text-right group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">Sonraki Doküman →</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">15. Olay Bildirimi & DÖF / CAPA</span>
+          </a>
+        </div>
+      </footer>
+
+    </main>
+
+    <!-- RIGHT ASIDE: TABLE OF CONTENTS -->
+    <aside class="hidden xl:block w-64 shrink-0 py-8 pl-6 border-l border-slate-200 dark:border-slate-800">
+      <div class="sticky top-24 space-y-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-3">Bu Sayfada</span>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#genel-bakis" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">1. Genel Bakış & SKS 6.1</a></li>
+          <li><a href="#hizli-recete" class="hover:text-cyan-600 transition block text-cyan-600 dark:text-cyan-400 font-semibold">⚡ 20s Hızlı Karar Reçetesi</a></li>
+          <li><a href="#bilesenler" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">2. Arayüz ve 5N1K Tablosu</a></li>
+          <li><a href="#kroki-tuvali" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">3. Kroki Tuvali & Canlı Harita</a></li>
+          <li><a href="#alan-siniflari" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">4. Alan Sınıfları & Eşikler</a></li>
+          <li><a href="#doz-olcum" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">5. Doz Ölçümü & Kalibrasyon</a></li>
+          <li><a href="#dof-olay" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">6. Limit Aşımı & DÖF Başlatma</a></li>
+          <li><a href="#qr-sks" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">7. Kapı QR & SKS Raporu</a></li>
+          <li><a href="#hibrit-portal" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">8. Hibrit Saha Tablet Akışı</a></li>
+          <li><a href="#akis-diyagrami" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">9. Karar Akış Şeması</a></li>
+          <li><a href="#mit-avcilari" class="hover:text-cyan-600 transition block text-amber-600 dark:text-amber-400 font-semibold">🕵️ Mit Avcısı & Kritik Kurallar</a></li>
+          <li><a href="#sss" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">10. Sıkça Sorulan Sorular</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
+    <div class="max-w-[1720px] mx-auto px-6">
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi — Sağlık Bilgi Güvenliği & KVKK Standartları ile Korunmaktadır.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' });
+
+    // Theme Toggle
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    themeToggleBtn?.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebarNav = document.getElementById('sidebarNav');
+    if (mobileMenuBtn && sidebarNav) {
+      mobileMenuBtn.addEventListener('click', () => {
+        sidebarNav.classList.toggle('-translate-x-full');
+      });
+    }
+  </script>
+</body>
+</html>

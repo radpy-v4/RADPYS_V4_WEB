@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01. Kurulum, Başlatma ve İlk Giriş — RADPYS v4 Kullanım Kılavuzu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfeff',
+              100: '#cffafe',
+              200: '#a5f3fc',
+              500: '#06b6d4',
+              600: '#0891b2',
+              700: '#0e7490',
+              900: '#164e63',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    pre, code { font-family: 'JetBrains Mono', monospace; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 9999px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.6); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- TOP HEADER NAVBAR (Wide Fluid Layout) -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Version -->
+      <div class="flex items-center gap-3">
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Menüyü Aç/Kapat">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.2</span>
+            </span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Karar Destek Portalı</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick Search Bar (Ctrl+K) -->
+      <div class="flex-1 max-w-xl hidden md:block">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input 
+            type="text" 
+            placeholder="Dokümanda ara... (Örn: İlk giriş, şifre değiştirme, lisans aktivasyon...)" 
+            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition"
+          >
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <kbd class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600 font-semibold">Ctrl+K</kbd>
+          </div>
+        </div>
+      </div>
+
+      <!-- Theme & Action Buttons -->
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" class="p-2.5 rounded-xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Tema Değiştir">
+          <svg id="themeIconSun" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="themeIconMoon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+
+        <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span>Tüm Modüller</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER (Fluid & Wide Layout) -->
+  <div class="flex-1 max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 flex gap-8">
+
+    <!-- LEFT SIDEBAR: NAVIGATION -->
+    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar">
+      <div class="mb-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3">21 Modül Rehberi</span>
+      </div>
+
+      <nav class="space-y-1 text-sm font-medium">
+        <!-- 01 AKTİF -->
+        <a href="#overview" class="flex items-center justify-between px-3 py-2.5 rounded-xl bg-cyan-50 text-cyan-800 dark:bg-cyan-950/60 dark:text-cyan-300 font-semibold border-l-4 border-cyan-600">
+          <div class="flex items-center gap-2.5">
+            <span class="font-mono text-xs text-cyan-600 dark:text-cyan-400 font-bold">01</span>
+            <span>Kurulum & İlk Giriş</span>
+          </div>
+          <span class="w-2 h-2 rounded-full bg-cyan-600 animate-pulse"></span>
+        </a>
+        <a href="02_kullanici_ve_rol_yonetimi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">02</span>
+          <span>Kullanıcı & Roller</span>
+        </a>
+        <a href="03_sistem_ayarlari_ve_tanimlamalar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">03</span>
+          <span>Sistem Ayarları & Tanımlar</span>
+        </a>
+        <a href="04_veritabani_bakim_ve_guvenlik.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">04</span>
+          <span>Veritabanı, Bakım & Güvenlik</span>
+        </a>
+        <a href="05_personel_yonetimi_ve_toplu_aktarim.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">05</span>
+          <span>Personel & Excel Aktarım</span>
+        </a>
+        <a href="06_izin_yonetimi_ve_hakedis.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">06</span>
+          <span>İzin Yönetimi & Şua Hakediş</span>
+        </a>
+        <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">07</span>
+          <span>Nöbet Ayarları & Kısıtlar</span>
+        </a>
+        <a href="08_nobet_hazirlik_ve_solver_motoru.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">08</span>
+          <span>Nöbet Dağıtım Solver Motoru</span>
+        </a>
+        <a href="09_nobet_devir_ikame_ve_acil_mazeret.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">09</span>
+          <span>Nöbet Devir & Mazeret</span>
+        </a>
+        <a href="10_nobet_borc_alacak_ve_fazla_mesai.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">10</span>
+          <span>Nöbet Borç / Alacak & Fazla Mesai</span>
+        </a>
+        <a href="11_fiili_hizmet_ve_sua_hesaplama.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">11</span>
+          <span>Fiili Hizmet & Şua (FHZ)</span>
+        </a>
+        <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">12</span>
+          <span>Dozimetre Takibi & RD.F43</span>
+        </a>
+        <a href="13_saglik_muayeneleri_ve_periyodik_takip.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">13</span>
+          <span>Sağlık Muayeneleri & Takip</span>
+        </a>
+        <a href="14_ortam_dozu_ve_kroki_haritasi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">14</span>
+          <span>Ortam Dozu & Kroki Haritası</span>
+        </a>
+        <a href="15_olay_bildirimi_ve_dof_capa.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">15</span>
+          <span>Olay Bildirimi & DÖF / CAPA</span>
+        </a>
+        <a href="16_rgs_rso_gorevlendirme_ve_sertifika.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">16</span>
+          <span>RGS / RSO Görevlendirme</span>
+        </a>
+        <a href="17_hizmet_ici_egitim_ve_online_sinav.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">17</span>
+          <span>Hizmet İçi Eğitim & Sınav</span>
+        </a>
+
+        <!-- PLANLANAN MODÜLLER -->
+        <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800/60 space-y-1 opacity-50">
+          <span class="flex items-center gap-2.5 px-3 py-1 text-xs text-slate-400 cursor-not-allowed">
+            <span class="font-mono text-[10px]">18</span> Cihaz & NDK Lisans (Plan)
+          </span>
+          <span class="flex items-center gap-2.5 px-3 py-1 text-xs text-slate-400 cursor-not-allowed">
+            <span class="font-mono text-[10px]">19</span> Arıza & Bakım QC (Plan)
+          </span>
+          <span class="flex items-center gap-2.5 px-3 py-1 text-xs text-slate-400 cursor-not-allowed">
+            <span class="font-mono text-[10px]">20</span> RKE & DIN 6857 (Plan)
+          </span>
+          <span class="flex items-center gap-2.5 px-3 py-1 text-xs text-slate-400 cursor-not-allowed">
+            <span class="font-mono text-[10px]">21</span> Onay & Rapor Merkezi (Plan)
+          </span>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- CENTER COLUMN: CORE DOCUMENTATION (Wide & Readable) -->
+    <main class="flex-1 min-w-0 py-8">
+      
+      <!-- Breadcrumb & Badges -->
+      <nav class="flex items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
+        <a href="index.html" class="hover:text-cyan-600 transition">Kılavuz Ana Sayfası</a>
+        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span>Başlangıç ve Sistem Altyapısı</span>
+        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">01. Kurulum, Başlatma ve İlk Giriş</span>
+      </nav>
+
+      <!-- Main Header -->
+      <header id="overview" class="mb-8 border-b border-slate-200 dark:border-slate-800 pb-6">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-3">
+          <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+            Kurulum, Başlatma ve İlk Giriş
+          </h1>
+          <div class="flex items-center gap-2.5">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span> KVKK & Bilgi Güvenliği Uyumlu
+            </span>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+              Tahmini Okuma: 3 Dakika
+            </span>
+          </div>
+        </div>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
+          RADPYS masaüstü uygulamasını güvenli tekil kilit altında başlatma, veritabanı motoru kontrolleri, ilk girişte zorunlu geçici şifre değişimi, Evrensel Arama Komut Paleti (Ctrl+K), Bildirim Merkezi ve lisans aktivasyon sürecini yönetmenizi sağlar.
+        </p>
+
+        <div class="mt-4 text-xs sm:text-sm flex items-center gap-2 text-slate-500 dark:text-slate-400">
+          <span><strong>Yasal Güvence:</strong> Sağlık Bakanlığı Sağlıkta Kalite Standartları (SKS 6.1) ve KVKK 6698 Sayılı Kanun Madde 12 uyarınca yetkisiz erişimler kilitlenir.</span>
+        </div>
+      </header>
+
+      <!-- 1. HIZLI REÇETE KUTUSU + 4 METRİK HAPI (VIZYONDER UX) -->
+      <section id="quick-recipe" class="mb-10">
+        <div class="p-6 sm:p-7 rounded-3xl bg-cyan-50/70 dark:bg-cyan-950/30 border border-cyan-200/90 dark:border-cyan-800/60 shadow-md">
+          
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2.5 text-cyan-900 dark:text-cyan-200 font-bold text-sm sm:text-base">
+              <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              <span>Kısa Reçete: İlk Giriş ve Şifre Güvenliği Tamamlama</span>
+            </div>
+            <span class="text-xs font-mono px-2.5 py-1 rounded bg-cyan-200/80 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-300 font-bold">20 SANİYELİK AKIŞ</span>
+          </div>
+
+          <p class="text-sm text-slate-700 dark:text-slate-200 mb-5 leading-relaxed">
+            <strong>Yapılacak İşlem:</strong> Birim sorumlusundan aldığınız kullanıcı adı ve geçici şifre ile giriş yapın. Açılan zorunlu şifre penceresinde en az <strong>8 karakterli</strong> (büyük harf, küçük harf, rakam ve özel karakter içeren) yeni şifrenizi belirleyip <strong>[Kaydet]</strong> butonuna basın.<br>
+            <strong>Sistem Güvencesi:</strong> Geçici şifre kalıcı olarak geçersiz kılınır; yetkili personel harici hiç kimse eski şifreyle hesabınıza erişemez ve tüm modüller yetkiniz dahilinde kullanıma açılır.
+          </p>
+
+          <!-- 4 METRİK HAPI (METRIC PILLS) -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-cyan-200/60 dark:border-cyan-800/40">
+            <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+              <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Parola Politikası</span>
+              <span class="text-sm sm:text-base font-black text-cyan-600 dark:text-cyan-400 font-mono">Min. 8 Karakter</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+              <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Deneme Süresi</span>
+              <span class="text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 font-mono">30 Gün (Trial)</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+              <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Erken Uyarı Eşiği</span>
+              <span class="text-sm sm:text-base font-black text-amber-600 font-mono">15 Gün & 3 Gün</span>
+            </div>
+            <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+              <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Platform</span>
+              <span class="text-sm sm:text-base font-black text-emerald-600">Masaüstü & Web</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 2. MİT AVCISI (YANLIŞ ALGIYI YIKAN GÖRSEL KART) -->
+      <section id="myth-buster" class="mb-10">
+        <div class="p-6 rounded-3xl bg-amber-50/70 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/50 shadow-sm">
+          <div class="flex items-center gap-2.5 text-amber-800 dark:text-amber-300 font-bold text-sm sm:text-base mb-3">
+            <svg class="w-5 h-5 text-amber-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            <span>Kritik Sahada Yanlış Bilinen Kural (Mit Avcısı)</span>
+          </div>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-3 text-sm">
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-rose-200 dark:border-rose-900/40 text-rose-900 dark:text-rose-200 leading-relaxed">
+              <span class="font-bold block mb-1">❌ Yanlış Algı:</span>
+              <em>"Masaüstü simgesine tıkladım ama program açılmadı, sistem dondu veya hata verdi."</em>
+            </div>
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-emerald-200 dark:border-emerald-900/40 text-emerald-900 dark:text-emerald-200 leading-relaxed">
+              <span class="font-bold block mb-1">✅ Gerçek Sistem Mantığı:</span>
+              RADPYS veritabanı bütünlüğünü korumak için <strong>Tekil Örnek (Single Instance)</strong> kilidiyle çalışır. Program zaten simge durumunda veya arka planda açıksa ikinci bir kopya açılmaz; mevcut açık pencere doğrudan ekranın en önüne getirilir.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. 5N1K KURAL VE AYAR ÇÖZÜMLEME TABLOSU -->
+      <section id="matrix-5n1k" class="mb-12">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+              <span class="w-3 h-3 rounded bg-cyan-600"></span> 5N1K Kural ve Ayar Çözümleme Tablosu
+            </h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Giriş ve başlangıç kontrollerinin amacı, çalışma mantığı ve kullanıcı etkileri</p>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 custom-scrollbar shadow-sm">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/80 uppercase text-xs font-bold tracking-wider text-slate-500 dark:text-slate-400">
+                <th class="py-4 px-5">NE? (Ekran Kontrolü)</th>
+                <th class="py-4 px-4">NEDEN? (Amaç)</th>
+                <th class="py-4 px-4">NASIL? (Çalışma Mantığı)</th>
+                <th class="py-4 px-4">NE ZAMAN? (Tetiklenme)</th>
+                <th class="py-4 px-4">KİM? (Kullanıcı Kitlesi)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-4 px-5 font-semibold text-slate-900 dark:text-white">
+                  Kullanıcı Girişi
+                  <span class="block text-xs text-slate-400 font-normal">Kullanıcı Adı & Şifre</span>
+                </td>
+                <td class="py-4 px-4">Sisteme yetkili kimlik doğrulamasıyla güvenli erişmek.</td>
+                <td class="py-4 px-4">Bilgiler girilip <strong>[Giriş Yap]</strong> tıklanır. Enter tuşu otomatik olarak bu butonu tetikler.</td>
+                <td class="py-4 px-4 text-slate-500">Programa her girişte.</td>
+                <td class="py-4 px-4 font-semibold text-cyan-600">Tüm Personel</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-4 px-5 font-semibold text-slate-900 dark:text-white">
+                  Beni Hatırla
+                  <span class="block text-xs text-slate-400 font-normal">Onay Kutusu</span>
+                </td>
+                <td class="py-4 px-4">Kullanıcı adını tekrar tekrar yazma zahmetini ortadan kaldırmak.</td>
+                <td class="py-4 px-4">Kullanıcı adını yerel bilgisayara kaydeder. Parola <u>asla</u> kaydedilmez; açılışta imleç doğrudan şifre kutusuna odaklanır.</td>
+                <td class="py-4 px-4 text-slate-500">Kişisel çalışma bilgisayarında.</td>
+                <td class="py-4 px-4 font-semibold text-cyan-600">Tüm Personel</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-4 px-5 font-semibold text-slate-900 dark:text-white">
+                  Şifreyi Göster
+                  <span class="block text-xs text-slate-400 font-normal">Göz / Onay Kutusu</span>
+                </td>
+                <td class="py-4 px-4">Şifre yazarken harf ve rakam hatalarını anında görmek.</td>
+                <td class="py-4 px-4">Noktalı maskeli şifre görünümünü açık metne dönüştürür.</td>
+                <td class="py-4 px-4 text-slate-500">Şifre yazımında hata şüphesinde.</td>
+                <td class="py-4 px-4 font-semibold text-cyan-600">Tüm Personel</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-4 px-5 font-semibold text-slate-900 dark:text-white">
+                  Zorunlu Şifre Değişimi
+                  <span class="block text-xs text-slate-400 font-normal">Açılır Güvenlik Formu</span>
+                </td>
+                <td class="py-4 px-4">Geçici veya varsayılan şifreyle sistemde kalınmasını engellemek.</td>
+                <td class="py-4 px-4">Yeni şifre iki kez girilir. Başarılı kaydedilmeden ana ekrana geçişe izin verilmez; iptal edilirse oturum açılmaz.</td>
+                <td class="py-4 px-4 text-slate-500">İlk girişte veya şifre süresi dolduğunda.</td>
+                <td class="py-4 px-4 font-semibold text-amber-600">Yeni Tanımlanan Personel</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-4 px-5 font-semibold text-slate-900 dark:text-white">
+                  Şifremi Unuttum?
+                  <span class="block text-xs text-slate-400 font-normal">Sıfırlama Bağlantısı</span>
+                </td>
+                <td class="py-4 px-4">Kullanıcının e-posta doğrulamasıyla şifresini güvenle sıfırlaması.</td>
+                <td class="py-4 px-4">Kullanıcı adı ve sistemde kayıtlı e-posta adresi birebir eşleştiğinde yeni şifre atanır.</td>
+                <td class="py-4 px-4 text-slate-500">Şifre unutulduğunda.</td>
+                <td class="py-4 px-4 font-semibold text-cyan-600">E-postası Kayıtlı Personel</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-4 px-5 font-semibold text-slate-900 dark:text-white">
+                  Evrensel Arama (Ctrl+K)
+                  <span class="block text-xs text-slate-400 font-normal">Hızlı Komut Paleti</span>
+                </td>
+                <td class="py-4 px-4">Menülerde aramadan istenen sayfaya veya personele 2 saniyede ulaşmak.</td>
+                <td class="py-4 px-4">Klavyeden <strong>Ctrl+K</strong> tuşlarına basılır. En az 2 harf yazıldığında sayfalar, hızlı işlemler ve personel kartları listelenir.</td>
+                <td class="py-4 px-4 text-slate-500">Hızlı işlem veya kayıt ararken.</td>
+                <td class="py-4 px-4 font-semibold text-cyan-600">Tüm Kullanıcılar</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-4 px-5 font-semibold text-slate-900 dark:text-white">
+                  Bildirim Merkezi & Rozet
+                  <span class="block text-xs text-slate-400 font-normal">Sağ Üst Zil Simgesi</span>
+                </td>
+                <td class="py-4 px-4">Nöbet devri, olay bildirimi ve dozimetre alarmlarını anında görmek.</td>
+                <td class="py-4 px-4">Okunmamış bildirim varsa zil açık maviye boyanır ve sayı gösterir. Nöbet devir bildirimi doğrudan Kabul/Red onayını açar.</td>
+                <td class="py-4 px-4 text-slate-500">Yeni görev veya alarm geldiğinde.</td>
+                <td class="py-4 px-4 font-semibold text-cyan-600">Hedef Personel / Amir</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-4 px-5 font-semibold text-slate-900 dark:text-white">
+                  Cihaz Kimliği & Lisans
+                  <span class="block text-xs text-slate-400 font-normal">Hakkında Penceresi</span>
+                </td>
+                <td class="py-4 px-4">Kurum lisansını doğrulamak ve teknik destek paketi üretmek.</td>
+                <td class="py-4 px-4">Cihaz Kimliği (Machine ID) kopyalanarak lisans alınır. Anahtar girilip aktifleştirilir. Log paketi tek tıkla masaüstüne ZIP'lenir.</td>
+                <td class="py-4 px-4 text-slate-500">Lisans kurulumunda veya destek talebinde.</td>
+                <td class="py-4 px-4 font-semibold text-indigo-600">Sistem Yöneticisi (Admin)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 4. MERMAID.JS SÜREÇ AKIŞ ŞEMASI -->
+      <section id="workflow" class="mb-12">
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+          <span class="w-3 h-3 rounded bg-cyan-600"></span> Başlatma ve Güvenli Giriş Süreç Akışı
+        </h2>
+        <div class="p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-x-auto">
+          <div class="mermaid text-sm">
+flowchart TD
+    A["Masaüstü RADPYS Simgesi Çift Tıklanır"] --> B{"Tekil Uygulama Kilidi?"}
+    B -->|Açık Kopya Var| C["Mevcut Pencere Öne Getirilir"]
+    B -->|İlk Açılış| D{"PostgreSQL Veritabanı Bağlantısı?"}
+    
+    D -->|Bağlantı Yok| E["Hata Diyaloğu: UAC Servis Başlat / services.msc"]
+    E --> D
+    
+    D -->|Bağlantı Başarılı| F["Giriş Ekranı Açılır"]
+    F --> G["Kullanıcı Adı ve Şifre Girilir"]
+    G --> H{"Kimlik Doğrulama Başarılı mı?"}
+    
+    H -->|Hatalı Bilgi| I["Giriş Başarısız Uyarısı"]
+    I --> G
+    H -->|Başarılı| J{"Kurum Lisansı Geçerli mi?"}
+    
+    J -->|Süresi Dolmuş - Normal Personel| K["Erişim Engellenir: Sistem Yöneticisine Başvurun"]
+    J -->|Süresi Dolmuş - Yönetici| L["Kısıtlı Yönetici Modu: Lisans Aktivasyon Ekranı Açılır"]
+    
+    J -->|Lisans Aktif| M{"İlk Giriş mi veya Şifre Süresi Doldu mu?"}
+    M -->|Evet| N["Zorunlu Şifre Değiştirme Formu"]
+    N -->|Şifre Belirlendi| O["Ana Uygulama Ekranı Yüklenir"]
+    N -->|İptal Edildi| F
+    M -->|Hayır| O
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. EKRAN GÖRÜNTÜLERİ VE EKRAN KONUMU ROZETLERİ -->
+      <section id="screenshots" class="mb-12">
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-5">
+          <span class="w-3 h-3 rounded bg-cyan-600"></span> Kritik Ekran Görünümleri ve Kullanım Noktaları
+        </h2>
+
+        <!-- Görsel 1: Giriş Penceresi -->
+        <figure class="my-8 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+          <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-sm">
+            <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+              <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">RADPYS Başlangıç Ekranı</strong>
+            </span>
+            <span class="text-xs font-semibold text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-3 py-1 rounded-full border border-cyan-200 dark:border-cyan-800/60">Giriş Formu</span>
+          </div>
+          <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+            <img src="assets/img/01_login_page.png" alt="Giriş Ekranı" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+          </div>
+          <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki kullanıcı adları ve arayüz bilgileri tamamen test amaçlı sentetik veridir.</span>
+          </figcaption>
+        </figure>
+
+        <!-- Görsel 2: İlk Giriş Şifre Değiştirme Formu -->
+        <figure class="my-8 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+          <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-sm">
+            <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+              <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Giriş Sonrası Güvenlik Doğrulaması</strong>
+            </span>
+            <span class="text-xs font-semibold text-amber-700 dark:text-amber-300 bg-amber-100/70 dark:bg-amber-900/50 px-3 py-1 rounded-full border border-amber-200 dark:border-amber-800/60">Zorunlu Şifre Formu</span>
+          </div>
+          <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+            <img src="assets/img/01_auth_password_change_dialog.png" alt="Şifre Değiştirme Formu" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+          </div>
+          <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span><strong>Güvenlik Notu:</strong> Yeni şifreniz en az 8 karakter olmalı; büyük/küçük harf, rakam ve özel karakter içermelidir.</span>
+          </figcaption>
+        </figure>
+
+        <!-- Görsel 3: Lisans ve Cihaz Kimliği Penceresi -->
+        <figure class="my-8 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+          <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-sm">
+            <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+              <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Sağ Üst Menü > Hakkında</strong>
+            </span>
+            <span class="text-xs font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-100/70 dark:bg-emerald-900/50 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800/60">Lisans ve Sistem Künyesi</span>
+          </div>
+          <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+            <img src="assets/img/01_about_dialog.png" alt="Lisans ve Hakkında Penceresi" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+          </div>
+          <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span><strong>İşlem Notu:</strong> Cihaz Kimliği (Machine ID) [Kopyala] butonuyla kopyalanıp lisans anahtarı üretimi için sağlanır.</span>
+          </figcaption>
+        </figure>
+
+        <!-- Görsel 4: Evrensel Arama ve Bildirim Merkezi -->
+        <figure class="my-8 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+          <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-sm">
+            <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+              <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Ana Ekran Üst Bar (Ctrl+K & Zil Simgesi)</strong>
+            </span>
+            <span class="text-xs font-semibold text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-3 py-1 rounded-full border border-cyan-200 dark:border-cyan-800/60">Hızlı Navigasyon & Bildirim</span>
+          </div>
+          <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+            <img src="assets/img/01_komut_paleti_ve_bildirim.png" alt="Komut Paleti ve Bildirim Paneli" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+          </div>
+          <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+            <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span><strong>Kısayol Bilgisi:</strong> Programın her yerinde Ctrl+K ile arama paletini açabilir, bildirimlerden nöbet devirlerini onaylayabilirsiniz.</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- 6. ADIM ADIM OPERASYONEL EYLEM AKIŞI -->
+      <section id="step-by-step" class="mb-12">
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+          <span class="w-3 h-3 rounded bg-cyan-600"></span> Adım Adım Operasyonel Eylem Akışı
+        </h2>
+
+        <div class="space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+            <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 1: Uygulamayı Başlatma & Giriş</strong>
+            Masaüstünüzdeki <strong>RADPYS</strong> simgesine çift tıklayın. Kullanıcı adınızı ve şifrenizi girin. Kendi bilgisayarınızda çalışıyorsanız <strong>[Beni Hatırla]</strong> kutusunu işaretleyin ve <strong>[Giriş Yap]</strong> butonuna tıklayın.
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+            <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 2: İlk Şifrenizi Tanımlama</strong>
+            Eğer ilk girişiniz ise ekrana gelen şifre değiştirme penceresinde en az 8 karakterli yeni şifrenizi belirleyin. Her iki kutuya aynı şifreyi yazdıktan sonra <strong>[Kaydet]</strong> butonuna basın. Oturumunuz ana ekranla açılacaktır.
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+            <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 3: Sayfalara ve Personele Hızlı Ulaşım (Ctrl+K)</strong>
+            Herhangi bir ekrandayken klavyenizden <strong>Ctrl+K</strong> tuşlarına basın. Açılan kutuya personelin adını veya gitmek istediğiniz menüyü (Örn: *Nöbet*, *İzin*, *Dozimetre*) yazıp Enter'a basarak doğrudan o ekrana geçin.
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+            <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 4: Kurum Lisansını Aktifleştirme (Yalnızca Admin)</strong>
+            Sağ üstteki menüden <strong>[Hakkında]</strong> penceresini açın. <strong>[Cihaz Kimliği]</strong> kodunuzu kopyalayıp lisans sağlayıcısına iletin. Size verilen anahtarı kutuya yapıştırıp <strong>[Lisansı Aktifleştir]</strong> butonuna basın.
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+            <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 5: Teknik Destek Paketi Oluşturma</strong>
+            Sistemde beklenmeyen bir durumla karşılaşırsanız <strong>[Hakkında]</strong> penceresindeki <strong>[Destek Paketi (Log) Oluştur]</strong> butonuna tıklayın. Masaüstünüze kaydedilen <code>radpys_destek_log.zip</code> dosyasını teknik ekibe e-posta eki olarak gönderin.
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. SIKÇA SORULAN SORULAR AKORDEONU (FAQ) -->
+      <section id="faq" class="mb-14">
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-5">
+          <span class="w-3 h-3 rounded bg-cyan-600"></span> Sıkça Sorulan Sorular ve Takılma Yönetimi
+        </h2>
+
+        <div class="space-y-3" id="faqAccordion">
+          <!-- Soru 1 -->
+          <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+            <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+              <span>Şifremi unuttum, sisteme nasıl giriş yapabilirim?</span>
+              <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
+              Giriş ekranında yer alan <strong>[Şifremi Unuttum?]</strong> butonuna tıklayın. Kullanıcı adınızı ve sistemde kayıtlı e-posta adresinizi girerek yeni şifrenizi belirleyin. Sistemde tanımlı bir e-posta adresiniz yoksa birim sorumlunuza veya sistem yöneticinize başvurunuz; yönetici Kullanıcı Yönetimi ekranından tek tıkla geçici şifre atayabilir.
+            </p>
+          </details>
+
+          <!-- Soru 2 -->
+          <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+            <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+              <span>Lisans süresi dolduğunda verilerimiz silinir mi?</span>
+              <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
+              <strong>Kesinlikle hayır.</strong> Lisans süresinin dolması yalnızca ekran erişimlerini kilitler; veritabanındaki nöbetler, personeller, dozimetre ve RKE kayıtları hiçbir şekilde silinmez veya bozulmaz. Sistem Yöneticisi yeni lisans anahtarını girdiği anda tüm sistem kaldığı yerden eksiksiz çalışmaya devam eder.
+            </p>
+          </details>
+
+          <!-- Soru 3 -->
+          <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+            <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+              <span>Beni Hatırla seçeneğini işaretlediğimde şifrem bilgisayarda açık kalır mı?</span>
+              <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
+              Hayır. Güvenlik ve KVKK gereği <strong>[Beni Hatırla]</strong> seçeneği yalnızca kullanıcı adınızı depolar; parolanızı <u>kesinlikle</u> diske veya yerel ayarlara yazmaz. Her oturumda şifrenin elle yazılması zorunludur.
+            </p>
+          </details>
+
+          <!-- Soru 4 -->
+          <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+            <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+              <span>PostgreSQL veritabanı bağlantı hatası alıyorum, ne yapmalıyım?</span>
+              <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
+              Uygulama açılışında gelen hata kutusundaki <strong>[Servisi Yönetici Olarak Başlat (UAC)]</strong> butonuna tıklayın ve Windows izin penceresine "Evet" deyin. Servis otomatik olarak başlatılacaktır. Sorun devam ederse Windows Hizmetler (<code>services.msc</code>) ekranından PostgreSQL servisinin durumunu kontrol ediniz.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- FOOTER PREV / NEXT -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <a href="index.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">← Kılavuz Ana Sayfası</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">Tüm 21 Modül Portalı</span>
+          </a>
+          <a href="02_kullanici_ve_rol_yonetimi.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition text-right group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">Sonraki Doküman →</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">02. Kullanıcı ve Rol Yönetimi</span>
+          </a>
+        </div>
+      </footer>
+
+    </main>
+
+    <!-- RIGHT ASIDE: TABLE OF CONTENTS -->
+    <aside class="hidden xl:block w-64 shrink-0 py-8 pl-6 border-l border-slate-200 dark:border-slate-800">
+      <div class="sticky top-24 space-y-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-3">Bu Sayfada</span>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#quick-recipe" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">Hızlı Reçete</a></li>
+          <li><a href="#myth-buster" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">Mit Avcısı</a></li>
+          <li><a href="#matrix-5n1k" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">5N1K Tablosu</a></li>
+          <li><a href="#workflow" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">Süreç Akış Şeması</a></li>
+          <li><a href="#screenshots" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">Ekran Rehberi</a></li>
+          <li><a href="#step-by-step" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">Adım Adım Eylem</a></li>
+          <li><a href="#faq" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">Sıkça Sorulan Sorular</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
+    <div class="max-w-[1720px] mx-auto px-6">
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi — Sağlık Bilgi Güvenliği & KVKK Standartları ile Korunmaktadır.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Theme Toggle Logic
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const htmlEl = document.documentElement;
+
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      htmlEl.classList.add('dark');
+    } else {
+      htmlEl.classList.remove('dark');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      if (htmlEl.classList.contains('dark')) {
+        htmlEl.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        htmlEl.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      renderMermaidDiagrams();
+    });
+
+    function renderMermaidDiagrams() {
+      const isDark = htmlEl.classList.contains('dark');
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: isDark ? 'dark' : 'neutral',
+        fontFamily: 'Inter, system-ui, sans-serif',
+        fontSize: 14,
+        securityLevel: 'loose',
+        flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
+      });
+
+      const nodes = document.querySelectorAll('.mermaid');
+      if (nodes.length > 0) {
+        mermaid.run({ nodes: nodes }).catch(err => console.error("Mermaid hatası:", err));
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', renderMermaidDiagrams);
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebarNav = document.getElementById('sidebarNav');
+    if (mobileMenuBtn && sidebarNav) {
+      mobileMenuBtn.addEventListener('click', () => {
+        sidebarNav.classList.toggle('-translate-x-full');
+      });
+    }
+  </script>
+</body>
+</html>

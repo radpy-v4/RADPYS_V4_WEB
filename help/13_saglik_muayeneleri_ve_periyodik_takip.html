@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>13. Sağlık Muayeneleri ve Periyodik Takip — RADPYS v4 Kullanım Kılavuzu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfeff',
+              100: '#cffafe',
+              200: '#a5f3fc',
+              500: '#06b6d4',
+              600: '#0891b2',
+              700: '#0e7490',
+              900: '#164e63',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    pre, code { font-family: 'JetBrains Mono', monospace; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 9999px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.6); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- TOP HEADER NAVBAR (Wide Fluid Layout) -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Version -->
+      <div class="flex items-center gap-3">
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Menüyü Aç/Kapat">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.2</span>
+            </span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Karar Destek Portalı</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick Search Bar (Ctrl+K) -->
+      <div class="flex-1 max-w-xl hidden md:block">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input 
+            type="text" 
+            placeholder="Dokümanda ara... (Örn: Sağlık muayenesi, Şua muayenesi, Göz katarakt, Dahiliye hemogram, Dermatoloji, İleri tetkik, Heyet raporu...)" 
+            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition"
+          >
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <kbd class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600 font-semibold">Ctrl+K</kbd>
+          </div>
+        </div>
+      </div>
+
+      <!-- Theme & Action Buttons -->
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" class="p-2.5 rounded-xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Tema Değiştir">
+          <svg id="themeIconSun" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="themeIconMoon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+
+        <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span>Tüm Modüller</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- BODY CONTENT (Fluid 1720px Grid) -->
+  <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 py-8 flex-1 flex gap-8">
+    
+    <!-- LEFT SIDEBAR: NAVIGATION -->
+    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar">
+      <div class="mb-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3">21 Modül Rehberi</span>
+      </div>
+
+      <nav class="space-y-1 text-sm font-medium">
+        <a href="01_kurulum_ve_ilk_giris.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">01</span>
+          <span>Kurulum & İlk Giriş</span>
+        </a>
+        <a href="02_kullanici_ve_rol_yonetimi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">02</span>
+          <span>Kullanıcı & Roller</span>
+        </a>
+        <a href="03_sistem_ayarlari_ve_tanimlamalar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">03</span>
+          <span>Sistem Ayarları & Tanımlar</span>
+        </a>
+        <a href="04_veritabani_bakim_ve_guvenlik.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">04</span>
+          <span>Veritabanı, Bakım & Güvenlik</span>
+        </a>
+        <a href="05_personel_yonetimi_ve_toplu_aktarim.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">05</span>
+          <span>Personel & Excel Aktarım</span>
+        </a>
+        <a href="06_izin_yonetimi_ve_hakedis.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">06</span>
+          <span>İzin Yönetimi & Şua Hakediş</span>
+        </a>
+        <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">07</span>
+          <span>Nöbet Ayarları & Kısıtlar</span>
+        </a>
+        <a href="08_nobet_hazirlik_ve_solver_motoru.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">08</span>
+          <span>Nöbet Dağıtım Solver Motoru</span>
+        </a>
+        <a href="09_nobet_devir_ikame_ve_acil_mazeret.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">09</span>
+          <span>Nöbet Devir & Mazeret</span>
+        </a>
+        <a href="10_nobet_borc_alacak_ve_fazla_mesai.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">10</span>
+          <span>Nöbet Borç / Alacak & Fazla Mesai</span>
+        </a>
+        <a href="11_fiili_hizmet_ve_sua_hesaplama.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">11</span>
+          <span>Fiili Hizmet & Şua (FHZ)</span>
+        </a>
+        <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">12</span>
+          <span>Dozimetre Takibi & RD.F43</span>
+        </a>
+
+        <!-- 13 AKTİF -->
+        <a href="#genel-bakis" class="flex items-center justify-between px-3 py-2.5 rounded-xl bg-cyan-50 text-cyan-800 dark:bg-cyan-950/60 dark:text-cyan-300 font-semibold border-l-4 border-cyan-600">
+          <div class="flex items-center gap-2.5">
+            <span class="font-mono text-xs text-cyan-600 dark:text-cyan-400 font-bold">13</span>
+            <span>Sağlık Muayeneleri & Takip</span>
+          </div>
+          <span class="w-2 h-2 rounded-full bg-cyan-600 animate-pulse"></span>
+        </a>
+
+        <a href="14_ortam_dozu_ve_kroki_haritasi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">14</span>
+          <span>Ortam Dozu & Kroki Haritası</span>
+        </a>
+        <a href="15_olay_bildirimi_ve_dof_capa.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">15</span>
+          <span>Olay Bildirimi & DÖF / CAPA</span>
+        </a>
+        <a href="16_rgs_rso_gorevlendirme_ve_sertifika.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">16</span>
+          <span>RGS / RSO Görevlendirme</span>
+        </a>
+        <a href="17_hizmet_ici_egitim_ve_online_sinav.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">17</span>
+          <span>Hizmet İçi Eğitim & Sınav</span>
+        </a>
+
+        <!-- CANLI VE PLANLANAN MODÜLLER -->
+        <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800/60 space-y-1">
+          <a href="18_tibbi_cihaz_ve_ndk_lisans_envanteri.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <span class="font-mono text-xs opacity-60">18</span>
+            <span>Tıbbi Cihaz & NDK Lisans</span>
+          </a>
+          <a href="19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <span class="font-mono text-xs opacity-60">19</span>
+            <span>Cihaz Arıza, Bakım & QC</span>
+          </a>
+          <a href="20_rke_koruyucu_ekipman_ve_din6857.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <span class="font-mono text-xs opacity-60">20</span>
+            <span>RKE & DIN 6857 Muayene</span>
+          </a>
+          <a href="21_merkezi_onaylar_ve_rapor_merkezi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <span class="font-mono text-xs opacity-60">21</span>
+            <span>Merkezi Onay & Raporlar</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-1 min-w-0 space-y-12">
+      
+      <!-- HERO SECTION -->
+      <section id="genel-bakis" class="space-y-6">
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">MODÜL 13</span>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300">NDK & İSG Mevzuatı</span>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300">3 Uzmanlık Branşı</span>
+        </div>
+
+        <div class="space-y-3">
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+            13. Sağlık Muayeneleri ve Periyodik Takip
+          </h1>
+          <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-5xl">
+            Radyasyonla çalışan personelin işe giriş ve periyodik sağlık gözetim süreçlerini, üç temel uzmanlık branşının (Göz, Dahiliye, Dermatoloji) klinik değerlendirmelerini, NDK ve Sağlık Bakanlığı periyotlarına göre otomatik sonraki randevu tarihini, yaklaşan/süresi dolan muayene uyarılarını ve revizyon denetim izini yöneten modüldür.
+          </p>
+        </div>
+
+        <!-- 4 KPI BENTO CARDS -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
+            <span class="text-xs font-semibold uppercase tracking-wider text-cyan-600 dark:text-cyan-400 font-mono">Radyasyon & Periyodik</span>
+            <div class="text-2xl font-black text-slate-900 dark:text-white font-mono">12 Ay</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Radyasyon çalışanlarının yıllık zorunlu periyodik kontrol döngüsü.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
+            <span class="text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-mono">Şua Muayenesi</span>
+            <div class="text-2xl font-black text-slate-900 dark:text-white font-mono">6 Ay</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Yoğun radyasyonlu özellikli birimlerde çalışanların periyot aralığı.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
+            <span class="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-mono">Uzmanlık Branşları</span>
+            <div class="text-2xl font-black text-slate-900 dark:text-white font-mono">3 Branş</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Göz (Lens/Katarakt), Dahiliye (Kan/Tiroid), Dermatoloji (Cilt).</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
+            <span class="text-xs font-semibold uppercase tracking-wider text-amber-500 font-mono">Erken Uyarı Eşiği</span>
+            <div class="text-2xl font-black text-slate-900 dark:text-white font-mono">30 Gün</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Muayene gününe 30 gün kala devreye giren sarı yaklaşma rozeti.</p>
+          </div>
+        </div>
+
+        <!-- IMPORTANT NOTE: CLINICAL TRACKING VS MEDICAL BOARD -->
+        <div class="p-5 rounded-2xl bg-amber-50/80 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 flex items-start gap-3.5">
+          <div class="p-2 rounded-xl bg-amber-500 text-white shrink-0 mt-0.5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          </div>
+          <div class="space-y-1 text-sm text-amber-950 dark:text-amber-200 leading-relaxed">
+            <strong class="font-bold">Önemli Klinik Takip Kuralı (Klinik Takip vs Heyet Raporu Ayrımı):</strong>
+            <p>
+              Bu ekran doğrudan resmi bir Sağlık Kurulu (Heyet) Raporu işleme veya kesin çalışma engeli oluşturma ekranı <em>değildir</em>; personelin rutin periyodik klinik muayenelerini takip eder. Herhangi bir branşta *"Uygun Değil"* veya *"Koşullu Uygun"* kanaati verilirse personel derhal ilgili ana bilim dalına <strong>ileri tetkik</strong> için sevk edilir. İleri tetkikler sonucunda personelin radyasyonlu alanda çalışamayacağı resmi Sağlık Kurulu (Heyet) Raporu ile kesinleşirse, bu durum <strong>Nöbet & Çalışma Kısıtları (Modül 07)</strong> modülüne heyet raporu şerhiyle işlenir.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- VİZYONDER HIZLI REÇETE (20 SANİYE KURALI) -->
+      <section id="hizli-recete" class="mb-10">
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-cyan-900/10 via-slate-900/5 to-blue-900/10 dark:from-cyan-950/40 dark:via-slate-900/40 dark:to-blue-950/40 border border-cyan-200 dark:border-cyan-800/50 shadow-sm">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 rounded-lg bg-cyan-600 text-white flex items-center justify-center font-bold text-sm">
+              20s
+            </div>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white">Vizyonder Hızlı Karar Reçetesi (Klinik Takip & İSG Özeti)</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+            <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+              <span class="font-bold text-cyan-600 dark:text-cyan-400 block mb-1">1. Muayene Türünü ve Periyodu Seçin</span>
+              İşe giriş muayenesi, 12 aylık rutin periyodik kontrol veya yoğun radyasyonlu birimler için 6 aylık Şua muayenesi türünü seçin.
+            </div>
+            <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+              <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-1">2. 3 Uzmanlık Branşını İşleyin</span>
+              Göz (lens/katarakt), Dahiliye (hemogram/tiroid) ve Dermatoloji (cilt) sonuçlarını girin. Tamamlanan branşlarla kısmi kayıt yapılabilir.
+            </div>
+            <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+              <span class="font-bold text-blue-600 dark:text-blue-400 block mb-1">3. İleri Tetkik & 30 Gün Uyarısı</span>
+              Uygun Değil kanaatinde personel ileri tetkike sevk edilir; heyet raporu çıkarsa Modül 07'ye kısıt işlenir. 30 gün kala sistem sarı uyarı verir.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: UI CONTROLS & 5N1K TABLE -->
+      <section id="bilesenler" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>2. Arayüz Bileşenleri ve 5N1K Tablosu</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Sağlık Muayeneleri modülündeki ekran kontrolleri, butonlar ve branş imza alanlarının işlevsel kullanım kılavuzu:
+          </p>
+        </div>
+
+        <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="bg-slate-100/80 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 font-bold uppercase tracking-wider text-[11px] border-b border-slate-200 dark:border-slate-800">
+              <tr>
+                <th class="py-3 px-4">Bileşen / Buton</th>
+                <th class="py-3 px-4">Türü</th>
+                <th class="py-3 px-4">Ne İşe Yarar? (Ne?)</th>
+                <th class="py-3 px-4">Kim Kullanır? (Kim?)</th>
+                <th class="py-3 px-4">Ne Zaman Kullanılır? (Ne Zaman?)</th>
+                <th class="py-3 px-4">Nerede Yer Alır?</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 dark:divide-slate-800/70 text-slate-700 dark:text-slate-300">
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Ekle]</td>
+                <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
+                <td class="py-3 px-4">Yeni sağlık muayenesi kayıt modalını açar.</td>
+                <td class="py-3 px-4">Hekim / RKS / İSG Sorumlusu</td>
+                <td class="py-3 px-4">Personel muayeneye girdiğinde</td>
+                <td class="py-3 px-4">Liste Araç Çubuğu</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Detay]</td>
+                <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
+                <td class="py-3 px-4">Seçili muayenenin branş bulguları ve rapor dosyasını açar.</td>
+                <td class="py-3 px-4">Tüm Yetkililer</td>
+                <td class="py-3 px-4">Klinik notlar incelenirken (veya çift tık)</td>
+                <td class="py-3 px-4">Liste Araç Çubuğu</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Geçmiş]</td>
+                <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
+                <td class="py-3 px-4">Personelin geçmiş yıllardaki tüm muayenelerini listeler.</td>
+                <td class="py-3 px-4">Hekim / Denetçi</td>
+                <td class="py-3 px-4">Personel geçmişi kıyaslanırken</td>
+                <td class="py-3 px-4">Liste Araç Çubuğu</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Sil]</td>
+                <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
+                <td class="py-3 px-4">Hatalı girilmiş muayeneyi revizyon günlüğüne yazarak siler.</td>
+                <td class="py-3 px-4">Süpervizör / Admin</td>
+                <td class="py-3 px-4">Mükerrer veya yanlış kayıt iptalinde</td>
+                <td class="py-3 px-4">Liste Araç Çubuğu</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Arama Kutusu]</td>
+                <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Giriş Alanı</td>
+                <td class="py-3 px-4">Ad, soyad, TC kimlik no veya muayene notlarında filtreler.</td>
+                <td class="py-3 px-4">Tüm Kullanıcılar</td>
+                <td class="py-3 px-4">Hızlı personel veya vaka aramasında</td>
+                <td class="py-3 px-4">Filtre Paneli</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Muayene Durumu]</td>
+                <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Açılır Kutu</td>
+                <td class="py-3 px-4">Süresi Geçmiş, Yaklaşıyor (30 gün) ve Normal satırları süzer.</td>
+                <td class="py-3 px-4">RKS / İSG Uzmanı</td>
+                <td class="py-3 px-4">Kontrolü yaklaşan veya geçen personeller taranırken</td>
+                <td class="py-3 px-4">Filtre Paneli</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[TC / Ad ile Ara]</td>
+                <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Tamamlayıcı</td>
+                <td class="py-3 px-4">Personeli harf yazarak otomatik tamamlar; unvan/dep yansıtır.</td>
+                <td class="py-3 px-4">Kullanıcı</td>
+                <td class="py-3 px-4">Muayene formu doldurulurken</td>
+                <td class="py-3 px-4">Ekleme Modalı</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Dahiliye / Derm / Göz İmza]</td>
+                <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Onay Kutusu</td>
+                <td class="py-3 px-4">İlgili branş hekiminin muayeneyi tamamlayıp imzaladığını teyit eder.</td>
+                <td class="py-3 px-4">Hekim</td>
+                <td class="py-3 px-4">Branş muayenesi bittiğinde</td>
+                <td class="py-3 px-4">Bulgular Grubu</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Muayene Formu Seç/Aç/Sil]</td>
+                <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Dosya Butonları</td>
+                <td class="py-3 px-4">Rapor PDF/görselini şifreli kasaya kopyalar veya görüntüler.</td>
+                <td class="py-3 px-4">Kullanıcı</td>
+                <td class="py-3 px-4">Heyet evrakı arşivlenirken</td>
+                <td class="py-3 px-4">Belge Satırı</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION 3: LIST SCREEN & STATUS GAUGES -->
+      <section id="liste-ekrani" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>3. Muayene Takip Listesi ve Görsel Durum İkonları</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Personellerin periyodik muayene durumu, branş ikonları (Göz, Dahiliye, Dermatoloji) ve genel uygunluk kararlarının merkezi kokpiti:
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+          <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md">
+            <img src="assets/img/muayene_list.png" alt="Sağlık Muayene Listesi Ekranı" class="w-full h-auto object-cover max-h-[500px]">
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-2">
+              <span class="inline-block px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">UYGUN</span>
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white">Radyasyonla Çalışmaya Uygun</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Tüm branş kontrollerinde engel durum tespit edilmemiş, personelin radyasyonlu ortamda çalışmasında sakınca bulunmayan rutin kayıtlar.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-2">
+              <span class="inline-block px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300">KOŞULLU UYGUN</span>
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white">Şartlı & Yakın Takip</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Hekim tarafından koruyucu ekipman şartı veya daha sık aralıklarla ara kontrol tavsiyesi konulmuş çalışanları simgeler.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-2">
+              <span class="inline-block px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-rose-100 text-rose-800 dark:bg-rose-900/60 dark:text-rose-300">SÜRESİ DOLDU</span>
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white">Periyodu Geçmiş Muayene</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Bir sonraki kontrol tarihi üzerinden zaman geçmiş çalışanlar; sistem kırmızı uyarı verir ve gecikme raporunda listeler.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: EXAM FORM & SPECIALTIES -->
+      <section id="muayene-formu" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>4. Yeni Muayene Kaydı Açma ve Uzmanlık Bulguları</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Personel seçimi, muayene türüne göre otomatik sonraki tarih hesabı ve Dahiliye, Dermatoloji, Göz branş değerlendirmeleri:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+          <!-- Screenshot Card -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-500"></span>
+              <span>Yeni Sağlık Muayenesi Formu</span>
+            </h3>
+            <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
+              <img src="assets/img/muayene%20ekle.png" alt="Yeni Muayene Kaydı Diyaloğu" class="w-full h-auto object-cover max-h-[420px]">
+            </div>
+          </div>
+
+          <!-- Instructions & Logic -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+                <span>Form Doldurma ve Otomatik Takvim Mantığı</span>
+              </h3>
+              <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2.5 leading-relaxed">
+                <li class="flex items-start gap-2">
+                  <span class="text-cyan-500 font-bold">&bull;</span>
+                  <span><strong>Otomatik Personel Tamamlama:</strong> `TC / Ad ile Ara` alanına yazıldıkça personeller listelenir; departman ve unvan otomatik gelir.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-cyan-500 font-bold">&bull;</span>
+                  <span><strong>Periyot Hesabı:</strong> Muayene Türü `Şua Muayenesi` seçilirse 6 ay, `Radyasyon Çalışanı Muayenesi` seçilirse 12 ay ileriye dönük `Sonraki Muayene Tarihi` artık yıl kontrolleriyle hesaplanır.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-cyan-500 font-bold">&bull;</span>
+                  <span><strong>Üç Branş Hekim İmzası:</strong> Dahiliye, Dermatoloji ve Göz branşlarının `[x] İmzalandı` kutusu, branş sonucu ve tarihi girilir. Formu kaydetmek için en az bir branş sonucu zorunludur.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-cyan-500 font-bold">&bull;</span>
+                  <span><strong>Şifreli Belge Arşivi:</strong> `[Seç]` butonuyla yüklenen raporlar AES-256 Fernet ile şifrelenir ve `SAGLIK-{personel_id}-{belge_id}` olarak kasalanır.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-xs text-slate-500 space-y-1">
+              <span class="font-bold text-slate-700 dark:text-slate-300">Tavsiyeler & Klinik Kanaat:</span>
+              <p>Hekimin tıbbi kanaati, koruyucu donanım şerhleri veya ara kontrol tavsiyeleri `Tavsiyeler` metin kutusuna girilir ve detayda saklanır.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: ADVANCED EXAM & HEYET PROCESS -->
+      <section id="ileri-tetkik" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>5. İleri Tetkik Sevk Süreci ve Resmi Heyet Raporu Kısıtı</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Rutin periyodik kontrolde şüpheli bulgu saptandığında izlenen kurumsal sevk ve çalışma kısıtı protokolü:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+            <span class="inline-block px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300">1. AŞAMA</span>
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Şüpheli Bulgu & İleri Tetkik Sevki</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Periyodik muayenede branş hekimi tarafından *"Uygun Değil"* veya *"Koşullu Uygun"* kanaati belirtildiğinde, personel ilgili kliniğe ayrıntılı ileri tetkikler için sevk edilir.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+            <span class="inline-block px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300">2. AŞAMA</span>
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Resmi Sağlık Kurulu (Heyet) Kararı</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              İleri tetkiklerin ardından Sağlık Kurulu toplanır. Personelin radyasyon ortamında çalışıp çalışamayacağı resmi Heyet Raporu tutanağına bağlanır.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+            <span class="inline-block px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-rose-100 text-rose-800 dark:bg-rose-900/60 dark:text-rose-300">3. AŞAMA</span>
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Nöbet Muafiyeti & Çalışma Kısıtı</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Heyet raporunda radyasyonsuz alanda çalışma kararı çıkarsa, Yönetici/RKS tarafından <strong>Modül 07</strong> üzerinden resmi çalışma kısıtı açılır ve nöbet motoru personeli korumaya alır.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: HYBRID WEB PORTAL -->
+      <section id="hibrit-portal" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>6. Hibrit Arayüz ve Web Portalı Görünümü</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Masaüstü klinik kayıt ve evrak yönetim merkezi ile web portalı sağlık göstergeleri karşılaştırması:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="p-2.5 rounded-xl bg-cyan-100 text-cyan-700 dark:bg-cyan-900/60 dark:text-cyan-300">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">Masaüstü Yönetim İstemcisi (PySide6)</h3>
+            </div>
+            <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2 leading-relaxed">
+              <li class="flex items-start gap-2">
+                <span class="text-cyan-500 font-bold">&check;</span>
+                <span>Yeni muayene kaydı açma, branş sonuçları ve hekim imzalarını teyit etme.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-cyan-500 font-bold">&check;</span>
+                <span>Taranmış sağlık heyet raporlarını AES-256 şifreli kasaya aktarma.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-cyan-500 font-bold">&check;</span>
+                <span>Sağ tık ile personelin tüm kronolojik muayene geçmişini inceleme.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-cyan-500 font-bold">&check;</span>
+                <span>Değişiklik ve silme işlemlerinde revizyon günlüğü ve evrensel onay kuyruğu.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="p-2.5 rounded-xl bg-emerald-100 text-emerald-700 dark:bg-emerald-900/60 dark:text-emerald-300">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">Web & Mobil Portalı (SaglikDashboard)</h3>
+            </div>
+            <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2 leading-relaxed">
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-500 font-bold">&check;</span>
+                <span><strong>Sağlık Uyum Oranı (%):</strong> Kurum genelindeki personellerin muayene güncelliği.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-500 font-bold">&check;</span>
+                <span><strong>Branş Dağılım Çizelgesi:</strong> Göz, Dahiliye ve Dermatoloji uygunluk oranları grafiği.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-500 font-bold">&check;</span>
+                <span><strong>Muayene Yığılma Tahmini:</strong> 12 aylık periyotta beklenen kontrol randevu yoğunluğu.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-500 font-bold">&check;</span>
+                <span><strong>Kişisel Sağlık Karnesi:</strong> Personelin bir sonraki kontrolüne kalan gün sayısını görmesi.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: FLOWCHART (MERMAID) -->
+      <section id="akis-diyagrami" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>7. Sağlık Muayeneleri Karar Destek Akış Şeması</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Periyodik kontrol planlamasından branş değerlendirmesi ve resmi heyet kısıtına kadar olan karar döngüsü:
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="mermaid text-center overflow-x-auto">
+graph TD
+  A["Personel Sağlık Gözetimi İhtiyacı"] --> B["Muayene Türü Seçimi"]
+  B --> C{"Muayene Türü ve Periyodu"}
+  C -- "Radyasyon / Periyodik" --> D["12 Aylık Otomatik Periyot"]
+  C -- "Şua Muayenesi" --> E["6 Aylık Otomatik Periyot"]
+  C -- "İşe Giriş" --> F["Tek Seferlik Temel Kontrol"]
+  D --> G["3 Uzmanlık Branşı Değerlendirmesi"]
+  E --> G
+  F --> G
+  G --> H["Göz Muayenesi (Lens / Katarakt)"]
+  G --> I["Dahiliye (Hemogram / Tiroid)"]
+  G --> J["Dermatoloji (Radyodermatit / Cilt)"]
+  H --> K{"Tüm Branş Kararları Uygun mu?"}
+  I --> K
+  J --> K
+  K -- "Evet (Uygun)" --> L["Geçerli / Normal Sağlık Durumu"]
+  L --> M["Bir Sonraki Tarihin Hesaplanması ve Takvime İşlenmesi"]
+  K -- "Hayır (Uygun Değil / Şüpheli)" --> N["İlgili Kliniğe İleri Tetkik Sevki"]
+  N --> O{"İleri Tetkik ve Heyet Kararı"}
+  O -- "Geçici / Tedavi Edilebilir" --> P["Kısa Süreli Kontrol ve Ara Takip"]
+  O -- "Radyasyon Alanında Çalışamaz (Heyet Raporu)" --> Q["Modül 07 Çalışma Kısıtlarına İşleme ve Nöbet Muafiyeti"]
+          </div>
+        </div>
+      </section>
+
+      <!-- YANLIŞ ALGIYI YIKAN "MİT AVCISI" (MYTH-BUSTING) KARTLARI -->
+      <section id="mit-avcilari" class="mb-12">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="p-1.5 rounded-lg bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </span>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white">Sağlık Takibi & Mit Avcısı (Kritik Kurallar)</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Mit 1 -->
+          <div class="rounded-2xl border border-red-200 dark:border-red-900/40 bg-gradient-to-br from-red-50/50 via-white to-slate-50 dark:from-red-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
+            <div class="flex items-center gap-2 text-red-600 dark:text-red-400 font-bold text-xs uppercase tracking-wider mb-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              <span>Yaygın Yanılgı (Mit 1)</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-800 dark:text-slate-100 mb-3 italic">
+              "Klinik muayenede hekim 'Uygun Değil' seçtiği anda sistem personelin tüm nöbetlerini otomatik iptal eder ve çalışmasını kilitler."
+            </p>
+            <div class="border-t border-red-200/60 dark:border-red-900/40 pt-3">
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 mb-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Doğru Yasal Kural:
+              </span>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Rutin poliklinik muayenesi doğrudan çalışma engeli koymaz. Personel ileri tetkike sevk edilir; çalışamayacağı resmi Sağlık Kurulu (Heyet) Raporu ile kesinleşirse bu durum Modül 07'ye kısıt olarak işlenir.
+              </p>
+            </div>
+          </div>
+
+          <!-- Mit 2 -->
+          <div class="rounded-2xl border border-amber-200 dark:border-amber-900/40 bg-gradient-to-br from-amber-50/50 via-white to-slate-50 dark:from-amber-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
+            <div class="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wider mb-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              <span>Yaygın Yanılgı (Mit 2)</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-800 dark:text-slate-100 mb-3 italic">
+              "Sağlık muayene formunu kaydedebilmek için 3 branşın da (Göz, Dahiliye, Cilt) aynı gün tamamlanmış olması şarttır."
+            </p>
+            <div class="border-t border-amber-200/60 dark:border-amber-900/40 pt-3">
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 mb-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Doğru Yasal Kural:
+              </span>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Hayır. En az bir branş sonucu (örneğin sadece Dahiliye kan tahlili) girilerek form kısmi/taslak kaydedilebilir; diğer uzmanlık muayeneleri tamamlandıkça form açılarak güncellenir.
+              </p>
+            </div>
+          </div>
+
+          <!-- Mit 3 -->
+          <div class="rounded-2xl border border-blue-200 dark:border-blue-900/40 bg-gradient-to-br from-blue-50/50 via-white to-slate-50 dark:from-blue-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
+            <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold text-xs uppercase tracking-wider mb-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Yaygın Yanılgı (Mit 3)</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-800 dark:text-slate-100 mb-3 italic">
+              "Sonraki muayene tarihi sistem tarafından 12 ay sonraya atandığı için hekim ara kontrol istese de tarih değiştirilemez."
+            </p>
+            <div class="border-t border-blue-200/60 dark:border-blue-900/40 pt-3">
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 mb-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Doğru Yasal Kural:
+              </span>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Sistem seçilen türe göre (6 veya 12 ay) varsayılan tarihi önerir; ancak hekimin klinik önerisi doğrultusunda <em>Sonraki Muayene Tarihi</em> alanına manuel olarak daha erken bir kontrol tarihi girilebilir.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: FAQ -->
+      <section id="sss" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>8. Sıkça Sorulan Sorular (SSS)</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Sağlık muayeneleri ve periyodik kontrollerde en sık karşılaşılan durumlar ve yanıtları:
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="text-cyan-600 dark:text-cyan-400">Soru 1:</span>
+              <span>Bir muayene kaydında "Uygun Değil" seçildiğinde personel hemen nöbetlerden düşürülür mü?</span>
+            </h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Bu muayene ekranı rutin klinik takip ekranıdır. "Uygun Değil" görüşü verildiğinde personel ilgili branş kliniğine ileri tetkik için yönlendirilir. Eğer ileri tetkiklerin ardından resmi Sağlık Kurulu (Heyet) Raporu ile çalışamayacağı kesinleşirse, bu durum Modül 07 (Nöbet Ayarları ve Kısıtlar) ekranından heyet raporu şerhiyle resmi kısıt olarak işlenir ve nöbet muafiyeti başlar.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="text-cyan-600 dark:text-cyan-400">Soru 2:</span>
+              <span>Muayenede üç branş hekiminden sadece biri sonuç verdiğinde formu kaydedebilir miyim?</span>
+            </h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Evet. Formda en az bir branş sonucunun (örneğin yalnızca Dahiliye hemogramı) seçilmiş olması kaydetmek için yeterlidir. Diğer branş muayeneleri tamamlandıkça form <strong>[Detay]</strong> butonundan açılarak güncellenebilir.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="text-cyan-600 dark:text-cyan-400">Soru 3:</span>
+              <span>Sonraki muayene tarihi otomatik geliyor fakat hekim 3 ay sonra ara kontrol önerdi. Tarihi değiştirebilir miyim?</span>
+            </h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Evet. Sistem seçilen türe göre (6 ay veya 12 ay) varsayılan sonraki tarihi otomatik hesaplar; ancak hekim tavsiyesi doğrultusunda `Sonraki Muayene Tarihi` alanına manuel olarak daha erken bir tarih yazılabilir.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="text-cyan-600 dark:text-cyan-400">Soru 4:</span>
+              <span>Geçmişte silinmiş veya değiştirilmiş bir sağlık muayenesini denetim esnasında nasıl kanıtlayabilirim?</span>
+            </h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Tablo satırına sağ tıklayıp <strong>Değişiklik Geçmişi</strong> seçeneğini açtığınızda; sistem kaydın eski JSON verisini, değiştiren/silen kullanıcının adını ve kesin işlem zaman damgasını resmi denetim izi tablosunda sunar.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- NAVIGATION FOOTER -->
+      <footer class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">← Önceki Doküman</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">12. Dozimetre Takibi & RD.F43</span>
+          </a>
+          <a href="14_ortam_dozu_ve_kroki_haritasi.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition text-right group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">Sonraki Doküman →</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">14. Ortam Dozu & Kroki Haritası</span>
+          </a>
+        </div>
+      </footer>
+
+    </main>
+
+    <!-- RIGHT ASIDE: TABLE OF CONTENTS -->
+    <aside class="hidden xl:block w-64 shrink-0 py-8 pl-6 border-l border-slate-200 dark:border-slate-800">
+      <div class="sticky top-24 space-y-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-3">Bu Sayfada</span>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#genel-bakis" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">1. Genel Bakış & Yasal Temel</a></li>
+          <li><a href="#hizli-recete" class="hover:text-cyan-600 transition block text-cyan-600 dark:text-cyan-400 font-semibold">⚡ 20s Hızlı Karar Reçetesi</a></li>
+          <li><a href="#bilesenler" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">2. Arayüz ve 5N1K Tablosu</a></li>
+          <li><a href="#liste-ekrani" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">3. Muayene Takip Listesi</a></li>
+          <li><a href="#muayene-formu" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">4. Muayene Kaydı & Branşlar</a></li>
+          <li><a href="#ileri-tetkik" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">5. İleri Tetkik & Heyet Kısıtı</a></li>
+          <li><a href="#hibrit-portal" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">6. Hibrit Web Portalı</a></li>
+          <li><a href="#akis-diyagrami" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">7. Karar Akış Şeması</a></li>
+          <li><a href="#mit-avcilari" class="hover:text-cyan-600 transition block text-amber-600 dark:text-amber-400 font-semibold">🕵️ Mit Avcısı & Kritik Kurallar</a></li>
+          <li><a href="#sss" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">8. Sıkça Sorulan Sorular</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
+    <div class="max-w-[1720px] mx-auto px-6">
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi — Sağlık Bilgi Güvenliği & KVKK Standartları ile Korunmaktadır.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT FOR THEME & MERMAID -->
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.documentElement.classList.contains('dark') ? 'dark' : 'neutral',
+      fontFamily: 'Inter, sans-serif'
+    });
+
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        const isDark = document.documentElement.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      });
+    }
+
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebarNav = document.getElementById('sidebarNav');
+    if (mobileMenuBtn && sidebarNav) {
+      mobileMenuBtn.addEventListener('click', () => {
+        sidebarNav.classList.toggle('-translate-x-full');
+      });
+    }
+  </script>
+</body>
+</html>

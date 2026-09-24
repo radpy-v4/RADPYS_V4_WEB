@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12. Dozimetre Takibi ve RD.F43 Araştırma — RADPYS v4 Kullanım Kılavuzu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfeff',
+              100: '#cffafe',
+              200: '#a5f3fc',
+              500: '#06b6d4',
+              600: '#0891b2',
+              700: '#0e7490',
+              900: '#164e63',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    pre, code { font-family: 'JetBrains Mono', monospace; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 9999px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.6); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- TOP HEADER NAVBAR (Wide Fluid Layout) -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Version -->
+      <div class="flex items-center gap-3">
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Menüyü Aç/Kapat">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.2</span>
+            </span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Karar Destek Portalı</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick Search Bar (Ctrl+K) -->
+      <div class="flex-1 max-w-xl hidden md:block">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input 
+            type="text" 
+            placeholder="Dokümanda ara... (Örn: Dozimetre, TENMAK, RADAT, RD.F43, 2.0 mSv eşiği, 20 mSv yıllık limit, 10 iş günü, DÖF, artefakt...)" 
+            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition"
+          >
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <kbd class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600 font-semibold">Ctrl+K</kbd>
+          </div>
+        </div>
+      </div>
+
+      <!-- Theme & Action Buttons -->
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" class="p-2.5 rounded-xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Tema Değiştir">
+          <svg id="themeIconSun" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="themeIconMoon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+
+        <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span>Tüm Modüller</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- BODY CONTENT (Fluid 1720px Grid) -->
+  <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 py-8 flex-1 flex gap-8">
+    
+    <!-- LEFT SIDEBAR: NAVIGATION -->
+    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar">
+      <div class="mb-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3">21 Modül Rehberi</span>
+      </div>
+
+      <nav class="space-y-1 text-sm font-medium">
+        <a href="01_kurulum_ve_ilk_giris.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">01</span>
+          <span>Kurulum & İlk Giriş</span>
+        </a>
+        <a href="02_kullanici_ve_rol_yonetimi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">02</span>
+          <span>Kullanıcı & Roller</span>
+        </a>
+        <a href="03_sistem_ayarlari_ve_tanimlamalar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">03</span>
+          <span>Sistem Ayarları & Tanımlar</span>
+        </a>
+        <a href="04_veritabani_bakim_ve_guvenlik.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">04</span>
+          <span>Veritabanı, Bakım & Güvenlik</span>
+        </a>
+        <a href="05_personel_yonetimi_ve_toplu_aktarim.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">05</span>
+          <span>Personel & Excel Aktarım</span>
+        </a>
+        <a href="06_izin_yonetimi_ve_hakedis.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">06</span>
+          <span>İzin Yönetimi & Şua Hakediş</span>
+        </a>
+        <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">07</span>
+          <span>Nöbet Ayarları & Kısıtlar</span>
+        </a>
+        <a href="08_nobet_hazirlik_ve_solver_motoru.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">08</span>
+          <span>Nöbet Dağıtım Solver Motoru</span>
+        </a>
+        <a href="09_nobet_devir_ikame_ve_acil_mazeret.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">09</span>
+          <span>Nöbet Devir & Mazeret</span>
+        </a>
+        <a href="10_nobet_borc_alacak_ve_fazla_mesai.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">10</span>
+          <span>Nöbet Borç / Alacak & Fazla Mesai</span>
+        </a>
+        <a href="11_fiili_hizmet_ve_sua_hesaplama.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">11</span>
+          <span>Fiili Hizmet & Şua (FHZ)</span>
+        </a>
+
+        <!-- 12 AKTİF -->
+        <a href="#genel-bakis" class="flex items-center justify-between px-3 py-2.5 rounded-xl bg-cyan-50 text-cyan-800 dark:bg-cyan-950/60 dark:text-cyan-300 font-semibold border-l-4 border-cyan-600">
+          <div class="flex items-center gap-2.5">
+            <span class="font-mono text-xs text-cyan-600 dark:text-cyan-400 font-bold">12</span>
+            <span>Dozimetre Takibi & RD.F43</span>
+          </div>
+          <span class="w-2 h-2 rounded-full bg-cyan-600 animate-pulse"></span>
+        </a>
+
+        <a href="13_saglik_muayeneleri_ve_periyodik_takip.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">13</span>
+          <span>Sağlık Muayeneleri & Takip</span>
+        </a>
+        <a href="14_ortam_dozu_ve_kroki_haritasi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">14</span>
+          <span>Ortam Dozu & Kroki Haritası</span>
+        </a>
+        <a href="15_olay_bildirimi_ve_dof_capa.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">15</span>
+          <span>Olay Bildirimi & DÖF / CAPA</span>
+        </a>
+        <a href="16_rgs_rso_gorevlendirme_ve_sertifika.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">16</span>
+          <span>RGS / RSO Görevlendirme</span>
+        </a>
+        <a href="17_hizmet_ici_egitim_ve_online_sinav.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">17</span>
+          <span>Hizmet İçi Eğitim & Sınav</span>
+        </a>
+
+        <!-- CANLI VE PLANLANAN MODÜLLER -->
+        <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800/60 space-y-1">
+          <a href="18_tibbi_cihaz_ve_ndk_lisans_envanteri.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <span class="font-mono text-xs opacity-60">18</span>
+            <span>Tıbbi Cihaz & NDK Lisans</span>
+          </a>
+          <a href="19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <span class="font-mono text-xs opacity-60">19</span>
+            <span>Cihaz Arıza, Bakım & QC</span>
+          </a>
+          <a href="20_rke_koruyucu_ekipman_ve_din6857.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <span class="font-mono text-xs opacity-60">20</span>
+            <span>RKE & DIN 6857 Muayene</span>
+          </a>
+          <a href="21_merkezi_onaylar_ve_rapor_merkezi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <span class="font-mono text-xs opacity-60">21</span>
+            <span>Merkezi Onay & Raporlar</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-1 min-w-0 space-y-12">
+      
+      <!-- HERO SECTION -->
+      <section id="genel-bakis" class="space-y-6">
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">MODÜL 12</span>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300">NDK & Mevzuat Uyumlu</span>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300">10 İş Günü Form Kuralı</span>
+        </div>
+
+        <div class="space-y-3">
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+            12. Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması
+          </h1>
+          <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-5xl">
+            Radyasyonla çalışan personelin mesleki maruziyet kayıtlarını, laboratuvar raporu (TENMAK, RADAT, Excel) içe aktarımını, kümülatif yasal limitleri ($H_p(10)$ derin doz ve $H_p(0.07)$ yüzey dozu), inceleme eşiğini aşan vakalarda 10 iş günü içinde tanzimi zorunlu resmi <strong>RD.F43 Doz Araştırma Formu</strong> sürecini ve RKS net maruziyet hesaplama algoritmasını yöneten merkezi modüldür.
+          </p>
+        </div>
+
+        <!-- 4 KPI BENTO CARDS -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
+            <span class="text-xs font-semibold uppercase tracking-wider text-amber-500 font-mono">Aylık İnceleme Eşiği</span>
+            <div class="text-2xl font-black text-slate-900 dark:text-white font-mono">2.0 mSv</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Tek ölçümde bu eşik aşıldığında resmi RD.F43 araştırma formu açılır.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
+            <span class="text-xs font-semibold uppercase tracking-wider text-rose-500 font-mono">Yıllık Kümülatif Sınır</span>
+            <div class="text-2xl font-black text-slate-900 dark:text-white font-mono">20.0 mSv</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Takvim yılı toplamı 20 mSv'yi aşarsa aktif radyasyon nöbetleri bloke edilir.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
+            <span class="text-xs font-semibold uppercase tracking-wider text-purple-500 font-mono">Gebe Çalışan Fötus Tavanı</span>
+            <div class="text-2xl font-black text-slate-900 dark:text-white font-mono">1.0 mSv</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Gebelik süresi boyunca alınabilecek azami toplam dozdur; aşımda idari görev zorunludur.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
+            <span class="text-xs font-semibold uppercase tracking-wider text-cyan-500 font-mono">Resmi Form Süresi</span>
+            <div class="text-2xl font-black text-slate-900 dark:text-white font-mono">10 İş Günü</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Bildirim tarihinden itibaren NDK onaylı RD.F43 formunun kapatılması gereken yasal mühlet.</p>
+          </div>
+        </div>
+
+        <!-- INFO CALLOUT FOR PROVIDER SUPPORT -->
+        <div class="p-5 rounded-2xl bg-cyan-50/80 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-800/60 flex items-start gap-3.5">
+          <div class="p-2 rounded-xl bg-cyan-500 text-white shrink-0 mt-0.5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div class="space-y-1 text-sm text-cyan-950 dark:text-cyan-200 leading-relaxed">
+            <strong class="font-bold">Dozimetre Laboratuvarı Sağlayıcı Desteği:</strong>
+            <p>
+              Sistemimiz <strong>TENMAK</strong>, <strong>RADAT</strong> ve <strong>Genel Excel/CSV</strong> şablonlarını doğrudan tanır. Kurumunuzun çalıştığı akredite dozimetre merkezi veya hastane içi laboratuvarı bu formatların dışında farklı bir dosya raporu üretiyorsa, <em>örnek bir dozimetre raporu ile yazılım destek ekibimize başvurunuz</em>. Yazılım destek ekibimiz kurumunuza özel ayrıştırıcıyı sisteme hızla entegre edecektir.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- VİZYONDER HIZLI REÇETE (20 SANİYE KURALI) -->
+      <section id="hizli-recete" class="mb-10">
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-cyan-900/10 via-slate-900/5 to-blue-900/10 dark:from-cyan-950/40 dark:via-slate-900/40 dark:to-blue-950/40 border border-cyan-200 dark:border-cyan-800/50 shadow-sm">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 rounded-lg bg-cyan-600 text-white flex items-center justify-center font-bold text-sm">
+              20s
+            </div>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white">Vizyonder Hızlı Karar Reçetesi (Dozimetre & RKS Özeti)</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+            <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+              <span class="font-bold text-cyan-600 dark:text-cyan-400 block mb-1">1. Laboratuvar Dosyasını Yükleyin</span>
+              TENMAK, RADAT veya Genel Excel/CSV dosyasını içe aktarma sihirbazına bırakın. Personel TC veya Dozimetre seri no üzerinden kayıtlar otomatik eşleşir.
+            </div>
+            <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+              <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-1">2. Limit ve Renk Uyarıları</span>
+              Derin doz ($H_p(10)$) 2.0 mSv aylık eşiği aşarsa sarı alarm; kümülatif doz 20 mSv sınırına yaklaştığında kırmızı alarm verilir ve nöbet planı uyarılır.
+            </div>
+            <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+              <span class="font-bold text-blue-600 dark:text-blue-400 block mb-1">3. 10 İş Gününde RD.F43 Tanzimi</span>
+              Eşik aşımında sistem resmi RD.F43 sürecini başlatır. Tıbbi tetkik veya artefakt ayrımı yapılarak net mesleki doz hesaplanır ve 10 iş gününde form kapatılır.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: UI CONTROLS & 5N1K TABLE -->
+      <section id="bilesenler" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>2. Arayüz Bileşenleri ve 5N1K Tablosu</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Dozimetre Takibi modülündeki ekran kontrolleri, butonlar ve filtreleme araçlarının işlevsel kullanım kılavuzu:
+          </p>
+        </div>
+
+        <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="bg-slate-100/80 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 font-bold uppercase tracking-wider text-[11px] border-b border-slate-200 dark:border-slate-800">
+              <tr>
+                <th class="py-3 px-4">Bileşen / Buton</th>
+                <th class="py-3 px-4">Türü</th>
+                <th class="py-3 px-4">Ne İşe Yarar? (Ne?)</th>
+                <th class="py-3 px-4">Kim Kullanır? (Kim?)</th>
+                <th class="py-3 px-4">Ne Zaman Kullanılır? (Ne Zaman?)</th>
+                <th class="py-3 px-4">Nerede Yer Alır?</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 dark:divide-slate-800/70 text-slate-700 dark:text-slate-300">
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Laboratuvardan İçe Aktar]</td>
+                <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
+                <td class="py-3 px-4">TENMAK/RADAT/Excel doz raporlarını 3 adımlı sihirbazla içeri aktarır.</td>
+                <td class="py-3 px-4">RKS / Dozimetre Sorumlusu</td>
+                <td class="py-3 px-4">Aylık dozimetre kaset sonuçları geldiğinde</td>
+                <td class="py-3 px-4">Üst Araç Çubuğu</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Ölçüm Ekle]</td>
+                <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
+                <td class="py-3 px-4">Münferit veya Elektronik Kişisel Dozimetre (EPD) ara ölçümü kaydeder.</td>
+                <td class="py-3 px-4">RKS / Süpervizör</td>
+                <td class="py-3 px-4">Tekil acil ölçüm veya yeni kart girişinde</td>
+                <td class="py-3 px-4">Üst Araç Çubuğu</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Dönem Filtresi]</td>
+                <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Açılır Kutu</td>
+                <td class="py-3 px-4">Tabloyu seçilen yıl ve döneme göre anında süzer.</td>
+                <td class="py-3 px-4">Tüm Kullanıcılar</td>
+                <td class="py-3 px-4">Geçmiş periyot kayıtları sorgulanırken</td>
+                <td class="py-3 px-4">Filtre Paneli</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Dozimetre Tipi]</td>
+                <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Açılır Kutu</td>
+                <td class="py-3 px-4">Tüm Vücut, Yüzük/Ekstremite, Göz Lensi ve EPD türlerini ayrıştırır.</td>
+                <td class="py-3 px-4">RKS</td>
+                <td class="py-3 px-4">Ekstremite veya lens dozları denetlenirken</td>
+                <td class="py-3 px-4">Filtre Paneli</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Aksiyon Başlat / Düzenle]</td>
+                <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
+                <td class="py-3 px-4">2.0 mSv eşiğini aşan vaka için 4 adımlı resmi RD.F43 araştırma formu açar.</td>
+                <td class="py-3 px-4">RKS / Kurum Amiri</td>
+                <td class="py-3 px-4">Eşik aşımı veya doz anomalisi tespitinde</td>
+                <td class="py-3 px-4">Aksiyonlar Sekmesi</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Doz Hesapla]</td>
+                <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
+                <td class="py-3 px-4">Unutulma veya tetkik şüphesinde RKS'nin maruziyet dozunu hesaplar.</td>
+                <td class="py-3 px-4">RKS</td>
+                <td class="py-3 px-4">Artefakt veya sahte aşım vaka analizinde</td>
+                <td class="py-3 px-4">RD.F43 Diyaloğu (Adım 3)</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Resmi RD.F43 Word İndir]</td>
+                <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
+                <td class="py-3 px-4">NDK onaylı resmi araştırma tutanağını Jinja2 Word (.docx) olarak üretir.</td>
+                <td class="py-3 px-4">RKS / Yönetici</td>
+                <td class="py-3 px-4">Form imzaya veya NDK denetimine sunulacağında</td>
+                <td class="py-3 px-4">RD.F43 Form Başlığı</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION 3: IMPORT WIZARD -->
+      <section id="ice-aktarma" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>3. Laboratuvar Dosyası İçe Aktarma Sihirbazı (3 Adım)</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Dozimetre servis sağlayıcısından gelen toplu Excel/CSV raporlarının sisteme aktarımı, kurum personelleriyle otomatik T.C. Kimlik / Barkod eşleştirmesi ve aşım alarmlarının üretilmesi akışı:
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+          <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md">
+            <img src="assets/img/12_dozimetre%20import.png" alt="Dozimetre İçe Aktarma Sihirbazı" class="w-full h-auto object-cover max-h-[500px]">
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-2">
+              <span class="inline-block px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">1. ADIM</span>
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white">Dosya & Sağlayıcı Seçimi</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Sağlayıcı açılır kutusundan <strong>TENMAK</strong>, <strong>RADAT</strong> veya <strong>Genel Excel</strong> seçilir. İlgili yıl ve dönem belirlenip <strong>[Gözat]</strong> butonu ile rapor dosyası seçilir.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-2">
+              <span class="inline-block px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">2. ADIM</span>
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white">Otomatik Eşleştirme & Önizleme</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                <strong>[Dosyayı Çözümle]</strong> butonuna basılır. Sistem dosyadaki T.C. Kimlik veya seri no değerlerini personellerle eşleştirir. Eşleşmeyen satırlar sarı renk uyarısıyla önizlenir.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-2">
+              <span class="inline-block px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">3. ADIM</span>
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white">Kayıt & Eşik Alarmı Tetikleme</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                <strong>[İçe Aktarımı Tamamla]</strong> tıklandığında satırlar veritabanına yazılır, kümülatif dozlar güncellenir ve $\ge 2.0\text{ mSv}$ kayıtlar için otomatik RD.F43 kuyruğu oluşturulur.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: MANUAL MEASUREMENT & COCKPIT -->
+      <section id="olcum-girisi" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>4. Dozimetre Kokpiti ve Manuel Ölçüm Girişi</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Ana takip ekranı üzerindeki ölçüm satırları, kümülatif doz barları ve münferit ölçüm kaydı ekleme süreci:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+          <!-- Card 1: Dozimetre List -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-500"></span>
+              <span>Dozimetre Takip Kokpiti ve Doz Renk Skalası</span>
+            </h3>
+            <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
+              <img src="assets/img/12_1_dozimetre_list.png" alt="Dozimetre Listesi Kokpiti" class="w-full h-auto object-cover max-h-[380px]">
+            </div>
+            <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2">
+              <li class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded bg-emerald-500 shrink-0"></span>
+                <span><strong>Yeşil (&lt; 1.0 mSv):</strong> Güvenli normal arka plan / rutin maruziyet aralığı.</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded bg-amber-400 shrink-0"></span>
+                <span><strong>Sarı (1.0 - 2.0 mSv):</strong> Dikkat eşiği; kişisel ortalama sapmaları takip edilir.</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded bg-orange-500 shrink-0"></span>
+                <span><strong>Turuncu (2.0 - 5.0 mSv):</strong> İnceleme düzeyi aşımı; RD.F43 formu zorunludur.</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded bg-rose-600 shrink-0"></span>
+                <span><strong>Kırmızı (&ge; 5.0 mSv veya Yıllık &ge; 20 mSv):</strong> Kritik risk; çalışma blokajı uygulanır.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Card 2: Dozimetre Olcum Dialog -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-500"></span>
+              <span>Manuel Dozimetre Ölçümü Ekleme</span>
+            </h3>
+            <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
+              <img src="assets/img/12_2_dozimetre_olcum.png" alt="Manuel Dozimetre Ölçüm Girişi" class="w-full h-auto object-cover max-h-[380px]">
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
+              <p><strong>[Ölçüm Ekle]</strong> tıklandığında açılan bu modalda;</p>
+              <p>&bull; Personel seçilir, dozimetre tipi (Tüm Vücut / Yüzük / Göz Lensi / EPD) belirlenir.</p>
+              <p>&bull; $H_p(10)$ derin doz ve opsiyonel $H_p(0.07)$ yüzey dozu sayısal olarak girilir.</p>
+              <p>&bull; Doz değeri 2.0 mSv eşiğini geçerse sistem anında uyarı vererek aksiyon sekmesine yönlendirir.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: RDF43 INVESTIGATION PROCESS -->
+      <section id="rdf43-sureci" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>5. 4 Adımlı RD.F43 Doz Araştırma Formu Düzenleme ve RKS Doz Hesabı</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Aylık 2.0 mSv eşiğini aşan ölçümlerde NDK mevzuatı gereği <strong>en geç 10 iş günü içinde</strong> düzenlenmesi yasal zorunluluk olan resmi Doz Araştırma Formu (RD.F43 / Form A-1) adımları:
+          </p>
+        </div>
+
+        <!-- 4 Step Wizard Showcase with Screenshots -->
+        <div class="space-y-8">
+          
+          <!-- Steps 1 & 2 -->
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+            <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300">1. ADIM</span>
+                <span class="text-xs text-slate-400 font-medium">Personel & Görev Analizi</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">Personel ve Koruyucu Donanım Bilgileri</h3>
+              <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
+                <img src="assets/img/12_1_doz_arastirma_form_dialog.png" alt="RD.F43 Adım 1 Personel ve Görev Bilgileri" class="w-full h-auto object-cover max-h-[340px]">
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Personelin çalıştığı birim, cihaz türü (Skopi, BT, Girişimsel vb.), haftalık çalışma saati ve koruyucu ekipman (kurşun önlük, tiroid koruyucu) kullanım durumu teyit edilir.
+              </p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300">2. ADIM</span>
+                <span class="text-xs text-slate-400 font-medium">Olay & Koşullar</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">Çalışma Koşulları ve Olağan Dışı Durumlar</h3>
+              <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
+                <img src="assets/img/12_2_doz_arastirma_form_dialog.png" alt="RD.F43 Adım 2 Çalışma Koşulları" class="w-full h-auto object-cover max-h-[340px]">
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Ölçüm döneminde cihaz arızası, floroskopi tüp kilitlenmesi veya acil vaka yoğunluğu sorgulanır; dozimetrenin kurşun önlük altında mı üstünde mi taşındığı belgelenir.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 & 4 (RKS Dose Engine & Decision) -->
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+            <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-purple-100 text-purple-800 dark:bg-purple-900/60 dark:text-purple-300">3. ADIM</span>
+                <span class="text-xs text-slate-400 font-medium">RKS Doz Hesaplama Motoru</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">Artefakt Tespiti ve RKS Maruziyet Hesabı</h3>
+              <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
+                <img src="assets/img/12_3_doz_arastirma_form_dialog.png" alt="RD.F43 Adım 3 RKS Doz Hesabı" class="w-full h-auto object-cover max-h-[340px]">
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-xs text-slate-600 dark:text-slate-300 space-y-2">
+                <p><strong>Artefakt / Sahte Aşım:</strong> Personel bizzat hasta olarak BT/Sintigrafi çektirmişse veya dozimetre şua odasında unutulmuşsa <strong>[Doz Hesapla]</strong> motoruyla mesafe ve süreye göre gerçek maruziyet hesaplanır ve sahte aşım personelin kütüğünden düşülür.</p>
+                <p><strong>Gerçek Mesleki Aşım:</strong> Vaka mesleki kaza ise sistem kurumsal <strong>DÖF Takip Numarası</strong> girilmesini zorunlu tutar.</p>
+              </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">4. ADIM & ÇIKTI</span>
+                <span class="text-xs text-slate-400 font-medium">Resmi Word Tutanağı</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">Karar, İmzalar ve Resmi RD.F43 Belgesi</h3>
+              <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
+                <img src="assets/img/12_doz_arastirma_form_dialog.png" alt="RD.F43 Genel Diyalog ve Karar" class="w-full h-auto object-cover max-h-[340px]">
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
+                <p>Form onaylandığında sağ üstteki <strong>[Resmi RD.F43 Word İndir]</strong> butonuna tıklanır.</p>
+                <p>Sistem, kurum logosunu ve RKS/Kurum Amiri imza bloklarını içeren NDK mevzuatına tam uyumlu Jinja2 Word (.docx) dosyasını otomatik oluşturur.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: HYBRID WEB PORTAL -->
+      <section id="hibrit-portal" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>6. Hibrit Arayüz ve Web Portalı Görünümü</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Masaüstü tam yetkili RKS merkezi ile çalışanların kendi doz karnelerini izlediği web portalı karşılaştırması:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="p-2.5 rounded-xl bg-cyan-100 text-cyan-700 dark:bg-cyan-900/60 dark:text-cyan-300">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">Masaüstü Yönetim İstemcisi (PySide6)</h3>
+            </div>
+            <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2 leading-relaxed">
+              <li class="flex items-start gap-2">
+                <span class="text-cyan-500 font-bold">&check;</span>
+                <span>Laboratuvar dozimetre dosyalarını (TENMAK, RADAT, Excel) toplu içeri aktarma.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-cyan-500 font-bold">&check;</span>
+                <span>Yasal 10 iş günü geri sayım rozetlerini ve eşik aşım kuyruğunu yönetme.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-cyan-500 font-bold">&check;</span>
+                <span>4 adımlı resmi RD.F43 araştırma formu tanzimi ve RKS doz hesaplama motoru.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-cyan-500 font-bold">&check;</span>
+                <span>NDK onaylı Jinja2 Word / PDF resmi tutanak dökümü alma ve DÖF başlatma.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="p-2.5 rounded-xl bg-emerald-100 text-emerald-700 dark:bg-emerald-900/60 dark:text-emerald-300">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">Web & Mobil Portalı (DozimetreDashboard)</h3>
+            </div>
+            <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2 leading-relaxed">
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-500 font-bold">&check;</span>
+                <span><strong>Radyal Gösterge (Radial Gauge):</strong> Yıllık 20 mSv tavanına olan mesafe halka grafik üzerinde izlenir.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-500 font-bold">&check;</span>
+                <span><strong>12 Aylık Trend Çizgisi:</strong> Personelin geçmiş dönemlerdeki doz dalgalanmaları görselleştirilir.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-500 font-bold">&check;</span>
+                <span><strong>Kişisel Doz Karnesi:</strong> Çalışan kendi geçmiş ölçüm geçmişini ve dozimetre numaralarını inceler.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-500 font-bold">&check;</span>
+                <span><strong>İnceleme Bildirimi:</strong> Kendi ölçümünde inceleme başlatılan çalışana bilgilendirme rozeti düşer.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: FLOWCHART (MERMAID) -->
+      <section id="akis-diyagrami" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>7. Dozimetre ve RD.F43 Karar Destek Akış Şeması</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Laboratuvardan gelen ölçümün sisteme girişinden çalışma blokajı ve resmi raporlamaya kadar olan uçtan uca akış:
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="mermaid text-center overflow-x-auto">
+graph TD
+  A["Dozimetre Sonuç Raporu (TENMAK / RADAT / Excel)"] --> B["3 Adımlı İçe Aktarım Sihirbazı"]
+  B --> C{"Hp(10) >= 2.0 mSv İnceleme Eşiği?"}
+  C -- "Hayır (< 2.0 mSv)" --> D["Rutin Veritabanı Kaydı ve Kümülatif Doz Takibi"]
+  C -- "Evet (>= 2.0 mSv)" --> E["RD.F43 Bildirimi ve Aksiyon Kaydı"]
+  E --> F["10 İş Günü Yasal Geri Sayım Rozeti"]
+  F --> G{"Aşım Türü Analizi"}
+  G -- "Artefakt / Tıbbi Tetkik / Odada Unutulma" --> H["RKS Doz Hesabı ve Net Maruziyet Tespiti"]
+  G -- "Gerçek Mesleki Maruziyet" --> I["Zorunlu Kurumsal DÖF Numarası Açılması"]
+  H --> J["Resmi RD.F43 Word / PDF Tutanağı Üretimi"]
+  I --> J
+  J --> K{"Yıllık Kümülatif Doz >= 20.0 mSv?"}
+  K -- "Evet" --> L["Radyasyonlu Alan Çalışma Blokajı"]
+  K -- "Hayır" --> M["Göreve Devam ve Yakın Takip"]
+          </div>
+        </div>
+      </section>
+
+      <!-- YANLIŞ ALGIYI YIKAN "MİT AVCISI" (MYTH-BUSTING) KARTLARI -->
+      <section id="mit-avcilari" class="mb-12">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="p-1.5 rounded-lg bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </span>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white">Dozimetre Güvenliği & Mit Avcısı (Kritik Kurallar)</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Mit 1 -->
+          <div class="rounded-2xl border border-red-200 dark:border-red-900/40 bg-gradient-to-br from-red-50/50 via-white to-slate-50 dark:from-red-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
+            <div class="flex items-center gap-2 text-red-600 dark:text-red-400 font-bold text-xs uppercase tracking-wider mb-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              <span>Yaygın Yanılgı (Mit 1)</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-800 dark:text-slate-100 mb-3 italic">
+              "Personelin dozimetresinde 15 mSv çıktı; personel o ay nükleer tıp hastası olarak sintigrafi/PET çektirmiş olsa bile bu doz yıllık mesleki limitine yazılır."
+            </p>
+            <div class="border-t border-red-200/60 dark:border-red-900/40 pt-3">
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 mb-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Doğru Yasal Kural:
+              </span>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                NDK mevzuatına göre personelin hasta sıfatıyla aldığı tıbbi tetkik dozları mesleki doz sayılmaz. RD.F43 formunda <strong>Tıbbi Tetkik / Artefakt</strong> seçilerek RKS formülüyle net mesleki doz ayrıştırılır ve artefakt düşülür.
+              </p>
+            </div>
+          </div>
+
+          <!-- Mit 2 -->
+          <div class="rounded-2xl border border-amber-200 dark:border-amber-900/40 bg-gradient-to-br from-amber-50/50 via-white to-slate-50 dark:from-amber-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
+            <div class="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wider mb-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              <span>Yaygın Yanılgı (Mit 2)</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-800 dark:text-slate-100 mb-3 italic">
+              "Laboratuvardan gelen raporda yanlışlık varsa sistemdeki ilgili doz satırı doğrudan silinebilir."
+            </p>
+            <div class="border-t border-amber-200/60 dark:border-amber-900/40 pt-3">
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 mb-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Doğru Yasal Kural:
+              </span>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Yasal delil ve audit bütünlüğü gereğince kaydedilmiş doz verisi fiziksel olarak silinemez. Düzeltme gerekiyorsa resmi gerekçe girilerek revizyon statüsüne alınır ve denetim izinde saklanır.
+              </p>
+            </div>
+          </div>
+
+          <!-- Mit 3 -->
+          <div class="rounded-2xl border border-blue-200 dark:border-blue-900/40 bg-gradient-to-br from-blue-50/50 via-white to-slate-50 dark:from-blue-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
+            <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold text-xs uppercase tracking-wider mb-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Yaygın Yanılgı (Mit 3)</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-800 dark:text-slate-100 mb-3 italic">
+              "Gebe çalışan personelin fötus koruma dozu da genel radyasyon görevlileri gibi yıllık 20 mSv'dir."
+            </p>
+            <div class="border-t border-blue-200/60 dark:border-blue-900/40 pt-3">
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 mb-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Doğru Yasal Kural:
+              </span>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                NDK Radyasyon Güvenliği Yönetmeliği uyarınca gebe çalışanın tüm gebelik dönemi boyunca alabileceği azami batın yüzeyi/fötus dozu <strong>1.0 mSv'dir</strong>. Bu eşik aşımında çalışan derhal radyasyonsuz birime çekilmelidir.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: FAQ -->
+      <section id="sss" class="space-y-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>8. Sıkça Sorulan Sorular (SSS)</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Kişisel Dozimetre ve RD.F43 modülünde sahada en sık karşılaşılan durumlar ve çözümleri:
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="text-cyan-600 dark:text-cyan-400">Soru 1:</span>
+              <span>Dozimetre raporu dosyasını içe aktarırken bazı personeller sarı uyarıyla eşleşmedi olarak görünüyor. Ne yapmalıyım?</span>
+            </h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Bu durum laboratuvar raporundaki T.C. Kimlik Numarasının veya Dozimetre Seri Numarasının Personel Yönetimi modülündeki özlük kartıyla eşleşmemesinden kaynaklanır. Personel listesine giderek ilgili çalışanın dozimetre barkodunu veya kimlik numarasını güncelleyiniz; ardından dosyayı tekrar içeri aktarınız.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="text-cyan-600 dark:text-cyan-400">Soru 2:</span>
+              <span>Kurumumuz TENMAK veya RADAT dışında farklı bir dozimetre laboratuvarından hizmet alıyor. Dosyayı nasıl aktarabiliriz?</span>
+            </h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Rapor dosyanızı standart Excel formatına dönüştürerek <strong>Genel Excel</strong> seçeneğiyle aktarabilirsiniz. Ancak laboratuvarınızın resmi raporunu doğrudan içeri almak isterseniz, örnek bir dozimetre raporuyla birlikte <strong>yazılım destek ekibimizle</strong> iletişime geçiniz; ilgili sağlayıcı için sisteme ücretsiz ayrıştırıcı güncellemesi eklenecektir.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="text-cyan-600 dark:text-cyan-400">Soru 3:</span>
+              <span>Personelin dozimetresinde 15.0 mSv okundu fakat personel o ay kendisi hasta olarak PET-BT çektirmiş. Personelin yıllık limiti dolmuş mu sayılır?</span>
+            </h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Hayır. RD.F43 Araştırma Formu'nun 3. Adımında aşım türünü <strong>"Artefakt / Tıbbi Tetkik"</strong> olarak işaretleyiniz ve tetkik bilgilerini giriniz. RKS tarafından yapılan hesaplama sonucunda sahte aşım personelin mesleki maruziyet kütüğünden düşülür ve yalnızca hesaplanan net mesleki doz kümülatif toplama eklenir.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="text-cyan-600 dark:text-cyan-400">Soru 4:</span>
+              <span>10 iş günü geri sayım rozeti kırmızı renge dönüştü. Sistem bir ceza veya kilitleme uygular mı?</span>
+            </h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Sistem doğrudan bir teknik kilit koymaz; ancak NDK mevzuatı gereği 10 iş günü aşımı yasal bir ihlal teşkil ettiğinden, denetim izinde gecikme kaydı tutulur ve RKS panosunda kritik alarm üretilir. İlgili vakanın resmi formunu derhal tamamlayıp onaylayınız.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- NAVIGATION FOOTER -->
+      <footer class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <a href="11_fiili_hizmet_ve_sua_hesaplama.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">← Önceki Doküman</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">11. Fiili Hizmet & Şua Hesaplama (FHZ)</span>
+          </a>
+          <a href="13_saglik_muayeneleri_ve_periyodik_takip.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition text-right group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">Sonraki Doküman →</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">13. Sağlık Muayeneleri & Takip</span>
+          </a>
+        </div>
+      </footer>
+
+    </main>
+
+    <!-- RIGHT ASIDE: TABLE OF CONTENTS -->
+    <aside class="hidden xl:block w-64 shrink-0 py-8 pl-6 border-l border-slate-200 dark:border-slate-800">
+      <div class="sticky top-24 space-y-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-3">Bu Sayfada</span>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#genel-bakis" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">1. Genel Bakış & Limitler</a></li>
+          <li><a href="#hizli-recete" class="hover:text-cyan-600 transition block text-cyan-600 dark:text-cyan-400 font-semibold">⚡ 20s Hızlı Karar Reçetesi</a></li>
+          <li><a href="#bilesenler" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">2. Arayüz ve 5N1K Tablosu</a></li>
+          <li><a href="#ice-aktarma" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">3. Dosya İçe Aktarma</a></li>
+          <li><a href="#olcum-girisi" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">4. Manuel Ölçüm Girişi</a></li>
+          <li><a href="#rdf43-sureci" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">5. RD.F43 Araştırma Formu</a></li>
+          <li><a href="#hibrit-portal" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">6. Hibrit Web Portalı</a></li>
+          <li><a href="#akis-diyagrami" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">7. Akış Şeması (Mermaid)</a></li>
+          <li><a href="#mit-avcilari" class="hover:text-cyan-600 transition block text-amber-600 dark:text-amber-400 font-semibold">🕵️ Mit Avcısı & Kritik Kurallar</a></li>
+          <li><a href="#sss" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">8. Sıkça Sorulan Sorular</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
+    <div class="max-w-[1720px] mx-auto px-6">
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi — Sağlık Bilgi Güvenliği & KVKK Standartları ile Korunmaktadır.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT FOR THEME & MERMAID -->
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.documentElement.classList.contains('dark') ? 'dark' : 'neutral',
+      fontFamily: 'Inter, sans-serif'
+    });
+
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        const isDark = document.documentElement.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      });
+    }
+
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebarNav = document.getElementById('sidebarNav');
+    if (mobileMenuBtn && sidebarNav) {
+      mobileMenuBtn.addEventListener('click', () => {
+        sidebarNav.classList.toggle('-translate-x-full');
+      });
+    }
+  </script>
+</body>
+</html>

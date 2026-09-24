@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>17. Hizmet İçi Eğitim ve Online Sınav Yönetimi — RADPYS v4 Kullanım Kılavuzu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#312e81',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    pre, code { font-family: 'JetBrains Mono', monospace; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 9999px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.6); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- TOP HEADER NAVBAR (Wide Fluid Layout) -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Version -->
+      <div class="flex items-center gap-3">
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Menüyü Aç/Kapat">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-700/50">v4.2</span>
+            </span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Karar Destek Portalı</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick Search Bar (Ctrl+K) -->
+      <div class="flex-1 max-w-xl hidden md:block">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input 
+            type="text" 
+            placeholder="Dokümanda ara... (Örn: Eğitim kataloğu, toplu atama, uyum matrisi, %70 baraj, soru havuzu, Excel yükle...)" 
+            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition"
+          >
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <kbd class="px-2 py-0.5 text-[10px] font-mono font-semibold bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded text-slate-500 dark:text-slate-400 shadow-sm">Ctrl K</kbd>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header Action Buttons -->
+      <div class="flex items-center gap-2.5">
+        <button id="themeToggleBtn" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Tema Değiştir (Koyu/Açık)">
+          <svg id="themeIconSun" class="w-5 h-5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="themeIconMoon" class="w-5 h-5 block dark:hidden text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+
+        <a href="index.html" class="px-3.5 py-1.5 text-xs font-semibold rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span>Modüller</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- BODY CONTENT (Fluid 1720px Grid) -->
+  <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 py-8 flex-1 flex gap-8">
+    
+    <!-- LEFT SIDEBAR: NAVIGATION -->
+    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar">
+      <div class="mb-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3">21 Modül Rehberi</span>
+      </div>
+
+      <nav class="space-y-1 text-sm font-medium">
+        <a href="01_kurulum_ve_ilk_giris.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">01</span>
+          <span>Kurulum & İlk Giriş</span>
+        </a>
+        <a href="02_kullanici_ve_rol_yonetimi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">02</span>
+          <span>Kullanıcı & Roller</span>
+        </a>
+        <a href="03_sistem_ayarlari_ve_tanimlamalar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">03</span>
+          <span>Sistem Ayarları & Tanımlar</span>
+        </a>
+        <a href="04_veritabani_bakim_ve_guvenlik.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">04</span>
+          <span>Veritabanı, Bakım & Güvenlik</span>
+        </a>
+        <a href="05_personel_yonetimi_ve_toplu_aktarim.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">05</span>
+          <span>Personel & Excel Aktarım</span>
+        </a>
+        <a href="06_izin_yonetimi_ve_hakedis.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">06</span>
+          <span>İzin Yönetimi & Şua Hakediş</span>
+        </a>
+        <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">07</span>
+          <span>Nöbet Ayarları & Kısıtlar</span>
+        </a>
+        <a href="08_nobet_hazirlik_ve_solver_motoru.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">08</span>
+          <span>Nöbet Dağıtım Solver Motoru</span>
+        </a>
+        <a href="09_nobet_devir_ikame_ve_acil_mazeret.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">09</span>
+          <span>Nöbet Devir & Mazeret</span>
+        </a>
+        <a href="10_nobet_borc_alacak_ve_fazla_mesai.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">10</span>
+          <span>Nöbet Borç / Alacak & Fazla Mesai</span>
+        </a>
+        <a href="11_fiili_hizmet_ve_sua_hesaplama.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">11</span>
+          <span>Fiili Hizmet & Şua (FHZ)</span>
+        </a>
+        <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">12</span>
+          <span>Dozimetre Takibi & RD.F43</span>
+        </a>
+        <a href="13_saglik_muayeneleri_ve_periyodik_takip.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">13</span>
+          <span>Sağlık Muayeneleri & Takip</span>
+        </a>
+        <a href="14_ortam_dozu_ve_kroki_haritasi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">14</span>
+          <span>Ortam Dozu & Kroki Haritası</span>
+        </a>
+        <a href="15_olay_bildirimi_ve_dof_capa.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">15</span>
+          <span>Olay Bildirimi & DÖF / CAPA</span>
+        </a>
+        <a href="16_rgs_rso_gorevlendirme_ve_sertifika.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">16</span>
+          <span>RGS / RSO Görevlendirme</span>
+        </a>
+
+        <!-- 17 AKTİF -->
+        <a href="#genel-bakis" class="flex items-center justify-between px-3 py-2.5 rounded-xl bg-cyan-50 text-cyan-800 dark:bg-cyan-950/60 dark:text-cyan-300 font-semibold border-l-4 border-cyan-600">
+          <div class="flex items-center gap-2.5">
+            <span class="font-mono text-xs text-cyan-600 dark:text-cyan-400 font-bold">17</span>
+            <span>Hizmet İçi Eğitim & Sınav</span>
+          </div>
+          <span class="w-2 h-2 rounded-full bg-cyan-600 animate-pulse"></span>
+        </a>
+
+        <!-- CANLI VE PLANLANAN MODÜLLER -->
+        <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800/60 space-y-1">
+          <a href="18_tibbi_cihaz_ve_ndk_lisans_envanteri.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <span class="font-mono text-xs opacity-60">18</span>
+            <span>Tıbbi Cihaz & NDK Lisans</span>
+          </a>
+          <a href="19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <span class="font-mono text-xs opacity-60">19</span>
+            <span>Cihaz Arıza, Bakım & QC</span>
+          </a>
+          <a href="20_rke_koruyucu_ekipman_ve_din6857.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <span class="font-mono text-xs opacity-60">20</span>
+            <span>RKE & DIN 6857 Muayene</span>
+          </a>
+          <a href="21_merkezi_onaylar_ve_rapor_merkezi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <span class="font-mono text-xs opacity-60">21</span>
+            <span>Merkezi Onay & Raporlar</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-1 min-w-0 max-w-full space-y-12">
+      
+      <!-- HERO SECTION -->
+      <section id="genel-bakis" class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 text-white p-8 sm:p-12 shadow-xl border border-slate-700/50">
+        <div class="relative z-10 max-w-4xl space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+            <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+            Modül 17: Sağlıkta Kalite Standartları (SKS) & NDK Zorunlu Eğitimleri
+          </div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+            Hizmet İçi Eğitim ve Online Sınav Yönetimi
+          </h1>
+          <p class="text-base sm:text-lg text-slate-300 leading-relaxed">
+            Sağlıkta Kalite Standartları (SKS 6.1) ve Nükleer Düzenleme Kurumu (NDK) mevzuatının zorunlu kıldığı yıllık temel radyasyon güvenliği, radyoizotop kullanımı, hasta ve çalışan korunması ile acil durum eylem eğitimlerinin kurumsal düzeyde planlandığı, personele atandığı, video/doküman içeriklerinin sunulduğu, merkezi soru bankasından hazırlanan online sınavlarla başarı barajının değerlendirildiği ve resmi denetimlere yönelik Uyum Matrisi'nin dinamik olarak üretildiği entegre eğitim ve belgelendirme sistemidir.
+          </p>
+          <div class="flex flex-wrap gap-4 pt-4 text-xs sm:text-sm font-medium text-slate-300">
+            <span class="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-700">
+              <span class="text-emerald-400 font-bold">✓</span> SKS 6.1 & NDK Mevzuat Uyumlu
+            </span>
+            <span class="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-700">
+              <span class="text-indigo-400 font-bold">✓</span> %70 Baraj Puanlı Online Sınav
+            </span>
+            <span class="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-700">
+              <span class="text-purple-400 font-bold">✓</span> Dinamik Shuffle (Kopya Önleme)
+            </span>
+            <span class="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-700">
+              <span class="text-amber-400 font-bold">✓</span> 15 Gün Erken Uyarı Bildirimi
+            </span>
+            <span class="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-xl border border-slate-700">
+              <span class="text-cyan-400 font-bold">✓</span> Cross-Join Denetim Uyum Matrisi
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- VİZYONDER HIZLI REÇETE (20 SANİYE KURALI) -->
+      <section id="hizli-recete" class="mb-10">
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-indigo-900/10 via-slate-900/5 to-purple-900/10 dark:from-indigo-950/40 dark:via-slate-900/40 dark:to-purple-950/40 border border-indigo-200 dark:border-indigo-800/50 shadow-sm">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-sm">
+              20s
+            </div>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white">Vizyonder Hızlı Karar Reçetesi (Eğitim & Sınav Özeti)</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+            <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+              <span class="font-bold text-indigo-600 dark:text-indigo-400 block mb-1">1. Eğitim Kataloğu ve Materyalleri</span>
+              SKS ve NDK zorunlu yıllık radyasyon eğitimlerini, PDF dokümanlarını ve video bağlantılarını tanımlayın; geçerlilik süresini ve baraj puanını belirleyin.
+            </div>
+            <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+              <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-1">2. Toplu Atama ve Soru Havuzu</span>
+              Personele eğitimleri topluca atayın. Excel üzerinden soru bankasını içe aktarın; kopya önleyici dinamik soru-şık karıştırma motorunu çalıştırın.
+            </div>
+            <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+              <span class="font-bold text-purple-600 dark:text-purple-400 block mb-1">3. Online Sınav & Uyum Matrisi</span>
+              Personel portal üzerinden sınavı çözer. %70 barajı aşılınca dijital sertifika tescil edilir; SKS Denetim Uyum Matrisi yeşil rozete döner.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: ARCHITECTURE & WORKFLOW (MERMAID) -->
+      <section id="mimari" class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-6 shadow-sm">
+        <div class="space-y-2">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 flex items-center justify-center text-sm font-black font-mono">02</span>
+            <span>Mimari ve İş Akış Şeması</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Eğitim kataloğu hazırlama, soru havuzu oluşturma, toplu atama, online sınav çözme ve Uyum Matrisi entegrasyonu:
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 overflow-x-auto">
+          <div class="mermaid">
+flowchart TD
+    A["Hizmet İçi Eğitim Modül Girişi"] --> B["Üst KPI Şeridi ve 4 Ana Sekme"]
+    
+    B --> C["1. Uyum ve Denetim Raporu"]
+    B --> D["2. Eğitim Atamaları"]
+    B --> E["3. Eğitim Kataloğu"]
+    B --> F["4. Sınav Soruları Havuzu"]
+    
+    E --> G["Yeni Eğitim Tanımı: Ad, Kategori, Geçerlilik Ayı, Baraj %"]
+    G --> H["Materyal Ekleme: PDF, PPTX, Video Dosyası veya URL"]
+    H --> I["egitim_katalogu Tablosuna Kayıt"]
+    
+    F --> J["Soru Tanımı: Soru Metni, Şıklar (A-B-C-D), Doğru Cevap"]
+    J --> K["Soru ve Şık Görselleri Ekleme"]
+    K --> L["Excel İçe Aktarım veya Başka Eğitimden Soru Kopyalama"]
+    L --> M["soru_bankasi ve egitim_sinav_sorulari Kaydı"]
+    
+    D --> N["Birim / Hizmet Sınıfı Filtresi ile Personel Seçimi"]
+    N --> O["Eğitim Başlığı ve Son Tarih Belirleme"]
+    O --> P["[Seçilen Personele Ata] Butonu"]
+    P --> Q["egitim_atamalari Kaydı ve Otomatik Sistem Bildirimi"]
+    
+    Q --> R["Personel Portali / Sınav Ekranı"]
+    R --> S["Video / Doküman Materyalini İnceleme"]
+    S --> T{"Online Sınav Şartı Var mı?"}
+    T -- "Hayır" --> U["Okuma Teyidi ile Doğrudan Tamamlama"]
+    T -- "Evet" --> V["Online Sınav Çözme (Dinamik Shuffle)"]
+    
+    V --> W{"Sınav Puanı >= Baraj (%) mı?"}
+    W -- "Hayır" --> X["Başarısız: Sınırsız Tekrar Deneme Hakkı"]
+    W -- "Evet" --> Y["personel_hizmet_ici_egitim Tescili (Onaylandı)"]
+    
+    U --> Y
+    Y --> Z["Uyum Matrisi Güncellemesi (CROSS JOIN Analizi)"]
+    Z --> AA["Aktif / Süresi Yaklaşıyor / Süresi Doldu / Hiç Alınmamış"]
+    Z --> AB["[Excel Raporu] Resmi Denetim Çıktısı"]
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: 5N1K UI RESOLUTION TABLE -->
+      <section id="bilesenler" class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-6 shadow-sm">
+        <div class="space-y-2">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 flex items-center justify-center text-sm font-black font-mono">03</span>
+            <span>Arayüz Bileşenleri ve 5N1K Kural Tablosu</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Arayüzdeki tüm buton, tablo, form ve sayaçların çalışma kuralları ve durumları:
+          </p>
+        </div>
+
+        <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+          <table class="w-full text-left text-xs sm:text-sm border-collapse">
+            <thead class="bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 font-semibold border-b border-slate-200 dark:border-slate-800">
+              <tr>
+                <th class="p-3.5">NE? (Bileşen & Ayar)</th>
+                <th class="p-3.5">NEDEN? (Amaç)</th>
+                <th class="p-3.5">NEREDE? (Ekran Konumu)</th>
+                <th class="p-3.5">NASIL? (Çalışma Mantığı)</th>
+                <th class="p-3.5">NE ZAMAN?</th>
+                <th class="p-3.5">KİM?</th>
+                <th class="p-3.5">DURUM</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-slate-900 dark:text-white">Genel Uyum Oranı KPI (<code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-indigo-600">lblKpiUyumOrani</code>)</td>
+                <td class="p-3.5">Kurumun SKS eğitim uyum yüzdesini anlık görmek.</td>
+                <td class="p-3.5">Üst KPI Şeridi</td>
+                <td class="p-3.5"><code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">(Aktif + Süresiz) / Toplam * 100</code> ile hesaplar.</td>
+                <td class="p-3.5">Ekran açıldığında ve filtrelemede.</td>
+                <td class="p-3.5">Tüm Yetkililer</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Eksiksiz & Aktif</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-slate-900 dark:text-white">Geçerli Eğitimler KPI (<code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-indigo-600">lblKpiAktifEgitim</code>)</td>
+                <td class="p-3.5">Süresi devam eden geçerli eğitim sayısını izlemek.</td>
+                <td class="p-3.5">Üst KPI Şeridi</td>
+                <td class="p-3.5"><code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">durum IN ('Aktif', 'Süresiz Geçerli')</code> sayar.</td>
+                <td class="p-3.5">Sürekli canlı.</td>
+                <td class="p-3.5">Kalite / RGS</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Eksiksiz & Aktif</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-slate-900 dark:text-white">15 Gün Kalanlar KPI (<code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-indigo-600">lblKpiYaklasan</code>)</td>
+                <td class="p-3.5">Yakında süresi dolacak personelleri önceden fark etmek.</td>
+                <td class="p-3.5">Üst KPI Şeridi</td>
+                <td class="p-3.5">Geçerlilik bitişine ≤ 15 gün kalan personelleri sayar.</td>
+                <td class="p-3.5">Periyodik kontrolde.</td>
+                <td class="p-3.5">Kalite / RGS</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Eksiksiz & Aktif</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-slate-900 dark:text-white">Süresi Dolanlar KPI (<code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-indigo-600">lblKpiDolan</code>)</td>
+                <td class="p-3.5">Süresi bittiği halde yenilenmemiş eğitimleri görmek.</td>
+                <td class="p-3.5">Üst KPI Şeridi</td>
+                <td class="p-3.5">Bitiş tarihi geçmiş kayıtları kırmızı alarm ile listeler.</td>
+                <td class="p-3.5">Denetim öncesi.</td>
+                <td class="p-3.5">Kalite / Yönetim</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Eksiksiz & Aktif</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-slate-900 dark:text-white">Hiç Alınmamış KPI (<code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-indigo-600">lblKpiHicAlinmamis</code>)</td>
+                <td class="p-3.5">Zorunlu eğitimi kurumda hiç almamış personelleri tespit etmek.</td>
+                <td class="p-3.5">Üst KPI Şeridi</td>
+                <td class="p-3.5">Cross-join sonucu eşleşen kaydı olmayanları sayar.</td>
+                <td class="p-3.5">Planlama safhasında.</td>
+                <td class="p-3.5">Eğitim Sorumlusu</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Eksiksiz & Aktif</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-slate-900 dark:text-white">Uyum Matrisi Tablosu (<code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-indigo-600">tblUyumMatrisi</code>)</td>
+                <td class="p-3.5">Personel-eğitim çapraz tamamlama durumunu matris formatında sergilemek.</td>
+                <td class="p-3.5">1. Sekme (Uyum ve Denetim Raporu)</td>
+                <td class="p-3.5">Personel, TC, Birim, Eğitim, Tamamlama, Bitiş ve 4 renkli durum hücresi.</td>
+                <td class="p-3.5">Resmi denetim ve incelemede.</td>
+                <td class="p-3.5">Tüm Kullanıcılar</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Eksiksiz & Aktif</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-slate-900 dark:text-white">Excel Raporu (<code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-indigo-600">btnUyumExcel</code>)</td>
+                <td class="p-3.5">Uyum matrisini resmi denetim çıktısı olarak indirmek.</td>
+                <td class="p-3.5">1. Sekme Üst Panel</td>
+                <td class="p-3.5"><code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">openpyxl</code> ile kurumsal lacivert başlıklı .xlsx dosyası oluşturur.</td>
+                <td class="p-3.5">Denetim dosyası hazırlanırken.</td>
+                <td class="p-3.5">Kalite / RGS</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Eksiksiz & Aktif</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-slate-900 dark:text-white">Birim & Hizmet Filtresi (<code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-indigo-600">comboAtamaBirimFilter</code>)</td>
+                <td class="p-3.5">Toplu eğitim atarken personeli birimine veya mesleğine göre süzmek.</td>
+                <td class="p-3.5">2. Sekme (Eğitim Atamaları)</td>
+                <td class="p-3.5">Departman ve unvan hizmet sınıflarına göre personelleri listeler.</td>
+                <td class="p-3.5">Atama öncesi.</td>
+                <td class="p-3.5">Eğitim Sorumlusu</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Eksiksiz & Aktif</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-slate-900 dark:text-white">Seçilen Personele Ata (<code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-indigo-600">btnTopluAta</code>)</td>
+                <td class="p-3.5">İşaretlenen tüm personele tek hamlede eğitim görevi atamak.</td>
+                <td class="p-3.5">2. Sekme Üst Panel</td>
+                <td class="p-3.5">Seçilen personellere <code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">egitim_atamalari</code> kaydı açar ve bildirim üretir.</td>
+                <td class="p-3.5">Eğitim planlamasında.</td>
+                <td class="p-3.5">Eğitim Sorumlusu</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Eksiksiz & Aktif</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-slate-900 dark:text-white">Eğitim Kataloğu Formu (<code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-indigo-600">grpKatalogForm</code>)</td>
+                <td class="p-3.5">Kurumsal eğitimleri, geçerlilik sürelerini ve sınav barajlarını belirlemek.</td>
+                <td class="p-3.5">3. Sekme (Eğitim Kataloğu)</td>
+                <td class="p-3.5">Ad, kategori, geçerlilik ayı, baraj %, materyal tipi ve dosyasını kaydeder.</td>
+                <td class="p-3.5">Yeni eğitim açılışında.</td>
+                <td class="p-3.5">Yönetici / RGS</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Eksiksiz & Aktif</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-slate-900 dark:text-white">Excel'den Soru Yükle (<code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-indigo-600">btnSoruExcelImport</code>)</td>
+                <td class="p-3.5">Hazırlanan Excel şablonundaki soruları topluca içe aktarmak.</td>
+                <td class="p-3.5">4. Sekme (Soru Havuzu)</td>
+                <td class="p-3.5"><code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">run_with_progress</code> ile Excel'deki soruları okur ve veritabanına bağlar.</td>
+                <td class="p-3.5">Soru bankası hazırlığında.</td>
+                <td class="p-3.5">Sınav Komisyonu</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Eksiksiz & Aktif</span></td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-slate-900 dark:text-white">Online Sınav Diyaloğu (<code class="text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-indigo-600">HizmetIciSinavDialog</code>)</td>
+                <td class="p-3.5">Personelin eğitimi pekiştirmesi ve puanlandırılması.</td>
+                <td class="p-3.5">Modal Diyalog</td>
+                <td class="p-3.5">Dinamik karıştırma (shuffle) uygular, puanlar; baraj sağlanırsa eğitimi onaylar.</td>
+                <td class="p-3.5">Eğitim sonrasında.</td>
+                <td class="p-3.5">Çalışan Personel</td>
+                <td class="p-3.5"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">Eksiksiz & Aktif</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECTION 4: KPI COCKPIT -->
+      <section id="kpi-kokpit" class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-6 shadow-sm">
+        <div class="space-y-2">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 flex items-center justify-center text-sm font-black font-mono">04</span>
+            <span>Dinamik KPI Göstergeleri ve Hesaplama Formülleri</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Ekranın üst bandında yer alan 5 adet canlı performans kartı kurumun eğitim sağlığını anlık olarak yansıtır:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <!-- KPI 1 -->
+          <div class="p-5 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/60 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-indigo-700 dark:text-indigo-300 text-xs font-bold uppercase tracking-wider">
+              <span>Genel Uyum Oranı</span>
+              <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+            </div>
+            <div class="text-3xl font-black text-indigo-900 dark:text-indigo-100 my-2">%94.5</div>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-tight">
+              (Aktif + Süresiz) / Toplam Gereksinim * 100
+            </p>
+          </div>
+
+          <!-- KPI 2 -->
+          <div class="p-5 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-emerald-700 dark:text-emerald-300 text-xs font-bold uppercase tracking-wider">
+              <span>Geçerli Eğitimler</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            </div>
+            <div class="text-3xl font-black text-emerald-900 dark:text-emerald-100 my-2">148</div>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-tight">
+              Süresi devam eden veya süresiz tescilli kayıtlar.
+            </p>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="p-5 rounded-2xl bg-amber-50/70 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-amber-700 dark:text-amber-300 text-xs font-bold uppercase tracking-wider">
+              <span>15 Gün Kalanlar</span>
+              <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+            </div>
+            <div class="text-3xl font-black text-amber-900 dark:text-amber-100 my-2">12</div>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-tight">
+              Kalan süre ≤ 15 gün; bildirim motoru devrede.
+            </p>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="p-5 rounded-2xl bg-rose-50/70 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800/60 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-rose-700 dark:text-rose-300 text-xs font-bold uppercase tracking-wider">
+              <span>Süresi Dolanlar</span>
+              <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+            </div>
+            <div class="text-3xl font-black text-rose-900 dark:text-rose-100 my-2">4</div>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-tight">
+              Geçerliliği bitmiş; acil yenileme gerekir.
+            </p>
+          </div>
+
+          <!-- KPI 5 -->
+          <div class="p-5 rounded-2xl bg-purple-50/70 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800/60 flex flex-col justify-between">
+            <div class="flex items-center justify-between text-purple-700 dark:text-purple-300 text-xs font-bold uppercase tracking-wider">
+              <span>Hiç Alınmamış</span>
+              <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+            </div>
+            <div class="text-3xl font-black text-purple-900 dark:text-purple-100 my-2">3</div>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-tight">
+              Zorunlu olduğu halde sıfır kaydı olan çalışanlar.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: COMPLIANCE MATRIX -->
+      <section id="uyum-matrisi" class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-6 shadow-sm">
+        <div class="space-y-2">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 flex items-center justify-center text-sm font-black font-mono">05</span>
+            <span>Kurumsal Uyum ve Denetim Matrisi Analizi</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            SKS ve NDK denetimlerinde kurumun en güçlü kanıtıdır. Arka planda aktif çalışanlar ile zorunlu eğitim kataloğu çapraz eşleştirilerek (<code class="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-1 rounded">CROSS JOIN</code>) personelin tüm eğitim geçmişi sorgulanır:
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="p-4 rounded-xl border border-emerald-200 dark:border-emerald-800/60 bg-emerald-50/50 dark:bg-emerald-950/20">
+              <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-emerald-200 text-emerald-900 dark:bg-emerald-900 dark:text-emerald-200 mb-2">Aktif / Süresiz Geçerli</span>
+              <p class="text-xs text-slate-600 dark:text-slate-300">Eğitim tamamlanmış, sınavı geçilmiş ve geçerlilik süresi devam ediyor.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-amber-200 dark:border-amber-800/60 bg-amber-50/50 dark:bg-amber-950/20">
+              <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-amber-200 text-amber-900 dark:bg-amber-900 dark:text-amber-200 mb-2">Süresi Yaklaşıyor (≤15 Gün)</span>
+              <p class="text-xs text-slate-600 dark:text-slate-300">Geçerlilik bitişine 15 gün veya daha az kalmış; otomatik uyarı gönderilmiş.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-rose-200 dark:border-rose-800/60 bg-rose-50/50 dark:bg-rose-950/20">
+              <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-rose-200 text-rose-900 dark:bg-rose-900 dark:text-rose-200 mb-2">Süresi Doldu (Kırmızı Alarm)</span>
+              <p class="text-xs text-slate-600 dark:text-slate-300">Eğitimin süresi bitmiş; SKS denetim puanını düşürmemesi için derhal yenilenmelidir.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-purple-200 dark:border-purple-800/60 bg-purple-50/50 dark:bg-purple-950/20">
+              <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-purple-200 text-purple-900 dark:bg-purple-900 dark:text-purple-200 mb-2">Hiç Alınmamış (Mor Uyarı)</span>
+              <p class="text-xs text-slate-600 dark:text-slate-300">Yeni işe başlayan veya zorunlu eğitimi kuruma girdiğinden beri hiç almamış personel.</p>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-indigo-50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-800/50 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="p-2.5 rounded-xl bg-indigo-600 text-white font-bold">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-slate-900 dark:text-white">Resmi Denetim Heyeti İçin Renkli Excel Çıktısı</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Üstteki [Excel Raporu] butonuna tıklandığında kurumsal lacivert başlıklı resmi .xlsx matrisi üretilir.</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono font-semibold px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300">openpyxl Motoru</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: MASS ASSIGNMENT -->
+      <section id="toplu-atama" class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-6 shadow-sm">
+        <div class="space-y-2">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 flex items-center justify-center text-sm font-black font-mono">06</span>
+            <span>Toplu ve Birim Bazlı Eğitim Atama Motoru</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Yüzlerce personele tek tek görev atamak yerine birim ve meslek filtresiyle tek tıkla toplu görevlendirme:
+          </p>
+        </div>
+
+        <ol class="space-y-4 text-sm text-slate-600 dark:text-slate-300 list-decimal list-inside">
+          <li class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700">
+            <strong>Hedef Personel Grubunu Süzme:</strong> Sol üstteki <strong>Birim Filtresi</strong> (<code class="text-xs font-mono">comboAtamaBirimFilter</code>) veya <strong>Hizmet Sınıfı Filtresi</strong> (<code class="text-xs font-mono">comboAtamaHizmetFilter</code>) ile listeyi daraltın.
+          </li>
+          <li class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700">
+            <strong>Toplu Seçim:</strong> Tablodaki personelleri tek tek onay kutularıyla seçin veya sol üstteki <strong>[Tümünü Seç]</strong> butonuna tıklayarak süzülen herkesi tek hamlede işaretleyin.
+          </li>
+          <li class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700">
+            <strong>Eğitim ve Son Tarih:</strong> Üstteki <strong>Atanacak Eğitim</strong> açılır kutusundan ilgili eğitimi seçin ve <strong>Son Tamamlama Tarihi</strong> (varsayılan: 30 gün sonrası) takvimini belirleyin.
+          </li>
+          <li class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700">
+            <strong>[Seçilen Personele Ata]:</strong> Butona basıldığında seçili personellere aynı anda atama yapılır ve sistem personellere otomatik görevlendirme bildirimi yönlendirir.
+          </li>
+          <li class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700">
+            <strong>Atama İptali:</strong> Sağdaki mevcut atamalar listesinden bir satır seçip <strong>[Atamayı İptal Et]</strong> butonuyla gerekirse atamayı geri alabilirsiniz.
+          </li>
+        </ol>
+      </section>
+
+      <!-- SECTION 7: CATALOG MANAGEMENT -->
+      <section id="katalog-yonetimi" class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-6 shadow-sm">
+        <div class="space-y-2">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 flex items-center justify-center text-sm font-black font-mono">07</span>
+            <span>Eğitim Kataloğu ve Materyal Yönetimi</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Kurumun eğitim müfredatının, sürelerinin ve multimedya içeriklerinin tanımlandığı merkezdir:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-3 p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Temel Parametreler</h3>
+            <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+              <li>• <strong>Eğitim Adı:</strong> Eğitimin tam resmi adı (örn: "Radyasyon Alanlarında Çalışma Standartları").</li>
+              <li>• <strong>Kategori:</strong> Radyasyon Güvenliği, Hasta Güvenliği, Genel Kalite vb.</li>
+              <li>• <strong>Geçerlilik (Ay):</strong> SKS standardı uyarınca varsayılan <code class="px-1 rounded bg-slate-200 dark:bg-slate-700 font-mono">12</code> ay. Süresizler için <code class="px-1 rounded bg-slate-200 dark:bg-slate-700 font-mono">0</code>.</li>
+              <li>• <strong>[x] Zorunlu Eğitim:</strong> İşaretlendiğinde kurum geneli Uyum Matrisi'ne doğrudan dahil edilir.</li>
+              <li>• <strong>[x] Online Sınav Aktif:</strong> Eğitim sonunda personelin sınav çözmesini zorunlu kılar.</li>
+              <li>• <strong>Baraj Puanı:</strong> Sınavı geçmek için gereken başarı yüzdesi (varsayılan: <code class="px-1 rounded bg-slate-200 dark:bg-slate-700 font-mono">%70</code>).</li>
+            </ul>
+          </div>
+
+          <div class="space-y-3 p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Materyal ve Video Entegrasyonu</h3>
+            <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+              <li>• <strong>Materyal Türü:</strong> Doküman / Dosya (PDF, DOCX, PPTX), Video Dosyası (MP4, WEBM) veya Harici Video URL.</li>
+              <li>• <strong>Dosya Seç:</strong> Bilgisayarınızdaki eğitim sunumunu veya video kaydını bağlamak için <code class="px-1 rounded bg-slate-200 dark:bg-slate-700 font-mono">[Dosya Seç]</code> butonunu kullanın.</li>
+              <li>• <strong>Dokümanı Aç:</strong> Yüklenen eğitim materyalini doğrulamak için doğrudan sistemin varsayılan görüntüleyicisinde açar.</li>
+              <li>• <strong>Web Portal Stream:</strong> MP4 videoları Web Portal üzerinden mobil cihazlarda ve tarayıcılarda HTTP Range stream ile kesintisiz izlenebilir.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: QUESTION BANK & EXCEL -->
+      <section id="soru-havuzu" class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-6 shadow-sm">
+        <div class="space-y-2">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 flex items-center justify-center text-sm font-black font-mono">08</span>
+            <span>Merkezi Soru Havuzu, Şık Görselleri ve Excel İçe Aktarım</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Her eğitim için 4 seçenekli (A, B, C, D) çoktan seçmeli sorular hazırlanır. Hem soru köküne hem de şıklara bağımsız diyagram ve grafik görselleri bağlanabilir:
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 space-y-3">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Görselli Soru Desteği</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Radyolojik anatomik kesitler, dozimetre renk bantları, cihaz kumanda paneli veya uluslararası radyasyon sembolleri sorulara görsel olarak eklenebilir. Soru metni yanındaki <strong>[Soru Resmi Seç]</strong> veya şıkların yanındaki fotoğraf ikonlu butonlar tıklandığında görsel doğrudan sisteme entegre edilir.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl border border-indigo-200 dark:border-indigo-800/60 bg-indigo-50/40 dark:bg-indigo-950/20">
+              <h4 class="text-sm font-bold text-indigo-900 dark:text-indigo-200 mb-1">[Şablon İndir] & [Excel'den Soru Yükle]</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300">
+                Önceden ayarlanmış <code class="font-mono bg-white dark:bg-slate-800 px-1 rounded">Egitim_Sinav_Sorulari_Sablonu.xlsx</code> şablonunu indirin; onlarca soruyu Excel'de hazırlayıp tek tıkla yükleyin.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl border border-purple-200 dark:border-purple-800/60 bg-purple-50/40 dark:bg-purple-950/20">
+              <h4 class="text-sm font-bold text-purple-900 dark:text-purple-200 mb-1">[Başka Eğitimden Soru Kopyala]</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300">
+                Geçen yılın eğitimindeki veya benzer kategorideki bir eğitimin sınav sorularını tek hamlede yeni eğitime kopyalayarak zamandan tasarruf edin.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 9: ONLINE EXAM & GRADING -->
+      <section id="online-sinav" class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-6 shadow-sm">
+        <div class="space-y-2">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 flex items-center justify-center text-sm font-black font-mono">09</span>
+            <span>Online Sınav Çözme, Dinamik Karıştırma ve Otomatik Tescil</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Kopya çekilmesini engelleyen dinamik algoritma ve anlık değerlendirme süreci:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700">
+            <h4 class="text-sm font-bold text-slate-900 dark:text-white mb-2">1. Dinamik Shuffle (Karıştırma)</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Her personel için soruların sırası rastgele karıştırılır. Ayrıca seçeneklerin sırası da dinamik olarak dağıtılır; A şıkkı bir personelde ilk sırada çıkarken diğer personelde C şıkkı konumunda gösterilir.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700">
+            <h4 class="text-sm font-bold text-slate-900 dark:text-white mb-2">2. %70 Başarı Barajı</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Sınav bitirildiğinde sistem doğru sayısını hesaplar. Baraj (varsayılan: %70) sağlandığında sınav anında onaylanır. Sağlanamazsa personel sınırsız tekrar sınav hakkına sahiptir.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700">
+            <h4 class="text-sm font-bold text-slate-900 dark:text-white mb-2">3. Otomatik Onay & Tescil</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Sınavı geçen personelin eğitimi başka bir komisyon onayı beklemeksizin doğrudan <code class="px-1 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950 font-mono">Onaylandı</code> statüsüyle veritabanına tescil edilir ve Uyum Matrisi yeşile döner.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 10: 15-DAY EARLY WARNING -->
+      <section id="erken-uyari" class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-6 shadow-sm">
+        <div class="space-y-2">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 flex items-center justify-center text-sm font-black font-mono">10</span>
+            <span>15 Gün Önceden Otomatik Sistem Bildirim Motoru</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Zamanlanmış arka plan servisi (<code class="text-xs font-mono">check_and_create_expiry_notifications</code>) sayesinde hiçbir eğitim süresi unutulmaz:
+          </p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-50/60 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/60 space-y-3">
+          <div class="flex items-center gap-2 text-amber-800 dark:text-amber-300 font-bold text-sm">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+            <span>Otomatik Hatırlatma Mekanizması</span>
+          </div>
+          <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+            Geçerlilik süresi dolmak üzere olan çalışanlar bitişe 15 gün kala otomatik olarak tespit edilir. Mükerrer bildirim koruması sayesinde her personele günde sadece bir kez aşağıdaki resmi uyarı iletilir:
+          </p>
+          <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-amber-300 dark:border-amber-700 font-mono text-xs text-slate-800 dark:text-slate-200">
+            "Sayın [Personel Adı], zorunlu '[Eğitim Adı]' eğitiminizin geçerlilik süresi [Tarih] tarihinde sona erecektir. Lütfen süresi dolmadan eğitiminizi yenileyiniz."
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 11: HYBRID WEB PORTAL -->
+      <section id="hibrit-web" class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-6 shadow-sm">
+        <div class="space-y-2">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 flex items-center justify-center text-sm font-black font-mono">11</span>
+            <span>Hibrit Arayüz ve Web Portalı Görünümü</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Masaüstü yönetim kokpiti ile Web Portalı arasında çift yönlü senkronizasyon:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 space-y-3">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+              Masaüstü Uygulaması (Yetkili & Denetim Merkezi)
+            </h3>
+            <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+              <li>• Müfredat, kategori ve geçerlilik ayı tanımlama.</li>
+              <li>• Birim ve hizmet sınıfına göre toplu personel atamaları.</li>
+              <li>• Soru havuzu hazırlama, Excel şablon aktarımı ve soru kopyalama.</li>
+              <li>• Kurum geneli Uyum Matrisi izleme ve renkli Excel (.xlsx) çıktısı.</li>
+            </ul>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 space-y-3">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-500"></span>
+              Web Portalı (Personel ve Video Eğitim Portali)
+            </h3>
+            <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+              <li>• <strong>Personel Eğitim Paneli:</strong> Kendisine atanan eğitimleri ve kalan süreleri görme.</li>
+              <li>• <strong>HTTP Range Video Stream:</strong> Büyük boyutlu eğitim videolarını ve PDF'leri tarayıcıda izleme.</li>
+              <li>• <strong>Web Sınavı:</strong> Soruları doğrudan tarayıcı üzerinden çözüp anlık baraj sonucunu alma.</li>
+              <li>• <strong>Kurumsal Dashboard:</strong> Birim bazlı uyum oranlarını web grafikleriyle izleme.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 12: TROUBLESHOOTING -->
+      <section id="sorun-giderme" class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-6 shadow-sm">
+        <div class="space-y-2">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 flex items-center justify-center text-sm font-black font-mono">12</span>
+            <span>Hata Mesajları ve Sorun Giderme Rehberi</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Karşılaşabileceğiniz sistem uyarıları ve çözüm adımları:
+          </p>
+        </div>
+
+        <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+          <table class="w-full text-left text-xs sm:text-sm border-collapse">
+            <thead class="bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 font-semibold border-b border-slate-200 dark:border-slate-800">
+              <tr>
+                <th class="p-3.5">Hata / Uyarı Mesajı</th>
+                <th class="p-3.5">Olası Neden</th>
+                <th class="p-3.5">Çözüm Adımı</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-rose-600 dark:text-rose-400">"Lütfen atanacak eğitimi seçiniz."</td>
+                <td class="p-3.5">Toplu atama panelinde eğitim seçilmediğinde.</td>
+                <td class="p-3.5">Açılır kutudan personele atanacak eğitim başlığını seçin.</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-rose-600 dark:text-rose-400">"Lütfen listeden en az bir personel seçiniz."</td>
+                <td class="p-3.5">Seçim tablosunda hiçbir çalışan işaretlenmediğinde.</td>
+                <td class="p-3.5">Tablodan personelleri işaretleyin veya [Tümünü Seç] butonunu kullanın.</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-rose-600 dark:text-rose-400">"Bu eğitime ait henüz aktif sınav sorusu bulunmamaktadır."</td>
+                <td class="p-3.5">Sorusu olmayan eğitim için sınav başlatılmak istendiğinde.</td>
+                <td class="p-3.5">Soru Havuzu sekmesinden eğitime soru ekleyin veya Excel'den aktarın.</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-amber-600 dark:text-amber-400">"X adet soruyu boş bıraktınız. Tamamlamak istiyor musunuz?"</td>
+                <td class="p-3.5">Sınavda boş bırakılan sorular varken gönderilmek istendiğinde.</td>
+                <td class="p-3.5">Boş soruları tamamlamak için 'Hayır'ı seçin veya bu haliyle göndermek için 'Evet'i tıklayın.</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-rose-600 dark:text-rose-400">"Sınav puanınız: %X. Baraj puanı (%Y) sağlanamadı."</td>
+                <td class="p-3.5">Puan katalogdaki baraj puanının altında kaldığında.</td>
+                <td class="p-3.5">Eğitim materyalini tekrar inceleyip sınavı yeniden başlatın (sınırsız hak).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- YANLIŞ ALGIYI YIKAN "MİT AVCISI" (MYTH-BUSTING) KARTLARI -->
+      <section id="mit-avcilari" class="mb-12">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="p-1.5 rounded-lg bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </span>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white">Hizmet İçi Eğitim, Sınav & Mit Avcısı (Kritik Kurallar)</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Mit 1 -->
+          <div class="rounded-2xl border border-red-200 dark:border-red-900/40 bg-gradient-to-br from-red-50/50 via-white to-slate-50 dark:from-red-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
+            <div class="flex items-center gap-2 text-red-600 dark:text-red-400 font-bold text-xs uppercase tracking-wider mb-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              <span>Yaygın Yanılgı (Mit 1)</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-800 dark:text-slate-100 mb-3 italic">
+              "Online sınavda %70 baraj puanının altında kalan personel eğitimden elenir ve bir daha sınava giremez."
+            </p>
+            <div class="border-t border-red-200/60 dark:border-red-900/40 pt-3">
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 mb-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Doğru Yasal Kural:
+              </span>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Amaç öğrenmeyi pekiştirmektir. Personel materyalleri tekrar gözden geçirerek sınırsız sayıda sınava yeniden girebilir; her sınavda soru ve seçenekler dinamik olarak karıştırılır.
+              </p>
+            </div>
+          </div>
+
+          <!-- Mit 2 -->
+          <div class="rounded-2xl border border-amber-200 dark:border-amber-900/40 bg-gradient-to-br from-amber-50/50 via-white to-slate-50 dark:from-amber-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
+            <div class="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wider mb-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              <span>Yaygın Yanılgı (Mit 2)</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-800 dark:text-slate-100 mb-3 italic">
+              "Kurum Uyum Matrisinde zorunlu eğitimi 'Hiç Almamış' görünen çalışanlar denetim başarı oranını etkilemez."
+            </p>
+            <div class="border-t border-amber-200/60 dark:border-amber-900/40 pt-3">
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 mb-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Doğru Yasal Kural:
+              </span>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                SKS 6.1 çapraz denetim matrisi gereğince aktif personelin zorunlu eğitimi hiç almamış olması kurumun genel kalite ve uyum puanını doğrudan düşürür.
+              </p>
+            </div>
+          </div>
+
+          <!-- Mit 3 -->
+          <div class="rounded-2xl border border-blue-200 dark:border-blue-900/40 bg-gradient-to-br from-blue-50/50 via-white to-slate-50 dark:from-blue-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
+            <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold text-xs uppercase tracking-wider mb-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Yaygın Yanılgı (Mit 3)</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-800 dark:text-slate-100 mb-3 italic">
+              "Sınavı olmayan eğitimlerde personelin materyali incelediğini kanıtlamak için ıslak imzalı tutanak şarttır."
+            </p>
+            <div class="border-t border-blue-200/60 dark:border-blue-900/40 pt-3">
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 mb-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Doğru Yasal Kural:
+              </span>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Sınavsız eğitimlerde personel portaldan dokümanı inceleyip 'Okudum / İnceledim' butonuna bastığında sistem IP ve zaman damgasıyla dijital onay üretir; bu kayıt resmi denetim kanıtıdır.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 13: FAQ -->
+      <section id="sss" class="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-6 shadow-sm">
+        <div class="space-y-2">
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 flex items-center justify-center text-sm font-black font-mono">13</span>
+            <span>Sıkça Sorulan Sorular (SSS)</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Kullanıcılarımızın ve kalite birimlerinin en sık yönelttiği sorular ve yanıtları:
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <details class="group p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700">
+            <summary class="font-bold text-sm text-slate-900 dark:text-white cursor-pointer list-none flex items-center justify-between">
+              <span>Sınavda başarısız olan bir personel için sınav hakkı sınırı var mıdır?</span>
+              <span class="text-indigo-600 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
+              Hayır. Personel başarı baraj puanına (varsayılan: %70) ulaşana kadar eğitim materyalini tekrar gözden geçirerek sınırsız sayıda sınava yeniden girebilir. Her yeni denemede sorular ve şıklar dinamik olarak yeniden karıştırılır.
+            </p>
+          </details>
+
+          <details class="group p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700">
+            <summary class="font-bold text-sm text-slate-900 dark:text-white cursor-pointer list-none flex items-center justify-between">
+              <span>Uyum Matrisinde "Hiç Alınmamış" görünen personeller kurum uyum oranını düşürür mü?</span>
+              <span class="text-indigo-600 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
+              Evet. Zorunlu olarak tanımlanan bir eğitimi henüz tamamlamamış olan tüm aktif çalışanlar mor renkli "Hiç Alınmamış" statüsüne düşer ve Genel Uyum Oranını doğrudan aşağı çeker. Bu personellere acil toplu eğitim ataması yapılmalıdır.
+            </p>
+          </details>
+
+          <details class="group p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700">
+            <summary class="font-bold text-sm text-slate-900 dark:text-white cursor-pointer list-none flex items-center justify-between">
+              <span>Online sınavı olmayan bir eğitimin tamamlanması nasıl gerçekleşir?</span>
+              <span class="text-indigo-600 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
+              Eğer eğitim kataloğunda [Online Sınav Aktif] seçeneği işaretlenmemişse, personel eğitim dokümanını veya videosunu inceledikten sonra [Okudum / İnceledim] butonuna basar; sistem eğitimi doğrudan tamamlandı ve onaylandı olarak kaydeder.
+            </p>
+          </details>
+
+          <details class="group p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700">
+            <summary class="font-bold text-sm text-slate-900 dark:text-white cursor-pointer list-none flex items-center justify-between">
+              <span>15 gün kala erken uyarı bildirimi bir personele günde kaç kez gider?</span>
+              <span class="text-indigo-600 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
+              Sistem içi mükerrer bildirim koruması bulunur. Aynı gün içerisinde aynı personel ve eğitim için yalnızca tek bir hatırlatma bildirimi üretilir.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- NAVIGATION FOOTER -->
+      <footer class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <a href="16_rgs_rso_gorevlendirme_ve_sertifika.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">← Önceki Doküman</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">16. RGS / RSO Görevlendirme & Sertifika</span>
+          </a>
+          <a href="18_tibbi_cihaz_ve_ndk_lisans_envanteri.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition text-right group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">Sonraki Doküman →</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">18. Tıbbi Cihaz & NDK Lisans</span>
+          </a>
+        </div>
+      </footer>
+
+    </main>
+
+    <!-- RIGHT ASIDE: TABLE OF CONTENTS -->
+    <aside class="hidden xl:block w-64 shrink-0 py-8 pl-6 border-l border-slate-200 dark:border-slate-800">
+      <div class="sticky top-24 space-y-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-3">Bu Sayfada</span>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#genel-bakis" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">1. Genel Bakış & SKS 6.1</a></li>
+          <li><a href="#hizli-recete" class="hover:text-cyan-600 transition block text-indigo-600 dark:text-indigo-400 font-semibold">⚡ 20s Hızlı Karar Reçetesi</a></li>
+          <li><a href="#mimari" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">2. Mimari & Akış Şeması</a></li>
+          <li><a href="#bilesenler" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">3. Arayüz ve 5N1K Tablosu</a></li>
+          <li><a href="#kpi-kokpit" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">4. KPI Göstergeleri</a></li>
+          <li><a href="#uyum-matrisi" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">5. Uyum & Denetim Matrisi</a></li>
+          <li><a href="#toplu-atama" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">6. Toplu Eğitim Atama</a></li>
+          <li><a href="#katalog-yonetimi" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">7. Eğitim Kataloğu Yönetimi</a></li>
+          <li><a href="#soru-havuzu" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">8. Soru Havuzu & Excel</a></li>
+          <li><a href="#online-sinav" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">9. Online Sınav & Tescil</a></li>
+          <li><a href="#erken-uyari" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">10. 15 Gün Erken Uyarı</a></li>
+          <li><a href="#hibrit-web" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">11. Hibrit Portali Görünümü</a></li>
+          <li><a href="#sorun-giderme" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">12. Hata & Çözüm Tablosu</a></li>
+          <li><a href="#mit-avcilari" class="hover:text-cyan-600 transition block text-amber-600 dark:text-amber-400 font-semibold">🕵️ Mit Avcısı & Kritik Kurallar</a></li>
+          <li><a href="#sss" class="hover:text-cyan-600 transition block text-slate-600 dark:text-slate-400">13. Sıkça Sorulan Sorular</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
+    <div class="max-w-[1720px] mx-auto px-6">
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi — Sağlık Bilgi Güvenliği & KVKK Standartları ile Korunmaktadır.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' });
+
+    // Theme Toggle
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    themeToggleBtn?.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebarNav = document.getElementById('sidebarNav');
+    if (mobileMenuBtn && sidebarNav) {
+      mobileMenuBtn.addEventListener('click', () => {
+        sidebarNav.classList.toggle('-translate-x-full');
+      });
+    }
+  </script>
+</body>
+</html>

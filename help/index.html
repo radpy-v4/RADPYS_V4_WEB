@@ -1,278 +1,998 @@
 <!DOCTYPE html>
-<html lang="tr" data-theme="dark">
+<html lang="tr" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RADPYS V4 — Kullanım Kılavuzu ve Bilgi Merkezi</title>
-  <link rel="stylesheet" href="assets/styles.css" />
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RADPYS v4 — Kullanım Kılavuzu & Bilgi Bankası Ana Sayfası</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfeff',
+              100: '#cffafe',
+              200: '#a5f3fc',
+              500: '#06b6d4',
+              600: '#0891b2',
+              700: '#0e7490',
+              900: '#164e63',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    pre, code { font-family: 'JetBrains Mono', monospace; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 9999px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.6); }
+  </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
 
-<!-- STICKY HEADER -->
-<header class="sl-header">
-  <div class="sl-header-left">
-    <button class="mobile-nav-toggle" id="mobileNavToggle" title="Menüyü Aç/Kapat">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-    </button>
-    <a href="index.html" class="brand-lockup">
-      <div class="brand-icon">R</div>
-      <div class="brand-title">RADPYS V4</div>
-      <span class="brand-badge">v4.1.2.9</span>
-    </a>
-  </div>
-
-  <div class="sl-header-right">
-    <a href="../index.html" class="btn-back-site" style="display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; font-weight:600; color:var(--sl-color-accent); text-decoration:none; padding:6px 12px; border-radius:6px; background:var(--sl-color-accent-soft); border:1px solid var(--sl-color-border);">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
-      <span>Ana Web Sitesine Dön</span>
-    </a>
-
-    <div class="search-trigger" id="searchTrigger">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-      <span>Dokümantasyonda ara...</span>
-      <kbd class="search-kbd">Ctrl K</kbd>
-    </div>
-
-    <button class="btn-icon" id="themeToggleBtn" title="Temayı Değiştir (Açık / Koyu)">
-      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-    </button>
-  </div>
-</header>
-
-<!-- MAIN LAYOUT -->
-<div class="sl-layout">
-
-  <!-- LEFT SIDEBAR -->
-  <aside class="sl-sidebar" id="slSidebar">
-    <div style="margin-bottom: 1rem; padding: 0 4px;">
-      <a href="index.html" class="nav-page-link active" style="padding-left: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        <span>Ana Karşılama Sayfası</span>
-      </a>
-    </div>
-    <nav id="sidebarNav">
+  <!-- TOP HEADER NAVBAR -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between gap-4">
       
-        <div class="nav-part open">
-          <div class="nav-part-header">
-            <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </button>
-            <span>I. GENEL BİLGİLER VE KURULUM</span>
-          </div>
-          <div class="nav-part-links">
-            <a href="01_kurulum.html" class="nav-page-link">1. Kurulum ve Güvenlik İzinleri</a>
-            <a href="02_kullanici_ve_roller.html" class="nav-page-link">2. Kullanıcı Yönetimi, Roller ve Lisans</a>
-          </div>
-        </div>
-        <div class="nav-part open">
-          <div class="nav-part-header">
-            <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </button>
-            <span>II. OPERASYONEL MODÜLLER</span>
-          </div>
-          <div class="nav-part-links">
-            <a href="03_personel_modulu.html" class="nav-page-link">3. Personel Modülü ve Özlük</a>
-            <a href="04_izin_ve_fhz_modulu.html" class="nav-page-link">4. İzin Yönetimi ve Şua İzni</a>
-            <a href="05_dozimetre_ve_risk_analizi.html" class="nav-page-link">5. Doz Takip ve Yasal Limitler</a>
-            <a href="06_nobet_cizelgesi_ve_havuz.html" class="nav-page-link">6. Nöbet Çizelgesi & Değişim Havuzu</a>
-            <a href="07_olay_bildirim_ve_dof.html" class="nav-page-link">7. Olay Bildirimi & DÖF/CAPA</a>
-            <a href="08_ortam_dozu_ve_kroki.html" class="nav-page-link">8. Ortam Dozu & İnteraktif Kroki</a>
-            <a href="09_hizmet_ici_egitim_ve_lms.html" class="nav-page-link">9. Hizmet İçi Eğitim & Sınav LMS</a>
-            <a href="10_tibbi_cihaz_ve_qr_portal.html" class="nav-page-link">10. Tıbbi Cihaz & QR Arıza Portalı</a>
-            <a href="11_rke_ve_kalite_kontrol.html" class="nav-page-link">11. Koruyucu Ekipman (RKE) & Kalite</a>
-          </div>
-        </div>
-        <div class="nav-part open">
-          <div class="nav-part-header">
-            <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </button>
-            <span>III. KURUMSAL YÖNETİM VE RAPORLAMA</span>
-          </div>
-          <div class="nav-part-links">
-            <a href="12_onay_ve_denetim_izi.html" class="nav-page-link">12. Evrensel Onay & Audit Trail</a>
-            <a href="13_raporlar_ve_matbu_evrak.html" class="nav-page-link">13. Rapor Merkezi & Şablon Marka</a>
-            <a href="14_tanimlamalar_ve_web_portal.html" class="nav-page-link">14. Tanımlamalar & Web Portalı</a>
-          </div>
-        </div>
-        <div class="nav-part open">
-          <div class="nav-part-header">
-            <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </button>
-            <span>IV. SİSTEM YÖNETİMİ VE VERİ İŞLEMLERİ</span>
-          </div>
-          <div class="nav-part-links">
-            <a href="15_sistem_yonetimi_ve_yedekleme.html" class="nav-page-link">15. Ayarlar, Veritabanı & İçe Aktarma</a>
-          </div>
-        </div>
-        <div class="nav-part open">
-          <div class="nav-part-header">
-            <button class="nav-chevron" type="button" aria-label="Genişlet/Daralt">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </button>
-            <span>V. DESTEK VE GÜNCELLEME GEÇMİŞİ</span>
-          </div>
-          <div class="nav-part-links">
-            <a href="16_sss_sorun_giderme.html" class="nav-page-link">16. Sıkça Sorulan Sorular (SSS)</a>
-            <a href="17_surum_notlari.html" class="nav-page-link">17. Sürüm Güncelleme Geçmişi</a>
-          </div>
-        </div>
-    </nav>
-  </aside>
+      <!-- Brand & Version -->
+      <div class="flex items-center gap-3">
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Menüyü Aç/Kapat">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
 
-  <!-- CENTER CONTENT -->
-  <div class="sl-main-container">
-    <main class="sl-content">
-      <div style="padding: 2rem 0 1.5rem 0; text-align: center;">
-        <h1 style="border: none; margin-bottom: 0.5rem; font-size: 2.3rem;">RADPYS V4 Bilgi ve Yardım Merkezi</h1>
-        <p style="font-size: 1.05rem; max-width: 600px; margin: 0 auto 1.5rem auto;">Radyasyon Güvenliği, Tıbbi Cihaz, Doz Takip, Koruyucu Ekipman (RKE) ve Personel Yönetim Sistemi Operasyonel Kullanım Rehberi.</p>
-        <div style="display: inline-flex; gap: 0.75rem; justify-content: center;">
-          <a href="01_kurulum.html" style="padding: 9px 18px; border-radius: 8px; background: var(--sl-color-accent); color: #fff; text-decoration: none; font-weight: 600; font-size: 0.9rem;">Hızlı Başlangıç Rehberi</a>
-          <a href="16_sss_sorun_giderme.html" style="padding: 9px 18px; border-radius: 8px; background: var(--sl-color-bg-surface-raised); border: 1px solid var(--sl-color-border); color: var(--sl-color-text); text-decoration: none; font-weight: 600; font-size: 0.9rem;">Sıkça Sorulan Sorular</a>
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.2</span>
+            </span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Bilgi Portalı</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick Search Bar (Ctrl+K) -->
+      <div class="flex-1 max-w-xl hidden md:block">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input 
+            type="text" 
+            id="moduleFilterInput"
+            placeholder="Modül veya özellik ara... (Örn: Nöbet, Dozimetre, RKE, İzin...)" 
+            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition"
+          >
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <kbd class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600 font-semibold">Ctrl+K</kbd>
+          </div>
         </div>
       </div>
 
-      <hr />
+      <!-- Theme & Action Buttons -->
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" class="p-2.5 rounded-xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Tema Değiştir">
+          <svg id="themeIconSun" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="themeIconMoon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
 
-      <h2 id="modul-katalogu">Modül Dokümantasyon Kataloğu</h2>
-      
-        <div style="margin: 2rem 0;">
-          <h2 style="font-size: 1.25rem; color: var(--sl-color-accent); margin-bottom: 1rem; border-bottom: 1px solid var(--sl-color-border); padding-bottom: 0.5rem;">I. GENEL BİLGİLER VE KURULUM</h2>
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;">
-            <a href="01_kurulum.html" class="page-card">
-              <span class="page-card-sub">Rehber Dokümanı</span>
-              <span class="page-card-title">1. Kurulum ve Güvenlik İzinleri</span>
-              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Windows güvenlik izinleri, Inno Setup ve ilk kurulum adımları.</p>
-            </a>
-            <a href="02_kullanici_ve_roller.html" class="page-card">
-              <span class="page-card-sub">Rehber Dokümanı</span>
-              <span class="page-card-title">2. Kullanıcı Yönetimi, Roller ve Lisans</span>
-              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Admin oturumu, geçici şifreler, kullanıcı rolleri ve kademeli lisans yönetimi.</p>
-            </a>
-          </div>
-        </div>
-        <div style="margin: 2rem 0;">
-          <h2 style="font-size: 1.25rem; color: var(--sl-color-accent); margin-bottom: 1rem; border-bottom: 1px solid var(--sl-color-border); padding-bottom: 0.5rem;">II. OPERASYONEL MODÜLLER</h2>
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;">
-            <a href="03_personel_modulu.html" class="page-card">
-              <span class="page-card-sub">Rehber Dokümanı</span>
-              <span class="page-card-title">3. Personel Modülü ve Özlük</span>
-              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Personel özlük dosyaları, dozimetre atama ve birim görevlendirmeleri.</p>
-            </a>
-            <a href="04_izin_ve_fhz_modulu.html" class="page-card">
-              <span class="page-card-sub">Rehber Dokümanı</span>
-              <span class="page-card-title">4. İzin Yönetimi ve Şua İzni</span>
-              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Şua izni hak edişi, 31 Aralık zaman aşımı uyarısı ve FHZ fiili hizmet takibi.</p>
-            </a>
-            <a href="05_dozimetre_ve_risk_analizi.html" class="page-card">
-              <span class="page-card-sub">Rehber Dokümanı</span>
-              <span class="page-card-title">5. Doz Takip ve Yasal Limitler</span>
-              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Dozimetre yükleme, NDK 20 mSv/50 mSv yasal limit uyarıları ve RD.F43 doz formu.</p>
-            </a>
-            <a href="06_nobet_cizelgesi_ve_havuz.html" class="page-card">
-              <span class="page-card-sub">Rehber Dokümanı</span>
-              <span class="page-card-title">6. Nöbet Çizelgesi & Değişim Havuzu</span>
-              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Otomatik nöbet dağıtım motoru, P2P devir havuzu ve 36 saat TTL kısıtı.</p>
-            </a>
-            <a href="07_olay_bildirim_ve_dof.html" class="page-card">
-              <span class="page-card-sub">Rehber Dokümanı</span>
-              <span class="page-card-title">7. Olay Bildirimi & DÖF/CAPA</span>
-              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">3-adımlı radyasyon olayı bildirimi, NDK 2. gün hatırlatıcısı ve DÖF aksiyonları.</p>
-            </a>
-            <a href="08_ortam_dozu_ve_kroki.html" class="page-card">
-              <span class="page-card-sub">Rehber Dokümanı</span>
-              <span class="page-card-title">8. Ortam Dozu & İnteraktif Kroki</span>
-              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Mimari PDF/PNG kat planları, canlı pinler ve SKS 6.1 alan izleme raporları.</p>
-            </a>
-            <a href="09_hizmet_ici_egitim_ve_lms.html" class="page-card">
-              <span class="page-card-sub">Rehber Dokümanı</span>
-              <span class="page-card-title">9. Hizmet İçi Eğitim & Sınav LMS</span>
-              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Kurumsal eğitim kataloğu, online sınav motoru ve sertifika uyum matrisi.</p>
-            </a>
-            <a href="10_tibbi_cihaz_ve_qr_portal.html" class="page-card">
-              <span class="page-card-sub">Rehber Dokümanı</span>
-              <span class="page-card-title">10. Tıbbi Cihaz & QR Arıza Portalı</span>
-              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Cihaz envanteri, NDK lisansı, kat planı pinleri ve telefon kamerasıyla QR arıza bildirimi.</p>
-            </a>
-            <a href="11_rke_ve_kalite_kontrol.html" class="page-card">
-              <span class="page-card-sub">Rehber Dokümanı</span>
-              <span class="page-card-title">11. Koruyucu Ekipman (RKE) & Kalite</span>
-              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">DIN 6857-1 kurşun önlük muayenesi, akıllı kodlama motoru ve KVKK röntgen kasası.</p>
-            </a>
-          </div>
-        </div>
-        <div style="margin: 2rem 0;">
-          <h2 style="font-size: 1.25rem; color: var(--sl-color-accent); margin-bottom: 1rem; border-bottom: 1px solid var(--sl-color-border); padding-bottom: 0.5rem;">III. KURUMSAL YÖNETİM VE RAPORLAMA</h2>
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;">
-            <a href="12_onay_ve_denetim_izi.html" class="page-card">
-              <span class="page-card-sub">Rehber Dokümanı</span>
-              <span class="page-card-title">12. Evrensel Onay & Audit Trail</span>
-              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Yetkisiz değişiklikler için onay kuyruğu, görsel diff kıyaslama ve denetim izi.</p>
-            </a>
-            <a href="13_raporlar_ve_matbu_evrak.html" class="page-card">
-              <span class="page-card-sub">Rehber Dokümanı</span>
-              <span class="page-card-title">13. Rapor Merkezi & Şablon Marka</span>
-              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Word (docxtpl) ve Excel matbu şablonları, kurum logoları ve çok satırlı başlıklar.</p>
-            </a>
-            <a href="14_tanimlamalar_ve_web_portal.html" class="page-card">
-              <span class="page-card-sub">Rehber Dokümanı</span>
-              <span class="page-card-title">14. Tanımlamalar & Web Portalı</span>
-              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Lookup sabit tanımları, React PWA mobil web portalı ve REST API entegrasyonu.</p>
-            </a>
-          </div>
-        </div>
-        <div style="margin: 2rem 0;">
-          <h2 style="font-size: 1.25rem; color: var(--sl-color-accent); margin-bottom: 1rem; border-bottom: 1px solid var(--sl-color-border); padding-bottom: 0.5rem;">IV. SİSTEM YÖNETİMİ VE VERİ İŞLEMLERİ</h2>
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;">
-            <a href="15_sistem_yonetimi_ve_yedekleme.html" class="page-card">
-              <span class="page-card-sub">Rehber Dokümanı</span>
-              <span class="page-card-title">15. Ayarlar, Veritabanı & İçe Aktarma</span>
-              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">PostgreSQL bakım/yedekleme, KVKK AES-256 kasası, tema ayarları ve akıllı Excel içe aktarma.</p>
-            </a>
-          </div>
-        </div>
-        <div style="margin: 2rem 0;">
-          <h2 style="font-size: 1.25rem; color: var(--sl-color-accent); margin-bottom: 1rem; border-bottom: 1px solid var(--sl-color-border); padding-bottom: 0.5rem;">V. DESTEK VE GÜNCELLEME GEÇMİŞİ</h2>
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;">
-            <a href="16_sss_sorun_giderme.html" class="page-card">
-              <span class="page-card-sub">Rehber Dokümanı</span>
-              <span class="page-card-title">16. Sıkça Sorulan Sorular (SSS)</span>
-              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">Tüm modüller için sık karşılaşılan uyarılar, hata mesajları ve adım adım çözüm rehberi.</p>
-            </a>
-            <a href="17_surum_notlari.html" class="page-card">
-              <span class="page-card-sub">Rehber Dokümanı</span>
-              <span class="page-card-title">17. Sürüm Güncelleme Geçmişi</span>
-              <p style="font-size: 0.82rem; color: var(--sl-color-text-faint); margin-top: 0.4rem; line-height: 1.4;">RADPYS V4.1.2.9 ve geçmiş tüm sürüm yenilikleri ve teknik geliştirme notları.</p>
-            </a>
-          </div>
-        </div>
-    </main>
-  </div>
-
-  <!-- RIGHT ON-THIS-PAGE TOC -->
-  <aside class="sl-right-toc">
-    <div class="toc-title">Hızlı Gezinme</div>
-    <ul class="toc-nav" id="rightTocNav"></ul>
-  </aside>
-
-</div>
-
-<!-- SEARCH MODAL (Ctrl + K) -->
-<div class="search-modal-backdrop" id="searchModal">
-  <div class="search-modal">
-    <div class="search-input-wrap">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-      <input type="text" id="modalSearchInput" placeholder="Dokümantasyonda ara (başlık, konu veya anahtar kelime)..." autofocus />
-      <kbd class="search-kbd" style="font-size:0.7rem;">ESC</kbd>
+        <a href="01_kurulum_ve_ilk_giris.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white shadow-md shadow-cyan-600/25 transition">
+          <span>İlk Rehber: 01. Giriş</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
     </div>
-    <div class="search-results" id="searchResults"></div>
-  </div>
-</div>
+  </header>
 
-<script src="assets/docs.js"></script>
+  <!-- MAIN CONTAINER (Fluid & Wide) -->
+  <div class="flex-1 max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 flex gap-8">
+
+    <!-- LEFT SIDEBAR: NAVIGATION -->
+    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar">
+      <div class="mb-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3">Rehber Bölümleri</span>
+      </div>
+
+      <nav class="space-y-1.5 text-sm font-medium">
+        <a href="#bolum-1" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="w-2.5 h-2.5 rounded-full bg-cyan-500 shrink-0"></span>
+          <span>Bölüm 1: Başlangıç & Altyapı</span>
+        </a>
+        <a href="#bolum-2" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="w-2.5 h-2.5 rounded-full bg-blue-500 shrink-0"></span>
+          <span>Bölüm 2: Personel & İzin</span>
+        </a>
+        <a href="#bolum-3" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0"></span>
+          <span>Bölüm 3: Nöbet Dağıtım Motoru (Vitrin)</span>
+        </a>
+        <a href="#bolum-4" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0"></span>
+          <span>Bölüm 4: Dozimetre & Sağlık</span>
+        </a>
+        <a href="#bolum-5" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="w-2.5 h-2.5 rounded-full bg-indigo-500 shrink-0"></span>
+          <span>Bölüm 5: Cihaz & RKE & Onay</span>
+        </a>
+      </nav>
+
+      <div class="mt-8 pt-5 border-t border-slate-200 dark:border-slate-800">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3 block mb-3">Hızlı Metrikler</span>
+        <div class="space-y-2 text-xs px-3 text-slate-500 dark:text-slate-400">
+          <div class="flex justify-between py-1 border-b border-slate-100 dark:border-slate-800/50">
+            <span>Toplam Modül:</span>
+            <strong class="text-slate-800 dark:text-slate-200 font-mono text-sm">21</strong>
+          </div>
+          <div class="flex justify-between py-1 border-b border-slate-100 dark:border-slate-800/50">
+            <span>Mevzuat Standardı:</span>
+            <strong class="text-emerald-600 dark:text-emerald-400 font-semibold">NDK / SKS 6.1</strong>
+          </div>
+          <div class="flex justify-between py-1">
+            <span>Şifreleme:</span>
+            <strong class="text-cyan-600 dark:text-cyan-400 font-mono">AES-256 / Ed25519</strong>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CENTER COLUMN: CORE DOCUMENTATION -->
+    <main class="flex-1 min-w-0 py-8">
+      
+      <!-- HERO BANNER (Wide & Prominent) -->
+      <section class="mb-10 p-8 sm:p-10 lg:p-12 rounded-3xl bg-gradient-to-br from-cyan-950/70 via-slate-900/90 to-slate-950 border border-cyan-800/40 shadow-2xl relative overflow-hidden">
+        <div class="absolute -right-16 -bottom-16 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative z-10 max-w-4xl">
+          <div class="flex flex-wrap items-center gap-2.5 mb-4">
+            <span class="px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+              RADPYS V4 Kurumsal Dokümantasyon
+            </span>
+            <span class="px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              Mevzuat Uyumlu
+            </span>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4 leading-tight">
+            Radyoloji & Radyasyon Yönetim Sistemi
+          </h1>
+          <p class="text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed mb-8 max-w-3xl">
+            Radyoloji kliniklerinin nöbet dağıtımından dozimetre risk takibine, DIN 6857-1 kurşun önlük muayenelerinden tıbbi cihaz kalibrasyonlarına kadar tüm iş akışlarını kapsayan 21 modüllük resmi kullanım ve karar destek kılavuzu.
+          </p>
+
+          <!-- Search Input Mobile / Hero -->
+          <div class="relative max-w-2xl">
+            <input 
+              type="text" 
+              id="heroFilterInput"
+              placeholder="Aramak istediğiniz modülü yazın... (Örn: 01, Nöbet, Dozimetre, Arıza, RKE, Sudo)" 
+              class="w-full pl-12 pr-4 py-3.5 text-sm bg-slate-900/90 border border-cyan-700/60 rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white placeholder-slate-400 shadow-inner"
+            >
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-cyan-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 21 MODÜL KARTLARI (5 BÖLÜM HALİNDE) -->
+      <div id="moduleCardsContainer" class="space-y-12">
+
+        <!-- ==================== BÖLÜM 1 ==================== -->
+        <section id="bolum-1" class="module-section">
+          <div class="flex items-center justify-between pb-3 mb-5 border-b border-slate-200 dark:border-slate-800">
+            <div>
+              <span class="text-xs font-bold tracking-wider uppercase text-cyan-600 dark:text-cyan-400">Bölüm 1</span>
+              <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">Başlangıç, Güvenlik ve Sistem Altyapısı (Onboarding)</h2>
+            </div>
+            <span class="text-xs sm:text-sm px-3 py-1 rounded-full font-mono font-medium bg-slate-100 dark:bg-slate-800 text-slate-500">4 Modül</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            <!-- 01_kurulum_ve_ilk_giris (YAYINDA) -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-cyan-500/70 shadow-md hover:shadow-xl transition-all flex flex-col justify-between" data-search="01 kurulum ilk giris login sifre degistirme lisans aktivasyon ctrl+k komut paleti bildirim merkezi">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">01</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  01. Kurulum, Başlatma ve İlk Giriş
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                  Tekil uygulama kilidi, veritabanı motoru kontrolleri, ilk girişte zorunlu şifre değişimi, Evrensel Arama Komut Paleti (Ctrl+K), bildirim merkezi ve Ed25519 lisans aktivasyonu.
+                </p>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">Masaüstü & Web Portal</span>
+                <a href="01_kurulum_ve_ilk_giris.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 02_kullanici_ve_rol_yonetimi (YAYINDA) -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-cyan-500/70 shadow-md hover:shadow-xl transition-all flex flex-col justify-between" data-search="02 kullanici rol yonetimi rbac yetkilendirme sudo mode rol karsilastirma kilitli hesap kapsam miras">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">02</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  02. Kullanıcı ve Rol Yönetimi
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                  Rol Tabanlı Erişim Kontrolü (RBAC), modül yetkilendirme matrisi, 4 kademeli kapsam (Miras, Kendisi, Departman, Tümü), rol karşılaştırma ve kilitli hesapları açma.
+                </p>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">RBAC & Kapsam</span>
+                <a href="02_kullanici_ve_rol_yonetimi.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 03_sistem_ayarlari_ve_tanimlamalar (YAYINDA) -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-cyan-500/70 shadow-md hover:shadow-xl transition-all flex flex-col justify-between" data-search="03 sistem ayarlari tanimlamalar lookup departman unvan tatil takvimi sablon">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">03</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  03. Sistem Ayarları ve Tanımlamalar
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                  Kurum antet ve çift logo ayarları, standart Word/Excel şablon yönetimi, resmi/dini tatil takvimi tanımları, departman ve unvan kodlama hiyerarşisi.
+                </p>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">Kurumsal Parametreler</span>
+                <a href="03_sistem_ayarlari_ve_tanimlamalar.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 04_veritabani_bakim_ve_guvenlik (YAYINDA) -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-cyan-500/70 shadow-md hover:shadow-xl transition-all flex flex-col justify-between" data-search="04 veritabani bakim guvenlik yedekleme geri yukleme vacuum reindex key manager audit log crash">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">04</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  04. Veritabanı Bakım ve Güvenlik
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                  Veritabanı ve KVKK dosya kasası yedekleme/geri yükleme, VACUUM/REINDEX araçları, 256-bit AES Anahtar Kasası, denetim izi filtreleri ve otomatik çökme log paketi.
+                </p>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">PostgreSQL & AES-256</span>
+                <a href="04_veritabani_bakim_ve_guvenlik.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==================== BÖLÜM 2 ==================== -->
+        <section id="bolum-2" class="module-section">
+          <div class="flex items-center justify-between pb-3 mb-5 border-b border-slate-200 dark:border-slate-800">
+            <div>
+              <span class="text-xs font-bold tracking-wider uppercase text-blue-600 dark:text-blue-400">Bölüm 2</span>
+              <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">Personel ve İzin Altyapısı</h2>
+            </div>
+            <span class="text-xs sm:text-sm px-3 py-1 rounded-full font-mono font-medium bg-slate-100 dark:bg-slate-800 text-slate-500">2 Modül</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            <!-- 05_personel_yonetimi_ve_toplu_aktarim (YAYINDA) -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-cyan-500/70 shadow-md hover:shadow-xl transition-all flex flex-col justify-between" data-search="05 personel yonetimi toplu aktarim excel import ozluk karti isten ayrilis 30 yil kvkk arsiv">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">05</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  05. Personel Yönetimi ve Toplu Aktarım
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                  Personel özlük kartı yönetimi, Excel'den 5 adımlı toplu içe aktarım (alan eşleme, Dry-Run doğrulama, otomatik şifre dökümü), işten ayrılış ve 30 yıllık KVKK özlük arşivi.
+                </p>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">Özlük & Excel Aktarım</span>
+                <a href="05_personel_yonetimi_ve_toplu_aktarim.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 06_izin_yonetimi_ve_hakedis (YAYINDA) -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-cyan-500/70 shadow-md hover:shadow-xl transition-all flex flex-col justify-between" data-search="06 izin yonetimi hakedis sua yillik mazeret saglik onay kademesi zamanaşımı devir nobet cakismasi ebys">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">06</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  06. İzin Yönetimi ve Hakediş
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                  Nükleer Şua izni hakedişi (50 saat = 1 gün kuralı), nöbet ve çakışma kilitleri, amir onayı ile bakiye düşümü, geçmiş yıl devir motoru ve EBYS/HBYS resmi evrak entegrasyonu.
+                </p>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">Şua & İzin Takibi</span>
+                <a href="06_izin_yonetimi_ve_hakedis.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==================== BÖLÜM 3 ==================== -->
+        <section id="bolum-3" class="module-section">
+          <div class="flex items-center justify-between pb-3 mb-5 border-b border-slate-200 dark:border-slate-800">
+            <div>
+              <span class="text-xs font-bold tracking-wider uppercase text-amber-600 dark:text-amber-400">Bölüm 3 (Vitrin)</span>
+              <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">Nöbet Optimizasyonu, Nöbet Dağıtım Motoru</h2>
+            </div>
+            <span class="text-xs sm:text-sm px-3 py-1 rounded-full font-mono font-medium bg-slate-100 dark:bg-slate-800 text-slate-500">5 Modül</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            <!-- 07_nobet_ayarlari_ve_kisit_hiyerarsisi (YAYINDA) -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-cyan-500/70 shadow-md hover:shadow-xl transition-all flex flex-col justify-between" data-search="07 nobet ayarlari kisit hiyerarsisi piramidi 24 saat kurali dinlenme suresi ardisik nobet adalet puani fazla mesai muafiyet">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">07</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  07. Nöbet Ayarları & Kısıt Hiyerarşisi
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  4 kademeli kural piramidi, 24 saat kuralı, asgari blok dinlenme, departman vardiya slotları, esnek fazla mesai tavanı ve 50 yaş muafiyeti.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">07.1 Temel</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">07.2 Slotlar</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">07.3 Adalet</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">07.4 Sağlık</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">07.5 Talepler</span>
+                </div>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">Nöbet Dağıtım Kural Motoru</span>
+                <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç (Hub + 5 Alt Sayfa)</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 08_nobet_hazirlik_ve_solver_motoru (YAYINDA) -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-cyan-500/70 shadow-md hover:shadow-xl transition-all flex flex-col justify-between" data-search="08 nobet hazirlik solver motoru cizelge simulatör onizleme manuel mudahale kismi plan iptal snapshot yedek 3 gun kurali">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">08</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  08. Nöbet Hazırlık & Dağıtım Motoru
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  Aylık fiili çalışma parametreleri (35s/40s), arka plan iş parçacıklı solver optimizasyonu, interaktif çizelge matrisi, kural ihlal logu ve 3 gün limitli kısmi iptal.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Solver Motoru</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Çizelge Matrisi</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">JSON Snapshot</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">3 Gün Kuralı</span>
+                </div>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">Otomatik Çizelgeleme</span>
+                <a href="08_nobet_hazirlik_ve_solver_motoru.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 09_nobet_devir_ikame_ve_acil_mazeret -->
+            <!-- 09_nobet_devir_ikame_ve_acil_mazeret (YAYINDA) -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-cyan-500/70 shadow-md hover:shadow-xl transition-all flex flex-col justify-between" data-search="09 nobet devir ikame acil mazeret mobil havuz amir onayi gebelik yonetici aksiyon merkezi 36 saat ttl geri al">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">09</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  09. Nöbet Devir, İkame & Acil Mazeret
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  Personeller arası P2P nöbet devri (Mobil Web + Masaüstü amir onayı), acil mazeret ikame önerici, gebelik bildirimi ve Yönetici Aksiyon Sihirbazı.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">P2P Devir</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Akıllı İkame</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">36s Havuz TTL</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Gebelik Sihirbazı</span>
+                </div>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">Hibrit Devir & İkame</span>
+                <a href="09_nobet_devir_ikame_ve_acil_mazeret.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 10_nobet_borc_alacak_ve_fazla_mesai (YAYINDA) -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-cyan-500/70 shadow-md hover:shadow-xl transition-all flex flex-col justify-between" data-search="10 nobet borc alacak fazla mesai gerceklesen saatler devir bakiye onayli kilitli donem yasal tavan kurumsal kota sudoconfirm cetvel mutemetlik">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">10</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  10. Nöbet Borç/Alacak & Fazla Mesai
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  Yasal hedef çalışma saatleri, 60s tükenmişlik önleme kotası, 130s mutlak tavan, çift havuzlu hibrit denklik, sudo kilit ve resmi 5 sütunlu bildirim cetveli.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">130s Yasal Tavan</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">60s Sağlık Kotası</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Sudo Kilit</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Bordro İcmali</span>
+                </div>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">Puantaj & Bakiye</span>
+                <a href="10_nobet_borc_alacak_ve_fazla_mesai.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 11_fiili_hizmet_ve_sua_hesaplama (YAYINDA) -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-cyan-500/70 shadow-md hover:shadow-xl transition-all flex flex-col justify-between" data-search="11 fiili hizmet sua hesaplama fhz sgk yipranma payi radyasyonlu alan calisma gunu onaysiz izin 50 saat 30 gun tavani donem kilit yillik kilit kosul a b">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">11</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  11. Fiili Hizmet ve Şua Hesaplama (FHZ)
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  SGK 5510 yıpranma payı, 50 saate 1 gün Şua baremi (30 gün tavanı), Koşul A/B ayrımı, onaysız izin kontrolü ve kademeli dönem/yıllık kilit sistemi.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">50s = 1 Gün</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">30 Gün Tavanı</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">15-14 Döngüsü</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Yıllık Kilit</span>
+                </div>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">SGK & Yıpranma</span>
+                <a href="11_fiili_hizmet_ve_sua_hesaplama.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==================== BÖLÜM 4 ==================== -->
+        <section id="bolum-4" class="module-section">
+          <div class="flex items-center justify-between pb-3 mb-5 border-b border-slate-200 dark:border-slate-800">
+            <div>
+              <span class="text-xs font-bold tracking-wider uppercase text-emerald-600 dark:text-emerald-400">Bölüm 4</span>
+              <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">Radyasyon Güvenliği, Dozimetre ve Sağlık Gözetimi</h2>
+            </div>
+            <span class="text-xs sm:text-sm px-3 py-1 rounded-full font-mono font-medium bg-slate-100 dark:bg-slate-800 text-slate-500">6 Modül</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            <!-- 12_dozimetre_takibi_ve_rdf43_arastirma -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="12 dozimetre takibi rdf43 arastirma tenmak radat hp10 hp007 kumulatif limit 10 gun dof">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">12</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  12. Dozimetre Takibi & RD.F43 Araştırma
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  TENMAK/RADAT içe aktarma, $Hp(10)$/$Hp(0.07)$ trendleri, NDK kümülatif doz limitleri, aşımda 10 günlük RD.F43 resmi formu ve DÖF başlatma.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">2.0 mSv Eşiği</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">20 mSv Yıllık Limit</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">10 İş Günü Formu</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">RKS Doz Hesabı</span>
+                </div>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">NDK 20 mSv Takibi</span>
+                <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 13_saglik_muayeneleri_ve_periyodik_takip -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="13 saglik muayeneleri periyodik takip ise giris dahiliye dermatoloji goz kisitlama">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">13</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  13. Sağlık Muayeneleri & Periyodik Takip
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  İşe giriş ve periyodik kontroller, Dahiliye/Dermatoloji/Göz uzmanlık imza protokolleri, hekim tavsiyeleri ve ileri tetkik sevk süreci.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">12 Ay Periyot</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">6 Ay Şua</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">3 Uzmanlık Branşı</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">30 Gün Alarmı</span>
+                </div>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">Periyodik Muayene</span>
+                <a href="13_saglik_muayeneleri_ve_periyodik_takip.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 14_ortam_dozu_ve_kroki_haritasi -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="14 ortam dozu kroki haritasi mimari kat plani denetimli gozetimli alan olcum pinleme qr pasaport sks excel dof">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">14</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  14. Ortam Dozu & Kroki Haritası
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  Mimari kat planı üzerinde denetimli/gözetimli alan sınırları, dinamik pinleme, kalibrasyon emniyetli doz ölçümü, oda kapı QR pasaportu ve SKS 6.1 raporu.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">İnteraktif Kroki</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">NDK Alan Sınıfları</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Kapı QR Pasaportu</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">SKS 6.1 Excel</span>
+                </div>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">İnteraktif Kat Planı</span>
+                <a href="14_ortam_dozu_ve_kroki_haritasi.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 15_olay_bildirimi_ve_dof_capa -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="15 olay bildirimi dof capa sks 61 istenmeyen olay 72 saat kok neden analizi kapatma kilidi resmi tutanak">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">15</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  15. Olay Bildirimi & DÖF (CAPA)
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  SKS 6.1 uyumlu 3 adımlı bildirim sihirbazı, 72 saatlik NDK yasal süreci, kök neden analizi, DÖF atama ve açık DÖF kapatma kilidi.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">SKS 6.1 İOBS</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">72s / 24s NDK</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Açık DÖF Kilidi</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Resmi Tutanak</span>
+                </div>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">SKS 6.1 & CAPA</span>
+                <a href="15_olay_bildirimi_ve_dof_capa.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 16_rgs_rso_gorevlendirme_ve_sertifika -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="16 rgs rso gorevlendirme sertifika ndk radyasyondan korunma sorumlusu vize takibi evrak kasasi erken uyari aes-256">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">16</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  16. RGS/RSO Görevlendirme & Sertifika
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  NDK mevzuatına göre RGS ve RSO atamaları, görev süreleri, 5 kademeli dinamik vize geçerlilik motoru, 60/30 gün erken uyarısı ve AES-256 evrak kasası.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">NDK Vize Takibi</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">5 Kademeli Durum</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">60/30 Gün Uyarı</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">AES-256 Kasası</span>
+                </div>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">RGS / RSO Yönetimi</span>
+                <a href="16_rgs_rso_gorevlendirme_ve_sertifika.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 17_hizmet_ici_egitim_ve_online_sinav -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="17 hizmet ici egitim online sinav soru bankasi baraj puani video sunum kurumsal uyum matrisi sks 6.1 ndk">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">17</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  17. Hizmet İçi Eğitim & Online Sınav
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  SKS 6.1 zorunlu yıllık radyasyon güvenliği eğitim kataloğu, video/doküman içerikleri, soru bankası, %70 barajlı online sınav, 15 gün erken uyarısı ve Uyum Matrisi.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">SKS 6.1 Uyum</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">%70 Baraj Sınavı</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">15 Gün Uyarı</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Uyum Matrisi</span>
+                </div>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">LMS & Online Sınav</span>
+                <a href="17_hizmet_ici_egitim_ve_online_sinav.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ==================== BÖLÜM 5 ==================== -->
+        <section id="bolum-5" class="module-section">
+          <div class="flex items-center justify-between pb-3 mb-5 border-b border-slate-200 dark:border-slate-800">
+            <div>
+              <span class="text-xs font-bold tracking-wider uppercase text-indigo-600 dark:text-indigo-400">Bölüm 5</span>
+              <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">Donanım, Cihaz Kalite Kontrol ve Rapor Merkezi</h2>
+            </div>
+            <span class="text-xs sm:text-sm px-3 py-1 rounded-full font-mono font-medium bg-slate-100 dark:bg-slate-800 text-slate-500">4 Modül</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            <!-- 18_tibbi_cihaz_ve_ndk_lisans_envanteri -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="18 tibbi cihaz ndk lisans envanteri xray bt mr skopi vize suresi kroki baglama hek hurda">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">18</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  18. Tıbbi Cihaz ve NDK Lisans Envanteri
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  X-Ray, BT, MR, Skopi cihaz künyeleri, NDK lisans ve vize takip süreleri (6 ay - 45G - 30G alarmları), mimari plana pin sabitleme, AES-256 evrak kasası ve HEK hurda arşivi.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">NDK Lisans Takip</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Kademeli Vize Alarmı</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Kroki Pin Sabitleme</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">HEK Hurda Arşivi</span>
+                </div>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">NDK Cihaz Künyesi</span>
+                <a href="18_tibbi_cihaz_ve_ndk_lisans_envanteri.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 19_cihaz_ariza_bakim_ve_kalite_kontrol_qc -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="19 cihaz ariza bakim kalite kontrol qc qr mobil ariza x-isini tup degisimi periyodik kalibrasyon">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">19</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  19. Cihaz Arıza, Bakım ve Kalite Kontrol (QC)
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  Saha teknikeri mobil QR arıza bildirimi, teknik müdahale kapatma, X-ışını tüp değişimi ve 30 günlük periyodik kalite kontrol (QC) protokolü.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Arıza Takip</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Tüp Değişimi</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">≤30G QC Alarmı</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Evrak Kasası</span>
+                </div>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">QC Kalite & QR Arıza</span>
+                <a href="19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 20_rke_koruyucu_ekipman_ve_din6857 -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="20 rke koruyucu ekipman din6857 kursun onluk tiroid gozluk anatomi haritasi skopi hasar alani zimmet transfer sks 6.1 qr pasaport">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">20</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  20. Koruyucu Ekipman (RKE) & DIN 6857
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  Kurşun koruyucu donanım künyeleri, DIN 6857-1 interaktif skopi anatomi krokisi, otomatik hasar alanı ve karar motoru, QR pasaport etiketi ve SKS 6.1 çizelgesi.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">DIN 6857-1 / IEC 61331</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">İnteraktif Kroki</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">0 / 5 / 15 mm² Eşik</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">SKS 6.1 Excel</span>
+                </div>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">DIN 6857 & SKS 6.1</span>
+                <a href="20_rke_koruyucu_ekipman_ve_din6857.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 21_merkezi_onaylar_ve_rapor_merkezi -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="21 merkezi onaylar rapor merkezi capraz onay diff dialog eski yeni karsilastirma kurumsal antetli rapor docxtpl sablon">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">21</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında & Güncel
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  21. Merkezi Onaylar ve Rapor Merkezi
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  Çapraz modül yönetici onay merkezi (İzin, Nöbet Devir, Nöbet İstek, Çizelge Yayınlama), eski-yeni 4-göz diff karşılaştırması ve antetli resmi raporlar (Word/PDF/Excel).
+                </p>
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">4-Göz Diff</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">5 Onay Sekmesi</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">docxtpl Şablonu</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">17 Resmi Rapor</span>
+                </div>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">Onay & Rapor Merkezi</span>
+                <a href="21_merkezi_onaylar_ve_rapor_merkezi.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ARAMA SONUCU BULUNAMADI UYARISI -->
+      <div id="noResultsMsg" class="hidden p-10 rounded-2xl text-center border border-dashed border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900 my-8">
+        <svg class="w-10 h-10 text-slate-400 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span class="text-base font-semibold text-slate-700 dark:text-slate-300 block mb-1">Eşleşen modül bulunamadı</span>
+        <span class="text-sm text-slate-400">Lütfen farklı bir anahtar kelime veya modül numarası deneyiniz.</span>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
+    <div class="max-w-[1720px] mx-auto px-6 space-y-2">
+      <p class="font-semibold text-slate-700 dark:text-slate-300">RADPYS V4.2 — Radyoloji Bilgi & Radyasyon Güvenliği Yönetim Sistemi</p>
+      <p>Sağlık Bakanlığı SKS 6.1, NDK Mevzuatı, DIN 6857-1 ve KVKK Standartları ile Uyumlu Olarak Korunmaktadır.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Theme Toggle Logic
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const htmlEl = document.documentElement;
+
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      htmlEl.classList.add('dark');
+    } else {
+      htmlEl.classList.remove('dark');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      if (htmlEl.classList.contains('dark')) {
+        htmlEl.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        htmlEl.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebarNav = document.getElementById('sidebarNav');
+    if (mobileMenuBtn && sidebarNav) {
+      mobileMenuBtn.addEventListener('click', () => {
+        sidebarNav.classList.toggle('-translate-x-full');
+      });
+    }
+
+    // Live Filtering Search Logic
+    const moduleCards = document.querySelectorAll('.module-card');
+    const sections = document.querySelectorAll('.module-section');
+    const noResultsMsg = document.getElementById('noResultsMsg');
+    const filterInput = document.getElementById('moduleFilterInput');
+    const heroFilterInput = document.getElementById('heroFilterInput');
+
+    function applyFilter(query) {
+      const q = query.trim().toLowerCase();
+      let totalVisible = 0;
+
+      sections.forEach(section => {
+        const cards = section.querySelectorAll('.module-card');
+        let sectionVisibleCount = 0;
+
+        cards.forEach(card => {
+          const searchData = (card.getAttribute('data-search') || '') + ' ' + card.innerText.toLowerCase();
+          if (!q || searchData.includes(q)) {
+            card.classList.remove('hidden');
+            sectionVisibleCount++;
+            totalVisible++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        if (sectionVisibleCount === 0) {
+          section.classList.add('hidden');
+        } else {
+          section.classList.remove('hidden');
+        }
+      });
+
+      if (totalVisible === 0) {
+        noResultsMsg.classList.remove('hidden');
+      } else {
+        noResultsMsg.classList.add('hidden');
+      }
+    }
+
+    if (filterInput) {
+      filterInput.addEventListener('input', (e) => {
+        if (heroFilterInput) heroFilterInput.value = e.target.value;
+        applyFilter(e.target.value);
+      });
+    }
+
+    if (heroFilterInput) {
+      heroFilterInput.addEventListener('input', (e) => {
+        if (filterInput) filterInput.value = e.target.value;
+        applyFilter(e.target.value);
+      });
+    }
+
+    // Ctrl+K Shortcut Focus
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        if (filterInput) {
+          filterInput.focus();
+          filterInput.select();
+        }
+      }
+    });
+  </script>
 </body>
 </html>

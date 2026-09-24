@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>06. İzin Yönetimi ve Hakediş — RADPYS v4 Kullanım Kılavuzu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfeff',
+              100: '#cffafe',
+              200: '#a5f3fc',
+              500: '#06b6d4',
+              600: '#0891b2',
+              700: '#0e7490',
+              900: '#164e63',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    pre, code { font-family: 'JetBrains Mono', monospace; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 9999px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.6); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- TOP HEADER NAVBAR (Wide Fluid Layout) -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Version -->
+      <div class="flex items-center gap-3">
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Menüyü Aç/Kapat">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.2</span>
+            </span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Karar Destek Portalı</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick Search Bar (Ctrl+K) -->
+      <div class="flex-1 max-w-xl hidden md:block">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input 
+            type="text" 
+            placeholder="Dokümanda ara... (Örn: Şua izni hakedişi, 50 saat kuralı, devir aktarma, nöbet çakışması, EBYS evrak no...)" 
+            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition"
+          >
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <kbd class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600 font-semibold">Ctrl+K</kbd>
+          </div>
+        </div>
+      </div>
+
+      <!-- Theme & Action Buttons -->
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" class="p-2.5 rounded-xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Tema Değiştir">
+          <svg id="themeIconSun" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="themeIconMoon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+
+        <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span>Tüm Modüller</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER (Fluid & Wide Layout) -->
+  <div class="flex-1 max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 flex gap-8">
+
+    <!-- LEFT SIDEBAR: NAVIGATION -->
+    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar">
+      <div class="mb-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3">21 Modül Rehberi</span>
+      </div>
+      <nav class="space-y-1 text-sm font-medium">
+        <a href="01_kurulum_ve_ilk_giris.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">01</span>
+          <span>Kurulum & İlk Giriş</span>
+        </a>
+        <a href="02_kullanici_ve_rol_yonetimi.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">02</span>
+          <span>Kullanıcı & Rol Yönetimi</span>
+        </a>
+        <a href="03_sistem_ayarlari_ve_tanimlamalar.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">03</span>
+          <span>Sistem Ayarları & Tanımlar</span>
+        </a>
+        <a href="04_veritabani_bakim_ve_guvenlik.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">04</span>
+          <span>Veritabanı, Bakım & Güvenlik</span>
+        </a>
+        <a href="05_personel_yonetimi_ve_toplu_aktarim.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">05</span>
+          <span>Personel & Toplu Aktarım</span>
+        </a>
+        <a href="06_izin_yonetimi_ve_hakedis.html" class="flex items-center gap-3 px-3 py-2 rounded-xl bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300 font-bold border border-cyan-200/80 dark:border-cyan-800/60 transition">
+          <span class="w-6 text-center font-mono text-xs">06</span>
+          <span>İzin Yönetimi & Hakediş</span>
+        </a>
+        <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">07</span>
+          <span>Nöbet Ayarları & Kısıtlar</span>
+        </a>
+        <a href="08_nobet_hazirlik_ve_solver_motoru.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">08</span>
+          <span>Nöbet Hazırlık & Dağıtım Motoru</span>
+        </a>
+        <a href="09_nobet_devir_ikame_ve_acil_mazeret.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">09</span>
+          <span>Nöbet Devir & Mazeret</span>
+        </a>
+        <a href="10_nobet_borc_alacak_ve_fazla_mesai.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">10</span>
+          <span>Nöbet Borç / Alacak & Fazla Mesai</span>
+        </a>
+        <a href="11_fiili_hizmet_ve_sua_hesaplama.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">11</span>
+          <span>Fiili Hizmet & Şua (FHZ)</span>
+        </a>
+        <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">12</span>
+          <span>Dozimetre Takibi & RDF-43</span>
+        </a>
+        <a href="13_saglik_muayeneleri_ve_periyodik_takip.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">13</span>
+          <span>Sağlık Muayeneleri & Takip</span>
+        </a>
+        <a href="14_ortam_dozu_ve_kroki_haritasi.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">14</span>
+          <span>Ortam Dozu & Kroki Haritası</span>
+        </a>
+        <a href="15_olay_bildirimi_ve_dof_capa.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">15</span>
+          <span>Olay Bildirimi & DÖF / CAPA</span>
+        </a>
+        <a href="16_rgs_rso_gorevlendirme_ve_sertifika.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">16</span>
+          <span>RGS / RSO Görevlendirme</span>
+        </a>
+        <a href="17_hizmet_ici_egitim_ve_online_sinav.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">17</span>
+          <span>Hizmet İçi Eğitim & Sınav</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- CENTER CONTENT AREA -->
+    <main class="flex-1 py-8 max-w-5xl space-y-12">
+
+      <!-- HERO & METADATA BLOCK -->
+      <section id="overview" class="space-y-4">
+        <div class="flex flex-wrap items-center gap-2.5">
+          <span class="px-2.5 py-1 rounded-lg text-xs font-bold font-mono uppercase bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/80">
+            Modül 06
+          </span>
+          <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+            ✓ Nükleer Şua Hakediş (RED-IZN-01)
+          </span>
+          <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
+            ✓ Nöbet Çakışma Kilidi (RED-IZN-02)
+          </span>
+          <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-purple-100 text-purple-800 dark:bg-purple-900/50 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
+            ✓ EBYS/HBYS Entegrasyonu
+          </span>
+          <span class="text-xs text-slate-400 dark:text-slate-500 font-mono ml-auto">
+            Tahmini Okuma: 6 Dakika | Sürüm: RADPYS v4.2
+          </span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+          İzin Yönetimi, Şua Hakedişi & İzin Devir Motoru
+        </h1>
+        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+          Radyasyonla çalışan sağlık personelinin yasal Şua İzni (sağlık izni), yıllık izin, mazeret ve hastalık izinlerinin talebi, nöbet ve çakışma kontrolleri, yetkili onayı, bakiye düşümü, geçmiş yıl devir aktarımı ve EBYS/HBYS evrak entegrasyonu rehberi.
+        </p>
+      </section>
+
+      <!-- HIZLI REÇETE KUTUSU & 4 METRİK HAPI (ZORUNLU - VİZYONDER UX STANDARD) -->
+      <section id="quick-recipe" class="p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-cyan-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-900/90 dark:to-cyan-950/40 border-2 border-cyan-500/30 dark:border-cyan-500/20 shadow-xl shadow-cyan-500/5 space-y-6">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-cyan-600 text-white flex items-center justify-center font-bold text-lg shadow-md shadow-cyan-600/30">
+            ⚡
+          </div>
+          <div>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white">
+              Hızlı Reçete: Radyasyon İzinleri ve Yasal Hakediş Süreci
+            </h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400">
+              Şua izni hak etme, nöbet kontrolü, yönetici onayı ile bakiye düşümü ve EBYS evrak kaydı
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+          <div class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
+            <span class="font-bold text-slate-400 uppercase text-[10px] tracking-wider block">1. İstenen Sonuç</span>
+            <p class="font-semibold text-slate-800 dark:text-slate-100">
+              Personelin hak ettiği izinleri mevzuata uygun kullandırmak, nöbet aksamalarını önlemek ve bakiye kayıplarını sıfırlamak.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
+            <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase text-[10px] tracking-wider block">2. Yapılacak İşlem</span>
+            <p class="font-semibold text-slate-800 dark:text-slate-100">
+              <strong>[İzin Talep Et]</strong> sihirbazından personeli ve tarihleri seçin, yönetici ekranından onaylayın veya web portalından <strong>[EBYS Kaydet]</strong> ile resmiyete dökün.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
+            <span class="font-bold text-emerald-600 dark:text-emerald-400 uppercase text-[10px] tracking-wider block">3. Sistem Etkisi</span>
+            <p class="font-semibold text-slate-800 dark:text-slate-100">
+              Nöbet çakışmaları engellenir, onay anında bakiye düşülür, iptal halinde bakiye iade edilir; şua izni 31 Aralık'ta devretmeksizin yanar.
+            </p>
+          </div>
+        </div>
+
+        <!-- 4 Metrik Hapı (Pills) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-cyan-100 dark:border-cyan-900/40">
+          <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50">
+            <span class="text-base">☢️</span>
+            <div class="flex flex-col">
+              <span class="text-[10px] uppercase font-bold text-slate-400">Yasal Şua Tavanı</span>
+              <span class="text-xs font-bold text-slate-800 dark:text-slate-100">30 Gün / Yıl</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50">
+            <span class="text-base">⏱️</span>
+            <div class="flex flex-col">
+              <span class="text-[10px] uppercase font-bold text-slate-400">Hak Katsayısı</span>
+              <span class="text-xs font-bold text-slate-800 dark:text-slate-100">50 Saat = 1 Gün</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50">
+            <span class="text-base">📅</span>
+            <div class="flex flex-col">
+              <span class="text-[10px] uppercase font-bold text-slate-400">Devir Tavanı</span>
+              <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Max 5 Gün (Yıllık)</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50">
+            <span class="text-base">🌐</span>
+            <div class="flex flex-col">
+              <span class="text-[10px] uppercase font-bold text-slate-400">Platform</span>
+              <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Masaüstü & Web</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5N1K KURAL VE AYAR ÇÖZÜMLEME TABLOSU (ZORUNLU) -->
+      <section id="5w1h" class="space-y-4">
+        <div class="space-y-1">
+          <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+            <span>🔍 5N1K Kural ve Arayüz Çözümleme Tablosu</span>
+          </h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400">
+            İzin modülünde yer alan kontrollerin yasal dayanakları, çalışma mekanizmaları ve kullanıcı rolleri.
+          </p>
+        </div>
+
+        <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+          <table class="w-full text-left text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+            <thead class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 uppercase text-[11px] font-bold tracking-wider border-b border-slate-200 dark:border-slate-800">
+              <tr>
+                <th class="py-3.5 px-4">NE? (Bileşen / Kontrol)</th>
+                <th class="py-3.5 px-4">NEDEN? (Amacı)</th>
+                <th class="py-3.5 px-4">NASIL? (Çalışma Mantığı)</th>
+                <th class="py-3.5 px-4">NE ZAMAN?</th>
+                <th class="py-3.5 px-4">KİM?</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 dark:divide-slate-800 font-normal">
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="py-3.5 px-4 font-mono text-cyan-700 dark:text-cyan-400">
+                  <strong>İzin Tablosu & Arama (searchInput)</strong><br>
+                  <span class="text-[11px] text-slate-400">Üst Filtre Çubuğu</span>
+                </td>
+                <td class="py-3.5 px-4">Departmandaki tüm izin hareketlerini ve onay durumlarını listelemek.</td>
+                <td class="py-3.5 px-4">300 ms gecikmeli debounced arama ile ad, soyad, TC ve EBYS no taranır; durum ve izin türü filtrelenir.</td>
+                <td class="py-3.5 px-4">Rutin takip ve denetimlerde.</td>
+                <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Yönetici, Süpervizör, İK</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="py-3.5 px-4 font-mono text-cyan-700 dark:text-cyan-400">
+                  <strong>Yeni İzin Talebi (+ İzin Talep Et)</strong><br>
+                  <span class="text-[11px] text-slate-400">addButton (2 Adımlı Wizard)</span>
+                </td>
+                <td class="py-3.5 px-4">Personel adına mevzuata uygun izin kaydı açmak.</td>
+                <td class="py-3.5 px-4">Adım 1'de personel seçilir ve anlık bakiye kartı açılır. Adım 2'de tarihler, tür, vekil ve açıklama girilir.</td>
+                <td class="py-3.5 px-4">İzin talebi oluştuğunda.</td>
+                <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Personel, Birim Amiri</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="py-3.5 px-4 font-mono text-cyan-700 dark:text-cyan-400">
+                  <strong>Şua İzni Hakedişi (RED-IZN-01)</strong><br>
+                  <span class="text-[11px] text-slate-400">izin_kural_motoru.py</span>
+                </td>
+                <td class="py-3.5 px-4">Radyasyon çalışanlarının kanuni sağlık iznini hesaplamak.</td>
+                <td class="py-3.5 px-4">Fiili çalışma süresine göre her 50 saatte 1 gün hesaplanır (tavan 30 gün). Cari yıl kazanımı takip eden yıl kullanılır; devretmez, 31 Aralık'ta yanar.</td>
+                <td class="py-3.5 px-4">Yıllık izin planlamasında.</td>
+                <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Radyasyon Çalışanları</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="py-3.5 px-4 font-mono text-cyan-700 dark:text-cyan-400">
+                  <strong>Çakışma & Nöbet Kilidi (RED-IZN-02)</strong><br>
+                  <span class="text-[11px] text-slate-400">check_overlap / nobet_service</span>
+                </td>
+                <td class="py-3.5 px-4">Personelin nöbet gününde izne çıkmasını veya mükerrer izin almasını engellemek.</td>
+                <td class="py-3.5 px-4">Talep edilen tarihler personelin onaylı/bekleyen izniyle veya nöbet çizelgesindeki aktif göreviyle kesişiyorsa işlem durdurulur.</td>
+                <td class="py-3.5 px-4">İzin kaydetme anında.</td>
+                <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Sistem (Otomatik Kilit)</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="py-3.5 px-4 font-mono text-cyan-700 dark:text-cyan-400">
+                  <strong>İzin Onayla (approveButton)</strong><br>
+                  <span class="text-[11px] text-slate-400">Üst Araç Çubuğu (Yeşil)</span>
+                </td>
+                <td class="py-3.5 px-4">Bekleyen talebi onaylayıp bakiyeyi güncellemek.</td>
+                <td class="py-3.5 px-4">İzin durumu 'Onaylandı' yapılır; personelin ilgili yıl için tanımlı kalan izninden gün sayısı anında düşülür.</td>
+                <td class="py-3.5 px-4">Amir incelemesinden sonra.</td>
+                <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Yönetici, Departman Sorumlusu</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="py-3.5 px-4 font-mono text-cyan-700 dark:text-cyan-400">
+                  <strong>İzin Reddet (rejectButton)</strong><br>
+                  <span class="text-[11px] text-slate-400">Üst Araç Çubuğu (Kırmızı)</span>
+                </td>
+                <td class="py-3.5 px-4">Uygun görülmeyen izin talebini gerekçeli sonlandırmak.</td>
+                <td class="py-3.5 px-4">Açılan diyalogda ret gerekçesi girilmesi zorunludur. Bakiye düşümü yapılmaz, durum 'Reddedildi' olarak arşivlenir.</td>
+                <td class="py-3.5 px-4">Hizmet aksaması durumunda.</td>
+                <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Yönetici, Süpervizör</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="py-3.5 px-4 font-mono text-cyan-700 dark:text-cyan-400">
+                  <strong>İzin İptali (cancelButton)</strong><br>
+                  <span class="text-[11px] text-slate-400">Üst Araç Çubuğu (Turuncu)</span>
+                </td>
+                <td class="py-3.5 px-4">Kullanılmayacak onaylı izni geri çekip hakkı iade etmek.</td>
+                <td class="py-3.5 px-4">İzin 'İptal Edildi' statüsüne çekilir; önceden düşülen izin günleri personelin bakiye havuzuna geri aktarılır.</td>
+                <td class="py-3.5 px-4">Görevin iptal edilmesinde.</td>
+                <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Yönetici, Süpervizör</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="py-3.5 px-4 font-mono text-cyan-700 dark:text-cyan-400">
+                  <strong>Devir Aktar (btnDevirAktar)</strong><br>
+                  <span class="text-[11px] text-slate-400">İzin Hakediş Sayfası</span>
+                </td>
+                <td class="py-3.5 px-4">Geçmiş yıldan kalan yıllık izinleri yeni yıla aktarmak.</td>
+                <td class="py-3.5 px-4">Sadece kapanmış geçmiş yıllar için çalıştırılır. Kurum tavanına kadar (azami 5 gün) devir yapılır; artan günler dondurulur/yanar.</td>
+                <td class="py-3.5 px-4">Yıl başı devir döneminde.</td>
+                <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Sistem Yöneticisi, İK</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="py-3.5 px-4 font-mono text-cyan-700 dark:text-cyan-400">
+                  <strong>Web Portalı EBYS Kaydı</strong><br>
+                  <span class="text-[11px] text-slate-400">POST /api/izin/hbys-kaydet</span>
+                </td>
+                <td class="py-3.5 px-4">Resmi kurum evrak numarasını izin kaydına işlemek.</td>
+                <td class="py-3.5 px-4">İlk evrak no girişinde izin doğrudan 'Resmi Onaylı' statüsü kazanır. Sonradan değiştirilmek istenirse onay masasına düşer.</td>
+                <td class="py-3.5 px-4">Resmi yazı çıktığında.</td>
+                <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Personel, İdari İşler</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- MİT AVCISI (MYTH-BUSTING) KARTI (ZORUNLU) -->
+      <section id="myth-buster" class="p-6 rounded-3xl bg-amber-50/80 dark:bg-amber-950/30 border-2 border-amber-500/40 shadow-sm space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+            💡
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">
+              Saha Mit Avcısı: "Kullanılmayan Şua İzinleri Bir Sonraki Yıla Devreder mi ya da Paraya Çevrilebilir mi?"
+            </h3>
+            <span class="text-xs text-amber-700 dark:text-amber-300 font-semibold">En Yaygın Radyasyon Mevzuatı Yanılgısı</span>
+          </div>
+        </div>
+
+        <div class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
+          <div class="flex items-start gap-2.5">
+            <span class="text-rose-500 font-bold shrink-0 text-base leading-none">❌</span>
+            <p>
+              <strong>Yanlış İnanış:</strong> <em>"Yoğunluktan ötürü bu yıl 30 günlük şua iznimi kullanamadım, seneye aktarılır 60 gün kullanırım veya kullanamadığım günlerin ücretini idareden talep edebilirim."</em>
+            </p>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <span class="text-emerald-500 font-bold shrink-0 text-base leading-none">✅</span>
+            <p>
+              <strong>Doğru Gerçek:</strong> <strong>KESİNLİKLE HAYIR.</strong> 3153 sayılı Kanun, Radyasyon Güvenliği Yönetmeliği ve Sağlık Bakanlığı içtihatları uyarınca Şua İzni (sağlık izni), personelin vücudundaki radyasyon biyolojik hasarını tolere etmek ve hücresel onarımı sağlamak amacıyla verilmiş <strong>kamu düzenine ilişkin bir dinlenme hakkıdır</strong>. Şua izni ertelenemez, takvim yılı (31 Aralık) bittiğinde <strong>zaman aşımına uğrayarak yanar</strong>, sonraki yıla devredilemez veya nakdi tazminata dönüştürülemez. RADPYS hakediş motoru bu nedenle şua izinlerini cari yılda kilitler ve yıl sonu devrine izin vermez.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SÜREÇ AKIŞ ŞEMASI (MERMAID.JS) (ZORUNLU) -->
+      <section id="workflow" class="space-y-4">
+        <div class="space-y-1">
+          <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+            <span>🔄 İzin Talep, Çakışma Denetimi ve Onay Akış Şeması</span>
+          </h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400">
+            Personel izin talebinden bakiye kontrolüne, nöbet çakışmasından EBYS evrak kaydına tam süreç döngüsü.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex justify-center">
+          <pre class="mermaid text-xs opacity-0 transition-opacity duration-300" id="mermaidFlow">
+graph TD
+    A(["İzin Talebi Başlatılır: Masaüstü / Web"]) --> B{"Tarihler Başka İzinle Çakışıyor mu?"}
+    
+    %% Çakışma Denetimleri
+    B -->|Evet| C["HATA: Çakışan İzin Bulundu - İşlem Durdurulur"]
+    B -->|Hayır| D{"Talep Tarihlerinde Aktif Nöbet Var mı?"}
+    
+    D -->|Evet| E["HATA: Nöbet Çakışması - Önce Nöbet Değiştirilmelidir"]
+    D -->|Hayır| F{"Personelin Kalan İzin Bakiyesi Yeterli mi?"}
+    
+    %% Bakiye ve Onay Kuyruğu
+    F -->|"Yetersiz"| G["HATA: Yetersiz İzin Bakiyesi Uyarısı"]
+    F -->|"Yeterli"| H["Talep Kaydedilir: Durum = Onay Bekliyor"]
+    
+    H --> I{"Yetkili Amir Kararı"}
+    I -->|Reddet| J["Zorunlu Gerekçe Girilir: Durum = Reddedildi"]
+    I -->|Onayla| K["Durum = Onaylandı"]
+    
+    %% Bakiye Düşümü ve İptal
+    K --> L["İzin Günleri Bakiye Havuzundan Otomatik Düşülür"]
+    L --> M{"Personel İzne Çıkamadı mı?"}
+    M -->|"İptal Talebi"| N["İptal Et Butonu: Bakiye Eksiksiz İade Edilir"]
+    
+    %% EBYS / HBYS Entegrasyonu
+    L --> O{"EBYS / HBYS Evrak No Girildi mi?"}
+    O -->|Evet| P["Durum = Resmi Onaylı Olarak Kilitlenir"]
+    O -->|Hayır| Q["İdari Onay Statüsünde Kalır"]
+
+    style A fill:#06b6d4,stroke:#0891b2,stroke-width:2px,color:#fff
+    style C fill:#ef4444,stroke:#dc2626,stroke-width:2px,color:#fff
+    style E fill:#ef4444,stroke:#dc2626,stroke-width:2px,color:#fff
+    style G fill:#f59e0b,stroke:#d97706,stroke-width:2px,color:#fff
+    style K fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff
+    style P fill:#8b5cf6,stroke:#7c3aed,stroke-width:2px,color:#fff
+    style N fill:#f97316,stroke:#ea580c,stroke-width:2px,color:#fff
+          </pre>
+        </div>
+      </section>
+
+      <!-- EKRAN GÖRÜNTÜLERİ VE ROZETLERİ (ZORUNLU) -->
+      <section id="screenshots" class="space-y-6">
+        <div class="space-y-1">
+          <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+            <span>🖼️ Arayüz Ekran Görünümleri</span>
+          </h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400">
+            İzin Listesi kokpiti ve 2 adımlı İzin Talep Sihirbazı ekranları.
+          </p>
+        </div>
+
+        <!-- GÖRSEL 1: İZİN LİSTESİ -->
+        <figure class="my-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
+          <div class="p-3 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
+            <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
+              🖥️ Ekran Konumu: <strong class="text-slate-900 dark:text-white font-semibold">Sol Menü > İzin Yönetimi > İzin Listesi</strong>
+            </span>
+            <span class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">KPI Sayaçları, Filtreler & Onay/Red/İptal Butonları</span>
+          </div>
+          <img src="assets/img/izin_list.png" alt="İzin Listesi ve Filtreleme Ekranı" class="w-full h-auto">
+          <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki personel adları, TC kimlik numaraları, departmanlar ve izin tarihleri simülasyon amacıyla üretilmiş sentetik test verileridir.</span>
+          </figcaption>
+        </figure>
+
+        <!-- GÖRSEL 2: İZİN TALEP SİHİRBAZI -->
+        <figure class="my-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
+          <div class="p-3 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
+            <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
+              🖥️ Ekran Konumu: <strong class="text-slate-900 dark:text-white font-semibold">İzin Listesi > + İzin Talep Et Butonu</strong>
+            </span>
+            <span class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">2 Adımlı Wizard, Bakiye Paneli & Takvim Hesabı</span>
+          </div>
+          <img src="assets/img/izin_talep.png" alt="Yeni İzin Talebi ve Bakiye Paneli Ekranı" class="w-full h-auto">
+          <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span><strong>Yasal Bilgilendirme:</strong> Form alanları ve bakiye özeti örnek arayüz gösterimi olup herhangi bir gerçek personele ait veri içermemektedir.</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- ADIM ADIM İŞLEM KILAVUZU -->
+      <section id="step-by-step" class="space-y-6">
+        <div class="space-y-1">
+          <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+            <span>📋 Adım Adım İşlem Rehberi</span>
+          </h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400">
+            Saha operasyonlarında en sık kullanılan 5 ana işlemin uygulama adımları.
+          </p>
+        </div>
+
+        <!-- ADIM 1 -->
+        <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 flex items-center justify-center font-bold text-sm">
+              1
+            </span>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">
+              2 Adımlı Sihirbaz ile Yeni İzin Talebi Oluşturma
+            </h3>
+          </div>
+          <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
+            <li>İzin Listesi ekranının sol üst köşesindeki mor <strong>[+ İzin Talep Et]</strong> butonuna tıklayın.</li>
+            <li>Açılan sihirbazın 1. Adımında:
+              <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-0.5">
+                <li><strong>Personel Seçimi:</strong> TC Kimlik veya Ad ile personeli bulun.</li>
+                <li><strong>Bakiye Kontrolü:</strong> Sağ taraftaki panelde personelin cari yıldaki Yıllık Hakedilen, Devir Eden ve Şua İzni kalan haklarını kontrol edin.</li>
+              </ul>
+            </li>
+            <li>Alt kısımdaki <strong>[İleri >]</strong> butonuna basarak 2. Adıma geçin:
+              <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-0.5">
+                <li><strong>İzin Türü:</strong> Yıllık İzin, Şua İzni (Sağlık İzni), Mazeret İzni vb. seçin.</li>
+                <li><strong>Başlangıç / Bitiş Tarihleri:</strong> Tarihleri seçtiğinizde sistem resmi tatil ve hafta sonu parametrelerine göre net gün ve saat süresini otomatik hesaplar.</li>
+                <li><strong>Vekil Personel:</strong> İzin esnasında görevi devralacak meslektaşınızı belirleyin.</li>
+              </ul>
+            </li>
+            <li><strong>[Kaydet]</strong> butonuna basın. Çakışma ve nöbet kontrolleri olumluysa talep 'Onay Bekliyor' statüsünde listeye düşecektir.</li>
+          </ol>
+        </div>
+
+        <!-- ADIM 2 -->
+        <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 flex items-center justify-center font-bold text-sm">
+              2
+            </span>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">
+              İzin Taleplerini İnceleme, Onaylama ve Gerekçeli Reddetme
+            </h3>
+          </div>
+          <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
+            <li>İzin Listesinde üst filtrelerden durumu <strong>'Beklemede'</strong> olarak seçin.</li>
+            <li>İncelenmek istenen satırı tıklayın veya detaylarını görmek için <strong>[Ayrıntı / Düzenle]</strong> butonuna basın.</li>
+            <li><strong>Onaylamak İçin:</strong> Yeşil renkli <strong>[Onayla]</strong> butonuna tıklayın. Sistem personelin izin bakiyesinden gün sayısını anında düşer ve satır rozetini yeşil 'ONAYLANDI' yapar.</li>
+            <li><strong>Reddetmek İçin:</strong> Kırmızı renkli <strong>[Reddet]</strong> butonuna tıklayın. Açılan pencereye ret gerekçesini yazıp onaylayın. Durum 'REDDEDİLDİ' olur, personelin bakiyesine dokunulmaz.</li>
+          </ol>
+        </div>
+
+        <!-- ADIM 3 -->
+        <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 flex items-center justify-center font-bold text-sm">
+              3
+            </span>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">
+              Onaylı İzni Güvenle İptal Etme ve Bakiye İadesi
+            </h3>
+          </div>
+          <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
+            <li>Önceden onaylanmış ancak acil görev, nöbet veya plan değişikliği nedeniyle çıkılamayan izni listeden seçin.</li>
+            <li>Üst araç çubuğundaki turuncu <strong>[İptal Et]</strong> butonuna basın.</li>
+            <li>Ekrana gelen onay uyarısında 'Evet' dediğinizde sistem izin kaydını 'İPTAL EDİLDİ' statüsüne alır.</li>
+            <li>Önceden personelin bakiyesinden düşülen tüm izin günleri, personelin izin havuzuna otomatik ve eksiksiz olarak geri iade edilir.</li>
+            <li><em>Not: Onaylı izinlerin kalıcı olarak silinmesi yasal denetim izi gereğince engellenmiştir; daima İptal Et işlemi uygulanmalıdır.</em></li>
+          </ol>
+        </div>
+
+        <!-- ADIM 4 -->
+        <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 flex items-center justify-center font-bold text-sm">
+              4
+            </span>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">
+              İzin Hakedişlerini İnceleme ve Geçmiş Yıl Devri Aktarma
+            </h3>
+          </div>
+          <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
+            <li>İzin Listesi sağ üst araç çubuğundaki <strong>[Kalan Hak / Hakediş]</strong> butonuna veya sol menüden hakediş sayfasına geçin.</li>
+            <li>Yıl seçicisinden incelemek istediğiniz takvim yılını belirleyin. Tüm personelin hakediş, devir ve kullanılan gün toplamları listelenir.</li>
+            <li>Ocak ayı başında geçmiş tamamlanmış yıldan kalan izinleri aktarmak için <strong>[Devir Aktar]</strong> butonuna tıklayın.</li>
+            <li>Sistem kurum parametresindeki tavan sınırını (en fazla 5 gün) dikkate alarak personelin bakiyesini yeni yıla aktarır. Kalan fazlalık günler mevzuat uyarınca dondurulur.</li>
+          </ol>
+        </div>
+
+        <!-- ADIM 5 -->
+        <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 flex items-center justify-center font-bold text-sm">
+              5
+            </span>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">
+              Web Portalından İzin Talebi ve EBYS Evrak Numarası Eşleştirme
+            </h3>
+          </div>
+          <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
+            <li>Saha personeli veya amir kurum içi Web Portalına (`web_portal`) kullanıcı adı ve şifresiyle giriş yapar.</li>
+            <li><strong>[İzinlerim]</strong> sekmesinden hızlıca yeni izin talebi gönderir veya onaylı izinlerinin listesini görüntüler.</li>
+            <li>Kurum genel evrak biriminden resmi EBYS onay yazısı çıktığında, izin satırındaki <strong>[EBYS Kaydet]</strong> formuna resmi evrak sayısı ve tarihini girer.</li>
+            <li>Sistem ilk evrak kaydında izni doğrudan <strong>'RESMİ ONAYLI'</strong> statüsüne yükseltir ve masaüstü yönetim tablosuna anında yansıtır.</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- SIKÇA SORULAN SORULAR (SSS AKORDEONU) (ZORUNLU) -->
+      <section id="faq" class="space-y-4">
+        <div class="space-y-1">
+          <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+            <span>❓ Sıkça Sorulan Sorular (SSS)</span>
+          </h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400">
+            Saha çalışanlarının izin hakları ve mevzuat kuralları hakkında en çok merak ettiği konular.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <!-- Soru 1 -->
+          <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 transition-all">
+            <summary class="flex justify-between items-center font-semibold cursor-pointer text-slate-900 dark:text-white text-sm">
+              <span>Şua izni hak etmek için kaç saat fiili radyasyon çalışması gerekir?</span>
+              <span class="transition group-open:rotate-180">
+                <svg class="w-4 h-4 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </summary>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 leading-relaxed">
+              Mevzuat ve RADPYS kural motoru gereğince (RED-IZN-01), radyasyon denetimli alanlarında fiilen çalışılan <strong>her 50 saatlik süre 1 günlük şua izni kazandırır</strong>. Yıllık toplam hakediş en fazla <strong>30 takvim günüdür</strong>. Bir takvim yılında çalışılan süreler karşılığında kazanılan şua izni, takip eden yılda kullandırılır.
+            </p>
+          </details>
+
+          <!-- Soru 2 -->
+          <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 transition-all">
+            <summary class="flex justify-between items-center font-semibold cursor-pointer text-slate-900 dark:text-white text-sm">
+              <span>İzin talebi gönderirken neden 'Nöbet Çakışması Uyarısı' alıyorum?</span>
+              <span class="transition group-open:rotate-180">
+                <svg class="w-4 h-4 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </summary>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 leading-relaxed">
+              RADPYS, nöbet hizmetlerinin aksamaması için izin motoru ile nöbet planlama modülünü entegre çalıştırmaktadır (RED-IZN-02). Talep ettiğiniz tarihlerde aktif nöbet çizelgesinde üzerinize yazılmış bir nöbet görevi bulunuyorsa izin talebi engellenir. Bu durumda önce nöbet sorumlunuzla görüşerek nöbetinizi devretmeli veya takas etmelisiniz.
+            </p>
+          </details>
+
+          <!-- Soru 3 -->
+          <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 transition-all">
+            <summary class="flex justify-between items-center font-semibold cursor-pointer text-slate-900 dark:text-white text-sm">
+              <span>Onaylanmış veya Resmi Onaylı bir izni tablodan silebilir miyim?</span>
+              <span class="transition group-open:rotate-180">
+                <svg class="w-4 h-4 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </summary>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 leading-relaxed">
+              Hayır. Resmi denetim izini korumak amacıyla onaylanmış veya resmi EBYS numarası işlenmiş izinlerin doğrudan silinmesi engellenmiştir. Eğer personelin izni iptal edilecekse <strong>[İptal Et]</strong> butonu kullanılır. Bu işlem izin kaydını silmeden iptal eder ve düşülen günleri personelin kalan bakiye havuzuna otomatik olarak iade eder.
+            </p>
+          </details>
+
+          <!-- Soru 4 -->
+          <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 transition-all">
+            <summary class="flex justify-between items-center font-semibold cursor-pointer text-slate-900 dark:text-white text-sm">
+              <span>Geçmiş yıldan kaç gün izin devredilebilir? Cari yıl içinde devir yapılır mı?</span>
+              <span class="transition group-open:rotate-180">
+                <svg class="w-4 h-4 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </summary>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 leading-relaxed">
+              Devir aktarımı yalnızca takvim yılı tamamlanmış geçmiş yıllar için uygulanabilir. Devam eden cari yıl bitmeden yeni yıla devir yapılamaz. Kurum parametrelerine göre devredilebilecek azami yıllık izin süresi <strong>en fazla 5 gündür</strong>. Tavanı aşan kalan izin günleri mevzuat gereğince yeni yıla devretmez ve dondurulur.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- NAVIGATION FOOTER -->
+      <footer class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <a href="05_personel_yonetimi_ve_toplu_aktarim.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">← Önceki Doküman</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">05. Personel Yönetimi & Aktarım</span>
+          </a>
+          <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition text-right group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">Sonraki Doküman →</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">07. Nöbet Ayarları & Kısıt Hiyerarşisi</span>
+          </a>
+        </div>
+      </footer>
+
+    </main>
+
+    <!-- RIGHT SIDEBAR: IN-PAGE TOC -->
+    <aside class="w-64 shrink-0 hidden xl:block sticky top-24 h-[calc(100vh-6rem)] overflow-y-auto custom-scrollbar pl-4">
+      <div class="space-y-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block">Bu Sayfada</span>
+        <nav class="space-y-2 text-xs font-medium border-l-2 border-slate-200 dark:border-slate-800 pl-3">
+          <a href="#overview" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition">Genel Bakış</a>
+          <a href="#quick-recipe" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition">Hızlı Reçete</a>
+          <a href="#5w1h" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition">5N1K Kural Tablosu</a>
+          <a href="#myth-buster" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition">Saha Mit Avcısı</a>
+          <a href="#workflow" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition">Süreç Akış Şeması</a>
+          <a href="#screenshots" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition">Arayüz Ekranları</a>
+          <a href="#step-by-step" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition">Adım Adım Rehber</a>
+          <a href="#faq" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition">Sıkça Sorulan Sorular</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
+    <div class="max-w-[1720px] mx-auto px-6">
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi — Sağlık Bilgi Güvenliği & KVKK Standartları ile Korunmaktadır.</p>
+    </div>
+  </footer>
+
+  <!-- THEME TOGGLE SCRIPT & MERMAID INIT -->
+  <script>
+    // Theme Toggle Logic
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const htmlElem = document.documentElement;
+
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      htmlElem.classList.add('dark');
+    } else {
+      htmlElem.classList.remove('dark');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      if (htmlElem.classList.contains('dark')) {
+        htmlElem.classList.remove('dark');
+        localStorage.theme = 'light';
+      } else {
+        htmlElem.classList.add('dark');
+        localStorage.theme = 'dark';
+      }
+    });
+
+    // Mobile Sidebar Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebarNav = document.getElementById('sidebarNav');
+    if (mobileMenuBtn && sidebarNav) {
+      mobileMenuBtn.addEventListener('click', () => {
+        sidebarNav.classList.toggle('-translate-x-full');
+      });
+    }
+
+    // Mermaid Initialize
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof mermaid !== 'undefined') {
+        const isDark = htmlElem.classList.contains('dark');
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: isDark ? 'dark' : 'neutral',
+          securityLevel: 'loose',
+          fontFamily: 'Inter, sans-serif'
+        });
+        const mFlow = document.getElementById('mermaidFlow');
+        if (mFlow) mFlow.classList.remove('opacity-0');
+      }
+    });
+  </script>
+</body>
+</html>

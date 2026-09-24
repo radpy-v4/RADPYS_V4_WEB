@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>07.2 Departman Slotları & Kural Kopyalama — RADPYS v4</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfeff',
+              100: '#cffafe',
+              200: '#a5f3fc',
+              500: '#06b6d4',
+              600: '#0891b2',
+              700: '#0e7490',
+              900: '#164e63',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    pre, code { font-family: 'JetBrains Mono', monospace; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 9999px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.6); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- TOP HEADER NAVBAR -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Version -->
+      <div class="flex items-center gap-3">
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Menüyü Aç/Kapat">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.2</span>
+            </span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Karar Destek Portalı</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick Search Bar (Ctrl+K) -->
+      <div class="flex-1 max-w-xl hidden md:block">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input 
+            type="text" 
+            placeholder="07.2 Birim Kuralları içinde ara... (Örn: Slot ekleme, akıllı saat, kural kopyalama, nöbetçi sayısı)" 
+            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition"
+          >
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <kbd class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600 font-semibold">Ctrl+K</kbd>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation & Action Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold px-3 py-2 rounded-xl bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800 hover:bg-cyan-100 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          <span class="hidden sm:inline">Modül 07 Ana Sayfa (Hub)</span>
+        </a>
+
+        <button id="themeToggle" class="p-2.5 rounded-xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Tema Değiştir">
+          <svg id="themeIconSun" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="themeIconMoon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- SUB-MODULE TABS NAVBAR -->
+  <div class="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur sticky top-16 z-30">
+    <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 flex items-center gap-2 overflow-x-auto py-2.5 text-xs font-semibold">
+      <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" class="px-3 py-1.5 rounded-lg text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition shrink-0">
+        🏛️ Modül 07 Genel Bakış & Piramit
+      </a>
+      <span class="text-slate-300 dark:text-slate-700">|</span>
+      <a href="07_1_temel_ayarlar_ve_calisma_standartlari.html" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition shrink-0">
+        07.1 Temel Ayarlar & Dinlenme
+      </a>
+      <a href="07_2_birim_kurallari_ve_slot_yonetimi.html" class="px-3 py-1.5 rounded-lg bg-cyan-500 text-white font-bold shadow-sm shrink-0">
+        07.2 Birim Kuralları & Slotlar
+      </a>
+      <a href="07_3_gelismis_kisitlar_ve_adalet_agirliklari.html" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition shrink-0">
+        07.3 Gelişmiş Kısıtlar & Adalet
+      </a>
+      <a href="07_4_personel_ozel_saglik_ve_yasal_kisitlar.html" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition shrink-0">
+        07.4 Sağlık Kısıtları & Muafiyetler
+      </a>
+      <a href="07_5_personel_talepleri_ve_onay_yonetimi.html" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition shrink-0">
+        07.5 Personel Talepleri & Onay
+      </a>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="flex-1 max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 flex gap-8">
+
+    <!-- LEFT SIDEBAR -->
+    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-28 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar">
+      <div class="mb-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3">Modül 07 Alt Bölümleri</span>
+      </div>
+      <nav class="space-y-1 text-sm font-medium">
+        <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">07</span>
+          <span>Ana Hub & Kural Piramidi</span>
+        </a>
+        <a href="07_1_temel_ayarlar_ve_calisma_standartlari.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">07.1</span>
+          <span>Temel Ayarlar & Dinlenme</span>
+        </a>
+        <a href="07_2_birim_kurallari_ve_slot_yonetimi.html" class="flex items-center gap-3 px-3 py-2 rounded-xl bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300 font-bold border border-cyan-200/80 dark:border-cyan-800/60">
+          <span class="w-6 text-center font-mono text-xs">07.2</span>
+          <span>Birim Slotları & Kopyalama</span>
+        </a>
+        <a href="07_3_gelismis_kisitlar_ve_adalet_agirliklari.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">07.3</span>
+          <span>Gelişmiş Kısıtlar & Adalet</span>
+        </a>
+        <a href="07_4_personel_ozel_saglik_ve_yasal_kisitlar.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">07.4</span>
+          <span>Sağlık Kısıtları & Muafiyet</span>
+        </a>
+        <a href="07_5_personel_talepleri_ve_onay_yonetimi.html" class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="w-6 text-center font-mono text-xs opacity-60">07.5</span>
+          <span>Personel İstekleri & Onay</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- CENTER CONTENT -->
+    <main class="flex-1 py-8 max-w-5xl space-y-10">
+
+      <!-- HERO -->
+      <section id="overview" class="space-y-3">
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-1 rounded-lg text-xs font-bold font-mono uppercase bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/80">
+            Alt Modül 07.2
+          </span>
+          <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Sekme: Birim Kuralları | Yönetim Standardı</span>
+        </div>
+        <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+          Departman Nöbet Slotları, Akıllı Saat Hesabı & Kural Kopyalama
+        </h1>
+        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+          Departmanların (Acil, USG, BT, MR) çalışma vardiyalarını, nöbetçi sayılarını, otomatik hesaplanan akıllı bitiş saatlerini ve birimler arası vardiya aktarımını bu ekrandan yönetebilirsiniz.
+        </p>
+      </section>
+
+      <!-- HIZLI REÇETE KUTUSU & 4 METRİK HAPI -->
+      <section id="quick-recipe" class="p-6 rounded-3xl bg-gradient-to-br from-cyan-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-900/90 dark:to-cyan-950/40 border-2 border-cyan-500/30 dark:border-cyan-500/20 shadow-xl shadow-cyan-500/5 space-y-5">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-2xl bg-cyan-600 text-white flex items-center justify-center font-bold text-base shadow-md">
+            ⚡
+          </div>
+          <div>
+            <h2 class="text-base font-bold text-slate-900 dark:text-white">
+              Hızlı Reçete: Departman Vardiya Slotlarını Tanımlama ve Çoğaltma
+            </h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400">
+              Vardiya slot açma, otomatik saat tamamlama ve birim kuralı kopyalama
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 text-xs sm:text-sm">
+          <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
+            <span class="font-bold text-slate-400 uppercase text-[10px] tracking-wider block">1. İstenen Sonuç</span>
+            <p class="font-semibold text-slate-800 dark:text-slate-100">
+              Departmanın gece, gündüz ve hafta sonu ihtiyaç duyduğu nöbetçi pozisyonlarının eksiksiz sisteme tanıtılması.
+            </p>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
+            <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase text-[10px] tracking-wider block">2. Yapılacak İşlem</span>
+            <p class="font-semibold text-slate-800 dark:text-slate-100">
+              Birim seçin, başlangıç saatini ve süreyi girin (bitiş saati otomatik dolar), nöbetçi sayısını belirleyip <strong>[Birim Kuralı Ekle]</strong>'ye basın.
+            </p>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
+            <span class="font-bold text-emerald-600 dark:text-emerald-400 uppercase text-[10px] tracking-wider block">3. Sistem Etkisi</span>
+            <p class="font-semibold text-slate-800 dark:text-slate-100">
+              Nöbet dağıtım motoru bu slotları doldurmak için personel atar. <strong>[+ Birim Kuralını Kopyala]</strong> butonu ile aynı şablon diğer birimlere saniyeler içinde kopyalanabilir.
+            </p>
+          </div>
+        </div>
+
+        <!-- 4 Metrik Hapı -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2 border-t border-cyan-100 dark:border-cyan-900/40">
+          <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
+            <span class="text-base">🏢</span>
+            <div>
+              <span class="text-[10px] uppercase font-bold text-slate-400 block">Departman Bazlı</span>
+              <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Özel Slot Havuzu</span>
+            </div>
+          </div>
+          <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
+            <span class="text-base">🕒</span>
+            <div>
+              <span class="text-[10px] uppercase font-bold text-slate-400 block">Akıllı Saat</span>
+              <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Başlangıç + Süre</span>
+            </div>
+          </div>
+          <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
+            <span class="text-base">👥</span>
+            <div>
+              <span class="text-[10px] uppercase font-bold text-slate-400 block">Nöbetçi Sayısı</span>
+              <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Dinamik Kontenjan</span>
+            </div>
+          </div>
+          <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
+            <span class="text-base">📋</span>
+            <div>
+              <span class="text-[10px] uppercase font-bold text-slate-400 block">Kural Kopyalama</span>
+              <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Tek Tıkla Aktarım</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- KRİTİK UYARI KUTUSU -->
+      <section class="p-5 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border-2 border-amber-500/40 text-amber-900 dark:text-amber-200 flex items-start gap-3.5 shadow-sm">
+        <span class="text-2xl shrink-0">⚠️</span>
+        <div class="space-y-1 text-xs sm:text-sm">
+          <strong class="font-bold block text-sm text-amber-800 dark:text-amber-300">Önemli Kurumsal Uyarı: Birim Kuralı Kopyalama Davranışı</strong>
+          <p class="leading-relaxed">
+            <strong>[+ Birim Kuralını Kopyala]</strong> butonunu kullandığınızda, <strong>Hedef Birimde daha önce tanımlanmış olan mevcut tüm nöbet slotları tamamen silinir</strong> ve kaynak birimdeki slotlar sıfırdan oluşturulur. Yanlışlıkla birimin var olan slotlarını kaybetmemek için kopyalama öncesinde hedef birimi mutlaka kontrol ediniz.
+          </p>
+        </div>
+      </section>
+
+      <!-- 5N1K ODAKLI ÇÖZÜMLEME TABLOSU -->
+      <section id="5w1h" class="space-y-4">
+        <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+          <span>🔍 07.2 Birim Kuralları ve Slotlar 5N1K Bileşen Çözümleme Tablosu</span>
+        </h2>
+        <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+          <table class="w-full text-left text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+            <thead class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 uppercase text-[11px] font-bold tracking-wider border-b border-slate-200 dark:border-slate-800">
+              <tr>
+                <th class="py-3 px-4">NE? (Bileşen Adı)</th>
+                <th class="py-3 px-4">NEDEN? (Amacı)</th>
+                <th class="py-3 px-4">NASIL? (Çalışma Mantığı)</th>
+                <th class="py-3 px-4">NE ZAMAN?</th>
+                <th class="py-3 px-4">KİM?</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 dark:divide-slate-800 font-normal">
+              <tr>
+                <td class="py-3 px-4 font-semibold text-slate-800 dark:text-slate-100">Birim Seçimi (Açılır Kutu)</td>
+                <td class="py-3 px-4">Hangi birimin nöbet kurallarının yönetileceğini seçmek.</td>
+                <td class="py-3 px-4">Departman tablosundaki aktif servisleri listeler. Seçim değiştiğinde slot tablosu anında yenilenir.</td>
+                <td class="py-3 px-4">Birim ayarlarını açarken.</td>
+                <td class="py-3 px-4">Departman Sorumlusu</td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 font-semibold text-slate-800 dark:text-slate-100">Nöbet Adı / Nöbet Kodu</td>
+                <td class="py-3 px-4">Vardiyayı çizelgede ve raporlarda tekil olarak tanımlamak.</td>
+                <td class="py-3 px-4">Örn: Nöbet Adı: "Acil Gece", Nöbet Kodu: "ACL_GECE". Dağıtım motorunda ve PDF çıktılarda bu isim ve kod görünür.</td>
+                <td class="py-3 px-4">Slot oluştururken.</td>
+                <td class="py-3 px-4">Nöbet Amiri</td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 font-semibold text-slate-800 dark:text-slate-100">Başlangıç Saati & Süre (Saat)</td>
+                <td class="py-3 px-4">Vardiyanın başlangıç saatini ve çalışma süresini belirlemek.</td>
+                <td class="py-3 px-4">Başlangıç saati girildiğinde süre (saat) ile toplanarak bitiş saati matematiksel olarak hesaplanır.</td>
+                <td class="py-3 px-4">Vardiya tanımlarken.</td>
+                <td class="py-3 px-4">Yetkili Kullanıcı</td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 font-semibold text-slate-800 dark:text-slate-100">Bitiş Saati (Otomatik Hesaplanan)</td>
+                <td class="py-3 px-4">Kullanıcının yanlış bitiş saati girmesini önlemek (Akıllı Saat).</td>
+                <td class="py-3 px-4">(Başlangıç + Süre) % 24 formülü ile çalışır. Gece yarısı devirlerinde (örn: 20:00 + 12s = 08:00) otomatik hesaplar.</td>
+                <td class="py-3 px-4">Süre değiştikçe.</td>
+                <td class="py-3 px-4">Sistem Otomatik</td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 font-semibold text-slate-800 dark:text-slate-100">Nöbetçi Sayısı (Slot)</td>
+                <td class="py-3 px-4">Bu nöbet slotunda aynı anda kaç teknisyenin görev alacağını belirlemek.</td>
+                <td class="py-3 px-4">Örn: 2 seçilirse nöbet dağıtım motoru her gün bu slota iki farklı uygun personel atamak zorundadır.</td>
+                <td class="py-3 px-4">Vardiya açarken.</td>
+                <td class="py-3 px-4">Başhekimlik / Sorumlu</td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 font-semibold text-slate-800 dark:text-slate-100">Hizmet Tipi (Açılır Kutu)</td>
+                <td class="py-3 px-4">Vardiyanın belirli bir hizmet grubuna (örn: teknisyen, hemşire) özgülenmesini sağlamak.</td>
+                <td class="py-3 px-4">Boş bırakılırsa (Genel) birimdeki tüm hizmet sınıflarına açık olur; seçilirse sadece o gruba yazılır.</td>
+                <td class="py-3 px-4">Vardiya tanımlarken.</td>
+                <td class="py-3 px-4">Nöbet Sorumlusu</td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 font-semibold text-slate-800 dark:text-slate-100">Birim Kuralı Ekle Butonu</td>
+                <td class="py-3 px-4">Girilen slot parametrelerini birim kuralı olarak kaydetmek.</td>
+                <td class="py-3 px-4">Tıklandığında yeni vardiya slot tablosuna eklenir ve nöbet dağıtım havuzuna dahil edilir.</td>
+                <td class="py-3 px-4">Slot oluştururken.</td>
+                <td class="py-3 px-4">Departman Sorumlusu</td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 font-semibold text-slate-800 dark:text-slate-100">Birim Kuralını Kopyala Butonu (Mor Buton)</td>
+                <td class="py-3 px-4">Bir birimin tüm slotlarını başka bir birime anında çoğaltmak.</td>
+                <td class="py-3 px-4">Açılan diyalogda kaynak ve hedef birim seçilir. Onay verildiğinde hedef birim slotları sıfırlanıp kopyalanır.</td>
+                <td class="py-3 px-4">Yeni birim kurulumunda.</td>
+                <td class="py-3 px-4">Sistem Yöneticisi</td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 font-semibold text-slate-800 dark:text-slate-100">Birim Kuralını Sil Butonu</td>
+                <td class="py-3 px-4">Kullanılmayan veya kaldırılan bir vardiya slotunu iptal etmek.</td>
+                <td class="py-3 px-4">Tablodan seçilen slot onay sonrası sistemden kaldırılır; gelecek planlarda bu slota atama yapılmaz.</td>
+                <td class="py-3 px-4">Slot iptalinde.</td>
+                <td class="py-3 px-4">Departman Sorumlusu</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- EKRAN GÖRSELİ -->
+      <section id="screenshot" class="space-y-3">
+        <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+          <span>🖼️ Birim Kuralları ve Nöbet Slotları Ekranı</span>
+        </h2>
+        <figure class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
+          <div class="p-3 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
+            <span class="font-semibold text-slate-700 dark:text-slate-200">
+              Ekran: <strong class="text-slate-900 dark:text-white">Nöbet Ayarları > [Birim Kuralları] Sekmesi</strong>
+            </span>
+            <span class="text-[10px] font-semibold text-cyan-700 dark:text-cyan-300 bg-cyan-100 dark:bg-cyan-900/50 px-2 py-0.5 rounded">Birim Kuralları Sekmesi</span>
+          </div>
+          <img src="assets/img/Birim Kuralları,.png" alt="Birim Kuralları ve Nöbet Slotları Ekranı" class="w-full h-auto">
+          <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
+            <span><strong>Simülasyon Notu:</strong> Departman slotları ve çalışma saatleri hastane test ortamına göre yapılandırılmıştır.</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- ADIM ADIM REHBER -->
+      <section id="step-by-step" class="space-y-4">
+        <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+          <span>📋 Adım Adım Yeni Birim Slotu Açma ve Kopyalama</span>
+        </h2>
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
+            <li><strong>[Birim Kuralları]</strong> sekmesinde sol üstten ilgili departmanı (örn: Acil Radyoloji) seçin.</li>
+            <li>Alt kısımdaki <strong>Vardiya Tanımlama</strong> kutularına gidin:
+              <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-0.5">
+                <li><strong>Nöbet Adı:</strong> "Acil Gece 12s"</li>
+                <li><strong>Nöbet Kodu:</strong> "ACL_12"</li>
+                <li><strong>Başlangıç Saati:</strong> 20:00</li>
+                <li><strong>Süre (Saat):</strong> 12 <em>(Bitiş saati akıllı motor ile otomatik 08:00 olacaktır.)</em></li>
+                <li><strong>Nöbetçi Sayısı:</strong> 2</li>
+                <li><strong>Geçerli Günler:</strong> "Her Gün"</li>
+              </ul>
+            </li>
+            <li><strong>[Birim Kuralı Ekle]</strong> butonuna basın. Yeni slot üstteki tabloda listelenir.</li>
+            <li>Aynı kuralları BT servisine de aktarmak isterseniz:
+              <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-0.5">
+                <li>Üstteki mor <strong>[+ Birim Kuralını Kopyala]</strong> butonuna basın.</li>
+                <li>Kaynak olarak <strong>Acil Radyoloji</strong>, hedef olarak <strong>Bilgisayarlı Tomografi (BT)</strong> seçin.</li>
+                <li>Onay kutusunda "Evet" diyerek aktarımı tamamlayın.</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- SSS AKORDEONU -->
+      <section id="faq" class="space-y-4">
+        <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+          <span>❓ Sıkça Sorulan Sorular (Birim Slotları)</span>
+        </h2>
+        <div class="space-y-2.5">
+          <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4">
+            <summary class="flex justify-between items-center font-semibold cursor-pointer text-sm">
+              <span>Bitiş saatini manuel olarak değiştirebilir miyim?</span>
+              <span class="transition group-open:rotate-180">▾</span>
+            </summary>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-2.5 pt-2.5 border-t border-slate-100 dark:border-slate-800">
+              Hayır, bitiş saati kutusu bilerek salt-okunurdur. Hatalı süre veya çakışan vardiya girişlerini engellemek için sistem, başlangıç saati ile süreyi toplayarak bitiş saatini otomatik üretir.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4">
+            <summary class="flex justify-between items-center font-semibold cursor-pointer text-sm">
+              <span>Kural kopyalarken hedef birimdeki eski slotları koruyamaz mıyım?</span>
+              <span class="transition group-open:rotate-180">▾</span>
+            </summary>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-2.5 pt-2.5 border-t border-slate-100 dark:border-slate-800">
+              Kural kopyalama işlevi, hedef birimin şablonunu kaynak birimle tam olarak eşitlemek üzere tasarlanmıştır. Bu sebeple hedef birimin eski slotları silinir. Eğer eski slotları korumak istiyorsanız yeni slotları tek tek eklemeniz önerilir.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="pt-6 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-400 flex items-center justify-between pb-10">
+        <a href="07_1_temel_ayarlar_ve_calisma_standartlari.html" class="hover:text-cyan-600 transition">← Önceki: 07.1 Temel Ayarlar</a>
+        <a href="07_3_gelismis_kisitlar_ve_adalet_agirliklari.html" class="hover:text-cyan-600 transition">Sonraki: 07.3 Gelişmiş Kısıtlar →</a>
+      </footer>
+
+    </main>
+
+  </div>
+
+  <script>
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const htmlElem = document.documentElement;
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      htmlElem.classList.add('dark');
+    } else {
+      htmlElem.classList.remove('dark');
+    }
+    themeToggleBtn.addEventListener('click', () => {
+      htmlElem.classList.toggle('dark');
+      localStorage.theme = htmlElem.classList.contains('dark') ? 'dark' : 'light';
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebarNav = document.getElementById('sidebarNav');
+    if (mobileMenuBtn && sidebarNav) {
+      mobileMenuBtn.addEventListener('click', () => {
+        sidebarNav.classList.toggle('-translate-x-full');
+      });
+    }
+  </script>
+</body>
+</html>

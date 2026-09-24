@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04. Veritabanı Bakım ve Güvenlik — RADPYS v4 Kullanım Kılavuzu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfeff',
+              100: '#cffafe',
+              200: '#a5f3fc',
+              500: '#06b6d4',
+              600: '#0891b2',
+              700: '#0e7490',
+              900: '#164e63',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    pre, code { font-family: 'JetBrains Mono', monospace; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 9999px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.6); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- TOP HEADER NAVBAR (Wide Fluid Layout) -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Version -->
+      <div class="flex items-center gap-3">
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Menüyü Aç/Kapat">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.2</span>
+            </span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Karar Destek Portalı</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick Search Bar (Ctrl+K) -->
+      <div class="flex-1 max-w-xl hidden md:block">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input 
+            type="text" 
+            placeholder="Dokümanda ara... (Örn: Veritabanı yedekleme, geri yükleme, VACUUM, REINDEX, sıfırlama...)" 
+            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition"
+          >
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <kbd class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600 font-semibold">Ctrl+K</kbd>
+          </div>
+        </div>
+      </div>
+
+      <!-- Theme & Action Buttons -->
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" class="p-2.5 rounded-xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Tema Değiştir">
+          <svg id="themeIconSun" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="themeIconMoon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+
+        <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span>Tüm Modüller</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER (Fluid & Wide Layout) -->
+  <div class="flex-1 max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 flex gap-8">
+
+    <!-- LEFT SIDEBAR: NAVIGATION -->
+    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar">
+      <div class="mb-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3">21 Modül Rehberi</span>
+      </div>
+
+      <nav class="space-y-1 text-sm font-medium">
+        <a href="01_kurulum_ve_ilk_giris.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">01</span>
+          <span>Kurulum & İlk Giriş</span>
+        </a>
+        <a href="02_kullanici_ve_rol_yonetimi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">02</span>
+          <span>Kullanıcı & Roller</span>
+        </a>
+        <a href="03_sistem_ayarlari_ve_tanimlamalar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">03</span>
+          <span>Sistem Ayarları & Tanımlar</span>
+        </a>
+        <!-- 04 AKTİF -->
+        <a href="#overview" class="flex items-center justify-between px-3 py-2.5 rounded-xl bg-cyan-50 text-cyan-800 dark:bg-cyan-950/60 dark:text-cyan-300 font-semibold border-l-4 border-cyan-600">
+          <div class="flex items-center gap-2.5">
+            <span class="font-mono text-xs text-cyan-600 dark:text-cyan-400 font-bold">04</span>
+            <span>Veritabanı, Bakım & Güvenlik</span>
+          </div>
+          <span class="w-2 h-2 rounded-full bg-cyan-600 animate-pulse"></span>
+        </a>
+        <a href="05_personel_yonetimi_ve_toplu_aktarim.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">05</span>
+          <span>Personel & Excel Aktarım</span>
+        </a>
+        <a href="06_izin_yonetimi_ve_hakedis.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">06</span>
+          <span>İzin Yönetimi & Şua Hakediş</span>
+        </a>
+        <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">07</span>
+          <span>Nöbet Ayarları & Kısıtlar</span>
+        </a>
+        <a href="08_nobet_hazirlik_ve_solver_motoru.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">08</span>
+          <span>Nöbet Dağıtım Solver Motoru</span>
+        </a>
+        <a href="09_nobet_devir_ikame_ve_acil_mazeret.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">09</span>
+          <span>Nöbet Devir & Mazeret</span>
+        </a>
+        <a href="10_nobet_borc_alacak_ve_fazla_mesai.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">10</span>
+          <span>Nöbet Borç / Alacak & Fazla Mesai</span>
+        </a>
+        <a href="11_fiili_hizmet_ve_sua_hesaplama.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">11</span>
+          <span>Fiili Hizmet & Şua (FHZ)</span>
+        </a>
+        <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">12</span>
+          <span>Dozimetre Takibi & RD.F43</span>
+        </a>
+        <a href="13_saglik_muayeneleri_ve_periyodik_takip.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">13</span>
+          <span>Sağlık Muayeneleri & Takip</span>
+        </a>
+        <a href="14_ortam_dozu_ve_kroki_haritasi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">14</span>
+          <span>Ortam Dozu & Kroki Haritası</span>
+        </a>
+        <a href="15_olay_bildirimi_ve_dof_capa.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">15</span>
+          <span>Olay Bildirimi & DÖF / CAPA</span>
+        </a>
+        <a href="16_rgs_rso_gorevlendirme_ve_sertifika.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">16</span>
+          <span>RGS / RSO Görevlendirme</span>
+        </a>
+        <a href="17_hizmet_ici_egitim_ve_online_sinav.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">17</span>
+          <span>Hizmet İçi Eğitim & Sınav</span>
+        </a>
+
+        <!-- PLANLANAN MODÜLLER -->
+        <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800/60 space-y-1 opacity-50">
+          <span class="flex items-center gap-2.5 px-3 py-1 text-xs text-slate-400 cursor-not-allowed">
+            <span class="font-mono text-[10px]">18</span> Cihaz & NDK Lisans (Plan)
+          </span>
+          <span class="flex items-center gap-2.5 px-3 py-1 text-xs text-slate-400 cursor-not-allowed">
+            <span class="font-mono text-[10px]">19</span> Arıza & Bakım QC (Plan)
+          </span>
+          <span class="flex items-center gap-2.5 px-3 py-1 text-xs text-slate-400 cursor-not-allowed">
+            <span class="font-mono text-[10px]">20</span> RKE & DIN 6857 (Plan)
+          </span>
+          <span class="flex items-center gap-2.5 px-3 py-1 text-xs text-slate-400 cursor-not-allowed">
+            <span class="font-mono text-[10px]">21</span> Onay & Rapor Merkezi (Plan)
+          </span>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- CENTER CONTENT AREA -->
+    <main class="flex-1 py-8 max-w-5xl space-y-12">
+
+      <!-- HERO & METADATA BLOCK -->
+      <section id="overview" class="space-y-4">
+        <div class="flex flex-wrap items-center gap-2.5">
+          <span class="px-2.5 py-1 rounded-lg text-xs font-bold font-mono uppercase bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/80">
+            Modül 04
+          </span>
+          <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+            ✓ KVKK 6698 Korumalı
+          </span>
+          <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
+            ✓ PostgreSQL 14+ Uyumlu
+          </span>
+          <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-purple-100 text-purple-800 dark:bg-purple-900/50 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
+            ✓ SHA-256 Denetim İzi
+          </span>
+          <span class="text-xs text-slate-400 dark:text-slate-500 font-mono ml-auto">
+            Tahmini Okuma: 4 Dakika | Sürüm: RADPYS v4.2
+          </span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+          Veritabanı Bakım, Kriptografik Yedekleme & Sistem Güvenliği
+        </h1>
+        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+          PostgreSQL motor optimizasyonu (VACUUM ve REINDEX), 256-bit PBKDF2/AES şifreli yedekleme ve felaket kurtarma (Disaster Recovery), 3 kademeli korumayla fabrika ayarlarına sıfırlama, SHA-256 kriptografik denetim izi ve global çökme yakalama rehberi.
+        </p>
+      </section>
+
+      <!-- HIZLI REÇETE KUTUSU & 4 METRİK HAPI (ZORUNLU - VİZYONDER UX STANDARD) -->
+      <section id="quick-recipe" class="p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-cyan-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-900/90 dark:to-cyan-950/40 border-2 border-cyan-500/30 dark:border-cyan-500/20 shadow-xl shadow-cyan-500/5 space-y-6">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-cyan-600 text-white flex items-center justify-center font-bold text-lg shadow-md shadow-cyan-600/30">
+            ⚡
+          </div>
+          <div>
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white">
+              Hızlı Reçete: Şifreli Yedekleme ve Motor Optimizasyonu
+            </h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400">
+              Veri kaybı riskini sıfırlayın ve veritabanı sorgu performansını 30 saniyede optimize edin
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+          <div class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
+            <span class="font-bold text-slate-400 uppercase text-[10px] tracking-wider block">1. İstenen Sonuç</span>
+            <p class="font-semibold text-slate-800 dark:text-slate-100">
+              Verilerin tam dökümünü güvenli şifrelemeyle arşivlemek ve veritabanı ölü satırlarını temizlemek.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
+            <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase text-[10px] tracking-wider block">2. Yapılacak İşlem</span>
+            <p class="font-semibold text-slate-800 dark:text-slate-100">
+              <strong>[Veritabanı Bakım]</strong> ekranında <strong>[Veritabanı Yedekle]</strong> ve <strong>[Dosyaları Yedekle]</strong> butonlarına basın; ardından <strong>[Boyut Optimize Et (VACUUM)]</strong> aracını çalıştırın.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
+            <span class="font-bold text-emerald-600 dark:text-emerald-400 uppercase text-[10px] tracking-wider block">3. Sistem Etkisi</span>
+            <p class="font-semibold text-slate-800 dark:text-slate-100">
+              Veritabanı 256-bit AES ile şifrelenip zaman damgasıyla saklanır; PostgreSQL motoru ölü satırları temizleyip disk alanını geri kazandırır.
+            </p>
+          </div>
+        </div>
+
+        <!-- 4 Metrik Hapı (Pills) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-cyan-100 dark:border-cyan-900/40">
+          <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50">
+            <span class="text-base">🔐</span>
+            <div class="flex flex-col">
+              <span class="text-[10px] uppercase font-bold text-slate-400">Kriptografi</span>
+              <span class="text-xs font-bold text-slate-800 dark:text-slate-100">256-bit AES/PBKDF2</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50">
+            <span class="text-base">👑</span>
+            <div class="flex flex-col">
+              <span class="text-[10px] uppercase font-bold text-slate-400">Yetkili Rol</span>
+              <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Yalnızca Admin</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50">
+            <span class="text-base">🛡️</span>
+            <div class="flex flex-col">
+              <span class="text-[10px] uppercase font-bold text-slate-400">Emniyet Kilidi</span>
+              <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Sudo Şifre Onayı</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50">
+            <span class="text-base">🖥️</span>
+            <div class="flex flex-col">
+              <span class="text-[10px] uppercase font-bold text-slate-400">Platform</span>
+              <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Yalnızca Masaüstü</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5N1K KURAL VE AYAR ÇÖZÜMLEME TABLOSU (ZORUNLU) -->
+      <section id="table-5w1h" class="space-y-4">
+        <div class="space-y-1">
+          <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+            <span>📌 5N1K Kural ve Fonksiyon Tablosu</span>
+          </h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400">
+            Veritabanı yedekleme, geri yükleme, motor optimizasyonu ve denetim araçlarının çalışma mantığı.
+          </p>
+        </div>
+
+        <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
+          <table class="w-full text-left text-xs sm:text-sm divide-y divide-slate-200 dark:divide-slate-800">
+            <thead class="bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-200 font-bold uppercase text-[11px] tracking-wider">
+              <tr>
+                <th class="py-3.5 px-4">NE? (Ekran Kontrolü)</th>
+                <th class="py-3.5 px-4">NEDEN? (Kullanım Amacı)</th>
+                <th class="py-3.5 px-4">NASIL? (Çalışma Mantığı)</th>
+                <th class="py-3.5 px-4">NE ZAMAN? (Hangi Durumda)</th>
+                <th class="py-3.5 px-4">KİM? (Yetkili Kitle)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 text-slate-600 dark:text-slate-300">
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                  <strong>Veritabanı Yedekle</strong><br>
+                  <span class="text-[11px] text-slate-400">Sol Üst Buton</span>
+                </td>
+                <td class="py-3.5 px-4">Tüm klinik, nöbet, izin ve dozimetre kayıtlarının anlık tam yedeğini almak.</td>
+                <td class="py-3.5 px-4">PostgreSQL dökümü alınır; 256-bit PBKDF2/AES ile şifrelenip zaman damgasıyla <code>.dump</code> dosyası üretilir.</td>
+                <td class="py-3.5 px-4">Düzenli periyotlarla veya büyük veri girişi/güncelleme öncesinde.</td>
+                <td class="py-3.5 px-4 font-medium text-cyan-600 dark:text-cyan-400">Sistem Yöneticisi</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                  <strong>Dosyaları Yedekle</strong><br>
+                  <span class="text-[11px] text-slate-400">Sol Üst Buton</span>
+                </td>
+                <td class="py-3.5 px-4">Yüklenen personel evrakları, sertifikalar ve cihaz dokümanlarını arşivlemek.</td>
+                <td class="py-3.5 px-4">Yüklü dosyalar klasörü zip paketi haline getirilir ve 256-bit anahtarla şifrelenerek <code>.zip</code> olarak saklanır.</td>
+                <td class="py-3.5 px-4">Belge kasası arşivlenmek istendiğinde.</td>
+                <td class="py-3.5 px-4 font-medium text-cyan-600 dark:text-cyan-400">Sistem Yöneticisi</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                  <strong>Yedeği Geri Yükle (Yükle)</strong><br>
+                  <span class="text-[11px] text-slate-400">Tablo Aksiyon Butonu</span>
+                </td>
+                <td class="py-3.5 px-4">Veri kaybı veya arıza anında sistemi geçmiş bir tarihe döndürmek.</td>
+                <td class="py-3.5 px-4">Kritik uyarı onaylanır ve Sudo şifresi girilir. Dosya çözülüp veritabanına aktarılır; sequence sayaçları senkronize edilir.</td>
+                <td class="py-3.5 px-4">Felaket kurtarma veya hatalı toplu işlem sonrası.</td>
+                <td class="py-3.5 px-4 font-medium text-purple-600 dark:text-purple-400">Süper Yönetici (Sudo)</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                  <strong>Yedeği Dışa Aktar</strong><br>
+                  <span class="text-[11px] text-slate-400">Tablo Aksiyon Butonu</span>
+                </td>
+                <td class="py-3.5 px-4">Yedek dosyasını harici diske veya USB belleğe aktarmak.</td>
+                <td class="py-3.5 px-4">Kullanıcının seçtiği konuma dosya yöneticisiyle güvenli kopya çıkarır.</td>
+                <td class="py-3.5 px-4">Harici lokasyonda çevrimdışı arşivleme yapılırken.</td>
+                <td class="py-3.5 px-4 font-medium text-cyan-600 dark:text-cyan-400">Sistem Yöneticisi</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                  <strong>Yedeği Kalıcı Olarak Silme</strong><br>
+                  <span class="text-[11px] text-slate-400">Tablo Aksiyon Butonu</span>
+                </td>
+                <td class="py-3.5 px-4">Eski ve gereksiz yedekleri diskten temizleyerek alan açmak.</td>
+                <td class="py-3.5 px-4">Silme onayı + Sudo doğrulaması sonrasında dosya diskten geri dönüşsüz silinir.</td>
+                <td class="py-3.5 px-4">Disk alanı yönetimi gerektiğinde.</td>
+                <td class="py-3.5 px-4 font-medium text-purple-600 dark:text-purple-400">Süper Yönetici (Sudo)</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                  <strong>Boyut Optimize Et (VACUUM)</strong><br>
+                  <span class="text-[11px] text-slate-400">Bakım Araçları Butonu</span>
+                </td>
+                <td class="py-3.5 px-4">Silinmiş kayıtların bıraktığı ölü satırları temizleyip dosya boyutunu küçültmek.</td>
+                <td class="py-3.5 px-4">PostgreSQL <code>VACUUM ANALYZE</code> komutunu koşturur; önceki ve sonraki boyut farkını ekranda özetler.</td>
+                <td class="py-3.5 px-4">Ayda bir veya yoğun veri silme/güncelleme işlemlerinin ardından.</td>
+                <td class="py-3.5 px-4 font-medium text-cyan-600 dark:text-cyan-400">Sistem Yöneticisi</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                  <strong>İndeksleri Yenile (REINDEX)</strong><br>
+                  <span class="text-[11px] text-slate-400">Bakım Araçları Butonu</span>
+                </td>
+                <td class="py-3.5 px-4">Bozulan veya şişen arama indekslerini baştan inşa ederek hızı artırmak.</td>
+                <td class="py-3.5 px-4"><code>REINDEX SCHEMA public</code> komutuyla tüm indeksler kilitlenmeden yeniden oluşturulur.</td>
+                <td class="py-3.5 px-4">Arama ve sorgularda yavaşlama hissedildiğinde.</td>
+                <td class="py-3.5 px-4 font-medium text-cyan-600 dark:text-cyan-400">Sistem Yöneticisi</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                  <strong>Sistem Tanısı & Otomatik Onarım</strong><br>
+                  <span class="text-[11px] text-slate-400">Bakım Araçları Butonu</span>
+                </td>
+                <td class="py-3.5 px-4">Şema tutarsızlıklarını, yetim kayıtları ve form hatalarını tespit edip düzeltmek.</td>
+                <td class="py-3.5 px-4">Sihirbaz 5 anomaliyi tarar; <strong>[Otomatik Düzelt]</strong> ile yetim nöbet kayıtları ve ad boşlukları tek tıkla onarılır.</td>
+                <td class="py-3.5 px-4">Dönem sonlarında veya veri tutarsızlığı şüphesinde.</td>
+                <td class="py-3.5 px-4 font-medium text-purple-600 dark:text-purple-400">Süper Yönetici (Sudo)</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                  <strong>Veritabanını Sıfırla</strong><br>
+                  <span class="text-[11px] text-rose-500 font-bold">Tehlikeli Bölge</span>
+                </td>
+                <td class="py-3.5 px-4">İşlem kayıtlarını temizleyip sistemi fabrika ayarlarına döndürmek.</td>
+                <td class="py-3.5 px-4">Kutuya büyük harflerle <strong>"SIFIRLA"</strong> yazılır + Sudo şifresi girilir. 48 hareket tablosu silinir; tanımlar, ayarlar ve admin korunur.</td>
+                <td class="py-3.5 px-4">Kurum devrinde, test sonu veya sıfır yıl başlangıcında.</td>
+                <td class="py-3.5 px-4 font-medium text-rose-600 dark:text-rose-400">Yalnızca Root/Admin (Sudo)</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                  <strong>Tarihsel Sistem Günlükleri</strong><br>
+                  <span class="text-[11px] text-slate-400">Log Merkezi (1. Sekme)</span>
+                </td>
+                <td class="py-3.5 px-4">Uygulama, senkronizasyon ve hata loglarını canlı okuyup incelemek.</td>
+                <td class="py-3.5 px-4">Dosya seçilir; arama, seviye (INFO/WARNING/ERROR) ve tarih filtresi uygulanarak renklendirilmiş kayıtlar izlenir.</td>
+                <td class="py-3.5 px-4">Teknik arıza incelemelerinde veya denetim kontrollerinde.</td>
+                <td class="py-3.5 px-4 font-medium text-cyan-600 dark:text-cyan-400">Sistem Yöneticisi</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                  <strong>Kullanıcı Etkileşim Günlüğü</strong><br>
+                  <span class="text-[11px] text-slate-400">Log Merkezi (2. Sekme)</span>
+                </td>
+                <td class="py-3.5 px-4">Kullanıcıların ekranda tıkladığı butonları, girdiği metinleri ve sonuçları görmek.</td>
+                <td class="py-3.5 px-4">Oturum ve işlem türü bazlı filtrelenir; çift tıkla ham veri modalı açılır. Son oturum hariç temizlenebilir.</td>
+                <td class="py-3.5 px-4">Kullanıcı takılmalarında ve kök neden analizinde.</td>
+                <td class="py-3.5 px-4 font-medium text-cyan-600 dark:text-cyan-400">Sistem Yöneticisi</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                  <strong>KVKK Kriptografik Denetim İzi</strong><br>
+                  <span class="text-[11px] text-slate-400">Log Merkezi (3. Sekme)</span>
+                </td>
+                <td class="py-3.5 px-4">Yasal denetim kayıtlarının dışarıdan değiştirilmediğini ispatlamak.</td>
+                <td class="py-3.5 px-4">Her kaydın SHA-256 hash zinciri doğrulanır. Tahrifat varsa kırmızı ikaz; sağlamsa yeşil rozet verir.</td>
+                <td class="py-3.5 px-4">Resmi KVKK ve Sağlık Bakanlığı denetimlerinde.</td>
+                <td class="py-3.5 px-4 font-medium text-cyan-600 dark:text-cyan-400">Sistem Yöneticisi / Denetçi</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                  <strong>Beklenmeyen Hata (Crash Dialog)</strong><br>
+                  <span class="text-[11px] text-slate-400">Global Hata Yakalama</span>
+                </td>
+                <td class="py-3.5 px-4">Sistem çökmesini önleyip teknik detayları anında destek ekibine iletmek.</td>
+                <td class="py-3.5 px-4">Yakalanmamış hata anında açılır. Tek tıkla traceback kopyalatır veya geliştiriciye e-posta açar.</td>
+                <td class="py-3.5 px-4">Uygulama beklenmeyen bir hatayla karşılaştığında.</td>
+                <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Tüm Kullanıcılar</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- MİT AVCISI (MYTH-BUSTING) KARTI (ZORUNLU) -->
+      <section id="myth-buster" class="p-6 rounded-3xl bg-amber-50/80 dark:bg-amber-950/30 border-2 border-amber-500/40 shadow-sm space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+            💡
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">
+              Saha Mit Avcısı: "Veritabanını Sıfırlarsam Her Şey Silinir mi?"
+            </h3>
+            <span class="text-xs text-amber-700 dark:text-amber-300 font-semibold">En Sık Yapılan Yönetici Yanılgısı</span>
+          </div>
+        </div>
+
+        <div class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
+          <div class="flex items-start gap-2.5">
+            <span class="text-rose-500 font-bold shrink-0 text-base leading-none">❌</span>
+            <p>
+              <strong>Yanlış İnanış:</strong> <em>"Veritabanını Sıfırla butonuna basarsam hastane departmanlarım, unvanlarım, tatil takvimim ve admin şifrem de silinir; programı ilk günkü gibi baştan kurup ayarları yeniden girmem gerekir."</em>
+            </p>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <span class="text-emerald-500 font-bold shrink-0 text-base leading-none">✅</span>
+            <p>
+              <strong>Doğru Gerçek:</strong> <strong>HAYIR.</strong> RADPYS mimarisi referans tanımları ile operasyonel hareketleri birbirinden kesin olarak ayırmıştır. Sıfırlama işlemi yalnızca <strong>hareket tablolarını</strong> (personeller, nöbet çizelgeleri, izinler, dozimetre ölçümleri, arızalar) temizler. <strong>Departmanlar, Unvanlar, Resmi Tatiller, Program Ayarları, Sistem Rolleri, Yetki Şablonları ve `Admin` hesabı mutlak koruma altındadır</strong>; sistem sıfır işlem verisiyle ancak eksiksiz kurumsal yapısıyla anında kullanıma hazır kalır.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SÜREÇ AKIŞ ŞEMASI (MERMAID.JS) (ZORUNLU) -->
+      <section id="workflow" class="space-y-4">
+        <div class="space-y-1">
+          <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+            <span>🔄 Güvenli Bakım ve Felaket Kurtarma Akış Şeması</span>
+          </h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400">
+            Yedekleme, geri yükleme ve fabrika ayarlarına sıfırlama işlemlerinin güvenlik aşamaları.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex justify-center">
+          <pre class="mermaid text-xs opacity-0 transition-opacity duration-300" id="mermaidFlow">
+graph TD
+    A(["Yönetici İşlem Başlatır"]) --> B{"Hangi İşlem Seçildi?"}
+
+    %% Yedekleme Akışı
+    B -->|"Veritabanı / Dosya Yedekle"| C["Arka Plan İş Parçacığı Başlatılır"]
+    C --> D["pg_dump / uploads Klasörü Paketlenir"]
+    D --> E["256-bit PBKDF2 + AES Şifreleme Uygulanır"]
+    E --> F[("data/backups/ Dizini")]
+    F --> G["Tablo Güncellenir & Başarı Bildirimi"]
+
+    %% Geri Yükleme Akışı
+    B -->|"Yedeği Geri Yükle"| H["Kritik Veri Kaybı Uyarısı Verilir"]
+    H --> I{"Kullanıcı Onayladı mı?"}
+    I -->|Hayır| J["İşlem İptal Edilir"]
+    I -->|Evet| K["Sudo Modu: Yönetici Şifresi Doğrulanır"]
+    K --> L["Yedek Dosyası 256-bit Anahtarla Çözülür"]
+    L --> M["pg_restore / uploads Klasörüne Basılır"]
+    M --> N["Sequence Sayaçları Senkronize Edilir"]
+    N --> O(["Programı Kapatıp Açınız Uyarısı"])
+
+    %% Motor Bakım Akışı
+    B -->|"VACUUM / REINDEX"| P["PostgreSQL Motoruna Bakım Emri Gönderilir"]
+    P --> Q["Ölü Satırlar Temizlenir / İndeksler Baştan Kurulur"]
+    Q --> R["Boyut Kazanımı ve Başarı Raporlanır"]
+
+    %% Sıfırlama Akışı
+    B -->|"Veritabanını Sıfırla"| S["Admin Rolü Kontrolü Yapılır"]
+    S --> T["Kutuya BÜYÜK HARFLERLE 'SIFIRLA' Yazılır"]
+    T --> U["Sudo Modu: Yönetici Şifresi İstenir"]
+    U --> V["48 İşlem Tablosuna TRUNCATE CASCADE Uygulanır"]
+    V --> W["Tanımlar, Roller, Ayarlar ve Admin Hesabı Korunur"]
+    W --> X(["Sıfır Kurulum Durumuna Dönüldü"])
+
+    style A fill:#06b6d4,stroke:#0891b2,stroke-width:2px,color:#fff
+    style B fill:#f8fafc,stroke:#94a3b8,stroke-width:1.5px,color:#0f172a
+    style G fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff
+    style O fill:#3b82f6,stroke:#2563eb,stroke-width:2px,color:#fff
+    style X fill:#ef4444,stroke:#dc2626,stroke-width:2px,color:#fff
+          </pre>
+        </div>
+      </section>
+
+      <!-- EKRAN GÖRÜNTÜLERİ VE ROZETLERİ (ZORUNLU) -->
+      <section id="screenshots" class="space-y-6">
+        <div class="space-y-1">
+          <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+            <span>🖼️ Arayüz Ekran Görünümleri</span>
+          </h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400">
+            Masaüstü Veritabanı Bakım ve Birleşik Log Merkezi pencerelerinin kontrol panelleri.
+          </p>
+        </div>
+
+        <!-- GÖRSEL 1: VERİTABANI BAKIM SAYFASI -->
+        <figure class="my-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
+          <div class="p-3 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
+            <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
+              🖥️ Ekran Konumu: <strong class="text-slate-900 dark:text-white font-semibold">Sol Menü > Veritabanı Bakım</strong>
+            </span>
+            <span class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">Yedekler & Motor Bakım Araçları</span>
+          </div>
+          <img src="assets/img/04_veritabani_bakim_ve_guvenlik.png" alt="Veritabanı Bakım Ekranı" class="w-full h-auto">
+          <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki yedek dosya isimleri, boyutlar ve tarihler tamamen test ortamında üretilmiş sentetik veridir.</span>
+          </figcaption>
+        </figure>
+
+        <!-- GÖRSEL 2: BİRLEŞİK LOG MERKEZİ -->
+        <figure class="my-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
+          <div class="p-3 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
+            <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
+              🖥️ Ekran Konumu: <strong class="text-slate-900 dark:text-white font-semibold">Sol Menü > Log Kayıtları</strong>
+            </span>
+            <span class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">Tarihsel Sistem Günlükleri & Denetim İzi</span>
+          </div>
+          <img src="assets/img/04_veritabani_bakim_ve_guvenlik_01.png" alt="Log Kayıtları Ekranı" class="w-full h-auto">
+          <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki log satırları ve oturum detayları simülasyon amacıyla üretilmiş sentetik test kayıtlarıdır.</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- ADIM ADIM EYLEM AKIŞI -->
+      <section id="step-by-step" class="space-y-6">
+        <div class="space-y-1">
+          <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+            <span>📋 Adım Adım Operasyon Rehberi</span>
+          </h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400">
+            Yedekleme, geri yükleme, motor bakımı ve sıfırlama işlemlerinin eksiksiz adımları.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <!-- ADIM 1 -->
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300 font-bold text-xs flex items-center justify-center">1</span>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">Şifreli Veritabanı ve Evrak Yedeği Alma</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-9">
+              Sol menüden <strong>[Veritabanı Bakım]</strong> ekranına girin. Pencerenin sol üstündeki <strong>[Veritabanı Yedekle]</strong> butonuna basın. Arka planda PostgreSQL dökümü alınıp 256-bit AES ile şifrelenecek ve <code>data/backups/</code> klasörüne <code>.dump</code> dosyası olarak kaydedilecektir. Yüklü personel evraklarını ve taranmış belgeleri de arşivlemek için yanındaki <strong>[Dosyaları Yedekle]</strong> butonuna tıklayın.
+            </p>
+          </div>
+
+          <!-- ADIM 2 -->
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300 font-bold text-xs flex items-center justify-center">2</span>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">Eski Bir Yedeği Geri Yükleme (Felaket Kurtarma)</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-9">
+              Tablodan dönmek istediğiniz tarihli yedeği bulun ve en sağdaki <strong>[Yükle]</strong> butonuna basın. Ekrana gelen kritik uyarı penceresinde <strong>[Evet]</strong>'e tıklayın. Ardından açılan pencereye Sistem Yöneticisi şifrenizi (<strong>Sudo Doğrulaması</strong>) girin. Geri yükleme tamamlandıktan sonra, verilerin ekranda eksiksiz güncellenmesi için <strong>uygulamayı kapatıp yeniden başlatın</strong>.
+            </p>
+          </div>
+
+          <!-- ADIM 3 -->
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300 font-bold text-xs flex items-center justify-center">3</span>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">PostgreSQL VACUUM ve REINDEX Motor Bakımı</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-9">
+              Sağ taraftaki <strong>[Sistem Bakım Araçları]</strong> kartına gidin. Silinen satırların bıraktığı boş alanları motora geri kazandırmak için <strong>[Boyut Optimize Et (VACUUM)]</strong> butonuna basın. İşlem bitince önceki ve yeni boyut farkını gösteren bilgi kutusunu onaylayın. Arama indekslerini hızlandırmak için <strong>[İndeksleri Yenile (REINDEX)]</strong> butonuna tıklayarak indekslerin baştan kurulmasını sağlayın.
+            </p>
+          </div>
+
+          <!-- ADIM 4 -->
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300 font-bold text-xs flex items-center justify-center">4</span>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">Sistem Tanısı ve Otomatik Onarım Sihirbazı</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-9">
+              Bakım panelindeki <strong>[Sistem Tanısı ve Bütünlük Kontrolü]</strong> butonuna tıklayın. Açılan sihirbaz şemadaki yetim nöbet kayıtlarını, hatalı izin tarihlerini ve trim edilmemiş isim boşluklarını tarar. Sarı anomali ikazı varsa üstteki <strong>[Otomatik Düzelt & Onar]</strong> butonuna basıp Sudo şifrenizi girin. Sistem hataları saniyeler içinde şema düzeyinde onaracaktır.
+            </p>
+          </div>
+
+          <!-- ADIM 5 -->
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-xl bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-300 font-bold text-xs flex items-center justify-center">5</span>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">Tehlikeli Bölge — 3 Kademeli Fabrika Ayarlarına Sıfırlama</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-9">
+              Sağ alttaki kırmızı <strong>[Tehlikeli Bölge]</strong> alanında bulunan <strong>[Veritabanını Sıfırla (Verileri Temizle)]</strong> butonuna basın. Açılan kutuya tam olarak büyük harflerle <strong>SIFIRLA</strong> yazıp butona tıklayın. Ardından yönetici şifrenizi girin. Sistem tüm personelleri, nöbetleri ve izinleri sıfırlayacak; ancak tanımlarınız, departmanlarınız ve admin hesabınız kesinlikle korunacaktır.
+            </p>
+          </div>
+
+          <!-- ADIM 6 -->
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-xl bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 font-bold text-xs flex items-center justify-center">6</span>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base">Beklenmeyen Hata (Crash Dialog) Anında Teknik Destek Bildirimi</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-9">
+              Uygulama beklenmedik bir hatayla karşılaştığında kapanmaz; ekrana koyu temalı <strong>Beklenmeyen Hata</strong> penceresi gelir. <strong>[Hata Detayını Kopyala]</strong> butonuyla traceback dökümünü panoya alabilir veya <strong>[E-Posta Gönder]</strong> butonuna tıklayarak doğrudan <code>radpys.iletisim@gmail.com</code> adresine hazır formatta teknik hata raporu iletebilirsiniz.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SIKÇA SORULAN SORULAR (SSS) AKORDEONU -->
+      <section id="faq" class="space-y-4">
+        <div class="space-y-1">
+          <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+            <span>❓ Sıkça Sorulan Sorular (SSS)</span>
+          </h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400">
+            Veritabanı güvenliği, şifreleme ve motor bakımı hakkında en çok merak edilen sorular.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <!-- SSS 1 -->
+          <details class="group rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 transition">
+            <summary class="flex justify-between items-center font-bold text-sm sm:text-base text-slate-800 dark:text-slate-100 cursor-pointer list-none">
+              <span>Alınan bir yedeği başka bir sunucuya veya yeni bilgisayara taşıyıp yükleyebilir miyim?</span>
+              <span class="transition group-open:rotate-180 text-cyan-600">▼</span>
+            </summary>
+            <div class="pt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800 mt-3">
+              Evet. Ancak yedek dosyası 256-bit AES anahtarıyla şifrelendiğinden, yeni sunucudaki RADPYS kurulumunun da aynı <code>yedek_sifreleme_anahtari</code> değerine sahip olması gerekir. Bu anahtar <strong>[Program Ayarları] > [Güvenlik]</strong> bölümünde yer alır. Anahtarı yeni sisteme aktardıktan sonra yedeği <code>data/backups/</code> klasörüne kopyalayıp <strong>[Yenile]</strong> butonuna basarak anında geri yükleyebilirsiniz.
+            </div>
+          </details>
+
+          <!-- SSS 2 -->
+          <details class="group rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 transition">
+            <summary class="flex justify-between items-center font-bold text-sm sm:text-base text-slate-800 dark:text-slate-100 cursor-pointer list-none">
+              <span>VACUUM ve REINDEX işlemlerini ne sıklıkla çalıştırmalıyım?</span>
+              <span class="transition group-open:rotate-180 text-cyan-600">▼</span>
+            </summary>
+            <div class="pt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800 mt-3">
+              Hastanelerdeki yoğun veri trafiğine bağlı olarak, <strong>[Boyut Optimize Et (VACUUM)]</strong> işleminin ayda bir kez veya toplu personel içe aktarımı/silme sonrasında çalıştırılması önerilir. <strong>[İndeksleri Yenile (REINDEX)]</strong> ise arama ve rapor filtrelerinde gözle görülür bir yavaşlama hissedildiğinde veya her 3-6 ayda bir rutin bakım olarak yapılmalıdır. Her iki işlem de arka planda güvenle yürütülür.
+            </div>
+          </details>
+
+          <!-- SSS 3 -->
+          <details class="group rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 transition">
+            <summary class="flex justify-between items-center font-bold text-sm sm:text-base text-slate-800 dark:text-slate-100 cursor-pointer list-none">
+              <span>Yedek geri yüklendikten sonra neden programı kapatıp açmam gerekiyor?</span>
+              <span class="transition group-open:rotate-180 text-cyan-600">▼</span>
+            </summary>
+            <div class="pt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800 mt-3">
+              PostgreSQL geri yükleme işlemi veritabanı tablolarını ve otomatik artan ID sayaçlarını (sequence) eski duruma döndürür. Ancak masaüstü uygulamasının belleğinde (RAM) halihazırda açık olan sekmeler ve oturum önbellekleri eski verileri tutmaya devam edebilir. Arayüzün yeni veritabanı durumuyla %100 senkronize çalışabilmesi için programın yeniden başlatılması zorunludur.
+            </div>
+          </details>
+
+          <!-- SSS 4 -->
+          <details class="group rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 transition">
+            <summary class="flex justify-between items-center font-bold text-sm sm:text-base text-slate-800 dark:text-slate-100 cursor-pointer list-none">
+              <span>Yanlışlıkla 'Veritabanını Sıfırla' butonuna basarsam geri dönüşü var mıdır?</span>
+              <span class="transition group-open:rotate-180 text-cyan-600">▼</span>
+            </summary>
+            <div class="pt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800 mt-3">
+              Yanlışlıkla basılması 3 kademeli emniyet kilidiyle engellenmiştir (Yalnızca Admin yetkisi, büyük harfle "SIFIRLA" yazma şartı ve yönetici şifre doğrulaması). Ancak bu 3 adımı da tamamlayıp veritabanını sıfırladıysanız, tek geri dönüş yolu sıfırlamadan hemen önce aldığınız bir yedeği <strong>[Yükle]</strong> butonuyla geri yüklemektir. Bu nedenle her sıfırlama öncesinde otomatik veya manuel yedek alınması şarttır.
+            </div>
+          </details>
+
+          <!-- SSS 5 -->
+          <details class="group rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 transition">
+            <summary class="flex justify-between items-center font-bold text-sm sm:text-base text-slate-800 dark:text-slate-100 cursor-pointer list-none">
+              <span>Beklenmeyen hata (Crash) penceresi çıktığında üzerinde çalıştığım veriler kaybolur mu?</span>
+              <span class="transition group-open:rotate-180 text-cyan-600">▼</span>
+            </summary>
+            <div class="pt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800 mt-3">
+              RADPYS'nin global istisna yakalayıcısı (CrashDialog), işletim sisteminin programı zorla kapatmasını (Crash/Terminate) engeller. Hata penceresi çıktığında veritabanı bağlantısı açık kalır ve o ana kadar veritabanına kaydedilmiş tüm verileriniz güvendedir. Yalnızca form üzerinde yazıp henüz [Kaydet] butonuna basmadığınız alanlar etkilenebilir. Hata dökümünü e-posta ile iletip pencereyi kapattıktan sonra güvenle çalışmaya devam edebilirsiniz.
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- NAVIGATION FOOTER -->
+      <footer class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <a href="03_sistem_ayarlari_ve_tanimlamalar.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">← Önceki Doküman</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">03. Sistem Ayarları & Tanımlamalar</span>
+          </a>
+          <a href="05_personel_yonetimi_ve_toplu_aktarim.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition text-right group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">Sonraki Doküman →</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">05. Personel Yönetimi & Aktarım</span>
+          </a>
+        </div>
+      </footer>
+    </main>
+
+    <!-- RIGHT ASIDE: ON THIS PAGE (TOC) -->
+    <aside class="hidden xl:block w-64 shrink-0 py-8 text-xs">
+      <div class="sticky top-24 space-y-3">
+        <span class="font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block">Bu Sayfada</span>
+        <nav class="space-y-2 border-l border-slate-200 dark:border-slate-800 pl-3">
+          <a href="#overview" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition">Genel Bakış</a>
+          <a href="#quick-recipe" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition">Hızlı Reçete & Metrikler</a>
+          <a href="#table-5w1h" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition">5N1K Kural Tablosu</a>
+          <a href="#myth-buster" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition">Mit Avcısı: Sıfırlama</a>
+          <a href="#workflow" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition">Süreç Akış Şeması</a>
+          <a href="#screenshots" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition">Ekran Görünümleri</a>
+          <a href="#step-by-step" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition">Adım Adım Operasyon</a>
+          <a href="#faq" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition">Sıkça Sorulan Sorular</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
+    <div class="max-w-[1720px] mx-auto px-6">
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi — Sağlık Bilgi Güvenliği & KVKK Standartları ile Korunmaktadır.</p>
+    </div>
+  </footer>
+
+  <!-- THEME & INTERACTIVE LOGIC SCRIPT -->
+  <script>
+    // Dark Mode Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlEl = document.documentElement;
+
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      htmlEl.classList.add('dark');
+    } else {
+      htmlEl.classList.remove('dark');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      htmlEl.classList.toggle('dark');
+      localStorage.theme = htmlEl.classList.contains('dark') ? 'dark' : 'light';
+    });
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const sidebar = document.getElementById('sidebarNav');
+    if (mobileBtn && sidebar) {
+      mobileBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('-translate-x-full');
+      });
+    }
+
+    // Mermaid Rendering
+    document.addEventListener('DOMContentLoaded', () => {
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: htmlEl.classList.contains('dark') ? 'dark' : 'default',
+        securityLevel: 'loose',
+        fontFamily: 'Inter, sans-serif'
+      });
+      setTimeout(() => {
+        const flow = document.getElementById('mermaidFlow');
+        if (flow) flow.classList.remove('opacity-0');
+      }, 300);
+    });
+  </script>
+</body>
+</html>
