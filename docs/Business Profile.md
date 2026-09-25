@@ -1,71 +1,89 @@
-Business Profile
-Core Profile
-Business Name: RADPYS — Radyasyon Çalışanları Yönetim Sistemi
-Category: Yazılım Şirketi
-Description: RADPYS V4; hastaneler ve radyoloji klinikleri için radyasyon çalışanlarının nöbet planlaması, dozimetre takibi, yıllık izin ve kıstelyevm esasına dayalı yasal Sağlık (Şua) İzni hakediş hesaplaması (0-30 Gün), KVKK uyumlu sağlık kayıtları, NDK 3 günlük yasal olay bildirim takibi ve SKS 6.1 uyumlu Olay/DÖF bildirim süreçlerini tek platformda birleştiren kurumsal yönetim sistemidir. NDK ve Sağlık Bakanlığı mevzuatı standartları dikkate alınarak geliştirilen altyapısı ile kurumların denetim, raporlama ve operasyonel süreçlerini destekler.
-Address: İstanbul, 34505, İstanbul
-Phone: Not available
-Hours: Monday–Sunday: Open 24 hours
-Service Area: Not specified
-Attributes & Social
-Attributes: None specified
-Social Profiles: YouTube: <https://www.youtube.com/channel/UC5hgtxPPcuAez0G2AYyuoyg>
-Action Links: No action links are currently configured for this location.
-Offerings
-Services:
-Uygulama geliştirme
-Kurumsal yazılım geliştirme
-Yazılım geliştirme
-Tıbbi Hizmetler
-Sağlık Yazılımı
-Menu: Not applicable for this business category.
-Price List: Not available.
-Brand Identity
+# Business Profile
 
-1. Foundational Brand Identity
-Brand Name: RADPYS V4
-Brand One-Liner: Radyoloji departmanlarında nöbet, şua izni ve radyasyon güvenliği süreçlerini tek platformda birleştiren, Intranet odaklı, PWA (Progressive Web App) mobil saha erişimli ve isteğe bağlı internete açılabilen yerel (local-first) KVKK uyumlu yönetim sistemi.
-Core Values: KVKK & NDK Regulation Compliance, Data Security (PostgreSQL & KVKK Fernet AES-256), Operational Transparency, Precision Radiation Safety, Enterprise Reliability.
-Brand Overview: RADPYS V4, sağlık kurumlarındaki radyoloji departmanları ve radyasyon çalışanları için tasarlanmış entegre bir operasyon ve güvenlik yönetim platformudur. Nöbet planlamasından yasal Sağlık (Şua) İznini (0-30 Gün) oran-orantı (kıstelyevm) esasına göre hesaplayan Fiili Hizmet Modülüne, periyodik dozimetre kayıt takibinden (20 mSv/yıl limit aşımı & 5 mSv tek periyot anomali uyarısı) 3 günlük yasal NDK bildirim takibine ve SKS 6.1 uyumlu Olay/DÖF bildirimlerine kadar kritik operasyonel süreçlerin yönetilmesini sağlar. (Not: RADPYS V4 bir SGK emeklilik yıpranma payı yazılımı değildir; fiili hizmet takibi birim içi operasyonel Sağlık/Şua İznini belirlemeye yöneliktir.) Masaüstü (PySide6 / PostgreSQL) mimarisi, kurum içi yerel ağda (Intranet) çalışan, mobil cihazlarda PWA olarak uygulama gibi yüklenebilen ve isteğe bağlı olarak güvenli şekilde internete / dış erişime açılabilen Web Portalı entegre altyapısıyla kağıt üzerindeki iş yükünü azaltarak klinik denetlenebilirlik, veri güvenliği ve operasyonel verimlilik sunar.
-2. Strategic Positioning & Market
-Positioning Matrix:
-Price: Institutional / B2B Enterprise
-Innovation: Highly Differentiated (Native Desktop + PostgreSQL Enterprise + KVKK Fernet AES-256 + Intranet / Mobile PWA & Optional Internet Web Portal Integration + Automated Shift & Şua Algorithms)
-Market: Specialized Niche (Hospitals, Radiology Clinics, Radiation Safety Departments)
-Purpose: Mission-Driven & Utilitarian
-Target Audiences:
-Radyoloji Departman Sorumluları ve Hastane Yöneticileri: Nöbet çizelgelerinin hazırlanmasını kolaylaştırmak, idari yükü azaltmak, Şua İzni hakedişlerini mevzuata uygun hesaplamak ve SKS 6.1/NDK/KVKK standartlarına uyumu desteklemek isteyen yöneticiler.
-Radyasyon Güvenliği Komitesi ve Medikal Fizikçiler: Çalışanların periyodik dozimetre değerlerini düzenli izlemek, 20 mSv yıllık NDK limit aşımları ve 5 mSv tek periyot anomalileri ile 3 günlük yasal NDK olay bildirim süreçlerini önceden tespit etmek ve detaylı raporlama almak isteyen uzmanlar.
-Radyoloji Teknikerleri ve Sağlık Personeli: Nöbet dağılımının kural bazlı adil yapıldığını görmek, radyasyonlu alanlardaki çalışma sürelerine göre Sağlık (Şua) İzni hakedişlerini şeffaf takip etmek ve kişisel dozimetre geçmişini görüntülemek isteyen saha çalışanları.
-Marketing Angles (By Trigger):
-Functional Trigger: Manuel çizelgeler, dağınık dozimetre çıktıları ve e-posta trafiğiyle oluşan operasyonel karmaşayı; zaman damgalı, dijital, kıstelyevm Şua hesaplamalı ve merkezi olarak yönetilen bir sistemle düzene sokar.
-Emotional Trigger: Radyasyon çalışanlarına maruz kaldıkları doz seviyelerinin ve yasal Sağlık (Şua) İzni haklarının sistemli biçimde takip edildiğini göstererek güvenli ve şeffaf bir çalışma ortamı sağlar.
-Social/Friction Trigger: Nöbet yazımındaki kişisel inisiyatif algısını önlemek için tanımlı kurallara (24s dinlenme, emzirme/gebelik muafiyeti vb.) dayalı adil dağıtım algoritmaları sunar.
-3. Visual Identity & Aesthetics
-Visual Aesthetic Tags: Windows 11 Dark Fusion, Cyber-Clinical Dark Glassmorphism, Scientific Precision, Luminous Data Visualization, Modern Minimalist.
-Logo Analysis: Minimalist ve teknik marka amblemi (<https://radpys.com.tr/images/main_logo.PNG>), web sitesinin üst alanında ve faviconda yer alarak yüksek teknoloji odaklı güvenilir medikal yazılım kimliğini vurgular.
-Distinctive Brand Artifacts: Koyu cam efektli (glassmorphic) kontrol paneli simülasyonları; zümrüt yeşili (#16A34A), kehribar (#D97706) ve kanarya kırmızısı (#DC2626) renklerinde canlı durum rozetleri; dikey çubuk grafikleriyle görselleştirilmiş aylık kümülatif doz, nöbet dengesi ve Şua izni hakediş metrikleri.
-Color Palette & Strategy:
-Primary Canvas & Surface: Deep Slate Canvas (#0F172A), Dark Card Surface (#1E293B), Surface Border (#334155)
-Brand / Focus Accents: Electric Royal Blue (#3B82F6 - Primary Brand), Sky Cyan (#38BDF8 - Focus/Active State), Indigo (#4F46E5 - Info Accent)
-Status & Indicator Palette:
+## Core Profile
+* **Business Name:** RADPYS — Radyasyon Çalışanları ve Klinik Radyoloji Yönetim Sistemi
+* **Category:** Sağlık Bilişimi / Medikal Kurumsal Yazılım
+* **Description:** RADPYS V4; hastaneler, tıp merkezleri ve radyoloji klinikleri için radyasyon çalışanlarının kural bazlı nöbet planlaması, dozimetre takibi (5 mSv tek periyot anomalisi & 20 mSv yıllık NDK yasal limit aşımı takibi, RDF-43 araştırma formu), kıstelyevm (oran-orantı) esasına dayalı yasal Sağlık (Şua) İzni hakediş hesabı (0-30 Gün), SKS 6.1 ve NDK uyumlu Olay/DÖF (CAPA) süreçleri, DIN 6857-1 standardında Radyasyondan Koruyucu Ekipman (RKE) muayene karnesi, Tıbbi Cihaz & NDK Lisans Envanteri, Cihaz Kalite Kontrol (QC) & Arıza Yönetimi, Ortam Dozu Kroki Haritası, Hizmet İçi Eğitim & LMS Sınav Modülü, Periyodik Sağlık Muayeneleri ve Kurumsal Denetim İzi (Audit Log) süreçlerini tek platformda birleştiren yerel ağ (Intranet/On-Premise) ve mobil PWA destekli kurumsal yönetim ekosistemidir.
+* **Address:** İstanbul, Türkiye
+* **Phone:** Belirtilmemiş
+* **Hours:** Pazartesi – Pazar: 7/24 Kesintisiz Klinik Operasyon
+* **Service Area:** Türkiye Geneli (Kamu, Üniversite ve Özel Sağlık Kuruluşları, Görüntüleme Merkezleri)
+* **Social Profiles:** YouTube: <https://www.youtube.com/channel/UC5hgtxPPcuAez0G2AYyuoyg>
+* **Web Portal:** <https://radpys.com.tr>
 
-- Success / Safe Dose: Emerald Green (#16A34A)
-- Warning / Caution: Amber Gold (#D97706)
-- Danger / Overdose Limit (>=20 mSv Yıllık / >=5 mSv Periyot) / Empty Shift: Crimson Red (#DC2626)
-Text Hierarchy: Pure White (#FFFFFF / #F8FAFC - Headings/Body), Muted Slate (#64748B / #94A3B8 - Secondary/Disabled)
-Color Strategy: Windows 11 Dark Fusion temasına tam uyumlu yüksek kontrastlı medikal renk paleti. Derin slate zemin (#0F172A) ve kart yüzeyleri (#1E293B) üzerinde kullanılan elektrik mavisi (#3B82F6) ve gök mavisi (#38BDF8) marka vurguları medikal yazılım disiplinini yansıtır. Zümrüt yeşili (#16A34A) güvenli doz seviyelerini ve tamamlanan işlemleri gösterirken, kehribar (#D97706) onay bekleyen süreçleri ve kanarya kırmızısı (#DC2626) NDK 20 mSv yıllık limit aşımları ve 5 mSv periyot anomalileri ile boş kalmış nöbet slotlarını sezgisel olarak kullanıcıya bildirir.
+---
 
-1. Typography System
-Extracted Fonts:
-Display / Headers: Clash Display (Sans-serif) / Segoe UI Variable Display
-Body Text: Manrope (Sans-serif) / Segoe UI
-Data / Code / Status Badges: JetBrains Mono (Monospace)
-Typography Principles: Başlıklarda karakteristik ve güçlü Clash Display kullanılırken, okuma metinlerinde ultra net Manrope / Segoe UI tercih edilmiştir. Sistem verileri, metrikler ve bölüm etiketleri (00, 01, CANLI AKIŞ) için geniş harf aralıklı (tracked-out) JetBrains Mono kullanılarak klinik ve mühendislik disiplini hissettirilir.
-2. Messaging & Voice
-Tone of Voice Tags: Kurumsal, Şeffaf, Teknolojik, Güven Verici, Odaklı.
-Key Taglines:
-"Radyoloji iş gücü ve güvenlik süreçlerinde entegre yönetim."
-"Dört temel ilke, tek kurumsal platform."
-"Nöbet, dozimetre ve Şua izni süreçlerinde güvenilir yönetim."
-Copywriting Pattern Analysis: Metin yapısı, net ve kurumsal ifadelerle başlar ("Dijitalleşen iş akışları.", "Şeffaflık güven yaratır."), ardından bunu somut teknik özelliklerle (SQLCipher AES-256 şifreleme, Local-First mimari, PySide6 arayüz, Kıstelyevm Şua Hesaplaması) destekler. Keskin vaatler veya abartılı iddialar yerine operasyonel fayda ve mevzuat uyumuna odaklanır.
+## Offerings & Solutions
+* **Hizmet / Çözüm Alanları:**
+  * **Klinik Radyoloji Operasyon & İş Gücü Yönetimi:** Kural tabanlı otomatik nöbet solver motoru, devir/ikame, nöbet havuzu ve borç-alacak/fazla mesai dengelemesi.
+  * **Yasal Şua İzni & Fiili Hizmet Hesabı:** Sağlık Bakanlığı kıstelyevm (oran-orantı) esasına dayalı net 0-30 gün hakediş ve radyasyonsuz gün arındırma algoritması.
+  * **Radyasyon Güvenliği & Dozimetre Takibi:** TLD/EPD dozimetre import, renkli erken uyarı radarı, 3 günlük NDK yasal bildirim süresi takibi ve RDF-43 Olay İnceleme Tutanakları.
+  * **Tıbbi Cihaz & NDK Lisans Envanteri:** Röntgen, BT, MR, Skopi, Anjiyo ve Mamografi cihazları için NDK lisans geçerlilik takibi, tüp/dedektör bilgileri ve kat kroki konumlandırması.
+  * **Cihaz Arıza, Bakım & QC Kalite Kontrol:** Günlük/haftalık periyodik QC testleri, servis çağrıları ve arıza duruş süresi (downtime) takibi.
+  * **RKE Koruyucu Ekipman & DIN 6857-1 Muayene Yönetimi:** Kurşun önlük, tiroid koruyucu, gonat ve kurşun camların QR/Barkodlu dijital pasaportu, yıllık skopi muayene testleri ve Muayene Karnesi.
+  * **Ortam Dozu & İnteraktif Kroki Haritası:** Departman mimari planı üzerinde ölçüm noktaları, ısı haritası ve sınır aşım alarmları.
+  * **Hizmet İçi Eğitim & LMS Sınav Modülü:** Radyasyon güvenliği eğitim matrisi, soru bankası, online sınavlar ve NDK/SKS eğitim uyum karneleri.
+  * **Periyodik Sağlık Muayeneleri:** Hemogram, periferik yayma, dermatoloji muayeneleri ve sağlık kısıt takibi.
+  * **Kurumsal Denetim İzi & Onay Merkezi:** Rol bazlı çift aşamalı onay sistemi, zaman damgalı işlem logları ve resmi matbu rapor üretimi.
+  * **Mobil Web Portalı & PWA:** Kurum içi Intranet veya güvenli dış erişimle masaüstü, tablet ve mobil cihazlardan 7/24 erişim.
+
+---
+
+## Brand Identity
+
+### 1. Foundational Brand Identity
+* **Brand Name:** RADPYS V4
+* **Brand One-Liner:** Radyoloji departmanlarında nöbet, şua izni, dozimetre ve radyasyon güvenliği süreçlerini tek platformda birleştiren, kurum içi PostgreSQL ve KVKK AES-256 şifreli evrak kasasına sahip, Intranet odaklı ve mobil PWA destekli kurumsal yönetim ekosistemi.
+* **Core Values:**
+  * **Mevzuata Tam Uyum:** NDK (Nükleer Düzenleme Kurumu), Sağlık Bakanlığı, SKS 6.1 ve DIN 6857-1 standartlarına harfiyen uyumluluk.
+  * **Veri Egemenliği ve KVKK Güvenliği:** PostgreSQL 14+ kurumsal veritabanı, KVKK Fernet AES-256 şifreli evrak kasası ve yerel ağda (Local-First/Intranet) çalışan güvenli mimari.
+  * **Operasyonel Şeffaflık & Adalet:** Nöbet planlamasında kişisel inisiyatifi sıfırlayan ağırlıklı puan algoritması ve şeffaf personel karnesi.
+  * **Hassas Radyasyon Güvenliği:** Sıfır toleranslı doz aşım takibi (5 mSv tek periyot / 20 mSv yıllık limit) ve 3 günlük NDK yasal bildirim otomasyonu.
+  * **Uçtan Uca Entegrasyon:** Personel, cihaz, ekipman, eğitim ve izin süreçlerinin tek birleşik ekosistemde çalışması.
+
+---
+
+### 2. Strategic Positioning & Market
+* **Positioning Matrix:**
+  * **Price:** Kurumsal / B2B Enterprise Lisanslama
+  * **Innovation:** Yüksek Derecede Özelleşmiş (PySide6 Native Desktop + PostgreSQL 14+ + KVKK Fernet AES-256 + Intranet/PWA Web Portalı + Kural Tabanlı Nöbet & Kıstelyevm Şua Algoritmaları + DIN 6857-1 RKE Takibi)
+  * **Market:** Dikey Niş (Hastaneler, Üniversite Tıp Fakülteleri, Özel Radyoloji Merkezleri, Nükleer Tıp ve Radyoterapi Klinikleri)
+  * **Purpose:** Klinik Güvenlik, Mevzuat Güvencesi ve Operasyonel Verimlilik
+
+* **Target Audiences:**
+  1. **Radyoloji Departman Sorumluları ve Başhekimler / İdareciler:** Nöbet planlama karmaşasını ve personel şikayetlerini sonlandırmak, yasal Şua İzni hakedişlerini hatasız hesaplayarak kurum davalarını ve idari cezaları engellemek isteyen yöneticiler.
+  2. **Radyasyon Güvenliği Sorumluları (RGS/RSO) ve Medikal Fizikçiler:** Dozimetre kayıtlarını düzenli izlemek, RDF-43 kaza/aşım tutanaklarını yönetmek, ortam radyasyon haritalarını takip etmek ve NDK denetimlerine 7/24 hazır olmak isteyen uzmanlar.
+  3. **Biyomedikal Mühendisleri ve Kalite Ekipleri (SKS):** Tıbbi cihazların NDK lisans sürelerini, periyodik bakım takvimlerini, kalite kontrol (QC) testlerini ve kurşun önlüklerin (RKE) DIN 6857-1 yıllık muayene karnelerini eksiksiz arşivlemek isteyen ekipler.
+  4. **Radyoloji Teknikerleri ve Klinik Personeli:** Nöbetlerin kurallara uygun adil dağıtıldığını bilmek, radyasyonlu alan çalışma sürelerine göre hak ettikleri Şua İznini şeffaf görmek ve kişisel doz geçmişini mobil PWA üzerinden güvenle takip etmek isteyen saha çalışanları.
+
+* **Marketing Angles (Tetikleyiciler):**
+  * **Fonksiyonel Tetikleyici:** Excel kilitlenmelerini, manuel kıstelyevm hesap hatalarını, kaybolan kurşun önlükleri ve dağınık dozimetre zarflarını; zaman damgalı, merkezi ve dijital bir sisteme dönüştürür.
+  * **Hukuki / Mevzuat Güvencesi:** NDK 3 günlük acil bildirim süresini, DIN 6857-1 yıllık muayene zorunluluğunu ve Sağlık Bakanlığı Şua İzni kıstelyevm esasını otomatik denetleyerek kurumu yasal risklerden korur.
+  * **Veri Güvenliği (KVKK) Güvencesi:** "Hastaneden dışarı tek bir bayt veri çıkmaz." Veritabanı ve hassas sağlık evrakları hastanenin kendi sunucusunda AES-256 ile şifreli olarak barınır.
+  * **Adalet & Motivasyon:** Nöbet yazımındaki adam kayırma veya adaletsizlik algısını ortadan kaldıran objektif matematiksel puanlama motoru.
+
+---
+
+### 3. Visual Identity & Aesthetics
+* **Visual Aesthetic Tags:** Windows 11 Dark Fusion, Clinical Glassmorphism, Scientific Precision, Tabular Accuracy, Luminous Data Visualization.
+* **Logo & Brand Icon:** Minimalist, yüksek teknoloji odaklı medikal radyasyon kalkanı amblemi.
+* **Tasarım Felsefesi:** RADPYS Clinical Design System (RDS) — Inline style kullanılmayan, `ui/tokens.py` belirteçlerine bağlı, Fira Code/Consolas tabular sayı dizilimine sahip profesyonel klinik kokpit arayüzü.
+* **Color Palette & Strategy:**
+  * **Canvas & Surface:** Derin Slate Zemin (`#0F172A`), Koyu Kart Yüzeyi (`#1E293B`), İnce Yüzey Kenarlığı (`#334155`).
+  * **Brand Accents:** Elektrik Mavisi (`#3B82F6` - Ana Marka), Gök Mavisi (`#38BDF8` - Vurgu/Odak), İndigo (`#4F46E5` - Bilgi).
+  * **Status & Safety Indicators:**
+    * **Güvenli / Başarılı:** Zümrüt Yeşili (`#16A34A` - Düşük/Normal Doz Seviyesi, Geçerli Muayene)
+    * **Uyarı / İnceleme:** Kehribar Sarısı (`#D97706` - Onay Bekleyen İşlem, Lisans Yaklaşımı, 5 mSv Tek Periyot Anomalisi)
+    * **Kritik Tehlike / Limit Aşımı:** Kanarya / Akut Kırmızı (`#DC2626` - NDK 20 mSv Limit Aşımı, Acil NDK Bildirimi, Çatlak/Kusurlu Kurşun Önlük, Boş Kalan Nöbet)
+  * **Tipografi:** Başlıklarda güçlü ve modern Sans-serif (`Segoe UI Variable Display` / `Clash Display`), gövde metinlerinde yüksek okunurluklu `Segoe UI` / `Manrope`, dozimetre ölçümleri, seri numaraları ve TC Kimlik alanlarında tabular monospace font (`Fira Code` / `Consolas`).
+
+---
+
+### 4. Messaging & Kurumsal Ses Tonu
+* **Ses Tonu:** Bilimsel, Güvenilir, Mevzuata Hakim, Otoriter ve Şeffaf.
+* **Temel Sloganlar:**
+  * *"Radyoloji iş gücü, mevzuat ve radyasyon güvenliğinde entegre kurumsal yönetim."*
+  * *"Hastaneden dışarı tek bayt çıkmaz: Yerel ağ güvenliği, tam klinik kontrol."*
+  * *"Yasal Şua izninde sıfır hata, nöbette matematiksel adalet."*
+  * *"NDK ve SKS denetimlerine 7/24 hazır bir radyoloji departmanı."*
+* **İletişim Prensibi:** Spekülatif vaatler yerine somut mevzuat maddelerine (NDK Yönetmelikleri, 657 Sayılı DMK, DIN 6857-1, SKS 6.1) ve matematiksel algoritmalara dayalı net teknik faydalar sunar.
