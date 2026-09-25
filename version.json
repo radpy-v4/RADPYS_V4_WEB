@@ -1,8 +1,8 @@
 {
-  "version": "4.1.2.9",
-  "latest_demo_version": "4.1.2.9",
-  "release_date": "2026-09-09",
+  "version": "4.0.2.12",
+  "latest_demo_version": "4.0.2.12",
+  "release_date": "2026-09-25",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "Dozimetre Takip Sistemi, RDF-4.3 Doz Araştırma Formu, Cihaz & RKE İçe Aktarma, 40 Matbu Evrak Şablonu, Yerel HTML Yardım Merkezi ve Dağıtım Orkestrasyonu eklendi.",
-  "notes": "Nöbet havuzu ve kroki optimizasyonları"
+  "changelog": "RADPYS V4.0.2.12: Evrensel Nöbet Dengeleme & Asimetrik Çapraz Takas Motoru (2-Way Asymmetric Swap), Yaş/Kıdem Muafiyetlerinde Esnek Öncelik (Soft Constraint) Mimarisi, Nöbet Çizelgesi Geniş Ekran Modu (Sidebar Toggle) ve Klinik Özet Tablosu Tipografi Reformu.",
+  "notes": "Heterojen vardiyalarda (7h/17h) saat dengesini sağlayan 3 kademeli optimizasyon (Doğrudan Devir, Asimetrik Takas, Akıllı Relay), 50 yaş / 25 yıl muafiyetlerinin kilitlenmeden adil takası, sol menü daraltma/genişletme ve hakediş özet tablosu sütun başlıklarının sadeleştirilmesi."
 }
