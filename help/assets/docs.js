@@ -700,12 +700,6 @@ const SEARCH_INDEX = [
     "path": "14. Tanımlamalar & Web Portalı"
   },
   {
-    "title": "🐾 14.5 Kalite & Olay Bildirimi Kategori Sorumluları Tanımları",
-    "desc": "Lookup sabit tanımları, React PWA mobil web portalı ve REST API entegrasyonu.",
-    "url": "14_tanimlamalar_ve_web_portal.html",
-    "path": "14. Tanımlamalar & Web Portalı"
-  },
-  {
     "title": "🐾 14.6 Akıllı Sütun Boyutlandırması, 34px Kompakt Tablo Düzeni ve Form Ergonomisi",
     "desc": "Lookup sabit tanımları, React PWA mobil web portalı ve REST API entegrasyonu.",
     "url": "14_tanimlamalar_ve_web_portal.html",

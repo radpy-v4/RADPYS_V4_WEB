@@ -4,18 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>15. Olay Bildirimi ve DÖF (CAPA) — RADPYS v4 Kullanım Kılavuzu</title>
-  <meta name="description" content="RADPYS V4 15. Olay Bildirimi ve DÖF (CAPA) detaylı kullanım kılavuzu: İlgili modülün kurulumu, konfigürasyonu, mevzuat uyumu ve pratik klinik operasyon adımları." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://radpys.com.tr/help/15_olay_bildirimi_ve_dof_capa.html" />
-  <link rel="icon" type="image/webp" href="../images/logo.webp" />
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://radpys.com.tr/help/15_olay_bildirimi_ve_dof_capa.html" />
-  <meta property="og:title" content="15. Olay Bildirimi ve DÖF (CAPA) — RADPYS v4 Kullanım Kılavuzu" />
-  <meta property="og:description" content="RADPYS V4 15. Olay Bildirimi ve DÖF (CAPA) detaylı kullanım kılavuzu: İlgili modülün kurulumu, konfigürasyonu, mevzuat uyumu ve pratik klinik operasyon adımları." />
-  <meta property="og:image" content="https://radpys.com.tr/images/main_logo.webp" />
-
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -256,7 +244,7 @@
           <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
             <span class="text-xs font-semibold uppercase tracking-wider text-cyan-600 dark:text-cyan-400 font-mono">Sorumlu Havuzu</span>
             <div class="text-2xl font-black text-slate-900 dark:text-white font-mono">Birim + RGS/RSO</div>
-            <p class="text-xs text-slate-500 dark:text-slate-400">Yalnızca Kategori Sorumluları ve RGS/RSO personeli atanabilir (★ Birim Sorumlusu).</p>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Yalnızca Birim Sorumlusu ve RGS/RSO personeli atanabilir (★ Birim Sorumlusu).</p>
           </div>
 
           <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-1">
@@ -491,11 +479,11 @@
         </h2>
         <div class="prose prose-slate dark:prose-invert max-w-none text-sm space-y-3">
           <p>
-            Herhangi bir olayı seçip <strong>[Olayı İncele]</strong> butonuna tıkladığınızda (veya satıra çift tıkladığınızda) 4 sekmeli <code class="font-mono">OlayIncelemeDialog</code> penceresi açılır:
+            Herhangi bir olayı seçip <strong>[Olayı İncele]</strong> butonuna tıkladığınızda (veya satıra çift tıkladığınızda) 4 sekmeli <strong>[Olay İnceleme Penceresi]</strong> açılır:
           </p>
           <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm">
             <li><strong>1. Sekme (Olay Künyesi):</strong> Olayın tüm detayları, etkilenenler, kök nedenler ve açıklamalar kompakt özet kart halinde gösterilir.</li>
-            <li><strong>2. Sekme (İnceleme & Atama):</strong> <strong>[İncelemeye Al]</strong> butonuyla olay inceleme safhasına geçirilir. Atanan sorumlu açılır kutusunda yalnızca <em>Birim Kategori Sorumluları</em> ve <em>RGS/RSO</em> personelleri listelenir; olayın gerçekleştiği birimin sorumlusu en başta yıldızlı (<code class="font-mono">★</code>) olarak önerilir.</li>
+            <li><strong>2. Sekme (İnceleme & Atama):</strong> <strong>[İncelemeye Al]</strong> butonuyla olay inceleme safhasına geçirilir. Atanan sorumlu açılır kutusunda yalnızca ilgili <em>Birim Sorumlusu</em> ve <em>RGS/RSO</em> personelleri listelenir; olayın gerçekleştiği birimin yöneticisi en başta yıldızlı (<code class="font-mono">★</code>) olarak önerilir.</li>
             <li><strong>Durum Güncelleme:</strong> Olay durumu <code>Açık</code>, <code>İncelemede</code>, <code>Kapalı</code> veya <code>İptal</code> olarak değiştirilebilir.</li>
             <li><strong>4. Sekme (Tarihçe):</strong> Olay üzerindeki tüm alan revizyonları, durum değişiklikleri ve işlemleri yapan personeller denetim izinde (Audit Log) listelenir.</li>
           </ul>
