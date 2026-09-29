@@ -5,28 +5,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description"
-        content="RADPYS V4 referansları: 84+ kurum, 6.200+ aktif kullanıcı. Hastane, tıp merkezi, radyoloji ve görüntüleme merkezleri." />
-    <meta name="keywords" content="RADPYS referanslar, kullanan hastaneler, radyoloji yazılımı kullananlar, müşteri yorumları" />
+        content="84+ sağlık kurumu ve 6.200+ aktif kullanıcının deneyimleri. Hastaneler, tıp merkezleri ve radyoloji kliniklerinin RADPYS başarı hikayeleri." />
     <meta name="author" content="RADPYS Yazılım" />
-    <meta name="robots" content="noindex, nofollow" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="theme-color" content="#0f172a" />
     <meta name="geo.region" content="TR" />
     <meta name="geo.placename" content="Türkiye" />
-    <title>Referanslar — RADPYS V4 Kurumsal Referansları</title>
+    <title>Referanslar — RADPYS Radyoloji ve Nöbet Yazılımı Kullanıcıları</title>
 
     <link rel="icon" type="image/x-icon" href="images/logo.ico" />
     <link rel="icon" type="image/webp" href="images/logo.webp" />
     <link rel="apple-touch-icon" href="https://radpys.com.tr/images/main_logo.webp" />
     <link rel="canonical" href="https://radpys.com.tr/referanslar.html" />
+    <link rel="alternate" hreflang="tr" href="https://radpys.com.tr/referanslar.html" />
+    <link rel="alternate" hreflang="x-default" href="https://radpys.com.tr/referanslar.html" />
 
     <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://radpys.com.tr/referanslar.html" />
     <meta property="og:site_name" content="RADPYS V4" />
     <meta property="og:locale" content="tr_TR" />
-    <meta property="og:title" content="Referanslar — RADPYS V4 Kurumsal Referansları" />
+    <meta property="og:title" content="Referanslar — RADPYS Radyoloji ve Nöbet Yazılımı Kullanıcıları" />
     <meta property="og:description"
-        content="RADPYS V4 referansları: 84+ kurum, 6.200+ aktif kullanıcı. Hastane, tıp merkezi ve görüntüleme merkezleri." />
+        content="84+ sağlık kurumu ve 6.200+ aktif kullanıcının deneyimleri. Hastaneler, tıp merkezleri ve radyoloji kliniklerinin RADPYS başarı hikayeleri." />
     <meta property="og:image" content="https://radpys.com.tr/images/main_logo.webp" />
     <meta property="og:image:secure_url" content="https://radpys.com.tr/images/main_logo.webp" />
     <meta property="og:image:type" content="image/webp" />
@@ -36,11 +37,11 @@
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Referanslar — RADPYS V4 Kurumsal Referansları" />
+    <meta name="twitter:title" content="Referanslar — RADPYS Radyoloji ve Nöbet Yazılımı Kullanıcıları" />
     <meta name="twitter:description"
-        content="RADPYS V4 referansları: 84+ kurum, 6.200+ aktif kullanıcı." />
+        content="84+ sağlık kurumu ve 6.200+ aktif kullanıcının deneyimleri. Hastaneler, tıp merkezleri ve radyoloji kliniklerinin RADPYS başarı hikayeleri." />
     <meta name="twitter:image" content="https://radpys.com.tr/images/main_logo.webp" />
-    <meta name="twitter:image:alt" content="RADPYS V3 Referansları Logo" />
+    <meta name="twitter:image:alt" content="RADPYS V4 Referansları Logo" />
 
     <!-- Schema.org BreadcrumbList JSON-LD -->
     <script type="application/ld+json">
@@ -83,10 +84,17 @@
             </div>
             <div class="absolute inset-0 bg-grid bg-grid-fade opacity-70"></div>
             <div class="relative container-narrow">
-                <span class="section-label">Referanslar</span>
-                <h1 class="mt-6 font-display text-5xl md:text-7xl leading-[1] tracking-[-0.03em]">
-                    <span class="reveal-mask d1"><span>Türkiye'nin dört bir</span></span>
-                    <span class="reveal-mask d2"><span>yanından ekipler.</span></span>
+                <nav aria-label="Breadcrumb" class="mb-4">
+                    <ol class="flex items-center space-x-2 text-xs md:text-sm text-slate-400">
+                        <li><a href="index.html" class="hover:text-teal-300 transition-colors">Ana Sayfa</a></li>
+                        <li><span class="text-slate-600">/</span></li>
+                        <li class="text-teal-400 font-medium" aria-current="page">Referanslar</li>
+                    </ol>
+                </nav>
+                <span class="section-label">Referanslar & Başarı Hikayeleri</span>
+                <h1 class="mt-6 font-display text-4xl md:text-6xl leading-[1.1] tracking-[-0.03em]">
+                    <span class="reveal-mask d1"><span>Türkiye Genelinde</span></span>
+                    <span class="reveal-mask d2"><span class="text-neon-teal">84+ Kurum ve 6.200+ Kullanıcı</span></span>
                 </h1>
             </div>
         </section>
@@ -144,7 +152,7 @@
             <div class="font-display text-3xl text-neon-teal leading-none">"</div>
             <p class="mt-2 text-white/90 font-display text-lg leading-snug">${t.quote}</p>
             <div class="mt-auto pt-6 flex items-center gap-3">
-              <img src="${t.avatar}" alt="${t.author}" loading="lazy" class="w-11 h-11 rounded-full object-cover ring-1 ring-white/20" />
+              <img src="${t.avatar}" alt="${t.author} — ${t.role}" width="44" height="44" loading="lazy" decoding="async" class="w-11 h-11 rounded-full object-cover ring-1 ring-white/20" />
               <div><div class="text-sm">${t.author}</div><div class="text-xs text-slate-400">${t.role} · ${t.org}</div></div>
             </div>
           </div>`).join("");

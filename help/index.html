@@ -3,7 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RADPYS v4 — Kullanım Kılavuzu & Bilgi Bankası Ana Sayfası</title>
+  <meta name="description" content="RADPYS V4 Kullanım Kılavuzu: 22 modül için otomatik nöbet planlama, dozimetre takibi, Şua izni, RKE DIN 6857-1 ve SKS 6.1 teknik rehberleri." />
+  <meta name="author" content="RADPYS Yazılım" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <title>RADPYS V4 — Kullanım Kılavuzu & Karar Destek Portalı</title>
+  <link rel="canonical" href="https://radpys.com.tr/help/index.html" />
+  <link rel="alternate" hreflang="tr" href="https://radpys.com.tr/help/index.html" />
+  <link rel="alternate" hreflang="x-default" href="https://radpys.com.tr/help/index.html" />
+
+  <!-- Schema.org BreadcrumbList JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Ana Sayfa",
+        "item": "https://radpys.com.tr/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Modüller",
+        "item": "https://radpys.com.tr/moduller.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Kullanım Kılavuzu",
+        "item": "https://radpys.com.tr/help/index.html"
+      }
+    ]
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -92,8 +126,13 @@
           <svg id="themeIconMoon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
         </button>
 
-        <a href="01_kurulum_ve_ilk_giris.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white shadow-md shadow-cyan-600/25 transition">
-          <span>İlk Rehber: 01. Giriş</span>
+        <a href="../moduller.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition" title="Ana sitedeki 22 modül genel bakışına dön">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          <span>Ana Site / Modüller</span>
+        </a>
+
+        <a href="01_kurulum_ve_ilk_giris.html" class="hidden md:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white shadow-md shadow-cyan-600/25 transition">
+          <span>01. Giriş Kılavuzu</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </a>
       </div>
@@ -158,6 +197,16 @@
       <section class="mb-10 p-8 sm:p-10 lg:p-12 rounded-3xl bg-gradient-to-br from-cyan-950/70 via-slate-900/90 to-slate-950 border border-cyan-800/40 shadow-2xl relative overflow-hidden">
         <div class="absolute -right-16 -bottom-16 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
         <div class="relative z-10 max-w-4xl">
+          <nav aria-label="Breadcrumb" class="mb-5">
+            <ol class="flex items-center space-x-2 text-xs text-slate-400">
+              <li><a href="../index.html" class="hover:text-cyan-300 transition-colors">Ana Sayfa</a></li>
+              <li><span class="text-slate-600">/</span></li>
+              <li><a href="../moduller.html" class="hover:text-cyan-300 transition-colors">Modüller</a></li>
+              <li><span class="text-slate-600">/</span></li>
+              <li class="text-cyan-400 font-medium" aria-current="page">Kullanım Kılavuzu</li>
+            </ol>
+          </nav>
+
           <div class="flex flex-wrap items-center gap-2.5 mb-4">
             <span class="px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
               RADPYS V4 Kurumsal Dokümantasyon

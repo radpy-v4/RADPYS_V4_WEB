@@ -3,7 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>12. Dozimetre Takibi ve RD.F43 Araştırma — RADPYS v4 Kullanım Kılavuzu</title>
+  <meta name="description" content="Kişisel dozimetre takip sistemi: Hp(10) ve Hp(0.07) analitiği, NDK 20 mSv yıllık limit denetimi ve RD.F43 resmi doz aşımı araştırma kılavuzu." />
+  <meta name="author" content="RADPYS Yazılım" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <title>Dozimetre Takip Sistemi & RD.F43 Aşım Yönetimi | RADPYS v4</title>
+  <link rel="canonical" href="https://radpys.com.tr/help/12_dozimetre_takibi_ve_rdf43_arastirma.html" />
+  <link rel="alternate" hreflang="tr" href="https://radpys.com.tr/help/12_dozimetre_takibi_ve_rdf43_arastirma.html" />
+  <link rel="alternate" hreflang="x-default" href="https://radpys.com.tr/help/12_dozimetre_takibi_ve_rdf43_arastirma.html" />
+
+  <!-- Schema.org BreadcrumbList JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Ana Sayfa",
+        "item": "https://radpys.com.tr/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Modüller",
+        "item": "https://radpys.com.tr/moduller.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Kılavuz",
+        "item": "https://radpys.com.tr/help/index.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Dozimetre Takip Sistemi",
+        "item": "https://radpys.com.tr/help/12_dozimetre_takibi_ve_rdf43_arastirma.html"
+      }
+    ]
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -92,9 +132,14 @@
           <svg id="themeIconMoon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
         </button>
 
+        <a href="../moduller.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition" title="Ana sitedeki 22 modül genel bakışına dön">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          <span>Modüllere Dön</span>
+        </a>
+
         <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-          <span>Tüm Modüller</span>
+          <span>Kılavuz İndeksi</span>
         </a>
       </div>
     </div>
@@ -212,15 +257,28 @@
       
       <!-- HERO SECTION -->
       <section id="genel-bakis" class="space-y-6">
+        <nav aria-label="Breadcrumb" class="mb-2">
+          <ol class="flex items-center space-x-2 text-xs text-slate-500 dark:text-slate-400">
+            <li><a href="../index.html" class="hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors">Ana Sayfa</a></li>
+            <li><span class="text-slate-400 dark:text-slate-600">/</span></li>
+            <li><a href="../moduller.html" class="hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors">Modüller</a></li>
+            <li><span class="text-slate-400 dark:text-slate-600">/</span></li>
+            <li><a href="index.html" class="hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors">Kılavuz</a></li>
+            <li><span class="text-slate-400 dark:text-slate-600">/</span></li>
+            <li class="text-cyan-600 dark:text-cyan-400 font-medium" aria-current="page">Dozimetre Takip Sistemi</li>
+          </ol>
+        </nav>
+
         <div class="flex flex-wrap items-center gap-3">
           <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">MODÜL 12</span>
-          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300">NDK & Mevzuat Uyumlu</span>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300">✓ Dozimetre Takip Sistemi</span>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300">NDK & Mevzuat Uyumlu</span>
           <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300">10 İş Günü Form Kuralı</span>
         </div>
 
         <div class="space-y-3">
           <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-            12. Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması
+            Kişisel Dozimetre Takip Sistemi ve RD.F43 Doz Aşımı Araştırması
           </h1>
           <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-5xl">
             Radyasyonla çalışan personelin mesleki maruziyet kayıtlarını, laboratuvar raporu (TENMAK, RADAT, Excel) içe aktarımını, kümülatif yasal limitleri ($H_p(10)$ derin doz ve $H_p(0.07)$ yüzey dozu), inceleme eşiğini aşan vakalarda 10 iş günü içinde tanzimi zorunlu resmi <strong>RD.F43 Doz Araştırma Formu</strong> sürecini ve RKS net maruziyet hesaplama algoritmasını yöneten merkezi modüldür.
@@ -392,7 +450,7 @@
 
         <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
           <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md">
-            <img src="assets/img/12_dozimetre%20import.png" alt="Dozimetre İçe Aktarma Sihirbazı" class="w-full h-auto object-cover max-h-[500px]">
+            <img src="assets/img/12_dozimetre%20import.png" alt="Dozimetre İçe Aktarma Sihirbazı" loading="lazy" decoding="async" class="w-full h-auto object-cover max-h-[500px]">
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -442,7 +500,7 @@
               <span>Dozimetre Takip Kokpiti ve Doz Renk Skalası</span>
             </h3>
             <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
-              <img src="assets/img/12_1_dozimetre_list.png" alt="Dozimetre Listesi Kokpiti" class="w-full h-auto object-cover max-h-[380px]">
+              <img src="assets/img/12_1_dozimetre_list.png" alt="Dozimetre Listesi Kokpiti" loading="lazy" decoding="async" class="w-full h-auto object-cover max-h-[380px]">
             </div>
             <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2">
               <li class="flex items-center gap-2">
@@ -471,7 +529,7 @@
               <span>Manuel Dozimetre Ölçümü Ekleme</span>
             </h3>
             <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
-              <img src="assets/img/12_2_dozimetre_olcum.png" alt="Manuel Dozimetre Ölçüm Girişi" class="w-full h-auto object-cover max-h-[380px]">
+              <img src="assets/img/12_2_dozimetre_olcum.png" alt="Manuel Dozimetre Ölçüm Girişi" loading="lazy" decoding="async" class="w-full h-auto object-cover max-h-[380px]">
             </div>
             <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
               <p><strong>[Ölçüm Ekle]</strong> tıklandığında açılan bu modalda;</p>
@@ -506,7 +564,7 @@
               </div>
               <h3 class="text-base font-bold text-slate-900 dark:text-white">Personel ve Koruyucu Donanım Bilgileri</h3>
               <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
-                <img src="assets/img/12_1_doz_arastirma_form_dialog.png" alt="RD.F43 Adım 1 Personel ve Görev Bilgileri" class="w-full h-auto object-cover max-h-[340px]">
+                <img src="assets/img/12_1_doz_arastirma_form_dialog.png" alt="RD.F43 Adım 1 Personel ve Görev Bilgileri" loading="lazy" decoding="async" class="w-full h-auto object-cover max-h-[340px]">
               </div>
               <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                 Personelin çalıştığı birim, cihaz türü (Skopi, BT, Girişimsel vb.), haftalık çalışma saati ve koruyucu ekipman (kurşun önlük, tiroid koruyucu) kullanım durumu teyit edilir.
@@ -520,7 +578,7 @@
               </div>
               <h3 class="text-base font-bold text-slate-900 dark:text-white">Çalışma Koşulları ve Olağan Dışı Durumlar</h3>
               <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
-                <img src="assets/img/12_2_doz_arastirma_form_dialog.png" alt="RD.F43 Adım 2 Çalışma Koşulları" class="w-full h-auto object-cover max-h-[340px]">
+                <img src="assets/img/12_2_doz_arastirma_form_dialog.png" alt="RD.F43 Adım 2 Çalışma Koşulları" loading="lazy" decoding="async" class="w-full h-auto object-cover max-h-[340px]">
               </div>
               <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                 Ölçüm döneminde cihaz arızası, floroskopi tüp kilitlenmesi veya acil vaka yoğunluğu sorgulanır; dozimetrenin kurşun önlük altında mı üstünde mi taşındığı belgelenir.
@@ -537,7 +595,7 @@
               </div>
               <h3 class="text-base font-bold text-slate-900 dark:text-white">Artefakt Tespiti ve RKS Maruziyet Hesabı</h3>
               <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
-                <img src="assets/img/12_3_doz_arastirma_form_dialog.png" alt="RD.F43 Adım 3 RKS Doz Hesabı" class="w-full h-auto object-cover max-h-[340px]">
+                <img src="assets/img/12_3_doz_arastirma_form_dialog.png" alt="RD.F43 Adım 3 RKS Doz Hesabı" loading="lazy" decoding="async" class="w-full h-auto object-cover max-h-[340px]">
               </div>
               <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-xs text-slate-600 dark:text-slate-300 space-y-2">
                 <p><strong>Artefakt / Sahte Aşım:</strong> Personel bizzat hasta olarak BT/Sintigrafi çektirmişse veya dozimetre şua odasında unutulmuşsa <strong>[Doz Hesapla]</strong> motoruyla mesafe ve süreye göre gerçek maruziyet hesaplanır ve sahte aşım personelin kütüğünden düşülür.</p>
@@ -552,7 +610,7 @@
               </div>
               <h3 class="text-base font-bold text-slate-900 dark:text-white">Karar, İmzalar ve Resmi RD.F43 Belgesi</h3>
               <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
-                <img src="assets/img/12_doz_arastirma_form_dialog.png" alt="RD.F43 Genel Diyalog ve Karar" class="w-full h-auto object-cover max-h-[340px]">
+                <img src="assets/img/12_doz_arastirma_form_dialog.png" alt="RD.F43 Genel Diyalog ve Karar" loading="lazy" decoding="async" class="w-full h-auto object-cover max-h-[340px]">
               </div>
               <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
                 <p>Form onaylandığında sağ üstteki <strong>[Resmi RD.F43 Word İndir]</strong> butonuna tıklanır.</p>

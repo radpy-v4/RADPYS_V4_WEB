@@ -32,7 +32,7 @@
         <nav id="topnav" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
           <div class="container-narrow h-16 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-2.5 group">
-              <img src="images/logo.webp" data-radpys-logo alt="RADPYS Logo" class="w-8 h-8 object-contain transition-transform group-hover:scale-105" width="32" height="32" />
+              <img src="images/logo.webp" data-radpys-logo alt="RADPYS Radyoloji Yönetim Sistemi Logo" loading="eager" fetchpriority="high" decoding="async" class="w-8 h-8 object-contain transition-transform group-hover:scale-105" width="32" height="32" />
               <span class="font-display text-lg font-bold tracking-wide">RADPYS<span class="text-neon-teal">.</span></span>
             </a>
 
@@ -63,7 +63,7 @@
           <div class="container-narrow py-16 grid grid-cols-2 md:grid-cols-4 gap-10">
             <div class="col-span-2">
               <a href="index.html" class="flex items-center gap-2.5 group">
-                <img src="images/logo.webp" data-radpys-logo alt="RADPYS Logo" class="w-8 h-8 object-contain transition-transform group-hover:scale-105" width="32" height="32" />
+                <img src="images/logo.webp" data-radpys-logo alt="RADPYS Radyoloji Yönetim Sistemi Logo" loading="lazy" decoding="async" class="w-8 h-8 object-contain transition-transform group-hover:scale-105" width="32" height="32" />
                 <span class="font-display text-lg font-bold tracking-wide">RADPYS<span class="text-neon-teal">.</span></span>
               </a>
               <p class="mt-4 text-sm text-slate-400 max-w-md leading-relaxed">

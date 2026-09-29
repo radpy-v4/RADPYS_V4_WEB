@@ -4,7 +4,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>20. Koruyucu Ekipman (RKE) & DIN 6857 Muayene — RADPYS v4 Kullanım Kılavuzu</title>
+  <meta name="description" content="RKE muayene yazılımı: DIN 6857-1 skopi kusur krokisi, kurşun önlük ve tiroid koruyucu takibi, matematiksel HEK karar motoru ve SKS 6.1 denetim cetveli." />
+  <meta name="author" content="RADPYS Yazılım" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <title>RKE Muayene Yazılımı & DIN 6857-1 Kurşun Koruyucu Takibi | RADPYS v4</title>
+  <link rel="canonical" href="https://radpys.com.tr/help/20_rke_koruyucu_ekipman_ve_din6857.html" />
+  <link rel="alternate" hreflang="tr" href="https://radpys.com.tr/help/20_rke_koruyucu_ekipman_ve_din6857.html" />
+  <link rel="alternate" hreflang="x-default" href="https://radpys.com.tr/help/20_rke_koruyucu_ekipman_ve_din6857.html" />
+
+  <!-- Schema.org BreadcrumbList JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Ana Sayfa",
+        "item": "https://radpys.com.tr/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Modüller",
+        "item": "https://radpys.com.tr/moduller.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Kılavuz",
+        "item": "https://radpys.com.tr/help/index.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "RKE Muayene Yazılımı",
+        "item": "https://radpys.com.tr/help/20_rke_koruyucu_ekipman_ve_din6857.html"
+      }
+    ]
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -135,13 +175,22 @@
           </svg>
         </button>
 
+        <a href="../moduller.html"
+          class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition"
+          title="Ana sitedeki 22 modül genel bakışına dön">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          <span>Modüllere Dön</span>
+        </a>
+
         <a href="index.html"
           class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
           </svg>
-          <span>Tüm Modüller</span>
+          <span>Kılavuz İndeksi</span>
         </a>
       </div>
     </div>
@@ -277,12 +326,14 @@
     <main class="flex-1 min-w-0 py-8">
 
       <!-- BREADCRUMB -->
-      <nav class="flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500 mb-4">
-        <a href="index.html" class="hover:text-cyan-600 transition">Kılavuz Ana Sayfa</a>
+      <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-4">
+        <a href="../index.html" class="hover:text-cyan-500 dark:hover:text-cyan-300 transition">Ana Sayfa</a>
         <span>/</span>
-        <span class="text-slate-600 dark:text-slate-300 font-medium">Envanter & Radyasyon Güvenliği</span>
+        <a href="../moduller.html" class="hover:text-cyan-500 dark:hover:text-cyan-300 transition">Modüller</a>
         <span>/</span>
-        <span class="text-cyan-700 dark:text-cyan-400 font-semibold">20. Koruyucu Ekipman (RKE) & DIN 6857</span>
+        <a href="index.html" class="hover:text-cyan-500 dark:hover:text-cyan-300 transition">Kılavuz</a>
+        <span>/</span>
+        <span class="text-cyan-600 dark:text-cyan-400 font-semibold" aria-current="page">RKE Muayene Yazılımı</span>
       </nav>
 
       <!-- PAGE TITLE & METADATA -->
@@ -294,11 +345,11 @@
           </span>
           <span
             class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60">
-            Sağlık Bakanlığı SKS 6.1 Uyumlu
+            ✓ RKE Muayene Yazılımı
           </span>
           <span
             class="px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-950/80 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60">
-            AES-256 Şifreli Evrak Kasası
+            Sağlık Bakanlığı SKS 6.1 Uyumlu
           </span>
           <span class="text-xs text-slate-400 dark:text-slate-500 ml-auto flex items-center gap-1.5 font-mono">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -310,7 +361,7 @@
         </div>
 
         <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-          20. Radyasyon Koruyucu Ekipman (RKE) & DIN 6857 Kalite Kontrol Yönetimi
+          RKE Muayene Yazılımı: DIN 6857 Kalite Kontrol ve Kurşun Koruyucu Yönetimi
         </h1>
         <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 mt-2.5 max-w-4xl leading-relaxed">
           Radyoloji, nükleer tıp, kardiyoloji ve skopi ameliyathanelerinde kullanılan kurşun önlük, palto, etek-yelek,
@@ -973,7 +1024,7 @@
           </div>
           <div
             class="p-8 bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center text-center border-b border-slate-200 dark:border-slate-800">
-            <img src="assets/img/20_rke_ana_yonetim.png" alt="RKE Envanter Ana Ekranı"
+            <img src="assets/img/20_rke_ana_yonetim.png" alt="RADPYS V4 RKE Envanter Ana Ekranı ve Kurşun Koruyucu Takibi" loading="lazy" decoding="async"
               class="max-w-full h-auto rounded-xl shadow-md border border-slate-200 dark:border-slate-800"
               onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'py-12 flex flex-col items-center justify-center text-slate-400\'><svg class=\'w-16 h-16 mb-2 stroke-1\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\'></path></svg><span class=\'text-sm font-semibold\'>Görsel: RKE Ana Yönetim ve KPI Ekranı</span><span class=\'text-xs text-slate-500 mt-1\'>Konum: assets/img/20_rke_ana_yonetim.png</span></div>';">
           </div>
@@ -1004,7 +1055,7 @@
           </div>
           <div
             class="p-8 bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center text-center border-b border-slate-200 dark:border-slate-800">
-            <img src="assets/img/20_rke_muayene_kokpiti.png" alt="DIN 6857 Kalite Kontrol Kokpiti"
+            <img src="assets/img/20_rke_muayene_kokpiti.png" alt="RADPYS V4 DIN 6857 Kalite Kontrol ve Skopi Muayene Kokpiti" loading="lazy" decoding="async"
               class="max-w-full h-auto rounded-xl shadow-md border border-slate-200 dark:border-slate-800"
               onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'py-12 flex flex-col items-center justify-center text-slate-400\'><svg class=\'w-16 h-16 mb-2 stroke-1\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\'></path></svg><span class=\'text-sm font-semibold\'>Görsel: DIN 6857-1 Kalite Kontrol ve Muayene Kokpiti</span><span class=\'text-xs text-slate-500 mt-1\'>Konum: assets/img/20_rke_muayene_kokpiti.png</span></div>';">
           </div>

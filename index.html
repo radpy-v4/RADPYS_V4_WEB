@@ -4,21 +4,22 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description"
-        content="RADPYS V4 — Radyasyon çalışanları ve radyoloji departmanları yönetim sistemi. Nöbet Solver, dozimetre analizi, Şua izni, SKS 6.1 DÖF, RKE DIN 6857-1, ortam dozu krokisi, QR arıza ve online sınav LMS tek platformda." />
-    <meta name="keywords" content="RADPYS, RADPYS V4, radyasyon çalışanları, dozimetre takibi, nöbet planlama, şua izni, SKS 6.1, NDK, TENMAK, radyoloji yönetim yazılımı, RKE DIN 6857-1, ortam dozu krokisi, cihaz arıza QR" />
+  <meta name="description"
+        content="RADPYS V4 — Radyoloji ve radyasyon güvenliği yönetim sistemi: Nöbet planlama yazılımı, dozimetre takibi, Şua izni, SKS 6.1 DÖF, RKE DIN 6857-1 tek platformda." />
     <meta name="author" content="RADPYS Yazılım" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="theme-color" content="#0f172a" />
     <meta name="geo.region" content="TR" />
     <meta name="geo.placename" content="Türkiye" />
-    <title>RADPYS V4 — Radyoloji & Radyasyon Yönetim Sistemi</title>
+    <title>RADPYS V4 — Yeni Nesil Radyoloji Yönetim Sistemi</title>
 
     <link rel="icon" type="image/x-icon" href="images/logo.ico" />
     <link rel="icon" type="image/webp" href="images/logo.webp" />
     <link rel="apple-touch-icon" href="https://radpys.com.tr/images/main_logo.webp" />
     <!-- Canonical URL -->
     <link rel="canonical" href="https://radpys.com.tr/" />
+    <link rel="alternate" hreflang="tr" href="https://radpys.com.tr/" />
+    <link rel="alternate" hreflang="x-default" href="https://radpys.com.tr/" />
 
     <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="google5be46238fa239b38" />
@@ -336,7 +337,7 @@
 
                             <!-- Ekran Görüntüsü Önizleme Kartı -->
                             <div class="relative rounded-xl overflow-hidden border border-white/10 bg-slate-900/90 group shadow-2xl">
-                                <img id="hero-screen-img" src="help/assets/img/08_nobet_cizelge_dialog.png" alt="RADPYS V4 Canlı Ekran Görüntüsü" class="w-full h-auto max-h-[540px] object-cover object-top transition-all duration-300 cursor-pointer" onclick="window.location.href='moduller.html#m-08'">
+                                <img id="hero-screen-img" src="help/assets/img/08_nobet_cizelge_dialog.png" alt="RADPYS V4 Otomatik Nöbet Çizelgesi Dağıtım Arayüzü ve Kısıt Çözücü Ekranı" width="1200" height="675" loading="eager" fetchpriority="high" decoding="async" class="w-full h-auto max-h-[540px] object-cover object-top transition-all duration-300 cursor-pointer" onclick="window.location.href='moduller.html#m-08'">
                                 <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-slate-950 via-slate-950/85 to-transparent flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                                     <div>
                                         <div id="hero-screen-title" class="font-display font-bold text-white text-sm md:text-base">Modül 08: Otomatik Nöbet Solver Motoru & Kısıt Çözücü</div>
@@ -739,6 +740,7 @@
                     img.style.opacity = '0';
                     setTimeout(() => {
                         img.src = s.img;
+                        img.alt = s.title + ' — RADPYS V4 Ekranı';
                         img.onclick = () => window.location.href = s.link;
                         img.style.opacity = '1';
                     }, 150);
