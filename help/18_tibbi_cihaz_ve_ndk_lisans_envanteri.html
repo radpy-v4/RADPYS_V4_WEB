@@ -417,12 +417,23 @@
                 <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
                   <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
                     HEK Hurda Arşivi ve Çıkış Tutanağı<br>
-                    <span class="text-xs font-normal text-slate-400 font-mono">[Sil / HEK & Hurda Tutanağı Butonları]</span>
+                    <span class="text-xs font-normal text-slate-400 font-mono">[Sil / HEK &amp; Hurda Tutanağı Butonları]</span>
                   </td>
                   <td class="py-3.5 px-4">Ekonomik ömrü biten cihazı arşivleyip resmi komisyon tutanağı üretmek.</td>
                   <td class="py-3.5 px-4">Cihaz HEK arşivine kaldırılır; geçmiş denetim izi korunur. Resmi Word (.docx) Hurda Tutanağı tek tıkla üretilir.</td>
                   <td class="py-3.5 px-4">Cihaz hurdaya ayrıldığında veya devredildiğinde.</td>
                   <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Sistem Yöneticisi</span></td>
+                </tr>
+
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                  <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+                    Toplu Cihaz İçe Aktar (Excel)<br>
+                    <span class="text-xs font-normal text-slate-400 font-mono">[Excel İçe Aktar Butonu]</span>
+                  </td>
+                  <td class="py-3.5 px-4">Onlarca cihazı tek tek girmek yerine 2 sayfalı kurumsal Excel şablonuyla topluca sisteme aktarmak.</td>
+                  <td class="py-3.5 px-4">Evrensel İçe Aktarım Sihirbazı devreye girer. Şablondaki veriler doğrulanır; sistemde bulunmayan yeni departman veya türler dinamik sözlükte eşlenir; Dry-Run doğrulamasının ardından asenkron olarak güvenle kaydedilir.</td>
+                  <td class="py-3.5 px-4">İlk sistem kurulumunda veya toplu cihaz alımlarında.</td>
+                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Biyomedikal / Sistem Yöneticisi</span></td>
                 </tr>
               </tbody>
             </table>
@@ -642,6 +653,17 @@ flowchart TD
             </summary>
             <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
               Sistem cihazları fiziksel olarak silmediği için hiçbir veri kaybolmaz. Üst menüden <strong>HEK ve Hizmet Dışı Cihaz Arşivi</strong> ekranını açın. Listeden ilgili cihazı seçip <strong>[Tekrar Aktif Statüsüne Al]</strong> butonuna tıklayın. Cihaz anında tüm geçmiş kayıtlarıyla birlikte ana aktif envanter tablosuna geri döner.
+            </p>
+          </details>
+
+          <!-- Soru 4.1: Cihaz Türü / Amacı ve Veri Bütünlüğü -->
+          <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+            <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+              <span>Cihaz Türü veya Cihaz Amacı tanımı sistemden kaldırıldığında mevcut cihazlar bozulur mu?</span>
+              <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
+              <strong>Hayır, hiçbir cihaz kaydı bozulmaz.</strong> Sistemde tanımlı bir Cihaz Türü, Amacı veya Kaynak Türü silinmek istendiğinde; eğer o tanıma bağlı tek bir cihaz dahi varsa sistem ilişkisel veri bütünlüğünü korumak adına tanımı fiziksel olarak silmez, güvenle <strong>Pasife</strong> alır. Böylece o kategoriye bağlı geçmiş tüm cihaz kayıtları, lisanslar, kalite kontroller ve servis geçmişi eksiksiz korunur; tanım yalnızca yeni cihaz ekleme sihirbazındaki açılır kutularda görünmez.
             </p>
           </details>
 

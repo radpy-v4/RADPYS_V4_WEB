@@ -3,47 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Radyoloji nöbet planlama yazılımı kural piramidi: Sert ve yumuşak kısıtlar, 24 saat dinlenme kuralı, adalet ağırlıkları ve otomatik vardiya dağıtımı rehberi." />
-  <meta name="author" content="RADPYS Yazılım" />
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-  <title>Radyoloji Nöbet Planlama Yazılımı & Kısıt Hiyerarşisi | RADPYS v4</title>
-  <link rel="canonical" href="https://radpys.com.tr/help/07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" />
-  <link rel="alternate" hreflang="tr" href="https://radpys.com.tr/help/07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" />
-  <link rel="alternate" hreflang="x-default" href="https://radpys.com.tr/help/07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" />
-
-  <!-- Schema.org BreadcrumbList JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Ana Sayfa",
-        "item": "https://radpys.com.tr/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Modüller",
-        "item": "https://radpys.com.tr/moduller.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Kılavuz",
-        "item": "https://radpys.com.tr/help/index.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 4,
-        "name": "Nöbet Planlama Kılavuzu",
-        "item": "https://radpys.com.tr/help/07_nobet_ayarlari_ve_kisit_hiyerarsisi.html"
-      }
-    ]
-  }
-  </script>
+  <title>07. Nöbet Ayarları & Kısıt Hiyerarşisi — RADPYS v4 Kullanım Kılavuzu</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -132,14 +92,9 @@
           <svg id="themeIconMoon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
         </button>
 
-        <a href="../moduller.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition" title="Ana sitedeki 22 modül genel bakışına dön">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-          <span>Modüllere Dön</span>
-        </a>
-
         <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-          <span>Kılavuz İndeksi</span>
+          <span>Tüm Modüller</span>
         </a>
       </div>
     </div>
@@ -255,24 +210,12 @@
 
       <!-- HERO & METADATA BLOCK -->
       <section id="overview" class="space-y-4">
-        <nav aria-label="Breadcrumb" class="mb-3">
-          <ol class="flex items-center space-x-2 text-xs text-slate-500 dark:text-slate-400">
-            <li><a href="../index.html" class="hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors">Ana Sayfa</a></li>
-            <li><span class="text-slate-400 dark:text-slate-600">/</span></li>
-            <li><a href="../moduller.html" class="hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors">Modüller</a></li>
-            <li><span class="text-slate-400 dark:text-slate-600">/</span></li>
-            <li><a href="index.html" class="hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors">Kılavuz</a></li>
-            <li><span class="text-slate-400 dark:text-slate-600">/</span></li>
-            <li class="text-cyan-600 dark:text-cyan-400 font-medium" aria-current="page">Nöbet Planlama Yazılımı</li>
-          </ol>
-        </nav>
-
         <div class="flex flex-wrap items-center gap-2.5">
           <span class="px-2.5 py-1 rounded-lg text-xs font-bold font-mono uppercase bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/80">
             Modül 07
           </span>
           <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
-            ✓ Nöbet Planlama Yazılımı
+            ⭐ Vitrin Bölümü
           </span>
           <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
             ✓ 4 Kademeli Kural Piramidi
@@ -286,7 +229,7 @@
         </div>
 
         <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-          Radyoloji Nöbet Planlama Yazılımı: Kural Piramidi & Kısıt Hiyerarşisi
+          Nöbet Ayarları, Kural Piramidi & Kısıt Hiyerarşisi
         </h1>
         <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
           RADPYS otomatik nöbet dağıtım motorunun uymak zorunda olduğu hiyerarşik kurallar, 24 saat çalışma ve asgari dinlenme standartları, departman vardiya slotları, esnek fazla mesai tavanları, 50 yaş muafiyeti ve yasal kısıt yönetim rehberi.
@@ -655,7 +598,7 @@ graph TD
             </span>
             <span class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">Kısıt Hiyerarşisi, FM Sınırı & Muafiyetler</span>
           </div>
-          <img src="assets/img/nobet_temel.ui.png" alt="Nöbet Temel Ayarlar Ekranı" loading="lazy" decoding="async" class="w-full h-auto">
+          <img src="assets/img/Temel Ayarlar.png" alt="Nöbet Temel Ayarlar Ekranı" class="w-full h-auto">
           <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
             <svg class="w-3.5 h-3.5 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             <span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki sayısal katsayılar ve muafiyet eşikleri test ortamında yapılandırılmış simülasyon parametreleridir.</span>
@@ -670,7 +613,7 @@ graph TD
             </span>
             <span class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">Vardiya Slotları, Akıllı Saat & Kural Kopyalama</span>
           </div>
-          <img src="assets/img/nobet_birim_kural.png" alt="Birim Kuralları ve Nöbet Slotları Ekranı" loading="lazy" decoding="async" class="w-full h-auto">
+          <img src="assets/img/Birim Kuralları,.png" alt="Birim Kuralları ve Nöbet Slotları Ekranı" class="w-full h-auto">
           <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
             <svg class="w-3.5 h-3.5 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             <span><strong>Yasal Bilgilendirme:</strong> Departman vardiya slotları ve çalışma saatleri hastane organizasyon şemasına göre örneklendirilmiştir.</span>

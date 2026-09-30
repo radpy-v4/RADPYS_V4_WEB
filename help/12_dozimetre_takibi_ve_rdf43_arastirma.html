@@ -3,47 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kişisel dozimetre takip sistemi: Hp(10) ve Hp(0.07) analitiği, NDK 20 mSv yıllık limit denetimi ve RD.F43 resmi doz aşımı araştırma kılavuzu." />
-  <meta name="author" content="RADPYS Yazılım" />
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-  <title>Dozimetre Takip Sistemi & RD.F43 Aşım Yönetimi | RADPYS v4</title>
-  <link rel="canonical" href="https://radpys.com.tr/help/12_dozimetre_takibi_ve_rdf43_arastirma.html" />
-  <link rel="alternate" hreflang="tr" href="https://radpys.com.tr/help/12_dozimetre_takibi_ve_rdf43_arastirma.html" />
-  <link rel="alternate" hreflang="x-default" href="https://radpys.com.tr/help/12_dozimetre_takibi_ve_rdf43_arastirma.html" />
-
-  <!-- Schema.org BreadcrumbList JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Ana Sayfa",
-        "item": "https://radpys.com.tr/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Modüller",
-        "item": "https://radpys.com.tr/moduller.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Kılavuz",
-        "item": "https://radpys.com.tr/help/index.html"
-      },
-      {
-        "@type": "ListItem",
-        "position": 4,
-        "name": "Dozimetre Takip Sistemi",
-        "item": "https://radpys.com.tr/help/12_dozimetre_takibi_ve_rdf43_arastirma.html"
-      }
-    ]
-  }
-  </script>
+  <title>12. Dozimetre Takibi ve RD.F43 Araştırma — RADPYS v4 Kullanım Kılavuzu</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -132,14 +92,9 @@
           <svg id="themeIconMoon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
         </button>
 
-        <a href="../moduller.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition" title="Ana sitedeki 22 modül genel bakışına dön">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-          <span>Modüllere Dön</span>
-        </a>
-
         <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-          <span>Kılavuz İndeksi</span>
+          <span>Tüm Modüller</span>
         </a>
       </div>
     </div>
@@ -257,28 +212,15 @@
       
       <!-- HERO SECTION -->
       <section id="genel-bakis" class="space-y-6">
-        <nav aria-label="Breadcrumb" class="mb-2">
-          <ol class="flex items-center space-x-2 text-xs text-slate-500 dark:text-slate-400">
-            <li><a href="../index.html" class="hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors">Ana Sayfa</a></li>
-            <li><span class="text-slate-400 dark:text-slate-600">/</span></li>
-            <li><a href="../moduller.html" class="hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors">Modüller</a></li>
-            <li><span class="text-slate-400 dark:text-slate-600">/</span></li>
-            <li><a href="index.html" class="hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors">Kılavuz</a></li>
-            <li><span class="text-slate-400 dark:text-slate-600">/</span></li>
-            <li class="text-cyan-600 dark:text-cyan-400 font-medium" aria-current="page">Dozimetre Takip Sistemi</li>
-          </ol>
-        </nav>
-
         <div class="flex flex-wrap items-center gap-3">
           <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">MODÜL 12</span>
-          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300">✓ Dozimetre Takip Sistemi</span>
-          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300">NDK & Mevzuat Uyumlu</span>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300">NDK & Mevzuat Uyumlu</span>
           <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300">10 İş Günü Form Kuralı</span>
         </div>
 
         <div class="space-y-3">
           <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-            Kişisel Dozimetre Takip Sistemi ve RD.F43 Doz Aşımı Araştırması
+            12. Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması
           </h1>
           <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-5xl">
             Radyasyonla çalışan personelin mesleki maruziyet kayıtlarını, laboratuvar raporu (TENMAK, RADAT, Excel) içe aktarımını, kümülatif yasal limitleri ($H_p(10)$ derin doz ve $H_p(0.07)$ yüzey dozu), inceleme eşiğini aşan vakalarda 10 iş günü içinde tanzimi zorunlu resmi <strong>RD.F43 Doz Araştırma Formu</strong> sürecini ve RKS net maruziyet hesaplama algoritmasını yöneten merkezi modüldür.
@@ -379,7 +321,7 @@
               <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
                 <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Laboratuvardan İçe Aktar]</td>
                 <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
-                <td class="py-3 px-4">TENMAK/RADAT/Excel doz raporlarını 3 adımlı sihirbazla içeri aktarır.</td>
+                <td class="py-3 px-4">TENMAK/RADAT/Excel doz raporlarını aktarır; önizlemede çift tıkla [Personel Seç] penceresinden manuel eşleme, [Kalıcı Hafızaya Kaydet] ve [Eşleşmeyenleri Excel Olarak İndir] imkanı sunar.</td>
                 <td class="py-3 px-4">RKS / Dozimetre Sorumlusu</td>
                 <td class="py-3 px-4">Aylık dozimetre kaset sonuçları geldiğinde</td>
                 <td class="py-3 px-4">Üst Araç Çubuğu</td>
@@ -409,12 +351,36 @@
                 <td class="py-3 px-4">Filtre Paneli</td>
               </tr>
               <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
-                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Aksiyon Başlat / Düzenle]</td>
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Doz Araştırma Formu Aç]</td>
                 <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
-                <td class="py-3 px-4">2.0 mSv eşiğini aşan vaka için 4 adımlı resmi RD.F43 araştırma formu açar.</td>
+                <td class="py-3 px-4">2.0 mSv eşiğini aşan veya kritik anomali gösteren vaka için 4 adımlı resmi RD.F43 araştırma formu sihirbazını başlatır.</td>
                 <td class="py-3 px-4">RKS / Kurum Amiri</td>
                 <td class="py-3 px-4">Eşik aşımı veya doz anomalisi tespitinde</td>
-                <td class="py-3 px-4">Aksiyonlar Sekmesi</td>
+                <td class="py-3 px-4">Aksiyonlar Sekmesi (Sol Panel)</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Takip Ölçümü Planla] / [Birim Notu Ekle]</td>
+                <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
+                <td class="py-3 px-4">Şüpheli ölçümlerde ara takip/EPD ölçüm planı oluşturur veya birim çalışma koşulları notunu kaydeder.</td>
+                <td class="py-3 px-4">RKS / Dozimetre Sorumlusu</td>
+                <td class="py-3 px-4">Risk incelemesi ve saha notu girişinde</td>
+                <td class="py-3 px-4">Aksiyonlar Sekmesi (Sol Panel)</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Formu Görüntüle] / [Aksiyonu Kapat]</td>
+                <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
+                <td class="py-3 px-4">Başlatılmış RD.F43/DÖF dosyasını doğrudan inceler veya tamamlanan soruşturmayı kapatır.</td>
+                <td class="py-3 px-4">RKS / Kurum Amiri</td>
+                <td class="py-3 px-4">Açık DÖF dosyası takibinde veya form kapanışında</td>
+                <td class="py-3 px-4">Aksiyonlar Sekmesi (Sağ Panel)</td>
+              </tr>
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+                <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Geçmiş Ölçümler & Birim Takibi]</td>
+                <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Tablo</td>
+                <td class="py-3 px-4">Seçili personelin geçmiş tüm ölçümlerini dönemsel dozları ve o dönem görev yaptığı <strong>Birim</strong> bilgisiyle listeler.</td>
+                <td class="py-3 px-4">Tüm Yetkililer</td>
+                <td class="py-3 px-4">Personel rotasyonları ve birim bazlı doz geçmişi sorgulanırken</td>
+                <td class="py-3 px-4">Ölçümler Sekmesi (Sağ Panel)</td>
               </tr>
               <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
                 <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Doz Hesapla]</td>
@@ -450,7 +416,7 @@
 
         <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
           <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md">
-            <img src="assets/img/12_dozimetre%20import.png" alt="Dozimetre İçe Aktarma Sihirbazı" loading="lazy" decoding="async" class="w-full h-auto object-cover max-h-[500px]">
+            <img src="assets/img/12_dozimetre%20import.png" alt="Dozimetre İçe Aktarma Sihirbazı" class="w-full h-auto object-cover max-h-[500px]">
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -464,18 +430,52 @@
 
             <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-2">
               <span class="inline-block px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">2. ADIM</span>
-              <h3 class="text-sm font-bold text-slate-900 dark:text-white">Otomatik Eşleştirme & Önizleme</h3>
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white">Akıllı Eşleştirme &amp; Manuel Personel Seçimi</h3>
               <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                <strong>[Dosyayı Çözümle]</strong> butonuna basılır. Sistem dosyadaki T.C. Kimlik veya seri no değerlerini personellerle eşleştirir. Eşleşmeyen satırlar sarı renk uyarısıyla önizlenir.
+                <strong>[Dosyayı Çözümle]</strong> tıklandığında sistem T.C. Kimlik ve isimleri karşılaştırır; geçmişte hafızaya alınmış kayıtları otomatik bağlar. Eşleşmeyen satıra <strong>çift tıklayarak</strong> <strong>[Personel Seç]</strong> penceresinden personel atanabilir ve kalıcı hafızaya kaydedilebilir.
               </p>
             </div>
 
             <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-2">
               <span class="inline-block px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">3. ADIM</span>
-              <h3 class="text-sm font-bold text-slate-900 dark:text-white">Kayıt & Eşik Alarmı Tetikleme</h3>
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white">Kayıt, Eşik Alarmı &amp; Hata Raporlama</h3>
               <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                <strong>[İçe Aktarımı Tamamla]</strong> tıklandığında satırlar veritabanına yazılır, kümülatif dozlar güncellenir ve $\ge 2.0\text{ mSv}$ kayıtlar için otomatik RD.F43 kuyruğu oluşturulur.
+                <strong>[İçe Aktarımı Tamamla]</strong> ile eşleşen satırlar kaydedilir, dozlar kümülatife işlenir ve $\ge 2.0\text{ mSv}$ vakalar RD.F43 kuyruğuna alınır. Çözümlenemeyen satırlar için <strong>[Eşleşmeyenleri Excel Olarak İndir]</strong> butonu kullanılır.
               </p>
+            </div>
+          </div>
+
+          <!-- DOZİMETRE EŞLEŞME HAFIZASI & MANUEL EŞLEME ÖZEL BİLGİLENDİRME KUTUSU -->
+          <div class="p-5 rounded-2xl bg-gradient-to-br from-indigo-50/70 via-white to-cyan-50/70 dark:from-slate-800/90 dark:via-slate-800/70 dark:to-cyan-950/40 border-2 border-indigo-500/25 space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-base shadow-sm">
+                🧠
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">
+                  Önizleme Tablosunda Doğrudan Personel Eşleme &amp; Akıllı Eşleşme Hafızası
+                </h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">
+                  Dış laboratuvar yazım farklılıklarını tek tıkla çözme ve gelecek periyotlar için otomatik hatırlama mimarisi
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs leading-relaxed text-slate-700 dark:text-slate-200">
+              <div class="p-3.5 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 space-y-1">
+                <span class="font-bold text-indigo-600 dark:text-indigo-400 block mb-1">1. Çift Tıkla [Personel Seç] Penceresi</span>
+                Laboratuvardan gelen raporda personelin adı eksik/farklı yazılmış veya T.C. hanesi boş kalmışsa, önizleme tablosundaki kırmızı/sarı satıra <strong>çift tıklayın</strong>. Açılan diyalogda kurum personel listenizden arama yaparak doğru kişiyi tek tıkla seçin.
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 space-y-1">
+                <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-1">2. [Kalıcı Hafızaya Kaydet] Onay Kutusu</span>
+                Personel seçim penceresinde <strong>[Bu eşleşmeyi sonraki dönemler için hafızaya kaydet]</strong> kutusunu işaretlediğinizde, sistem bu laboratuvar yazımını kurum personelinizle kalıcı olarak eşleştirir. Sonraki aylarda aynı rapordaki kişi geldiğinde sistem hafızadan anında tanır; bir daha manuel işlem gerekmez.
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 space-y-1">
+                <span class="font-bold text-amber-600 dark:text-amber-400 block mb-1">3. [Eşleşmeyenleri Excel Olarak İndir]</span>
+                Kurumunuz personeli olmayan (ayrılmış, başka hastaneden rotasyona gelmiş veya tanımsız) satırlar varsa işlem engellenmez. Önizleme ekranındaki <strong>[Eşleşmeyenleri Excel Olarak İndir]</strong> butonuna tıklayarak çözülemeyen satırları Excel formatında alıp ilgili birime iletebilirsiniz.
+              </div>
             </div>
           </div>
         </div>
@@ -500,7 +500,7 @@
               <span>Dozimetre Takip Kokpiti ve Doz Renk Skalası</span>
             </h3>
             <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
-              <img src="assets/img/12_1_dozimetre_list.png" alt="Dozimetre Listesi Kokpiti" loading="lazy" decoding="async" class="w-full h-auto object-cover max-h-[380px]">
+              <img src="assets/img/12_1_dozimetre_list.png" alt="Dozimetre Listesi Kokpiti" class="w-full h-auto object-cover max-h-[380px]">
             </div>
             <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2">
               <li class="flex items-center gap-2">
@@ -529,13 +529,57 @@
               <span>Manuel Dozimetre Ölçümü Ekleme</span>
             </h3>
             <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
-              <img src="assets/img/12_2_dozimetre_olcum.png" alt="Manuel Dozimetre Ölçüm Girişi" loading="lazy" decoding="async" class="w-full h-auto object-cover max-h-[380px]">
+              <img src="assets/img/12_2_dozimetre_olcum.png" alt="Manuel Dozimetre Ölçüm Girişi" class="w-full h-auto object-cover max-h-[380px]">
             </div>
             <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
               <p><strong>[Ölçüm Ekle]</strong> tıklandığında açılan bu modalda;</p>
               <p>&bull; Personel seçilir, dozimetre tipi (Tüm Vücut / Yüzük / Göz Lensi / EPD) belirlenir.</p>
               <p>&bull; $H_p(10)$ derin doz ve opsiyonel $H_p(0.07)$ yüzey dozu sayısal olarak girilir.</p>
               <p>&bull; Doz değeri 2.0 mSv eşiğini geçerse sistem anında uyarı vererek aksiyon sekmesine yönlendirir.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: 2-Panel Aksiyonlar & Birim Rotasyon Takibi (Full Width Banner) -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+              <span>Sadeleştirilmiş 2 Panelli Aksiyonlar & Geçmiş Birim Rotasyon Takibi</span>
+            </h3>
+            <span class="text-xs px-2.5 py-1 rounded-full font-semibold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300">RADPYS V4.2 Revizyonu</span>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 text-xs text-slate-600 dark:text-slate-300">
+            <!-- Left Info: 2-Panel Architecture -->
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-2">
+              <h4 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
+                <span>Aksiyonlar Sekmesi: 2 Panelli Operasyonel Görünüm</span>
+              </h4>
+              <p class="leading-relaxed">
+                Eski 3 tablolu sıkışık düzen kaldırılarak ekran ferah iki ana panele bölünmüştür:
+              </p>
+              <ul class="space-y-1.5 pl-2">
+                <li>&bull; <strong>Sol Panel (İncelenecek Doz Riskleri ve Anomaliler):</strong> Yasal eşik aşımları ($\ge 2.0\text{ mSv}$) ve personelin geçmiş kişisel ortalamasından 2 kat veya daha fazla sapan istatistiksel anomaliler tek potada toplanır. Sütunlar: <code>[Ad Soyad | Birim | Dönem | Hp(10) | Risk Seviyesi | Gerekçe]</code>. Üst butonlarla doğrudan RD.F43 formu açılır, takip ölçümü planlanır veya birim notu eklenir.</li>
+                <li>&bull; <strong>Sağ Panel (Başlatılan İncelemeler ve DÖF Dosyaları):</strong> Süreci devam eden veya kapatılan soruşturmalar 5 sütunla (<code>[Dönem | Ad Soyad | Tip | Birim | Durum]</code>) izlenir. Durum filtresiyle (Tümü/Açık/Kapalı) arşiv taranabilir; tek tıkla form incelenir veya dosya kapatılır.</li>
+              </ul>
+            </div>
+
+            <!-- Right Info: Past Measurements Unit Tracking -->
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-2">
+              <h4 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <span>Ölçümler Sekmesi: Geçmiş Ölçümlerde Birim Rotasyon Takibi</span>
+              </h4>
+              <p class="leading-relaxed">
+                Ölçümler tablosunda bir personele tıklandığında sağ panelde açılan <strong>Geçmiş Ölçümler Tablosu</strong> genişletilmiş ve <strong>Birim</strong> sütunu eklenmiştir:
+              </p>
+              <ul class="space-y-1.5 pl-2">
+                <li>&bull; <strong>Sütun Düzeni:</strong> <code>[Dönem | Birim | Hp(10) | Hp(0,07) | Durum]</code>.</li>
+                <li>&bull; <strong>Rotasyon ve Doz Analizi:</strong> Personelin hangi dönemde hangi radyoloji biriminde (Anjiyo, BT, Skopi vb.) görev yaptığı geriye dönük izlenir. Bir personelde ani doz yükselmesi görüldüğünde, o dönem çalıştığı birim anında tespit edilerek maruziyetin birim kaynaklı olup olmadığı doğrulanır.</li>
+                <li>&bull; <strong>Ferah Arayüz:</strong> Sağ panel genişliği dengelenmiş (560px asgari genişlik), uzun birim adlarının kesilmemesi için esnek sütun hizalaması uygulanmıştır.</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -564,7 +608,7 @@
               </div>
               <h3 class="text-base font-bold text-slate-900 dark:text-white">Personel ve Koruyucu Donanım Bilgileri</h3>
               <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
-                <img src="assets/img/12_1_doz_arastirma_form_dialog.png" alt="RD.F43 Adım 1 Personel ve Görev Bilgileri" loading="lazy" decoding="async" class="w-full h-auto object-cover max-h-[340px]">
+                <img src="assets/img/12_1_doz_arastirma_form_dialog.png" alt="RD.F43 Adım 1 Personel ve Görev Bilgileri" class="w-full h-auto object-cover max-h-[340px]">
               </div>
               <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                 Personelin çalıştığı birim, cihaz türü (Skopi, BT, Girişimsel vb.), haftalık çalışma saati ve koruyucu ekipman (kurşun önlük, tiroid koruyucu) kullanım durumu teyit edilir.
@@ -578,7 +622,7 @@
               </div>
               <h3 class="text-base font-bold text-slate-900 dark:text-white">Çalışma Koşulları ve Olağan Dışı Durumlar</h3>
               <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
-                <img src="assets/img/12_2_doz_arastirma_form_dialog.png" alt="RD.F43 Adım 2 Çalışma Koşulları" loading="lazy" decoding="async" class="w-full h-auto object-cover max-h-[340px]">
+                <img src="assets/img/12_2_doz_arastirma_form_dialog.png" alt="RD.F43 Adım 2 Çalışma Koşulları" class="w-full h-auto object-cover max-h-[340px]">
               </div>
               <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                 Ölçüm döneminde cihaz arızası, floroskopi tüp kilitlenmesi veya acil vaka yoğunluğu sorgulanır; dozimetrenin kurşun önlük altında mı üstünde mi taşındığı belgelenir.
@@ -595,7 +639,7 @@
               </div>
               <h3 class="text-base font-bold text-slate-900 dark:text-white">Artefakt Tespiti ve RKS Maruziyet Hesabı</h3>
               <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
-                <img src="assets/img/12_3_doz_arastirma_form_dialog.png" alt="RD.F43 Adım 3 RKS Doz Hesabı" loading="lazy" decoding="async" class="w-full h-auto object-cover max-h-[340px]">
+                <img src="assets/img/12_3_doz_arastirma_form_dialog.png" alt="RD.F43 Adım 3 RKS Doz Hesabı" class="w-full h-auto object-cover max-h-[340px]">
               </div>
               <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-xs text-slate-600 dark:text-slate-300 space-y-2">
                 <p><strong>Artefakt / Sahte Aşım:</strong> Personel bizzat hasta olarak BT/Sintigrafi çektirmişse veya dozimetre şua odasında unutulmuşsa <strong>[Doz Hesapla]</strong> motoruyla mesafe ve süreye göre gerçek maruziyet hesaplanır ve sahte aşım personelin kütüğünden düşülür.</p>
@@ -610,7 +654,7 @@
               </div>
               <h3 class="text-base font-bold text-slate-900 dark:text-white">Karar, İmzalar ve Resmi RD.F43 Belgesi</h3>
               <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
-                <img src="assets/img/12_doz_arastirma_form_dialog.png" alt="RD.F43 Genel Diyalog ve Karar" loading="lazy" decoding="async" class="w-full h-auto object-cover max-h-[340px]">
+                <img src="assets/img/12_doz_arastirma_form_dialog.png" alt="RD.F43 Genel Diyalog ve Karar" class="w-full h-auto object-cover max-h-[340px]">
               </div>
               <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
                 <p>Form onaylandığında sağ üstteki <strong>[Resmi RD.F43 Word İndir]</strong> butonuna tıklanır.</p>
@@ -732,7 +776,7 @@ graph TD
           <h2 class="text-xl font-bold text-slate-900 dark:text-white">Dozimetre Güvenliği & Mit Avcısı (Kritik Kurallar)</h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           <!-- Mit 1 -->
           <div class="rounded-2xl border border-red-200 dark:border-red-900/40 bg-gradient-to-br from-red-50/50 via-white to-slate-50 dark:from-red-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
             <div class="flex items-center gap-2 text-red-600 dark:text-red-400 font-bold text-xs uppercase tracking-wider mb-2">
@@ -804,6 +848,30 @@ graph TD
               </p>
             </div>
           </div>
+
+          <!-- Mit 4 -->
+          <div class="rounded-2xl border border-purple-200 dark:border-purple-900/40 bg-gradient-to-br from-purple-50/50 via-white to-slate-50 dark:from-purple-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
+            <div class="flex items-center gap-2 text-purple-600 dark:text-purple-400 font-bold text-xs uppercase tracking-wider mb-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              <span>Yaygın Yanılgı (Mit 4)</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-800 dark:text-slate-100 mb-3 italic">
+              "Dozimetre seri numarası personelin kalıcı kimliğidir; sonraki dönemler için eşleştirmeyi dozimetre numarası üzerinden yapabiliriz."
+            </p>
+            <div class="border-t border-purple-200/60 dark:border-purple-900/40 pt-3">
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 mb-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Doğru Sistem Kuralı:
+              </span>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                <strong>KESİNLİKLE HAYIR.</strong> Dozimetre rozetleri laboratuvarlar tarafından her periyotta rotasyona tabi tutulur ve numaraları döngüsel olarak değişir. Bu nedenle kalıcı eşleştirme anahtarı asla dozimetre numarası olamaz; RADPYS hafızası eşleşmeyi <strong>sağlayıcı laboratuvar, personelin rapordaki adı-soyadı ve dış T.C. kimlik bilgisi</strong> üzerinden kurar ve korur.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -822,10 +890,10 @@ graph TD
           <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
             <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <span class="text-cyan-600 dark:text-cyan-400">Soru 1:</span>
-              <span>Dozimetre raporu dosyasını içe aktarırken bazı personeller sarı uyarıyla eşleşmedi olarak görünüyor. Ne yapmalıyım?</span>
+              <span>Dozimetre raporu dosyasını içe aktarırken bazı personeller sarı/kırmızı uyarıyla eşleşmedi olarak görünüyor. Ne yapmalıyım?</span>
             </h3>
             <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Bu durum laboratuvar raporundaki T.C. Kimlik Numarasının veya Dozimetre Seri Numarasının Personel Yönetimi modülündeki özlük kartıyla eşleşmemesinden kaynaklanır. Personel listesine giderek ilgili çalışanın dozimetre barkodunu veya kimlik numarasını güncelleyiniz; ardından dosyayı tekrar içeri aktarınız.
+              Personel listesine gidip kayıt aramanıza gerek yoktur! Önizleme tablosunda eşleşmeyen personele <strong>çift tıklayarak</strong> açılan <strong>[Personel Seç]</strong> penceresinden kurum personelinizi aratıp seçebilirsiniz. Penceredeki <strong>[Bu eşleşmeyi sonraki dönemler için hafızaya kaydet]</strong> onay kutusunu işaretlediğinizde, sistem bu laboratuvar yazımını hafızaya alır ve sonraki aylarda otomatik tanır. Kurumunuz personeli olmayan veya çözümlenemeyen kayıtlar için ise <strong>[Eşleşmeyenleri Excel Olarak İndir]</strong> butonuna tıklayarak listeyi dışa aktarabilirsiniz.
             </p>
           </div>
 

@@ -400,12 +400,23 @@
               <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
                 <td class="py-3.5 px-4 font-mono text-cyan-700 dark:text-cyan-400">
                   <strong>Web Portalı EBYS Kaydı</strong><br>
-                  <span class="text-[11px] text-slate-400">POST /api/izin/hbys-kaydet</span>
+                  <span class="text-[11px] text-slate-400">[EBYS Kaydet Formu]</span>
                 </td>
                 <td class="py-3.5 px-4">Resmi kurum evrak numarasını izin kaydına işlemek.</td>
                 <td class="py-3.5 px-4">İlk evrak no girişinde izin doğrudan 'Resmi Onaylı' statüsü kazanır. Sonradan değiştirilmek istenirse onay masasına düşer.</td>
                 <td class="py-3.5 px-4">Resmi yazı çıktığında.</td>
                 <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Personel, İdari İşler</td>
+              </tr>
+
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="py-3.5 px-4 font-mono text-cyan-700 dark:text-cyan-400">
+                  <strong>Toplu İzin &amp; Hakediş İçe Aktar</strong><br>
+                  <span class="text-[11px] text-slate-400">[Toplu İçe Aktar Butonu]</span>
+                </td>
+                <td class="py-3.5 px-4">Geçmiş yıllara ait izin hareketlerini veya yıllık izin hakedişlerini 2 sayfalı kurumsal Excel şablonuyla topluca sisteme yüklemek.</td>
+                <td class="py-3.5 px-4">Evrensel İçe Aktarım Sihirbazı ile hakediş veya geçmiş izin şablonu seçilir; izin türleri dinamik sözlükte çözümlenir; Dry-Run önizlemesinden sonra asenkron olarak güvenle kaydedilir.</td>
+                <td class="py-3.5 px-4">İlk kurulum aşamasında veya yıl başı toplu izin bakiye tanımlamalarında.</td>
+                <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">İK / Sistem Yöneticisi</td>
               </tr>
             </tbody>
           </table>
@@ -513,7 +524,7 @@ graph TD
             </span>
             <span class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">KPI Sayaçları, Filtreler & Onay/Red/İptal Butonları</span>
           </div>
-          <img src="assets/img/izin_list.png" alt="İzin Listesi ve Filtreleme Ekranı" loading="lazy" decoding="async" class="w-full h-auto">
+          <img src="assets/img/izin_list.png" alt="İzin Listesi ve Filtreleme Ekranı" class="w-full h-auto">
           <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
             <svg class="w-3.5 h-3.5 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             <span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki personel adları, TC kimlik numaraları, departmanlar ve izin tarihleri simülasyon amacıyla üretilmiş sentetik test verileridir.</span>
@@ -528,7 +539,7 @@ graph TD
             </span>
             <span class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">2 Adımlı Wizard, Bakiye Paneli & Takvim Hesabı</span>
           </div>
-          <img src="assets/img/izin_talep.png" alt="Yeni İzin Talebi ve Bakiye Paneli Ekranı" loading="lazy" decoding="async" class="w-full h-auto">
+          <img src="assets/img/izin_talep.png" alt="Yeni İzin Talebi ve Bakiye Paneli Ekranı" class="w-full h-auto">
           <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
             <svg class="w-3.5 h-3.5 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             <span><strong>Yasal Bilgilendirme:</strong> Form alanları ve bakiye özeti örnek arayüz gösterimi olup herhangi bir gerçek personele ait veri içermemektedir.</span>

@@ -1,8 +1,8 @@
 {
-  "version": "4.0.2.12",
-  "latest_demo_version": "4.0.2.12",
-  "release_date": "2026-09-25",
+  "version": "4.0.2.17",
+  "latest_demo_version": "4.0.2.17",
+  "release_date": "2026-09-30",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.2.12: Evrensel Nöbet Dengeleme & Asimetrik Çapraz Takas Motoru (2-Way Asymmetric Swap), Yaş/Kıdem Muafiyetlerinde Esnek Öncelik (Soft Constraint) Mimarisi, Nöbet Çizelgesi Geniş Ekran Modu (Sidebar Toggle) ve Klinik Özet Tablosu Tipografi Reformu.",
-  "notes": "Heterojen vardiyalarda (7h/17h) saat dengesini sağlayan 3 kademeli optimizasyon (Doğrudan Devir, Asimetrik Takas, Akıllı Relay), 50 yaş / 25 yıl muafiyetlerinin kilitlenmeden adil takası, sol menü daraltma/genişletme ve hakediş özet tablosu sütun başlıklarının sadeleştirilmesi."
+  "changelog": "RADPYS V4.0.2.17: Asenkron Subwindow Yönetimi (_open_subwindow_with_progress), UI Donma Koruması, Güçlendirilmiş Modern Progress Dialog & Evrensel İçe Aktarım UI/QSS Reformu.",
+  "notes": "40+ arayüz alt penceresinin ana thread'i kilitlemeden yükleme göstergesiyle açılması, GIF animasyon yolu güvenliği, Evrensel İçe Aktarım Sihirbazı (ImportController) için modern RDS temalama ve kapsamlı UI testleri."
 }
