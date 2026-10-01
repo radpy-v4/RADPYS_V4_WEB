@@ -1991,3 +1991,62 @@ RADPYS Hizmet İçi Eğitim ve Online Sınav modülü, masaüstü kurumsal yöne
   - **Kurumsal Denetim Kokpiti (`dashboard.kurumsal.routes.ts`):** Yönetici ve RGS sorumluları kurum genelindeki eğitim tamamlanma yüzdelerini web kokpitinden anlık grafiklerle izleyebilir.
 
 ---
+
+## 22. Web Portalı ve Yönetici Gösterge Panelleri (Dashboards)
+
+### 1. Hızlı Başlangıç ve Önemli Eşikler
+
+- **Mevzuat & Standart:** Sağlık Bakanlığı SKS 6.1 & NDK Radyasyon Güvenliği Kriterleri
+- **Erişim Portu:** `http://localhost:3000` (Kurum içi intranet veya yerel sunucu)
+- **Önbellek (Cache) Mimarisi:** 60 Saniye (Ağır veritabanı kilitlenmelerini önleyen dinamik bellek önbelleği)
+- **Canlılık Denetimi:** 8 saniyelik otomatik durum çubuğu yoklaması
+- **Tarayıcı Desteği:** Kullanıcı Varsayılan Tarayıcısı (Chrome, Edge, Firefox, Brave vb.)
+- **Platform:** 🖥️ Masaüstü Yönetim Kokpiti + 📱 Saha Web Portalı & Tablet
+
+---
+
+### 2. 5N1K Kural ve Fonksiyon Tablosu
+
+| NE? (Ekran Kontrolü) | NEDEN? (Kullanım Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Hangi Durumda) | KİM? (Yetkili Kitle) |
+| --- | --- | --- | --- | --- |
+| **Genel Bakış Butonu** | Tüm hastane radyoloji birimlerini tek ekranda incelemek. | Masaüstü sol menüsündeki butona basıldığında web tarayıcısında genel gösterge panelini açar. | Hızlı durum özeti gerektiğinde. | Tüm Yöneticiler. |
+| **Portal Sunucu Durum Butonu** | Web portal servisinin canlı olup olmadığını izlemek ve gerektiğinde çalıştırmak. | 8 saniyede bir port yoklaması yapılır; sunucu açıksa yeşil 'Aktif', kapalıysa gri 'Kapalı' görünür. Tıklandığında başlatıcıyı tetikler. | Servis kapalı olduğunda veya sağlık denetiminde. | Sistem Yöneticisi (Admin). |
+| **Web Portalı Aç Butonu** | Servis başlatıcı ekranından doğrudan web arayüzüne geçiş yapmak. | Butona tıklandığında işletim sisteminin varsayılan güncel web tarayıcısını (Chrome, Firefox, Brave) önceliklendirerek açar; güvenlik yalıtımlı ortamlarda Edge yedeğini devreye sokar. | Başlatıcı üzerinden portala erişirken. | Tüm Kullanıcılar. |
+| **60 Saniye Bellek İçi Önbellek** | Ağır analitik ve istatistik sorgularının veritabanını kilitlemesini engellemek. | Dashboard verileri 60 saniye boyunca RAM önbelleğinden anlık sunulur. Filtre değişiminde veya [Yenile] tıklandığında taze veri çekilir. | Web panellerinde gezinirken. | Otomatik Sistem. |
+| **Dozimetre Alarm Rozetleri** | Yıllık 20 mSv yasal eşiğe yaklaşan personeli erkenden fark etmek. | Aylık derin doz ≥2.0 mSv ise sarı uyarı, ≥5.0 mSv ise kırmızı alarm rozetiyle gösterge paneline yansır. | Dozimetre okuma raporları işlendiğinde. | RGU / Medikal Fizikçi. |
+| **DIN 6857-1 KKD Muayene Göstergesi** | Koruyucu kurşun ekipmanların yıllık muayene takvimini kaçırmamak. | Muayene süresi dolan veya kusurlu bulunan önlük ve koruyucular anlık kırmızı sayaçla listelenir. | Günlük ve periyodik denetimlerde. | Kalite / RGU. |
+| **Excel ve PDF Dışa Aktarımı** | İdari toplantı ve resmi SKS denetimlerinde onaylı metrik çıktısı almak. | Paneldeki veriler tek tıkla kurumsal renk ve başlık formatında Excel veya PDF belgesine dönüştürülür. | Raporlama ve denetim hazırlığında. | Tüm Kullanıcılar. |
+
+---
+
+### 3. Kritik Kural ve Saha Uyarıları
+
+> ⚠️ **Saha Notu: Dürüst Veri ve Canlı Veritabanı Standardı**  
+> Web gösterge panellerinde sistemde kayıt bulunmadığında asla farazi, yapay veya uydurma veri üretilmez. Sıfır kayıt durumunda ekran dürüstçe sıfır sayaç ve 'Kayıt Bulunmamaktadır' durumunu sunar.
+
+> 💡 **Pratik İpucu: Çoklu Tarayıcı Uyumluluğu**  
+> Portal başlatıcı, kullanıcının bilgisayarında aktif olarak kullandığı ana tarayıcıyı (Chrome, Firefox, Brave) otomatik olarak tanır ve paneli bu tarayıcıda açar. Windows Sandbox veya kısıtlı kurumsal profillerde ise protokol uyumluluğu için Microsoft Edge devreye girer.
+
+> 🔒 **Güvenlik Standardı: Asenkron Servis Başlatma ve Donma Önleme**  
+> Web Portal arka plan servisleri başlatılırken veya bağımlılıklar derlenirken arayüz asla kilitlenmez ('Yanıt Vermiyor' durumuna düşmez); tüm operasyonlar asenkron alt süreç yöneticisiyle arka planda güvenle tamamlanır.
+
+---
+
+### 4. Ekran Konumları ve Kullanım Adımları
+
+#### A. Web Portalını Başlatma ve Açma
+
+1. Masaüstündeki **Portal Başlatıcı** penceresini açın.
+2. PostgreSQL ve Web Portal servis durumlarının yeşil olduğunu teyit edin.
+3. Servisler kapalıysa **[Servisleri Başlat]** butonuna tıklayın.
+4. Başlatıcı penceresindeki **[Web Portalı Aç]** butonuna dokunun (veya sağ alttaki sistem tepsisi simgesine sağ tıklayıp **[Web Portalı Aç]** seçeneğini seçin).
+5. Sistem varsayılan web tarayıcınızı otomatik olarak açarak portala yönlendirecektir.
+
+#### B. Yönetici Gösterge Panellerini İnceleme
+
+1. Sol menüdeki **Genel Bakış**, **Dozimetre Dashboard**, **Cihaz & QC Dashboard** veya **Nöbet Analitiği** sekmelerinden dilediğinizi seçin.
+2. Birim ve tarih filtrelerini kullanarak analiz kapsamını daraltın.
+3. Verileri resmi rapor haline getirmek için sağ üstteki **[Excel İndir]** veya **[PDF İndir]** butonlarını kullanın.
+
+---
+

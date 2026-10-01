@@ -1,8 +1,8 @@
 {
-  "version": "4.0.2.17",
-  "latest_demo_version": "4.0.2.17",
-  "release_date": "2026-09-30",
+  "version": "4.0.2.18",
+  "latest_demo_version": "4.0.2.18",
+  "release_date": "2026-10-01",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.2.17: Asenkron Subwindow Yönetimi (_open_subwindow_with_progress), UI Donma Koruması, Güçlendirilmiş Modern Progress Dialog & Evrensel İçe Aktarım UI/QSS Reformu.",
-  "notes": "40+ arayüz alt penceresinin ana thread'i kilitlemeden yükleme göstergesiyle açılması, GIF animasyon yolu güvenliği, Evrensel İçe Aktarım Sihirbazı (ImportController) için modern RDS temalama ve kapsamlı UI testleri."
+  "changelog": "RADPYS V4.0.2.18: Portal Başlatıcı Servis Yöneticisi Reformu, Dinamik PostgreSQL Port Entegrasyonu, Asenkron Kurulum Mimarisi ve Tek Buton Web Portalı Aç Standardı.",
+  "notes": "Portal Launcher üzerinde .env port okuma, IPv4/IPv6 çoklu soket desteği, asenkron QProcess paket kurulumu ile UI donma koruması, varsayılan tarayıcı / Sandbox Edge fallback ve Web Portalı Aç butonu konsolidasyonu."
 }

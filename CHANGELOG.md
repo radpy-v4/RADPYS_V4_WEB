@@ -3,6 +3,37 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.2.18] - 2026-10-01
+
+### 🚀 Portal Başlatıcı Servis Yöneticisi Reformu, Dinamik PostgreSQL Port Entegrasyonu, Asenkron Kurulum Mimarisi ve Tek Buton Web Portalı Aç Standardı
+
+Bu sürüm; masaüstü uygulaması ile web gösterge panelleri (dashboard) ve mobil saha formları arasında köprü görevi gören **RADPYS Portal Başlatıcı** (`user_launcher/portal_launcher.py`) üzerinde mimari iyileştirmeleri, `.env` dosyasından dinamik veritabanı portu okuma (`get_postgres_port`), IPv4/IPv6 (`127.0.0.1` ve `localhost`) çoklu hedefli soket kontrolü, bağımlılık kurulumu ve derleme adımlarının ana arayüzü kilitlemesini önleyen **Asenkron QProcess Kurulum Mimarisi** (Kural 19 - Sıfır GUI Bloklanması), kullanıcının varsayılan tarayıcısını (Chrome, Firefox vb.) önceliklendiren ve Windows Sandbox / izole kurumsal ortamlarda Edge yedeğini devreye sokan akıllı tarayıcı yönlendiricisi (`_open_browser_url`), dağınık butonların tek merkezli **[Web Portalı Aç]** (`btn_portal_browser`) butonunda birleştirilmesi ve `web_sync_service.py` ham emoji temizliğini içerir.
+
+#### ✨ Eklendi (Added)
+
+- **Dinamik PostgreSQL Portu & Yapılandırması (`get_postgres_port`):**
+  - Başlatıcı içerisine `.env` (`RADPYS_DB_PORT`) ve ortam değişkenlerini dinamik okuyan hafif ayrıştırıcı fonksiyon eklendi. Sabit 5432 portu bağımlılığı kaldırıldı; arayüz rozeti ve konsol günlükleri aktif portu dinamik olarak gösterecek şekilde yapılandırıldı.
+- **Çoklu Hedefli Soket Canlılık Kontrolü (`is_port_open`):**
+  - Windows işletim sisteminde PostgreSQL servisinin `127.0.0.1` veya `localhost` (IPv6 `::1`) soket bağlanma farklarını otomatik tolere eden çoklu hedefli bağlantı denetleyicisi eklendi.
+- **Taşınabilir Node.js PATH Entegrasyonu (`_find_node_and_npm`):**
+  - Kurulum paketindeki gömülü `resources/node/node.exe` motoru tespit edildiğinde, bulunduğu dizin alt süreçlerin de doğrudan erişebilmesi için dinamik olarak sistem `PATH` ortamına eklendi.
+- **Asenkron Hazırlık & Derleme Zinciri (`_advance_setup_chain`, `_run_esbuild_step`, `step_process`):**
+  - `npm install` ve `npx esbuild` gibi uzun süren ağır işlemler senkron `subprocess.run` yerine Qt'nin yerel olay-güdümlü `QProcess` asenkron zincirine bağlandı. Ana UI thread'inin kilitlenmesi, animasyonların donması ve işletim sisteminin pencereyi "Yanıt Vermiyor" durumuna sokması kalıcı olarak engellendi. Kurulum çıktıları gerçek zamanlı olarak konsola akıtıldı.
+- **Akıllı Tarayıcı Yönlendiricisi & Sandbox Koruması (`_open_browser_url`):**
+  - Form ve paneller açılırken öncelik kullanıcının Windows üzerinde belirlediği varsayılan tarayıcıya (Chrome, Firefox, Brave vb.) verildi. Ortamın Windows Sandbox (`WDAGUtilityAccount`) veya kısıtlı kurumsal konteyner olması halinde ise protokol uyumluluğu için Microsoft Edge yedeğine otomatik geçiş sağlandı.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed & Refined)
+
+- **Arayüz ve Sistem Tepsisi Konsolidasyonu:**
+  - Yan yana duran ve kafa karışıklığı yaratan *"Saha Formları"* ve *"Yönetici Dashboard"* butonları ile sistem tepsisi menü maddeleri kaldırıldı; tek ve sade **`[Web Portalı Aç]`** (`btn_portal_browser`) butonu ve menü eyleminde birleştirildi.
+  - Geriye dönük uyumluluk adına eski çağrılar (`open_saha_browser`, `open_dashboard_browser`) bu merkezi metoda yönlendirildi.
+- **Geliştirme Ortamı Dizin Çözümlemesi (`get_portal_dir`):**
+  - Geliştirme ortamında çalışırken fallback yolunun `user_launcher/web_portal` hayalet klasörü üretmesi engellendi; doğrudan proje kökündeki `web_portal/` ana dizinine çözümlenmesi güvenceye alındı.
+- **Kurumsal Tipografi ve Ham Emoji Temizliği (Kural 13):**
+  - `app/services/system/web_sync_service.py` içerisindeki durum bildirim mesajlarında yer alan ham emoji karakterleri (`🟢`, `🔴`) temizlenerek kurumsal RDS ve dokümantasyon standartlarına getirildi.
+- **Otomatik Test Güvencesi:**
+  - `tests/test_ui_dashboard_controllers.py` dosyasına dinamik port okuma (`test_portal_launcher_get_postgres_port`), web portal dizin çözümleme (`test_portal_launcher_portal_dir_resolution`), web senkronizasyon ham emoji denetimi (`test_web_sync_service_no_emojis`) ve konsolide buton denetimleri eklendi.
+
 ## [4.0.2.17] - 2026-09-30
 
 ### ⚡ Asenkron Subwindow Yönetimi (_open_subwindow_with_progress), UI Donma Koruması, Güçlendirilmiş Modern Progress Dialog & Evrensel İçe Aktarım UI/QSS Reformu

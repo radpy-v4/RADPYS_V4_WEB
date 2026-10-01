@@ -526,6 +526,18 @@
                   <td class="py-3.5 px-4"><span
                       class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Tüm Kullanıcılar</span></td>
                 </tr>
+
+                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+                  <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">
+                    Web Portalı Aç Butonu<br>
+                    <span class="text-xs font-normal text-slate-400 font-mono">[Portal Başlatıcı / Tray Menüsü]</span>
+                  </td>
+                  <td class="py-3.5 px-4">Servis başlatıcı penceresinden tek tıkla canlı web portalını ve gösterge panellerini tarayıcıda açmak.</td>
+                  <td class="py-3.5 px-4">İşletim sisteminin varsayılan güncel tarayıcısını önceliklendirerek Port 3000 portal ana sayfasını açar; Sandbox veya kısıtlı ortamlarda Edge yedeğini kullanır.</td>
+                  <td class="py-3.5 px-4">Kullanıcı başlatıcıdaki [Web Portalı Aç] butonuna veya sistem tepsisindeki menü öğesine tıkladığında.</td>
+                  <td class="py-3.5 px-4"><span
+                      class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Tüm Kullanıcılar</span></td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -889,6 +901,23 @@
             <p
               class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
               <strong>Evet, kesintisiz çalışır.</strong> RADPYS sistemi dış bulut servislerine bağımlı değildir; kurumun yerel sunucusunda veya ana bilgisayarında çalışan yerel PostgreSQL ve Node.js mimarisiyle kuruludur. Dış internet bağlantısı kesilse dahi hastane intranet ağı üzerinden gösterge panellerine erişim eksiksiz devam eder.
+            </p>
+          </details>
+
+          <!-- Soru 5 -->
+          <details
+            class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+            <summary
+              class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+              <span>Portal Başlatıcı üzerindeki [Web Portalı Aç] butonu hangi tarayıcıyı kullanır?</span>
+              <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none"
+                stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p
+              class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
+              Kullanıcının işletim sisteminde varsayılan olarak belirlediği güncel web tarayıcısı (Google Chrome, Mozilla Firefox, Brave vb.) otomatik olarak açılır. Yalnızca kısıtlı kurumsal konteyner veya izole güvenlik ortamlarında (Windows Sandbox gibi) protokol uyumluluğunu korumak amacıyla Microsoft Edge yedeği devreye girer.
             </p>
           </details>
         </div>
