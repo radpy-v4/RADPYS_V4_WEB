@@ -100,6 +100,7 @@
                 <li><a href="hakkimizda.html" class="hover:text-white">Hakkımızda</a></li>
                 <li><a href="changelog.html" class="hover:text-white">Sürüm Notları</a></li>
                 <li><a href="kaynaklar.html" class="hover:text-white">Kaynaklar & Mevzuat</a></li>
+                <li><a href="gizlilik.html" class="hover:text-white">Gizlilik & KVKK</a></li>
                 <li><a href="iletisim.html" class="hover:text-white">İletişim & Demo</a></li>
               </ul>
             </div>

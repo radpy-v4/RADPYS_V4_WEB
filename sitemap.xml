@@ -61,6 +61,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://radpys.com.tr/gizlilik.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 
   <!-- Dokümantasyon & Bilgi Portalı (Help) -->
   <url>
