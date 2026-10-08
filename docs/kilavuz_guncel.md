@@ -123,7 +123,7 @@ RADPYS (Radyoloji ve Radyasyon Yönetim Sistemi), hastane radyoloji birimlerinin
 #### A. Yeni Kullanıcı Hesabı Tanımlama
 
 1. Sol ana menüden **[Yönetici Paneli] > [Kullanıcı ve Rol Yönetimi]** ekranını açın.
-2. Açılan pencerede **[Kullanıcı İşlemleri]** sekmesindeyken **[Yeni Kullanıcı]** butonuna tıklayın.
+2. Açılan pencerede **[Kullanıcılar]** sekmesindeyken **[Yeni Kullanıcı]** butonuna tıklayın.
 3. **[Kullanıcı Adı]**, **[Ad Soyad]** ve kurumsal **[Email]** bilgilerini girin.
 4. Kullanıcının kurumdaki yetki seviyesine uygun **[Rol]** seçimini yapın.
 5. Kullanıcı bir sağlık personeli ise **[Personel Bağlantısı]** kutusundan personel kaydını seçin.
@@ -139,12 +139,12 @@ RADPYS (Radyoloji ve Radyasyon Yönetim Sistemi), hastane radyoloji birimlerinin
 
 #### C. Rol Yetki Matrisini Düzenleme ve Şablon Uygulama
 
-1. **[Kullanıcı ve Rol Yönetimi]** penceresinde **[Modül Yetkileri]** sekmesine geçin.
-2. Üst kısımdaki **[Rol Seçin]** açılır kutusundan yetkilerini düzenlemek istediğiniz rolü seçin.
-3. Hızlı yetkilendirme için **[Şablon]** kutusundan örneğin *Operasyon* şablonunu seçip **[Şablon Uygula]** butonuna tıklayın.
+1. **[Kullanıcı ve Rol Yönetimi]** penceresinde **[Roller ve Yetkiler]** sekmesine geçin.
+2. Sol taraftaki listeden yetkilerini düzenlemek istediğiniz rolü seçin. Sağ/alt alanda seçili role ait Modül Yetki Matrisi doğrudan açılır.
+3. Hızlı yetkilendirme için üst kısımdaki **[Şablon]** kutusundan örneğin *Operasyon* veya *Sadece Okuma* şablonunu seçip **[Şablon Uygula]** butonuna tıklayın.
 4. İhtiyaç duyduğunuz özel modüllerde Okuma, Yazma, Güncelleme veya Silme kutularını tek tek düzenleyin.
-5. Satırların sağındaki **[Kapsam]** radyo düğmelerinden personelin erişim sınırını (Miras, Kendisi, Departman, Tümü) belirleyin.
-6. Yapılan düzenlemeleri sisteme işlemek için sağ alttaki **[Kaydet]** butonuna tıklayın.
+5. Satırların sağındaki **[Kapsam]** radyo düğmelerinden personelin erişim sınırını (Miras, Kendisi, Departman, Tümü) belirleyin. Genişletilmiş Kapsam Açıklaması sütunundan yetki kapsamını kontrol edin.
+6. Yapılan düzenlemeleri sisteme işlemek için sağ alttaki **[Kaydet]** butonuna tıklayın. Değiştirilen satırlar modül adındaki rozet ile gösterilir.
 
 ---
 
@@ -253,8 +253,9 @@ RADPYS (Radyoloji ve Radyasyon Yönetim Sistemi), hastane radyoloji birimlerinin
 | --- | --- | --- | --- | --- |
 | **Veritabanı Yedekle** | Sistemdeki tüm klinik ve idari verilerin anlık, şifreli tam yedeğini almak. | **[Veritabanı Yedekle]** butonuna basılır. Sistem, PostgreSQL dökümünü (`pg_dump`) alır; 256-bit anahtarla şifreleyerek zaman damgalı `.dump` dosyası üretir. | Düzenli periyotlarla veya büyük veri girişi/güncelleme öncesinde. | Sistem Yöneticisi. |
 | **Dosyaları Yedekle** | Personel özlük evrakları, taranmış sertifikalar ve cihaz belgelerini arşivlemek. | **[Dosyaları Yedekle]** butonuna tıklanır. Sistem, yüklü dosyalar klasörünü zip paketi haline getirir ve şifreleyerek `.zip` yedeği oluşturur. | Evrak kasası yedeklenmek istendiğinde. | Sistem Yöneticisi. |
+| **Güvenlik Anahtarı (Kurtarma Kartı & Cihaz Donanım Anahtarı)** | Format veya yeni sunucu kurulumunda şifreli yedekleri açabilmek için afet kurtarma anahtarını harici diske kaydetmek ve donanım afet anahtarını denetlemek. | **[Güvenlik Anahtarı]** butonuna basılır. Sudo doğrulaması sonrasında 32 karakterlik anahtar ve sunucunun Cihaz Kimliği (Machine ID) görüntülenir; panoya kopyalanabilir, **[Kurtarma Dosyası Kaydet (.txt)]** ile `radpys_yedek_kurtarma_anahtari.txt` olarak harici ortama aktarılabilir veya tek tıkla cihaz anahtarıyla eşitlenebilir. | İlk kurulumda, felaket kurtarma planında ve harici diske yedek kopyalanırken. | Yalnızca Süper Yönetici (Sudo). |
 | **Yedekler Listesi & Boyut** | Alınmış geçmiş yedekleri boyut ve zaman bilgisiyle denetlemek. | Tabloda yedek dosyasının adı, oluşturulma tarihi ve MB cinsinden boyutu listelenir. Sıralama en yeniden en eskiye doğrudur. | Yedek durumunu kontrol ederken veya geri yükleme seçerken. | Sistem Yöneticisi. |
-| **Yedeği Geri Yükle (Yükle)** | Bozulma veya sistem çökmesi durumunda veritabanını önceki bir tarihe döndürmek. | Tablodaki **[Yükle]** butonuna basılır. Çift uyarı onaylanır ve Sudo şifresi girilir. Dosya çözülerek PostgreSQL motoruna aktarılır ve sayaçlar eşitlenir. | Donanım arızası, hatalı toplu işlem veya felaket kurtarma senaryolarında. | Yalnızca Süper Yönetici (Sudo). |
+| **Yedeği Geri Yükle (Yükle)** | Bozulma veya sistem çökmesi durumunda veritabanını önceki bir tarihe döndürmek. | Tablodaki **[Yükle]** butonuna basılır. Çift uyarı onaylanır ve Sudo şifresi girilir. Sistem anahtarı yerel kasadan, harici diskten veya arşivdeki geçmiş anahtar halkasından otomatik tarar; bulunamazsa ekrana gelen Güvenlik Anahtarı modalından anahtar girilir, kurtarma kartı seçilir veya **[Cihaz Kimliğiyle Çözmeyi Dene]** butonuyla donanım afet anahtarı tek tıkla test edilir. Dosya çözülüp PostgreSQL motoruna aktarılır ve sayaçlar eşitlenir. | Donanım arızası, format sonrası geri yükleme veya felaket kurtarma senaryolarında. | Yalnızca Süper Yönetici (Sudo). |
 | **Yedeği Dışa Aktar** | Şifreli yedeği sunucu dışındaki harici bir diske veya ağ sürücüsüne kopyalamak. | Tablodaki **[Dışa Aktar]** butonuna basılır; açılan dosya kaydetme penceresinden harici disk veya USB bellek seçilerek kopya çıkarılır. | Harici lokasyonda çevrimdışı (offsite) arşivleme yapılırken. | Sistem Yöneticisi. |
 | **Yedeği Kalıcı Olarak Silme** | Disk alanını dolduran eski ve ihtiyaç kalmayan yedekleri temizlemek. | Tablodaki **[Sil]** butonuna basılır; silme onayı verildikten sonra yönetici şifresi doğrulanarak dosya kalıcı olarak kaldırılır. | Disk alanı yönetimi yapıldığında. | Yalnızca Süper Yönetici (Sudo). |
 | **Boyut Optimize Et (VACUUM)** | Silinen veya güncellenen kayıtların bıraktığı boşlukları temizleyip boyutu küçültmek. | **[Boyut Optimize Et (VACUUM)]** butonuna tıklanır. Arka planda PostgreSQL `VACUUM ANALYZE` çalıştırılır; işlem öncesi ve sonrası boyut kazanımı ekranda bildirilir. | Ayda bir veya yoğun veri silme/güncelleme işlemlerinin ardından. | Sistem Yöneticisi. |
@@ -270,8 +271,8 @@ RADPYS (Radyoloji ve Radyasyon Yönetim Sistemi), hastane radyoloji birimlerinin
 
 ### 3. Kritik Kural ve Saha Uyarıları
 
-> 🔴 **KRİTİK UYARI: Yedekleme Şifreleme Anahtarının Korunması**  
-> RADPYS yedekleri, sunucu veritabanı ayarlarında kayıtlı olan 256-bit AES anahtarı ile şifrelenir. Veritabanı ayarlarındaki bu anahtar silinir veya değiştirilirse, **geçmiş tarihlerde alınmış hiçbir şifreli yedek geri yüklenemez ve veriler kurtarılamaz**. Kurulum sonrası şifreleme anahtarının güvenli bir fiziksel ortamda not edilmesi tavsiye edilir.
+> 🔴 **KRİTİK UYARI: Felaket Kurtarma Anahtarı ve Format / Yeni Kurulum Senaryosu**  
+> RADPYS yedekleri, 256-bit AES ve PBKDF2 (150.000 iterasyon) ile şifrelenmektedir. Bilgisayarınıza format atılması veya yazılımın yeni bir sunucuya sıfırdan kurulması durumunda şifreli yedeklerin açılabilmesi için kurtarma anahtarı kullanılır. Sol üst araç çubuğundaki **[Güvenlik Anahtarı]** butonunu kullanarak anahtarınızı harici bir USB diske (`radpys_yedek_kurtarma_anahtari.txt`) kaydetmeniz önerilir. Ayrıca kurumunuza özel donanım bazlı afet kurtarma garantisi (Machine ID) sayesinde; anahtar dosyasını kaybetseniz dahi sistem geri yükleme ekranındaki **[Cihaz Kimliğiyle Çözmeyi Dene]** seçeneğiyle veya geliştirici desteğiyle yedeğiniz saniyeler içinde kurtarılabilir.
 
 > ⚠️ **Saha Notu: Geri Yükleme (Restore) Sonrası Programı Yeniden Başlatma**  
 > Veritabanı başarıyla geri yüklendikten sonra, mevcut açık pencerelerin ve bellek önbelleğinin yeni verilerle senkronize olabilmesi için **RADPYS masaüstü uygulamasını derhal kapatıp yeniden başlatınız**.
@@ -293,14 +294,16 @@ RADPYS (Radyoloji ve Radyasyon Yönetim Sistemi), hastane radyoloji birimlerinin
 3. Buton üzerinde *"Yedekleniyor..."* animasyonu belirecek ve işlem arka planda güvenle tamamlanacaktır.
 4. Başarı bildiriminin ardından alınan yedek, zaman damgası ve dosya boyutuyla birlikte **Veritabanı Yedekleri** tablosunun en üst sırasına eklenecektir.
 5. Personel evraklarını ve taranmış belgeleri de arşivlemek için yanındaki **[Dosyaları Yedekle]** butonuna tıklayın.
+6. Olası bir format veya sunucu değişikliğinde yedeği açabilmek için **[Güvenlik Anahtarı]** butonuna tıklayın; Sudo şifrenizi girerek **[Kurtarma Dosyası Kaydet (.txt)]** butonuyla afet kurtarma kartınızı harici bir USB belleğe aktarın.
 
-#### B. Eski Bir Yedeği Sisteme Geri Yükleme (Disaster Recovery)
+#### B. Eski Bir Yedeği Sisteme Geri Yükleme (Format Sonrası Felaket Kurtarma)
 
 1. Veritabanı Bakım ekranındaki yedekler tablosundan geri dönmek istediğiniz tarihli yedeği bulun.
 2. İlgili satırın sağındaki **[İşlemler]** sütununda yer alan mavi **[Yükle]** butonuna basın.
 3. Ekrana gelen kritik veri kaybı uyarı mesajını dikkatlice okuyup **[Evet]** seçeneğine tıklayın.
 4. Açılan güvenlik penceresine Sistem Yöneticisi (Admin) şifrenizi (**Sudo Doğrulaması**) girin.
-5. Geri yükleme tamamlandığında çıkan bilgi kutusunu onaylayın ve değişikliklerin ekranda güncellenmesi için **uygulamayı kapatıp yeniden başlatın**.
+5. Sistem anahtarı yerel kasadan veya yedeğin bulunduğu harici diskten otomatik arar. Eğer bilgisayara format atılmışsa ekrana **Yedek Şifreleme Anahtarı Gerekli** penceresi gelir; buradan 32 karakterlik anahtarınızı girin veya **[Dosyadan Seç]** ile USB belleğinizdeki `radpys_yedek_kurtarma_anahtari.txt` dosyasını seçin.
+6. Geri yükleme tamamlandığında çıkan bilgi kutusunu onaylayın ve değişikliklerin ekranda güncellenmesi için **uygulamayı kapatıp yeniden başlatın**.
 
 #### C. PostgreSQL VACUUM ve REINDEX Motor Bakımı
 
@@ -362,10 +365,11 @@ Personel kayıtları hem masaüstü Windows arayüzünden (`ui/controllers/perso
    - İşten ayrılan personel için **[İlişik Kes / Arşivle]** adımı çalıştırıldığında sistem personelin üzerinde zimmetli iade edilmemiş RKE (kurşun önlük vb.) veya aktif dozimetre olup olmadığını denetler.
    - Tüm zimmetler kapatıldıktan sonra personelin 30 yıllık sağlık ve dozimetre geçmişini içeren şifreli `kvkk_arsiv_{tc}.zip` paketi indirilebilir hale getirilir. Personel durumu "Ayrıldı" statüsüne alınarak lisans kotasından düşürülür.
 
-6. **5 Adımlı Evrensel Toplu İçe/Dışa Aktarma (Excel):**
-   - **[Excel'e Aktar]:** Mevcut personel listesini kurumsal formatta Excel tablosu olarak dışa aktarır.
+6. **Dinamik Rapor Dışa Aktarma ve 5 Adımlı Evrensel Toplu İçe Aktarım:**
+   - **[Dışa Aktar Menüsü]:** Personel listesini aktif ekran filtreleriyle (durum, departman, hizmet sınıfı, arama metni) doğrudan veritabanında tanımlı rapor şablonunun varsayılan formatında (`.xlsx`, `.pdf`, `.docx`) tek tıkla kaydeder veya filtreleri devrederek **[Rapor Merkezinde Aç]** seçeneğini sunar.
    - **[Şablon İndir]:** İki sayfalı kurumsal Excel şablonunu (`personel_sablon.xlsx`) indirir. İlk sayfada metin formatlı veri giriş tablosu, ikinci sayfada ise geçerli Departman, Unvan ve Çalışma Grubu referans değerleri kılavuzu yer alır.
    - **[Toplu İçe Aktar (Excel)] (5 Adımlı Evrensel Sihirbaz):** Veri kaynağı seçimi, akıllı sütun eşleştirme, dinamik değer çözümleme, canlı önizleme dry-run denetimi ve asenkron arka plan aktarım motoru ile yüzlerce personeli veri tabanına hatasız yükler. Hatalı satırlar hücre bazlı gerekçeleriyle raporlanır.
+   - **Standart Türkçe Diyaloglar:** Durum değişikliği, gerekçe alma ve onay pencerelerindeki tüm butonlar standart Türkçe **[Tamam / İptal]** ve **[Evet / Hayır]** olarak çalışır.
 
 ---
 
@@ -1405,6 +1409,8 @@ flowchart TD
    - Bu etiket radyasyon odasının giriş kapısına yapıştırılır.
 2. **Tekil Nokta Etiketi:**
    - Harita üzerindeki herhangi bir pine sağ tıklayıp **Karekod / Etiket Bas (QR)** seçeneğini seçerek veya 3. sekmedeki listeden ilgili satıra çift tıklayarak tekil ölçüm noktası etiketini üretebilirsiniz.
+3. **Toplu QR Etiket Paketi (.ZIP) İhracı:**
+   - Üst araç çubuğundaki **[Toplu QR Etiket Paketi]** butonuna tıklayarak veya ölçüm noktaları tablosunda sağ tıklayıp **"Toplu QR Etiket Paketi (.ZIP)"** komutunu seçerek odadaki tüm ölçüm noktaları için 300 DPI (800x1050 px) matbaa kalitesinde PNG etiketler, profesyonel tabela üreticisine iletilebilecek malzeme şartnamesi (`00_Baski_ve_Uretim_Rehberi.txt`) ve nokta koordinat/oda bilgilerini içeren `00_Etiket_Listesi_Icmal.csv` fihristini tek bir `.zip` arşivi halinde dışa aktarabilirsiniz.
 
 #### I. SKS 6.1 Resmi Excel Denetim Raporu Üretimi
 
@@ -1423,7 +1429,7 @@ flowchart TD
 | **[Ölçüm Kaydet]** | Periyodik doz ölçümünü sisteme girmek. | Ana Araç Çubuğu Sol | Nokta, tarih, doz hızı ($\mu\text{Sv/h}$), cihaz ve personeli kaydeder. | Periyodik ölçüm yapıldığında. | RKS / Medikal Fizikçi / Tekniker | **Eksiksiz & Aktif** |
 | **[Yeni Nokta Ekle]** | Krokide yeni doz izleme noktası açmak. | Ana Araç Çubuğu | Departmana göre ardışık kod üretir (`{DEP}-OD-01`), alan sınıfı eşiklerini atar. | Yeni oda veya ölçüm mahalli eklendiğinde. | RKS / Sistem Yöneticisi | **Eksiksiz & Aktif** |
 | **[Kroki Yükle / Değiştir]** | Mimari kat planı dosyasını bağlamak. | Ana Araç Çubuğu | Bilgisayardan PDF/PNG yükletir veya havuzdan seçtirir, şifreli kasada saklar. | Birime ilk plan yüklenirken veya revizyonda. | RKS / Sistem Yöneticisi | **Eksiksiz & Aktif** |
-| **[Karekod / Etiket Bas]** | Kapı veya nokta QR etiketi üretmek. | Ana Araç Çubuğu | Tüm odayı kapsayan kapı etiketi veya tekil nokta etiketi penceresini açar. | Fiziksel levha yapıştırılacağında. | RKS / İSG Uzmanı | **Eksiksiz & Aktif** |
+| **[Karekod / Etiket Bas] & Toplu QR Paketi** | Kapı veya nokta QR etiketi üretmek ve tüm noktaları matbaa baskısı için toplu paketlemek. | Ana Araç Çubuğu & Sağ Tık | Tüm odayı kapsayan kapı etiketi, tekil nokta etiketi veya 300 DPI PNG + şartname + CSV içeren toplu `.zip` paketi üretir. | Fiziksel levha asılırken veya toplu tabela siparişlerinde. | RKS / İSG Uzmanı / Medikal Fizikçi | **Eksiksiz & Aktif** |
 | **[SKS Raporu (Excel)]** | SKS 6.1 resmi denetim çıktısı almak. | Ana Araç Çubuğu | Renk kodlu, kurum antetli resmi denetim Excel tablosunu (`.xlsx`) üretir. | Kalite denetimlerinde. | Kalite Birimi / RKS | **Eksiksiz & Aktif** |
 | **[Pinler Kilitli / Taşıma]** | Pinlerin kazara kaymasını önlemek. | Kroki Alt Araç Çubuğu | Tıklandığında kilit ve taşıma modu arasında geçiş yapar. | Pinler konumlandırılırken veya sabitlenirken. | Yetkili Kullanıcı | **Eksiksiz & Aktif** |
 | **[Oda Alanını Belirle]** | Krokide zırhlı oda sınırını çizmek. | Kroki Alt Araç Çubuğu | Çizim modunu açar; fareyle çizilen dikdörtgeni odanın sınırları yapar. | Kat planında birim sınırları tanımlanırken. | RKS / Sistem Yöneticisi | **Eksiksiz & Aktif** |
@@ -1992,6 +1998,64 @@ RADPYS Hizmet İçi Eğitim ve Online Sınav modülü, masaüstü kurumsal yöne
 
 ---
 
+## 21. Merkezi Onay Bekleyen Görevler Paneli
+
+### 1. Hızlı Başlangıç ve Önemli Eşikler
+
+- **Mevzuat & Standart:** 4-Göz Denetim Mekanizması & Kurumsal Yetkilendirme Standartları
+- **Onay Kategorileri:** 5 Ana Sekme (İzin Talepleri, Nöbet Devirleri, Nöbet İstekleri, Nöbet Planları, Veri Değişiklikleri)
+- **Güvenlik Mekanizması:** Değişiklik Kıyaslama (Diff Dialog) — Kırmızı Eski Değer / Yeşil Yeni Değer
+- **Evrak Güvenliği:** KVKK AES-256 Şifreli Evrak Kasasına Otomatik Aktarım
+- **Ret Kuralı:** Gerekçesiz ret yasaktır; zorunlu açıklama portala iletilir
+- **Platform:** 🖥️ Masaüstü Yönetim Kokpiti
+
+---
+
+### 2. 5N1K Kural ve Fonksiyon Tablosu
+
+| NE? (Ekran Kontrolü) | NEDEN? (Kullanım Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Hangi Durumda) | KİM? (Yetkili Kitle) |
+| --- | --- | --- | --- | --- |
+| **[İzin Talepleri Sekmesi]** | Personelin yıllık, şua ve mazeret izin başvurularını onaylamak veya reddetmek. | İlgili satır seçilip **[Onayla]** veya zorunlu gerekçe girilerek **[Reddet]** butonuna basılır. | İzin başlangıç tarihinden önce. | Birim Amiri / Yönetici. |
+| **[Nöbet Devirleri Sekmesi]** | Personeller arası nöbet takasını resmi çizelgeye yansıtmak. | Devralan personelin portal onayından sonra **[İncele / Detay]** açılarak onaylanır veya reddedilir. | Karşılıklı takas başvurularında. | Birim / Hizmet Sorumlusu. |
+| **[Nöbet İstekleri Sekmesi]** | Personelin aylık mazeret, eğitim ve tercih taleplerini kısıt olarak bağlamak. | Puan önceliğine (1-5) göre listelenen istekler incelenip onaylanır veya reddedilir. | Solver çizelge motoru çalıştırılmadan önce. | Başteknisyen / Yönetici. |
+| **[Nöbet Planları Sekmesi]** | Birim onaylı taslak aylık nöbet çizelgesini resmi yayına almak. | **[Yayınla]** ile doğrudan yürürlüğe sokulur; hata varsa zorunlu gerekçeyle **[Taslağa Geri Gönder]** yapılır. | Ay bitmeden ve nöbet başlamadan önce. | İdare / Başhekimlik / Admin. |
+| **[Veri Değişiklikleri (Diff)]** | 4-göz ilkesiyle hatalı veya yetkisiz profil ve evrak girişlerini denetlemek. | **[İncele ve Karar Ver]** ile 3 sütunlu Diff penceresi açılır (Eski Kırmızı / Yeni Yeşil); teyit edilerek onaylanır. | Kritik veriler güncellendiğinde. | Modül Sorumlusu / Yönetici. |
+| **[Sağlık Muayene Teyidi]** | İşe giriş ve periyodik muayene bulgularını hekimce doğrulamak. | Sağlık taleplerinde hızlı onay engellenir; doğrudan uzman hekim inceleme formu açılır. | Sağlık muayene talebi geldiğinde. | RKS / İşyeri Hekimi. |
+
+---
+
+### 3. Kritik Kural ve Saha Uyarıları
+
+> ⚠️ **Saha Notu: Zorunlu Ret Gerekçesi Kuralı**  
+> Sistem tüm ret eylemlerinde yöneticiden zorunlu olarak açıklama ister. Gerekçe girilmeden ret işlemi tamamlanamaz ve bu açıklama personelin web portalındaki bildirim paneline anlık iletilir.
+
+> 💡 **Pratik İpucu: Otomatik Canlı Rozetler**  
+> Her sekmenin yanında bekleyen onay sayısını gösteren rozetler bulunur. Bir kategorideki tüm talepler sonuçlandırıldığında sayaç sıfırlanır ve rozet kullanıcıyı meşgul etmemek için otomatik gizlenir.
+
+> 🔒 **Güvenlik Standardı: Sağlık Muayenelerinde Hızlı Onay Yasağı**  
+> 6331 sayılı İSG Kanunu gereğince, sağlık muayene bulguları (göz, dahiliye, hemogram, dermatoloji) uzman hekim incelemesinden geçmeden tek tıkla onaylanamaz.
+
+---
+
+### 4. Ekran Konumları ve Kullanım Adımları
+
+#### A. İzin ve Nöbet Taleplerini Karara Bağlama
+
+1. Sol menüden **[Yönetim > Onay Bekleyen Görevler]** ekranını açın.
+2. Sol sekme listesinden **[İzin Talepleri]** veya **[Nöbet Devirleri]** sekmesine tıklayın.
+3. Listeden ilgili talebi seçin; ayrıntıları incelemek için **[İncele]** butonuna basın.
+4. Talep uygunsa **[Onayla]** butonuna basarak işlemi tamamlayın; izin bakiyesi anında güncellenir.
+5. Talep uygun değilse **[Reddet]** butonuna basın, açılan pencereye ret gerekçesini yazıp onaylayın.
+
+#### B. 4-Göz Veri Değişikliğini (Diff) İnceleme
+
+1. Onay panelinde **[Veri Değişiklikleri]** sekmesine geçin.
+2. İncelemek istediğiniz satırı seçip **[İncele ve Karar Ver]** butonuna tıklayın.
+3. Açılan Diff penceresinde sol sütundaki kırmızı eski değer ile sağ sütundaki yeşil yeni değeri karşılaştırın.
+4. Değişiklik uygunsa **[Talebi Onayla]** butonuna basın; yüklenen belgeler otomatik olarak KVKK şifreli kasaya aktarılır.
+
+---
+
 ## 22. Web Portalı ve Yönetici Gösterge Panelleri (Dashboards)
 
 ### 1. Hızlı Başlangıç ve Önemli Eşikler
@@ -2047,6 +2111,77 @@ RADPYS Hizmet İçi Eğitim ve Online Sınav modülü, masaüstü kurumsal yöne
 1. Sol menüdeki **Genel Bakış**, **Dozimetre Dashboard**, **Cihaz & QC Dashboard** veya **Nöbet Analitiği** sekmelerinden dilediğinizi seçin.
 2. Birim ve tarih filtrelerini kullanarak analiz kapsamını daraltın.
 3. Verileri resmi rapor haline getirmek için sağ üstteki **[Excel İndir]** veya **[PDF İndir]** butonlarını kullanın.
+
+---
+
+## 23. Raporlama ve Tutanak Yönetim Merkezi
+
+### 1. Hızlı Başlangıç ve Önemli Eşikler
+
+- **Mevzuat & Standart:** Sağlık Bakanlığı SKS 6.1 Raporlama & Resmi Yazışma Standartları
+- **Tutanak Çıktı Standardı:** Yalnızca Resmi Antetli & Heyet İmzalı PDF (.pdf) (Keyfi metin değişikliğini önleyen tekil yasal çıktı)
+- **Rapor Formatları:** Excel (.xlsx), PDF (.pdf), Word (.docx), CSV (.csv)
+- **Tutanak Heyet Mimarisi:** Otomatik Akıllı Komisyon Heyeti (Hekim/Başkan + Medikal Fizikçi/RKS + Raportör/Üye)
+- **İki Aşamalı HEK Süreci:** 1. Aşama Heyet Ön İnceleme Tutanağı ➔ 2. Aşama EBYS İmzalı Üst Yazı ile Kalıcı Mühürleme (SHA-256)
+- **Akıllı Sayfa Adaptasyonu:** ≤ 6 Sütun: Dikey A4 (Portrait) / > 6 Sütun: Yatay A4 (Landscape)
+- **Platform:** 🖥️ Masaüstü Yönetim Kokpiti
+
+---
+
+### 2. 5N1K Kural ve Fonksiyon Tablosu
+
+| NE? (Ekran Kontrolü) | NEDEN? (Kullanım Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Hangi Durumda) | KİM? (Yetkili Kitle) |
+| --- | --- | --- | --- | --- |
+| **[Rapor Merkezi Kokpiti]** | Kurumun tüm modüllerine ait 26 resmi ve istatistiki raporu tek merkezden almak. | Sol menüden Rapor Merkezi seçilir. Kategori ve rapor seçildiğinde dinamik parametreler yüklenir; tek tıkla Excel, PDF veya Word çıktısı üretilir. | İdari, klinik ve teknik denetimlerde. | Tüm Yetkili Kullanıcılar. |
+| **[Evrensel Tutanak Sihirbazı]** | Hurdaya ayırma, devir veya muayene heyet kararlarını tek resmi antetli PDF belgesinde birleştirmek. | Sol menüdeki **[Tutanak Sihirbazı]** butonuna basılır veya envanter listelerinden donanımlar seçilip tutanak komutu verilir. Başlık, gerekçe, karar ve heyet üyeleri düzenlenerek tek tıkla resmi PDF üretilir. | Resmi komisyon kararlarında, muayene ve HEK işlemlerinde. | Birim Sorumlusu, RKS, Biyomedikal. |
+| **[Tek Resmi PDF Standardı]** | Tutanakların heyet imzasından geçecek resmi bir karar olması sebebiyle sonradan tahrif edilmesini önlemek. | Tutanak Sihirbazı'nda doğrudan **[Tutanak Oluştur / Yazdır]** butonuyla kilitli PDF üretilir; değiştirilebilir Word çıktısı güvenlik ve yasal denetim gereği kaldırılmıştır. | Tutanak tamamlandığında. | Komisyon Heyeti. |
+| **[Dinamik Değişken Butonları]** | Tutanak metnine günün tarihi, hastane adı veya ekipman adedini elle yazma hatasını bitirmek. | Metin alanlarının üstündeki `[+ {{ kurum_adi }}]`, `[+ {{ tarih }}]`, `[+ {{ adet }}]` butonlarına veya linklerine tıklandığında ilgili etiket imleç konumuna otomatik yerleşir. | Karar veya giriş metni yazılırken. | Tutanağı hazırlayan yetkili. |
+| **[Otomatik HEK Dosyası Açma]** | Hurdaya ayrılan ekipmanları yasal Ayniyat ve Taşınır sürecine bağlamak. | Tutanak başlığında "HEK" geçtiğinde sistem bunu sıradan bir döküm saymaz; otomatik olarak `HEK-YYYY-XXXX` süreç dosyası açar ve üretilen tutanağı şifreli evrak kasasına bağlar. | HEK tutanağı oluşturulduğu anda. | Otomatik Sistem / Yetkili. |
+| **[İki Aşamalı Mühürleme]** | Heyet ıslak imzası ve kurum EBYS yazısı olmadan kayıtların silinmesini veya karışmasını engellemek. | 1. Aşamada heyet inceleme tutanağı çıkarılıp imzalanır. 2. Aşamada ise imzalı taranmış evrak veya EBYS yazısı sisteme yüklenip onay verilerek SHA-256 dijital mührüyle dosya kalıcı dondurulur. | Ayniyat / Taşınır teslim safhasında. | Yönetici / Birim Amiri. |
+| **[Akıllı Komisyon Heyeti]** | Her tutanakta heyet üyelerini tek tek arayıp ekleme zahmetini sonlandırmak. | Sistemdeki aktif personeller taranarak en kıdemli hekim/mesul müdür "Komisyon Başkanı", medikal fizikçi "RKS", servis sorumlusu ise "Raportör" olarak tabloya otomatik dizilir. İstenirse yeni üye eklenebilir veya çıkarılabilir. | Tutanak sihirbazı açıldığında. | Otomatik Sistem. |
+| **[Rapor Tasarım Stüdyosu]** | Kurumun kendi özel raporlarını 22 veri kaynağı üzerinden görsel olarak tasarlamak. | Rapor Merkezi'nden **[Tasarla]** butonuna basılır. Alanlar, sütun genişlikleri, başlıklar, filtreler ve Word antet şablonları yapılandırılır. | Yeni kurumsal form ihtiyacında. | Sistem Yöneticisi (Admin). |
+
+---
+
+### 3. Kritik Kural ve Saha Uyarıları
+
+> ⚠️ **Saha Notu: Tutanaklarda Değiştirilemez PDF Zorunluluğu**  
+> Tutanaklar; hekimler, medikal fizikçiler ve birim amirlerinin imza altına aldığı resmi hukuki vesikalardır. Bu nedenle tutanaklar doğrudan kilitli PDF formatında üretilir. Düzeltme yapılması gerektiğinde sihirbaz üzerinden metin veya heyet güncellenip yeni tutanak alınır.
+
+> 💡 **Pratik İpucu: Çoklu Ekipman Seçimi ile Tek Adımda Tutanak**  
+> Koruyucu Ekipman (RKE) veya Tıbbi Cihaz listesinde klavyedeki **Ctrl** veya **Shift** tuşuna basarak onlarca donanımı seçebilir ve tek tıkla **[HEK Tutanağı]** komutu vererek hepsini tek bir icmal tablosunda toplayabilirsiniz.
+
+> 🔒 **Güvenlik Standardı: İki Aşamalı Kalıcı Mühürleme ve Kilit**  
+> HEK dosyası oluşturulduğunda ekipmanlar doğrudan envanterden silinmez; "Heyet İmzasında" durumuna alınır. Heyetçe ıslak imzalanmış taranmış tutanak ve Ayniyat EBYS resmi yazısı sisteme yüklenip mühürlenmeden hiçbir ekipman kalıcı olarak kayıttan düşülmez.
+
+---
+
+### 4. Ekran Konumları ve Kullanım Adımları
+
+#### A. Tutanak Sihirbazı ile Resmi Heyet Tutanağı Oluşturma
+
+1. Sol menüden **[Koruyucu Ekipman (RKE)]** veya **[Tıbbi Cihaz Yönetimi]** ekranını açın.
+2. Tablodan tutanağa konu olacak ekipmanları **Ctrl** veya **Shift** ile çoklu seçin.
+3. Araç çubuğundaki **[HEK Tutanağı]** (veya Cihazlarda **[Tutanak Oluştur]**) butonuna tıklayın.
+4. Açılan pencerede **Tutanak Başlığı**, **Giriş Gerekçesi** ve **Karar Paragrafı** alanlarını kontrol edin.
+5. İhtiyaç halinde üstteki `[+ {{ kurum_adi }}]`, `[+ {{ tarih }}]` butonlarına dokunarak dinamik etiketleri metne yerleştirin.
+6. Sağ alttaki heyet tablosunu inceleyin; gerekirse **[Üye Ekle]** butonuyla komisyona yeni yetkili dahil edin.
+7. **[Tutanak Oluştur / Yazdır]** butonuna tıklayın; sistem resmi antetli ve imza çizgili PDF belgenizi üretip ekranda açacaktır. Eğer işlem bir HEK tutanağı ise arka planda otomatik olarak takip dosyası başlatılır.
+
+#### B. Rapor Merkezinden Parametreli Kurumsal Rapor Alma
+
+1. Sol menüden **[Rapor Merkezi]** sekmesini açın.
+2. Sol listeden ilgili kategoriyi (Örn: *Dozimetre*, *Personel*, *Cihaz*, *Sağlık*) ve rapor adını seçin.
+3. Sağ panelde açılan formdan **Departman**, **Dönem** veya **Tarih** aralıklarını belirleyin.
+4. Alt kısımdaki **[PDF İndir]**, **[Excel (.xlsx)]** veya **[Word (.docx)]** butonlarından dilediğinize tıklayarak resmi raporunuzu anında üretin.
+
+#### C. Rapor Tasarım Stüdyosu ile Özel Rapor Tanımlama
+
+1. Rapor Merkezi araç çubuğundaki **[Tasarla]** butonuna tıklayın.
+2. 22 hazır veri kaynağından birini seçin (Örn: *Personel Listesi*, *Dozimetre Ölçüm*, *Cihaz Envanteri*).
+3. Raporda yer almasını istediğiniz alanların kutularını işaretleyin, sütun başlıklarını ve genişliklerini belirleyin.
+4. İmza şablonunu (Tek Onay, İkili İmza veya Komisyon Heyeti) seçin.
+5. **[Önizleme]** ile rapor mizanpajını test edin ve **[Kaydet]** butonuna basarak kurum kataloğunuza ekleyin.
 
 ---
 

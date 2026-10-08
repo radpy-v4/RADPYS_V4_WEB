@@ -1,37 +1,11 @@
 <!DOCTYPE html>
-<html lang="tr" class="scroll-smooth">
+<html lang="tr" class="scroll-smooth dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RADPYS v4 — Kullanım Kılavuzu & Bilgi Bankası Ana Sayfası</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50: '#ecfeff',
-              100: '#cffafe',
-              200: '#a5f3fc',
-              500: '#06b6d4',
-              600: '#0891b2',
-              700: '#0e7490',
-              900: '#164e63',
-            }
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace']
-          }
-        }
-      }
-    }
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/tailwind.min.css">
+  
   <style>
     pre, code { font-family: 'JetBrains Mono', monospace; }
     .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -39,6 +13,7 @@
     .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 9999px; }
     .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.6); }
   </style>
+  <script src="assets/mermaid.min.js"></script>
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
 
@@ -85,12 +60,8 @@
         </div>
       </div>
 
-      <!-- Theme & Action Buttons -->
+      <!-- Action Buttons -->
       <div class="flex items-center gap-3">
-        <button id="themeToggle" class="p-2.5 rounded-xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Tema Değiştir">
-          <svg id="themeIconSun" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-          <svg id="themeIconMoon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-        </button>
 
         <a href="01_kurulum_ve_ilk_giris.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white shadow-md shadow-cyan-600/25 transition">
           <span>İlk Rehber: 01. Giriş</span>
@@ -137,7 +108,7 @@
         <div class="space-y-2 text-xs px-3 text-slate-500 dark:text-slate-400">
           <div class="flex justify-between py-1 border-b border-slate-100 dark:border-slate-800/50">
             <span>Toplam Modül:</span>
-            <strong class="text-slate-800 dark:text-slate-200 font-mono text-sm">22</strong>
+            <strong class="text-slate-800 dark:text-slate-200 font-mono text-sm">23</strong>
           </div>
           <div class="flex justify-between py-1 border-b border-slate-100 dark:border-slate-800/50">
             <span>Mevzuat Standardı:</span>
@@ -171,7 +142,7 @@
             Radyoloji & Radyasyon Yönetim Sistemi
           </h1>
           <p class="text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed mb-8 max-w-3xl">
-            Radyoloji kliniklerinin nöbet dağıtımından dozimetre risk takibine, DIN 6857-1 kurşun önlük muayenelerinden tıbbi cihaz kalibrasyonlarına kadar tüm iş akışlarını kapsayan 22 modüllük resmi kullanım ve karar destek kılavuzu.
+            Radyoloji kliniklerinin nöbet dağıtımından dozimetre risk takibine, DIN 6857-1 kurşun önlük muayenelerinden tıbbi cihaz kalibrasyonlarına kadar tüm iş akışlarını kapsayan 23 modüllük resmi kullanım ve karar destek kılavuzu.
           </p>
 
           <!-- Search Input Mobile / Hero -->
@@ -189,7 +160,7 @@
         </div>
       </section>
 
-      <!-- 22 MODÜL KARTLARI (5 BÖLÜM HALİNDE) -->
+      <!-- 23 MODÜL KARTLARI (6 BÖLÜM HALİNDE) -->
       <div id="moduleCardsContainer" class="space-y-12">
 
         <!-- ==================== BÖLÜM 1 ==================== -->
@@ -199,7 +170,7 @@
               <span class="text-xs font-bold tracking-wider uppercase text-cyan-600 dark:text-cyan-400">Bölüm 1</span>
               <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">Başlangıç, Güvenlik ve Sistem Altyapısı (Onboarding)</h2>
             </div>
-            <span class="text-xs sm:text-sm px-3 py-1 rounded-full font-mono font-medium bg-slate-100 dark:bg-slate-800 text-slate-500">4 Modül</span>
+            <span class="text-xs sm:text-sm px-3 py-1 rounded-full font-mono font-medium bg-slate-100 dark:bg-slate-800 text-slate-500">5 Modül</span>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
@@ -297,6 +268,31 @@
               <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
                 <span class="text-xs text-slate-400 font-medium">PostgreSQL & AES-256</span>
                 <a href="04_veritabani_bakim_ve_guvenlik.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                  <span>Kılavuzu Aç</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 23_rapor_tutanak_merkezi (YAYINDA - ALTYAPI) -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-cyan-500/70 shadow-md hover:shadow-xl transition-all flex flex-col justify-between" data-search="23 rapor ve tutanak rapor merkezi tutanak sihirbazi hek tutanagi iki asamali tasfiye sha256 muhrul pdf dokum docxtpl sablon tasarim studyosu matbu evrak antet">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">23</span>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/60 px-2.5 py-1 rounded-full border border-rose-200 dark:border-rose-800">
+                    <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span> Tek Resmi PDF
+                  </span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+                  23. Raporlama ve Tutanak Yönetim Merkezi
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                  Evrensel Tutanak ve Heyet Karar Sihirbazı, 2 aşamalı HEK ve SHA-256 mühürlü tasfiye PDF'i, Şablon Tasarım Stüdyosu, kurumsal çift logolu antetler ve 26 resmi mevzuat raporu.
+                </p>
+              </div>
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                <span class="text-xs text-slate-400 font-medium">Matbu Evrak & docxtpl</span>
+                <a href="23_rapor_tutanak_merkezi.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
                   <span>Kılavuzu Aç</span>
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
@@ -746,9 +742,9 @@
           <div class="flex items-center justify-between pb-3 mb-5 border-b border-slate-200 dark:border-slate-800">
             <div>
               <span class="text-xs font-bold tracking-wider uppercase text-indigo-600 dark:text-indigo-400">Bölüm 5</span>
-              <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">Donanım, Cihaz Kalite Kontrol ve Rapor Merkezi</h2>
+              <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">Donanım, Tıbbi Cihaz ve Koruyucu Donanım (RKE)</h2>
             </div>
-            <span class="text-xs sm:text-sm px-3 py-1 rounded-full font-mono font-medium bg-slate-100 dark:bg-slate-800 text-slate-500">5 Modül</span>
+            <span class="text-xs sm:text-sm px-3 py-1 rounded-full font-mono font-medium bg-slate-100 dark:bg-slate-800 text-slate-500">3 Modül</span>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
@@ -844,9 +840,22 @@
                 </a>
               </div>
             </div>
+          </div>
+        </section>
 
-            <!-- 21_merkezi_onaylar_ve_rapor_merkezi -->
-            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="21 merkezi onaylar rapor merkezi capraz onay diff dialog eski yeni karsilastirma kurumsal antetli rapor docxtpl sablon">
+        <!-- ==================== BÖLÜM 6 ==================== -->
+        <section id="bolum-6" class="module-section">
+          <div class="flex items-center justify-between pb-3 mb-5 border-b border-slate-200 dark:border-slate-800">
+            <div>
+              <span class="text-xs font-bold tracking-wider uppercase text-purple-600 dark:text-purple-400">Bölüm 6</span>
+              <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">Merkezi Onaylar, Web Portal ve Dashboard'lar</h2>
+            </div>
+            <span class="text-xs sm:text-sm px-3 py-1 rounded-full font-mono font-medium bg-slate-100 dark:bg-slate-800 text-slate-500">2 Modül</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            <!-- 21_merkezi_onaylar -->
+            <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="21 merkezi onaylar capraz onay diff dialog eski yeni karsilastirma izin devir istek nobet plani veri onay">
               <div>
                 <div class="flex items-center justify-between mb-3">
                   <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">21</span>
@@ -855,21 +864,22 @@
                   </span>
                 </div>
                 <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
-                  21. Merkezi Onaylar ve Rapor Merkezi
+                  21. Merkezi Onay Bekleyen Görevler Paneli
                 </h3>
                 <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-                  Çapraz modül yönetici onay merkezi (İzin, Nöbet Devir, Nöbet İstek, Çizelge Yayınlama), eski-yeni 4-göz diff karşılaştırması ve antetli resmi raporlar (Word/PDF/Excel).
+                  Personel izinleri, nöbet devirleri, aylık mazeret/istekler, idari nöbet planı yayını ve 4-göz veri değişiklikleri (Diff penceresi ve KVKK dosya kasası).
                 </p>
                 <div class="flex flex-wrap gap-1.5 mb-5">
                   <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">4-Göz Diff</span>
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">5 Onay Sekmesi</span>
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">docxtpl Şablonu</span>
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">17 Resmi Rapor</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">İzin Onayı</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Nöbet Devir</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Plan Yayını</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Zorunlu Ret</span>
                 </div>
               </div>
               <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
-                <span class="text-xs text-slate-400 font-medium">Onay & Rapor Merkezi</span>
-                <a href="21_merkezi_onaylar_ve_rapor_merkezi.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+                <span class="text-xs text-slate-400 font-medium">Merkezi Onaylar</span>
+                <a href="21_merkezi_onaylar.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
                   <span>Kılavuzu Aç</span>
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
@@ -930,100 +940,10 @@
     </div>
   </footer>
 
-  <script>
-    // Theme Toggle Logic
-    const themeToggleBtn = document.getElementById('themeToggle');
-    const htmlEl = document.documentElement;
+  
 
-    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      htmlEl.classList.add('dark');
-    } else {
-      htmlEl.classList.remove('dark');
-    }
-
-    themeToggleBtn.addEventListener('click', () => {
-      if (htmlEl.classList.contains('dark')) {
-        htmlEl.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      } else {
-        htmlEl.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      }
-    });
-
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const sidebarNav = document.getElementById('sidebarNav');
-    if (mobileMenuBtn && sidebarNav) {
-      mobileMenuBtn.addEventListener('click', () => {
-        sidebarNav.classList.toggle('-translate-x-full');
-      });
-    }
-
-    // Live Filtering Search Logic
-    const moduleCards = document.querySelectorAll('.module-card');
-    const sections = document.querySelectorAll('.module-section');
-    const noResultsMsg = document.getElementById('noResultsMsg');
-    const filterInput = document.getElementById('moduleFilterInput');
-    const heroFilterInput = document.getElementById('heroFilterInput');
-
-    function applyFilter(query) {
-      const q = query.trim().toLowerCase();
-      let totalVisible = 0;
-
-      sections.forEach(section => {
-        const cards = section.querySelectorAll('.module-card');
-        let sectionVisibleCount = 0;
-
-        cards.forEach(card => {
-          const searchData = (card.getAttribute('data-search') || '') + ' ' + card.innerText.toLowerCase();
-          if (!q || searchData.includes(q)) {
-            card.classList.remove('hidden');
-            sectionVisibleCount++;
-            totalVisible++;
-          } else {
-            card.classList.add('hidden');
-          }
-        });
-
-        if (sectionVisibleCount === 0) {
-          section.classList.add('hidden');
-        } else {
-          section.classList.remove('hidden');
-        }
-      });
-
-      if (totalVisible === 0) {
-        noResultsMsg.classList.remove('hidden');
-      } else {
-        noResultsMsg.classList.add('hidden');
-      }
-    }
-
-    if (filterInput) {
-      filterInput.addEventListener('input', (e) => {
-        if (heroFilterInput) heroFilterInput.value = e.target.value;
-        applyFilter(e.target.value);
-      });
-    }
-
-    if (heroFilterInput) {
-      heroFilterInput.addEventListener('input', (e) => {
-        if (filterInput) filterInput.value = e.target.value;
-        applyFilter(e.target.value);
-      });
-    }
-
-    // Ctrl+K Shortcut Focus
-    window.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault();
-        if (filterInput) {
-          filterInput.focus();
-          filterInput.select();
-        }
-      }
-    });
-  </script>
+  <!-- RADPYS Offline Search & App Engine -->
+  <script src="assets/search_index.js"></script>
+  <script src="assets/app.js"></script>
 </body>
 </html>

@@ -3,6 +3,466 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.3.12] - 2026-10-07
+
+### 🔏 İki Aşamalı HEK & Tasfiye Süreci: Heyet Ön İnceleme Tutanağı ve EBYS İmzalı Üst Yazı Ekli Kalıcı Mühürleme
+
+Bu sürüm; HEK ve hurdaya ayırma sürecini gerçek kurumsal hastane ve denetim iş akışıyla birebir örtüşen iki aşamalı (1. Aşama: Heyet Ön İnceleme & İmza Tutanağı, 2. Aşama: İmzalı Üst Yazı Ekli Nihai Mühürlü Tasfiye Dosyası) entegre bir yaşam döngüsüne kavuşturur.
+
+#### ✨ Eklendi & Zenginleştirildi (Added & Enriched)
+
+- **Aşama 1: Tutanak Oluşturma Anında Otomatik Ön İnceleme Tutanağı (PDF):**
+  - Tutanak Sihirbazı (`create_hek_dosyasi`) ile yeni bir HEK dosyası açıldığında, komisyon üyelerinin incelemesi ve ıslak/e-imza atması amacıyla tüm ekipman künyesini, DIN 6857 hasar haritasını, muayene geçmişlerini ve boş imza çizgilerini barındıran antetli "Heyet Ön İnceleme ve İmza Tutanağı" PDF'i anında otomatik üretilerek evrak kasasına (`tutanak_stored_file_id`) kaydedilir.
+  - Belge üzerinde sarı renkli *"HEYET İMZASINDA & ÖN İNCELEME DOSYASI"* rozeti ve imza sürecini belirten resmi dipnotlar yer alır.
+- **Aşama 2: Ayniyat EBYS Kapatma Ekranında İmzalı Ek Belge / Tarama Yükleme:**
+  - `HekEbysKapatDialog` arayüzüne dosya seçici eklenerek, kullanıcıların komisyonca imzalanmış taranmış tutanağı veya Ayniyat birimine yazılan resmi EBYS üst yazısını (PDF, PNG, JPG, JPEG) sisteme yükleyebilmesi sağlandı.
+  - Yüklenen belge şifreli evrak kasasında (`imzali_ek_stored_file_id`) saklanır ve nihai tasfiye PDF'ine (`kapanis_stored_file_id`) sayfa bazlı eklenerek SHA-256 dijital mührüyle dondurulur.
+- **Akıllı Tasfiye Dosyası Görüntüleme:**
+  - Henüz EBYS yazısıyla kapatılmamış dosyalarda "Mühürlü Tasfiye PDF Aç" butonuna basıldığında, kullanıcıya doğrudan heyet ön inceleme tutanağını açmak isteyip istemediğini soran kullanıcı dostu yönlendirme diyaloğu entegre edildi.
+- **Veritabanı & Model Dikey Entegrasyonu:**
+  - `hek_dosyalari` tablosuna `imzali_ek_stored_file_id TEXT REFERENCES stored_files(id)` kolonu eklendi, DDL (`schema.sql`) ve migration (`V20261007_4_add_hek_imzali_ek_stored_file_id.py`) uygulandı.
+
+## [4.0.3.11] - 2026-10-07
+
+### 📑 Resmi Mühürlü HEK Tasfiye Dosyasında (PDF) Ekipman Bazlı Muayene Geçmişleri, DIN 6857 Kusur Haritası ve Evrak Kasası Fotoğraf/Rapor Eklerinin Tam Entegrasyonu
+
+Bu sürüm; Ayniyat / EBYS evrak numarası girilerek kalıcı kilit altına alınan ve mühürlenen HEK dosyalarında üretilen nihai resmi Tasfiye Dosyası PDF'ini tek bir özet tablo olmaktan çıkarıp, Sağlık Bakanlığı, TENMAK ve NDK denetim standartlarına tam uyumlu, ekipman bazlı çok sayfalı eksiksiz bir denetim dosyasına dönüştürür.
+
+#### ✨ Eklendi & Zenginleştirildi (Added & Enriched)
+
+- **Ekipman Bazlı Kapsamlı Muayene ve Kalite Kontrol Geçmişi (EK-1 & EK-2):**
+  - Tasfiye dosyasına dahil edilen her bir RKE veya cihaz için; tüm teknik künye (kod, tür, marka, model, seri no, beden, ön/arka kurşun eşdeğeri mm Pb), kronolojik kalite kontrol/muayene geçmişi tablosu (muayene tarihi, dönemi, DIN 6857 karar rozetleri, skopi kVp/mAs ölçümleri, hasar alanı mm², kontrol eden uzman ve revizyon gerekçeleri) eklendi.
+- **DIN 6857-1 Hasar ve Kusur Haritası Pin Dökümü:**
+  - İnteraktif gövde haritasında işaretlenen tüm delik, çatlak ve yırtılma kusurları (sıra, bölge, kusur türü, hasar alanı, kritik organ bölgesi rozeti ve klinik açıklamalar) müstakil tablolar halinde rapora işlendi.
+- **Evrak Kasası (stored_files) Görsel & Rapor Entegrasyonu:**
+  - Geçmiş muayenelere sonradan veya muayene esnasında iliştirilen skopi görüntüleri ve hasar fotoğrafları KVKK şifreli kasasından AES-256 Fernet ile çözülüp optimize edilerek rapor içerisine gömülü (inline base64) olarak yerleştirildi.
+  - Muayeneye iliştirilen PDF formatındaki harici servis/kalibrasyon raporları ise `pypdfium2` motoru ile ana tasfiye dosyasına arka arkaya sayfa bazlı birleştirildi (`import_pages`).
+- **Resmi Kurumsal İcmal Tablosunda Klinik Kusur Türü:**
+  - İlk sayfadaki 2. Ekipman İcmal Tablosu sütunlarına `Kusur Türü` eklenerek heyet ve komisyon kararlarının klinik gerekçeleri döküm tablosuna yansıtıldı.
+- **HEK Detay Ekranı Muayene Geçmişi Tablosunda Kusur ve Karar Dökümü:**
+  - `CihazHekDetayController` ve `HekService.get_kalem_gecmisi()` içerisinde `Kusur & Muayene Açıklaması` sütunu; interaktif harita kusur pinleri (`DELIK`, `CATLAK`, boyut, bölge, kritik bölge), skopi ölçümleri, klinik bulgular ve revizyon notlarını dinamik olarak sentezleyecek şekilde zenginleştirildi. `Karar / Durum` sütunundaki ham enumlar Türkçe (`HEK / Hurda`, `Kullanıma Uygun`, `Şartlı Kullanım`) etiketlere dönüştürülüp RDS kurumsal semantik renkleriyle (`ColorTokens.DANGER_ON_DARK`, `SUCCESS_ON_DARK`, `WARNING_ON_DARK`) renklendirildi.
+
+#### 🐛 Hata Düzeltmeleri (Fixed)
+
+- **Evrak Açma Çift Uzantı (.pdf.pdf) Hatası:**
+  - `CihazHekDetayController` ve `CihazHekController` sınıflarında kasadan belge açılırken `default_name_stem` zaten `.pdf` ile bittiğinde mükerrer uzantı eklenmesi sorunu giderildi.
+- **Windows Dosya Kilidi (WinError 32 PermissionError) Düzeltmesi:**
+  - PDF üretim ve birleştirme safhasında `QPdfWriter` ve `pypdfium2.PdfDocument` tanıtıcıları açıkça serbest bırakılarak geçici dosyaların Windows üzerinde kilitlenmesi engellendi.
+
+## [4.0.3.10] - 2026-10-07
+
+### 📋 RKE HEK / Tasfiye Tutanağında Klinik Kusur Tipi (DIN 6857) Entegrasyonu, Tarih Standardizasyonu ve Çizelge İyileştirmesi
+
+Bu sürüm; RKE HEK ve İmha Tutanağı çıktısındaki döküm tablosunda yer alan ve daha önce teknik bir ham veri (`HEK_HURDAYA_AYIR`) olarak basılan karar sütununun yerine, komisyon heyeti ve denetçilerin doğrudan ekipmanın hurdaya ayrılma klinik gerekçesini görebileceği **"Kusur Tipi"** (`Delik (Kritik Bölge)`, `Çatlak / Kırılma`, `Kurşun Blok Kayması`, `Homojenlik Kaybı` vb.) bilgisinin yazdırılmasını sağlar.
+
+#### ✨ Eklendi (Added)
+
+- **RkeService.get_kusur_ozeti() API'si:**
+  - `app/services/rke/rke_service.py` içerisine, bir ekipmanın en son muayenesine ait interaktif tuval kusur haritası (`rke_muayene_kusurlar`), DIN 6857 kritik organ bölgesi bayrağı (`kritik_bolge_mi`), skopi ölçüm göstergeleri (`skopi_*_var_mi`), klinik bulgu havuzu ve 10+ yıllık kullanım ömrü aşımını tarayarak komisyon ve heyet raporuna uygun klinik kusur özeti üreten `get_kusur_ozeti(rke_id, rke_row)` metodu eklendi.
+  - Birim testleri `tests/test_rke_service.py` (`test_get_kusur_ozeti`) ile doğrulandı.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed)
+
+- **Tutanak Sihirbazı RKE Tablo Sütunları:**
+  - `RkeYonetimiController._on_tutanak_olustur()` içerisinde sütun tanımı `("kusur_tipi", "Kusur Tipi")` olarak güncellendi.
+  - Veri sözlüğünde `kusur_tipi`, `son_muayene_karari` ve `din_karar` alanlarının tamamı klinik kusur özeti ile doldurularak eski şablon ve değişkenlerle geriye dönük %100 uyumluluk sağlandı.
+  - `son_muayene_tarihi` alanı ham ISO metni yerine kurumsal Türkçe `DD.MM.YYYY` formatına (`to_ui_date`) bağlandı.
+  - `durum` alanı `HEK_Hurda` yerine `HEK (Hurda)` olarak kurumsal görünüme kavuşturuldu.
+- **Raporlama Alias ve Çözümleme Mekanizması:**
+  - `app/services/reporting/engines/word_export_engine.py` altındaki `resolve_record_value()` fonksiyonuna `kusur_tipi` takma adı eklendi.
+
+## [4.0.3.9] - 2026-10-07
+
+### 📎 RKE Geçmiş Muayenelere Doğrudan Belge/Fotoğraf Ekleme, Gerekçeli Muayene Düzenleme & İptal/Revizyon ve Otomatik Durum Senkronizasyonu
+
+Bu sürüm; RKE kalite kontrol muayenelerinde sahada sonradan çekilen hasar fotoğrafları, skopi görüntüleri veya servis test raporlarının mevcut muayene kaydına tarih veya klinik kararı bozmadan doğrudan eklenebilmesini sağlar; hatalı tespit veya yanlış veri girişi durumlarında ise muayenenin zorunlu revizyon gerekçesiyle düzenlenerek ekipman envanter durumunun kronolojik olarak yeniden senkronize edilmesini temin eder.
+
+#### ✨ Eklendi (Added)
+
+- **Geçmiş Muayeneye Doğrudan Belge / Fotoğraf Ekleme:**
+  - `RkeService.add_muayene_belgesi()` metodu ve `rke_muayene_belgeleri` entegrasyonu tamamlandı.
+  - `RkeMuayeneListesiController` toolbar'ına `Belge / Fotoğraf Ekle` butonu ve sağ tık bağlam menüsüne `📎 Belge / Fotoğraf Ekle` seçeneği eklendi.
+  - `RkeMuayeneRaporDialog` (Kalite Kontrol Rapor Kokpiti) belgeler tablosu altına `btnBelgeEkle` butonu kazandırıldı; kullanıcı raporu incelerken doğrudan yeni hasar fotoğrafı veya servis raporu ekleyebilir.
+  - Eklenen belgeler anında AES-256 Fernet şifrelemeyle `stored_files` tablosunda saklanır ve `rke_muayene_belgeleri_belge_turu_check` kısıtına uygun olarak normalize edilir.
+- **Auditli Muayene Düzenleme & İptal/Revizyon (`update_muayene`):**
+  - `rke_muayeneler` tablosuna `duzenleme_gerekcesi TEXT`, `guncelleyen_id INTEGER REFERENCES kullanicilar(id)`, `guncelleme TIMESTAMP` kolonları eklendi (`V20261007_3_add_rke_muayene_duzenleme_audit.py` migrasyonu uygulandı).
+  - `RkeMuayeneListesiController` toolbar ve bağlam menüsünden "Muayeneyi Düzenle / Revize Et" tıklandığında `RkeMuayeneDialog` düzenleme modunda açılır.
+  - Kaydetme esnasında kullanıcıdan zorunlu `Düzenleme & Revizyon Gerekçesi` alınır ve kaydedilir (gereksiz mükerrer kayıt üretilmeden veri tabanı şişmesi önlenir).
+  - Muayene kararı değiştirildiğinde (örn: yanlışlıkla verilen HEK kararı Kullanıma Uygun'a çekildiğinde), `_sync_envanter_muayene_durumu` çağrılarak `rke_envanter` durumu otomatik olarak güncellenir (`HEK_Hurda` -> `Aktif`).
+- **Resmi Mühür / Tasfiye Kilidi Koruması:**
+  - Resmi EBYS tutanağı ile tasfiye edilip kilitlenmiş (`kilitli == TRUE`) koruyucu ekipmanların geçmiş muayenelerinin düzenlenmesi veya yeni belge eklenmesi güvenlik amacıyla engellenir.
+- **Tutanak Sihirbazı Çıktı Sadeleştirmesi:**
+  - İki ayrı butonun ("Word İndir" ve "PDF Oluştur / Yazdır") yarattığı arayüz kalabalığı ve kafa karışıklığı giderildi; resmi süreçlerde nihai bağlayıcı format olan PDF tek standart olarak belirlenerek doğrudan tek bir `Tutanak Oluştur / Yazdır` (primary) butonu konumlandırıldı.
+
+## [4.0.3.8] - 2026-10-07
+
+### 🛡️ RKE Muayenelerinde Kronolojik En Son Muayenenin Esas Alınması (SSOT), Geriye Dönük Kayıtlarda Durum Korunması ve Dönem/Tarih Senkronizasyonu
+
+Bu sürüm; RKE kalite kontrol ve saha muayenelerinde geriye dönük (arşiv/backlog) muayene girişi yapıldığında daha yeni tarihli muayene kararlarının (özellikle HEK / hurdaya ayırma) ezilmesini önler; veritabanı şeması, PostgreSQL tetikleyicisi, servis katmanı ve diyalog arayüzünde kronolojik en son takvim tarihli kaydı tek gerçek kaynak (SSOT) olarak güvenceye alır.
+
+#### 🐛 Düzeltildi (Fixed)
+
+- **Geriye Dönük Muayene Girişlerinde Ekipman Durumunun Ezilmesi (Desync):**
+  - `fn_rke_envanter_durum_guncelle()` tetikleyici fonksiyonu ve `RkeService._sync_envanter_muayene_durumu` servis metodu, doğrudan eklenen son kaydı değil, takvim tarihi olarak kronolojik en güncel muayeneyi (`ORDER BY muayene_tarihi DESC, id DESC LIMIT 1`) esas alacak şekilde yeniden yapılandırıldı.
+  - Örneğin 2026 yılında HEK kararı verilmiş bir ekipmana sonradan 2025 yılına ait "Kullanıma Uygun" eski bir muayene kaydı girildiğinde, ekipmanın ana listedeki durumunun `HEK_Hurda` olarak korunması garanti altına alındı.
+  - `rke_saha_service.py` ve `rke_service.py` üzerindeki tekil ve toplu muayene kayıtları merkezi `_sync_envanter_muayene_durumu` yardımcı fonksiyonuna bağlandı.
+- **RkeMuayeneDialog Dönem ve Tarih Senkronizasyonu:**
+  - `RkeMuayeneDialog` üzerinde yer alan `cmbDonem` (Dönem) açılır kutusu ile `dtMuayeneTarihi` (Tarih) seçicisi iki yönlü bağlandı. Kullanıcı örneğin "2025 Yıllık Kalite Kontrol" seçtiğinde tarihin yılı otomatik olarak 2025'e güncellenir; tarih değiştirildiğinde ise dönem yılı otomatik uyumlu hale getirilir.
+- **PostgreSQL Tetikleyici Kapsamı:**
+  - `trg_rke_muayene_sonrasi` tetikleyicisi sadece `INSERT` değil; `INSERT OR UPDATE OR DELETE` durumlarında da otomatik çalışacak şekilde genişletildi.
+  - `V20261007_2_fix_rke_muayene_latest_sync.py` migrasyonu ile canlı veritabanındaki tüm RKE kayıtları kronolojik son muayenelerine göre yeniden eşitlendi.
+
+## [4.0.3.7] - 2026-10-07
+
+### 🖥️ Bağımsız Tam Ekran HEK Süreç Dosyası ve Kalem Detay Sayfası (`CihazHekDetayController`), Muayene Geçmişi ve Fotoğraf Galerisi
+
+Bu sürüm; HEK takip ekranını sıkışık alt detay tablolarından arındırarak ferah bir ana kokpite dönüştürür; seçilen dosyanın içindeki tüm cihaz/RKE kalemlerini, muayene/arıza geçmişlerini, sahada çekilen hasar fotoğraflarını ve resmi tutanak heyetini yeni bir tam ekran pencerede sunan `CihazHekDetayController` sayfasını devreye alır.
+
+#### ✨ Eklendi (Added)
+
+- **Yeni Tam Ekran Detay Arayüzü (`CihazHekDetayController` & `cihaz_hek_detay_page.ui`):**
+  - Dosyaya ait genel özet kartı (Tür, Tutanak Tarihi, Kalem Sayısı, Süreç Durumu, Ayniyat EBYS Bilgisi, Kapatan/Mühürleyen Yetkili).
+  - Dosyadaki tüm ekipmanları listeleyen zengin kalemler tablosu (`tblKalemler`).
+  - Seçili kaleme tıklandığında canlı güncellenen sekmeli detay alanı:
+    - **Sekme 1 (Muayene, Arıza ve Hizmet Geçmişi):** Kalemin ilk günden bugüne kadarki tüm klinik muayene ve bakım/arıza tarihçesi tablosu (`tblGecmis`).
+    - **Sekme 2 (Hasar ve İspat Fotoğrafları Galerisi):** Sahada çekilmiş hasar/skopi fotoğraflarının önizleme kartları (`scrollAreaFotolar`) ve tıklandığında büyük boy açma yeteneği.
+    - **Sekme 3 (Komisyon Heyeti & Notlar):** Heyet üyeleri tablosu ile gerekçe ve hüküm metinleri.
+  - "Geri Dön" ve "Kapat" butonlarıyla tek tıkla ana HEK listesine dönme desteği.
+- **HekService Sorgu Yetenekleri:**
+  - `get_kalem_gecmisi`: RKE ve Cihaz kalemlerinin muayene/arıza kayıtlarını kronolojik sırayla sorgular.
+  - `get_kalem_fotograflari`: Muayene belgeleri (`rke_muayene_belgeleri`) tablosundan hasar fotoğraflarını ve ek belgeleri çeker.
+- **Ana Kokpit Çift Tıklama & Buton Entegrasyonu:**
+  - Ana HEK tablosundaki herhangi bir satıra çift tıklandığında veya yeni eklenen `Dosya Detayı & Kalemler` butonuna tıklandığında detay sayfasının açılması sağlandı.
+
+## [4.0.3.6] - 2026-10-07
+
+### 📝 Tutanak Sihirbazı Dinamik Tablo ve Metin Döküm Düzeltmesi, docxtpl Şablon İzolasyonu ve Alan Alias Çözümleme Desteği
+
+Bu sürüm; Tutanak Sihirbazı üzerinden oluşturulan Word (.docx) ve PDF tutanaklarında standart rapor şablonlarının araya girmesi nedeniyle Giriş Metni, Sonuç/Karar Metni ve Komisyon İmza Bloklarının kaybolması hatasını çözer; dinamik sütunları ve alan takma adlarını (alias) uçtan uca güvenceye alır.
+
+#### 🐛 Düzeltildi (Fixed)
+
+- **Tutanak Belgelerinde Word (.docx) docxtpl Tablo Çakışması:**
+  - `ReportEngine._generate_generic_report` içerisinde `belge_turu` tutanak olan belgelerin (`tutanak_bilesik`, `tutanak_metin`) standart rapor şablon tablosuna (`render_docx_template`) yönlendirilmesi engellendi; tutanakların doğrudan dinamik metin ve imza yönetimini yürüten `WordExportEngine` üzerinden render edilmesi sağlandı.
+  - `WordExportEngine.render` metodunda, tutanak belgeleri için şablondan gelen önceden tanımlanmış statik tablolar temizlenerek sihirbazda belirlenen Giriş Metni, seçilen dinamik sütun tablosu, Sonuç/Karar Metni ve Komisyon İmza Blokları kusursuz sırayla belgeye eklendi.
+- **Boş Tablo Hücreleri ve Alan Takma Adı (Alias) Çözümlemesi:**
+  - `WordExportEngine` ve `pdf_table_layout.py` katmanlarına merkezi `resolve_record_value` mekanizması kazandırıldı. Ekipman/cihaz kayıtlarında `ekipman_kodu`/`rke_kod`/`cihaz_kodu`, `departman_adi`/`departman`/`bulundugu_yer`, `barkod`/`koruyucu_no` ve `son_muayene_karari`/`din_karar` anahtarları çift yönlü çözümlenerek hücrelerin boş kalması engellendi.
+- **Tutanak Sihirbazı Sütun Tanımlarının ReportEngine'e Aktarılması:**
+  - `TutanakSihirbaziDialog._execute_export` içerisinde `params['sutunlar']` parametresi eklenerek kullanıcının seçtiği sütun dökümünün `ReportEngine` ve motorlara eksiksiz iletilmesi sağlandı.
+
+## [4.0.3.5] - 2026-10-07
+
+### ⚖️ Uçtan Uca HEK Süreci, Tutanak Sihirbazı Entegrasyonu, Ayniyat EBYS Mühürleme ve Güvenli Arşivleme Mimarisi
+
+Bu sürüm; muayene veya arıza sonucu hurdaya/HEK'e ayrılan Tıbbi Cihaz ve Radyasyon Koruyucu Ekipmanların (RKE) komisyon tutanağı ve resmi Ayniyat EBYS süreci tamamlanana kadar ana çalışma listesinde görünür kalmasını sağlayan, dosya kapandığında ise tüm ilişkisel geçmişi SHA-256 hash'li Birleşik Tasfiye PDF'i olarak KVKK kasasına mühürleyip kalıcı arşive aktaran uçtan uca HEK yaşam döngüsü mimarisini devreye alır.
+
+#### ✨ Eklendi (Added)
+
+- **HEK Süreç Dosyaları ve Yaşam Döngüsü Servisi (`HekService`):**
+  - Otomatik artan dosya kodu üreteci (`generate_next_dosya_kodu` -> `HEK-2026-0001`).
+  - Tutanak Sihirbazı dışa aktarma adımına kanca (hook) atılarak oluşturulan tutanakların otomatik `HEK-xxxx` sürecine bağlanması (`create_hek_dosyasi`).
+  - İki aşamalı durum yönetimi: `HAZIRLANDI_IMZADA` ve resmi evrak kapatma sonrası `TAMAMLANDI_KAPATILDI`.
+- **Ayniyat EBYS Dosya Kapatma ve Kalıcı Mühürleme (`HekEbysKapatDialog` & `close_and_seal_hek_dosyasi`):**
+  - Ayniyat EBYS evrak kayıt sayısı, evrak tarihi ve teslim tesellüm açıklama notu girişi.
+  - Cihaza ve RKE'ye ait tüm geçmiş verilerinin (arıza kayıtları, periyodik bakımlar, kalite kontroller, lisanslar, muayene kusurları, zimmet hareketleri ve saklanan belgeler) toplanıp SHA-256 kriptografik hash'i ile mühürlenmesi.
+  - ReportLab ile çok sayfalı kurumsal "HEK Tasfiye ve Kapanış Dosyası (PDF)" üretilip KVKK Evrak Kasasına (`stored_files`) AES-256 ile kaydedilmesi.
+- **İki Sekmeli HEK / Hurda Arşivi Kokpiti (`CihazHekController`):**
+  - Sekme 1: `HEK / Hurda Cihaz Listesi` — Mühürlü arşivlenmiş ve işlemdeki cihazların listesi, kilit kontrolü ve mühürlü cihazların aktife alınmasını engelleyen emniyet kilidi.
+  - Sekme 2: `HEK Süreç Dosyaları ve EBYS Takibi` — Açılan HEK dosyaları, kalem sayıları, EBYS durumu, tutanak görüntüleme ve tek tıkla Tasfiye PDF'ini açma butonları.
+
+#### 🔄 Değiştirildi (Changed)
+
+- **Ana Listeden Erken Düşme Probleminin Çözümü (`CihazRepository` & `RkeService`):**
+  - Muayene kusuru veya arıza sonucu durumu `HEK` / `HEK_Hurda` yapılan ekipmanların tutanak ve EBYS işlemi tamamlanana kadar ana çalışma envanterinden silinmesi engellendi.
+  - Ana listede belirgin durum rozetleri uygulandı:
+    - Henüz tutanağı düzenlenmemiş: `HEK (Tutanak Bekliyor)`
+    - Tutanağı hazırlanmış, imzada/EBYS'de: `HEK (İmzada)`
+    - Resmi EBYS süreciyle kapatılmış: `Mühürlü HEK` (Yalnızca Arşiv sekmesinde listelenir).
+- **Evrensel Tutanak Sihirbazı Personel Seçim Arayüzü İyileştirmesi:**
+  - `PersonelSecimDialog` listesinde gereksiz kolonlar kaldırılarak İsim, Departman ve Ünvan alanları ferah yerleşimle sunuldu; birim sorumluları ve yetkili personeller listenin en başında otomatik sıralandı.
+
+## [4.0.3.4] - 2026-10-06
+
+### 🛡️ Birleşik Kullanıcı & Yetki Yönetimi, Rapor Hiyerarşik Departman Filtresi ve Global ComboBox Standartlaştırması
+
+Bu sürüm; Kullanıcı Yönetimi ile Roller ve Yetkiler ekranlarını tek bir sekmeli MDI pencerede konsolide ederken, Rapor Merkezi veri motoruna özyinelemeli (`WITH RECURSIVE`) hiyerarşik departman ağacı filtreleme kabiliyeti kazandırır ve sistem genelinde `QComboBox` / `QFormLayout` standartlaştırmasını hayata geçirir.
+
+#### ✨ Eklendi (Added)
+
+- **Endüstriyel Toplu QR Baskı Paketi (.ZIP) Motoru (`BulkQrExportService`):**
+  - Tıbbi Cihaz, Koruyucu Donanım (RKE) ve Ortam Dozu modüllerine matbaa ve etiket üreticileri için tek tıkla toplu dışa aktarım kabiliyeti kazandırıldı.
+  - Seçilen veya tüm aktif kayıtlar için 300 DPI (800x1050 px) ultra yüksek çözünürlüklü şeffaf PNG etiketleri üretildi.
+  - Arşiv içerisine medikal/radyasyon dayanımlı malzeme teknik şartnamesi (`00_Baski_ve_Uretim_Rehberi.txt`) ve tüm kayıtların künye/parametrelerini içeren `00_Etiket_Listesi_Icmal.csv` listesi otomatik dahil edildi.
+  - `cihaz_yonetimi_controller.py`, `rke_yonetimi_controller.py` ve `ortam_dozu_controller.py` ekranlarına hem üst araç çubuğu butonu hem de sağ tık bağlam menüsü entegre edildi; `run_with_progress` asenkron iş parçacığıyla UI donmaları engellendi.
+- **Şablon Tasarım Stüdyosu Akıllı İmleç Etiketleme (`RaporTasarimDialog`):**
+  - Sol panelde listelenen dinamik alanlar tıklanabilir bağlantılara (`<a>`) dönüştürüldü.
+  - Kullanıcı bir alana tıkladığında metin editöründe imlecin bulunduğu tam konuma `{{ etiket_adi }}` kodu anında yerleştirildi; mükerrer modül ön ekleri (`cihaz_cihaz_kodu` -> `cihaz_kodu`) otomatik temizlendi.
+- **Sıfır Sentetik Kurum Adı ve Dinamik Antet Standardı:**
+  - Raporlama motorları (`PDFTableLayout`, `CihazTeknikRaporDialog`) ve şablonlarda kurum adı boş olduğunda varsayımsal/sentetik kamu kurumu adı kullanılması engellendi; kurumsal dürüst varsayılan olarak `RADPYS` anteti bağlandı.
+  - Controller seviyesinde ham SQL sorgulamaları kaldırılarak `SettingsService(self.db)` kullanımına refaktör edildi.
+- **Raporlama Motorunda Hiyerarşik Departman Ağacı Filtresi (`apply_department_filter_sql`):**
+  - Tüm rapor dataset'lerinde (`Cihaz`, `Cihaz Arıza`, `Dozimetre`, `Eğitim`, `Fiili Hizmet`, `İzin`, `Nöbet`, `Olay Bildirimi`, `Ortam Dozu`, `Personel`, `RGS/RKS`, `RKE`, `Sağlık Gözetimi`) PostgreSQL `WITH RECURSIVE dept_tree` hiyerarşi desteği devreye alındı.
+  - Bir ana departman seçildiğinde (örneğin *Radyoloji Anabilim Dalı*), sisteme bağlı tüm alt birimler, servisler ve çocuk departmanlar otomatik tespit edilerek rapora dahil edildi; alt birim verilerinin filtreden düşmesi engellendi.
+- **Global QComboBox ve Form Layout Güvenlik Standardı:**
+  - `ui/theme.py` çekirdeğine `normalize_combobox_widgets` ve `normalize_form_layouts` yardımcı fonksiyonları eklendi.
+  - Açılır kutular için maksimum liste yüksekliği (`max-height: 280px; maxVisibleItems = 10`) ve güvenli kaydırma (`QListView`) global standarda bağlandı.
+  - `load_ui_widget` mekanizması genişletilerek form yüklemelerinde etiket ve girdi hiyerarşisi otomatik ve tutarlı hale getirildi.
+
+#### 🔄 Değiştirildi (Changed)
+
+- **Birleşik Kullanıcı & Yetki Yönetimi Kokpiti (`UserManagementMainController`):**
+  - Sol ana menüde ayrı yer alan "Kullanıcılar" ve "Roller & Yetkiler" menüleri, tek bir sekmeli MDI pencerede birleştirildi (`[Kullanıcılar]` ve `[Roller ve Yetkiler]`).
+  - İki sekme mimarisine geçilerek sol tarafta sistem rolleri listelenirken, seçilen role ait Modül Yetki Matrisi doğrudan sağ/alt alanda açılarak sekme değiştirme zahmeti ortadan kaldırıldı.
+- **Modül Yetki Matrisi Tablo Optimizasyonu:**
+  - Gereksiz/statik "Durum" sütunu kaldırılarak "Kapsam Açıklaması" sütunu tam genişliğe çıkarıldı.
+  - Değişiklik göstergesi modül başlığındaki rozet simgesiyle bütünleştirildi.
+- **`RoleFormController` Entegrasyonu:**
+  - Yeni rol ekleme penceresi çağrısında eksik olan `role_service` bağımlılığı tanımlanarak rol ekleme akışı kesintisiz hale getirildi.
+
+#### 🧪 Test ve Kararlılık (Tests & Bug Fixes)
+
+- `tests/test_ui_auth_controllers.py` tab sayısı beklentisi yeni 2-sekme mimarisiyle hizalandı (8 test PASSED).
+- Rapor dataset'lerinin filtre açılır kutularındaki (`get_filter_options`) mock DB uyumluluğu ve `SELECT DISTINCT d.id, d.departman_adi` sözleşmesi izole edilerek 15 filtre birim testindeki regresyon giderildi.
+- Hedef test paketindeki 66 testin tamamı %100 yeşil (PASS) olarak doğrulandı.
+
+## [4.0.3.0] - 2026-10-04
+
+### 🏛️ Yeni Ana Modül: Klinik Raporlama, Şablon Tasarım Stüdyosu ve Evrensel Tutanak / Komisyon Karar Merkezi
+
+Bu sürüm; RADPYS V4 temiz mimarisine yeni bir ana modül paketi olarak **Klinik Raporlama ve Şablon Merkezi Kokpiti (`RaporMerkeziController`)**, **Görsel Rapor ve Şablon Tasarım Stüdyosu (`RaporTasarimDialog`)**, **Evrensel Tutanak ve Komisyon Karar Sihirbazı (`TutanakSihirbaziDialog`)**, **Tıklanabilir Değişken Motoru** ve **Çift Yönlü (Word & PDF) Resmi Evrak Üretim Altyapısını** kazandırır.
+
+Sistem genelinde yalnızca satır-sütun tabloları değil; **metin içerikli tutanaklar (HEK Tutanağı, Devir Tutanağı, Zimmet Tutanağı, Komisyon Kararı vb.)** oluşturabilme imkanı sunulmuştur. 20 adet koruyucu ekipman (RKE) veya tıbbi cihaz için tek tek 20 sayfa evrak basıp kağıt ve zaman israfı yapmak yerine; **Giriş Paragrafı (Toplanma Gerekçesi) + Döküm Tablosu (20 kayıt) + Sonuç / Karar Paragrafı + Komisyon İmza Heyeti** yapısını tek bir resmi tutanak belgesi olarak hem Word (.docx) hem de PDF formatında üretmeyi sağlar.
+
+#### ✨ Eklendi (Added)
+
+- **Klinik Raporlama ve Şablon Merkezi Kokpiti (`RaporMerkeziController` & `rapor_merkezi_page.ui`):**
+  - KPI gösterge kartları (Toplam Rapor, Kurumsal Özel Şablonlar, Mevzuat Formları, Aylık Üretim İstatistiği).
+  - Akıllı kategori filtresi (Personel, İzin, Nöbet, Fiili Hizmet, Doz Takip, Sağlık Gözetimi, Kalibrasyon, RKE, Cihaz vb.).
+  - Canlı A4 dikey/yatay önizleme ve sayfa uyumu hesaplayıcısı.
+  - Tek tıkla çıktı aksiyon çubuğu (PDF İndir, Excel `.xlsx`, Word `.docx`).
+  - Dinamik akıllı parametre formu: Yalnızca tarih aralığı veya birim filtresi gerektiren raporlarda kriter kutusu (`grpFiltreler`) açılır; parametresiz veya tutanak şablonlarında otomatik gizlenerek ekran ferah tutulur.
+- **Rapor ve Şablon Tasarım Stüdyosu (`RaporTasarimDialog` & `rapor_tasarim_dialog.ui`):**
+  - Admin kullanıcılar için sıfırdan yeni şablon tasarlama ve mevcut sistem şablonlarını klonlayarak özelleştirme yeteneği.
+  - Temel meta bilgileri (Ad, Kod, Veri Kaynağı, Kategori, Sayfa Yönü, Varsayılan Format, Açıklama).
+  - Dinamik alan/kolon seçici: Veri kaynağından gelen alanları seçme, başlık değiştirme, genişlik ve sıralama belirleme.
+  - Süzgeç ve kriter kuralları yapılandırıcı (Kullanıcıya sorulacak parametreler).
+- **Evrensel Tutanak ve Komisyon Karar Sihirbazı (`TutanakSihirbaziDialog` & `tutanak_sihirbazi_dialog.ui`):**
+  - Resmi kurum formatında tek sayfa veya çok sayfalı birleşik tutanak üretimi:
+    - Kurumsal Antet ve Başlık Alanı
+    - Düzenleyen ve Tarih Bilgisi
+    - Giriş ve Toplanma Gerekçesi Metni (`QTextEdit`)
+    - Çoklu Ekipman / Cihaz Döküm Tablosu (`QTableWidget`)
+    - Sonuç ve Karar Paragrafı (`QTextEdit`)
+    - Dinamik Üye Eklenebilen Komisyon Heyeti ve İmza Blokları
+  - Tek tıkla Word (.docx) ve PDF olarak üretme ve doğrudan açma desteği.
+- **Tıklanabilir Değişken Chip Butonları (`hboxTutanakDegiskenleri`):**
+  - Rapor Tasarım Stüdyosu ve Tutanak Sihirbazı metin alanlarının altına yerleştirilen interaktif butonlar:
+    - `+ {{ tarih }}`: Günün tarihini ekler (`gg.aa.yyyy`).
+    - `+ {{ kurum_adi }}`: Sağlık kuruluşu / hastane adını ekler.
+    - `+ {{ departman }}`: İlgili servis veya birim adını ekler.
+    - `+ {{ adet }}`: Seçili kayıt veya ekipman sayısını ekler.
+    - `+ {{ kullanici }}`: Aktif oturum açan personelin adını ekler.
+  - Akıllı odak takip mekanizması: İmlecin bulunduğu konuma `insertPlainText()` ile etiket ekler, kullanıcının yazma akışını bölmez.
+- **Word (.docx) ve PDF Motorlarında Dinamik Yer Tutucu Çözümleme:**
+  - `WordExportEngine`: Jinja2/docxtpl şablonlarında `GIRIS_METNI`, `SONUC_METNI` ve imza blokları; şablonsuz saf Word belgelerinde ise başlık, gerekçe paragrafı, 20 satırlık tablo, karar paragrafı ve tablo formatında imza heyeti kutucukları üretimi. Metin içindeki `{{ ... }}` değişkenleri otomatik çözümlenir.
+  - `TableReportLayout`: PDF çiziminde antet ve meta barından sonra gerekçe metnini, ekipman döküm tablosunu, karar metnini ve dinamik imza heyeti kutularını profesyonelce yerleştirir.
+- **Ana Arayüz ve Modül Toolbar Bağlantıları:**
+  - **Ana Gezinti (Sol Sidebar):** Sistem & Yönetim grubunda "Rapor Merkezi" butonunun hemen altına **"Tutanak Sihirbazı" (`btnTutanakSihirbazi`)** butonu eklendi; `AppController.open_tutanak_sihirbazi_page()` slotuna ve `ModuleCode.RAPORLAR` yetki haritasına bağlandı.
+  - **Rapor Merkezi:** Sol alt aksiyon çubuğuna doğrudan sihirbazı başlatan **"Tutanak Sihirbazı"** butonu eklendi.
+  - **RKE Yönetimi:** Tabloya `ExtendedSelection` özelliği kazandırıldı; araç çubuğuna **"HEK Tutanağı" (`btnHekTutanak`)** butonu ve sağ tık menüsüne **"Seçili X Ekipman İçin Toplu HEK Tutanağı Oluştur..."** aksiyonu bağlandı.
+  - **Cihaz Yönetimi:** Tabloya `ExtendedSelection` özelliği kazandırıldı; araç çubuğuna **"Tutanak Oluştur" (`btnTutanak`)** butonu ve sağ tık menüsüne **"Seçili Cihazlar İçin Toplu HEK / Komisyon Tutanağı..."** aksiyonu bağlandı.
+- **Global Standart Qt Diyalog Butonları Yerelleştirmesi (`TurkishDialogTranslator`):**
+  - Qt C++ çekirdeğinden gelen İngilizce standart butonlar (`OK`, `Cancel`, `Yes`, `No`, `Save`, `Discard` vb.) global bir çevirici ile sistem genelinde sıfır İngilizce sızıntısı olmaksızın kurumsal Türkçeye (`[Tamam]`, `[İptal]`, `[Evet]`, `[Hayır]`, `[Kaydet]`, `[Vazgeç]`) kavuşturuldu.
+
+#### 🗄️ Veritabanı ve Şema (Database & Schema)
+
+- `rapor_tanimlari` tablosuna, `RaporTanimi` ve `RaporPaketi` modellerine `belge_turu` (`tablo`, `tutanak_bilesik`, `tutanak_metin`), `giris_metni` ve `sonuc_metni` alanları eklendi.
+- `app/db/migrations/V20261004_2_add_tutanak_alanlari_to_rapor_tanimlari.py` migrasyonu oluşturuldu ve uygulandı.
+
+## [4.0.2.24] - 2026-10-03
+
+### 📊 Koruyucu Ekipman (RKE) Envanter Tablosu Sütun Sadeleştirmesi ve Başlık/Hücre Eşitlemesi
+
+Bu sürüm; RKE ana envanter tablosunda (`tableRke`) tekrar eden ve ekranı yatayda sıkıştırıp departman ve başlık metinlerinin kırpılmasına ("ğlı Departman / Bir", "Koroner ...") yol açan sütun yapısını 9 temel gösterge sütununda toplayarak sadeleştirir. Başlıklar ve hücreler merkez/sol hizalamaları ve esnek genişliklerle dengelenmiştir.
+
+#### 🔧 Değiştirildi & Düzeltildi (Changed & Fixed)
+
+- **9 Temel Sütunda Sadeleştirilmiş Tablo Mimarisi:**
+  - Önceki 11 görünür sütun ("Ekipman No", "Birim Kodu", "Cinsi / Türü", "Bağlı Departman / Birim", "Beden", "Ekipman Yaşı / Ömür", "Son Muayene", "Sonuç", "Sonraki Muayene", "Kalan Gün", "Durum") konsolide edildi.
+  - Yeni sütun düzeni: `Ekipman No`, `Birim No`, `Cinsi / Türü`, `Beden`, `Departman / Birim`, `Ekipman Yaşı`, `Son Muayene`, `Muayene Durumu`, `Sonraki Muayene`.
+- **Günü Geçti Rozetinin Sonraki Muayene Tarihine Taşınması:**
+  - Geçerlilik periyodu dolmuş ekipmanlar için "Günü Geçti" kırmızı RDS rozeti `Sonraki Muayene` sütununda gösterilir; üzerine gelindiğinde planlanan hedef muayene tarihi ve gecikme gün sayısı tooltip olarak sunulur. `Son Muayene` sütununda ise her zaman donanımın en son kontrolden geçtiği geçmiş tarih sabit kalır.
+- **Durum Sütununda Gerçek Klinik Durum Etiketi:**
+  - `Muayene Durumu` sütununda süreden bağımsız olarak ekipmanın gerçek muayene/kullanım durumu (`Uygun`, `Şartlı Kullanım`, `HEK / Hurda`, `Muayenesiz`, `Bakımda`) korunur. Böylece periyodu geçmiş olsa dahi ekipmanın en son muayeneden uygun çıkıp çıkmadığı net bir şekilde ayrıştırılır.
+- **Kayıt Formu ve Tablo Arasında Ekipman No & Birim No Eşitlendi:**
+  - Kayıt formunda üretilen `Ekipman No / Kodu` (`RKE-YE-003`) ana tablonun `Ekipman No` sütununa; `Birim Koruyucu No` (`RAD-GEN-YE-001`) ise ana tablonun `Birim No` sütununa tam olarak eşitlenerek form ile tablo görünümü arasındaki tutarsızlık giderildi.
+- **Kırpılma Önleme ve Esnek Genişlik:**
+  - `Departman / Birim` sütununa `QHeaderView.ResizeMode.Stretch` tanımlanarak ekran çözünürlüğüne göre dinamik esnemesi ve üç nokta (`...`) kesintisi olmadan tam okunması sağlandı.
+  - Başlık hizalamaları (`horizontalHeader().setDefaultAlignment(Qt.AlignmentFlag.AlignCenter)`) ile hücre hizalamaları (kodlar, beden, yaş, tarihler ve rozetler ortalı; tür ve departman sola yaslı) dengelendi.
+
+## [4.0.2.23] - 2026-10-03
+
+### 🛡️ Koruyucu Ekipman (RKE) Tek Ekranda Bütünleşik Muayene Kokpiti, DIN 6857-1 Çapraz Senkronizasyon ve Salt Okunur Rapor Görünümü
+
+Bu sürüm; koruyucu ekipman (RKE) kalite kontrol ve periyodik muayene süreçlerinde kullanıcıyı "Görsel & Fiziki Muayene" ile "Skopi Muayenesi" butonları arasında gidip gelmekten kurtararak her iki muayene türünü tek ekranda yan yana bütünleştiren modern ergonomik kokpit arayüzünü, dokunmatik kroki üzerindeki kusur pinleri ile fiziki kontrol kriterleri ve standart klinik bulgular kataloğu arasında iki yönlü otomatik çapraz senkronizasyonu, `max(Skopi Riski, Fiziki Risk, Yaş)` prensibiyle çalışan çok kriterli nihai karar motorunu, geçmiş muayeneleri resmi rapor formatında açan salt okunur kokpiti (`RkeMuayeneRaporDialog`), skopi cihaz seçiminde ilgisiz modalitelerin (MR, USG, BT, DXA) elendiği akıllı cihaz filtrelemesini (`get_skopi_test_cihazlari`), toplu muayene birim/ekipman filtrelerini, ayarlanabilir mAs parametresini ve Web Portal eşitlemesini içerir.
+
+#### ✨ Eklendi (Added)
+
+- **Tek Ekranda Bütünleşik RKE Kalite Kontrol Kokpiti (`RkeMuayeneDialog`):**
+  - Üst kısımdaki mod seçici butonlar (`btnModGorselFiziki`, `btnModSkopi`) ve `QStackedWidget` kaldırılarak sol tarafta geniş dokunmatik anatomi silüeti (`grpKroki`) ve tespit edilen kusurlar tablosu (`tabDetaylar`); sağ tarafta muayene/test parametreleri (`grpParametreler`), rutin fiziki kontrol kriterleri (`grpFizikiKriterler`), klinik bulgular kataloğu (`grpStandartBulgular`) ve DIN 6857-1 karar paneli (`grpKarar`) aynı anda görüntülenebilir ve yönetilebilir hale getirildi.
+- **İki Yönlü Çapraz Senkronizasyon (`_sync_bulgular_with_kusurlar`):**
+  - Krokide kusur pinlendiğinde "Tüm testler normal" otomatik kaldırılarak ilgili klinik bulgu ("Skopi altında kırık/delik tespit edildi" veya "Kurşun katmanda delik/yırtık tespit edildi") otomatik seçilir.
+  - Krokide kusur varken kullanıcının "Tüm testler normal" seçmesi klinik güvenlik uyarısıyla engellenir; kusurlar temizlendiğinde ise güvenle normal duruma dönülür.
+- **Çok Kriterli Bütünleşik Karar Motoru:**
+  - Karar hesaplaması `max(Skopi Radyolojik Riski, Fiziki Muayene Riski, Ekipman Yaşı)` formülüyle tekil nihai karara dönüştürüldü. Krokideki hasar kritik organda ise veya kumaşta katlanma/blok kayması varsa nihai karar doğrudan `HEK_HURDAYA_AYIR` olarak belirlenir.
+- **Salt Okunur Muayene Rapor Kokpiti (`RkeMuayeneRaporDialog`):**
+  - `ui/pages/rke/rke_muayene_rapor_dialog.ui` ve `ui/controllers/rke/rke_muayene_rapor_dialog.py` dosyaları geliştirilerek, geçmiş muayene detayları düzenleme formu yerine solunda işaretli anatomik kroki, fotoğraflar ve kusurlar tablosu; sağında ise ekipman kimliği, fiziki kontrol sonuçları, standart bulgular ve resmi onay/karar özetinin yer aldığı şık bir rapor formatına kavuşturuldu.
+- **Skopi Cihaz Seçiminde Radyolojik Modalite Filtresi (`get_skopi_test_cihazlari`):**
+  - `RkeService.get_skopi_test_cihazlari` metodu geliştirildi. Muayene test parametrelerinde listelenen cihazlar arasından MR, USG, BT, DXA gibi skopi muayenesiyle ilgisiz modaliteler elenerek sadece C-Kollu, Röntgen, Skopi, Anjiyografi, Mamografi gibi X-ışını skopi yapabilen cihazların listelenmesi sağlandı.
+- **Toplu Muayenede Birim ve Ekipman Türü Filtreleri:**
+  - `RkeTopluMuayeneDialog` arayüzüne departman/birim ve ekipman türü filtreleri eklenerek yüzlerce ekipman arasından belirli birimdeki önlüklerin topluca filtrelenip muayene edilmesi sağlandı.
+- **Test mAs Parametresi (`spnMas`):**
+  - Muayene giriş parametrelerine test gerilimi (kVp) yanında tüp akım-zaman çarpımı (mAs) alanı eklendi ve düzenlenebilir kılındı.
+- **Web Portal Senkronizasyonu:**
+  - `web_portal/src/components/RkeKrokiCanvas.tsx`, `RkeView.tsx` ve `rke.routes.ts` bileşenleri güncellenerek web portalında da skopi filtreleme ve bütünleşik kusur değerlendirmesi desteklendi.
+
+#### 🔧 Değiştirildi & Düzeltildi (Changed & Fixed)
+
+- **`AttributeError: cmbKusurTipi` Başlatma Hatası Giderildi:**
+  - `RkeMuayeneDialog` ve `KusurGirisDialog` başlatma sıralaması ve bileşen erişimleri güvene alındı.
+- **Geçmiş Tutarsız DB Kayıtları Onarıldı:**
+  - Veritabanındaki eski 4 muayene kaydı (skopi kusurları ile karar uyumsuzluğu bulunan kayıtlar) DIN 6857-1 standardına göre `HEK_HURDAYA_AYIR` olarak güncellendi ve envanter durumları eşitlendi.
+- **Tablo Sütun Genişlikleri ve Başlık İyileştirmesi:**
+  - `tableKusurlar` tablosundaki sütun genişlikleri optimize edilerek "Açıklama" sütununa esnek genişleme verildi (`setStretchLastSection(True)`). Panel başlıklarındaki ampersand karakterleri (`&&`) düzenlenerek harf yutulması ve alt çizgi bozulmaları giderildi.
+
+## [4.0.2.22] - 2026-10-03
+
+### 🛡️ Donanıma Bağlı Deterministik Afet Kurtarma Anahtarı, Otomatik Senkronizasyon ve Eski Yedeklerin Yeniden Şifrelenmesi
+
+Bu sürüm; kullanıcının yedekleme güvenlik anahtarını harici ortama kaydetmeyi unutması veya kurtarma kartını kaybetmesi durumunda bile verilerine her zaman ulaşabilmesini sağlayan donanıma bağlı deterministik afet kurtarma anahtarı (Hardware-Bound Deterministic Recovery Key) mimarisini, eski sürümlerden (`v4.0.2.18` ve öncesi) güncelleyen kurumlar için tek seferlik otomatik başlangıç geçişini, mevcut şifreli yedeklerin şeffaf olarak yeni deterministik anahtarla yeniden şifrelenmesini, eski rastgele anahtarların güvenli anahtar halkası (`RADPYS_BACKUP_LEGACY_KEYS`) altında arşivlenmesini ve bağımsız geliştirici kokpiti (`Master_Tool_Project`) ile Excel müşteri takip entegrasyonunu içerir.
+
+#### ✨ Eklendi (Added)
+
+- **Donanıma Bağlı Deterministik Afet Kurtarma Motoru (`derive_emergency_backup_key`):**
+  - `app/services/system/db_maintenance_service.py` altına `derive_emergency_backup_key(machine_id)` fonksiyonu eklendi.
+  - Fiziksel makine kimliği (`Machine ID`) ve kurum tescilli gizli tuz (`MASTER_BACKUP_SALT`) kullanılarak PBKDF2-HMAC-SHA256 (150.000 iterasyon) üzerinden deterministik, tahmin edilemez ancak aynı sunucuda daima yeniden üretilebilir 32 karakterlik afet kurtarma anahtarı türetilmesi sağlandı.
+- **Tek Seferlik Otomatik Başlangıç Geçişi (`migrate_backup_key_to_deterministic_if_needed`):**
+  - Uygulama başlangıcında (`main.pyw` / `AppInitializerWorker`) `app_metadata` tablosu kontrol edilerek, deterministik anahtara geçmemiş kurumların aktif anahtarı tek seferlik ve sessizce donanım anahtarıyla eşitlenir.
+  - Eski rastgele anahtar kaybolmaması için `RADPYS_BACKUP_LEGACY_KEYS` ortam değişkenine ve `program_ayarlari` (`eski_yedek_anahtarlari`) tablosuna arşivlenir.
+  - Geçiş tamamlandığında `app_metadata.backup_key_migrated_to_deterministic = '1'` bayrağı kalıcı olarak işaretlenir.
+- **Mevcut Yerel Yedeklerin Yeniden Şifrelenmesi (`reencrypt_existing_backups`):**
+  - Geçiş anında `data/backups/` dizinindeki tüm yerel PostgreSQL dökümleri (`.dump`) ve evrak kasası arşivleri (`.zip`) taranır; eski anahtarla çözülerek yeni donanım anahtarıyla yeniden şifrelenir ve yedek bütünlüğü korunur.
+- **Eski Anahtar Halkası (Legacy Key Ring) ile Çoklu Aday Çözümleme:**
+  - `_resolve_candidate_keys` ve `find_matching_key_for_backup` fonksiyonlarına eski anahtar halkası entegre edildi. Farklı tarihlerde farklı anahtarlarla alınmış tarihi yedekler geri yüklenirken sistem, hem aktif anahtarı hem de geçmiş arşiv anahtarlarını sırayla dener; yöneticiden manuel müdahale istemeden arşivi çözer.
+- **Geri Yükleme Modalında Tek Tıkla Cihaz Anahtarı Denemesi (`BackupKeyPromptDialog`):**
+  - `ui/dialogs/backup_key_dialogs.py` penceresine kullanıcının donanım kimliğini (`Cihaz Kimliği (Machine ID)`) gösteren bilgi kutusu ve **[Cihaz Kimliğiyle Çözmeyi Dene]** butonu eklendi. Anahtar dosyasını kaybeden yönetici tek tıkla donanımsal afet anahtarını test edebilmektedir.
+- **Kurtarma Anahtarı Kartında Donanım Kimliği ve Eşitleme Desteği (`ShowBackupKeyDialog`):**
+  - `ShowBackupKeyDialog` arayüzüne Cihaz Kimliği kopyalama butonu, "Aktif Anahtarı Cihaz Anahtarıyla Eşitle" seçeneği ve zenginleştirilmiş `radpys_yedek_kurtarma_anahtari.txt` dışa aktarım şablonu eklendi.
+- **Merkezi Geliştirici ve Destek Kokpiti (`Master_Tool_Project`):**
+  - `Master_Tool_Project/` altında bağımsız PyQt6 geliştirici konsolu (`run_master_tool.py`) geliştirildi.
+  - Lisans anahtarı üretimi, cihaz kimliğinden deterministik kurtarma anahtarı türetimi, KVKK denetim izi analizi ve müşteri lisans/kurtarma anahtarlarının `musteri_lisans_takip.xlsx` Excel tablosuna otomatik kayıt ve senkronizasyonu sağlandı.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed & Refined)
+
+- **Başlangıç Akışı Güvenliği (`main.pyw`):**
+  - `AppInitializerWorker.run` sırasına `migrate_backup_key_to_deterministic_if_needed(self.db)` çağrısı eklenerek sistem açılışında veritabanı şifreleme anahtarının donanım ile senkronizasyonu tam otomatik hale getirildi.
+- **Yedek Doğrulama Performansı:**
+  - `verify_backup_key` metodu, aday anahtar halkası desteğiyle optimize edildi; test denemeleri ilk 64 baytlık blok üzerinden milisaniyeler içinde yürütülerek veritabanı kilitlenmeleri önlendi.
+
+## [4.0.2.21] - 2026-10-02
+
+### ⚡ Uçtan Uca Kriptografik Yedekleme, Felaket Kurtarma Anahtarı Mimarisi ve Format Sonrası Geri Yükleme Protokolü
+
+Bu sürüm; PBKDF2 (100.000 iterasyon, SHA-256) ve AES-256 simetrik akış şifrelemesiyle korunan veritabanı (.dump) ve yüklenen evrak (.zip) yedeklerinin, bilgisayara format atılması veya sistemin yeni bir sunucuya kurulması durumunda veri kaybı yaşanmadan açılmasını sağlayan Felaket Kurtarma Anahtarı (Disaster Recovery Key) altyapısını, `BackupKeyPromptDialog` ve `ShowBackupKeyDialog` güvenlik pencerelerini, harici taşınabilir medya (USB bellek/harici disk) akıllı anahtar tarayıcısını ve şifresiz eski yedekler için geriye dönük uyumluluk motorunu içerir.
+
+#### ✨ Eklendi (Added)
+
+- **Felaket Kurtarma Anahtarı Kartı ve Dışa Aktarma Modalı (`ShowBackupKeyDialog`):**
+  - `ui/dialogs/backup_key_dialogs.py` altında `ShowBackupKeyDialog` güvenlik bileşeni geliştirildi.
+  - Sistem yöneticisinin Sudo (Root) doğrulaması sonrasında 32 karakterlik AES-256 yedekleme anahtarını şifrelenmiş halde görüntülemesi, tek tıkla panoya kopyalaması ve harici disklere aktarılmak üzere zaman damgalı `radpys_yedek_kurtarma_anahtari.txt` kurtarma kartı üretmesi sağlandı.
+- **Format ve Yeni Kurulum Sonrası Etkileşimli Anahtar Çözümleyici (`BackupKeyPromptDialog`):**
+  - Temiz işletim sistemi kurulumu veya format sonrası, eski anahtarın bulunamadığı durumlarda kullanıcıdan güvenlik anahtarı talep eden `BackupKeyPromptDialog` geliştirildi.
+  - Kullanıcının doğrudan anahtar yazabilmesi, panodan yapıştırabilmesi veya tek tıkla `backup_recovery_key.txt`, `radpys_yedek_kurtarma_anahtari.txt`, `.key` ya da `.env` dosyalarından anahtarı otomatik ayrıştırıp okuması sağlandı.
+  - "Bu anahtarı yeni sisteme kalıcı olarak kaydet" seçeneğiyle, doğrulanan anahtarın yeni kurulan sisteme otomatik olarak entegre edilmesi sağlandı.
+- **Harici Medya & Taşınabilir Disk Akıllı Anahtar Tarayıcısı (`find_matching_key_for_backup`):**
+  - `DBMaintenanceService.find_matching_key_for_backup` metodu geliştirildi.
+  - Geri yüklenecek yedek dosyasının bulunduğu klasör veya harici disk (USB vb.) otomatik taranarak; yanındaki `backup_recovery_key.txt`, `radpys_yedek_kurtarma_anahtari.txt`, `<dosya>.key` dosyaları ile ortam değişkenleri ve veritabanı ayarları test edilir; eşleşen anahtar bulunduğunda kullanıcıya hiçbir soru sorulmadan yedek doğrudan açılır.
+- **Hızlı Başlık (Header) ve Kripto Doğrulama Motoru (`verify_backup_key`):**
+  - `DBMaintenanceService.verify_backup_key` metoduyla yedeğin ilk 64 baytı taranır.
+  - Dosyanın şifresiz PostgreSQL dökümü (`PGDMP`, `CREATE`, `SET`) veya şifresiz ZIP (`PK`) olup olmadığı tespit edilir. Şifreli dosyalarda ise ilk blok anahtarla anında test edilerek yanlış parola girilmesi durumunda veritabanının bozulması önlenir.
+- **Çok Katmanlı ve Atomik Anahtar Kalıcılığı (`persist_backup_key`):**
+  - `DBMaintenanceService.persist_backup_key` metoduyla anahtar; `RADPYS_BACKUP_KEY` ortam değişkenine, PostgreSQL `program_ayarlari` tablosuna (`guvenlik`, `yedek_sifreleme_anahtari`), `.env` dosyasına ve `data/backups/backup_recovery_key.txt` dosyasına eşzamanlı olarak kalıcı yazılır.
+- **Arayüzde Güvenlik Anahtarı Butonu (`btnShowBackupKey`):**
+  - `ui/pages/admin/system/db_maintenance_page.ui` ve `DBMaintenanceController` üzerine `[Güvenlik Anahtarı]` butonu eklendi; yalnızca Sistem Yöneticisi (Admin) rolüne görünür kılındı.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed & Refined)
+
+- **Geri Yükleme (Restore) İş Akışının Felaket Kurtarma Mimarisiyle Güçlendirilmesi:**
+  - `db_maintenance_controller.py` içerisindeki geri yükleme akışı; "Otomatik Eşleştirme -> Harici Medya Taraması -> Etkileşimli Kullanıcı Modalı -> Doğrulama -> Geri Yükleme" hiyerarşisine kavuşturuldu.
+- **Şifresiz Eski Yedekler İçin Kusursuz Geriye Dönük Uyumluluk:**
+  - Eski sürümlerden kalan veya harici araçlarla alınmış şifresiz `.dump`, `.sql` veya `.zip` dosyaları otomatik tespit edilerek şifre çözme adımı baypas edilir; anahtar hatası vermeden doğrudan geri yüklenir.
+
+## [4.0.2.20] - 2026-10-02
+
+### ⚡ Tatil Takvimi Dini/Resmi Otomasyonu, Tıbbi Cihaz Lisans Gösterge Optimizasyonu ve Giriş Ekranı Kurumsal Markalaması
+
+Bu sürüm; Tanımlamalar modülü altında yer alan Tatil Takvimi'nde Ramazan ve Kurban Bayramı günlerinin tek tıkla arife dahil (0.5 gün + 1'er gün) otomatik takvime işlenmesini, Türkiye'nin 8 sabit resmi tatilinin tek seferde eklenebilmesini, Tıbbi Cihaz listesinde lisans bitim sayacının 180 gün (6 ay) kuralına bağlanarak arayüzün sadeleştirilmesini ve Giriş (Login) ekranının kurumsal logo ile kurum adı entegrasyonuyla yenilenmesini içerir.
+
+#### ✨ Eklendi (Added)
+
+- **Dini Bayramların Tek Tıkla Toplu Takvim Oluşturulması (`create_religious_holiday_package`):**
+  - `LookupService` katmanına `create_religious_holiday_package(holiday_type, arife_date)` metodu eklendi.
+  - Ramazan Bayramı seçildiğinde: Arife (0.5 gün) + 1., 2. ve 3. Gün (1'er gün) olmak üzere toplam 4 kayıt otomatik üretilir.
+  - Kurban Bayramı seçildiğinde: Arife (0.5 gün) + 1., 2., 3. ve 4. Gün (1'er gün) olmak üzere toplam 5 kayıt otomatik üretilir.
+  - Önceden tanımlı kayıtlar varsa veritabanı kısıt hatası vermeden üzerine güvenle güncellenir.
+- **Yıllık Sabit Resmi Tatilleri Ekleme Butonu (`create_official_holidays_for_year`):**
+  - Tatil Takvimi araç çubuğuna `[Resmi Tatilleri Ekle]` (`holidayAutoOfficialButton`, `calendar-plus.svg`) butonu eklendi.
+  - Seçilen yıl için 8 sabit resmi tatil (1 Ocak, 23 Nisan, 1 Mayıs, 19 Mayıs, 15 Temmuz, 30 Ağustos, 28 Ekim 0.5 gün ve 29 Ekim 1 gün) tek tıkla takvime işlenir; mevcut kayıtlar atlanır.
+- **Dini Bayram Akıllı Seçim ve Bilgilendirme Arayüzü (`LookupTatilDialog`):**
+  - Tatil adı olarak Ramazan veya Kurban yazıldığında/seçildiğinde, tür otomatik olarak `Dini Tatil`e alınır, `chkOtomatikPaket` aktif hale gelir ve oluşturulacak gün sayısını açıklayan dinamik bilgi etiketi (`lblOtomatikBilgi`) gösterilir.
+- **Giriş (Login) Ekranı Kurumsal Logo & Dinamik Kurum Adı:**
+  - Giriş ekranına yüksek çözünürlüklü RADPYS kalkan logosu (`logo.png`) ve `program_ayarlari` tablosundan dinamik okunan kurum adı (`institutionLabel`) `#38bdf8` kurumsal renk token'ıyla eklendi.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed & Refined)
+
+- **Cihaz Yönetimi NDK Lisans Kalan Süre Sayacı (180 Gün Kuralı):**
+  - Cihaz listesi tablosundaki *"Kalan Süre / Lisans Durumu"* sütununda, lisans bitimine 180 günden (6 aydan) fazla süre olan geçerli cihazlarda kalabalık yaratan gün sayacı gizlendi; sade ve kurumsal yeşil `Geçerli` rozeti gösterildi.
+  - Lisans bitimine 180 gün ve daha az kaldığında sayısal geri sayım rozeti (`X gün kaldı`) otomatik olarak devreye girer.
+- **Tatil Takvimi Modal Geometri Optimizasyonu:**
+  - `lookup_tatil_dialog.ui` geometri boyutu `480x440`'tan `560x510`'a yükseltilerek Qt Windows platformunun bildirdiği `Unable to set geometry` konsol uyarısı tamamen giderildi.
+
+## [4.0.2.19] - 2026-10-02
+
+### ⚡ Proje Genelinde Kurumsal Docstring Standardizasyonu, Toplu İçe Aktarım Motoru (Import Engine) API Dokümantasyonu ve CI/CD Dağıtım Pipeline İyileştirmesi
+
+Bu sürüm; RADPYS V4 genelindeki 58+ üretim modülü, servis katmanı, veri erişim depoları (repositories), kullanıcı arayüzü denetleyicileri (controllers), diyaloglar ve özel widget'larda eksik docstring'lerin %100 oranında tamamlanmasını, Evrensel Toplu İçe Aktarım Motoru (`ImportEngine`) altında yer alan tüm domain stratejilerinin (`personel`, `cihaz`, `nobet`, `rke`, `izin`, `tanimlar`) arayüz metotlarının kurumsal standartlarda belgelendirilmesini, `find_missing_docstrings.py` denetim betiğinin geliştirilmesini ve GitHub Actions CI/CD Cloudflare R2 dağıtım pipeline'ının tahkim edilmesini içerir.
+
+#### ✨ Eklendi (Added)
+
+- **Proje Genelinde Kurumsal Docstring Standardizasyonu:**
+  - `app/db/database.py`, `app/infrastructure/db/repositories/role_repository.py`, `app/services/auth/role_service.py`, `app/services/cihaz/cihaz_import_service.py`, `app/services/nobet/nobet_scheduler.py`, `app/services/system/export_service.py`, `app/services/personel/dozimetre_service.py` ve `app/utils/outbox_queue.py` modüllerindeki tüm fonksiyon ve metotlara kapsamlı Türkçe kurumsal docstring'ler eklendi.
+  - `ui/controllers/app_controller.py` içerisindeki 30 adet subwindow alt pencere fabrika fonksiyonuna (`def _create():`) standart docstring eklendi.
+  - `ui/dialogs/` altındaki `mesaj_kutusu.py`, `personel_child_dialogs.py`, `personel_secim_dialog.py` ve `ui/widgets/` altındaki `modern_progress_dialog.py`, `export_widget.py`, `mini_trend_chart.py`, `toast.py`, `step_progress_widget.py` bileşenleri %100 OK seviyesine getirildi.
+  - Toplam 5.270 üretim kodu sembolünden 5.247'si (%99.56) tam uyumlu hale getirildi, üretim kodundaki eksik docstring sayısı sıfırlandı (**Eksik: 0**).
+- **Import Engine Strateji API Dokümantasyonu (`app/services/import_engine/strategies/`):**
+  - **Personel Stratejisi (`personel.py`):** `mode`, `display_name`, `get_fields`, `get_lookup_definitions`, `_fetch_existing_lookup_values`, `get_sample_rows`, `get_lookup_guide_rows`, `validate_row`, `execute_row` metotları tam belgelendirildi.
+  - **Tıbbi Cihaz Stratejisi (`cihaz.py`):** NDK lisans ve tıbbi cihaz alan şemaları, dry-run doğrulama ve icra metotları belgelendirildi.
+  - **Nöbet Çizelgesi Stratejisi (`nobet.py`):** Çizelge doğrulama, personel/departman/nöbet türü ve cihaz çözümleme (`_resolve_*`) metotları belgelendirildi.
+  - **RKE Envanter & Muayene Stratejileri (`rke.py`):** `RkeImportStrategy` ve `RkeMuayeneImportStrategy` sınıflarına ait alan tanımları, karar ve hasar bölgesi çözümleyicileri belgelendirildi.
+  - **İzin Stratejileri (`izin.py`):** `IzinHakedisImportStrategy` ve `IzinGecmisiImportStrategy` sınıflarının bakiye ve geçmiş arşiv aktarım fonksiyonları belgelendirildi.
+  - **Sistem Tanımları Stratejileri (`tanimlar.py`):** `DepartmanImportStrategy`, `UnvanImportStrategy`, `IzinTuruImportStrategy` ve `CihazTanimiImportStrategy` sınıflarının tüm arayüz metotları belgelendirildi.
+- **Toplu İçe Aktarım Denetleyicisi Dokümantasyonu (`UniversalImportController`):**
+  - `ui/controllers/admin/system/import_controller.py` dosyasında `ValidationWorker` ve `UniversalImportWorker` asenkron iş parçacıkları, drag & drop dosya yükleme, adımlar arası durum senkronizasyonu (`_make_state_sync`, `_sync`), filtreleme ve kimlik bilgisi dışa aktarım metotları belgelendirildi.
+- **Docstring Envanter ve Denetim Betiği Geliştirmesi (`scripts/find_missing_docstrings.py`):**
+  - Betiğe otomatik Markdown (`--md`) ve JSON (`--out`) raporlama desteği eklendi; test, betik ve yapay kaynaklar (`tests`, `scripts`, `.agents`, `tools`, `*_rc.py`) filtrelenerek projenin gerçek kod kalitesi izlenebilir kılındı.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed & Refined)
+
+- **CI/CD Dağıtım & Cloudflare R2 Pipeline Tahkimi (`.github/workflows/release.yml`):**
+  - GitHub Actions yayın iş akışında `R2_ACCOUNT_ID` ortam değişkeninin başındaki/sonundaki boşluklar, protokol önekleri (`https://`) ve URL son ekleri `sed` filtresiyle otomatik temizlenecek şekilde sanitize edildi; dağıtım sürecinin yanlış yapılandırılmış kimlik bilgileri nedeniyle kırılması önlendi.
+- **Lookup Dışa Aktarma Yardımcıları (`lookup_controller.py`):**
+  - Cihaz ve RKE tanımları dışa aktarım yardımcı fonksiyonlarına (`_do_export`, `_do_rke_export`) standart docstring eklendi.
+
 ## [4.0.2.18] - 2026-10-01
 
 ### 🚀 Portal Başlatıcı Servis Yöneticisi Reformu, Dinamik PostgreSQL Port Entegrasyonu, Asenkron Kurulum Mimarisi ve Tek Buton Web Portalı Aç Standardı

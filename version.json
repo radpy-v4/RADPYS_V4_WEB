@@ -1,8 +1,10 @@
 {
-  "version": "4.0.2.18",
-  "latest_demo_version": "4.0.2.18",
-  "release_date": "2026-10-01",
+  "version": "4.0.3.4",
+  "release_version": "4.0.3.4",
+  "build_version": "4.0.3.12",
+  "latest_demo_version": "4.0.3.4",
+  "release_date": "2026-10-06",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.2.18: Portal Başlatıcı Servis Yöneticisi Reformu, Dinamik PostgreSQL Port Entegrasyonu, Asenkron Kurulum Mimarisi ve Tek Buton Web Portalı Aç Standardı.",
-  "notes": "Portal Launcher üzerinde .env port okuma, IPv4/IPv6 çoklu soket desteği, asenkron QProcess paket kurulumu ile UI donma koruması, varsayılan tarayıcı / Sandbox Edge fallback ve Web Portalı Aç butonu konsolidasyonu."
+  "changelog": "RADPYS V4.0.3.4: Kurumsal Sürüm Güncellemesi.",
+  "notes": "Resmi kararlı dağıtım sürümü."
 }

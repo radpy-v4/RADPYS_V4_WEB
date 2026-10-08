@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>21. Merkezi Onay Bekleyen Görevler Paneli — RADPYS v4 Kullanım Kılavuzu</title>
+  <link rel="stylesheet" href="assets/tailwind.min.css">
+  <script src="assets/mermaid.min.js"></script>
+  <style>
+    pre, code { font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 9999px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.6); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- TOP HEADER NAVBAR (Wide Fluid Layout) -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Version -->
+      <div class="flex items-center gap-3">
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Menüyü Aç/Kapat">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.2</span>
+            </span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Karar Destek Portalı</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick Search Bar (Ctrl+K) -->
+      <div class="flex-1 max-w-xl hidden md:block">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input 
+            type="text" 
+            placeholder="Dokümanda ara... (Ctrl+K ile hızlı arama)" 
+            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition cursor-pointer"
+            readonly
+          >
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <kbd class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600 font-semibold">Ctrl+K</kbd>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span>Tüm Modüller</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN 3-COLUMN CONTAINER (Fluid & Wide Layout) -->
+  <div class="flex-1 max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 flex gap-8">
+
+    <!-- LEFT SIDEBAR: NAVIGATION -->
+    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar">
+      <div class="mb-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3">23 Modül Rehberi</span>
+      </div>
+      <nav class="space-y-1 text-sm font-medium">
+        <a href="01_kurulum_ve_ilk_giris.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">01</span>
+          <span>Kurulum & İlk Giriş</span>
+        </a>
+        <a href="02_kullanici_ve_rol_yonetimi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">02</span>
+          <span>Kullanıcı & Rol Yönetimi</span>
+        </a>
+        <a href="03_sistem_ayarlari_ve_tanimlamalar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">03</span>
+          <span>Sistem Ayarları & Tanımlar</span>
+        </a>
+        <a href="04_veritabani_bakim_ve_guvenlik.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">04</span>
+          <span>Veritabanı Bakım & Kasa</span>
+        </a>
+        <a href="05_personel_yonetimi_ve_toplu_aktarim.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">05</span>
+          <span>Personel & Excel Aktarım</span>
+        </a>
+        <a href="06_izin_yonetimi_ve_hakedis.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">06</span>
+          <span>İzin Yönetimi & Şua</span>
+        </a>
+        <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">07</span>
+          <span>Nöbet Ayarları & Kısıtlar</span>
+        </a>
+        <a href="08_nobet_hazirlik_ve_solver_motoru.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">08</span>
+          <span>Nöbet Hazırlık & Solver</span>
+        </a>
+        <a href="09_nobet_devir_ikame_ve_acil_mazeret.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">09</span>
+          <span>Nöbet Devir & İkame</span>
+        </a>
+        <a href="10_nobet_borc_alacak_ve_fazla_mesai.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">10</span>
+          <span>Nöbet Borç & Fazla Mesai</span>
+        </a>
+        <a href="11_fiili_hizmet_ve_sua_hesaplama.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">11</span>
+          <span>Fiili Hizmet (FHZ) & Şua</span>
+        </a>
+        <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">12</span>
+          <span>Dozimetre & RD.F43</span>
+        </a>
+        <a href="13_saglik_muayeneleri_ve_periyodik_takip.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">13</span>
+          <span>Sağlık Muayeneleri</span>
+        </a>
+        <a href="14_ortam_dozu_ve_kroki_haritasi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">14</span>
+          <span>Ortam Dozu & Kroki</span>
+        </a>
+        <a href="15_olay_bildirimi_ve_dof_capa.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">15</span>
+          <span>Olay Bildirimi & DÖF</span>
+        </a>
+        <a href="16_rgs_rso_gorevlendirme_ve_sertifika.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">16</span>
+          <span>RGS / RSO Görevlendirme</span>
+        </a>
+        <a href="17_hizmet_ici_egitim_ve_online_sinav.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">17</span>
+          <span>Hizmet İçi Eğitim & LMS</span>
+        </a>
+        <a href="18_tibbi_cihaz_ve_ndk_lisans_envanteri.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">18</span>
+          <span>Tıbbi Cihaz & NDK Lisans</span>
+        </a>
+        <a href="19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">19</span>
+          <span>Cihaz Arıza & QA/QC</span>
+        </a>
+        <a href="20_rke_koruyucu_ekipman_ve_din6857.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">20</span>
+          <span>Koruyucu Ekipman (RKE)</span>
+        </a>
+        <!-- 21 AKTİF -->
+        <a href="#overview" class="flex items-center justify-between px-3 py-2.5 rounded-xl bg-cyan-50 text-cyan-800 dark:bg-cyan-950/60 dark:text-cyan-300 font-semibold border-l-4 border-cyan-600">
+          <div class="flex items-center gap-2.5">
+            <span class="font-mono text-xs text-cyan-600 dark:text-cyan-400 font-bold">21</span>
+            <span>Merkezi Onaylar</span>
+          </div>
+          <span class="w-2 h-2 rounded-full bg-cyan-600 animate-pulse"></span>
+        </a>
+        <a href="22_web_portal_ve_dashboardlar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">22</span>
+          <span>Web Portal & Dashboard</span>
+        </a>
+        <a href="23_rapor_tutanak_merkezi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <span class="font-mono text-xs opacity-60">23</span>
+          <span>Rapor & Tutanak Merkezi</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- CENTER COLUMN: CORE DOCUMENTATION (Wide & Readable) -->
+    <main class="flex-1 min-w-0 py-8">
+      <!-- Breadcrumb & Badges -->
+      <nav class="flex items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
+        <a href="index.html" class="hover:text-cyan-600 transition">Kılavuz Ana Sayfası</a>
+        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span>Bölüm 6: Merkezi Onay & Web Portal</span>
+        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">21. Merkezi Onaylar</span>
+      </nav>
+
+<!-- PAGE TITLE & METADATA -->
+ <div id="overview" class="mb-8">
+ <div class="flex flex-wrap items-center gap-2.5 mb-3">
+ <span
+ class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-cyan-100 text-cyan-800 dark:bg-cyan-950/80 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/60">
+ 4-Göz Denetim Mekanizması
+ </span>
+ <span
+ class="px-3 py-1 rounded-full text-xs font-semibold bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60">
+ Zorunlu Ret Gerekçesi Kuralı
+ </span>
+ <span
+ class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60">
+ Canlı Kategori Rozetleri
+ </span>
+ <span
+ class="px-3 py-1 rounded-full text-xs font-semibold bg-purple-100 text-purple-800 dark:bg-purple-950/80 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60">
+ KVKK Şifreli Evrak Kasası
+ </span>
+ <span class="text-xs text-slate-400 dark:text-slate-500 ml-auto flex items-center gap-1.5 font-mono">
+ <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+ d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+ </svg>
+ Okuma Süresi: 5 Dakika | RADPYS v4.2
+ </span>
+ </div>
+
+ <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+ 21. Merkezi Onay Bekleyen Görevler Paneli
+ </h1>
+ <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 mt-2.5 max-w-4xl leading-relaxed">
+ Tüm klinik ve idari birimlerden gelen personel izinlerini, nöbet takas/devirlerini, aylık nöbet tercihlerini,
+ resmi nöbet çizelgesi yayınlarını ve 4-göz veri değişiklik taleplerini tek merkezden denetleyip karara bağlayın.
+ </p>
+ </div>
+
+ <!-- VİZYONDER HIZLI REÇETE (20 SANİYE KURALI & 4 METRİK HAPI) -->
+ <section id="hizli-recete" class="mb-10">
+ <div
+ class="p-6 rounded-2xl bg-gradient-to-br from-cyan-900/10 via-slate-900/5 to-blue-900/10 dark:from-cyan-950/40 dark:via-slate-900/40 dark:to-blue-950/40 border border-cyan-200 dark:border-cyan-800/50 shadow-sm">
+ <div class="flex items-center justify-between flex-wrap gap-4 mb-4">
+ <div class="flex items-center gap-3">
+ <div class="w-8 h-8 rounded-lg bg-cyan-600 text-white flex items-center justify-center font-bold text-sm">
+ 20s
+ </div>
+ <h2 class="text-xl font-bold text-slate-900 dark:text-white">Vizyonder Hızlı Karar Reçetesi & Önemli Metrikler</h2>
+ </div>
+ <!-- 4 Metrik Hapı (Pills) -->
+ <div class="flex flex-wrap items-center gap-2">
+ <span class="px-3 py-1 rounded-full text-xs font-semibold bg-cyan-100 dark:bg-cyan-950/80 text-cyan-800 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/60">
+ 4-Göz Denetim Mekanizması
+ </span>
+ <span class="px-3 py-1 rounded-full text-xs font-semibold bg-rose-100 dark:bg-rose-950/80 text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60">
+ Zorunlu Ret Gerekçesi Kuralı
+ </span>
+ <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60">
+ Otomatik Canlı Rozetler
+ </span>
+ <span class="px-3 py-1 rounded-full text-xs font-semibold bg-purple-100 dark:bg-purple-950/80 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60">
+ KVKK Şifreli Evrak Kasası
+ </span>
+ </div>
+ </div>
+ <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+ <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+ <span class="font-bold text-cyan-600 dark:text-cyan-400 block mb-1"> İstenen Sonuç:</span>
+ Klinik birimlerden ve personelden gelen izin, nöbet devir, istek, taslak plan ve veri değişikliklerini tek merkezden güvenle denetleyip karara bağlamak.
+ </div>
+ <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+ <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-1">️ Yapılacak İşlem:</span>
+ Sol paneldeki 5 sekmeden ilgili kategoriyi seçin; satırları veya Diff penceresini inceleyip <strong>[Onayla]</strong> veya zorunlu gerekçe girerek <strong>[Reddet]</strong> butonuna basın.
+ </div>
+ <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+ <span class="font-bold text-blue-600 dark:text-blue-400 block mb-1"> Sistem Etkisi:</span>
+ İzin bakiyeleri anında düşer, nöbet devirlerinde çizelge otomatik güncellenir, veri değişikliklerinde yeni kayıtlar işlenir ve fiziksel evraklar AES-256 ile şifreli KVKK kasasına aktarılır.
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- 5N1K KURAL ÇÖZÜMLEME TABLOSU -->
+ <section id="5n1k-tablosu" class="mb-12">
+ <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
+ <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+ <span class="w-2.5 h-6 rounded-full bg-cyan-600"></span>
+ 5N1K Kural ve Ayar Çözümleme Tablosu
+ </h2>
+ <span class="text-xs font-mono text-slate-400">RADPYS-M21-RULE-MATRIX</span>
+ </div>
+
+ <div class="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+ <table class="w-full text-left border-collapse text-xs sm:text-sm">
+ <thead>
+ <tr class="bg-slate-100/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 font-semibold border-b border-slate-200 dark:border-slate-700">
+ <th class="p-3.5">NE (İşlem / Alan)</th>
+ <th class="p-3.5">NEDEN (Gerekçe)</th>
+ <th class="p-3.5">NEREDE (Arayüz Yolu)</th>
+ <th class="p-3.5">NASIL (Yöntem)</th>
+ <th class="p-3.5">NE ZAMAN (Zamanlama)</th>
+ <th class="p-3.5">KİM (Rol / Yetki)</th>
+ <th class="p-3.5">DURUM (Sistem Tepkisi)</th>
+ </tr>
+ </thead>
+ <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-medium text-slate-600 dark:text-slate-300">
+ <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+ <td class="p-3.5 font-bold text-slate-900 dark:text-white">İzin Onayı / Reddi</td>
+ <td class="p-3.5">Yıllık, şua ve mazeret iznini resmiyete bağlamak</td>
+ <td class="p-3.5">Onay Paneli → İzin Talepleri</td>
+ <td class="p-3.5">Onayla Butonu / Reddet Butonu (Zorunlu Gerekçe)</td>
+ <td class="p-3.5">İzin başlangıcından önce</td>
+ <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 font-semibold text-[11px]">Birim Amiri / Yönetici</span></td>
+ <td class="p-3.5 text-emerald-600 dark:text-emerald-400 font-semibold">Bakiye anında düşer, portalda bildirim kutusuna düşer</td>
+ </tr>
+ <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+ <td class="p-3.5 font-bold text-slate-900 dark:text-white">Nöbet Devir İnceleme & Onay</td>
+ <td class="p-3.5">Personeller arası nöbet takasını resmi çizelgeye yansıtmak</td>
+ <td class="p-3.5">Onay Paneli → Nöbet Devirleri</td>
+ <td class="p-3.5">İncele / Detay Butonu → Karar Formu</td>
+ <td class="p-3.5">Devralan personelin portal rızasından sonra</td>
+ <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 font-semibold text-[11px]">Birim / Hizmet Sorumlusu</span></td>
+ <td class="p-3.5 text-emerald-600 dark:text-emerald-400 font-semibold">Çizelgedeki personel adı otomatik güncellenir</td>
+ </tr>
+ <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+ <td class="p-3.5 font-bold text-slate-900 dark:text-white">Nöbet İstek & Mazeret</td>
+ <td class="p-3.5">Personelin aylık tercih ve muafiyetlerini kısıt olarak bağlamak</td>
+ <td class="p-3.5">Onay Paneli → Nöbet İstekleri</td>
+ <td class="p-3.5">Onayla / Reddet Butonu</td>
+ <td class="p-3.5">Solver motoru çalıştırılmadan önce</td>
+ <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-[11px]">Başteknisyen / Yönetici</span></td>
+ <td class="p-3.5 text-blue-600 dark:text-blue-400 font-semibold">Otomatik çizelge motoruna bağlayıcı kural olarak girer</td>
+ </tr>
+ <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+ <td class="p-3.5 font-bold text-slate-900 dark:text-white">Nöbet Planı Yayınlama</td>
+ <td class="p-3.5">Birim onaylı aylık taslak çizelgeyi resmi yürürlüğe sokmak</td>
+ <td class="p-3.5">Onay Paneli → Nöbet Planları</td>
+ <td class="p-3.5">Yayınla Butonu / Taslağa Geri Gönder Butonu</td>
+ <td class="p-3.5">Ay bitmeden ve nöbet başlamadan önce</td>
+ <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300 font-semibold text-[11px]">İdare / Başhekimlik / Admin</span></td>
+ <td class="p-3.5 text-emerald-600 dark:text-emerald-400 font-semibold">Plan "Yayında" olur, portalda tüm personele açılır</td>
+ </tr>
+ <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+ <td class="p-3.5 font-bold text-slate-900 dark:text-white">Veri Değişiklik Kıyaslama (Diff)</td>
+ <td class="p-3.5">4-göz ilkesiyle hatalı veya yetkisiz veri girişlerini engellemek</td>
+ <td class="p-3.5">Onay Paneli → Veri Değişiklikleri</td>
+ <td class="p-3.5">İncele ve Karar Ver Butonu (Diff Penceresi)</td>
+ <td class="p-3.5">Kritik profil/evrak/kart kaydedildiğinde</td>
+ <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-rose-100 dark:bg-rose-950 text-rose-800 dark:text-rose-300 font-semibold text-[11px]">Modül Sorumlusu / Yönetici</span></td>
+ <td class="p-3.5 text-emerald-600 dark:text-emerald-400 font-semibold">Eski-yeni farkı onaylanır, evrak KVKK kasasına aktarılır</td>
+ </tr>
+ <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+ <td class="p-3.5 font-bold text-slate-900 dark:text-white">Sağlık Muayene Teyidi</td>
+ <td class="p-3.5">İşe giriş ve periyodik muayene bulgularını hekimce doğrulamak</td>
+ <td class="p-3.5">Onay Paneli → Veri Değişiklikleri</td>
+ <td class="p-3.5">İncele Butonu → Hekim Doğrulama Formu</td>
+ <td class="p-3.5">Sağlık muayenesi talep kuyruğuna düştüğünde</td>
+ <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 font-semibold text-[11px]">RKS / İşyeri Hekimi</span></td>
+ <td class="p-3.5 text-rose-600 dark:text-rose-400 font-semibold">Hızlı onay engellenir; Dahiliye/Göz/Derm bulguları zorunludur</td>
+ </tr>
+ </tbody>
+ </table>
+ </div>
+ </section>
+
+ <!-- MİT AVCISI & KRİTİK KURALLAR -->
+ <section id="mit-avcilari" class="mb-12">
+ <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
+ <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+ <span class="w-2.5 h-6 rounded-full bg-rose-600"></span>
+ Mit Avcısı: Merkezi Onaylarda Yanlış Bilinen Doğrular
+ </h2>
+ <span class="text-xs font-mono text-slate-400">ONAY-MYTH-BUSTER</span>
+ </div>
+
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+ <div class="p-4 rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/40 dark:bg-rose-950/20">
+ <div class="flex items-center gap-2 text-rose-700 dark:text-rose-400 font-bold text-sm mb-1.5">
+ <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+ YANLIŞ (Mit):
+ </div>
+ <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ "Veri Değişiklikleri tablosunda 'Hızlı Onayla' butonuna basarak tüm talepleri, hekim muayeneleri dahil tek tıkla onaylayabilirim."
+ </p>
+ <div class="mt-3 pt-3 border-t border-rose-200/60 dark:border-rose-900/40 flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm">
+ <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+ DOĞRU (Mevzuat Standardı):
+ </div>
+ <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-1">
+ Sağlık muayenesi kayıtlarında sistem "Hızlı Onayla"yı güvenlik gereği bloklar ve zorunlu olarak uzman hekim inceleme formunu açar. Dahiliye, göz ve dermatoloji bulguları doğrulanmadan sağlık onayı verilemez.
+ </p>
+ </div>
+
+ <div class="p-4 rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/40 dark:bg-rose-950/20">
+ <div class="flex items-center gap-2 text-rose-700 dark:text-rose-400 font-bold text-sm mb-1.5">
+ <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+ YANLIŞ (Mit):
+ </div>
+ <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ "İzin veya nöbet devrini reddederken gerekçe yazmak isteğe bağlıdır; boş bırakıp geçebilirim."
+ </p>
+ <div class="mt-3 pt-3 border-t border-rose-200/60 dark:border-rose-900/40 flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm">
+ <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+ DOĞRU (Mevzuat Standardı):
+ </div>
+ <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-1">
+ Sistem tüm ret eylemlerinde zorunlu olarak metin girişi ister. Ret gerekçesi girilmeden ret işlemi tamamlanamaz ve bu gerekçe personelin web portalındaki bildirim paneline anında iletilir.
+ </p>
+ </div>
+
+ <div class="p-4 rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/40 dark:bg-rose-950/20">
+ <div class="flex items-center gap-2 text-rose-700 dark:text-rose-400 font-bold text-sm mb-1.5">
+ <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+ YANLIŞ (Mit):
+ </div>
+ <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ "Reddedilen bir talebi onay paneli üzerinden tekrar bulup onaylayabilirim."
+ </p>
+ <div class="mt-3 pt-3 border-t border-rose-200/60 dark:border-rose-900/40 flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm">
+ <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+ DOĞRU (Mevzuat Standardı):
+ </div>
+ <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-1">
+ Güvenlik ve denetim izi bütünlüğü gereğince bir talep reddedildiğinde işlem kalıcı olarak sonuçlanır ve arşivlenir. Gerekçe düzeltilerek personelin yeni bir başvuru yapması gerekir.
+ </p>
+ </div>
+
+ <div class="p-4 rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/40 dark:bg-rose-950/20">
+ <div class="flex items-center gap-2 text-rose-700 dark:text-rose-400 font-bold text-sm mb-1.5">
+ <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+ YANLIŞ (Mit):
+ </div>
+ <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ "Bir personelin başlattığı nöbet takası doğrudan amirin onay kuyruğuna düşer."
+ </p>
+ <div class="mt-3 pt-3 border-t border-rose-200/60 dark:border-rose-900/40 flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm">
+ <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+ DOĞRU (Mevzuat Standardı):
+ </div>
+ <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-1">
+ Nöbet takası karşılıklı rıza gerektirir. Devralacak personel kendi Web Portalı üzerinden "Kabul Ediyorum" onayını vermeden talep yöneticinin onay kuyruğuna düşmez.
+ </p>
+ </div>
+ </div>
+ </section>
+
+ <!-- SÜREÇ AKIŞI (MERMAID DIYAGRAMI) -->
+ <section id="surec-akisi" class="mb-12">
+ <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
+ <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+ <span class="w-2.5 h-6 rounded-full bg-cyan-600"></span>
+ Merkezi Onay Mekanizması Süreç Akışı
+ </h2>
+ <span class="text-xs font-mono text-slate-400">ONAY-WORKFLOW-DIAGRAM</span>
+ </div>
+
+ <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm overflow-x-auto">
+ <div class="mermaid text-center">
+graph TD
+ classDef portal fill:#f0fdf4,stroke:#16a34a,stroke-width:1.5px,color:#15803d;
+ classDef desktop fill:#eff6ff,stroke:#2563eb,stroke-width:1.5px,color:#1e40af;
+ classDef decision fill:#fffbeb,stroke:#d97706,stroke-width:1.5px,color:#b45309;
+ classDef vault fill:#fdf4ff,stroke:#a855f7,stroke-width:1.5px,color:#7e22ce;
+
+ A["Web Portal / Mobil Talep<br/>(İzin, Devir, İstek, Profil)"]:::portal --> B["Merkezi Onay Kuyruğu<br/>(Canlı Kategori Rozetleri)"]:::desktop
+ B --> C{"Talep Türü Nedir?"}:::decision
+ 
+ C -- "İzin Talebi" --> D["Birim Amiri Teyidi<br/>(Onayla / Zorunlu Ret)"]:::desktop
+ C -- "Nöbet Devri" --> E["Devralan Rızası (Portal)<br/>→ Amir Onay Formu"]:::desktop
+ C -- "Veri Değişikliği (Diff)" --> F["Diff Karşılaştırma<br/>(Kırmızı Eski / Yeşil Yeni)"]:::desktop
+ C -- "Nöbet Planı" --> G["Birim Onaylı Çizelge<br/>→ İdare Yayın Onayı"]:::desktop
+
+ F --> H{"Sağlık Muayenesi mi?"}:::decision
+ H -- "Evet" --> I["Uzman Hekim Doğrulama Formu<br/>(Göz/Dahiliye/Derm)"]:::desktop
+ H -- "Hayır" --> J["Hızlı Onayla veya Diff Kararı"]:::desktop
+
+ D --> K["Hedef Tablo Güncellemesi"]:::desktop
+ E --> K
+ G --> K
+ J --> K
+ I --> K
+
+ K --> L["KVKK Evrak Kasasına Aktarım<br/>(AES-256 Şifreli Arşiv)"]:::vault
+ L --> M["Portal İçi Anlık Bildirim<br/>(Kullanıcı Bilgilendirme)"]:::portal
+ </div>
+ </div>
+ </section>
+
+ <!-- MERKEZİ ONAY PANELİ DETAYI -->
+ <section id="onay-paneli" class="mb-12">
+ <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
+ <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+ <span class="w-2.5 h-6 rounded-full bg-cyan-600"></span>
+ Merkezi Onay Paneli: 5 Kategori Sekmesi & Rozet Yönetimi
+ </h2>
+ <span class="text-xs font-mono text-slate-400">ONAY-PANEL-SECTIONS</span>
+ </div>
+
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+ <div class="space-y-4">
+ <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
+ <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
+ 1. İzin Talepleri Sekmesi
+ </h3>
+ <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ Personelin başvurduğu yıllık, şua, sağlık ve mazeret izinleri listelenir. Tabloda personelin adı, birimi, izin türü, tarih aralığı, gün süresi ve talep tarihi görüntülenir.
+ </p>
+ <ul class="mt-3 text-xs space-y-1 text-slate-500 dark:text-slate-400">
+ <li>• <strong>Onayla Butonu:</strong> Onay teyidiyle izin onaylanır; personelin kalan yıllık veya şua izni bakiyesinden gün sayısı otomatik düşülür.</li>
+ <li>• <strong>Reddet Butonu:</strong> Açılan pencereden zorunlu ret gerekçesi alınır; başvuru iptal edilir ve gerekçe portala iletilir.</li>
+ </ul>
+ </div>
+
+ <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
+ <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+ 2. Nöbet Devirleri Sekmesi
+ </h3>
+ <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ Nöbet değişim ve becayiş başvuruları 3 aşamalı denetimden geçer. Devralan personelin web portalından onay vermediği talepler tabloda <span class="font-semibold text-amber-600">"Devralan Onayı Bekliyor (Portal)"</span> olarak listelenir.
+ </p>
+ <ul class="mt-3 text-xs space-y-1 text-slate-500 dark:text-slate-400">
+ <li>• <strong>İncele / Detay Butonu:</strong> Ayrıntılı devir diyaloğunu açarak devreden, devralan, nöbet tarihi, vardiya saatleri ve devir gerekçesini gösterir.</li>
+ <li>• <strong>Onaylama:</strong> Birim veya hizmet amiri onayladığında aktif nöbet çizelgesinde personellerin yer değişimi anında gerçekleşir.</li>
+ </ul>
+ </div>
+
+ <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
+ <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+ 3. Nöbet İstekleri Sekmesi
+ </h3>
+ <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ Personelin ay başlamadan önceki nöbet yazılmasın (mazeret), nöbet yazılsın, lisansüstü ders/eğitim günleri ve muafiyet tercihleri 1 ila 5 arası öncelik puanıyla listelenir. Onaylanan talepler Nöbet Hazırlık (Solver) motoruna doğrudan kısıt olarak beslenir.
+ </p>
+ </div>
+ </div>
+
+ <div class="space-y-4">
+ <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
+ <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+ 4. Nöbet Planları Sekmesi (İdari Yayın)
+ </h3>
+ <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ Birim amiri tarafından hazırlanıp "Birim Onaylı" statüsüne getirilmiş aylık nöbet planları yer alır.
+ </p>
+ <ul class="mt-3 text-xs space-y-1 text-slate-500 dark:text-slate-400">
+ <li>• <strong>Yayınla Butonu:</strong> Planı "Yayında" statüsüne çevirir; Web Portalda tüm klinik personeline görünür hale gelir.</li>
+ <li>• <strong>Taslağa Geri Gönder:</strong> İdare eksiklik veya kural ihlali gördüğünde zorunlu revizyon gerekçesi girerek planı tekrar "Taslak" moduna döndürür.</li>
+ </ul>
+ </div>
+
+ <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
+ <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+ 5. Veri Değişiklikleri Sekmesi (4-Göz Mekanizması)
+ </h3>
+ <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ Rol ayarlarında değişiklik onayı zorunlu kılınan kullanıcıların personel profili, yeni eklenen belgeler, eğitim/sertifikalar, önceki hizmet dökümleri, sağlık muayeneleri ve çalışma kısıtları başvuruları bu sekmede toplanır.
+ </p>
+ <ul class="mt-3 text-xs space-y-1 text-slate-500 dark:text-slate-400">
+ <li>• <strong>İncele ve Karar Ver:</strong> Değişiklik İnceleme (Diff) penceresini açar.</li>
+ <li>• <strong>Hızlı Onayla:</strong> Rutin veri girişlerini doğrudan veritabanına uygular (Sağlık muayeneleri hariç).</li>
+ <li>• <strong>Reddet:</strong> Zorunlu ret gerekçesi alınarak değişiklik iptal edilir.</li>
+ </ul>
+ </div>
+
+ <!-- Canlı Rozet Kuralı -->
+ <div class="p-4 rounded-xl bg-cyan-50/50 dark:bg-cyan-950/20 border border-cyan-200/80 dark:border-cyan-800/60 text-xs">
+ <span class="font-bold text-cyan-800 dark:text-cyan-300 block mb-1">Otomatik Canlı Rozet (Badge) Mantığı:</span>
+ Her sekmenin sağında bekleyen onay sayısını gösteren sayısal rozetler yer alır. İlgili kategorideki tüm talepler onaylandığında veya reddedildiğinde sayaç sıfırlanır ve rozet kullanıcıyı gereksiz meşgul etmemek adına otomatik gizlenir.
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- DIFF DIALOG: ESKİ / YENİ VERİ KARŞILAŞTIRMA -->
+ <section id="diff-dialog" class="mb-12">
+ <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
+ <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+ <span class="w-2.5 h-6 rounded-full bg-cyan-600"></span>
+ Değişiklik İnceleme (Diff Dialog): 4-Göz Kıyaslama Standardı
+ </h2>
+ <span class="text-xs font-mono text-slate-400">DIFF-VISUAL-STANDARD</span>
+ </div>
+
+ <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+ Kullanıcıların veya personelin yaptığı kayıt güncellemelerinde veri güvenliğini sağlamak için sistem otomatik olarak eski veriyi ve yeni talep edilen veriyi çözümler. İnceleme penceresinde teknik alan kodları gizlenerek alanlar Türkçe etiketlerle 3 sütunlu bir tabloda sunulur:
+ </p>
+
+ <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+ <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs font-mono">
+ <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+ <span class="font-bold text-slate-700 dark:text-slate-300 block mb-1">Sütun 1: Alan Adı (Türkçe)</span>
+ Örn: Telefon, E-Posta, İkamet Adresi, Kadro Tipi, Mezuniyet Tarihi, Çalışma Kısıtı
+ </div>
+ <div class="p-3 rounded-lg bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-rose-800 dark:text-rose-300">
+ <span class="font-bold block mb-1">Sütun 2: Eski Değer (Kırmızı Vurgulu)</span>
+ Veritabanında kayıtlı mevcut değer. Değişen satırlarda açık kırmızı arka planla gösterilir.
+ </div>
+ <div class="p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900 text-emerald-800 dark:text-emerald-300">
+ <span class="font-bold block mb-1">Sütun 3: Yeni Değer (Yeşil Vurgulu)</span>
+ Personel veya amir tarafından talep edilen yeni değer. Kalın yazı tipi ve yeşil renkle vurgulanır.
+ </div>
+ </div>
+
+ <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm">
+ <span class="font-bold text-slate-900 dark:text-white block mb-1">KVKK Şifreli Dosya Kasasına Otomatik Aktarım:</span>
+ Eğer değişiklik talebi personel belgesi, diploma, sertifika veya sağlık raporu gibi fiziksel bir dosya yüklemesi içeriyorsa, yönetici "Talebi Onayla" butonuna bastığı anda sistem dosyayı geçici yükleme dizininden alır, AES-256 Fernet algoritmasıyla şifreleyerek güvenli evrak kasasına aktarır. Veritabanı işlemi başarıyla tamamlandıktan sonra diskteki geçici dosya güvenli bir şekilde silinir.
+ </div>
+ </div>
+ </section>
+
+ <!-- HEDEFLİ EKRAN GÖRÜNTÜLERİ -->
+ <section id="ekran-goruntuleri" class="mb-12">
+ <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
+ <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+ <span class="w-2.5 h-6 rounded-full bg-cyan-600"></span>
+ Arayüz Rehberi & Ekran Görünümleri
+ </h2>
+ <span class="text-xs font-mono text-slate-400">UI-SCREENSHOTS</span>
+ </div>
+
+ <div class="space-y-8">
+ <!-- Görsel 1: Onay Merkezi -->
+ <figure class="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-white dark:bg-slate-900 shadow-sm">
+ <div class="p-3 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
+ <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
+ ️ Ekran Konumu: <strong class="text-slate-900 dark:text-white font-semibold">Yönetim > Onay Bekleyen Görevler</strong>
+ </span>
+ <span class="text-[10px] font-medium text-indigo-700 dark:text-indigo-300 bg-indigo-100/70 dark:bg-indigo-900/50 px-2 py-0.5 rounded border border-indigo-200 dark:border-indigo-800/60">Canlı Kategori Rozetleri & 4-Göz Diff</span>
+ </div>
+ <div class="p-4 flex items-center justify-center bg-slate-50/50 dark:bg-slate-950/50">
+ <img src="assets/img/modul21_onay_merkezi.png" alt="Merkezi Onay Bekleyen Görevler Paneli Ekranı"
+ class="rounded-xl border border-slate-200 dark:border-slate-800 shadow-md max-w-full h-auto object-cover"
+ onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'400\' viewBox=\'0 0 800 400\'><rect width=\'100%\' height=\'100%\' fill=\'%23f1f5f9\'/><text x=\'50%\' y=\'45%\' font-family=\'sans-serif\' font-size=\'16\' font-weight=\'bold\' fill=\'%230284c7\' text-anchor=\'middle\'>Merkezi Onay Bekleyen Görevler Paneli</text><text x=\'50%\' y=\'55%\' font-family=\'sans-serif\' font-size=\'13\' fill=\'%2364748b\' text-anchor=\'middle\'>Dosya: assets/img/modul21_onay_merkezi.png</text></svg>';">
+ </div>
+ <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
+ <svg class="w-3.5 h-3.5 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+ <span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki isimler, TCKN'ler ve kayıtlar tamamen test amaçlı sentetik veridir. Gerçek kişi ve kayıtlarla benzerlikler tesadüfidir.</span>
+ </figcaption>
+ </figure>
+ </div>
+ </section>
+
+ <!-- SIKÇA SORULAN SORULAR (SSS) -->
+ <section id="sss" class="mb-14">
+ <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
+ <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+ <span class="w-2.5 h-6 rounded-full bg-cyan-600"></span>
+ Sıkça Sorulan Sorular (SSS)
+ </h2>
+ <span class="text-xs font-mono text-slate-400">FAQ-SUPPORT</span>
+ </div>
+
+ <div class="space-y-3">
+ <details class="group rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 [&_summary::-webkit-details-marker]:hidden">
+ <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 dark:text-white text-sm sm:text-base">
+ <span>1. Bir personelin nöbet devir talebi onay panelinde neden görünmüyor?</span>
+ <span class="text-cyan-600 group-open:rotate-180 transition-transform">▼</span>
+ </summary>
+ <p class="mt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 border-l-2 border-cyan-500">
+ Nöbet takası karşılıklı rıza gerektirir. Devralacak personelin kendi Web Portalı üzerinden "Devir Almayı Kabul Ediyorum" onayını vermesi zorunludur. Devralan personel onay vermediği sürece talep yöneticinin onay kuyruğuna düşmez.
+ </p>
+ </details>
+
+ <details class="group rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 [&_summary::-webkit-details-marker]:hidden">
+ <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 dark:text-white text-sm sm:text-base">
+ <span>2. İzin onaylandığında nöbet çizelgesinde personelin nöbeti varsa ne olur?</span>
+ <span class="text-cyan-600 group-open:rotate-180 transition-transform">▼</span>
+ </summary>
+ <p class="mt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 border-l-2 border-cyan-500">
+ İzin onaylandığı anda sistem nöbet çizelgesindeki çakışmayı tespit eder; amir isterse Yönetici Aksiyon Sihirbazı üzerinden izne denk gelen nöbet için anında ikame personel atayabilir veya ilgili nöbeti düşürebilir.
+ </p>
+ </details>
+
+ <details class="group rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 [&_summary::-webkit-details-marker]:hidden">
+ <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 dark:text-white text-sm sm:text-base">
+ <span>3. Reddedilen bir izin veya nöbet talebini geri alıp tekrar onaylayabilir miyim?</span>
+ <span class="text-cyan-600 group-open:rotate-180 transition-transform">▼</span>
+ </summary>
+ <p class="mt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 border-l-2 border-cyan-500">
+ Hayır. Güvenlik ve denetim izi (Audit Log) bütünlüğü gereğince bir talep "Reddedildi" statüsüne geçtiğinde arşivlenir ve kilitlenir. Personelin web portalı üzerinden gerekçeyi düzelterek yeni bir talep oluşturması gerekir.
+ </p>
+ </details>
+
+ <details class="group rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 [&_summary::-webkit-details-marker]:hidden">
+ <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 dark:text-white text-sm sm:text-base">
+ <span>4. Sağlık muayenelerinde Hızlı Onay butonu neden çalışmıyor?</span>
+ <span class="text-cyan-600 group-open:rotate-180 transition-transform">▼</span>
+ </summary>
+ <p class="mt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 border-l-2 border-cyan-500">
+ 6331 sayılı İSG Kanunu ve NDK Radyasyon Güvenliği Mevzuatı uyarınca, sağlık muayene bulguları (göz, dahiliye, hemogram, dermatoloji) bir uzman hekim veya RKS tarafından incelenmeden onaylanamaz. Bu sebeple Hızlı Onay güvenlik amacıyla kilitlenmiştir.
+ </p>
+ </details>
+
+ <details class="group rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 [&_summary::-webkit-details-marker]:hidden">
+ <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 dark:text-white text-sm sm:text-base">
+ <span>5. Onay kuyruğunda çok fazla bekleyen talep birikirse sistem performansı etkilenir mi?</span>
+ <span class="text-cyan-600 group-open:rotate-180 transition-transform">▼</span>
+ </summary>
+ <p class="mt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 border-l-2 border-cyan-500">
+ Onay paneli her kategori için en son 500 beklemedeki talebi optimize edilmiş sorgularla çeker. Ancak personelin operasyonel mağduriyet yaşamaması adına geçmiş tarihe ait taleplerin amirler tarafından zamanında sonuçlandırılması kurumsal bir zorunluluktur.
+ </p>
+ </details>
+ </div>
+ </section>
+
+ <!-- PAGE FOOTER NAVIGATION -->
+ <div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs sm:text-sm font-semibold">
+ <a href="20_rke_koruyucu_ekipman_ve_din6857.html"
+ class="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-cyan-600 transition">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+ </svg>
+ 20. RKE & DIN 6857
+ </a>
+ <a href="22_web_portal_ve_dashboardlar.html"
+ class="flex items-center gap-2 text-cyan-600 hover:text-cyan-700 transition">
+ 22. Web Portal & Pano
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+ <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+ </svg>
+ </a>
+ </div>
+
+      <!-- FOOTER PREV / NEXT -->
+      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <a href="20_rke_koruyucu_ekipman_ve_din6857.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">← Önceki Doküman</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">20. Koruyucu Ekipman (RKE)</span>
+          </a>
+          <a href="22_web_portal_ve_dashboardlar.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition text-right group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">Sonraki Doküman →</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">22. Web Portal & Dashboard</span>
+          </a>
+        </div>
+      </footer>
+    </main>
+
+    <!-- RIGHT SIDEBAR: ON-PAGE TOC -->
+    <aside class="w-64 shrink-0 hidden xl:block py-8 pl-6 border-l border-slate-200 dark:border-slate-800">
+      <div class="sticky top-24 space-y-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-3">Bu Sayfada</span>
+        <nav class="space-y-2.5 text-sm" id="onPageToc">
+          <a href="#overview" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 transition">Genel Bakış</a>
+          <a href="#hizli-recete" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 transition">Kısa Reçete (4 Metrik)</a>
+          <a href="#5n1k-tablosu" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 transition">5N1K Kural Matrisi</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
+    <div class="max-w-[1720px] mx-auto px-6">
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi — Sağlık Bilgi Güvenliği & KVKK Standartları ile Korunmaktadır.</p>
+    </div>
+  </footer>
+
+  <!-- RADPYS Offline Search & App Engine -->
+  <script src="assets/search_index.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
