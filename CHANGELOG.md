@@ -3,6 +3,76 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.3.15] - 2026-10-09
+
+### 🛡️ Sistem Geneli Mimari Stabilizasyon, Tablo Seçim/Sıralama Senkronizasyonu (UserRole) ve QThread Çökme Emniyet Paketi
+
+Bu sürüm; sistemin tüm omurgasında (16 ana alan ve 21 modül) gerçekleştirilen kapsamlı mimari denetim, stabilizasyon ve sıfır sessiz arıza (Zero Silent Failure) operasyonunu içerir. Kullanıcı arayüzünde butonların tepkisiz kalmasına yol açan satır seçimi düşüşleri (`currentRow() == -1`), tablolarda sıralama yapıldığında görsel indis ile veri indisi uyuşmazlığından doğan yanlış kayıt güncelleme riski ve arka plan iş parçacıklarının pencere kapandığında C++ nesne silinmesiyle uygulamayı kapatması (`RuntimeError: libshiboken: Internal C++ object already deleted`) kökten çözülmüştür. 600'den fazla regresyon testi çalıştırılarak sistem %100 yeşil duruma getirilmiştir.
+
+#### 🐛 Giderilen Hatalar ve Stabilizasyon (Fixed & Hardened)
+
+- **"Butona Tıklandığında Hiçbir Şey Olmaması" (Silent Failure / Selection Drop) Çözümü:**
+  - `QTableWidget` bileşenlerinde `SelectRows` modundayken veya tablo odaklanmamışken `currentRow()` değerinin `-1` dönmesi sonucu butonların pasif kalması engellendi.
+  - `selectedRows()` geri çekilme mekanizması `users_controller.py`, `izin_list_controller.py`, `nobet_plan_list_controller.py`, `rke_yonetimi_controller.py`, `rke_muayene_listesi_controller.py`, `saglik_muayene_list_controller.py`, `onay_bekleyen_gorevler_controller.py`, `ortam_dozu_controller.py`, `lookup_controller.py` ve rapor sihirbazlarında standardize edildi.
+- **Tablo Sıralaması Esnasında Kayıt Desenkronizasyonu (Sort Desynchronization) Çözümü:**
+  - Tablolar kullanıcı tarafından başlığa tıklanarak sıralandığında `_rows[row]` erişiminin yanlış çalışanı veya kaydı getirmesi riski ortadan kaldırıldı.
+  - `izin_hakedis_controller.py`, `fiili_hizmet_dagilim_tab_controller.py`, `fiili_hizmet_rapor_tab_controller.py`, `cihaz_ariza_controller.py` ve `rapor_tasarim_dialog.py` bileşenlerinde ilgili veri nesnesi `item.setData(Qt.ItemDataRole.UserRole, record)` ile hücreye mühürlendi; veri okuması görsel indeksten değil doğrudan `UserRole` üzerinden yürütülmeye başlandı.
+- **QThread & C++ Nesne Silinmesi Çökme Koruması (`shiboken6.isValid`):**
+  - `PersonelListController` (`_PersonelDataLoaderWorker`) ve `NobetPlanDetayController` (`NobetSchedulerWorker`) pencerelerine `closeEvent` eklendi; pencere kapandığında arka plan iş parçacıklarının güvenle durdurulması (`quit()`, `wait(300)`), sinyallerin çözülmesi ve slotlarda `isValid(self)` denetimi yapılarak C++ ölü nesne çökmeleri kalıcı olarak engellendi.
+- **Merkezi Onay Bekleyen Görevler Paneli Kapsamlı Güçlendirme:**
+  - `OnayBekleyenGorevlerController` içinde yer alan İzin, Nöbet Devri, Nöbet İstekleri, Nöbet Plan Onayı, Veri Değişiklik Onayı ve RKE Muayene tablolarının tamamı merkezi `_get_table_row()` adaptörüne bağlandı.
+  - SQLite kalıntısı olan `datetime('now','localtime')` sorguları PostgreSQL standardı olan `CURRENT_TIMESTAMP` ifadesine dönüştürüldü.
+- **Ortam Dozu & Radyasyon Kalite Denetim Masası:**
+  - Ölçüm noktası QR etiket basımı, nokta düzenleme, nokta silme ve ölçüm kaydı silme işlemlerinde satır seçim fallback'i entegre edildi.
+- **Tüm Tanımlama (Lookup) Tabloları:**
+  - `lookup_controller.py` bünyesindeki 18 tablonun tamamı (Departmanlar, Unvanlar, İzin Türleri, Resmi Tatiller, Eğitim Türleri, Muayene Türleri, Eğitim Kategorileri, Cihaz Tanımları, RKE Tanımları vb.) `_get_table_row` ile emniyete alındı.
+- **Dashboard & Kokpit Postgres Tip Uyumu:**
+  - `olay_dashboard_service.py` ve `genel_bakis_dashboard_service.py` içinde PostgreSQL timestamp alanlarında `SUBSTR(olay_tarihi::text, 1, 7)` tür dönüşümü ve boş metin karşılaştırmaları düzeltildi.
+
+## [4.0.3.14] - 2026-10-08
+
+### 🔏 Word (.docx) Formatının Kaldırılması (PDF+Excel Standardı), Evrak Yaşam Döngüsü & Sessiz Arşivleme Mimarisi ve Onay Bekleyen Görevler Kokpiti Modernizasyonu
+
+Bu sürüm; kurumsal belge standartlarını korumak amacıyla Word (`.docx`) formatını raporlama merkezinden, sihirbazlardan ve arayüzlerden bütünüyle kaldırarak **Resmi Belge Standardı olarak PDF** ve **Tabüler Veri Analizi Standardı olarak Excel (XLSX)** disiplinini getirir. Ayrıca sisteme "Evrak Yaşam Döngüsü ve Sessiz Arşivleme" mimarisi kazandırılarak; oluşturulan imzasız taslakların ıslak/elektronik imzalı nüshaları yüklendiğinde eski taslağın silinmeyip sessizce arşive çekilmesi (`arsiv_taslak`, v1 -> v2) ve denetim izinin (audit trail) korunması sağlandı. Merkezi Onay Bekleyen Görevler Kokpiti modernleştirildi, Web Portal Bildirim Servisi entegre edildi ve 29 profesyonel yardım sayfası güncellendi.
+
+#### ✨ Eklendi & Zenginleştirildi (Added & Enriched)
+
+- **Word (.docx) Dikey Arındırma:**
+  - Raporlama Merkezi (`rapor_merkezi_page.ui`), kontrolör (`rapor_merkezi_controller.py`), Rapor Motoru (`report_engine.py`), rapor kataloğu (`report_registry.py`) ve rapor tasarım diyaloglarındaki tüm Word dışa aktarma buton ve seçenekleri kaldırıldı.
+  - Desteklenen formatlar kurumsal olarak sadece `pdf` ve `xlsx` olarak standardize edildi.
+  - Rapor ve tutanak testleri güncellendi (100% yeşil).
+- **Evrak Kasası Çekirdek Versiyonlama (DocumentServiceDB & stored_files):**
+  - `stored_files` tablosuna `parent_file_id`, `document_status` (`taslak`, `imzali`, `arsiv_taslak`, `aktif`) ve `version` (int) kolonları ve indeksleri eklendi (`V20261008_1_add_stored_files_versioning.py`).
+  - `store_signed_version(...)` metodu eklendi: İmzalı dosya yüklendiğinde eski taslak kalıcı silinmez; `document_status = 'arsiv_taslak'` yapılarak sessizce arşive çekilir, imzalı dosya v2 olarak kaydedilir ve denetim logunda (`files_audit`) `SUPERSEDED` eylemi izlenir.
+  - `get_document_history(...)` ile kök evraktan en son geçerli sürüme kadar tüm tarihçe zinciri raporlanabilir hale getirildi.
+- **RGS / RSO Görevlendirme Evrak Yaşam Döngüsü Entegrasyonu:**
+  - `rgs_gorevlendirmeler` tablosuna `taslak_stored_file_id` ve `imzali_stored_file_id` kolonları eklendi (`V20261008_2_add_rgs_stored_file_ids.py`).
+  - `generate_atama_yazisi_pdf`: FormReportLayout ile antetli, kurumsal resmi "RGS/RSO Görevlendirme ve Atama Yazısı" PDF taslağını oluşturur ve evrak kasasına kaydeder.
+  - `upload_signed_atama_yazisi`: Islak/elektronik imzalanmış nüshayı yükleyip v2 olarak günceller; taslağı arşive çeker.
+  - `get_gorevlendirme_belge_tarihcesi`: İlgili görevlendirmenin tüm evrak tarihçesini getirir.
+- **RGS / RSO Arayüz & Denetim Diyaloğu:**
+  - `rgs_gorevlendirme_page.ui` ve denetleyicisine *"Atama Yazısı Üret (PDF)"*, *"İmzalı Belge Yükle"*, *"Belgeyi Aç"* ve *"Belge Geçmişi"* butonları eklendi.
+  - Tablo sütununda `Belge Durumu` (`İmzalı`, `İmza Bekliyor`, `Ek Belge`, `Belge Yok`) rozetleri (RDS Badge) Tabler SVG ikonlarıyla dinamik çizildi.
+  - `RgsBelgeTarihceDialog` (`rgs_belge_tarihce_dialog.ui` & `.py`): Evrakın taslaktan imzalıya kadar tüm kronolojik sürümlerini, dosya boyutunu, kayıt tarihini, işlemi yapanı ve SHA-256 doğrulama özetini listeleyip, geçmiş sürümleri kasadan tek tıkla açabilme imkanı sunar.
+- **Merkezi Onay Bekleyen Görevler Kokpiti Modernizasyonu:**
+  - `onay_bekleyen_gorevler_page.ui` ve `onay_bekleyen_gorevler_controller.py`: Talep türü, öncelik ve tarih aralığı odaklı çok kriterli filtreleme mekanizması entegre edildi.
+  - Split-layout zenginleştirilmiş detay paneli: Seçili görevin kaynak bilgilerini, talep eden personel profilini, değişiklik farklarını (diff) ve onay geçmişini tek ekranda sunar.
+  - Tabler SVG ikonları ve RDS semantik durum rozetleri (`ColorTokens.SUCCESS`, `DANGER`, `WARNING`, `INFO`) ile görsel hiyerarşi güçlendirildi.
+- **Web Portal Bildirim Servisi & REST API:**
+  - `web_portal/src/services/notification.service.ts`: Gerçek zamanlı bildirim yönetimi, kullanıcı ve rol bazlı yönlendirme, okundu/okunmadı durum güncellemesi ve toplu temizleme servis altyapısı devreye alındı.
+  - `logger.middleware.ts`, `auth.routes.ts`, `nobet.routes.ts`, `notification.routes.ts`: Saha portalı API uçları zenginleştirildi, oturum ve denetim loglaması standardize edildi.
+- **29 Modül Yardım Portalı & Arama İndeksi:**
+  - `docs/help/*.html` sayfalarının tamamı `kılavuz_temp.html` altın standardına getirildi, TailwindCSS ve Mermaid render uyumluluğu sağlandı.
+  - `scripts/build_help.py` ile 362 maddelik `search_index.js` canlı derlendi.
+- **%100 Docstring Kapsam Güvencesi:**
+  - `scripts/find_missing_docstrings.py` denetimiyle 401 dosyada 6.030 öğenin tamamı (%100) eksiksiz docstring standardına kavuşturuldu.
+
+#### 🐛 Hata Düzeltmeleri (Fixed)
+
+- **Log Görüntüleyici RuntimeError Hatası:**
+  - `LogViewerController` üzerinde açılır kutudan (`logTypeCombo`) log türü değiştirildiğinde meydana gelen `Internal C++ object already deleted` RuntimeError hatası giderildi.
+  - `currentIndexChanged` yerine doğrudan seçilen metni parametre alan `currentTextChanged` sinyaline geçildi, `_current_log_type` önbelleği eklendi ve güvenli erişim için `findChild` ve try-except sarmalayıcıları devreye alındı.
+
 ## [4.0.3.12] - 2026-10-07
 
 ### 🔏 İki Aşamalı HEK & Tasfiye Süreci: Heyet Ön İnceleme Tutanağı ve EBYS İmzalı Üst Yazı Ekli Kalıcı Mühürleme

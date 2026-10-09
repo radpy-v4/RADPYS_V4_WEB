@@ -1,10 +1,10 @@
 {
-  "version": "4.0.3.4",
-  "release_version": "4.0.3.4",
-  "build_version": "4.0.3.12",
-  "latest_demo_version": "4.0.3.4",
-  "release_date": "2026-10-06",
+  "version": "4.0.3.15",
+  "release_version": "4.0.3.15",
+  "build_version": "4.0.3.15",
+  "latest_demo_version": "4.0.3.15",
+  "release_date": "2026-10-09",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.3.4: Kurumsal Sürüm Güncellemesi.",
+  "changelog": "RADPYS V4.0.3.15: Tüm Modüllerde Uçtan Uca Stabilizasyon, Satır Seçim ve Sıralama Senkronizasyonu (UserRole Mühürleme) ile QThread C++ Çökme Önleme Paketi.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }

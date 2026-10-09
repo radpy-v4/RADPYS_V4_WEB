@@ -406,12 +406,48 @@ flowchart TD
  <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">Eksiksiz</span></td>
  </tr>
  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
+ <td class="p-3.5 font-bold text-cyan-700 dark:text-cyan-400">[Atama Yazısı Üret (PDF)]</td>
+ <td class="p-3.5">Kurum antetli resmi RGS/RSO görevlendirme ve atama yazısı taslağı oluşturmak.</td>
+ <td class="p-3.5">Araç Çubuğu</td>
+ <td class="p-3.5 text-xs">Antetli resmi PDF taslağı üretir, evrak kasasına bağlar ve İmza Bekliyor rozeti atar</td>
+ <td class="p-3.5">Görevlendirme tanımlandığında</td>
+ <td class="p-3.5">RGS / Admin</td>
+ <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">Eksiksiz</span></td>
+ </tr>
+ <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
+ <td class="p-3.5 font-bold text-emerald-700 dark:text-emerald-400">[İmzalı Belge Yükle]</td>
+ <td class="p-3.5">Islak veya e-imzalı resmi atama belgesini sisteme yüklemek.</td>
+ <td class="p-3.5">Araç Çubuğu</td>
+ <td class="p-3.5 text-xs">İmzalı nüshayı v2 olarak kaydeder; eski taslağı silmeyip sessizce arşive aktarır</td>
+ <td class="p-3.5">İmzalar tamamlandığında</td>
+ <td class="p-3.5">RGS / Admin</td>
+ <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">Eksiksiz</span></td>
+ </tr>
+ <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
  <td class="p-3.5 font-bold text-cyan-700 dark:text-cyan-400">[Belgeyi Aç]</td>
  <td class="p-3.5">Atama yazısını veya NDK sertifikasını ekranda incelemek.</td>
  <td class="p-3.5">Araç Çubuğu</td>
- <td class="p-3.5 font-mono text-xs">AES-256 çözülür, geçici güvenli dosyada açılır</td>
+ <td class="p-3.5 text-xs">Şifreli kasadan hafızada çözerek işletim sistemi görüntüleyicisinde açar</td>
  <td class="p-3.5">Evrak kontrolünde</td>
  <td class="p-3.5">Tüm Yetkililer</td>
+ <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">Eksiksiz</span></td>
+ </tr>
+ <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
+ <td class="p-3.5 font-bold text-purple-700 dark:text-purple-400">[Belge Geçmişi]</td>
+ <td class="p-3.5">Evrakın taslaktan imzalıya kadar tüm kronolojik sürümlerini ve SHA-256 dijital mührünü görmek.</td>
+ <td class="p-3.5">Araç Çubuğu</td>
+ <td class="p-3.5 text-xs">Belge tarihçesi penceresini açar; arşivdeki eski taslağı veya imzalı evrakı tek tıkla açtırır</td>
+ <td class="p-3.5">Denetim ve teyit anında</td>
+ <td class="p-3.5">RGS / Denetçi / Admin</td>
+ <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">Eksiksiz</span></td>
+ </tr>
+ <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
+ <td class="p-3.5 font-bold text-slate-800 dark:text-slate-200">[Belge Durumu Rozeti]</td>
+ <td class="p-3.5">Evrakın yasal imza ve arşiv safhasını anlık takip etmek.</td>
+ <td class="p-3.5">Tablo Kolonu</td>
+ <td class="p-3.5 text-xs">İmzalı (Yeşil), İmza Bekliyor (Sarı), Ek Belge (Mavi), Belge Yok (Gri) rozetleri çizer</td>
+ <td class="p-3.5">Tablo listelendiğinde</td>
+ <td class="p-3.5">Tüm Kullanıcılar</td>
  <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">Eksiksiz</span></td>
  </tr>
  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">

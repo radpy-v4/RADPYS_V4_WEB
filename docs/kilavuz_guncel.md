@@ -1745,14 +1745,35 @@ Sistem arka planda her liste yüklemesinde ve gün başlangıcında güncel tari
 - **Süresi Doldu (Kırmızı):** Geçerlilik tarihi bugünden eski olan kayıtlar için üretilir. İlgili personelin NDK vizesi yenilenene kadar radyasyon alanındaki sorumlu imza yetkisinin askıya alınması gerekir.
 - **Süresiz / Tanımsız (Mavi / Nötr):** Süresiz sertifika tanımlarında veya geçerlilik tarihi girilmemiş kayıtlarda kullanılır.
 
-#### E. Şifreli KVKK Evrak Kasası (Atama Oluru / Sertifika Dosyası Açma)
+#### E. Evrak Yaşam Döngüsü: Atama Yazısı Üret (PDF), İmzalı Belge Yükleme ve Belge Geçmişi
 
-1. Görevlendirmeye eklenmiş olan resmi evrakı görüntülemek için tablodan ilgili satırı seçin.
-2. Üst araç çubuğundaki **[Belgeyi Aç]** butonuna tıklayın (tabloda Belge sütununda yeşil renkle "Var" ibaresi yer alır).
-3. **Güvenli Çözme Süreci:** Sistem, veritabanında AES-256 Fernet ile şifrelenmiş olan blob verisini hafızada çözer, geçici güvenli bir dosyaya yazar ve işletim sisteminizin varsayılan PDF/resim görüntüleyicisinde otomatik açar.
-4. Dosya açma işlemi tamamlandığında geçici dosya işletim sistemi seviyesinde güvenle yönetilir; kurumun KVKK gizlilik protokolü eksiksiz korunur.
+RADPYS V4.0.3.14 ile birlikte RGS görevlendirmeleri tam teşekküllü "Evrak Yaşam Döngüsü ve Sessiz Arşivleme" mimarisine kavuşturulmuştur:
 
-#### F. Görevlendirme Düzenleme, Silme ve Onay Kuyruğu İşleyişi
+1. **Atama Yazısı Üret (PDF) (`btnPdfUret`):**
+   - Tablodan ilgili görevlendirmeyi seçip araç çubuğundaki **[Atama Yazısı Üret (PDF)]** butonuna tıklayın.
+   - Sistem kurum anteti, başhekimlik onay metni, personel künyesi ve imza bloklarını içeren resmi "RGS/RSO Görevlendirme ve Atama Yazısı" taslak PDF'ini otomatik oluşturur ve KVKK evrak kasasına bağlar.
+   - Tablodaki belge rozeti sarı renkli **[İmza Bekliyor]** durumuna geçer.
+2. **İmzalı Belge Yükleme (`btnImzaliYukle`):**
+   - Başhekimlikçe ve ilgili personelce ıslak imza veya e-imza ile imzalanan resmi atama yazısını tarayarak sisteme yüklemek için görevlendirmeyi seçip **[İmzalı Belge Yükle]** butonuna tıklayın.
+   - Açılan dosya penceresinden imzalı PDF veya tarama görselini seçin.
+   - Sistem eski taslağı silmez; geriye dönük denetim izini korumak için taslak belgeyi sessizce arşive çeker (`arsiv_taslak`, v1 -> v2) ve imzalı yeni nüshayı birincil geçerli evrak olarak kaydeder.
+   - Tablodaki belge durumu yeşil renkli **[İmzalı]** rozetine dönüşür.
+3. **Belgeyi Aç (`btnBelgeAc`):**
+   - Görevlendirmeye eklenmiş olan güncel resmi evrakı (varsa imzalı nüshayı, yoksa taslağı) görüntülemek için tablodan satırı seçip **[Belgeyi Aç]** butonuna tıklayın. Belge şifreli kasadan açılarak ekranda görüntülenir.
+4. **Belge Geçmişi ve Sürüm Tarihçesi (`btnGecmis`):**
+   - Görevlendirmeyi seçip **[Belge Geçmişi]** butonuna tıkladığınızda **RGS Görevlendirme Belge Tarihçesi** (`RgsBelgeTarihceDialog`) penceresi açılır.
+   - Bu ekranda evrakın taslaktan imzalıya kadar tüm kronolojik sürümleri (v1, v2), dosya boyutu, yükleme tarihi, işlemi yapan kullanıcı ve **SHA-256 dijital güvenlik özeti** listelenir.
+   - Herhangi bir geçmiş sürüme çift tıklayarak veya **[Seçili Sürümü Aç]** butonuna basarak arşivdeki orijinal taslağı veya imzalı evrakı inceleyebilirsiniz.
+
+#### F. Belge Durumu Rozetleri ve Takip
+
+Tablonun **Belge Durumu** sütununda görevlendirmenin evrak durumu kurumsal RDS durum rozetleriyle özetlenir:
+- **İmzalı (Yeşil Rozet):** Islak/e-imzalı resmi atama belgesi sisteme yüklenmiş ve arşivlenmiştir.
+- **İmza Bekliyor (Sarı Rozet):** Sistem üzerinden resmi atama PDF taslağı üretilmiş, imza süreci devam etmektedir.
+- **Ek Belge (Mavi Rozet):** Doğrudan harici sertifika/yazı eklenmiş görevlendirmeleri belirtir.
+- **Belge Yok (Gri Rozet):** Henüz hiçbir atama yazısı veya sertifika dosyası yüklenmemiştir.
+
+#### G. Görevlendirme Düzenleme, Silme ve Onay Kuyruğu İşleyişi
 
 1. **Düzenleme:** Değişiklik yapmak istediğiniz satıra çift tıklayın veya satırı seçip **[Düzenle]** butonuna basın.
    - *Veri Bütünlüğü Kilidi:* Düzenleme formunda **Personel** seçimi bilerek kilitlenir (salt okunur). Atama başka bir personele devredilecekse eski kayıt pasife alınmalı ve yeni personel için sıfırdan kayıt açılmalıdır.
@@ -1761,7 +1782,7 @@ Sistem arka planda her liste yüklemesinde ve gün başlangıcında güncel tari
    - *Evrak Koruma Standardı:* Görevlendirme kaydı silinse dahi personelin KVKK evrak kasasındaki yüklenmiş sertifika dosyası (`personel_belgeler`) geçmiş denetim kanıtı ve yasal arşiv amacıyla veritabanında güvenle saklanmaya devam eder.
 3. **Onay Kuyruğu Entegrasyonu:** İşlemi yapan kullanıcının rolü onay gerektiriyorsa (`onay_gerektirir = 1`), ekleme, güncelleme veya silme işlemi doğrudan veritabanına yansımaz; otomatik olarak `ApprovalService` onay havuzuna yönlendirilir ve kullanıcıya bilgi mesajı verilir. Yetkili amir işlemi onayladığında kayıt devreye girer.
 
-#### G. CSV / Excel Dışa Aktarımı
+#### H. CSV / Excel Dışa Aktarımı
 
 1. Tabloda görüntülenen (veya filtrelenmiş olan) görevlendirme listesini dışa aktarmak için **[Dışa Aktar]** butonuna tıklayın.
 2. Açılan dosya kaydetme penceresinde kayıt yerini belirleyin (varsayılan ad: `RGS_RSO_Gorevlendirme_Listesi.csv`).
@@ -2021,6 +2042,8 @@ RADPYS Hizmet İçi Eğitim ve Online Sınav modülü, masaüstü kurumsal yöne
 | **[Nöbet Planları Sekmesi]** | Birim onaylı taslak aylık nöbet çizelgesini resmi yayına almak. | **[Yayınla]** ile doğrudan yürürlüğe sokulur; hata varsa zorunlu gerekçeyle **[Taslağa Geri Gönder]** yapılır. | Ay bitmeden ve nöbet başlamadan önce. | İdare / Başhekimlik / Admin. |
 | **[Veri Değişiklikleri (Diff)]** | 4-göz ilkesiyle hatalı veya yetkisiz profil ve evrak girişlerini denetlemek. | **[İncele ve Karar Ver]** ile 3 sütunlu Diff penceresi açılır (Eski Kırmızı / Yeni Yeşil); teyit edilerek onaylanır. | Kritik veriler güncellendiğinde. | Modül Sorumlusu / Yönetici. |
 | **[Sağlık Muayene Teyidi]** | İşe giriş ve periyodik muayene bulgularını hekimce doğrulamak. | Sağlık taleplerinde hızlı onay engellenir; doğrudan uzman hekim inceleme formu açılır. | Sağlık muayene talebi geldiğinde. | RKS / İşyeri Hekimi. |
+| **[Gelişmiş Filtreleme Çubuğu]** | Onay kuyruğundaki yüzlerce talebi tür, aciliyet ve tarihe göre süzmek. | Üst filtre çubuğundan **Talep Türü**, **Öncelik (Normal/Acil)** ve **Tarih Aralığı** seçilir; anında dinamik süzülür. | Yüksek hacimli talepleri yönetirken. | Tüm Onay Yetkilileri. |
+| **[Split-Layout Detay Paneli]** | Seçili görevin tüm detaylarını, diff karşılaştırmasını ve başvuran personel profilini tek ekranda izlemek. | Tablodan bir satır seçildiğinde sağ bölmede açılır; harici pencere açmadan hızlı önizleme ve onay sağlar. | Talep ayrıntılarını incelerken. | Tüm Onay Yetkilileri. |
 
 ---
 
@@ -2029,8 +2052,8 @@ RADPYS Hizmet İçi Eğitim ve Online Sınav modülü, masaüstü kurumsal yöne
 > ⚠️ **Saha Notu: Zorunlu Ret Gerekçesi Kuralı**  
 > Sistem tüm ret eylemlerinde yöneticiden zorunlu olarak açıklama ister. Gerekçe girilmeden ret işlemi tamamlanamaz ve bu açıklama personelin web portalındaki bildirim paneline anlık iletilir.
 
-> 💡 **Pratik İpucu: Otomatik Canlı Rozetler**  
-> Her sekmenin yanında bekleyen onay sayısını gösteren rozetler bulunur. Bir kategorideki tüm talepler sonuçlandırıldığında sayaç sıfırlanır ve rozet kullanıcıyı meşgul etmemek için otomatik gizlenir.
+> 💡 **Pratik İpucu: Çok Kriterli Filtreleme ve Split Ekran**  
+> Yeni nesil kokpit arayüzü sayesinde sayfa değiştirmeden sol taraftaki listeden seçim yapabilir, sağ taraftaki split panelde eski-yeni alan farklarını (diff) ve başvuru notlarını anında görebilirsiniz. Acil öncelikli talepler turuncu rozetlerle ön plana çıkarılır.
 
 > 🔒 **Güvenlik Standardı: Sağlık Muayenelerinde Hızlı Onay Yasağı**  
 > 6331 sayılı İSG Kanunu gereğince, sağlık muayene bulguları (göz, dahiliye, hemogram, dermatoloji) uzman hekim incelemesinden geçmeden tek tıkla onaylanamaz.
@@ -2042,17 +2065,16 @@ RADPYS Hizmet İçi Eğitim ve Online Sınav modülü, masaüstü kurumsal yöne
 #### A. İzin ve Nöbet Taleplerini Karara Bağlama
 
 1. Sol menüden **[Yönetim > Onay Bekleyen Görevler]** ekranını açın.
-2. Sol sekme listesinden **[İzin Talepleri]** veya **[Nöbet Devirleri]** sekmesine tıklayın.
-3. Listeden ilgili talebi seçin; ayrıntıları incelemek için **[İncele]** butonuna basın.
-4. Talep uygunsa **[Onayla]** butonuna basarak işlemi tamamlayın; izin bakiyesi anında güncellenir.
+2. Üst filtre alanından **[Talep Türü]**, **[Öncelik]** veya **[Tarih Aralığı]** kriterlerini belirleyerek listeyi daraltın.
+3. Listeden ilgili talebi seçin; sağ split detay panelinde personelin başvuru notu, talep tarihi ve etkilenecek gün sayısı anında açılır.
+4. Talep uygunsa **[Onayla]** butonuna basarak işlemi tamamlayın; izin bakiyesi ve çizelge anında güncellenir.
 5. Talep uygun değilse **[Reddet]** butonuna basın, açılan pencereye ret gerekçesini yazıp onaylayın.
 
 #### B. 4-Göz Veri Değişikliğini (Diff) İnceleme
 
 1. Onay panelinde **[Veri Değişiklikleri]** sekmesine geçin.
-2. İncelemek istediğiniz satırı seçip **[İncele ve Karar Ver]** butonuna tıklayın.
-3. Açılan Diff penceresinde sol sütundaki kırmızı eski değer ile sağ sütundaki yeşil yeni değeri karşılaştırın.
-4. Değişiklik uygunsa **[Talebi Onayla]** butonuna basın; yüklenen belgeler otomatik olarak KVKK şifreli kasaya aktarılır.
+2. İncelemek istediğiniz satırı seçin; sağ detay bölmesinde veya **[İncele ve Karar Ver]** penceresinde kırmızı eski değer ile yeşil yeni değeri karşılaştırın.
+3. Değişiklik uygunsa **[Talebi Onayla]** butonuna basın; yüklenen belgeler otomatik olarak KVKK şifreli kasaya aktarılır.
 
 ---
 
@@ -2120,7 +2142,7 @@ RADPYS Hizmet İçi Eğitim ve Online Sınav modülü, masaüstü kurumsal yöne
 
 - **Mevzuat & Standart:** Sağlık Bakanlığı SKS 6.1 Raporlama & Resmi Yazışma Standartları
 - **Tutanak Çıktı Standardı:** Yalnızca Resmi Antetli & Heyet İmzalı PDF (.pdf) (Keyfi metin değişikliğini önleyen tekil yasal çıktı)
-- **Rapor Formatları:** Excel (.xlsx), PDF (.pdf), Word (.docx), CSV (.csv)
+- **Rapor Formatları:** Resmi Belge Standardı PDF (.pdf), Tabüler Veri Analizi Excel (.xlsx) ve CSV (.csv) (Resmi belgelerin tahrif edilmesini önlemek amacıyla Word çıktısı tamamen kaldırılmıştır)
 - **Tutanak Heyet Mimarisi:** Otomatik Akıllı Komisyon Heyeti (Hekim/Başkan + Medikal Fizikçi/RKS + Raportör/Üye)
 - **İki Aşamalı HEK Süreci:** 1. Aşama Heyet Ön İnceleme Tutanağı ➔ 2. Aşama EBYS İmzalı Üst Yazı ile Kalıcı Mühürleme (SHA-256)
 - **Akıllı Sayfa Adaptasyonu:** ≤ 6 Sütun: Dikey A4 (Portrait) / > 6 Sütun: Yatay A4 (Landscape)
@@ -2132,14 +2154,14 @@ RADPYS Hizmet İçi Eğitim ve Online Sınav modülü, masaüstü kurumsal yöne
 
 | NE? (Ekran Kontrolü) | NEDEN? (Kullanım Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Hangi Durumda) | KİM? (Yetkili Kitle) |
 | --- | --- | --- | --- | --- |
-| **[Rapor Merkezi Kokpiti]** | Kurumun tüm modüllerine ait 26 resmi ve istatistiki raporu tek merkezden almak. | Sol menüden Rapor Merkezi seçilir. Kategori ve rapor seçildiğinde dinamik parametreler yüklenir; tek tıkla Excel, PDF veya Word çıktısı üretilir. | İdari, klinik ve teknik denetimlerde. | Tüm Yetkili Kullanıcılar. |
+| **[Rapor Merkezi Kokpiti]** | Kurumun tüm modüllerine ait 26 resmi ve istatistiki raporu tek merkezden almak. | Sol menüden Rapor Merkezi seçilir. Kategori ve rapor seçildiğinde dinamik parametreler yüklenir; tek tıkla resmi PDF veya analitik Excel çıktısı üretilir. | İdari, klinik ve teknik denetimlerde. | Tüm Yetkili Kullanıcılar. |
 | **[Evrensel Tutanak Sihirbazı]** | Hurdaya ayırma, devir veya muayene heyet kararlarını tek resmi antetli PDF belgesinde birleştirmek. | Sol menüdeki **[Tutanak Sihirbazı]** butonuna basılır veya envanter listelerinden donanımlar seçilip tutanak komutu verilir. Başlık, gerekçe, karar ve heyet üyeleri düzenlenerek tek tıkla resmi PDF üretilir. | Resmi komisyon kararlarında, muayene ve HEK işlemlerinde. | Birim Sorumlusu, RKS, Biyomedikal. |
 | **[Tek Resmi PDF Standardı]** | Tutanakların heyet imzasından geçecek resmi bir karar olması sebebiyle sonradan tahrif edilmesini önlemek. | Tutanak Sihirbazı'nda doğrudan **[Tutanak Oluştur / Yazdır]** butonuyla kilitli PDF üretilir; değiştirilebilir Word çıktısı güvenlik ve yasal denetim gereği kaldırılmıştır. | Tutanak tamamlandığında. | Komisyon Heyeti. |
 | **[Dinamik Değişken Butonları]** | Tutanak metnine günün tarihi, hastane adı veya ekipman adedini elle yazma hatasını bitirmek. | Metin alanlarının üstündeki `[+ {{ kurum_adi }}]`, `[+ {{ tarih }}]`, `[+ {{ adet }}]` butonlarına veya linklerine tıklandığında ilgili etiket imleç konumuna otomatik yerleşir. | Karar veya giriş metni yazılırken. | Tutanağı hazırlayan yetkili. |
 | **[Otomatik HEK Dosyası Açma]** | Hurdaya ayrılan ekipmanları yasal Ayniyat ve Taşınır sürecine bağlamak. | Tutanak başlığında "HEK" geçtiğinde sistem bunu sıradan bir döküm saymaz; otomatik olarak `HEK-YYYY-XXXX` süreç dosyası açar ve üretilen tutanağı şifreli evrak kasasına bağlar. | HEK tutanağı oluşturulduğu anda. | Otomatik Sistem / Yetkili. |
 | **[İki Aşamalı Mühürleme]** | Heyet ıslak imzası ve kurum EBYS yazısı olmadan kayıtların silinmesini veya karışmasını engellemek. | 1. Aşamada heyet inceleme tutanağı çıkarılıp imzalanır. 2. Aşamada ise imzalı taranmış evrak veya EBYS yazısı sisteme yüklenip onay verilerek SHA-256 dijital mührüyle dosya kalıcı dondurulur. | Ayniyat / Taşınır teslim safhasında. | Yönetici / Birim Amiri. |
 | **[Akıllı Komisyon Heyeti]** | Her tutanakta heyet üyelerini tek tek arayıp ekleme zahmetini sonlandırmak. | Sistemdeki aktif personeller taranarak en kıdemli hekim/mesul müdür "Komisyon Başkanı", medikal fizikçi "RKS", servis sorumlusu ise "Raportör" olarak tabloya otomatik dizilir. İstenirse yeni üye eklenebilir veya çıkarılabilir. | Tutanak sihirbazı açıldığında. | Otomatik Sistem. |
-| **[Rapor Tasarım Stüdyosu]** | Kurumun kendi özel raporlarını 22 veri kaynağı üzerinden görsel olarak tasarlamak. | Rapor Merkezi'nden **[Tasarla]** butonuna basılır. Alanlar, sütun genişlikleri, başlıklar, filtreler ve Word antet şablonları yapılandırılır. | Yeni kurumsal form ihtiyacında. | Sistem Yöneticisi (Admin). |
+| **[Rapor Tasarım Stüdyosu]** | Kurumun kendi özel raporlarını 22 veri kaynağı üzerinden görsel olarak tasarlamak. | Rapor Merkezi'nden **[Tasarla]** butonuna basılır. Alanlar, sütun genişlikleri, başlıklar, filtreler ve sayfa yerleşimleri yapılandırılır. | Yeni kurumsal form ihtiyacında. | Sistem Yöneticisi (Admin). |
 
 ---
 
@@ -2173,7 +2195,7 @@ RADPYS Hizmet İçi Eğitim ve Online Sınav modülü, masaüstü kurumsal yöne
 1. Sol menüden **[Rapor Merkezi]** sekmesini açın.
 2. Sol listeden ilgili kategoriyi (Örn: *Dozimetre*, *Personel*, *Cihaz*, *Sağlık*) ve rapor adını seçin.
 3. Sağ panelde açılan formdan **Departman**, **Dönem** veya **Tarih** aralıklarını belirleyin.
-4. Alt kısımdaki **[PDF İndir]**, **[Excel (.xlsx)]** veya **[Word (.docx)]** butonlarından dilediğinize tıklayarak resmi raporunuzu anında üretin.
+4. Alt kısımdaki **[PDF İndir]** veya **[Excel (.xlsx)]** butonlarından dilediğinize tıklayarak resmi raporunuzu anında üretin.
 
 #### C. Rapor Tasarım Stüdyosu ile Özel Rapor Tanımlama
 
