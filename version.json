@@ -1,10 +1,10 @@
 {
-  "version": "4.0.3.15",
+  "version": "4.0.3.26",
   "release_version": "4.0.3.15",
-  "build_version": "4.0.3.15",
-  "latest_demo_version": "4.0.3.15",
-  "release_date": "2026-10-09",
+  "build_version": "4.0.3.26",
+  "latest_demo_version": "4.0.3.26",
+  "release_date": "2026-10-10",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.3.15: Tüm Modüllerde Uçtan Uca Stabilizasyon, Satır Seçim ve Sıralama Senkronizasyonu (UserRole Mühürleme) ile QThread C++ Çökme Önleme Paketi.",
+  "changelog": "RADPYS V4.0.3.26: Mimari politika denetiminde (policy_checks.py) tespit edilen rapor_tasarim_dialog ve tutanak_sihirbazi_dialog imza/heyet tablolarındaki ham .strip().lower() kullanımları kurumsal turkish_lower fonksiyonu ile standardize edildi.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }

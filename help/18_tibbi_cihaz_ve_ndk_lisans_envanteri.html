@@ -546,6 +546,21 @@ flowchart TD
  <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 5: QR Etiket Basımı ve HEK Hurda Arşivi</strong>
  Tablodan cihazı seçip üstteki <strong>[QR Etiket]</strong> butonuyla etiket yazıcısına çıktı gönderin. Cihazın ekonomik ömrü bittiğinde ise <strong>[Sil / HEK]</strong> butonuyla arşive kaldırın; HEK Arşivi ekranından komisyonun imzalayacağı resmi Word (.docx) Hurda Tutanağını tek tıkla üretin.
  </div>
+
+ <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+ <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 6: NDK RSGD-KLV-014 ve KLV-014-EK Radyasyondan Korunma Programı (RKP) Başvuru Sihirbazı</strong>
+ Sol ana menüden veya araç çubuğundaki <strong>[NDK RKP Sihirbazı]</strong> butonuna tıklayın. Açılan 8 adımlı resmi sihirbaz üzerinden:
+ <ul class="mt-2 space-y-1.5 pl-4 text-xs sm:text-sm list-disc">
+   <li><strong>1. Kuruluş Bilgileri (KB.1) & Yasal Dayanaklar (KB.2):</strong> Kurum unvanı, adres, NDK lisans/başvuru numarası ve mevzuat dayanaklarını sistem ayarlarından tek tıkla yükleyin veya düzenleyin.</li>
+   <li><strong>2. RKS ve Birim Sorumluları (KB.3):</strong> Kurumda görevli resmi Radyasyondan Korunma Sorumlusu (RKS) ve klinik birim sorumlularının iletişim ve görev bilgilerini listeleyin.</li>
+   <li><strong>3. Radyasyon Görevlileri ve Sağlık/Dozimetre Durumu (KB.4):</strong> Canlı personel veritabanından radyasyon görevlileri, çalışma koşulları (Koşul A/B), aktif dozimetre türleri ve periyodik sağlık muayene onaylarını inceleyin.</li>
+   <li><strong>4. Tıbbi Radyoloji Cihaz Envanteri (KB.5):</strong> Aktif iyonlaştırıcı radyasyon kaynaklarının cinsi, kullanım şekli, marka/model, seri no, NDK no ve maksimum jeneratör teknik değerlerini (kV/mA) doğrulayın.</li>
+   <li><strong>5. Radyasyon Ölçüm Cihazları ve Kalibrasyon Belgeleri (KB.6):</strong> İyon odaları, alan ve kontaminasyon monitörlerinin kalibrasyon geçerlilik sürelerini kontrol edin.</li>
+   <li><strong>6. RKE Koruyucu Ekipman Matrisi (KB.7):</strong> DIN 6857-1 standartlarına uygun kurşun önlük, tiroid, gözlük, gonat ve paravanların oda/birim bazlı donanım matrisini canlı verilerle görüntüleyin.</li>
+   <li><strong>7. Kalite Dokümanları ve Hizmet İçi Eğitim Talimatları (T.1 - T.11):</strong> SKS 6.1 ve NDK RSGD-KLV-014 uyumlu 11 resmi talimatı (TL.RAD.01 - TL.RAD.11) inceleyin; Hizmet İçi Eğitim Modülü (LMS) ile senkronize edin.</li>
+   <li><strong>8. Resmi Başvuru Dosyası Üretimi ve Arşivleme:</strong> <strong>[Resmi Word (.docx) İndir]</strong> ve <strong>[Resmi PDF (.pdf) Üret]</strong> butonlarıyla NDK standartlarında yatay (Landscape) resmi RKP başvuru dosyasını üretin; <strong>[KVKK Evrak Kasasına Arşivle]</strong> butonuyla dosyayı AES-256 ile şifreleyerek güvenli arşive kaydedin. İşi bitirdiğinizde <strong>[Kapat]</strong> butonuyla ana ekrana güvenle dönün.</li>
+ </ul>
+ </div>
  </div>
  </section>
 
@@ -677,6 +692,17 @@ flowchart TD
  </summary>
  <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
  Cihaz Yönetimi araç çubuğundaki <strong>[Toplu QR Etiket İhracı]</strong> butonuna tıklayın veya tabloda belirli cihazları seçip sağ tıklayarak <em>"Toplu QR Etiket Paketi (.ZIP)"</em> seçeneğini çalıştırın. Sistem arka planda çalışan dışa aktarım motoruyla seçilen cihazlar için <strong>300 DPI (800x1050 px)</strong> matbaa kalitesinde PNG etiketler, profesyonel baskı merkezine doğrudan iletilebilecek malzeme şartnamesi (<strong>00_Baski_ve_Uretim_Rehberi.txt</strong>) ve tüm cihazların seri no/kod fihristini içeren <strong>00_Etiket_Listesi_Icmal.csv</strong> dosyasını tek bir <strong>.ZIP</strong> arşivi halinde kaydeder.
+ </p>
+ </details>
+
+ <!-- Soru 8: NDK RSGD-KLV-014 RKP Resmi Başvuru Dosyası Hazırlama -->
+ <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+ <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+ <span>NDK RSGD-KLV-014 Radyasyondan Korunma Programı (RKP) başvuru dosyası sistemden nasıl hazırlanır ve çıktısı nasıl alınır?</span>
+ <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+ </summary>
+ <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3">
+ Sol ana menüden <strong>NDK RKP Sihirbazı</strong> ekranını açın. Sistem kurum ayarlarını, aktif RKS sorumlularını, radyasyon görevlisi personelleri (dozimetre ve sağlık muayene durumlarıyla birlikte), tescilli tıbbi cihazları, kalibrasyonlu radyasyon ölçüm donanımlarını ve DIN 6857-1 uyumlu RKE donanım matrisini 8 adımlı başvuru akışında canlı veritabanından otomatik bir araya getirir. 7. Adımda yer alan T.1 - T.11 talimatları SKS 6.1 'Kalite Dokümanları' kategorisi ile çift yönlü senkronizedir. Son adımda <strong>[Resmi Word (.docx) İndir]</strong> veya <strong>[Resmi PDF (.pdf) Üret]</strong> butonlarına basarak NDK resmi başvuru kılavuzuyla birebir uyumlu yatay belgeyi indirebilir; <strong>[KVKK Evrak Kasasına Arşivle]</strong> ile dosyayı şifreli kasaya kaydedebilirsiniz.
  </p>
  </details>
  </div>

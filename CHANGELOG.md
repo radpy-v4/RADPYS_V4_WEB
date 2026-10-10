@@ -3,6 +3,146 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.3.26] - 2026-10-10
+
+### 🇹🇷 Mimari Politika Denetimi ve Türkçe Karakter Normalizasyon Standardizasyonu
+
+Bu sürüm; `scripts/policy_checks.py` mimari politika denetleyicisinde tespit edilen Türkçe büyük/küçük harf (`I-ı`, `İ-i`) duyarsızlığına yol açan ham normalizasyon ihlallerini giderir.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **Rapor Tasarımcısı İmza Tablosu Normalizasyonu:**
+  - `ui/controllers/reporting/rapor_tasarim_dialog.py` içerisindeki imza heyeti mükerrerlik ve unvan denetimleri ham `.strip().lower()` yerine kurumsal `turkish_lower()` fonksiyonuna dönüştürüldü.
+- **Tutanak ve Komisyon Karar Sihirbazı Heyet Normalizasyonu:**
+  - `ui/controllers/reporting/tutanak_sihirbazi_dialog.py` içerisindeki komisyon üyeleri ekleme ve görev eşleme mantığı `turkish_lower()` ile standartlaştırıldı.
+- **Politika Denetimi Uyum:**
+  - `scripts/policy_checks.py` denetimi sıfır ihlal ile başarıyla doğrulanabilir hale getirildi.
+
+## [4.0.3.25] - 2026-10-10
+
+### 🛡️ NDK RKP Sihirbazı Kapatma Akışı ve MDI Alt Pencere Güvenliği
+
+Bu sürüm; NDK RSGD-KLV-014 RKP Hazırlama Sihirbazı'nda yer alan "Kapat" (`btnClose`) butonuna tıklandığında QMdiSubWindow'un kapatılmak yerine sadece iç widget'ın gizlenmesi (`self.close()`) nedeniyle ekranda çerçevesiz boş/karanlık sayfa kalması sorununu çözer.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **NDK RKP Sihirbazı Kapatma Butonu Entegrasyonu:**
+  - `NdkRkpWizardController` içerisindeki `self.btnClose` butonu `self.close()` yerine merkezi `close_subwindow(self)` yardımcı fonksiyonuna bağlandı.
+  - `btnClose` butonuna RDS tasarım belirteçlerine uygun olarak `variant="secondary"` ve `x.svg` ikonu atandı.
+- **MDI Boş Sayfa Emniyet Kilidi (closeEvent):**
+  - `NdkRkpWizardController` sınıfına `closeEvent` eklendi; widget herhangi bir sebeple doğrudan kapatıldığında bağlı olduğu `QMdiSubWindow`'un da kapatılması garanti altına alındı.
+- **Merkezi MDI Alanı Kapatma Taraması (`custom_add_subwindow`):**
+  - `AppController.custom_add_subwindow` fonksiyonu `btnScreenClose` butonlarının yanı sıra `btnClose` ve `btnKapat` nesne adlarına sahip tüm kapatma butonlarını yakalayacak şekilde genişletildi.
+  - `_get_live_subwindow` metoduna `subwindow.isVisible()` denetimi eklenerek kapatılmış veya gizlenmiş pencerelerin canlı zannedilip boş getirilmesi engellendi.
+
+## [4.0.3.19] - 2026-10-10
+
+### 🏥 NDK RSGD-KLV-014 RKP Talimatlarının Hizmet İçi Eğitim 'Kalite Dokümanları' (SKS 6.1) Tam Entegrasyonu
+
+Bu sürüm; NDK RSGD-KLV-014 kapsamındaki T.1 - T.11 resmi talimatlarını Hizmet İçi Eğitim Modülü altındaki 'Kalite Dokümanları' kategorisi ile çift yönlü olarak entegre eder. Bu sayede dokümanlar hem Sağlık Bakanlığı Sağlıkta Kalite Standartları (SKS v6.1) kapsamında kurum kalite dokümanı ve zorunlu personel eğitimi olarak yürütülür, hem de resmi RKP başvuru dosyasında NDK ve SKS denetim iziyle tam uyumlu ibraz edilir.
+
+#### 🚀 Yapılan Geliştirmeler ve Entegrasyonlar (Added & Enhanced)
+
+- **Hizmet İçi Eğitim Kataloğunda 'Kalite Dokümanları' Standardizasyonu:**
+  - `egitim_kategorileri` tablosundaki `KALITE` kodlu kategori 'Kalite Dokümanları' olarak güncellendi.
+  - `egitim_katalogu` tablosundaki T.1 - T.11 talimatları bu kategori altına bağlandı ve personellere yıllık (12 ay geçerlilik) zorunlu eğitim (`zorunlu = 1`, `materyal_tipi = 'dokuman'`) olarak tanımlandı.
+- **Kurumsal Kalite Doküman Kodları ve Standart Referansları:**
+  - Her talimata kurumsal SKS kalite doküman kodu ve standart referansı atandı:
+    - **T.1:** `TL.RAD.01` (Tıbbi Radyoloji Cihazlarının Güvenli Kullanım Talimatı - SKS 6.1 / NDK KLV-014)
+    - **T.2:** `TL.RAD.02` (Radyasyon Görevlilerinin Korunma Talimatı - SKS SRG11.04)
+    - **T.3:** `TL.RAD.03` (Hastaların Korunması Talimatı - SKS Hasta Güvenliği)
+    - **T.4:** `TL.RAD.04` (Alan Sınırlandırma ve Giriş-Çıkış Kontrol Talimatı - SKS Alan Güvenliği)
+    - **T.5:** `TL.RAD.05` (Koruyucu Donanım Kullanım ve Periyodik Muayene Talimatı - DIN 6857-1 / SKS 6.1)
+    - **T.6:** `TL.RAD.06` (Radyasyon Ölçüm / Ortam Dozu İzleme Talimatı - SKS Ortam Dozu)
+    - **T.7:** `TL.RAD.07` (Görevli Sınıflandırma ve Dozimetri Takip Talimatı - SKS Dozimetri Takip)
+    - **T.8:** `TL.RAD.08` (Tıbbi Gözetim ve Periyodik Muayene Talimatı - SKS Periyodik Muayene)
+    - **T.9:** `TL.RAD.09` (Cihaz Kalite Temini, Kabul Testleri ve Bakım-Onarım Talimatı - SKS Tıbbi Cihaz QA/QC)
+    - **T.10:** `TL.RAD.10` (Acil Durum ve Kaza Işınlanmaları Talimatı - SKS Olay Bildirim & DÖF)
+    - **T.11:** `TL.RAD.11` (Hizmet İçi Eğitim Talimatı - SKS Eğitim 2.1)
+- **Resmi RKP Belgesi (Word & PDF) II. Bölüm Zenginleştirmesi:**
+  - RKP form çıktısında her talimatın altında kurumsal kalite doküman kodu, 'Kalite Dokümanları' kategorisi, SKS referansı ve sistemde yürürlükte olduğu resmi olarak belgelendi.
+  - II. Bölüm sonuna Sağlıkta Kalite Standartları (SKS v6.1) ve NDK RSGD-KLV-014 resmi uyum dipnotu eklendi.
+- **Sihirbaz Adım 7 (Talimatlar) Canlı Senkronizasyon:**
+  - `NdkRkpWizardController` adımında seçilen her talimatın SKS doküman kodu, Kalite Dokümanları kategorisi ve Hizmet İçi Eğitim Modülü (LMS) senkronizasyon durumu anlık olarak gösterildi.
+- **Veritabanı Migrasyonu:**
+  - `app/db/migrations/V20261010_1_add_kalite_dokumanlari_to_egitim_katalogu.py` migrasyonu eklendi ve başarıyla uygulandı.
+
+## [4.0.3.18] - 2026-10-10
+
+### 📋 NDK RSGD-KLV-014 ve KLV-014-EK Resmi RKP Belge Motoru Eksiksiz Tamamlama (PDF / Word)
+
+Bu sürüm; üretilen resmi NDK RKP belgesinde eksik kalan tüm KB bölümlerini (özellikle KB.4, KB.6, KB.7) ve resmi NDK KLV-014-EK 5 sayfalık başvuru kılavuzu formatındaki tüm tablo kolonlarını, resmi dipnotları ve yatay (Landscape) mizanpajı eksiksiz olarak PDF ve Word motorlarına entegre eder.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **Resmi Yatay A4 (Landscape) Mizanpaja Geçiş:**
+  - Orijinal NDK KLV-014-EK kılavuz formatı (`landscape(A4)`) gereği 13 kolonlu cihaz ve donanım tablolarının sütun kayması olmadan tam yerleşebilmesi için PDF ve DOCX motorları standart yatay A4 (842 x 595 pt) düzenine geçirildi.
+- **Eksik Kalan Tüm Kuruluş Bilgileri (KB.1 - KB.8) Tabloları Entegre Edildi:**
+  - **KB.1:** Lisans sahibi unvan, merkez adres, uygulama yeri, ilçe, şehir, telefon, faks, e-posta.
+  - **KB.2:** Kuruluş yetkilisi (Mesul Müdür / Başhekim) adı, TC kimliği, görevi, dahili telefon, faks, cep telefonu ve imza alanı.
+  - **KB.3:** Radyasyondan Korunma Sorumluları (RKS) resmi tablosu (No, Adı Soyadı, TC Kimlik No, Diplomasında belirtilen mesleği, Sertifika No, Sorumlu Birim, Telefon, Cep Telefonu, Dozimetre Tipi ve Bölgesi, İmza).
+  - **KB.4 (Eksikliği Giderildi):** Radyasyon görevlileri çalışan listesi tablosu (No, Çalıştığı Birim, Adı Soyadı, TC Kimlik No, Mesleği, Çalışma Koşulu A/B, Sağlık Raporu Var/Yok, Dozimetre Tipi ve Vücut Bölgesi).
+  - **KB.5:** Tıbbi radyoloji cihazları envanteri tablosu (No, Son Durumu, Cinsi, Kullanım Şekli Sabit/Mobil, Markası, Modeli, Seri No / NDK No, Kullanım Amacı Grafi/Skopi, Bulunduğu Yer, Satın/Devir Kuruluşu, Maks kV ve mA, Denetimli Alan, Gözetimli Alan).
+  - **KB.6 (Eksikliği Giderildi):** Radyasyon ölçüm cihazları (Survey Metre) tablosu (No, Cinsi, Markası, Modeli, Seri No, Ölçüm Aralığı, Kalibrasyon Geçerlilik Tarihi).
+  - **KB.7 (Eksikliği Giderildi):** Aktif (anlık okuma yapan) kişisel dozimetre cihazları (EPD) tablosu (No, Cinsi, Markası, Modeli, Seri No, Ölçüm Aralığı, Kalibrasyon Geçerlilik Tarihi).
+  - **KB.8 (Tam Kapsamlı 13 Kolonlu Matris):** Cihaz modaliteleri bazında Kişisel Koruyucu Donanım (RKE) ve Güvenlik Sistemleri matrisi (Uygulama/Modalite, Kurşun Önlük*, Gonad Koruyucu**, Tiroid Koruyucu, Kurşun Gözlük, Kurşun Eldiven, Gözetleme Penceresi/Kamera, Yatak Altı Pb Levha***, Statif Arkası Pb Levha***, Hareketli Paravan, Kapı Kilidi, Uzatma Kablosu, Saçak/Kabin) ve resmi 3 dipnot (*, **, ***).
+- **II. Bölüm (T.1 - T.11) ve III. Bölüm (Resmi Onay ve İmza Heyeti):**
+  - T.1'den T.11'e kadar tüm talimat maddeleri ve Hazırlayan (RKS) / Onaylayan (Kuruluş Mesul Müdürü / Başhekim) resmi imza bloğu korundu.
+- **Sihirbaz Tablo Arayüzü Eşitlemesi:**
+  - `NdkRkpWizardController` arayüzündeki `tableRkeMatrisi` 13 kolona çıkartıldı, `tableAktifDozimetreler` canlı veri setiyle senkronize edildi.
+
+## [4.0.3.17] - 2026-10-10
+
+### 🧙‍♂️ Kalite & Gelişim: NDK KLV-014 RKP Hazırlama Sihirbazı (Wizard) ve Hizmet İçi Eğitim (LMS) Çift Yönlü Talimat Entegrasyonu
+
+Bu sürüm; NDK RSGD-KLV-014 ve KLV-014-EK Tıbbi Radyoloji Radyasyondan Korunma Programı (RKP) başvuru dosyasının kullanıcı dostu 8 adımlı bir sihirbaz (Wizard) üzerinden adım adım incelenmesini, KB.1 ve KB.2 alanlarının manuel giriş ve kurum ayarlarıyla düzenlenmesini, KB.3'ten KB.8'e kadar tüm verilerin canlı veritabanından çekilmesini ve T.1 - T.11 talimatlarının **Hizmet İçi Eğitim Modülü (Modül 17)** ile çift yönlü senkronize edilmesini sağlar.
+
+#### 🚀 Yeni Yetenekler ve İyileştirmeler (Added & Enhanced)
+
+- **Kalite & Gelişim Menüsüne "NDK RKP Sihirbazı" Başlığı Eklendi:**
+  - `app_window.ui` üzerinde Kalite & Gelişim bölümüne `btnNdkRkpWizard` butonu ve flyout menü entegrasyonu eklendi.
+  - `AppController.open_ndk_rkp_wizard_page()` yönlendirmesiyle MDI alt penceresi olarak sihirbaz açılması sağlandı.
+- **8 Adımlı Modern RKP Sihirbaz Sayfası (`ui/pages/kalite/ndk_rkp_wizard_page.ui`):**
+  - **Adım 1 (KB.1 & KB.2):** Lisans sahibi kuruluş ve imza yetkilisi bilgileri için kullanıcıya özel manuel giriş ve düzenleme formu sunuldu; *"Kurum Ayarlarından Doldur"* butonu ve *"Girilen bilgileri program ayarlarına da kalıcı kaydet"* opsiyonu eklendi.
+  - **Adım 2 (KB.3):** Radyasyondan Korunma Sorumluları (RKS) canlı tablosu ve listeyi anlık yenileme butonu.
+  - **Adım 3 (KB.4):** Aktif radyasyon görevlileri tablosu (çalışma koşulu A/B, sağlık raporu, dozimetre tipi) ve canlı personel arama kutusu.
+  - **Adım 4 (KB.5):** Tıbbi radyoloji cihazları envanteri, oda/kat konumu, maks kV/mA ve canlı cihaz filtreleme.
+  - **Adım 5 (KB.6 & KB.7):** Survey metre ölçüm cihazları ve aktif kişisel dozimetreler tablosu.
+  - **Adım 6 (KB.8):** Cihaz modaliteleri bazında Kişisel Koruyucu Donanım (RKE) matrisi (kurşun önlük, tiroid, gonad, gözlük, paravan, kapı kilidi).
+  - **Adım 7 (T.1 - T.11):** NDK RSGD-KLV-014 standartlarındaki 11 zorunlu talimatın canlı metin editörü; talimat kaynağı göstergesi (*Hizmet İçi Eğitim Modülü* / *NDK Standart Tohumu*), *"Varsayılan NDK Metnine Sıfırla"* ve *"Hizmet İçi Eğitim Modülüne Güncelle"* butonları.
+  - **Adım 8 (Belge Üretimi & Onay):** RKP hazırlık özet kartları (kuruluş, RKS, çalışan, cihaz, talimat durumu), tanzim tarihi ve revizyon no seçimi ile tek tıkla **Word (.docx)** ve **PDF (.pdf)** resmi başvuru dosyası üretme ve KVKK Şifreli Evrak Kasasına arşivleme.
+- **Hizmet İçi Eğitim Modülü (LMS) ve Tohum Veri Entegrasyonu:**
+  - `app/db/seeds.sql` içerisine NDK RSGD-KLV-014 kapsamındaki T.1'den T.11'e kadar tüm resmi talimatlar `egitim_katalogu` ve `egitim_kategorileri` tohumları olarak işlendi (`kategori = 'NDK KLV-014 RKP Talimatları'`).
+  - `Klv014RkpService` servisi yazılarak sihirbazda talimat güncellendiğinde değişikliğin anında Hizmet İçi Eğitim Kataloğuna yansıması (ve tersi) sağlandı.
+- **Kapsamlı Test ve Doğrulama:**
+  - `tests/test_ndk_rkp_wizard.py` test paketiyle sihirbaz veri derleme, ayar saklama, LMS senkronizasyonu, Word/PDF üretimi ve UI navigasyon akışı %100 doğrulandı.
+
+## [4.0.3.16] - 2026-10-10
+
+### 🏛️ NDK RSGD-KLV-014 ve KLV-014-EK Tıbbi Radyoloji Radyasyondan Korunma Programı (RKP) Otomatik Doküman Motoru (.docx / .pdf)
+
+Bu sürüm; Nükleer Düzenleme Kurumu (NDK) lisans başvurularında ve rutin denetimlerinde sağlık kuruluşlarınca tanzimi yasal olarak zorunlu olan **RSGD-KLV-014** ve **KLV-014-EK** (*Tıbbi Radyoloji Uygulamalarında Radyasyondan Korunma Programı*) resmi başvuru dosyasının ve talimat kitapçığının canlı veritabanı kayıtlarından tek tıkla otomatik olarak Word (`.docx`) ve PDF formatlarında üretilmesini sağlar.
+
+#### 🚀 Yeni Yetenekler ve İyileştirmeler (Added & Enhanced)
+
+- **Resmi NDK KLV-014-EK Form Motoru (`app/services/reporting/official_forms/klv014_rkp_form.py`):**
+  - **KB.1 & KB.2 (Kuruluş ve Yetkili Bilgileri):** Ana kuruluş unvanı, adresi, mesul müdür ve başhekim bilgileri `program_ayarlari` üzerinden dinamik harmanlanır.
+  - **KB.3 (Radyasyondan Korunma Sorumluları):** Modül 16'daki (`rgs_gorevlendirmeler`) resmi RKS/RSO atamaları, diploma mesleği, T.C. kimlik, sorumlu birim ve dozimetre tipiyle listelenir.
+  - **KB.4 (Radyasyon Görevlileri Tablosu):** Modül 05 (Personel), Modül 12 (Dozimetre) ve Modül 13 (Sağlık Muayeneleri) çapraz sorgulanarak çalışma koşulu (A/B), sağlık raporu ve dozimetre tipi tek tabloda tanzim edilir.
+  - **KB.5 (Tıbbi Radyoloji Cihazları Tablosu):** Cinsi, kullanım şekli (sabit/mobil), marka, model, seri no, oda/kat, maksimum kV ve mA değerleri ile denetimli/gözetimli alan sınırları otomatik derlenir.
+  - **KB.6 & KB.7 (Radyasyon Ölçüm Cihazları):** Modül 14'teki survey metre ve alan monitörlerinin marka, model, seri no, ölçüm aralığı ve kalibrasyon geçerlilik tarihleri eklenir.
+  - **KB.8 (Koruyucu Donanım Matrisi):** Modül 20'deki RKE envanteri taranarak cihaz türleri bazında Kurşun Önlük, Tiroid, Gonad, Kurşun Gözlük, Hareketli Paravan ve Saçak sayıları resmi NDK matrisinde birleştirilir.
+- **KLV-014 II. Bölüm Talimat Kitapçığı (T.1 - T.11):**
+  - NDK RSGD-KLV-014 rehberindeki 11 zorunlu talimat (Cihaz güvenli kullanımı, çalışan ve hasta korunması, alan sınırlandırma, RKE kullanımı, ortam dozu ölçümü, dozimetri ve 2.0 mSv eşik aşımı, tıbbi gözetim, cihaz QA/QC, acil durum/kaza yönetimi ve hizmet içi eğitim) resmi mevzuat metinleriyle eksiksiz olarak evraka gömülür.
+- **III. Bölüm Yürürlük ve Resmi İmza Heyeti:**
+  - RKS ve Kurum Mesul Müdürü / Başhekim resmi onay, mühür ve imza blokları otomatik oluşturulur.
+- **ExportService & Rapor Merkezi Entegrasyonu:**
+  - `ExportService.export_klv014_rkp()` metodu eklenerek tüm arka plan servislerine sunuldu.
+  - `REPORT_REGISTRY` içerisine `ndk_klv014_rkp` rapor kodu tescil edildi.
+  - **Cihaz Yönetimi Ekranı (`cihaz_yonetimi_controller.py`):** `btnNdkCizelge` butonuna menü desteği kazandırılarak *"NDK KLV-014 RKP Belgesi Üret (.docx / .pdf)"* seçeneği eklendi.
+- **Kapsamlı Test Kapsamı:**
+  - `tests/test_klv014_rkp_form.py` test paketiyle veri toplama, Word render, PDF render ve ExportService akışı %100 doğrulandı.
+
 ## [4.0.3.15] - 2026-10-09
 
 ### 🛡️ Sistem Geneli Mimari Stabilizasyon, Tablo Seçim/Sıralama Senkronizasyonu (UserRole) ve QThread Çökme Emniyet Paketi
