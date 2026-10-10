@@ -35,7 +35,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.2</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.3</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Bilgi Portalı</span>
           </div>
@@ -61,7 +61,11 @@
       </div>
 
       <!-- Action Buttons -->
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2.5">
+        <a href="../index.html" data-radpys-back-btn="true" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800/90 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700/80 transition shadow-sm hover:text-cyan-600 dark:hover:text-cyan-400 group" title="RADPYS Ana Sitesine Geri Dön (radpys.com.tr)">
+          <svg class="w-4 h-4 text-slate-400 group-hover:text-cyan-500 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          <span>Ana Siteye Dön</span>
+        </a>
 
         <a href="01_kurulum_ve_ilk_giris.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-700 text-white shadow-md shadow-cyan-600/25 transition">
           <span>İlk Rehber: 01. Giriş</span>
@@ -76,6 +80,15 @@
 
     <!-- LEFT SIDEBAR: NAVIGATION -->
     <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar">
+      
+      <!-- Ana Siteye Geri Dön Butonu -->
+      <div class="mb-4 pb-3 border-b border-slate-200 dark:border-slate-800" data-sidebar-back-btn="true">
+        <a href="../index.html" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-200 bg-slate-100/90 dark:bg-slate-800/80 hover:bg-cyan-500/10 hover:text-cyan-600 dark:hover:text-cyan-400 border border-slate-200 dark:border-slate-700/80 transition group shadow-sm">
+          <svg class="w-4 h-4 text-cyan-600 dark:text-cyan-400 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          <span>← Ana Siteye Dön</span>
+        </a>
+      </div>
+
       <div class="mb-4">
         <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3">Rehber Bölümleri</span>
       </div>
@@ -129,6 +142,16 @@
       <section class="mb-10 p-8 sm:p-10 lg:p-12 rounded-3xl bg-gradient-to-br from-cyan-950/70 via-slate-900/90 to-slate-950 border border-cyan-800/40 shadow-2xl relative overflow-hidden">
         <div class="absolute -right-16 -bottom-16 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
         <div class="relative z-10 max-w-4xl">
+          <!-- Navigation Breadcrumb -->
+          <div class="flex items-center gap-2 text-xs font-mono text-slate-400 mb-4">
+            <a href="../index.html" class="hover:text-cyan-300 transition-colors flex items-center gap-1.5 text-slate-300 font-medium">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+              <span>radpys.com.tr Ana Sayfa</span>
+            </a>
+            <span>/</span>
+            <span class="text-cyan-400 font-semibold">Kullanım Kılavuzu & Bilgi Portalı</span>
+          </div>
+
           <div class="flex flex-wrap items-center gap-2.5 mb-4">
             <span class="px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
               RADPYS V4 Kurumsal Dokümantasyon
@@ -936,8 +959,22 @@
 
   <!-- FOOTER -->
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
-    <div class="max-w-[1720px] mx-auto px-6 space-y-2">
-      <p class="font-semibold text-slate-700 dark:text-slate-300">RADPYS V4.2 — Radyoloji Bilgi & Radyasyon Güvenliği Yönetim Sistemi</p>
+    <div class="max-w-[1720px] mx-auto px-6 space-y-4">
+      <div class="flex flex-wrap items-center justify-center gap-6 text-sm font-medium">
+        <a href="../index.html" class="text-cyan-600 dark:text-cyan-400 hover:underline flex items-center gap-1.5 font-semibold">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          Ana Siteye Geri Dön (radpys.com.tr)
+        </a>
+        <span class="text-slate-300 dark:text-slate-700 hidden sm:inline">•</span>
+        <a href="../moduller.html" class="hover:text-slate-700 dark:hover:text-slate-200 transition-colors">Modüller</a>
+        <span class="text-slate-300 dark:text-slate-700 hidden sm:inline">•</span>
+        <a href="../fiyatlandirma.html" class="hover:text-slate-700 dark:hover:text-slate-200 transition-colors">Fiyatlandırma</a>
+        <span class="text-slate-300 dark:text-slate-700 hidden sm:inline">•</span>
+        <a href="../changelog.html" class="hover:text-slate-700 dark:hover:text-slate-200 transition-colors">Sürüm Güncellemeleri</a>
+        <span class="text-slate-300 dark:text-slate-700 hidden sm:inline">•</span>
+        <a href="../iletisim.html" class="hover:text-slate-700 dark:hover:text-slate-200 transition-colors">İletişim & Destek</a>
+      </div>
+      <p class="font-semibold text-slate-700 dark:text-slate-300">RADPYS V4.0.3 — Radyoloji Bilgi & Radyasyon Güvenliği Yönetim Sistemi</p>
       <p>Sağlık Bakanlığı SKS 6.1, NDK Mevzuatı, DIN 6857-1 ve KVKK Standartları ile Uyumlu Olarak Korunmaktadır.</p>
     </div>
   </footer>

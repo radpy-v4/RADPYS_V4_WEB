@@ -25,11 +25,11 @@ RADPYS V4, radyasyon alanında görev yapan personelin (Radyoloji Teknisyenleri/
 14. **Ortam Dozu & İnteraktif Kroki Haritası:** Mimari kat planı üzerinde vektörel ölçüm pinleri, ısı haritası ve SKS 6.1 SRG11.02 resmi raporu ([Rehber](https://radpys.com.tr/help/14_ortam_dozu_ve_kroki_haritasi.html)).
 15. **Olay Bildirimi & DÖF (CAPA):** 3 adımlı anonim bildirim, NDK 72 saatlik acil bildirim sayacı, kök neden analizi ([Rehber](https://radpys.com.tr/help/15_olay_bildirimi_ve_dof_capa.html)).
 16. **RGS / RSO Görevlendirme & Sertifikalar:** Radyasyon Güvenliği Sorumlusu ve Komite (RGK) yasal atama takibi ([Rehber](https://radpys.com.tr/help/16_rgs_rso_gorevlendirme_ve_sertifika.html)).
-17. **Hizmet İçi Eğitim & Online Sınav LMS:** Soru bankası, online personel sınavları ve NDK/SKS Eğitim Uyum Matrisi ([Rehber](https://radpys.com.tr/help/17_hizmet_ici_egitim_ve_online_sinav.html)).
-18. **Tıbbi Cihaz & NDK Lisans Envanteri:** Röntgen, BT, MR, Skopi, Anjiyo ve Mamografi cihazları için NDK lisans geçerlilik takibi ([Rehber](https://radpys.com.tr/help/18_tibbi_cihaz_ve_ndk_lisans_envanteri.html)).
+17. **Hizmet İçi Eğitim & Online Sınav LMS:** Soru bankası, online personel sınavları ve SKS 6.1 T.1-T.11 Kalite Dokümanları Uyum Matrisi ([Rehber](https://radpys.com.tr/help/17_hizmet_ici_egitim_ve_online_sinav.html)).
+18. **Tıbbi Cihaz, NDK Lisansı & RKP Motoru:** Röntgen, BT, MR, Skopi, Anjiyo, NDK RSGD-KLV-014 RKP Başvuru Sihirbazı ve İki Aşamalı Mühürlü HEK ([Rehber](https://radpys.com.tr/help/18_tibbi_cihaz_ve_ndk_lisans_envanteri.html)).
 19. **Cihaz Arıza, Bakım & QC Kalite Kontrol:** Günlük/haftalık periyodik QC testleri, servis çağrıları ve mobil QR arıza bildirme ([Rehber](https://radpys.com.tr/help/19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html)).
 20. **RKE Koruyucu Ekipman & DIN 6857-1 Standardı:** Kurşun önlük, tiroid koruyucu ve gonatların barkodlu pasaportu, skopi muayene motoru ve Muayene Karnesi ([Rehber](https://radpys.com.tr/help/20_rke_koruyucu_ekipman_ve_din6857.html)).
-21. **Merkezi Onaylar & Rapor Merkezi:** 5 kategori onay kuyruğu, görsel diff view ve resmi matbu raporlar ([Rehber](https://radpys.com.tr/help/21_merkezi_onaylar_ve_rapor_merkezi.html)).
+21. **Merkezi Onaylar, Klinik Raporlama & Tutanak Merkezi:** 5 kategori onay kuyruğu, görsel diff view, PDF/Excel resmi belge standardı ve Tutanak Sihirbazı ([Rehber](https://radpys.com.tr/help/21_merkezi_onaylar_ve_rapor_merkezi.html)).
 22. **Mobil Web Portalı & Dashboardlar:** PWA destekli, mobil ve tablet uyumlu personel kokpiti ([Rehber](https://radpys.com.tr/help/22_web_portal_ve_dashboardlar.html)).
 
 ## Paketler & Fiyatlandırma

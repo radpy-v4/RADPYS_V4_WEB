@@ -475,8 +475,57 @@
     }
   }
 
+  // ─── 4.5 ANA SİTEYE GERİ DÖNÜŞ MOTORU (Return to Main Site) ───────────────
+  function setupMainSiteReturn() {
+    // 1. Header'daki sürüm rozetini senkronize et
+    document.querySelectorAll("header .font-mono").forEach(el => {
+      if (el.textContent.trim() === "v4.2") {
+        el.textContent = "v4.0.3";
+      }
+    });
+
+    // 2. Header Action Bar Kontrolü
+    const header = document.querySelector("header");
+    if (header) {
+      const actions = header.querySelector(".flex.items-center.gap-3, .flex.items-center.gap-2\\.5, .flex.items-center.gap-2");
+      if (actions && !header.querySelector("[data-radpys-back-btn]")) {
+        const backBtn = document.createElement("a");
+        backBtn.setAttribute("data-radpys-back-btn", "true");
+        backBtn.href = "../index.html";
+        backBtn.title = "RADPYS Ana Web Sitesine Dön (radpys.com.tr)";
+        backBtn.className = "inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800/90 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700/80 transition shadow-sm hover:text-cyan-600 dark:hover:text-cyan-400 group";
+        backBtn.innerHTML = `
+          <svg class="w-4 h-4 text-slate-400 group-hover:text-cyan-500 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          <span class="hidden sm:inline">Ana Siteye Dön</span>
+          <span class="sm:hidden">Ana Site</span>
+        `;
+        actions.insertBefore(backBtn, actions.firstChild);
+      }
+    }
+
+    // 3. SidebarNav En Başına "Ana Siteye Dön" Butonu
+    const sidebar = document.getElementById("sidebarNav");
+    if (sidebar && !sidebar.querySelector("[data-sidebar-back-btn]")) {
+      const wrapper = document.createElement("div");
+      wrapper.setAttribute("data-sidebar-back-btn", "true");
+      wrapper.className = "mb-4 pb-3 border-b border-slate-200 dark:border-slate-800";
+      wrapper.innerHTML = `
+        <a href="../index.html" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-200 bg-slate-100/90 dark:bg-slate-800/80 hover:bg-cyan-500/10 hover:text-cyan-600 dark:hover:text-cyan-400 border border-slate-200 dark:border-slate-700/80 transition group shadow-sm">
+          <svg class="w-4 h-4 text-cyan-600 dark:text-cyan-400 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          <span>← Ana Siteye Dön</span>
+        </a>
+      `;
+      sidebar.insertBefore(wrapper, sidebar.firstChild);
+    }
+  }
+
   // ─── 5. BAŞLATMA (Bootstrap) ──────────────────────────────────────────────
   document.addEventListener("DOMContentLoaded", () => {
+    setupMainSiteReturn();
     setupMobileMenu();
     setupSearchModal();
     renderMermaidDiagrams();
