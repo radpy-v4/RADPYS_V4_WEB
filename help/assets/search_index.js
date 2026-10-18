@@ -1,4 +1,4 @@
-/* Otomatik Üretilen RADPYS v4 Arama İndeksi — Toplam 362 Başlık */
+/* Otomatik Üretilen RADPYS v4 Arama İndeksi — Toplam 364 Başlık */
 window.RADPYS_SEARCH_INDEX = [
   {
     "id": "01",
@@ -1298,43 +1298,50 @@ window.RADPYS_SEARCH_INDEX = [
   {
     "id": "12",
     "module": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması",
-    "title": "Sadeleştirilmiş 2 Panelli Aksiyonlar & Geçmiş Birim Rotasyon Takibi",
-    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında Sadeleştirilmiş 2 Panelli Aksiyonlar & Geçmiş Birim Rotasyon Takibi adımı ve açıklamaları.",
+    "title": "Tek ve Ferah 8 Sütunlu Bütünleşik Aksiyon Kokpiti & Güvenlik Kilitli İşlemler",
+    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında Tek ve Ferah 8 Sütunlu Bütünleşik Aksiyon Kokpiti & Güvenlik Kilitli İşlemler adımı ve açıklamaları.",
     "url": "12_dozimetre_takibi_ve_rdf43_arastirma.html"
   },
   {
     "id": "12",
     "module": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması",
-    "title": "5. 4 Adımlı RD.F43 Doz Araştırma Formu Düzenleme ve RKS Doz Hesabı",
-    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında 5. 4 Adımlı RD.F43 Doz Araştırma Formu Düzenleme ve RKS Doz Hesabı adımı ve açıklamaları.",
+    "title": "5. Rol Tabanlı RD.F43 Doz Araştırma Sihirbazı ve Akıllı Karar Motoru (CDSS)",
+    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında 5. Rol Tabanlı RD.F43 Doz Araştırma Sihirbazı ve Akıllı Karar Motoru (CDSS) adımı ve açıklamaları.",
     "url": "12_dozimetre_takibi_ve_rdf43_arastirma.html"
   },
   {
     "id": "12",
     "module": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması",
-    "title": "Personel ve Koruyucu Donanım Bilgileri",
-    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında Personel ve Koruyucu Donanım Bilgileri adımı ve açıklamaları.",
+    "title": "Çalışan Beyanı ve Kullanım Koşulları",
+    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında Çalışan Beyanı ve Kullanım Koşulları adımı ve açıklamaları.",
     "url": "12_dozimetre_takibi_ve_rdf43_arastirma.html"
   },
   {
     "id": "12",
     "module": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması",
-    "title": "Çalışma Koşulları ve Olağan Dışı Durumlar",
-    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında Çalışma Koşulları ve Olağan Dışı Durumlar adımı ve açıklamaları.",
+    "title": "RKS Saha İncelemesi ve Ortam Doğrulaması",
+    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında RKS Saha İncelemesi ve Ortam Doğrulaması adımı ve açıklamaları.",
     "url": "12_dozimetre_takibi_ve_rdf43_arastirma.html"
   },
   {
     "id": "12",
     "module": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması",
-    "title": "Artefakt Tespiti ve RKS Maruziyet Hesabı",
-    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında Artefakt Tespiti ve RKS Maruziyet Hesabı adımı ve açıklamaları.",
+    "title": "Akıllı Klinik Karar ve Teşhis Motoru",
+    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında Akıllı Klinik Karar ve Teşhis Motoru adımı ve açıklamaları.",
     "url": "12_dozimetre_takibi_ve_rdf43_arastirma.html"
   },
   {
     "id": "12",
     "module": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması",
-    "title": "Karar, İmzalar ve Resmi RD.F43 Belgesi",
-    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında Karar, İmzalar ve Resmi RD.F43 Belgesi adımı ve açıklamaları.",
+    "title": "Yasal Değerlendirme, DÖF ve KVKK Kasası",
+    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında Yasal Değerlendirme, DÖF ve KVKK Kasası adımı ve açıklamaları.",
+    "url": "12_dozimetre_takibi_ve_rdf43_arastirma.html"
+  },
+  {
+    "id": "12",
+    "module": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması",
+    "title": "Akıllı Devam Etme & Gerekçeli Düzeltme Modu (Audit Trail)",
+    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında Akıllı Devam Etme & Gerekçeli Düzeltme Modu (Audit Trail) adımı ve açıklamaları.",
     "url": "12_dozimetre_takibi_ve_rdf43_arastirma.html"
   },
   {
@@ -1459,22 +1466,22 @@ window.RADPYS_SEARCH_INDEX = [
   {
     "id": "13",
     "module": "Radyasyon Çalışanları Sağlık Muayeneleri ve Periyodik Takip",
-    "title": "4. Yeni Muayene Kaydı Açma ve Uzmanlık Bulguları",
-    "desc": "Radyasyon Çalışanları Sağlık Muayeneleri ve Periyodik Takip modülü altında 4. Yeni Muayene Kaydı Açma ve Uzmanlık Bulguları adımı ve açıklamaları.",
+    "title": "4. İki Aşamalı Klinik Muayene Süreci ve Resmi EK-1 A4 PDF Çıktısı",
+    "desc": "Radyasyon Çalışanları Sağlık Muayeneleri ve Periyodik Takip modülü altında 4. İki Aşamalı Klinik Muayene Süreci ve Resmi EK-1 A4 PDF Çıktısı adımı ve açıklamaları.",
     "url": "13_saglik_muayeneleri_ve_periyodik_takip.html"
   },
   {
     "id": "13",
     "module": "Radyasyon Çalışanları Sağlık Muayeneleri ve Periyodik Takip",
-    "title": "Yeni Sağlık Muayenesi Formu",
-    "desc": "Radyasyon Çalışanları Sağlık Muayeneleri ve Periyodik Takip modülü altında Yeni Sağlık Muayenesi Formu adımı ve açıklamaları.",
+    "title": "Ön Hazırlık, Anamnez ve Resmi EK-1 Sevk Formu",
+    "desc": "Radyasyon Çalışanları Sağlık Muayeneleri ve Periyodik Takip modülü altında Ön Hazırlık, Anamnez ve Resmi EK-1 Sevk Formu adımı ve açıklamaları.",
     "url": "13_saglik_muayeneleri_ve_periyodik_takip.html"
   },
   {
     "id": "13",
     "module": "Radyasyon Çalışanları Sağlık Muayeneleri ve Periyodik Takip",
-    "title": "Form Doldurma ve Otomatik Takvim Mantığı",
-    "desc": "Radyasyon Çalışanları Sağlık Muayeneleri ve Periyodik Takip modülü altında Form Doldurma ve Otomatik Takvim Mantığı adımı ve açıklamaları.",
+    "title": "Poliklinik Muayeneleri, Hekim Kararı ve KVKK Kasası",
+    "desc": "Radyasyon Çalışanları Sağlık Muayeneleri ve Periyodik Takip modülü altında Poliklinik Muayeneleri, Hekim Kararı ve KVKK Kasası adımı ve açıklamaları.",
     "url": "13_saglik_muayeneleri_ve_periyodik_takip.html"
   },
   {
@@ -2131,8 +2138,8 @@ window.RADPYS_SEARCH_INDEX = [
   {
     "id": "19",
     "module": "Cihaz Arıza, Periyodik Bakım ve Kalite Kontrol (QA/QC)",
-    "title": "Arıza ve Kalite Kontrol Yaşam Döngüsü (Mermaid)",
-    "desc": "Cihaz Arıza, Periyodik Bakım ve Kalite Kontrol (QA/QC) modülü altında Arıza ve Kalite Kontrol Yaşam Döngüsü (Mermaid) adımı ve açıklamaları.",
+    "title": "Arıza, Bakım ve Kalite Kontrol Yaşam Döngüsü",
+    "desc": "Cihaz Arıza, Periyodik Bakım ve Kalite Kontrol (QA/QC) modülü altında Arıza, Bakım ve Kalite Kontrol Yaşam Döngüsü adımı ve açıklamaları.",
     "url": "19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html"
   },
   {
@@ -2313,8 +2320,8 @@ window.RADPYS_SEARCH_INDEX = [
   {
     "id": "21",
     "module": "Merkezi Onay Bekleyen Görevler Paneli",
-    "title": "Merkezi Onay Paneli: 5 Kategori Sekmesi & Rozet Yönetimi",
-    "desc": "Merkezi Onay Bekleyen Görevler Paneli modülü altında Merkezi Onay Paneli: 5 Kategori Sekmesi & Rozet Yönetimi adımı ve açıklamaları.",
+    "title": "Merkezi Onay Paneli: 6 Kategori Sekmesi & Rozet Yönetimi",
+    "desc": "Merkezi Onay Bekleyen Görevler Paneli modülü altında Merkezi Onay Paneli: 6 Kategori Sekmesi & Rozet Yönetimi adımı ve açıklamaları.",
     "url": "21_merkezi_onaylar.html"
   },
   {
@@ -2350,6 +2357,13 @@ window.RADPYS_SEARCH_INDEX = [
     "module": "Merkezi Onay Bekleyen Görevler Paneli",
     "title": "5. Veri Değişiklikleri Sekmesi (4-Göz Mekanizması)",
     "desc": "Merkezi Onay Bekleyen Görevler Paneli modülü altında 5. Veri Değişiklikleri Sekmesi (4-Göz Mekanizması) adımı ve açıklamaları.",
+    "url": "21_merkezi_onaylar.html"
+  },
+  {
+    "id": "21",
+    "module": "Merkezi Onay Bekleyen Görevler Paneli",
+    "title": "6. Resmi Tutanaklar Sekmesi (Islak İmza & EBYS Takibi)",
+    "desc": "Merkezi Onay Bekleyen Görevler Paneli modülü altında 6. Resmi Tutanaklar Sekmesi (Islak İmza & EBYS Takibi) adımı ve açıklamaları.",
     "url": "21_merkezi_onaylar.html"
   },
   {
@@ -2509,15 +2523,15 @@ window.RADPYS_SEARCH_INDEX = [
   {
     "id": "23",
     "module": "Merkezi Rapor ve Matbu Tutanak Çıktı Merkezi",
-    "title": "Tutanak Sihirbazı Ekran Yapısı & Tek Resmi PDF",
-    "desc": "Merkezi Rapor ve Matbu Tutanak Çıktı Merkezi modülü altında Tutanak Sihirbazı Ekran Yapısı & Tek Resmi PDF adımı ve açıklamaları.",
+    "title": "İkili Belge Düzeni: Salt Metin veya Sandviç Tablo",
+    "desc": "Merkezi Rapor ve Matbu Tutanak Çıktı Merkezi modülü altında İkili Belge Düzeni: Salt Metin veya Sandviç Tablo adımı ve açıklamaları.",
     "url": "23_rapor_tutanak_merkezi.html"
   },
   {
     "id": "23",
     "module": "Merkezi Rapor ve Matbu Tutanak Çıktı Merkezi",
-    "title": "Tıklanabilir Değişkenler & Akıllı İmleç Konumlandırma",
-    "desc": "Merkezi Rapor ve Matbu Tutanak Çıktı Merkezi modülü altında Tıklanabilir Değişkenler & Akıllı İmleç Konumlandırma adımı ve açıklamaları.",
+    "title": "İlgili Modül / Kapsam ve Dinamik Değişken Motoru",
+    "desc": "Merkezi Rapor ve Matbu Tutanak Çıktı Merkezi modülü altında İlgili Modül / Kapsam ve Dinamik Değişken Motoru adımı ve açıklamaları.",
     "url": "23_rapor_tutanak_merkezi.html"
   },
   {

@@ -1,10 +1,10 @@
 {
-  "version": "4.0.3.26",
-  "release_version": "4.0.3.26",
-  "build_version": "4.0.3.26",
-  "latest_demo_version": "4.0.3.26",
-  "release_date": "2026-10-10",
+  "version": "4.0.4.0",
+  "release_version": "4.0.4.0",
+  "build_version": "4.0.4.0",
+  "latest_demo_version": "4.0.4.0",
+  "release_date": "2026-10-17",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.3.26: Mimari politika denetiminde (policy_checks.py) tespit edilen rapor_tasarim_dialog ve tutanak_sihirbazi_dialog imza/heyet tablolarındaki ham .strip().lower() kullanımları kurumsal turkish_lower fonksiyonu ile standardize edildi.",
+  "changelog": "RADPYS V4.0.4.0: Sistem Genelinde Tarihsel İzlenebilirlik (Point-in-Time Historical Snapshot) ve Program Ayarları Güvenlik Mühürlemesi Mimarisi. Sağlık Muayeneleri, Dozimetre, Fiili Hizmet (FHZ) & Şua İzni, Personel İzinleri, LMS ve Cihaz Arıza & Bakım modüllerinde geçmiş birim/konum donduruldu; kriptografik yedek anahtarı mühürlenerek yasal mevzuat uyarı paneli devreye alındı.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }

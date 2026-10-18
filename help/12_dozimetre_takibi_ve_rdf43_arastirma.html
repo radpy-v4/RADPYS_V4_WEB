@@ -331,28 +331,84 @@
  <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
  <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Doz Araştırma Formu Aç]</td>
  <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
- <td class="py-3 px-4">2.0 mSv eşiğini aşan veya kritik anomali gösteren vaka için 4 adımlı resmi RD.F43 araştırma formu sihirbazını başlatır.</td>
+ <td class="py-3 px-4">2.0 mSv eşiğini aşan veya anomali gösteren vaka için IAEA GSG-7, Webster formüllü ve NDK karar matrisli 4 adımlı resmi RD.F43 sihirbazını başlatır. Daha önce başlatılmış açık bir inceleme varsa engellemeden doğrudan kaldığı yerden devam ettirir.</td>
  <td class="py-3 px-4">RKS / Kurum Amiri</td>
  <td class="py-3 px-4">Eşik aşımı veya doz anomalisi tespitinde</td>
- <td class="py-3 px-4">Aksiyonlar Sekmesi (Sol Panel)</td>
+ <td class="py-3 px-4">Aksiyonlar Sekmesi (Üst Araç Çubuğu)</td>
  </tr>
  <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
- <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Takip Ölçümü Planla] / [Birim Notu Ekle]</td>
+ <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Düzeltme Yap / Formu Yeniden Aç]</td>
  <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
- <td class="py-3 px-4">Şüpheli ölçümlerde ara takip/EPD ölçüm planı oluşturur veya birim çalışma koşulları notunu kaydeder.</td>
- <td class="py-3 px-4">RKS / Dozimetre Sorumlusu</td>
- <td class="py-3 px-4">Risk incelemesi ve saha notu girişinde</td>
- <td class="py-3 px-4">Aksiyonlar Sekmesi (Sol Panel)</td>
- </tr>
- <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
- <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Formu Görüntüle] / [Aksiyonu Kapat]</td>
- <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
- <td class="py-3 px-4">Başlatılmış RD.F43/DÖF dosyasını doğrudan inceler veya tamamlanan soruşturmayı kapatır.</td>
+ <td class="py-3 px-4">Kapatılmış RD.F43 raporunda sehven yapılan hataları denetim izine gerekçe notu düşerek güvenle düzeltmeye açar.</td>
  <td class="py-3 px-4">RKS / Kurum Amiri</td>
- <td class="py-3 px-4">Açık DÖF dosyası takibinde veya form kapanışında</td>
- <td class="py-3 px-4">Aksiyonlar Sekmesi (Sağ Panel)</td>
+ <td class="py-3 px-4">Kapatılmış tutanaklarda sehven hata tespit edildiğinde</td>
+ <td class="py-3 px-4">Resmi Rapor Görüntüleyici Alt Paneli</td>
  </tr>
  <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+ <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Takip Ölçümü Planla]</td>
+ <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
+ <td class="py-3 px-4">Modern planlama penceresiyle takip nedeni, dozimetre türü, başlangıç/bitiş tarihleri ve açıklama notu girilerek şüpheli vakalara ara takip veya EPD ölçüm görevi tanımlar.</td>
+ <td class="py-3 px-4">RKS / Dozimetre Sorumlusu</td>
+ <td class="py-3 px-4">Risk incelemesi ve yakın izleme gerektiren vakalarda</td>
+ <td class="py-3 px-4">Aksiyonlar Sekmesi (Üst Araç Çubuğu)</td>
+ </tr>
+ <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+ <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Birim İncelemesi Ekle]</td>
+ <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
+ <td class="py-3 px-4">RKS saha gözlemini, birim çalışma koşullarını, cihaz durumunu ve ortam radyasyon notlarını kurumsal kayıt penceresine işler.</td>
+ <td class="py-3 px-4">RKS / Dozimetre Sorumlusu</td>
+ <td class="py-3 px-4">Saha çalışma şartları ve birim ortam denetiminde</td>
+ <td class="py-3 px-4">Aksiyonlar Sekmesi (Üst Araç Çubuğu)</td>
+ </tr>
+ <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+ <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Formu Görüntüle]</td>
+ <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
+ <td class="py-3 px-4">Başlatılmış RD.F43 araştırma tutanağını, CDSS kural motoru kararlarını veya DÖF dosya detaylarını doğrudan incelemeye açar.</td>
+ <td class="py-3 px-4">RKS / Kurum Amiri</td>
+ <td class="py-3 px-4">Açık dosya takibinde veya kapatılmış arşiv incelemesinde</td>
+ <td class="py-3 px-4">Aksiyonlar Sekmesi (Üst Araç Çubuğu)</td>
+ </tr>
+ <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+ <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Aksiyonu Kapat]</td>
+ <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
+ <td class="py-3 px-4">Güvenlik kilitli modern kapatma penceresini açar. RD.F43 tutanağı düzenlenmemiş ve resmi dosya/karar numarası girilmemiş vakaların kapatılmasını engelleyerek denetim açığını önler; gerekçe ve resmi dosya numarasıyla yasal olarak arşive kaldırır.</td>
+ <td class="py-3 px-4">RKS / Kurum Amiri</td>
+ <td class="py-3 px-4">Soruşturması tamamlanan RD.F43 dosyalarının arşivlenmesinde</td>
+ <td class="py-3 px-4">Aksiyonlar Sekmesi (Üst Araç Çubuğu)</td>
+ </tr>
+ <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+ <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Önerilen Kararı ve Bulguları Forma Aktar]</td>
+ <td class="py-3 px-4 font-mono text-emerald-600 dark:text-emerald-400">Buton</td>
+ <td class="py-3 px-4">RDS kurumsal zümrüt yeşili, 36px ergonomik yüksek kontrastlı buton. CDSS karar motorunun ürettiği bilimsel teşhis özetini, IAEA/NCRP gerekçe metnini ve kurumsal DÖF tavsiyesini tek tıkla 4. Adımdaki resmi karar formuna aktarır.</td>
+ <td class="py-3 px-4">RKS</td>
+ <td class="py-3 px-4">CDSS teşhis ve analiz sonuçları resmi tutanağa bağlanırken</td>
+ <td class="py-3 px-4">RD.F43 Sihirbazı (3. Adım CDSS Paneli)</td>
+ </tr>
+ <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+ <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[İleri] / [Geri]</td>
+ <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Butonlar</td>
+ <td class="py-3 px-4">RDS kurumsal stilleriyle (Primary Blue ve Secondary) 4 adımlı RD.F43 sihirbazında adımlar arasında kontrollü ve ergonomik geçiş sağlar.</td>
+ <td class="py-3 px-4">RKS / Kurum Amiri</td>
+ <td class="py-3 px-4">RD.F43 form adımları doldurulurken</td>
+ <td class="py-3 px-4">RD.F43 Form Alt Gezinti Paneli</td>
+ </tr>
+ <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+ <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Web Portal Görev Bildirimi]</td>
+ <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Sistem Bildirimi</td>
+ <td class="py-3 px-4">2.0 mSv eşik aşımı veya anomali incelemesi başlatıldığında personelin Web Portal görev paneline otomatik bildirim düşer; personeli "Bölüm 2: Çalışan Beyanı" sorularını cevaplamaya yönlendirir.</td>
+ <td class="py-3 px-4">Hakkında İnceleme Açılan Personel</td>
+ <td class="py-3 px-4">Aksiyon oluşturulduğu anda anında tetiklenir</td>
+ <td class="py-3 px-4">Web Portal Bildirim & Görev Merkezi</td>
+ </tr>
+ <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+ <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Eşik Aşımı Alarmı (RKS & Yönetici)]</td>
+ <td class="py-3 px-4 font-mono text-rose-600 dark:text-rose-400">Sistem Alarmı</td>
+ <td class="py-3 px-4">Hp(10) >= 2.0 mSv veya kümülatif limit aşımlarında RKS ve Kurum Amiri paneline anlık kırmızı alarm uyarısı iletilir (hem tekil ölçüm girişinde hem toplu laboratuvar aktarımında).</td>
+ <td class="py-3 px-4">RKS / Kurum Amiri</td>
+ <td class="py-3 px-4">Ölçüm kaydedildiği veya toplu dosya aktarıldığı anda</td>
+ <td class="py-3 px-4">Masaüstü Bildirim Merkezi & Durum Çubuğu</td>
+ </tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
  <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Geçmiş Ölçümler & Birim Takibi]</td>
  <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Tablo</td>
  <td class="py-3 px-4">Seçili personelin geçmiş tüm ölçümlerini dönemsel dozları ve o dönem görev yaptığı <strong>Birim</strong> bilgisiyle listeler.</td>
@@ -518,36 +574,38 @@
  </div>
  </div>
 
- <!-- Card 3: 2-Panel Aksiyonlar & Birim Rotasyon Takibi (Full Width Banner) -->
+ <!-- Card 3: Bütünleşik 8 Sütunlu Aksiyon Kokpiti & Güvenlik Kilitli İşlemler (Full Width Banner) -->
  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
  <div class="flex flex-wrap items-center justify-between gap-3">
  <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
- <span>Sadeleştirilmiş 2 Panelli Aksiyonlar & Geçmiş Birim Rotasyon Takibi</span>
+ <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+ <span>Tek ve Ferah 8 Sütunlu Bütünleşik Aksiyon Kokpiti & Güvenlik Kilitli İşlemler</span>
  </h3>
- <span class="text-xs px-2.5 py-1 rounded-full font-semibold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300">RADPYS V4.2 Revizyonu</span>
+ <span class="text-xs px-2.5 py-1 rounded-full font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300">RADPYS V4.0.3.30 Standardı</span>
  </div>
 
  <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 text-xs text-slate-600 dark:text-slate-300">
- <!-- Left Info: 2-Panel Architecture -->
+ <!-- Left Info: Unified 8-Column Architecture -->
  <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-2">
  <h4 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
  <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
- <span>Aksiyonlar Sekmesi: 2 Panelli Operasyonel Görünüm</span>
+ <span>Aksiyonlar Sekmesi: Tam Genişlik 8 Sütunlu Kokpit</span>
  </h4>
  <p class="leading-relaxed">
- Eski 3 tablolu sıkışık düzen kaldırılarak ekran ferah iki ana panele bölünmüştür:
+ Bölünmüş ve daraltılmış eski tablolar yerine, tüm yasal eşik aşımları ve istatistiksel doz anomalileri tek bir ferah ana tabloda birleştirilmiştir:
  </p>
  <ul class="space-y-1.5 pl-2">
- <li>&bull; <strong>Sol Panel (İncelenecek Doz Riskleri ve Anomaliler):</strong> Yasal eşik aşımları ($\ge 2.0\text{ mSv}$) ve personelin geçmiş kişisel ortalamasından 2 kat veya daha fazla sapan istatistiksel anomaliler tek potada toplanır. Sütunlar: <code>[Ad Soyad | Birim | Dönem | Hp(10) | Risk Seviyesi | Gerekçe]</code>. Üst butonlarla doğrudan RD.F43 formu açılır, takip ölçümü planlanır veya birim notu eklenir.</li>
- <li>&bull; <strong>Sağ Panel (Başlatılan İncelemeler ve DÖF Dosyaları):</strong> Süreci devam eden veya kapatılan soruşturmalar 5 sütunla (<code>[Dönem | Ad Soyad | Tip | Birim | Durum]</code>) izlenir. Durum filtresiyle (Tümü/Açık/Kapalı) arşiv taranabilir; tek tıkla form incelenir veya dosya kapatılır.</li>
+ <li>&bull; <strong>8 Sütunlu Bütünleşik Tablo Düzeni:</strong> <code>[Personel Adı Soyadı | Birim | Ölçüm Dönemi | Hp(10) (mSv) | Risk Seviyesi | Aşım Gerekçesi | İnceleme Durumu | RD.F43 Raporu]</code>. Her vakanın araştırma raporu durumu ve inceleme aşaması doğrudan tablo satırında canlı izlenir.</li>
+ <li>&bull; <strong>Canlı Durum Filtreleme:</strong> Tablo üstündeki filtreleme menüsüyle <em>Tümü</em>, <em>Açık (İnceleme Bekleyenler / Süreci Devam Edenler)</em> ve <em>Kapalı (Arşiv)</em> kayıtlar tek tıkla süzülür.</li>
+ <li>&bull; <strong>Güvenlik Kilitli Aksiyon Kapatma:</strong> Bir aksiyonun kapatılabilmesi için resmi RD.F43 raporunun tanzim edilmiş olması ve kurumsal dosya / karar numarasının girilmiş olması zorunludur. Raporu bulunmayan kayıtlar için sistem denetim uyarısı vererek yetkisiz veya erken kapatmayı engeller.</li>
+ <li>&bull; <strong>Modern Kurumsal Diyaloglar:</strong> Basit girişler yerine; <em>Takip Ölçümü Planlama</em> (tür, süre, klinik gerekçe), <em>Birim İncelemesi</em> (saha çalışma koşulları, ortam notu) ve <em>Aksiyonu Kapat</em> (dosya no, onay notu) işlemleri için özel tasarlanmış pencereler açılır.</li>
  </ul>
  </div>
 
  <!-- Right Info: Past Measurements Unit Tracking -->
  <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-2">
  <h4 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+ <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
  <span>Ölçümler Sekmesi: Geçmiş Ölçümlerde Birim Rotasyon Takibi</span>
  </h4>
  <p class="leading-relaxed">
@@ -556,7 +614,7 @@
  <ul class="space-y-1.5 pl-2">
  <li>&bull; <strong>Sütun Düzeni:</strong> <code>[Dönem | Birim | Hp(10) | Hp(0,07) | Durum]</code>.</li>
  <li>&bull; <strong>Rotasyon ve Doz Analizi:</strong> Personelin hangi dönemde hangi radyoloji biriminde (Anjiyo, BT, Skopi vb.) görev yaptığı geriye dönük izlenir. Bir personelde ani doz yükselmesi görüldüğünde, o dönem çalıştığı birim anında tespit edilerek maruziyetin birim kaynaklı olup olmadığı doğrulanır.</li>
- <li>&bull; <strong>Ferah Arayüz:</strong> Sağ panel genişliği dengelenmiş (560px asgari genişlik), uzun birim adlarının kesilmemesi için esnek sütun hizalaması uygulanmıştır.</li>
+ <li>&bull; <strong>Ferah Arayüz:</strong> Sağ panel genişliği dengelenmiş (560px asgari genişlik), uzun birim adlarının kesilmemesi için esnek sütun hizalaması ve tabular yazı tipi uygulanmıştır.</li>
  </ul>
  </div>
  </div>
@@ -566,45 +624,55 @@
  <!-- SECTION 5: RDF43 INVESTIGATION PROCESS -->
  <section id="rdf43-sureci" class="space-y-6">
  <div class="space-y-2">
+ <div class="flex items-center gap-2">
+ <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">RADPYS V4.0.3.30</span>
+ <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400">IAEA GSG-7 & NCRP 122 Uyumlu</span>
+ </div>
  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span>5. 4 Adımlı RD.F43 Doz Araştırma Formu Düzenleme ve RKS Doz Hesabı</span>
+ <span>5. Rol Tabanlı RD.F43 Doz Araştırma Sihirbazı ve Akıllı Karar Motoru (CDSS)</span>
  </h2>
  <p class="text-sm text-slate-600 dark:text-slate-300">
- Aylık 2.0 mSv eşiğini aşan ölçümlerde NDK mevzuatı gereği <strong>en geç 10 iş günü içinde</strong> düzenlenmesi yasal zorunluluk olan resmi Doz Araştırma Formu (RD.F43 / Form A-1) adımları:
+ Aylık 2.0 mSv eşiğini aşan veya kişisel ortalamasından belirgin sapma gösteren ölçümlerde, NDK mevzuatı gereği <strong>en geç 10 iş günü içinde</strong> düzenlenmesi zorunlu resmi Doz Araştırma Formu (RD.F43). Sistem, çalışan ifadesi ile RKS teknik incelemesini iki ayrı sorumluluk alanına ayırarak akıllı bir Klinik Karar Destek Sistemi (CDSS) koşturur:
  </p>
  </div>
 
- <!-- 4 Step Wizard Showcase with Screenshots -->
- <div class="space-y-8">
+ <!-- 4 Step Wizard Showcase -->
+ <div class="space-y-6">
  
  <!-- Steps 1 & 2 -->
  <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
  <div class="flex items-center justify-between">
- <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300">1. ADIM</span>
- <span class="text-xs text-slate-400 font-medium">Personel & Görev Analizi</span>
+ <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-blue-100 text-blue-800 dark:bg-blue-900/60 dark:text-blue-300">1. ADIM (BÖLÜM 2)</span>
+ <span class="text-xs text-slate-400 font-medium">Sorumlu: Çalışan / Web Portal</span>
  </div>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">Personel ve Koruyucu Donanım Bilgileri</h3>
- <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
- <img src="assets/img/12_1_doz_arastirma_form_dialog.png" alt="RD.F43 Adım 1 Personel ve Görev Bilgileri" class="w-full h-auto object-cover max-h-[340px]">
- </div>
+ <h3 class="text-base font-bold text-slate-900 dark:text-white">Çalışan Beyanı ve Kullanım Koşulları</h3>
  <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
- Personelin çalıştığı birim, cihaz türü (Skopi, BT, Girişimsel vb.), haftalık çalışma saati ve koruyucu ekipman (kurşun önlük, tiroid koruyucu) kullanım durumu teyit edilir.
+ Çalışanın şahsi beyanını resmi tutanağa bağlar. Bu bölüm, masaüstünde RKS tarafından doldurulabileceği gibi, <strong>Web Portal Bildirim ve Görev Entegrasyonu</strong> sayesinde doğrudan personelin kendi web ekranından da cevaplanabilir:
  </p>
+ <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
+ <li>&bull; <strong>Çalışma Rejimi:</strong> Aylık fiili çalışma süresi (gün), günlük çalışma saati, radyasyon kaynağı türü ve dozimetre takış konumu (Yaka, Kemer vb.).</li>
+ <li>&bull; <strong>Olay ve Artefakt Beyanı:</strong> Dozimetrenin başkası tarafından kullanılması, depolama alanının şua odasında olması veya dozimetrenin alanda unutulması (unutulma süresi ve kaynağa mesafe).</li>
+ <li>&bull; <strong>Şahsi Tıbbi Tetkik:</strong> Personelin bizzat hasta olarak radyolojik tetkik (Nükleer Tıp, Sintigrafi, BT vb.) yaptırıp yaptırmadığı.</li>
+ <li>&bull; <strong>Kullanılan Koruyucu Donanımlar (KKE):</strong> Kurşun önlük, dozimetrenin önlük içinde mi dışında mı takıldığı, tiroid koruyucu, kurşun paravan, kurşun camlı gözlük ve eldiven kullanımı.</li>
+ </ul>
  </div>
 
  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
  <div class="flex items-center justify-between">
- <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300">2. ADIM</span>
- <span class="text-xs text-slate-400 font-medium">Olay & Koşullar</span>
+ <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300">2. ADIM (BÖLÜM 3)</span>
+ <span class="text-xs text-slate-400 font-medium">Sorumlu: RKS / Medikal Fizikçi</span>
  </div>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">Çalışma Koşulları ve Olağan Dışı Durumlar</h3>
- <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
- <img src="assets/img/12_2_doz_arastirma_form_dialog.png" alt="RD.F43 Adım 2 Çalışma Koşulları" class="w-full h-auto object-cover max-h-[340px]">
- </div>
+ <h3 class="text-base font-bold text-slate-900 dark:text-white">RKS Saha İncelemesi ve Ortam Doğrulaması</h3>
  <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
- Ölçüm döneminde cihaz arızası, floroskopi tüp kilitlenmesi veya acil vaka yoğunluğu sorgulanır; dozimetrenin kurşun önlük altında mı üstünde mi taşındığı belgelenir.
+ Çalışanın beyanından bağımsız olarak Radyasyon Korunma Sorumlusu tarafından sahada yürütülen teknik denetim adımıdır:
  </p>
+ <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
+ <li>&bull; <strong>Tesis & Cihaz Kontrolü:</strong> Tesiste veya cihazda olağandışı bir durum, arıza veya jeneratör modifikasyonu olup olmadığı.</li>
+ <li>&bull; <strong>Bulaşma & Radyoizotop:</strong> Radyoaktif kirlilik (kontaminasyon) şüphesi ve varsa kullanılan radyoizotop türü (Tc-99m, I-131, F-18 vb.).</li>
+ <li>&bull; <strong>Çevresel Doğrulama:</strong> Ortam radyasyon ölçümlerinde artış olup olmadığı ve aynı alanda çalışan diğer mesai arkadaşlarında paralel bir doz yükselmesi bulunup bulunmadığı.</li>
+ <li>&bull; <strong>Eğitim Durumu:</strong> Personelin radyasyon güvenliği eğitim durumu ve periyodik hizmet içi eğitim kayıtları.</li>
+ </ul>
  </div>
  </div>
 
@@ -612,34 +680,75 @@
  <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
  <div class="flex items-center justify-between">
- <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-purple-100 text-purple-800 dark:bg-purple-900/60 dark:text-purple-300">3. ADIM</span>
- <span class="text-xs text-slate-400 font-medium">RKS Doz Hesaplama Motoru</span>
+ <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-purple-100 text-purple-800 dark:bg-purple-900/60 dark:text-purple-300">3. ADIM (CDSS MOTORU)</span>
+ <span class="text-xs text-purple-600 dark:text-purple-400 font-bold">Akıllı Karar Matrisi</span>
  </div>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">Artefakt Tespiti ve RKS Maruziyet Hesabı</h3>
- <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
- <img src="assets/img/12_3_doz_arastirma_form_dialog.png" alt="RD.F43 Adım 3 RKS Doz Hesabı" class="w-full h-auto object-cover max-h-[340px]">
+ <h3 class="text-base font-bold text-slate-900 dark:text-white">Akıllı Klinik Karar ve Teşhis Motoru</h3>
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ Form yanıtlarına göre kural motoru arka planda anlık olarak çalışır ve bilimsel teşhis koyar:
+ </p>
+ <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2 pl-2">
+ <li>&bull; <strong>Akla Yatkınlık (Uyum) Skoru:</strong> Alanda unutulma vakalarında süre ve mesafeden ters kare kanunuyla teorik maruziyet hesaplanır ve laboratuvardan gelen ölçümle uyum skoru (%0-%100) üretilir.</li>
+ <li>&bull; <strong>NCRP 122 Webster Çift Dozimetre Algoritması:</strong> Dozimetre kurşun önlük üstüne (yakaya) takılmışsa, iç organların aldığı tahmini biyolojik efektif doz katsayısıyla ($E = 0.04 \times H_{yaka}$) düzeltilir.</li>
+ <li>&bull; <strong>Otomatik Teşhis Kategorileri:</strong> Sistem durumu anında sınıflandırır:
+ <div class="mt-1 flex flex-wrap gap-1 font-mono text-[11px]">
+ <span class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border border-emerald-300">[KAT-A1: Medikal]</span>
+ <span class="px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border border-blue-300">[KAT-A2: Unutulma]</span>
+ <span class="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 border border-amber-300">[KAT-B1: Önlük Dışı]</span>
+ <span class="px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300 border border-purple-300">[KAT-C1: Tesis Kaçağı]</span>
+ <span class="px-2 py-0.5 rounded bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300 border border-rose-300">[KAT-D3: Yasal Aşım]</span>
  </div>
- <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-xs text-slate-600 dark:text-slate-300 space-y-2">
- <p><strong>Artefakt / Sahte Aşım:</strong> Personel bizzat hasta olarak BT/Sintigrafi çektirmişse veya dozimetre şua odasında unutulmuşsa <strong>[Doz Hesapla]</strong> motoruyla mesafe ve süreye göre gerçek maruziyet hesaplanır ve sahte aşım personelin kütüğünden düşülür.</p>
- <p><strong>Gerçek Mesleki Aşım:</strong> Vaka mesleki kaza ise sistem kurumsal <strong>DÖF Takip Numarası</strong> girilmesini zorunlu tutar.</p>
- </div>
+ </li>
+ <li>&bull; <strong>[Önerilen Kararı ve Bulguları Forma Aktar] (RDS Zümrüt Yeşili Buton):</strong> Formun içinde kaybolmayı önlemek adına 36px yükseklikte, canlı zümrüt yeşili, beyaz kalın tipografi ve evrak ikonuyla öne çıkarılmıştır. Butona tıklandığında CDSS karar motorunun ürettiği bilimsel teşhis özeti, IAEA/NDK resmi gerekçe metni ve DÖF kararı 4. adımdaki resmi tutanağa tek tıkla aktarılır.</li>
+ <li>&bull; <strong>Ergonomik Gezinti [İleri] / [Geri]:</strong> Form adımları arasında geçiş sağlayan kurumsal navigasyon butonları yüksek kontrastla konumlandırılmış olup kullanıcının form içinde adımları rahatça denetlemesini sağlar.</li>
+ </ul>
  </div>
 
  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
  <div class="flex items-center justify-between">
- <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">4. ADIM & ÇIKTI</span>
- <span class="text-xs text-slate-400 font-medium">Resmi Word Tutanağı</span>
+ <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">4. ADIM (BÖLÜM 4)</span>
+ <span class="text-xs text-slate-400 font-medium">Yasal Karar & Çıktılar</span>
  </div>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">Karar, İmzalar ve Resmi RD.F43 Belgesi</h3>
- <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
- <img src="assets/img/12_doz_arastirma_form_dialog.png" alt="RD.F43 Genel Diyalog ve Karar" class="w-full h-auto object-cover max-h-[340px]">
+ <h3 class="text-base font-bold text-slate-900 dark:text-white">Yasal Değerlendirme, DÖF ve KVKK Kasası</h3>
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ İncelemenin resmi kurum kararına bağlanması ve kanıt belgelerinin saklanması adımıdır:
+ </p>
+ <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
+ <li>&bull; <strong>Yasal Değerlendirme Tipi:</strong> Teknik, Organizasyonel, Koruyucu Donanım Yetersizliği veya Ölçüm Tekrarı.</li>
+ <li>&bull; <strong>DÖF (Düzeltici Önleyici Faaliyet):</strong> Gerekli görülen vakalarda kurumsal DÖF süreci başlatılarak DÖF takip numarası tescil edilir.</li>
+ <li>&bull; <strong>KVKK Evrak Kasası:</strong> Islak imzalı resmi form taramaları veya sağlık raporları sisteme AES-256 şifreli olarak yüklenir ve güvenle saklanır.</li>
+ <li>&bull; <strong>Resmi Dışa Aktarımlar:</strong> <strong>[Resmi RD.F43 İndir (.docx)]</strong> butonuyla NDK matbu formatında Word şablonu, <strong>[PDF Raporu İndir]</strong> butonuyla dijital arşiv çıktısı alınır.</li>
+ </ul>
  </div>
- <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
- <p>Form onaylandığında sağ üstteki <strong>[Resmi RD.F43 Word İndir]</strong> butonuna tıklanır.</p>
- <p>Sistem, kurum logosunu ve RKS/Kurum Amiri imza bloklarını içeren NDK mevzuatına tam uyumlu Jinja2 Word (.docx) dosyasını otomatik oluşturur.</p>
+ </div>
+
+ <!-- AUDIT TRAIL & CORRECTION CALLOUT -->
+ <div class="p-5 rounded-2xl bg-gradient-to-br from-amber-50/70 via-white to-orange-50/70 dark:from-slate-800/90 dark:via-slate-800/70 dark:to-amber-950/40 border-2 border-amber-500/25 space-y-3">
+ <div class="flex items-center gap-3">
+ <div class="w-8 h-8 rounded-xl bg-amber-600 text-white flex items-center justify-center font-bold text-sm shadow-sm">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+ </div>
+ <div>
+ <h3 class="text-sm font-bold text-slate-900 dark:text-white">
+ Akıllı Devam Etme & Gerekçeli Düzeltme Modu (Audit Trail)
+ </h3>
+ <p class="text-xs text-slate-500 dark:text-slate-400">
+ Hatalı girişlerin denetim iziyle düzeltilmesi ve açık incelemelerin kaldığı yerden sürdürülmesi
+ </p>
+ </div>
+ </div>
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed text-slate-700 dark:text-slate-300">
+ <div class="p-3 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+ <strong class="text-amber-700 dark:text-amber-400 block mb-1">Açık İncelemelerde Kesintisiz Devam:</strong>
+ Önceden başlatılmış açık bir doz araştırması tablodan seçilip "Doz Araştırma Formu Aç" tıklandığında; sistem kullanıcıyı engellemez, doğrudan var olan formu açarak kullanıcının kaldığı adımdan devam etmesini sağlar.
+ </div>
+ <div class="p-3 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
+ <strong class="text-emerald-700 dark:text-emerald-400 block mb-1">Kapatılmış Dosyalarda Gerekçeli Düzeltme:</strong>
+ Kapatılmış bir tutanakta sehven yapılan süre veya karar hatası fark edildiğinde; resmi rapor ekranındaki <strong>[Düzeltme Yap / Formu Yeniden Aç]</strong> butonu tıklanır. Yasal denetim için düzeltme gerekçesi girilerek form güvenle yeniden düzenlenebilir.
  </div>
  </div>
  </div>
+
  </div>
  </section>
 
@@ -704,7 +813,7 @@
  </li>
  <li class="flex items-start gap-2">
  <span class="text-emerald-500 font-bold">&check;</span>
- <span><strong>İnceleme Bildirimi:</strong> Kendi ölçümünde inceleme başlatılan çalışana bilgilendirme rozeti düşer.</span>
+ <span><strong>İnceleme Bildirimi:</strong> Kendi ölçümünde inceleme başlatılan personelin Web Portal görev paneline otomatik bildirim düşer; personeli "Bölüm 2: Çalışan Beyanı" sorularını yanıtlamaya yönlendirir. Ayrıca $H_p(10) \ge 2.0$ mSv ve limit aşımlarında RKS ve Kurum Amiri paneline anlık kırmızı alarm iletilir.</span>
  </li>
  </ul>
  </div>

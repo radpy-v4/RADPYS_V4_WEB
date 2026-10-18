@@ -365,6 +365,15 @@
  <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950 text-indigo-800 dark:text-indigo-300 font-semibold text-[11px]">Tüm Onay Yetkilileri</span></td>
  <td class="p-3.5 text-emerald-600 dark:text-emerald-400 font-semibold">Pencere değiştirmeden hızlı önizleme ve doğrudan onay/red imkanı sunar</td>
  </tr>
+ <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+ <td class="p-3.5 font-bold text-slate-900 dark:text-white">Resmi Tutanak Takibi & İmzalı Yükleme</td>
+ <td class="p-3.5">Tüm sistemden gelen heyet tutanaklarının ıslak imzalı kopyalarını ve EBYS numaralarını denetlemek</td>
+ <td class="p-3.5">Onay Paneli → Resmi Tutanaklar</td>
+ <td class="p-3.5">Taslak İncele → İmzalı Nüsha ve EBYS No Yükle → Onayla / İptal Et</td>
+ <td class="p-3.5">Heyet imzaları veya EBYS üst yazısı çıktığında</td>
+ <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300 font-semibold text-[11px]">Birim Amiri / RKS / İdare</span></td>
+ <td class="p-3.5 text-emerald-600 dark:text-emerald-400 font-semibold">Tutanak 'Tamamlandı' olur, KVKK kasasına şifrelenir ve onay rozeti güncellenir</td>
+ </tr>
  </tbody>
  </table>
  </div>
@@ -498,7 +507,7 @@ graph TD
  <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
  <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
  <span class="w-2.5 h-6 rounded-full bg-cyan-600"></span>
- Merkezi Onay Paneli: 5 Kategori Sekmesi & Rozet Yönetimi
+ Merkezi Onay Paneli: 6 Kategori Sekmesi & Rozet Yönetimi
  </h2>
  <span class="text-xs font-mono text-slate-400">ONAY-PANEL-SECTIONS</span>
  </div>
@@ -571,6 +580,21 @@ graph TD
  <li>• <strong>İncele ve Karar Ver:</strong> Değişiklik İnceleme (Diff) penceresini açar.</li>
  <li>• <strong>Hızlı Onayla:</strong> Rutin veri girişlerini doğrudan veritabanına uygular (Sağlık muayeneleri hariç).</li>
  <li>• <strong>Reddet:</strong> Zorunlu ret gerekçesi alınarak değişiklik iptal edilir.</li>
+ </ul>
+ </div>
+
+ <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+ <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
+ <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+ 6. Resmi Tutanaklar Sekmesi (Islak İmza & EBYS Takibi)
+ </h3>
+ <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+ Cihaz, RKE, Nöbet ve Kalite gibi tüm modüllerden üretilen ve heyet imzası bekleyen resmi tutanaklar (TUT-YYYY-XXXX) bu sekmede listelenir.
+ </p>
+ <ul class="mt-3 text-xs space-y-1 text-slate-500 dark:text-slate-400">
+ <li>• <strong>Taslak Gör:</strong> Tutanak oluşturulurken şifreli kasaya kaydedilen orijinal taslağı anında açar.</li>
+ <li>• <strong>İmzalı Yükle:</strong> Heyetçe ıslak imzalanmış taranmış PDF nüshasını ve EBYS evrak numarasını yükleyerek tutanağı 'Tamamlandı' durumuna getirir.</li>
+ <li>• <strong>Tutanak Modülüne Git:</strong> Bağımsız Resmi Tutanaklar yönetim kokpitine doğrudan geçiş sağlar.</li>
  </ul>
  </div>
 

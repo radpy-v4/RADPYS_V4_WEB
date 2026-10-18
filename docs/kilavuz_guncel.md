@@ -1054,12 +1054,14 @@ Radyasyonla çalışan personelin mesleki maruziyetinin izlenmesi, Nükleer Düz
 | **[Dönem Filtresi]** | Açılır Kutu | Tabloyu seçili yıl/dönem aralığına göre süzer | Tüm Yetkililer | Geçmiş dönem kayıtları inceleneceğinde | Filtre Paneli | Seçilen döneme ait doz kayıtlarını anında listeler. |
 | **[Dozimetre Tipi Filtresi]** | Açılır Kutu | Tüm Vücut, Yüzük, Göz Lensi vb. filtreler | RKS | Belirli bir dozimetre tipi sorgulanırken | Filtre Paneli | Tabloyu seçilen tipe göre daraltır. |
 | **[Doz Alarm Seviyesi]** | Açılır Kutu | Normal, İnceleme (>2mSv), Aşım filtreler | RKS / Kalite | Riskli kayıtlar ayıklanırken | Filtre Paneli | Eşik değerlerine göre satırları renklendirerek süzer. |
-| **[Doz Araştırma Formu Aç]** | Buton | 2.0 mSv eşiğini aşan veya anomali gösteren kayıt için RD.F43 açar | RKS / Kurum Amiri | Eşik aşımı veya istatistiksel anomali tespitinde | Aksiyonlar Sekmesi (Sol Panel) | 4 adımlı resmi araştırma form diyaloğunu başlatır. |
-| **[Takip Ölçümü Planla] / [Birim Notu Ekle]** | Buton | Şüpheli ölçümlerde ara takip planı veya birim çalışma notu ekler | RKS / Dozimetre Sorumlusu | Risk incelemesi ve saha notu kaydında | Aksiyonlar Sekmesi (Sol Panel) | Personele takip ölçümü tanımlar veya birim notunu kaydeder. |
-| **[Formu Görüntüle] / [Aksiyonu Kapat]** | Buton | Başlatılan RD.F43 dosyasını görüntüler veya tamamlanan süreci kapatır | RKS / Kurum Amiri | Açık dosya takibinde veya form onayında | Aksiyonlar Sekmesi (Sağ Panel) | Mevcut formu açar veya aksiyon durumunu 'Kapatıldı' yapar. |
+| **[Bütünleşik Aksiyon Kokpiti]** | Tablo | Tüm yasal aşım ve anomalileri tek potada 8 sütunla gösterir | RKS / Kurum Amiri | Risk analizi ve süreç takibinde | Aksiyonlar Sekmesi | 8 Sütun: [Ad Soyad, Birim, Dönem, Hp(10), Risk Rozeti, Gerekçe, İnceleme Durumu, RD.F43 Raporu]. |
+| **[Doz Araştırma Formu (RD.F43)]** | Buton | 2.0 mSv eşiğini aşan kayıt için 4 adımlı resmi sihirbazı açar | RKS / Kurum Amiri | Eşik aşımı veya istatistiksel anomali tespitinde | Aksiyonlar Araç Çubuğu | Açık vakada düzenleme, yeni vakada başlatma, kapalı vakada salt okunur resmi raporu açar. |
+| **[Aksiyonu Kapat]** | Buton | Güvenlik kilitli modern kapatma penceresini açar | RKS / Kurum Amiri | Soruşturması biten dosyaların arşivlenmesinde | Aksiyonlar Araç Çubuğu | RD.F43 tutanağı düzenlenmemiş veya resmi dosya no girilmemiş dosyaların erken kapatılmasını engeller. |
+| **[Birim İncelemesi Ekle]** | Buton | RKS saha gözlemini ve ortam radyasyon notlarını kaydeder | RKS / Dozimetre Sorumlusu | Birim çalışma şartları denetiminde | Aksiyonlar Araç Çubuğu | Modern inceleme formuyla cihaz kusuru, zırhlama ve saha notlarını işler. |
+| **[Takip Ölçümü Planla]** | Buton | Şüpheli ölçümlerde ara takip veya EPD görevi tanımlar | RKS / Dozimetre Sorumlusu | Risk incelemesi ve yakın takipte | Aksiyonlar Araç Çubuğu | Modern planlama penceresiyle takip periyodu ve özel dozimetre türü belirler. |
 | **[Geçmiş Ölçümler & Birim Takibi]** | Tablo | Personelin geçmiş ölçümlerini ve çalıştığı birimleri listeler | Tüm Yetkililer | Personel rotasyonları ve birim dozu sorgulanırken | Ölçümler Sekmesi (Sağ Panel) | 5 Sütun: Dönem, Birim, Hp(10), Hp(0.07), Durum. Rotasyon takibi sağlar. |
-| **[Resmi RD.F43 İndir]** | Buton | NDK onaylı resmi araştırma tutanağını üretir | RKS / Kurum Amiri | Form tamamlanıp imzaya sunulacağında | Form Diyaloğu | Tüm saha verilerini Jinja2 Word şablonuna basıp DOCX/PDF indirir. |
-| **[Doz Hesapla]** | Buton | Şüpheli aşımda RKS net maruziyet dozunu hesaplar | RKS | Artefakt veya unutulma tespiti yapıldığında | Form Diyaloğu (Adım 3) | Formül ve parametrelerle tahmini maruziyeti hesaplar. |
+| **[Önerilen Kararı Forma Aktar]** | Buton | CDSS karar motoru teşhis ve gerekçesini tutanağa kopyalar | RKS | CDSS analizi resmi karara bağlanırken | RD.F43 Formu (3. Adım) | Canlı zümrüt yeşili (RDS variant="success") 36px ergonomik buton. |
+| **[Resmi RD.F43 İndir (Word/PDF)]** | Buton | NDK matbu 13 soruluk resmi araştırma tutanağını üretir | RKS / Kurum Amiri | Form tamamlanıp imzaya veya NDK'ya sunulacağında | Form Başlığı / Rapor Kokpiti | Word (.docx) ve PDF olarak `RD-F43_{RaporNo}_{Ad_Soyad}` adıyla indirir. |
 | **[Excel'e Aktar]** | Buton | Listeyi resmi denetim formatında dışa aktarır | RKS / Yönetici | NDK denetimlerinde veya arşivlemede | Araç Çubuğu | Tablodaki verileri biçimlendirilmiş XLSX dosyası olarak kaydeder. |
 
 ---
@@ -1097,7 +1099,7 @@ Radyasyonla çalışan personelin mesleki maruziyetinin izlenmesi, Nükleer Düz
    - **[Eşleşmeyenleri Excel Olarak İndir]:** Kurumda henüz kaydı hiç açılmamış personeller varsa bu butona basarak eksik personellerin listesini Excel olarak indirin ve Personel modülündeki Toplu İçe Aktarım Sihirbazı ile tek seferde sisteme ekleyin.
 4. **3. Adım - Veritabanına Yazma ve Alarm Tetikleme:**
    - Önizleme ve eşleştirmeleri tamamladıktan sonra sağ alttaki **[İçe Aktarımı Tamamla]** butonuna tıklayın.
-   - Sistem eşleşen tüm ölçümleri veritabanına işler, personellerin kümülatif yıllık dozlarını yeniden hesaplar ve 2.0 mSv üzerindeki kayıtlar için otomatik olarak RD.F43 araştırma kuyruğuna kayıt düşer.
+   - Sistem eşleşen tüm ölçümleri veritabanına işler, personellerin kümülatif yıllık dozlarını yeniden hesaplar ve 2.0 mSv üzerindeki kayıtlar için otomatik olarak RD.F43 araştırma kuyruğuna kayıt düşer; RKS ve Admin kullanıcılarına anlık eşik aşımı kırmızı alarm bildirimi gönderir.
 
 #### C. Manuel Dozimetre Ölçümü Girişi
 
@@ -1108,43 +1110,44 @@ Radyasyonla çalışan personelin mesleki maruziyetinin izlenmesi, Nükleer Düz
    - **Ölçüm Dönemi:** Başlangıç ve bitiş tarihlerini girin.
    - **Doz Değerleri:** $H_p(10)$ derin doz ve opsiyonel $H_p(0.07)$ yüzey dozu değerlerini sayısal olarak yazın.
    - **Dozimetre Barkod / Seri No:** Dozimetre kasedi üzerindeki kimlik numarasını girin.
-3. **[Kaydet]** butonuna basarak işlemi tamamlayın. Doz değeri eşik üstündeyse sistem kullanıcıyı hemen uyararak araştırma formuna yönlendirir.
+3. **[Kaydet]** butonuna basarak işlemi tamamlayın. Doz değeri eşik üstündeyse sistem kullanıcıyı hemen uyararak araştırma formuna yönlendirir ve yöneticilere bildirim üretir.
 
-#### D. Sadeleştirilmiş 2 Panelli Aksiyonlar ve DÖF Kokpiti
+#### D. Bütünleşik 8 Sütunlu Aksiyon Kokpiti ve Güvenlik Kilitli İşlemler
 
-1. Sayfanın ikinci sekmesi olan **Aksiyonlar** sekmesine geçin. Bu ekranda 3 tablolu karmaşık yapı kaldırılmış, operasyonel odaklı 2 panelli mimari sunulmuştur:
-2. **Sol Panel: İncelenecek Doz Riskleri ve Anomaliler Tablosu:**
-   - Yasal eşik aşımları ($H_p(10) \ge 2.0\text{ mSv}$, yıllık $\ge 20.0\text{ mSv}$) ve personelin kendi geçmiş kişisel ortalamasından 2 kat veya daha fazla sapan istatistiksel anomaliler tek tabloda toplanır.
-   - **Sütunlar:** `[Ad Soyad | Birim | Dönem | Hp(10) | Risk Seviyesi | Gerekçe]`.
-   - **İşlem Butonları:** Seçili satır için üstteki **[Doz Araştırma Formu Aç]** butonuyla 4 adımlı RD.F43 sihirbazı başlatılır; **[Takip Ölçümü Planla]** ile ara takip atanır; **[Birim Notu Ekle]** ile çalışma şartları şerhi düşülür; **[Personel Profili]** ile personelin kartı açılır.
-3. **Sağ Panel: Başlatılan İncelemeler ve DÖF Dosyaları Tablosu:**
-   - Açılmış olan resmi soruşturmalar ve kurumsal DÖF süreçleri 5 sütunla listelenir: `[Dönem | Ad Soyad | Tip | Birim | Durum]`.
-   - **Durum Filtresi:** Üstteki açılır kutudan `Tümü`, `Açık` veya `Kapalı` dosyalar filtrelenebilir.
-   - **İşlem Butonları:** Seçili dosya için **[Formu Görüntüle]** ile kayıtlı RD.F43 tutanağı açılır; tamamlanan süreçler **[Aksiyonu Kapat]** butonuyla arşive kaldırılır.
+1. Sayfanın ikinci sekmesi olan **Aksiyonlar** sekmesine geçin. Bu ekranda sıkışık çift tablolu düzen kaldırılmış, tam sayfa genişliğinde 8 sütunlu tekil ve ferah kokpit sunulmuştur:
+   - **Kokpit Sütunları:** `[Personel Adı Soyadı | Birim | Ölçüm Dönemi | Hp(10) (mSv) | Risk Seviyesi Rozeti | Aşım Gerekçesi | İnceleme Durumu | RD.F43 Raporu]`.
+   - **Durum Filtresi:** `Tüm Kayıtlar`, `İnceleme Bekleyenler (Başlatılmadı)`, `Açık Aksiyonlar` ve `Kapatılanlar` seçenekleriyle süreç canlı filtrelenir.
+2. **Güvenlik Kilitli Aksiyon Kapatma (`AksiyonuKapatDialog`):**
+   - Açık bir aksiyon seçilip **[Aksiyonu Kapat]** tıklandığında modern kapatma kokpiti açılır.
+   - Sistem, ilgili aşım için NDK onaylı RD.F43 araştırma tutanağının hazırlanıp hazırlanmadığını arka planda otomatik denetler. Form eksikse kapatma butonu kilitlenir ve tek tıkla forma yönlendiren `[Formu Doldur / Görüntüle]` butonu sunulur.
+   - Kapatma türü, yasal NDK bildirim teyidi ve resmi dosya/karar numarası girilmeden dosyanın erken kapatılması engellenir.
+3. **Birim İncelemesi Ekleme (`BirimIncelemeDialog`):**
+   - RKS saha gözlemi, ortam radyasyon ölçümü, cihaz kalibrasyon kontrolü ve zırhlama sızıntı testleri kurumsal form üzerinden kayıt altına alınır.
+4. **Takip Ölçümü Planlama (`TakipOlcumuPlanlamaDialog`):**
+   - Riskli vakalar için 15 günlük acil izlem veya 1 aylık hızlandırılmış okuma periyodu ve özel dozimetre türü (Webster çift dozimetre, yüzük, lens) belirlenerek takip görevi atanır.
 
-#### E. 4 Adımlı RD.F43 Araştırma Formu Düzenleme ve RKS Doz Hesabı
+#### E. Rol Tabanlı 4 Adımlı RD.F43 Sihirbazı, CDSS Karar Motoru ve Çift Yönlü Bildirim
 
-Açılan resmi **RD.F43 Doz Araştırma Formu** diyaloğu 4 mantıksal adımdan oluşur:
+Resmi **RD.F43 Doz Araştırma Formu**, Web Portal ve RKS görevlerini ayrıştıran 4 adımlı modern sihirbaz olarak çalışır:
 
-1. **Adım 1 - Personel ve Görev Bilgileri:**
-   - Personelin çalıştığı birim, cihaz türü (Skopi, BT, Girişimsel vb.), haftalık çalışma saati ve koruyucu ekipman (kurşun önlük, tiroid koruyucu) kullanım durumu teyit edilir.
-2. **Adım 2 - Olay ve Çalışma Koşulları:**
-   - Ölçüm periyodunda olağan dışı bir vaka, cihaz arızası, tüp patlaması, floroskopi kilitlenmesi veya acil vaka yoğunluğu yaşanıp yaşanmadığı işaretlenir.
-   - Dozimetrenin doğru taşınıp taşınmadığı (önlük altı / önlük üstü) seçilir.
-3. **Adım 3 - Artefakt / Maruziyet Tespiti ve RKS Doz Hesabı:**
-   - **Aşım Türü:** `Gerçek Mesleki Maruziyet` veya `Artefakt / Sahte Aşım (Tıbbi Tetkik / Odada Unutulma)` seçilir.
-   - Eğer çalışan bizzat hasta olarak radyolojik tetkik yaptırmışsa tetkik tarihi ve türü girilir.
-   - Dozimetre odada unutulmuşsa cihazın çalışma süresi ve mesafe parametreleri girilerek **[Doz Hesapla]** butonuna basılır; RKS tarafından hesaplanan net maruziyet dozu belirlenir.
-   - Gerçek mesleki aşım durumunda **DÖF Numarası** girilmesi zorunludur.
-4. **Adım 4 - Sonuç, Karar ve İmzalar:**
-   - RKS değerlendirme notu ve personelin göreve devam durumu (`Göreve Devam Edebilir`, `Radyasyonsuz Alana Çekildi`, `Tıbbi Muayeneye Sevk Edildi`) seçilir.
-   - **[Formu Kaydet ve Onayla]** butonuna tıklanarak resmi soruşturma tamamlanır.
+1. **Adım 1 - Çalışan Beyanı (Bölüm 2):**
+   - Çalışma süresi, kaynak türü, koruyucu donanımlar (KKE), unutulma ve şahsi tıbbi tetkik beyanı alınır. Aksiyon açıldığında çalışan personele Web Portal üzerinden görev bildirimi gönderilir; çalışan kendi ekranından bu soruları yanıtlayabilir.
+2. **Adım 2 - RKS Saha İncelemesi (Bölüm 3):**
+   - RKS tarafından tesis durumu, cihaz kusurları, radyoaktif kirlilik, ortam dozu artışı ve diğer çalışanların dozu taranır.
+3. **Adım 3 - CDSS Karar Motoru & Doz Analizi:**
+   - **Akla Yatkınlık (Uyum) Skoru:** Ters kare kanunu teorik hesabı ile ölçüm kıyaslanarak alanda unutulma iddiası bilimsel doğrulanır.
+   - **Webster Algoritması:** Kurşun önlük üstü kullanımlarda tahmini iç organ biyolojik dozu hesaplanır.
+   - **Otomatik Teşhis:** Medikal tetkik, kanıtlanmış unutulma, önlük dışı kullanım, tesis kaçağı veya yasal limit aşımı kategorisi otomatik belirlenir.
+   - **[Önerilen Kararı ve Bulguları Forma Aktar] (Canlı Zümrüt Yeşili Buton):** 36px ergonomik yeşil butona tıklandığında CDSS teşhisi, NDK resmi gerekçesi ve DÖF kararı tek tıkla 4. adıma aktarılır.
+4. **Adım 4 - Yasal Karar, DÖF ve KVKK Kasası (Bölüm 4):**
+   - Değerlendirme tipi, DÖF takip numarası ve resmi kaşe/imzalar tamamlanır.
 
-#### F. Resmi RD.F43 Word / PDF Çıktısı Alma
+#### F. NDK Birebir Resmi Matbu Soru-Cevap Word ve PDF Çıktıları
 
-1. Tamamlanan araştırma formunun sağ üst köşesindeki **[Resmi RD.F43 Word İndir]** butonuna tıklayın.
-2. Sistem, NDK standartlarına birebir uyumlu Jinja2 tabanlı kurumsal Word şablonunu (`docxtpl`) doldurur; kurum logosunu, personel verilerini, RKS analizini ve imza bloklarını otomatik yerleştirerek resmi tutanağı hazırlar.
-3. Oluşturulan belge ıslak/elektronik imza için Kurum Amirine sunulur ve NDK denetim dosyasında arşivlenir.
+1. Araştırma formu tamamlandığında **[Resmi RD.F43 İndir (.docx)]** veya **[PDF Raporu İndir]** butonuna tıklayın.
+2. Belge, NDK'nın resmi 2 sayfalık matbu formatına birebir uyumlu olarak 13 sorunun tamamını soru metinleri, seçenekleri ve çalışan/RKS beyanlarıyla birlikte kurumsal antetle üretir.
+3. Dışa aktarılan dosya adı otomatik olarak `RD-F43_{RaporNo}_{Ad_Soyad}.(docx|pdf)` formatında düzenlenir ve sistem tarafından hemen açılır.
+4. Islak imzalanmış resmi tutanaklar KVKK Fernet şifreli kasasında arşivlenir.
 
 ---
 
@@ -1203,8 +1206,9 @@ Radyasyon etkilerini erken evrede yakalamak amacıyla muayene süreci üç klini
 
 | Arayüz Bileşeni / Buton | Türü | Ne İşe Yarar? (Ne?) | Kim Kullanır? (Kim?) | Ne Zaman Kullanılır? (Ne Zaman?) | Nerede Yer Alır? (Nerede?) | Nasıl Çalışır? (Nasıl?) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **[Ekle]** | Buton | Yeni periyodik veya işe giriş muayenesi açar | Hekim / RKS / İSG Uzmanı | Personel muayeneye girdiğinde | Liste Araç Çubuğu | Yeni muayene ekleme modal diyaloğunu açar. |
-| **[Detay]** | Buton | Muayenenin branş bulguları ve evraklarını açar | Tüm Yetkililer | Tetkik ve klinik notlar incelenirken | Liste Araç Çubuğu | Seçili kaydın detay formunu açar (veya çift tık). |
+| **[Yeni Sevk Başlat]** | Buton | 1. Aşama Ön Hazırlık ve Sevk modalını açar | Hekim / RKS / İSG Uzmanı | Personelin periyodik sevk süreci başladığında | Liste Araç Çubuğu | Personel seçimi, anamnez ve 12 belirti girişiyle sevk kaydı oluşturup resmi 2 sayfalık EK-1 PDF belgesini otomatik üretir. |
+| **[Hekim Kararı]** | Buton | 2. Aşama Hekim Kararı modalını açar | İşyeri Hekimi / RKS | Poliklinik tetkik sonuçları tamamlandığında | Liste Araç Çubuğu | Branş muayenelerini (Göz, Dahiliye, Cildiye), laboratuvar bulgularını ve nihai hekim kararını işler; ıslak imzalı taramayı arşivler (veya çift tık). |
+| **[Resmi EK-1 PDF İndir]** | Dışa Aktarma | 2 sayfalık resmi A4 sevk ve muayene belgesini üretir | Tüm Yetkililer | Sevk belgesi basılacağı veya arşivleneceğinde | Sevk Formu / Liste | Sağlık Bakanlığı ve NDK standardında (docs/21.5.7077) Times New Roman tipografili A4 PDF üretir. Sayfa 2 hekim için dürüstçe boş sunulur. |
 | **[Geçmiş]** | Buton | Personelin geçmiş tüm muayenelerini listeler | Hekim / Denetçi | Personelin kronolojik gelişimi kıyaslanırken | Liste Araç Çubuğu | Personelin tüm geçmiş muayene geçmişi tablosunu açar. |
 | **[Sil]** | Buton | Hatalı girilmiş muayene kaydını siler | Süpervizör / Admin | Mükerrer veya yanlış kayıt girildiğinde | Liste Araç Çubuğu | Kullanıcıdan silme onayı alarak revizyon loguna yazar. |
 | **[Yenile]** | Buton | Tablo verilerini veritabanından tazeler | Tüm Kullanıcılar | Yeni kayıt girişi sonrasında | Filtre Paneli | Güncel kayıtları servisten çeker ve tabloyu baştan çizer. |
@@ -1213,14 +1217,14 @@ Radyasyon etkilerini erken evrede yakalamak amacıyla muayene süreci üç klini
 | **[Muayene Türü Filtresi]** | Açılır Kutu | Tabloyu seçili muayene türüne göre süzer | Tüm Yetkililer | Şua veya periyodik kayıtlar ayrıştırılırken | Filtre Paneli | Seçilen muayene türüne ait satırları listeler. |
 | **[Sonuç Filtresi]** | Açılır Kutu | Tabloyu klinik uygunluk kararına göre süzer | Hekim / RKS | Koşullu veya riskli personeller taranırken | Filtre Paneli | Uygun, Koşullu Uygun, Uygun Değil seçeneklerini süzer. |
 | **[Muayene Durumu]** | Açılır Kutu | Zaman aşımı durumuna göre süzer | RKS / İSG | Günü geçen veya yaklaşanlar raporlanırken | Filtre Paneli | Süresi Geçmiş, Yaklaşıyor (30 gün), Normal süzer. |
-| **[TC / Ad ile Ara]** | Tamamlayıcı | Muayenesi yapılacak personeli seçer | Kullanıcı | Form doldurulurken | Ekleme Modalı | Yazılan harflere göre personeli tamamlar, unvan/dep yazar. |
-| **[Muayene Türü Seçimi]** | Açılır Kutu | Yapılan muayene türünü belirler | Kullanıcı | Form doldurulurken | Ekleme Modalı | Türü belirler; sonraki muayene tarihini otomatik tetikler. |
-| **[Muayene Tarihi]** | Tarih Seçici | Muayenenin icra edildiği tarihi belirler | Kullanıcı | Form doldurulurken | Ekleme Modalı | Takvim üzerinden tarih seçtirir; boş bırakılamaz. |
-| **[Sonraki Muayene]** | Tarih Alanı | Bir sonraki kontrol tarihini gösterir/alır | Sistem / Hekim | Periyot hesaplandığında | Ekleme Modalı | Tür periyoduna göre otomatik hesaplanır; hekim revize edebilir. |
-| **[Dahiliye İmza & Sonuç]** | Onay + Kutu | Dahiliye branş onayını ve sonucunu kaydeder | Hekim | Dahiliye kontrolü bittiğinde | Bulgular Grubu | İmzalandı onay kutusu, branş sonucu ve tarihini işler. |
-| **[Dermatoloji İmza & Sonuç]** | Onay + Kutu | Cildiye branş onayını ve sonucunu kaydeder | Hekim | Cilt kontrolü bittiğinde | Bulgular Grubu | İmzalandı onay kutusu, branş sonucu ve tarihini işler. |
-| **[Göz İmza & Sonuç]** | Onay + Kutu | Göz lensi muayene onayını kaydeder | Hekim | Göz kontrolü bittiğinde | Bulgular Grubu | İmzalandı onay kutusu, branş sonucu ve tarihini işler. |
-| **[Tavsiyeler]** | Metin Alanı | Hekimin klinik tavsiye ve şerhlerini tutar | Hekim | Tıbbi kanaat belirtilirken | Bulgular Grubu | İleri tetkik veya ara kontrol önerileri serbest metin girilir. |
+| **[TC / Ad ile Ara]** | Tamamlayıcı | Muayenesi yapılacak personeli seçer | Kullanıcı | Form doldurulurken | Sevk Modalı | Yazılan harflere göre personeli tamamlar, unvan/dep yazar. |
+| **[Muayene Türü Seçimi]** | Açılır Kutu | Yapılan muayene türünü belirler | Kullanıcı | Form doldurulurken | Sevk Modalı | Türü belirler; sonraki muayene tarihini otomatik tetikler. |
+| **[Muayene Tarihi]** | Tarih Seçici | Muayenenin icra edildiği tarihi belirler | Kullanıcı | Form doldurulurken | Sevk Modalı | Takvim üzerinden tarih seçtirir; boş bırakılamaz. |
+| **[Sonraki Muayene]** | Tarih Alanı | Bir sonraki kontrol tarihini gösterir/alır | Sistem / Hekim | Periyot hesaplandığında | Sevk Modalı | Tür periyoduna göre otomatik hesaplanır; hekim revize edebilir. |
+| **[Dahiliye İmza & Sonuç]** | Onay + Kutu | Dahiliye branş onayını ve sonucunu kaydeder | Hekim | Dahiliye kontrolü bittiğinde | Hekim Kararı Modalı | İmzalandı onay kutusu, branş sonucu ve tarihini işler. |
+| **[Dermatoloji İmza & Sonuç]** | Onay + Kutu | Cildiye branş onayını ve sonucunu kaydeder | Hekim | Cilt kontrolü bittiğinde | Hekim Kararı Modalı | İmzalandı onay kutusu, branş sonucu ve tarihini işler. |
+| **[Göz İmza & Sonuç]** | Onay + Kutu | Göz lensi muayene onayını kaydeder | Hekim | Göz kontrolü bittiğinde | Hekim Kararı Modalı | İmzalandı onay kutusu, branş sonucu ve tarihini işler. |
+| **[Tavsiyeler]** | Metin Alanı | Hekimin klinik tavsiye ve şerhlerini tutar | Hekim | Tıbbi kanaat belirtilirken | Hekim Kararı Modalı | İleri tetkik veya ara kontrol önerileri serbest metin girilir. |
 | **[Muayene Formu Seç/Aç/Sil]** | Dosya Butonları | Taranmış heyet/muayene evrakını bağlar | Kullanıcı | Rapor sisteme yükleneceğinde | Belge Satırı | Dosyayı seçer, açar veya temizler; şifreli kasaya kopyalar. |
 | **[Kaydet]** | Buton | Formu doğrular ve kaydı tamamlar | Kullanıcı | Veri girişi tamamlandığında | Form Altı | Zorunlu alan kontrolü yapar, kısıt ekler ve kaydeder. |
 | **[Talebi Reddet]** | Buton | Onay bekleyen muayene talebini reddeder | Süpervizör / Amir | Onay kuyruğunda | Form Altı | Gerekçe alarak onay talebini reddeder. |
@@ -1230,45 +1234,48 @@ Radyasyon etkilerini erken evrede yakalamak amacıyla muayene süreci üç klini
 
 ### 3. Ekran Konumları ve Kullanım Adımları
 
-#### A. Sağlık Takip Kokpiti ve Filtreler
+#### A. Sağlık Takip Kokpiti ve Dengeli Liste Görünümü
 
 1. Sol ana menüden **Sağlık Muayeneleri** modülüne tıklayın.
-2. Karşınıza kurum personellerinin güncel muayene durumlarını gösteren merkezi tablo gelir.
-3. Tabloda personelin Adı Soyadı, Hizmet Sınıfı, Muayene Türü, Muayene Tarihi, Uzmanlık Durumları (Göz, Dahiliye, Dermatoloji görsel durum ikonları), Sonraki Muayene Tarihi ve Genel Sonuç sütunları yer alır.
-4. Tablo üzerindeki arama kutusuna personelin adı veya T.C. kimlik numarasını yazarak anında süzme yapabilirsiniz.
-5. Yaklaşan kontrolleri incelemek için **Muayene Durumu** filtresinden `Yaklaşıyor (30 gün)` veya günü geçenleri görmek için `Süresi Geçmiş` seçeneğini belirleyin.
+2. Karşınıza kurum personellerinin güncel muayene durumlarını gösteren ferah kokpit tablosu gelir:
+   - **Dengeli Sütun Yerleşimi:** `Personel Adı Soyadı`, `Departman / Birim` ve `Görevi / Ünvanı` sütunları ekran genişliğini dengeli olarak paylaşır; `Son Muayene Tarihi`, `Sonraki Muayene Tarihi` ve `Muayene Kararı` sütunları hiçbir kırpılma olmadan konforlu piksel genişliklerinde gösterilir.
+   - **Uzmanlık Rozetleri:** Göz, Dahiliye ve Dermatoloji branşlarının onay ve uygunluk durumları renkli durum rozetleriyle hücre içinde yer alır.
+3. Tablo üzerindeki arama kutusuna personelin adı veya T.C. kimlik numarasını yazarak anında süzme yapabilirsiniz.
+4. Yaklaşan kontrolleri incelemek için **Muayene Durumu** filtresinden `Yaklaşıyor (30 gün)` veya günü geçenleri görmek için `Süresi Geçmiş` seçeneğini belirleyin.
 
-#### B. Yeni Sağlık Muayene Kaydı Açma ve Personel Seçimi
+#### B. 1. Aşama: Ön Hazırlık, Sevk ve Resmi EK-1 A4 PDF Çıktısı
 
-1. Üst araç çubuğundaki **[Ekle]** butonuna tıklayın. Açılan **Yeni Muayene Kaydı** modal diyaloğunda:
-2. **Personel Seçimi:** `TC / Ad ile Ara` kutusuna personelin adını veya T.C. kimlik numarasının ilk harflerini yazın; açılan listeden personeli seçin. Personelin departman ve unvan bilgileri otomatik olarak ekrana yansır.
-3. **Muayene Türü:** Açılır kutudan `Radyasyon Çalışanı Muayenesi`, `Periyodik Muayene`, `Şua Muayenesi` veya `İşe Giriş Muayenesi` seçin.
-4. **Muayene Tarihi:** Takvimden muayenenin yapıldığı tarihi belirleyin. Sistem, seçilen muayene türünün periyoduna göre (örn: Şua için 6 ay, Radyasyon için 12 ay) **Sonraki Muayene Tarihi** alanını otomatik doldurur. Gerek duyulursa bu tarih hekim tarafından manuel değiştirilebilir.
+1. Üst araç çubuğundaki **[Yeni Sevk Başlat]** butonuna tıklayın. Açılan **Ön Hazırlık & Sevk** modalında:
+   - **Personel Seçimi:** `TC / Ad ile Ara` kutusuna personelin adını veya T.C. kimlik numarasının ilk harflerini yazın; açılan listeden personeli seçin. Personelin departman ve unvan bilgileri otomatik yansır.
+   - **Muayene Türü:** Açılır kutudan `Radyasyon Çalışanı Muayenesi`, `Periyodik Muayene`, `Şua Muayenesi` veya `İşe Giriş Muayenesi` seçin. Sistem **Sonraki Muayene Tarihi** alanını periyoda göre (6 veya 12 ay) otomatik hesaplar.
+   - **Radyasyon Çalışma Geçmişi:** Personelin haftalık fiili çalışma saati ve geçmiş radyasyon çalışma süresi doğrulanır.
+   - **Anamnez ve 12 Belirti Matrisi:** Mevzuatta öngörülen klinik belirtiler ve sağlık geçmişi soruları eksiksiz yanıtlanır.
+2. **[Sevk Kaydını Oluştur ve EK-1 Belgesini Aç]** butonuna basın:
+   - Sistem sevk kaydını oluşturur ve Sağlık Bakanlığı ile NDK standartlarında resmi **2 sayfalık A4 EK-1 PDF** sevk formunu otomatik olarak derleyip ekranda açar.
+   - Dosya adı `EK1_Saglik_Muayene_{Ad_Soyad}_{TC}_{Tarih}.pdf` standardında üretilir.
+   - **Dürüst Boş Durum Güvencesi:** Sayfa 1 çalışan künyesi ve beyanını içerirken; Sayfa 2 poliklinik hekimlerinin el yazısıyla muayene bulgularını girip kaşe vurabilmeleri için El-Cilt, Malignite, Tam Kan Sayımı ve Katarakt alanlarında temiz ve boş olarak sunulur.
 
-#### C. Uzmanlık Bulguları, Hekim İmzaları ve Tavsiyeler
+#### C. 2. Aşama: Poliklinik Muayeneleri, Nihai Hekim Kararı ve KVKK Kasası
 
-1. **Uzmanlık Muayeneleri & Tetkik Bulguları** panelinde üç branş için bağımsız değerlendirme alanları yer alır:
-   - **Dahiliye:** İlgili dahiliye hekimi muayeneyi yaptıysa **[x] İmzalandı** kutucuğunu işaretleyin; sonuç kutusundan `Uygun`, `Koşullu Uygun` veya `Uygun Değil` seçip branş tarihini girin.
-   - **Dermatoloji:** Cilt muayenesi tamamlandığında **[x] İmzalandı** kutusunu işaretleyin, branş sonucunu ve tarihini belirleyin.
-   - **Göz:** Lens ve biomikroskopi muayenesi tamamlandığında **[x] İmzalandı** kutusunu işaretleyin, branş sonucunu ve tarihini belirleyin.
-2. *Zorunluluk Kuralı:* Formun kaydedilebilmesi için en az bir branş sonucunun belirlenmiş olması şarttır.
-3. **Tavsiyeler:** Hekimin klinik kanaati, koruyucu donanım tavsiyeleri veya ara kontrol önerileri bu alana serbest metin olarak yazılır.
+1. Polikliniklerden dönen kaşeli EK-1 evrakı elinize ulaştığında, listeden ilgili personelin satırını seçip **[Hekim Kararı]** butonuna tıklayın (veya satıra çift tıklayın).
+2. Açılan pencerede:
+   - **Dahiliye (Tam Kan Sayımı & Tiroid):** Dahiliye uzmanının kaşelediği sonuçları girin, `[x] İmzalandı` işaretleyin ve branş sonucunu (`Uygun`, `Koşullu Uygun`, `Uygun Değil`) seçin.
+   - **Dermatoloji (Cilt):** Cilt muayenesi bulgularını işleyin ve branş sonucunu belirleyin.
+   - **Göz (Lens & Biyomikroskopi):** Göz merceği inceleme sonucunu ve hekim imzasını işleyin.
+   - **Tavsiyeler:** Hekimin tıbbi kanaati ve koruyucu donanım şerhleri serbest metin olarak eklenir.
+   - **Nihai Karar:** İşyeri hekimi genel klinik uygunluk kararını tescil eder.
+3. **Şifreli Evrak Yükleme:**
+   - **[Seç]** butonuyla hekimler tarafından kaşelenip imzalanmış ıslak imzalı EK-1 formunun taramasını seçin.
+   - Sistem belgeyi AES-256 Fernet ile şifreleyerek KVKK güvenli kasasına aktarır ve `SAGLIK-{personel_id}-{belge_id}` olarak arşivler.
+4. **[Kaydet]** butonuna basarak muayene sürecini tamamlayın.
 
-#### D. Şifreli Muayene Evrakı / Rapor Dosyası Yükleme
-
-1. Formun altındaki **Muayene Formu** satırında yer alan **[Seç]** butonuna tıklayın.
-2. Bilgisayarınızdan taranmış muayene heyet raporunu veya laboratuvar sonuç belgesini (`.pdf`, `.jpg`, `.png`) seçin.
-3. Sistem belgeyi KVKK standartlarında şifreleyerek güvenli evrak kasasına aktarır ve `SAGLIK-{personel_id}-{belge_id}` formatında arşivler.
-4. Yüklenen belgeyi incelemek için **[Aç]**, kaldırmak için **[Temizle]** butonlarını kullanabilirsiniz.
-5. Formu tamamlamak için sağ alttaki **[Kaydet]** butonuna basın.
-
-#### E. İleri Tetkik Sevk Süreci ve Heyet Raporu Kısıt Entegrasyonu
+#### D. İleri Tetkik Sevk Süreci ve Heyet Raporu Kısıt Entegrasyonu
 
 1. Eğer muayene branşlarından birinde veya genel sonuçta personelin radyasyon alanında çalışması şüpheli görülürse (`Koşullu Uygun` veya `Uygun Değil`), hekim tavsiyeler alanına ileri tetkik şerhini düşer.
 2. Personel kurum içi ileri tetkik süreçlerine (ayrıntılı hematoloji veya oftalmik analiz) sevk edilir.
 3. İleri tetkikler neticesinde personelin radyasyon alanında çalışamayacağı resmi Sağlık Kurulu (Heyet) Raporu ile kesinleşirse, Yönetici veya RKS tarafından **Nöbet Ayarları ve Kısıt Hiyerarşisi (Modül 07)** ekranından personele resmi heyet raporu şerhiyle çalışma kısıtı eklenir.
 
-#### F. Muayene Geçmişi İnceleme ve Revizyon Denetim İzi
+#### E. Muayene Geçmişi İnceleme ve Revizyon Denetim İzi
 
 1. Bir personelin geçmiş tüm periyodik kontrollerini kronolojik incelemek için listeden personeli seçip **[Geçmiş]** butonuna tıklayın (veya satıra sağ tıklayıp **Personel Muayene Geçmişi** seçin).
 2. Açılan pencerede personelin geçmiş yıllardaki muayene türleri, tarihleri, hekimleri ve branş sonuçları liste olarak görüntülenir.
@@ -2019,6 +2026,90 @@ RADPYS Hizmet İçi Eğitim ve Online Sınav modülü, masaüstü kurumsal yöne
 
 ---
 
+## 19. Cihaz Arıza, Periyodik Bakım ve Kalite Kontrol (QC)
+
+### 1. Hızlı Başlangıç ve Önemli Eşikler
+
+- **Mevzuat & Standart:** NDK Radyasyon Güvenliği Yönetmeliği, Sağlık Bakanlığı SKS 6.1 & DIN/IEC Kalibrasyon Standartları
+- **İhale Bakım Periyotları:** 1 Aylık, 3 Aylık, 6 Aylık veya 12 Aylık Otomatik Slot Üretimi
+- **Aylık Bakım Radarı:** Bu Ay, Gelecek Ay, Geciken Bakımlar ve Tamamlananlar Canlı Sayaçları
+- **QC Ölçüm Girişi:** 4 Adımlı RDS Stepper (Sihirbaz) — Tek Tıkla Canlı Tablo Hücresi Düzenleme
+- **Güvenlik Emniyet Kilidi:** Olumsuz Kalite Kontrol Testinde Cihazı Otomatik Karantinaya Alma (RED-UI-CIHAZ-01)
+- **Evrak Kasası:** AES-256 Fernet ile Şifreli Islak İmzalı Servis Formu ve Test Raporu (PDF) Arşivleme
+- **Platform:** 🖥️ Masaüstü Yönetim Kokpiti & 📱 Mobil Saha Web Konsolu / QR Barkod
+
+---
+
+### 2. 5N1K Kural ve Fonksiyon Tablosu
+
+| NE? (Ekran Kontrolü) | NEDEN? (Kullanım Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Hangi Durumda) | KİM? (Yetkili Kitle) |
+| --- | --- | --- | --- | --- |
+| **Yeni Arıza Bildir** | Cihaz arızasını sisteme girip hasta çekimlerini durdurmak. | Cihaz seçilir, aciliyet derecesi ve arıza tanımı girilir. Cihaz durumu otomatik olarak 'Arızalı' statüsüne geçer. | Cihazda fiziksel veya yazılımsal arıza çıktığında. | Radyoloji Teknikeri, Hekim, Biyomedikal. |
+| **Seçili Arızayı Çöz** | Teknik servis müdahalesini belgeleyip cihazı tekrar hizmete açmak. | Yapılan teknik işlem, servis firması ve değişen parçalar kaydedilir; cihaz otomatik olarak 'Aktif' statüsüne döner. | Yetkili servis arızayı giderip test ettiğinde. | Biyomedikal Mühendisi, RKS. |
+| **X-Işını Tüp Değişimi** | Yeni tüpün seri numarasını cihaz künyesine işlemek. | Onay kutusu işaretlenip yeni tüp seri no yazılır; sistem cihaz künyesindeki aktif tüp seri numarasını anında günceller. | X-ışını tüpü arızalanıp yenisi takıldığında. | Biyomedikal / RKS. |
+| **Aylık Bakım Radarı** | Radyolojinin bakım aylarını önceden bilmesini sağlayıp sürprizleri önlemek. | Bu ay yapılacaklar, gelecek ayın yoğunluğu ve geciken bakımlar renkli rozetlerle canlı hesaplanır. | Periyodik Bakım sayfası açıldığında. | Radyoloji Sorumlusu, Birim Amiri. |
+| **İhale Bakım Takvimi Planla** | İhale şartnamesine göre sözleşme sonuna kadar tüm bakım slotlarını tek seferde üretmek. | Cihaz, ilk bakım tarihi, sözleşme bitişi ve periyot (1, 3, 6, 12 ay) seçilir; sistem tüm randevuları 'Beklemede' olarak takvime işler. | Yıllık ihale veya sözleşme tamamlandığında. | Klinik Amiri, Biyomedikal. |
+| **Bakımı Tamamla & Servis Formu** | Yapılan bakımı imzalı servis raporuyla kapatıp kasaya kaldırmak. | Gerçekleşen tarih, refakat eden personel, teknisyen ve taranmış servis formu (PDF) seçilir. Belge şifrelenir ve durum 'Tamamlandı' olur. | Yetkili servis bakımı bitirip formu teslim ettiğinde. | Tekniker, RKS. |
+| **4 Adımlı QC Sihirbazı** | Kalite kontrol ve kalibrasyon ölçümlerini adım adım hatasız kaydetmek. | 1. Cihaz/Protokol ➔ 2. Ekipman/Ekip ➔ 3. Canlı Ölçümler ➔ 4. Değerlendirme & Onay adımlarıyla ilerlenir. | Periyodik QC veya kalibrasyonda. | Medikal Fizik Uzmanı, RKS. |
+| **Canlı Ölçüm Tablosu Tek Tık Girişi** | Ölçüm değerlerini çift tıklama veya F2 engeli olmadan akıcı girmek. | Hücreye tek tıkla dokunulduğunda doğrudan sayısal değer yazılabilir; tabular font ile sütunlar net hizalanır. | Ölçüm tablosu doldurulurken. | Medikal Fizik Uzmanı. |
+| **QC Başarısızlık Karantina Kilidi** | Standart dışı radyasyon yayan cihazın kullanımını engellemek. | Sonuç 'Uygun Değil' seçilirse güvenlik uyarısı açılır; onay verildiğinde cihaz derhal 'Arızalı' statüsüne kilitlenir. | QC sonucu olumsuz çıktığında. | Medikal Fizik Uzmanı, Sistem. |
+| **PDF Rapor Önizleme** | Saklanan resmi servis formunu veya QC raporunu anında açmak. | Şifreli evrak deşifre edilerek geçici dosyaya yazılır ve Windows varsayılan PDF okuyucusunda açılır. | Çift tıklandığında veya butona basıldığında. | Tüm kullanıcılar. |
+
+---
+
+### 3. Kritik Kural ve Saha Uyarıları
+
+> ⚠️ **Saha Notu: Arıza ve Bakım Ayrımı İlkesi**  
+> RADPYS'de cihaz arızası ile periyodik bakım tamamen bağımsız süreçlerdir. Radyoloji cihazlarının periyodik bakımları ihale şartnamesine dayalıdır. Amaç karmaşık bir biyomedikal atölye veya stok programı olmak değil; radyoloji ekibinin cihazlarının bakım dönemlerini önceden bilmesi ve yetkili servisin son dakika *"bugün bakım var, cihazı 4 saat kapatıyoruz"* sürprizlerinin önüne geçmektir.
+
+> 🔒 **Güvenlik Standardı: Negatif QC Karantina Kilidi (RED-UI-CIHAZ-01)**  
+> Dozimetrik doğruluk, tüp voltajı veya sızıntı ölçümleri tolerans sınırlarını aştığında ve test sonucu "Uygun Değil" olarak kaydedildiğinde sistem güvenlik uyarısı verir. Operatör onayladığı anda cihaz envanterde otomatik olarak **'Arızalı / Kullanım Dışı'** statüsüne çekilir ve hasta çekimlerine derhal kapatılır.
+
+> 💡 **Pratik İpucu: X-Işını Tüp Değişimi ve NDK Lisansı**  
+> Arıza çözüm ekranında tüp değişimi kutusu işaretlendiğinde yeni tüpün seri numarası cihaz künyesine otomatik işlenir. NDK mevzuatı gereği tüp değişimi lisans revizyonu gerektirdiğinden, işlem sonrasında RKS biriminin NDK sistemine resmi bildirim yapması zorunludur.
+
+---
+
+### 4. Ekran Konumları ve Kullanım Adımları
+
+#### A. Cihaz Arızası Bildirme ve Onarımı Kapatma
+
+1. Sol menüden **[Cihaz Yönetimi]** ➔ **[Cihaz Arıza ve Onarım Takibi]** ekranını açın.
+2. Sol üstteki **[Yeni Arıza Bildir]** butonuna tıklayın.
+3. Açılan pencerede arızalanan cihazı seçin, aciliyet derecesini (*Düşük, Normal, Yüksek, Acil*) ve arıza tanımını girip **[Kaydet]** butonuna basın. Cihaz listede kırmızı 'Arızalı' olarak işaretlenir.
+4. Yetkili servis arızayı giderdikten sonra ilgili satırı seçip **[Seçili Arızayı Çöz]** butonuna tıklayın.
+5. Yapılan müdahaleyi ve değişen parçaları yazın; eğer X-ışını tüpü değiştirilmişse **[X-Işını Tüp Değişimi Var]** kutusunu işaretleyip yeni tüp seri numarasını girin ve **[Çözümü Kaydet]**'e basın. Cihaz tekrar 'Aktif' statüsüne döner.
+
+#### B. İhale Şartnamesine Göre Bakım Takvimi Planlama
+
+1. Sol menüden **[Cihaz Yönetimi]** ➔ **[Periyodik Bakım Yönetimi]** ekranını açın.
+2. Araç çubuğundaki **[İhale Bakım Takvimi Planla]** butonuna tıklayın.
+3. Açılan formdan cihazı seçin; cihazın tür, seri no ve lokasyon bilgisi otomatik olarak özetlenir.
+4. **İlk Bakım Tarihi** ve ihale sözleşmesinin **Bitiş Tarihi**ni belirleyin.
+5. İhale şartnamesindeki bakım periyodunu (**1 Aylık, 3 Aylık, 6 Aylık veya 12 Aylık**) seçin.
+6. Yetkili servis firmasını ve varsa ihale numarasını girin.
+7. Sistem sözleşme sonuna kadar kaç adet bakım slotu oluşacağını altta gösterir; **[Takvimi Oluştur]** butonuna bastığınızda tüm randevular takvime tek seferde **"Beklemede"** olarak işlenir.
+
+#### C. Gerçekleşen Bakımı Kapatma ve İmzalı Servis Formu Yükleme
+
+1. **[Periyodik Bakım Yönetimi]** ekranındaki listeden bakımı yapılan cihazın ilgili dönem satırını seçin.
+2. Üst araç çubuğundaki **[Bakımı Tamamla]** butonuna tıklayın.
+3. Açılan formda gerçekleşen tarihi kontrol edin, bakıma refakat eden klinik personelini ve firma servis teknisyenini seçin.
+4. **[Servis Formu Seç (PDF)]** butonuyla firmanın teslim ettiği taranmış ıslak imzalı servis raporunu yükleyin.
+5. **[Bakımı Tamamla ve Kaydet]** butonuna basın. Belge KVKK standartlarında AES-256 ile şifrelenir, durum 'Tamamlandı' rozetine döner.
+6. İlerleyen tarihlerde ilgili bakım satırına çift tıkladığınızda servis formu anında PDF olarak açılır.
+
+#### D. 4 Adımlı QC Sihirbazı ile Canlı Ölçüm ve Kalibrasyon Kaydı
+
+1. Sol menüden **[Cihaz Yönetimi]** ➔ **[Cihaz QC Kokpiti]** ekranını açın.
+2. **[Yeni QC Kaydı]** butonuna tıklayın; modern 4 adımlı sihirbaz açılır.
+3. **Adım 1 (Cihaz & Protokol):** Cihazı seçin; sistem üretici ve Türkak/NDK/DIN protokol önerilerini otomatik listeler.
+4. **Adım 2 (Ekipman & Ekip):** Kullanılan iyon odası/kalibratör ekipmanlarını ve testi yürüten medikal fizikçiyi belirleyin.
+5. **Adım 3 (Canlı Ölçümler):** Ölçüm tablosundaki hücrelere tek tıkla dokunarak doz çıkışı, tekrarlanabilirlik ve sızıntı değerlerini klavyeden akıcı şekilde girin.
+6. **Adım 4 (Değerlendirme & Onay):** Tolerans analizi sonucunu (Uygun / Şartlı / Uygun Değil) inceleyin, onay notunuzu yazıp **[QC Kaydını Tamamla]** butonuna basın.
+
+---
+
 ## 21. Merkezi Onay Bekleyen Görevler Paneli
 
 ### 1. Hızlı Başlangıç ve Önemli Eşikler
@@ -2182,22 +2273,36 @@ RADPYS Hizmet İçi Eğitim ve Online Sınav modülü, masaüstü kurumsal yöne
 
 #### A. Tutanak Sihirbazı ile Resmi Heyet Tutanağı Oluşturma
 
-1. Sol menüden **[Koruyucu Ekipman (RKE)]** veya **[Tıbbi Cihaz Yönetimi]** ekranını açın.
-2. Tablodan tutanağa konu olacak ekipmanları **Ctrl** veya **Shift** ile çoklu seçin.
-3. Araç çubuğundaki **[HEK Tutanağı]** (veya Cihazlarda **[Tutanak Oluştur]**) butonuna tıklayın.
-4. Açılan pencerede **Tutanak Başlığı**, **Giriş Gerekçesi** ve **Karar Paragrafı** alanlarını kontrol edin.
-5. İhtiyaç halinde üstteki `[+ {{ kurum_adi }}]`, `[+ {{ tarih }}]` butonlarına dokunarak dinamik etiketleri metne yerleştirin.
+1. Sol menüden **[Tutanak Sihirbazı]**, **[Resmi Tutanaklar]** veya ilgili modülün (Cihaz, RKE vb.) araç çubuğundaki **[Tutanak Oluştur]** butonuna tıklayın.
+2. Açılan pencerede **[Belge Düzeni]** seçin:
+   - *Salt Metin Tutanağı (Tablosuz / Hızlı):* Nöbete gelmeme, idari bildirim veya komisyon kararları için tabloyu tamamen gizler; sıfır boş tablo güvencesiyle temiz metin ve heyet imzası üretir.
+   - *Metin + Liste + Karar (Sandviç Düzen):* Giriş gerekçesi, döküm tablosu ve sonuç/karar paragraflarını birleştirir.
+3. **[İlgili Modül / Kapsam]** açılır kutusundan birimi (Nöbet, Cihaz, Koruyucu Ekipman, Dozimetre vb.) seçin. Sistem seçilen modüle özel dinamik değişken butonlarını (`{{ nobet_tarihi }}`, `{{ cihaz_kodu }}`, `{{ ekipman_kodu }}` vb.) metin kutusunun altına anında dizer.
+4. Metin içinde imleci yerleştirip değişken butonlarına dokunarak dinamik etiketleri ekleyin.
+5. Tablolu sandviç düzende iseniz:
+   - **[Sistemden Kayıt Ekle]** ile veritabanından personel veya cihaz/RKE seçerek tabloya aktarın.
+   - **[Manuel Satır Ekle]** ile elle serbest satırlar ekleyip hücreleri çift tıklayarak düzenleyin.
 6. Sağ alttaki heyet tablosunu inceleyin; gerekirse **[Üye Ekle]** butonuyla komisyona yeni yetkili dahil edin.
-7. **[Tutanak Oluştur / Yazdır]** butonuna tıklayın; sistem resmi antetli ve imza çizgili PDF belgenizi üretip ekranda açacaktır. Eğer işlem bir HEK tutanağı ise arka planda otomatik olarak takip dosyası başlatılır.
+7. İleride tekrar kullanmak isterseniz **[Şablon Olarak Kaydet]** butonuyla kurum kataloğunuza ekleyin.
+8. **[Tutanak Oluştur / Yazdır]** butonuna tıklayın; sistem resmi antetli ve imza çizgili kilitli PDF belgenizi üretip ekranda açar. Taslak nüsha otomatik olarak Resmi Tutanaklar Kasasına işlenir.
 
-#### B. Rapor Merkezinden Parametreli Kurumsal Rapor Alma
+#### B. Resmi Tutanaklar Kasası ve Islak İmzalı / EBYS Evrakı Yükleme
+
+1. Sol menüden **[Resmi Tutanaklar]** ekranını açın (veya **[Onay Bekleyen Görevler]** panelindeki **"Resmi Tutanaklar"** sekmesine geçin).
+2. Listede "İmza Bekliyor" durumundaki tutanağı bulun.
+3. **[Taslak Gör]** ile oluşturulan resmi taslağı inceleyin.
+4. Komisyon üyelerinin ıslak imzalı taranmış PDF nüshası çıktığında **[İmzalı Yükle]** butonuna basın.
+5. Açılan formda taranmış PDF dosyasını seçin, **EBYS Belge Numarası** ve **Tescil Tarihi**ni girerek **[Evrakı Kaydet]** komutunu verin.
+6. Tutanak durumu "İmzalandı ve Tamamlandı" olarak güncellenir; belge KVKK standartlarında şifrelenerek kalıcı kasada dondurulur.
+
+#### C. Rapor Merkezinden Parametreli Kurumsal Rapor Alma
 
 1. Sol menüden **[Rapor Merkezi]** sekmesini açın.
 2. Sol listeden ilgili kategoriyi (Örn: *Dozimetre*, *Personel*, *Cihaz*, *Sağlık*) ve rapor adını seçin.
 3. Sağ panelde açılan formdan **Departman**, **Dönem** veya **Tarih** aralıklarını belirleyin.
-4. Alt kısımdaki **[PDF İndir]** veya **[Excel (.xlsx)]** butonlarından dilediğinize tıklayarak resmi raporunuzu anında üretin.
+4. Alt kısımdaki **[PDF İndir]** veya **[Excel (.xlsx)]** butonlarından dilediğinize tıklayarak resmi raporunuzu anında üretin. Dosyalarınız otomatik olarak Masaüstündeki `RADPYS Raporları / [Modül] /` klasöründe arşivlenir.
 
-#### C. Rapor Tasarım Stüdyosu ile Özel Rapor Tanımlama
+#### D. Rapor Tasarım Stüdyosu ile Özel Rapor Tanımlama
 
 1. Rapor Merkezi araç çubuğundaki **[Tasarla]** butonuna tıklayın.
 2. 22 hazır veri kaynağından birini seçin (Örn: *Personel Listesi*, *Dozimetre Ölçüm*, *Cihaz Envanteri*).
@@ -2206,4 +2311,5 @@ RADPYS Hizmet İçi Eğitim ve Online Sınav modülü, masaüstü kurumsal yöne
 5. **[Önizleme]** ile rapor mizanpajını test edin ve **[Kaydet]** butonuna basarak kurum kataloğunuza ekleyin.
 
 ---
+
 

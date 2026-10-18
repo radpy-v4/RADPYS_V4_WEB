@@ -616,50 +616,69 @@ graph TD
  <span class="w-2.5 h-6 rounded-full bg-cyan-600"></span>
  Evrensel Tutanak ve Komisyon Karar Sihirbazı & Şablon Tasarım Stüdyosu
  </h2>
- <span class="text-xs font-mono text-slate-400">V4.1-TUTANAK-STUDIO</span>
+ <span class="text-xs font-mono text-slate-400">V4.2-TUTANAK-STUDIO</span>
  </div>
 
  <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
- RADPYS v4.2 ile birlikte sistemde yalnızca klasik satır-sütun tabloları değil; <strong>resmi metin içerikli tutanaklar (HEK/Hurda Tutanağı, Devir-Teslim Tutanağı, Zimmet Tutanağı, Komisyon Kararı vb.)</strong> oluşturabilme altyapısı devreye alınmıştır. Örneğin 20 adet radyasyon koruyucu ekipman (kurşun önlük, tiroid koruyucu vb.) veya tıbbi cihaz için tek tek 20 sayfa evrak basıp kağıt ve zaman israfı yapmak yerine; <strong>Giriş Paragrafı (Toplanma Gerekçesi) + Döküm Tablosu (20 Kayıt) + Sonuç / Karar Paragrafı + Komisyon İmza Heyeti</strong> yapısı tek bir resmi belgede <strong>kilitli ve değiştirilemez tek resmi PDF standardında</strong> üretilir. Resmi heyet kararlarında sonradan tahrifat veya keyfi metin değişikliğini önlemek amacıyla Word çıktısı tamamen kaldırılmıştır.
+ RADPYS v4.2 ile birlikte sistemde yalnızca klasik satır-sütun tabloları değil; <strong>resmi metin içerikli tutanaklar (Nöbet Tutanağı, Cihaz Hasar/Arıza, Devir-Teslim, Zimmet, HEK/Hurda, Komisyon Kararı vb.)</strong> oluşturabilme altyapısı devreye alınmıştır. Örneğin 20 adet radyasyon koruyucu ekipman veya tıbbi cihaz için tek tek 20 sayfa evrak basıp kağıt ve zaman israfı yapmak yerine; <strong>Giriş Paragrafı (Toplanma Gerekçesi) + Döküm Tablosu (20 Kayıt) + Sonuç / Karar Paragrafı + Komisyon İmza Heyeti</strong> yapısı tek bir resmi belgede <strong>kilitli ve değiştirilemez tek resmi PDF standardında</strong> üretilir. Resmi heyet kararlarında sonradan tahrifat veya yetkisiz metin değişikliğini önlemek amacıyla Word çıktısı tamamen kaldırılmıştır.
  </p>
 
+ <!-- 4 Temel Düzen & Dinamik Yetenek Kartı -->
  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
- <!-- Sol Kart: Tutanak Sihirbazı Mimarisi -->
+ <!-- Sol Kart: İkili Belge Düzeni -->
  <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
  <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
  <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
- Tutanak Sihirbazı Ekran Yapısı & Tek Resmi PDF
+ İkili Belge Düzeni: Salt Metin veya Sandviç Tablo
  </h3>
  <ul class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2">
- <li>• <strong>Antet ve Üst Bilgiler:</strong> Tutanak Başlığı, Tarih, Düzenleyen Personel ve Belge Karar Numarası.</li>
- <li>• <strong>Giriş / Gerekçe Metni:</strong> Komisyonun toplanma gerekçesi ve yasal dayanak paragrafı (kullanıcı tarafından serbestçe düzenlenebilir).</li>
- <li>• <strong>Çoklu Döküm Tablosu:</strong> Seçili 20 adet ekipman veya cihazın kod, seri no, cins, marka, model ve klinik durum bilgileri.</li>
- <li>• <strong>Sonuç ve Karar Metni:</strong> Fiziksel muayene, skopi sızıntı testi ve teknik ekspertiz neticesinde alınan nihai karar.</li>
- <li>• <strong>Dinamik Komisyon Heyeti:</strong> [Üye Ekle] ve [Üye Sil] butonlarıyla heyetteki hekim, fizikçi ve tekniker üyelerin unvan ve görev blokları yapılandırılır.</li>
- <li>• <strong>[Tutanak Oluştur / Yazdır]:</strong> Doğrudan resmi çift logolu, antetli ve imza çizgili kilitli PDF üretir; işlem HEK ise süreci otomatik başlatır.</li>
+ <li>• <strong>Salt Metin Tutanağı (Tablosuz / Hızlı):</strong> Nöbete gelmeme, idari uyarı veya genel komisyon kararları gibi döküm tablosu gerektirmeyen durumlarda kullanılır. Tablo alanı tamamen gizlenir; PDF çıktısında içi boş tablo veya gereksiz kutular kesinlikle basılmaz. Sadece Başlık + Gerekçe + Karar + Heyet İmzaları tertemiz dökülür.</li>
+ <li>• <strong>Metin + Liste + Karar (Sandviç Düzen):</strong> HEK, toplu devir-teslim veya çoklu donanım muayenelerinde kullanılır. Giriş paragrafı, seçilen varlıkların döküm tablosu ve sonuç/karar metni kusursuz bir hiyerarşiyle birleşir.</li>
+ <li>• <strong>Sistemden Kayıt Ekle:</strong> [Kayıt Ekle] menüsüyle sistem veritabanından doğrudan <em>Personel</em> veya <em>Cihaz / RKE Varlığı</em> seçilerek tabloya aktarılabilir.</li>
+ <li>• <strong>Manuel Satır Ekle / Sil:</strong> Tabloya dilediğiniz sayıda serbest metinli manuel satır ekleyebilir, çift tıklayarak hücreleri anında düzenleyebilirsiniz.</li>
+ <li>• <strong>Özel Şablon Olarak Kaydet:</strong> Hazırladığınız metin ve heyet yapısını [Şablon Olarak Kaydet] butonuyla kurum kataloğuna ekleyebilir, ileride tek tıkla yeniden kullanabilirsiniz.</li>
  </ul>
  </div>
 
- <!-- Sağ Kart: Tıklanabilir Değişkenler & Akıllı Odak -->
+ <!-- Sağ Kart: Modüle Özgü Akıllı Değişkenler -->
  <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
  <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
  <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
- Tıklanabilir Değişkenler & Akıllı İmleç Konumlandırma
+ İlgili Modül / Kapsam ve Dinamik Değişken Motoru
  </h3>
  <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
- Hem Tutanak Sihirbazı'nda hem de <strong>Şablon Tasarım Stüdyosu</strong>'nda sol panelde listelenen dinamik alanlar tıklanabilir bağlantı olarak sunulur. Bir alana tıklandığında imlecin şablon metninde durduğu tam konuma çift süslü parantezli <code>&#123;&#123; degisken_adi &#125;&#125;</code> kodu anında eklenir; mükerrer modül ön ekleri otomatik temizlenir:
+ Kullanıcıya zorla sabit metin kalıpları dayatılmaz. Kullanıcı yalnızca tutanağın ait olduğu <strong>İlgili Modül / Kapsam</strong>ı (Nöbet, Cihaz, RKE, Dozimetre, Sağlık vb.) seçer. Sistem seçilen modüle özel mantıklı değişken butonlarını anında metin kutularının altına dizer. Tıklanan değişken imlecin durduğu yere anında eklenir ve dökümde gerçek verilerle doldurulur:
  </p>
- <div class="flex flex-wrap gap-2 pt-1 font-mono text-xs">
- <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-cyan-700 dark:text-cyan-300 font-semibold border border-slate-200 dark:border-slate-700">+ &#123;&#123; tarih &#125;&#125;</span>
- <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-cyan-700 dark:text-cyan-300 font-semibold border border-slate-200 dark:border-slate-700">+ &#123;&#123; kurum_adi &#125;&#125;</span>
- <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-cyan-700 dark:text-cyan-300 font-semibold border border-slate-200 dark:border-slate-700">+ &#123;&#123; departman &#125;&#125;</span>
- <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-cyan-700 dark:text-cyan-300 font-semibold border border-slate-200 dark:border-slate-700">+ &#123;&#123; adet &#125;&#125;</span>
- <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-cyan-700 dark:text-cyan-300 font-semibold border border-slate-200 dark:border-slate-700">+ &#123;&#123; kullanici &#125;&#125;</span>
+ <div class="space-y-1.5 text-xs font-mono">
+ <div class="p-2 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+ <span class="font-bold text-indigo-600 dark:text-indigo-400 font-sans block text-[11px] mb-0.5">Nöbet Seçildiğinde:</span>
+ + &#123;&#123; nobet_tarihi &#125;&#125; / + &#123;&#123; vardiya &#125;&#125; / + &#123;&#123; saat &#125;&#125; / + &#123;&#123; personel_adi &#125;&#125; / + &#123;&#123; departman &#125;&#125;
  </div>
- <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">
- * <strong>Otomatik Akıllı Heyet Atama:</strong> Sistemdeki aktif unvan hiyerarşisine göre (Hekim -> Fizikçi -> Sorumlu Tekniker) heyet üyeleri otomatik olarak Komisyon Başkanı, RKS ve Raportör olarak dizilir; kullanıcı gerekirse kolayca üye ekleyip silebilir.
+ <div class="p-2 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+ <span class="font-bold text-cyan-600 dark:text-cyan-400 font-sans block text-[11px] mb-0.5">Cihaz Seçildiğinde:</span>
+ + &#123;&#123; cihaz_kodu &#125;&#125; / + &#123;&#123; cihaz_adi &#125;&#125; / + &#123;&#123; marka &#125;&#125; / + &#123;&#123; model &#125;&#125; / + &#123;&#123; seri_no &#125;&#125; / + &#123;&#123; servis_firmasi &#125;&#125;
+ </div>
+ <div class="p-2 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+ <span class="font-bold text-emerald-600 dark:text-emerald-400 font-sans block text-[11px] mb-0.5">RKE Seçildiğinde:</span>
+ + &#123;&#123; ekipman_kodu &#125;&#125; / + &#123;&#123; tur_adi &#125;&#125; / + &#123;&#123; kursun_esdegeri &#125;&#125; / + &#123;&#123; muayene_tarihi &#125;&#125; / + &#123;&#123; adet &#125;&#125;
+ </div>
+ <div class="p-2 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+ <span class="font-bold text-amber-600 dark:text-amber-400 font-sans block text-[11px] mb-0.5">Dozimetre Seçildiğinde:</span>
+ + &#123;&#123; personel_adi &#125;&#125; / + &#123;&#123; tc_kimlik &#125;&#125; / + &#123;&#123; dozimetre_no &#125;&#125; / + &#123;&#123; donem &#125;&#125; / + &#123;&#123; olcum_degeri &#125;&#125;
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Modül Bazlı Dinamik Çıktı Klasörleme & Kurumsal İsimlendirme -->
+ <div class="p-5 rounded-2xl bg-slate-100/80 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm space-y-3 mb-6">
+ <div class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+ <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+ Modül Bazlı Dinamik Çıktı Klasörleme ve Standart Dosya Adlandırma Motoru:
+ </div>
+ <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+ Sistemdeki tüm Excel, Word ve PDF dökümleri Masaüstünde tek bir klasöre yığılmaz. Bunun yerine <strong>RADPYS Raporları / [İlgili Modül] /</strong> (Örn: <em>RADPYS Raporları/Dozimetre/</em>, <em>RADPYS Raporları/Tutanaklar ve Kalite/</em>) hiyerarşisinde güvenle gruplanır. Üretilen tüm dosyalar <code>[Modul]_[Islem_Adi]_[Kisi/Cihaz]_[YYYYMMDD_HHMMSS].[uzanti]</code> kurumsal standardına bağlanmıştır. Dosya adlarındaki Türkçe karakterler otomatik olarak güvenli ASCII formatına dönüştürülür.
  </p>
- </div>
  </div>
 
  <!-- İKİ AŞAMALI HEK VE KALICI MÜHÜRLEME YAŞAM DÖNGÜSÜ -->
@@ -693,7 +712,7 @@ graph TD
  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
  <div class="p-3 rounded-lg bg-white/90 dark:bg-slate-900/90 border border-cyan-200/60 dark:border-cyan-800/40">
  <strong class="block text-slate-900 dark:text-white mb-0.5">1. Sol Menü (Sidebar)</strong>
- Sistem & Yönetim menüsü altında [Tutanak Sihirbazı] butonuna tıklayarak doğrudan genel sihirbazı başlatabilirsiniz.
+ Sistem & Yönetim menüsü altında [Tutanak Sihirbazı] veya [Resmi Tutanaklar] butonuna tıklayarak doğrudan genel sihirbazı başlatabilirsiniz.
  </div>
  <div class="p-3 rounded-lg bg-white/90 dark:bg-slate-900/90 border border-cyan-200/60 dark:border-cyan-800/40">
  <strong class="block text-slate-900 dark:text-white mb-0.5">2. RKE Yönetimi Araç Çubuğu</strong>

@@ -3,6 +3,363 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.4.0] - 2026-10-17
+
+### 🌐 Sistem Genelinde Tarihsel İzlenebilirlik (Point-in-Time Snapshot) ve Birim / Görev Yeri Mühürleme Mimarisi
+
+Bu sürüm; sistem genelindeki tüm modüllerde personelin veya tıbbi cihazın bağlı olduğu birim, departman veya fiziksel konum zaman içinde değiştiğinde geçmiş yıllara ait klinik, yasal ve teknik kayıtların güncel lokasyona kaymasını önleyen ve işlem anındaki fiili durumunu mühürleyen **Tarihsel İzlenebilirlik (Point-in-Time Snapshot)** mimarisini 6 ana modülde uçtan uca devreye alır.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **1. Sağlık Muayeneleri Modülü (`personel_saglik_muayene` & `V20261017_1`):**
+  - Muayene tablosuna personelin muayene tarihindeki fiili çalışma birimini ve ana departmanını donduran `birim` ve `departman_adi` snapshot kolonları eklendi.
+  - Sağlık muayeneleri listesinde sütun başlığı `Birim / Görev Yeri` olarak güncellendi ve doğrudan personelin görev yeri basıldı, tooltip'e ana departman eklendi.
+  - EK-1 Resmi Sağlık Raporu Formu (`21.5.7077`) ve Rapor Merkezi `saglik.muayene` veri setinde mühürlenmiş tarihsel birim esas alındı.
+- **2. Kişisel Dozimetre (TLD/OSL) Modülü (`personel_dozimetre` & `V20261017_2`):**
+  - Dozimetre tablosuna ölçüm dönemindeki fiili birimi donduran `birim` ve `departman_adi` snapshot kolonları eklendi.
+  - Excel/PDF laboratuvar ölçüm aktarımında ve manuel kayıtta personelin o dönemki birimi kalıcı olarak mühürlendi.
+  - SKS 6.1 ve NDK kümülatif doz takip raporlarında personelin ölçüm tarihindeki mühürlenmiş birimi esas alındı.
+- **3. Fiili Hizmet (FHZ) ve Şua İzni Hakediş Modülü (`personel_fiili_hizmet_aylik`, `personel_sua_hakedis_aylik` & `V20261017_3`):**
+  - Aylık fiili çalışma ve şua hakediş tablolarına `birim` ve `departman_adi` snapshot kolonları eklendi.
+  - SGK ve mutemetlik incelemelerinde geçmiş dönem puantaj cetvellerinin bozulmaması için hesaplama anındaki fiili görev yeri donduruldu.
+  - `FiiliHizmetDataset` ve resmi puantaj dökümlerinde tarihsel birim önceliklendirildi.
+- **4. Personel İzinleri Modülü (`personel_izinler` & `V20261017_4`):**
+  - İzin tablosuna personelin izin tarihindeki çalışma birimini ve departmanını donduran `birim` ve `departman_adi` snapshot kolonları eklendi.
+  - İzin Listesi tablosunda departman sütunu `Birim / Görev Yeri` olarak güncellendi, tooltip ile ana departman bilgisi sunuldu.
+  - İzin hareket dökümleri ve Rapor Merkezi `izin.hareket` veri setinde mühürlenmiş tarihsel birim esas alındı.
+- **5. Hizmet İçi Eğitim ve LMS Modülü (`egitim_atamalari`, `personel_hizmet_ici_egitim` & `V20261017_5`):**
+  - Eğitim atama ve sertifika tamamlama tablolarına `birim` ve `departman_adi` snapshot kolonları eklendi.
+  - Toplu atamalarda ve sertifika girişlerinde personelin anlık fiili birimi mühürlenerek SKS Uyum Matrisi ve Atama listelerinde doğrudan gösterildi.
+  - `EgitimMatrisDataset` veri kaynağına `birim` alanı entegre edilerek resmi rapor çıktılarında tarihsel birim güvenceye alındı.
+- **6. Tıbbi Cihaz Arıza ve Periyodik Bakım Modülü (`cihaz_arizalar`, `cihaz_bakimlar` & `V20261017_6`):**
+  - Arıza ve bakım tablolarına işlem tarihindeki cihaz birimini, departmanını, fiziksel oda/bina konumunu ve refakatçi/bildiren personelin görev yerini donduran snapshot kolonları eklendi.
+  - Arıza takip tablosunda cihaz hücresi tooltip'ine arıza tarihindeki birim ve oda detayları bağlandı.
+  - Periyodik bakım tablosunda `COL_LOKASYON` sütunu bakım anındaki mühürlenmiş tarihsel lokasyonu (*Birim - Oda*) gösterecek şekilde güncellendi.
+  - `CihazArizaDataset` veri setine `birim` ve `konum_bilgisi` alanları entegre edildi.
+- **7. Program Ayarları Güvenlik Mühürlemesi ve Yasal Mevzuat Uyarı Paneli (`ProgramSettingsController` & `SettingsService`):**
+  - **Kriptografik Sırların Gizlenmesi:** Veritabanı ve evrak şifreleme kök anahtarı (`guvenlik.yedek_sifreleme_anahtari`) genel ayar listesinden filtrelendi; yetkisiz aktörlerin arayüzden anahtarı manuel değiştirerek veri kaybına yol açması `GIZLI_AYARLAR` kuralı ve `PermissionError` ile kesin olarak engellendi.
+  - **Yasal Mevzuat Uyarı Kartı:** Ekranın üst kısmına 5510 Sayılı Kanun (FHZ), NDK ve Sağlık Bakanlığı mevzuat uyumluluğunu belirten kurumsal `legalWarningFrame` (`kpiVariant="warning"`) eklendi.
+  - **Sahte Ayar Girişini Önleyen Form Sadeleştirmesi:** Kod karşılığı bulunmayan ölü ayarların açılmasını önlemek amacıyla `+ Yeni Kayıt` butonu ve mükerrer `Kaydet` butonu kaldırılarak yalnızca mevcut ayar değerlerini güncelleyen güvenli `Değişiklikleri Kaydet` akışına geçildi.
+  - **Kritik Mevzuat Teyidi:** Fiili hizmet günlük saatleri (`7.0` radyasyon, `8.0` normal), şua izin süresi (`30` gün) ve doz limitleri gibi mevzuat parametreleri `KRITIK_AYARLAR` kapsamına alınarak kullanıcıdan açık onay teyidi istendi.
+- **Veritabanı Bütünlüğü ve Güvenli Geriye Dönük Migrasyon:**
+  - 6 adet PostgreSQL migrasyonu (`V20261017_1` - `V20261017_6`) hem geliştirme (`radpys_dev_db`) hem de test (`radpys_test_db`) veritabanlarına uygulandı; geçmiş tüm kayıtlar geriye dönük güvenle dolduruldu (backfill).
+  - Şema kurulum bütünlüğü `tests/test_schema_integrity.py` ile doğrulandı.
+
+## [4.0.3.37] - 2026-10-14
+
+### 🛠️ Tıbbi Cihaz QC Sihirbazı (Wizard/Stepper) ve Bağımsız Cihaz Periyodik Bakım Modülü
+
+Bu sürüm; Tıbbi Cihaz Kalite Kontrol (QC) & Kalibrasyon Kokpitini 4 adımlı ergonomik bir sihirbaza (wizard/stepper) dönüştürür; tablodaki hücre kilitlenme ve çift tıklama/F2 veri giriş engellerini kaldırarak tek tıkla doğrudan ölçüm düzenlemesini aktif eder. Ayrıca Arıza/Onarım ile Periyodik Bakımı birbirinden tamamen ayırarak Radyoloji Departmanı odaklı "Aylık Bakım Radarı" ve İhale Şartnamesine dayalı "Otomatik Sözleşme Takvim Üreticisi"ni sisteme kazandırır.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **QC Kokpiti Sihirbaz (Wizard) Dönüşümü (`CihazQcDialog` & `CihazQcController`):**
+  - Tek ekranda dikey yığılmayı önlemek amacıyla arayüz 4 adımlı modern RDS Stepper ve `QStackedWidget` yapısına kavuşturuldu: `1. Cihaz & Protokol`, `2. Ekipman & Ekip`, `3. Canlı Ölçümler`, `4. Değerlendirme & Onay`.
+  - Önceki/Sonraki adımlarla kontrollü akış ve doğrudan adım düğmelerine tıklayarak geçiş desteği eklendi.
+  - Ölçüm tablosundaki sütun başlıklarının kırpılma sorunu giderildi; sütun genişlikleri 80–110 px aralığına çıkarıldı.
+  - `ui/theme.py` içindeki `NoEditTriggers` kuralı esnetilerek `tblOlcumler` tablosu muaf tutuldu; tek tıkla hücre düzenleme (`_on_cell_clicked`), `ItemIsEditable` bayrakları ve `SelectItems` seçim modu aktif edildi.
+- **Bağımsız Cihaz Periyodik Bakım Modülü (`cihaz_bakimlar`):**
+  - Arıza ve bakım kavramları birbirinden ayrıldı; Arıza ekranı "Cihaz Arıza ve Onarım Takibi" olarak arındırıldı.
+  - Bağımsız `cihaz_bakimlar` tablosu (`V20261013_3_add_cihaz_periyodik_bakimlar.py`) ve 4 adet performans indeksi oluşturuldu.
+  - **Aylık Bakım Radarı:** Bu Ay, Gelecek Ay, Geciken Bakımlar ve Tamamlananlar olmak üzere 4 KPI kartı ve renkli durum rozetleri ile görsel izleme sağlandı.
+  - **İhale Şartnamesi Takvim Üreticisi (Tekli ve Marka/Modalite Filtreli Toplu Seçim):**
+    - Hem münferit tek cihaz seçimi hem de Marka, Modalite / Cihaz Türü ve serbest arama filtreleriyle filtrelenen çoklu cihaz seçimi (Checkbox tablosu, Tümünü Seç, Seçimi Temizle) desteği eklendi.
+    - 1, 3, 6 veya 12 aylık periyotlarla ihale sözleşme bitişine kadar yaklaşık bakım slotları seçilen tüm cihazlar için tek seferde otomatik hesaplanarak `BEKLEMEDE` olarak takvime işlenmesi sağlandı.
+  - **Servis Formu Kapatma & KVKK Kasası:** Servis gerçekleştiğinde tek tıkla eşlik eden personel, teknisyen ve imzalı servis formu (PDF) seçilerek bakım tamamlanır ve evrak kasasına AES-256 Fernet ile şifreli arşivlenir.
+
+## [4.0.3.36] - 2026-10-13
+
+### 📋 Tutanak Düzenleme Akıllı Yönlendirmesi ve Şablon Yönetim Bütünlüğü
+
+Bu sürüm; Rapor ve Tutanak Merkezi kokpitinde tutanak şablonları seçildiğinde "Özelleştir" butonunun dinamik olarak "Tutanağı Düzenle" moduna geçmesini sağlar; kullanıcı teknik Rapor Tasarım Stüdyosu yerine doğrudan Evrensel Tutanak Sihirbazı'na yönlendirilir. Tutanak Sihirbazı'na açılışta mevcut başlık, gerekçe, karar metni ve imza heyeti eksiksiz yüklenir; şablon kaydedilirken mevcut kaydı güncelleme veya yeni kopya oluşturma opsiyonu sunulur ve sihirbaz kapandığında rapor listesi ile KPI sayaçları otomatik tazelenir.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **Akıllı Düzenleme Yönlendirmesi (`RaporMerkeziController._on_klonla_clicked`):**
+  - Seçili kayıt bir tutanak (`tutanak_metin`, `tutanak_bilesik` vb.) olduğunda alt buton metni otomatik olarak "Tutanağı Düzenle" (`edit.svg`) olarak güncellenir.
+  - Tıklandığında veya listedeki tutanağa çift tıklandığında karmaşık SQL/alan kataloğu içeren `RaporTasarimDialog` yerine doğrudan `open_tutanak_sihirbazi` açılır.
+- **Tutanak Sihirbazı Veri Yükleme ve Heyet Geri Yükleme (`TutanakSihirbaziDialog`):**
+  - `sablon_kodu` ile başlatıldığında veya açılır kutudan özel şablon seçildiğinde başlık, giriş metni, sonuç metni, belge düzeni ve `imzalar_json` içerisindeki komisyon üyeleri (`_load_signatures_data`) heyet tablosuna eksiksiz yüklenir.
+- **Mevcut Şablonu Güncelleme / Yeni Kaydetme Seçeneği (`_on_sablon_kaydet`):**
+  - Düzenlenen bir şablon kaydedilirken kullanıcıya mevcut şablonun üzerine güncelleme (`UPDATE`) veya yeni bağımsız kopya oluşturma tercihi sunulur; mükerrer şablon kirliliği önlenir.
+- **Tutanaklar Filtresi ve Format Güvenliği (`_filter_report_list` & `_parse_report_formats`):**
+  - Üst kısımdaki `(o) Tutanaklar` radyo butonu seçildiğinde kullanıcı tanımlı tüm tutanak türleri (`tutanak_metin`, `tutanak_bilesik`) eksiksiz filtrelenir ve `[Tutanak]` rozeti atanır.
+  - Desteklenen formatlar hem JSON hem CSV formatlarını destekleyecek şekilde güvenli hale getirildi.
+
+## [4.0.3.35] - 2026-10-13
+
+### 🌐 Global Standart Sağ Tık Metin Düzenleme Menüsü Yerelleştirmesi (Context Menu Çevirisi)
+
+Bu sürüm; sistem genelindeki tüm tek satırlı ve çok satırlı metin giriş alanlarında (QLineEdit, QTextEdit, QPlainTextEdit vb.) fare sağ tıklandığında açılan standart Qt bağlam menüsünün İngilizce öğelerini ("Undo", "Redo", "Cut", "Copy", "Paste", "Delete", "Select All" vb.) kusursuz şekilde Türkçeleştirir ("Geri Al", "Yinele", "Kes", "Kopyala", "Yapıştır", "Sil", "Tümünü Seç"). Çeviri motoru hızlandırıcı tuş (`&`) toleranslı dinamik eşleştirme ile güçlendirilmiştir.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **Global Metin Sağ Tık Bağlam Menüsü Yerelleştirmesi (`TurkishDialogTranslator`):**
+  - `ui/dialogs/mesaj_kutusu.py` ve `app/services/system/integrations/translation_service.py` içerisindeki `TurkishDialogTranslator` sınıfına metin giriş bileşenlerinin standart sağ tık menü komutları ("Undo", "Redo", "Cut", "Copy", "Paste", "Delete", "Select All", "Clear text" vb.) eklendi.
+  - `translate` metodu ampersand (`&`) hızlandırıcı işaretlerine toleranslı hale getirilerek Qt'nin farklı widget sınıflarında (`QLineEdit`, `QWidgetTextControl`, `QTextEdit`, `QPlainTextEdit`) menü öğelerinin tutarlı ve eksiksiz olarak Türkçe ("Geri Al", "Yinele", "Kes", "Kopyala", "Yapıştır", "Sil", "Tümünü Seç") görüntülenmesi sağlandı.
+- **Otomatik Test Güvencesi (`tests/test_context_menu_translation.py`):**
+  - Standart diyalog butonları ile `QLineEdit`, `QTextEdit` ve `QPlainTextEdit` bileşenlerinin sağ tık menü aksiyonlarının Türkçe dil doğrulaması otomatik pytest testleriyle garanti altına alındı (`3 passed`).
+
+## [4.0.3.34] - 2026-10-13
+
+### 📄 Evrensel Tutanak ve Karar Sihirbazı Modüler Düzenleme & Dinamik Değişken Motoru
+
+Bu sürüm; Tutanak ve Karar Sihirbazı mimarisini modüler serbestlik esasına göre yeniden yapılandırarak "Salt Metin Tutanağı (Tablosuz)" ve "Metin + Liste (Sandviç Düzen)" formatlarını sisteme kazandırır; gereksiz boş tablo basılmasını engeller, modüle özgü tıklanabilir dinamik değişken motorunu (`_MODULE_VARIABLES`), sistemden varlık/personel seçimi ile serbest manuel satır yönetimini ve kullanıcı tanımlı şablon kaydetme yeteneğini devreye alır. Ayrıca ReportLab PDF motorunda hücre yüksekliği taşması emniyet kilidi kurularak sağlık raporları garanti altına alınmıştır.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **Evrensel Tutanak Sihirbazı İkili Belge Düzeni (`TutanakSihirbaziDialog` & `cmbDuzen`):**
+  - "Salt Metin Tutanağı (Tablosuz / Hızlı)" ve "Metin + Liste + Karar (Tablolu Sandviç)" seçenekleri eklendi.
+  - Tablosuz mod seçildiğinde tablo arayüz grubu (`grpTablo`) anında gizlenir; dışa aktarımda sıfır boş tablo kuralı uygulanarak yalnızca Başlık + Gerekçe Metni + Sonuç/Karar Metni + Heyet İmzaları tertemiz mizanpajda üretilir.
+- **Rapor Motorunda Tablosuz Mod Desteği (`report_engine.py` & `pdf_table_layout.py`):**
+  - `belge_turu == "tutanak_metin"` durumunda `columns` ve `rows` boşaltılarak ReportLab tablo çizimi devre dışı bırakıldı. Önceden kayıt seçilmediğinde oluşan 16 sütunluk boş tablo ve "Kayıt bulunmamaktadır" kirliliği tamamen ortadan kaldırıldı.
+- **Modül / Kapsam Seçimi ve Dinamik Değişken Motoru (`_MODULE_VARIABLES`):**
+  - İlgili Modül / Kapsam açılır kutusu (Nöbet, Cihaz, RKE, Dozimetre, Sağlık, Ortam Dozu vb.) ve modüle özgü tıklanabilir değişken butonları inşa edildi.
+  - Seçilen modüle göre Nöbet (`{{ nobet_tarihi }}`, `{{ vardiya }}`, `{{ saat }}`, `{{ personel_adi }}`), Cihaz (`{{ cihaz_kodu }}`, `{{ cihaz_adi }}`, `{{ seri_no }}`), RKE (`{{ ekipman_kodu }}`, `{{ kursun_esdegeri }}`) ve Dozimetre (`{{ dozimetre_no }}`, `{{ donem }}`, `{{ olcum_degeri }}`) etiketleri imlecin durduğu yere tek tıkla eklenecek şekilde bağlandı.
+- **Gelişmiş Varlık ve Personel Kayıt Seçimi (`PersonelSecimDialog` & `VarlikSecimDialog`):**
+  - Tablolu düzende `btnKayitSec` menüsüyle sistem veritabanındaki Personel, Cihaz veya RKE envanter kayıtları seçilerek tabloya doğrudan aktarılabilir hale getirildi.
+  - `btnSatirEkle` ve `btnSatirSil` ile tabloya serbest metinli manuel satır ekleme, hücreleri çift tıklayarak anında düzenleme ve silme desteği sağlandı.
+- **Kullanıcı Tanımlı Tutanak Şablonu Kaydetme (`btnSablonKaydet`):**
+  - Kullanıcının ekranda özelleştirdiği başlık, gerekçe metni, karar metni ve heyet yapısını `rapor_tanimlari` tablosuna kurum şablonu olarak kaydetmesi ve açılır kutudan anında tekrar seçebilmesi sağlandı.
+- **ReportLab PDF Tablo Hücre Yüksekliği Emniyet Kilidi (`LayoutError - 1368pt` Onarımı):**
+  - `SaglikDataset` veri setinde ön hazırlık formunun ham JSON dökümü filtrelenerek temiz klinik karara dönüştürüldü.
+  - `pdf_table_layout.py` içine hücre uzunluğu sınırı (200 karakter) ve JSON filtresi eklenerek ReportLab motorunun sayfa çerçevesini (512.27 pt) aşması kesin olarak engellendi.
+
+## [4.0.3.33] - 2026-10-13
+
+### 📜 Resmi Tutanaklar ve Dijital Belge Yaşam Döngüsü Modülü & Merkezi Onay Paneli Hibrit Entegrasyonu
+
+Bu sürüm; Cihaz, RKE, Dozimetre, Kalite ve İdari birimler tarafından üretilen tüm resmi tutanakların (Devir-Teslim, Hasar Tespit, Montaj/Kabul, Durum Tespiti vb.) taslak aşamasından başlayarak komisyon üyelerinin ıslak imzalı taranmış nüshalarının ve EBYS evraklarının yüklenip arşivlenmesine kadar olan uçtan uca dijital belge yaşam döngüsünü yöneten **Bağımsız Modül 24 (Resmi Tutanaklar)** altyapısını ve **Merkezi Onay Paneli (Hibrit Model)** entegrasyonunu sisteme kazandırır.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **Veritabanı Şeması ve Migration (`resmi_tutanaklar` & `V20261013_2_add_resmi_tutanaklar_table.py`):**
+  - PostgreSQL üzerinde `resmi_tutanaklar` tablosu oluşturuldu; `tutanak_no`, `modul`, `tutanak_turu`, `baslik`, `durum` (`IMZA_BEKLIYOR`, `IMZALANDI_TAMAMLANDI`, `IPTAL`), `taslak_stored_file_id`, `imzali_stored_file_id`, `ebys_belge_no`, `imzalayanlar_json` ve zaman damgaları tanımlandı.
+  - `schema.sql` dosyasına saf DDL olarak yansıtıldı; `tests/test_schema_integrity.py` ile doğrulandı.
+- **Tutanak Çekirdek Servisi (`TutanakService`):**
+  - Yıl bazlı otomatik ve çakışmasız numara üreteci (`TUT-YYYY-XXXX` formatında `generate_next_tutanak_no`), tutanak oluşturma, ıslak imzalı/EBYS belgesi yükleme ve şifreli saklama (`upload_imzali_nusha`), filtreli sorgulama (`list_tutanaklar`), bekleyen sayaç hesabı ve iptal mekanizması geliştirildi.
+- **Tutanak Sihirbazı Dışa Aktarım Entegrasyonu (`tutanak_sihirbazi_dialog.py`):**
+  - Sihirbaz üzerinden Word veya PDF tutanak oluşturulduğunda üretilen taslak dosya otomatik olarak KVKK şifreli evrak kasasına (`stored_files`) kaydedilip `resmi_tutanaklar` tablosuna `IMZA_BEKLIYOR` statüsünde yeni bir kayıt olarak işlenir.
+- **Islak İmzalı / EBYS Evrakı Yükleme Sihirbazı (`TutanakImzaliYukleDialog`):**
+  - Komisyon üyelerinin ıslak imzalarını attığı taranmış PDF nüshaları ve EBYS evrak numarası ile kayıt tarihinin girilip güvenli kasaya yüklenmesini sağlayan modern dialog geliştirildi.
+- **Resmi Tutanaklar ve Dijital Belge Kasası Yönetim Ekranı (`TutanakYonetimiController`):**
+  - KPI sayaçları (Toplam, İmza Bekleyen, Tamamlanan, Bu Ay), modül ve durum filtreleri, arama kutusu, taslak görüntüleme, imzalı evrak yükleme ve tamamlanmış resmi belgeyi açma fonksiyonlarıyla donatılmış tam teşekküllü yönetim kokpiti inşa edildi.
+- **Merkezi Onay Paneli Hibrit Entegrasyonu (`OnayBekleyenGorevlerController`):**
+  - Onay Bekleyen Görevler paneline **"Resmi Tutanaklar"** sekmesi (`btnTabTutanak`, ikon: `file-certificate.svg`), KPI kartı (`statCardTutanak`) ve tablosu eklendi.
+  - Yöneticilerin ve radyasyon sorumlularının imza bekleyen tutanakları izin, nöbet ve RKE onaylarıyla birlikte aynı kokpitten takip edebilmesi; tek tıkla taslak görüntüleyip doğrudan imzalı nüshayı yükleyerek onaylayabilmesi sağlandı.
+  - Global kenar çubuğu onay sayacı rozetine (`update_pending_approval_badge`) imza bekleyen tutanaklar dahil edildi.
+- **Merkezi Servis Kayıt Defteri ve Ana Menü Bağlantıları (`ServiceRegistry` & `AppController`):**
+  - `ServiceRegistry` ve `AppController` katmanlarına `TutanakService` bağımlılık enjeksiyonu yapıldı.
+  - `app_window.ui` üzerinde `btnTutanaklar` ("Resmi Tutanaklar") menü butonu ve mini kategori menüsüne ("Resmi Tutanaklar Kasası") eklendi; `open_tutanak_yonetimi_page` alt pencere yöneticisi devreye alındı.
+
+## [4.0.3.32] - 2026-10-13
+
+### 📋 Cihaz Tutanak Sihirbazı Bağımsızlaştırması ve Resmi HEK / Sil İş Akışı Ayrımı
+
+Bu sürüm; Cihaz Yönetimi modülünde **"Tutanak Oluştur"** aksiyonunun cihazları istemsiz biçimde HEK (Hurda / Tasfiye) sürecine sokup durumunu değiştiren otomatik HEK tetikleme kurgusunu sonlandırır. Tutanak sihirbazı mimarisine `hek_sureci` parametresi eklenerek genel klinik ve idari tutanaklar (Devir-Teslim, Teknik Hasar/Arıza, Montaj/Kabul, Durum Tespiti) ile resmi hurdaya ayırma (HEK) süreci birbirinden kesin çizgilerle ayrıştırılmıştır.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **Evrensel Tutanak Sihirbazı Emniyet Kilidi (`tutanak_sihirbazi_dialog.py`):**
+  - `TutanakSihirbaziDialog` ve `open_tutanak_sihirbazi` fonksiyonlarına `hek_sureci: bool = False` emniyet kilidi eklendi.
+  - Başlık veya şablon kodundaki metin benzerliğine dayalı kontrol yerine, yalnızca açıkça `hek_sureci=True` bayrağı iletildiğinde `HekService.create_hek_dosyasi` tetiklenmesi sağlandı.
+  - Genel tutanaklarda üretilen belgelerin KVKK Evrak Kasasına (`stored_files`) güvenle arşivlenmesi korunurken, cihaz ve ekipmanların aktif çalışma durumunun bozulması engellendi.
+- **Cihaz Yönetimi Tutanak Motoru Serbestleştirilmesi (`cihaz_yonetimi_controller.py`):**
+  - `btnTutanak` ve `_on_tutanak_olustur` metodu otomatik HEK sürecinden arındırıldı (`hek_sureci=False`).
+  - Butona tıklandığında veya sağ tık menüsünden seçildiğinde kullanıcıya 4 temel kurumsal şablon menüsü sunuldu:
+    1. *Birimler Arası Devir - Teslim / Zimmet Tutanağı*
+    2. *Teknik Hasar ve Arıza Tespit Tutanağı*
+    3. *Montaj / Devreye Alma ve Kabul Tutanağı*
+    4. *Genel Komisyon ve Durum Tespit Tutanağı*
+- **Resmi HEK Komisyon Tutanağı ve Hurdaya Ayırma Akışı (`_on_hek_tutanak_olustur`):**
+  - Cihazı hurdaya ayırma operasyonu `_on_hek_tutanak_olustur` metodu altına alındı (`hek_sureci=True`).
+  - NDK, Kamu İhale ve Taşınır Mal mevzuatına uygun gerekçeli heyet kararı metinleriyle komisyon tutanağı oluşturulup onaylandığında resmi HEK dosyası açılarak cihaz `HEK (Tutanak Bekliyor)` durumuna geçirilir.
+- **HEK / Sil Butonu ve Sağ Tık Menüsü İkili Ayrımı (`_on_sil_selected` & `_on_context_menu`):**
+  - Cihaz tablosundaki `btnSil` ("Sil / HEK") butonu tıklandığında kullanıcıya:
+    - *Cihazı HEK'e Ayır (Resmi Komisyon Tutanağı ile - Önerilen)*
+    - *Kayıttan Kaldır / Arşivle (Tutanaksız Arşivleme)*
+    seçenekleri sunuldu.
+  - Sağ tık bağlam menüsüne hem tekil hem çoklu seçimler için *Cihaz Tutanağı Oluştur...* ve *Cihazı HEK'e Ayır (HEK Tutanağı)...* aksiyonları ayrı ayrı entegre edildi.
+- **RKE (Koruyucu Ekipman) Uyumluluk Koruması (`rke_yonetimi_controller.py`):**
+  - RKE modülündeki `btnHekTutanak` akışında `open_tutanak_sihirbazi` çağrısına `hek_sureci=True` parametresi açıkça tanımlanarak DIN 6857-1 skopi muayenesi sonrası HEK dosyası açma bütünlüğü korundu.
+
+## [4.0.3.31] - 2026-10-13
+
+### 📁 Modül ve Bireysel Personel Odaklı Dinamik Çıktı Klasörleme (Öneri A) ve Standart Dosya Adlandırma Motoru
+
+Bu sürüm; merkezi dışa aktarım (Export) sisteminde tüm Excel, Word ve PDF raporlarının tek bir klasöre yığılarak karmaşaya yol açmasını engeller; kullanıcı kararı doğrultusunda **Öneri A (Personel Odaklı Dijital Özlük Arşivi)** hiyerarşisini devreye alır. Masaüstündeki veya ayarlanan varsayılan ana çıktı klasörü altında:
+1. **Bireysel Personel Çıktıları:** `Personel/[Ad_Soyad]_[TC]/[Modül_Alt_Klasörü]/` yapısında (Örn: `Personel/Ahmet_Yilmaz_12345678901/Sağlık Muayenesi/`, `Personel/Ahmet_Yilmaz_12345678901/Dozimetre/`, `Personel/Ahmet_Yilmaz_12345678901/İzin/`) toplanır.
+2. **Cihaz Çıktıları:** `Cihaz ve Lisans/[Cihaz_Kodu]/` altında arşivlenir.
+3. **Genel ve Toplu Listeler:** İlgili modülün genel klasöründe (`Dozimetre`, `Sağlık Muayenesi`, `Personel`, `Cihaz ve Lisans`, `Koruyucu Ekipman (RKE)`, `Nöbet`, `İzin`, `Ortam Dozu`, `Eğitim`, `Fiili Hizmet`, `Olay Bildirimi`, `Tutanaklar ve Kalite`, `Sistem ve Tanımlar`, `Genel Raporlar`) düzenli olarak muhafaza edilir.
+
+Ayrıca dosya isimlerini modül ön eki, işlem türü, detay/kişi ve saniye hassasiyetinde zaman damgasıyla kurumsal standarda bağlayan dosya adı motoru (`standardize_export_filename`), UI diyaloglarının doğrudan ilgili modül ve kişi alt klasörünü açmasını sağlayan akıllı modül/personel çözümleyicisi ve birim testleri devreye alınmıştır.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **Bireysel Personel Dijital Özlük Arşivi Hiyerarşisi (`resolve_personel_folder_name` & `get_report_output_directory`):**
+  - Personel adı soyadı ve T.C. Kimlik numarasından büyük-küçük harf korumalı (Title Case) ve Türkçe karakterleri güvenli ASCII'ye dönüştüren (`Ahmet_Yilmaz_12345678901`) klasör oluşturucu inşa edildi.
+  - Bir personel için herhangi bir modülden (Sağlık Muayenesi EK-1, Dozimetre RD.F43, İzin dökümü, Nöbet çizelgesi, RGS görevlendirme vb.) çıktı alındığında doğrudan ilgili personelin dijital özlük klasörü altındaki ilgili modül dizini oluşturulur ve dosya oraya yönlendirilir.
+- **Cihaz Teknik Arşiv Hiyerarşisi:**
+  - Cihaz envanter ve teknik belgeleri `Cihaz ve Lisans/[Cihaz_Kodu]` altında otomatik gruplanır.
+- **Modül Bazlı Dinamik Alt Klasörleme (`MODULE_EXPORT_SUBFOLDERS` & `resolve_module_export_folder`):**
+  - Genel ve toplu listelerde ana çıktı klasörü altında ilgili modüle ait alt dizin otomatik oluşturularak dosyaların modül bazında düzenli toplanması sağlandı.
+  - Test ortamında `data/reports` alt klasör yapısıyla test izolasyonu tam korundu.
+- **Kurumsal Standart Dosya Adlandırma Motoru (`standardize_export_filename`):**
+  - Tüm rapor ve dışa aktarım dosyaları `[Modul]_[Rapor/Islem_Adi]_[Detay/Kisi]_[YYYYMMDD_HHMMSS].[uzanti]` standardına bağlandı.
+  - Dosya adlarındaki Türkçe karakterler ve dosya sistemi için riskli karakterler (`/ \ : * ? " < > | &`) otomatik olarak güvenli ASCII formatına normalize edildi; mükerrer modül ön ekleri ve mükerrer zaman damgaları engellendi.
+- **Merkezi UI Kaydetme Diyalogları Entegrasyonu (`get_save_file_path` & `ask_export_format_and_path`):**
+  - `ui/controllers/_ux_helpers.py` içindeki dosya kaydetme yardımcıları, çağıran controller sınıfından (`PersonelListController`, `DozimetreController`, `CihazYonetimiController` vb.), aktif form alanlarından (`current_personel`, `editPersonelAdSoyad`, `editTcKimlik`) kişi/modül bilgilerini otomatik algılayarak dosya kaydetme penceresini doğrudan personelin ilgili alt klasöründe açacak şekilde güncellendi.
+- **Diyalog ve Resmi Şablon Entegrasyonları:**
+  - `ExportService` (`render_docx_template`, `export_saglik_muayene_ek1_pdf`), `RgsGorevlendirmeService`, `TutanakSihirbaziDialog`, `DozArastirmaFormController`, `DozArastirmaRaporDialog`, `SaglikMuayeneRaporDialog` ve `NdkRkpWizardController` doğrudan yeni modül ve personel alt klasörü mimarisine bağlandı.
+- **Otomasyon ve Test Güvencesi:**
+  - `tests/test_report_output_directory.py` ve `tests/test_tutanak_sihirbazi.py` test paketlerinde modül ve personel alt klasörleme ile standart dosya adlandırma yeteneklerini doğrulayan 10 yeni test başarıyla işletildi (**10/10 test başarılı, 24 ilgili test yeşil**).
+
+## [4.0.3.30] - 2026-10-12
+
+### 🔬 RD.F43 Karar Motoru (CDSS), Dozimetre & Sağlık Muayene İki Aşamalı İş Akışı, Resmi EK-1 ve RD.F43 Raporlama Standardizasyonu
+
+Bu sürüm; Dozimetre Takibi modülünde resmi RD.F43 Doz Araştırma Formu'nun uluslararası IAEA GSG-7, NCRP 122 ve NDK mevzuatına dayalı bir Klinik Karar Destek Sistemine (CDSS) dönüştürülmesini, formun Web Portal ile RKS sorumluluklarını ayrıştıran 4 adımlı modern bir sihirbaz olarak yapılandırılmasını, açık ve kapatılmış tutanaklarda denetim izli düzeltme modunu, 8 sütunlu tek ve ferah bütünleşik aksiyon kokpitini, güvenlik kilitli modern işlem diyaloglarını, Web Portal ve RKS/Admin için çift yönlü bildirim/alarm motorunu, Sağlık Muayene modülünde iki aşamalı klinik iş akışını (Ön Hazırlık & Sevk vs Hekim Kararı), Sağlık Bakanlığı ve NDK mevzuatı (docs/21.5.7077_Parça5.pdf) standartlarında resmi 2 sayfalık A4 EK-1 PDF motorunu, Times New Roman matbu tipografisini, dengeli ve ferah kokpit tablo optimizasyonlarını ve sistem genelindeki tüm rapor veri kaynaklarında (Dataset) tekil 'Ad Soyad' standardını devreye alır.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **İki Aşamalı Sağlık Muayenesi İş Akışı (Ön Hazırlık & Sevk vs Hekim Kararı & Arşivleme):**
+  - Sağlık muayene formu tüm alanların tek ekranda yığıldığı karmaşık yapıdan arındırılarak iki bağımsız klinik adıma ayrıştırıldı:
+    - *1. Aşama (Ön Hazırlık & Sevk):* Personel seçimi, muayene türü, dış maruziyet, anamnez soruları ve 12 belirti/bulgu sorgulanarak sevk kaydı oluşturulur; Sağlık Bakanlığı ve NDK standartlarında resmi EK-1 Sevk Formu otomatik üretilir.
+    - *2. Aşama (Hekim Kararı & Arşivleme):* Poliklinik muayeneleri (Dahiliye, Göz, Dermatoloji) ve laboratuvar sonuçları tamamlandıktan sonra nihai hekim kanaati sisteme işlenir; ıslak imzalı taranmış form KVKK şifreli kasasına yüklenir.
+- **Resmi EK-1 A4 PDF Motoru (`ExportService` Entegrasyonu):**
+  - `export_saglik_muayene_ek1_pdf` ve `export_html_to_pdf` metotları üzerinden Sağlık Bakanlığı ve NDK resmi mevzuat formatında ([docs/21.5.7077_Parça5.pdf](file:///c:/Users/user/Desktop/RADPYS/RADPYS_V4/docs/21.5.7077_Parça5.pdf)) 2 sayfalık kurumsal A4 PDF oluşturma ve otomatik açma yeteneği eklendi.
+  - Dosya adlandırması `EK1_Saglik_Muayene_{Ad_Soyad}_{TC}_{Tarih}.pdf` standardına bağlandı ve `clean_slug` entegrasyonu tamamlandı.
+- **Mevzuat Şablonuna Birebir Uyum & Sıfır Sentetik Veri (Kural 20):**
+  - **Sayfa 1:** EK-1 başlığı, çalışan künyesi, maruziyet, anamnez soruları, 12 belirti matrisi ve çalışan beyan/imza bloğu mevzuata tam uyarlandı.
+  - **Sayfa 2 (Hekim Bölümü):** Sevk durumunda El-Cilt, Malignite, Tam Kan Sayımı ve Katarakt alanlarındaki tüm kutular `[   ]` ve boş bırakıldı; hekimin el yazısıyla doldurması, kaşe/imza atması için dürüst ve temiz boş durum sağlandı.
+- **Resmi Matbu Tipografi (Times New Roman):**
+  - Şablon fontu doğrudan resmi gazete ve sağlık kurulu standardı olan **Times New Roman** (`Times, 'Liberation Serif', serif`) olarak ayarlandı; harf çizgilerini aşırı şişiren blok fontlar temizlendi.
+- **Tam Kan Sayımı & Lökosit Dağılımı Tablosu Yenilemesi:**
+  - İç içe tablo yapısı kaldırılarak 4 sütunlu (%30 - %20 - %30 - %20) bağımsız bir tablo inşa edildi; `width="100%"` tanımlanarak sayfa genişliğini tam kaplayan, eksiksiz sınırlara sahip bir matris oluşturuldu.
+- **Kokpit Liste Tablosu Orantılaması (`saglik_muayene_list_controller.py`):**
+  - `Personel Adı Soyadı`, `Departman / Birim` ve `Görevi / Ünvanı` sütunlarının üçü birden `Stretch` moduna bağlandı; ekran genişliğini dengeli paylaşmaları sağlandı.
+  - `Son Muayene Tarihi` (150px), `Sonraki Muayene Tarihi` (165px), `Muayene Kararı` (165px), `Kalan Gün / Durum` (150px) ve `T.C. Kimlik No` (120px) başlıkları ve rozetleri için asla kırpılmayan konforlu genişlikler tanımlandı.
+- **Mimari Kural 1 & Tek Kaynak UI Dosyası (`saglik_muayene_listesi_page.ui`):**
+  - Buton metinleri doğrudan `.ui` XML dosyasına işlendi: `addButton` $\rightarrow$ **"Yeni Sevk Başlat"**, `detailButton` $\rightarrow$ **"Hekim Kararı"**.
+  - Controller içindeki hardcoded `.setText()` ve metin kesilmesine yol açan `setMaximumWidth(130)` sınırlamaları tamamen temizlendi.
+- **Akıllı Klinik Karar ve Teşhis Motoru (IAEA GSG-7 & NDK Karar Matrisi):**
+  - `app/domain/dozimetre/doz_arastirma_models.py` ve `doz_arastirma_engine.py` modülleri saf Python domain katmanında sıfır UI/DB bağımlılığıyla inşa edildi.
+  - **Akla Yatkınlık (Plausibility) Skoru:** Ters kare kanunu ve şua süresi modellemesi ($H_{teorik}$) ile TLD laboratuvar ölçümü ($Hp(10)$) arasındaki uyum yüzdesi hesaplanarak alanda unutulma iddialarının bilimsel doğrulaması sağlandı.
+  - **NCRP 122 Webster Çift Dozimetre Algoritması:** Kurşun önlük üstü yakaya takılan dozimetrelerde iç organların maruz kaldığı tahmini biyolojik efektif doz ($E = 0.04 \times H_{yaka}$) otomatik hesaplandı.
+  - **Hiyerarşik Kategori Sınıflandırması:** Medikal tetkik (`KAT-A1`), kanıtlanmış alanda unutulma (`KAT-A2`), tutarsız unutulma (`KAT-A3`), kurşun önlük dışı kullanım (`KAT-B1`), tesis/cihaz kaçağı (`KAT-C1`), mesleki seviye 1-2 inceleme (`KAT-D1`, `KAT-D2`), yasal sınır aşımı (`KAT-D3`, normal $>20$ mSv, gebe $>1$ mSv) ve kasıtlı ışınlama şüphesi (`KAT-E1`) için otomatik NDK gerekçe metni ve DÖF kararı üretildi.
+  - Form üzerine `[Önerilen Kararı ve Bulguları Forma Aktar]` aksiyonu entegre edilerek teşhis ve resmi gerekçenin tek tıkla 4. adıma kopyalanması sağlandı.
+- **Resmi RD.F43 Word (.docx) ve Kurumsal PDF Raporlama:**
+  - `app/services/reporting/official_forms/rd_f43_form.py` ve `app/services/system/export_service.py` servisleri NDK mevzuatında talep edilen 13 soruluk Çalışan Beyanı ve RKS Saha İnceleme soru-cevap matrisiyle ReportLab (PDF) ve python-docx (Word) motorlarında sıfırdan inşa edildi.
+  - Dışa aktarılan dosya adları kurumsal `RD-F43_{RaporNo}_{Ad_Soyad}.(docx|pdf)` standardına bağlandı ve geçersiz dosya sistemi karakterleri otomatik temizlendi.
+  - `DozArastirmaSonuc` modeline geriye dönük uyumluluk takma adı (`akla_yatkinlik_skoru`) ve `DozimetreService`'e `update_action_status` fonksiyonu eklenerek aksiyon kapatma ve denetim günlüğü akışları standardize edildi.
+  - İmzalanmış tutanakların Fernet şifreli KVKK Evrak Kasasına (`stored_files`) yüklenmesi ve önizlenmesi güvenceye alındı.
+- **Tek ve Ferah 8 Sütunlu Bütünleşik Aksiyon Kokpiti (`erkenUyariTable_2`):**
+  - Yan yana sıkışmış ve metinleri kırpılan 2 ayrı tablo kaldırılarak tek bir tam genişlikli ferah kokpit (`erkenUyariTable_2`) kuruldu.
+  - `Ad Soyad` (170px), `Birim` (210px; kesilmeler giderildi), `Dönem` (tabular Consolas), `Hp(10)` (mSv tabular), `Risk Seviyesi` (120px renkli rozet), `Gerekçe` (esnek), `İnceleme Durumu` (160px renkli rozet) ve `RD.F43 Raporu` (150px rozet) sütunları entegre edildi.
+  - Canlı durum filtreleme (`Tüm Kayıtlar`, `İnceleme Bekleyenler`, `Açık Aksiyonlar`, `Kapatılanlar`) ile tek tıkla süreç izleme sağlandı.
+- **Güvenlik Kilitli Modern Aksiyon Pencereleri:**
+  - İlkel `QInputDialog` pencereleri kaldırılarak `AksiyonuKapatDialog`, `BirimIncelemeDialog` ve `TakipOlcumuPlanlamaDialog` modern RDS diyalogları olarak geliştirildi.
+  - RD.F43 resmi formu hazırlanmadan ve DÖF/tutanak numarası girilmeden aksiyon kapatılmasını engelleyen güvenlik denetim kilidi devreye alındı.
+- **RDS Görsel Hiyerarşisi ve Sihirbaz Navigasyon Ergonomisi:**
+  - `btnKarariFormaUygula` butonu RDS `variant="success"` (Zümrüt Yeşil), 36px bold ve Tabler `file-check.svg` ikonu ile formun ana aksiyon odağı haline getirildi.
+  - Sihirbaz `İleri` butonu `variant="primary"` (Kurumsal Mavi) ve `Geri` butonu `variant="secondary"` olarak yapılandırıldı; chevron Tabler SVG ikonları bağlandı.
+  - Alt eylem çubuğu kullanıcı göz akışına göre sol tarafta rehber metin, sağ tarafta navigasyon, taslak kaydetme, onay ve kapatma butonları hiyerarşisinde düzenlendi.
+- **Çift Yönlü Web Portal Bildirimi ve RKS/Admin Alarm Motoru:**
+  - `create_action` ile aksiyon açıldığında personelin Web Portal üzerinden "Bölüm 2: Çalışan Beyanı" sorularını doldurmasını talep eden görev bildirimi (`📋 Doz Araştırma Formu (RD.F43) - Çalışan Beyanı Bekleniyor`) otomatik gönderilir.
+  - Tekil manuel ölçümde (`create_measurement`) veya toplu Excel/PDF içe aktarımda (`save_import_preview`) $Hp(10) \ge 2.0\text{ mSv}$ veya limit aşımı tespit edildiğinde `admin` ve `yonetici` (RKS) kullanıcılarına acil alarm bildirimi (`🚨 Yüksek Doz / Eşik Aşımı Alarmı`) iletilir.
+  - Aktif çalışan tüm personellere periyodik doz sonuçları bildirim merkezi üzerinden kesintisiz ulaştırılır.
+- **Rol ve Sorumluluk Tabanlı 4 Adımlı RD.F43 Sihirbazı (Web Portal & RKS Ayrımı):**
+  - **1. Adım: Çalışan Beyanı (RD.F43 Bölüm 2):** Çalışma süresi, kaynak türü, KKE kullanımı, unutulma (süre/mesafe) ve tıbbi tetkik beyanı dengeli 2 sütunlu grid yapısına kavuşturuldu; Web Portal üzerinden çalışanın doğrudan doldurabileceği mimari sağlandı.
+  - **2. Adım: RKS Saha İncelemesi (RD.F43 Bölüm 3):** Önceki ekrandaki aşırı dikey boşluk ve kaymalar giderildi; sorular "Tesis, Cihaz ve Bulaşma Durumu" ile "Ortam Dozu ve Personel Doğrulaması" şeklinde 2 eşit simetrik karta bölündü.
+  - **3. Adım: Doz Analizi & Karar:** Doz hesaplama sihirbazı, uyum skoru, Webster düzeltilmiş efektif doz rozeti ve bilimsel gerekçe paneli ferahlatıldı.
+  - **4. Adım: Yasal Karar & Sonuç (RD.F43 Bölüm 4):** Metin kesilmesi hataları giderilerek "Sorumlu Birim" ve "Kısa Sonuç" alanlarına minimum 220px genişlik ve esnek büyüme politikası verildi; DÖF süreci, KVKK evrak kasası, Word (.docx) ve PDF çıktıları standardize edildi.
+- **Akıllı Devam Etme & Gerekçeli Düzeltme Modu (Audit Trail):**
+  - `app/services/personel/dozimetre_service.py` içinde `create_action` metodu açık anomali kontrollerinde mevcut aksiyon ID ve durumunu döndürecek şekilde güncellendi.
+  - Anomali tablosunda açık bir vaka seçildiğinde engelleyici hata kutusu kaldırılarak doğrudan mevcut form düzenleme modunda açıldı (`_start_aksiyon`).
+  - Kapatılmış tutanaklarda sehven yapılan hataları düzeltmek için kullanıcıya `[Düzeltme Yap / Formu Aç]` ve `[Resmi Raporu Görüntüle]` seçenekleri sunuldu; resmi rapora `btnDuzenle` eklenerek denetim izine gerekçe düşülmesi şartıyla formun güvenle yeniden açılması sağlandı.
+- **Raporlama Veri Kaynaklarında Tekil 'Ad Soyad' Standardizasyonu (Kural 15 & 21):**
+  - `PersonelDataset`, `SaglikMuayeneDataset`, `NobetHakedisDataset`, `IzinBakiyeDataset`, `FiiliHizmetDataset` ve `DozimetreOlcumDataset` modellerinden ayrı `ad` ve `soyad` alanları temizlendi; tekil kurumsal `ad_soyad` ("Ad Soyad") alanına dönüştürüldü.
+  - Rapor Tasarım Sihirbazı (`tblSutunlar`) ve rapor şablonlarındaki (`TEMPLATE_SPECS`) sütun kalabalığı ve mükerrerlikler giderildi.
+  - `V20261012_1_unify_ad_soyad_in_reports.py` veritabanı migrasyonu ile `rapor_tanim_alanlari` tablosundaki mükerrer alanlar otomatik temizlendi.
+- **Kullanım Kılavuzu & Yardım Dokümantasyonu Senkronizasyonu:**
+  - `docs/help/12_dozimetre_takibi_ve_rdf43_arastirma.html` yardım dokümanında 5N1K tablosu ve Bölüm 5 baştan sona güncellenerek yeni rol tabanlı sihirbaz, IAEA GSG-7 CDSS karar motoru, Webster formülü ve denetim izli düzeltme modu kullanım talimatlarına kavuşturuldu.
+
+## [4.0.3.29] - 2026-10-11
+
+### 📂 Merkezi Ana Liste Dışa Aktarımlarında Merkezi Export Klasörü Standardizasyonu
+
+Bu sürüm; Personel, Cihaz, Koruyucu Donanım (RKE), Ortam Dozu, İzin, Nöbet, Fiili Hizmet, Hizmet İçi Eğitim, Sistem Denetim İzi ve Tanımlamalar modüllerindeki tüm dışa aktarma (Excel, PDF, Word, ZIP, HTML) ve şablon indirme pencerelerinin doğrudan sistem ayarlarında tanımlı merkezi rapor/çıktı klasörünü (`program_ayarlari -> rapor / cikti_klasor_yolu`) varsayılan açılış konumu olarak kullanmasını sağlar.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **Akıllı ve Parametresiz Merkezi Klasör Çözümlemesi (`get_report_output_directory`):**
+  - `app/services/reporting/report_engine.py` altındaki `get_report_output_directory` fonksiyonuna, parametresiz çağrılarda dahi `get_global_registry().get(SettingsService)` ve `Database()` üzerinden sistem ayarlarını otomatik sorgulama yeteneği kazandırıldı.
+  - Test ortamı (`is_test_environment()`) önceliği korunarak testlerin `data/reports` altına izole yazılması sağlandı; üretimde ise tanımlı klasör yolu veya akıllı varsayılan (`Masaüstü / RADPYS Raporları`) klasörü güvenceye alındı.
+- **`get_save_file_path` ve `ask_export_format_and_path` Klasör Entegrasyonu:**
+  - `ui/controllers/_ux_helpers.py` içerisindeki `get_save_file_path` fonksiyonu, kendisine göreli dosya adı (`*.xlsx`, `*.pdf`, `*.docx`, `*.zip`, `*.html`) iletildiğinde bunu otomatik olarak `get_report_output_directory()` ile birleştirerek dosya kaydetme diyaloğunun doğrudan merkezi export klasöründe açılmasını sağladı.
+  - Dosya uzantısı eksik girildiğinde veya filtre formatına göre otomatik tamamlama mantığı `.docx`, `.zip`, `.html`, `.png` formatlarını kapsayacak şekilde genişletildi.
+  - `ask_export_format_and_path` fonksiyonu varsayılan dosya önerisini merkezi klasör yolu ile birleştirerek kullanıcıya sundu.
+- **Tüm Ana Liste Denetleyicilerinde Tam Kapsamlı Standartlaştırma (Kural 21):**
+  - **Personel Modülü (`personel_list_controller.py`):** KVKK Arşiv ZIP dışa aktarma ve Excel şablon indirme işlemleri `get_save_file_path` üzerinden merkezi klasöre bağlandı.
+  - **Cihaz Yönetimi (`cihaz_yonetimi_controller.py`, `cihaz_hek_controller.py`):** NDK KLV-014 Word/PDF, NDK Resmi Çizelge Excel, Toplu QR Baskı Paketi (.zip) ve HEK evrak listesi dışa aktarımları merkezi klasöre yönlendirildi.
+  - **Koruyucu Donanım / RKE (`rke_yonetimi_controller.py`):** Toplu QR etiket ZIP arşivi dışa aktarımı merkezi klasöre bağlandı.
+  - **Ortam Dozu & Kalite (`ortam_dozu_controller.py`):** SKS Excel cetveli ve Toplu QR ZIP dışa aktarımları merkezi klasöre bağlandı.
+  - **İzin Modülü (`izin_hakedis_controller.py`):** Excel içe aktarım şablon indirme ve hakediş rapor butonları merkezi export altyapısına kavuşturuldu.
+  - **Nöbet Modülü (`nobet_devir_list_controller.py`, `nobet_borc_alacak_controller.py`):** Nöbet devir listesi ve fazla mesai / alacak-borç cetveli Excel aktarımları merkezi klasöre bağlandı.
+  - **Fiili Hizmet (`fiili_hizmet_hesaplama_tab_controller.py`):** Hak ediş cetveli dışa aktarımı `get_save_file_path` ile merkezi klasöre yönlendirildi.
+  - **Hizmet İçi Eğitim (`hizmet_ici_egitim_controller.py`):** Soru havuzu Excel şablon indirme işlemi merkezi klasöre bağlandı.
+  - **Denetim İzi & Günlükler (`audit_log_viewer_controller.py`, `interaction_log_viewer.py`):** Sistem logları CSV/Excel dışa aktarımı ile HTML etkileşim günlüğü dışa aktarımı merkezi klasöre yönlendirildi.
+  - **Sistem Tanımlamaları (`lookup_controller.py`):** Departman, Unvan, İzin Türü, Tatil, Eğitim Türü, Sağlık Tetkik, Eğitim Kategori, Cihaz Tanımları ve RKE Tanımları olmak üzere 9 alt sekmenin tamamında Excel dışa aktarımları merkezi export klasörüne bağlandı.
+- **Otomasyon Testleri (`tests/test_report_output_directory.py`):**
+  - Parametresiz `get_report_output_directory()` otomatik veritabanı çözümlemesi, `get_save_file_path` ve `ask_export_format_and_path` fonksiyonlarının merkezi export klasörünü kullandığını doğrulayan 7 adet birim test başarıyla işletildi.
+
+## [4.0.3.28] - 2026-10-11
+
+### ⌨️ Form ve Diyaloglarda Enter Tuşu ile Otomatik Kayıt ve Telefon Maskesi Normalizasyonu
+
+Bu sürüm; kullanıcı formları ve alt diyalog pencerelerinde (Yakın, Eğitim, Belge, Sağlık vb.) Enter/Return tuşuna basıldığında kaydetme eyleminin tetiklenmemesi sorununu çözer ve telefon numaralarının maskeli giriş alanlarına aktarılırken baştaki `0` sebebiyle rakam kaymasına (`(052)233...`) uğramasını önleyen akıllı normalizasyon mimarisini devreye alır.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **Evrensel Enter Tuşu ile Kaydetme Altyapısı (`setup_dialog_enter_to_save`):**
+  - `ui/controllers/_ux_helpers.py` içine `DialogEnterSaveFilter` ve `setup_dialog_enter_to_save` fonksiyonları eklendi.
+  - Form ve diyaloglarda birincil kaydet butonları (`btnSave`, `btnKaydet`, `saveButton`, `btn_save` vb.) otomatik olarak `setDefault(True)` ve `setAutoDefault(True)` yapılırken; iptal/kapat butonları `setAutoDefault(False)` ile sınırlandırıldı.
+  - Odak `QPlainTextEdit` veya `QTextEdit` (notlar, adres, açıklama vb. çok satırlı alanlar) üzerinde değilken Enter tuşuna basıldığında formun birincil onay butonu tetiklenir; çok satırlı alanlarda yeni satır geçiş davranışı korunur.
+  - `ui/qt_loader.py` içindeki `load_ui_widget` mekanizmasına entegre edilerek `.ui` dosyalarından yüklenen tüm `QDialog` örneklerine otomatik Enter-to-save yeteneği kazandırıldı.
+- **Personel Alt Diyaloglarında Enter Desteği (`_BaseChildDialog`):**
+  - `ui/dialogs/personel_child_dialogs.py` taban sınıfı `_BaseChildDialog`'a `keyPressEvent` eklendi; `PersonelYakinDialog`, `PersonelEgitimDialog`, `PersonelBelgeDialog` ve `PersonelSaglikMuayeneDialog` pencerelerinde Enter tuşunun kaydetme akışını tetiklemesi sağlandı.
+  - Formdaki tüm `QLineEdit` bileşenlerinin `returnPressed` sinyalleri doğrudan kaydet butonuna bağlandı.
+- **Personel Form Tabanı Enter Desteği (`PersonelFormBase`):**
+  - `ui/controllers/personel/_personel_form_base.py` sınıfına `keyPressEvent` eklenerek `PersonelAddController` ve `PersonelDetailController` pencerelerinde form üzerindeyken Enter ile kaydetme güvenceye alındı.
+- **Akıllı Telefon Maske ve Normalizasyon Motoru:**
+  - `ui/controllers/_ux_helpers.py` içerisine `format_phone_for_mask`, `clean_phone_from_mask`, `set_phone_input_value` ve `setup_phone_input` fonksiyonları kazandırıldı.
+  - Veritabanında `5323335562`, `05323335562`, `+90` veya boşluklu saklanan numaralar, `(999) 999-99-99` maskesine aktarılırken baştaki `0` veya uluslararası kodlar ayıklanarak 10 haneli saf rakam formatında yüklenir; ekranda tam olarak `(532) 333-55-62` formatında görünür.
+  - Kullanıcı klavyeden ilk rakam olarak `0` tuşuna bastığında baştaki sıfır otomatik yutularak `5`'ten başlaması sağlanır; böylece son hanenin maske dışına taşarak kesilmesi engellenir.
+  - Boş maske (`() --`) durumunda veritabanına anlamsız string yerine `None` kaydedilmesi güvence altına alındı.
+
+## [4.0.3.27] - 2026-10-11
+
+### 📑 Liste Dışa Aktarımlarında Mükerrer Dosya Üretiminin Önlenmesi ve Rapor Motoru Doğrudan Hedef Çıktı Standardizasyonu
+
+Bu sürüm; Personel Listesi ve diğer operasyonel modül tablolarından dışa aktarma (PDF, Excel, Word) yapıldığında, `ReportEngine` motorunun varsayılan klasöre zaman damgalı (`_YYYYMMDD_HHMMSS`) bir kopya üretip ardından kullanıcının seçtiği dosya adına kopyalaması sonucu oluşan mükerrer (ikiz) dosya kirliliğini kökten çözer.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **ReportEngine Doğrudan Hedef Dosya Çıktısı (`output_path` Desteği):**
+  - `ReportEngine.run` ve `_generate_generic_report` fonksiyonlarına `output_path` parametresi ve `kwargs` çözümlemesi eklendi.
+  - Hedef dosya yolu sağlandığında rapor doğrudan kullanıcının belirlediği dosyaya üretilir; `out_dir` dizininde fazladan zaman damgalı ara kopya oluşturulmaz.
+  - Olası geçici dosya farklılıklarında `shutil.copy2` yerine `shutil.move` mantığı çalıştırılarak orijinal geçici dosyanın geride kalması engellendi.
+  - Üretim günlüğü (`log_repository.kaydet`) doğrudan kullanıcının seçtiği nihai dosya yolunu kaydedecek şekilde güncellendi.
+- **Merkezi Dosya Taşıma Yardımcısı (`safe_relocate_exported_file`):**
+  - `ui/controllers/_ux_helpers.py` içine `safe_relocate_exported_file` fonksiyonu eklendi; üretilen dosyanın hedef yola taşınması ve kaynak dosyanın mükerrer kalmaması garanti altına alındı.
+- **Dışa Aktarma Penceresi Akıllı Klasör Önerisi:**
+  - `ask_export_format_and_path` fonksiyonu sistem ayarlarındaki `get_report_output_directory()` klasörünü varsayılan açılış konumu olarak sunacak şekilde yapılandırıldı.
+- **Personel Listesi Denetleyicisi Temizliği (`personel_list_controller.py`):**
+  - Eski ve mükerrer kalan `_export_report` ve `_on_export_pdf` metodları kaldırılarak tekil, yetki denetimli ve filtre duyarlı hale getirildi.
+  - Rapor motoru çağrısına doğrudan `output_path=file_path` argümanı bağlandı.
+- **Tüm Operasyonel Modüllerde Bütüncül Yaygınlaştırma (Kural 21):**
+  - Cihaz Yönetimi (`cihaz_yonetimi_controller`), Cihaz QC (`cihaz_qc_controller`), Arıza (`cihaz_ariza_controller`), RKE Yönetimi (`rke_yonetimi_controller`), RKE Muayene (`rke_muayene_listesi_controller`), Sağlık Muayene (`saglik_muayene_list_controller`), İzin Takip (`izin_list_controller`), İzin Hakediş (`izin_hakedis_controller`), Nöbet (`nobet_plan_list_controller`), Olay Bildirim (`olay_bildirim_controller`), RGS Görevlendirme (`rgs_gorevlendirme_controller`), Ortam Dozu (`ortam_dozu_controller`), Hizmet İçi Eğitim (`hizmet_ici_egitim_controller`), Dozimetre Takip (`dozimetre_takip_main_tab`), Fiili Hizmet (`fiili_hizmet_rapor_tab_controller`) ve Tutanak Sihirbazı (`tutanak_sihirbazi_dialog`) denetleyicileri yeni doğrudan hedef çıktı mekanizmasıyla donatıldı.
+
 ## [4.0.3.26] - 2026-10-10
 
 ### 🇹🇷 Mimari Politika Denetimi ve Türkçe Karakter Normalizasyon Standardizasyonu
