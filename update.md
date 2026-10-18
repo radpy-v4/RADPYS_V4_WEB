@@ -899,6 +899,48 @@ Sistem parametreleri ve program yapılandırma ekranında, hem kritik veritaban�
 
 ---
 
+## 🔐 22. Kademeli Kurumsal Lisans Paketleri ve 30 Günlük Tam Sınırsız Deneme Sürümü
+
+Sağlık kuruluşlarının, radyoloji merkezlerinin ve kliniklerin farklı operasyonel ölçeklerine ve mevzuat gereksinimlerine hitap etmek amacıyla **30 Günlük Tam Sınırsız Deneme Sürümü** ve **3 Kademeli Lisans Yapısı** devreye alınmıştır:
+
+### 🌟 30 Günlük Tam Sınırsız Kurumsal Değerlendirme (Demo) Sürümü
+* **Sıfır Kısıtlama ile Tam Deneyim:** Kurulum yapıldıktan sonraki 30 gün boyunca sistemdeki tüm yapay sınırlar kaldırılmıştır. Kurumlar, hastanedeki tüm personellerini sisteme aktarabilir, diledikleri sayıda nöbet planı oluşturabilir ve Elit paket dahil olmak üzere tüm modülleri tam kapasiteyle test edebilirler.
+* **Kademeli Erken Uyarı:** Deneme süresinin bitimine 15 gün ve 3 gün kala sistem yöneticilere nazik hatırlatmalarda bulunur; 30 günün sonunda kurum verileri korunarak lisans aktivasyon ekranına güvenle yönlendirilir.
+
+### 🥉 1. Başlangıç Paketi (Nöbet ve Personel Yönetim Çözümü)
+* **Kapsam:** Yalnızca klinik nöbet çizelgeleme ve personel idaresine odaklanmak isteyen birimler için tasarlanmıştır.
+* **Dahil Olan Modüller:**
+  * Yapay Zeka Destekli Nöbet Çizelgeleme Motoru (Solver) ve Dinamik Kural Matrisi
+  * Nöbet Devir, Takas ve İkame Yönetimi
+  * Nöbet Borç / Alacak ve Aylık Puantaj Cetvelleri
+  * Personel Kartları, İzin Yönetimi (Yıllık, Şua, Mazeret, Sağlık İzinleri)
+  * Evrensel Çift Onay Kuyruğu ve Temel Sistem Ayarları & Otomatik Yedekleme
+
+### 🥈 2. Pro Paket (Radyasyon Güvenliği ve Sağlık Gözetim Çözümü)
+* **Kapsam:** Radyasyonlu alanlarda çalışan personelin mevzuat takibini, dozimetre izlemini ve sağlık gözetimini eksiksiz yürütmek isteyen klinikler için geliştirilmiştir.
+* **Dahil Olan Modüller:**
+  * Başlangıç paketinin tüm özellikleri,
+  * **Kişisel Dozimetre Takibi:** Laboratuvar ölçüm aktarımları, kümülatif doz risk analizleri ve resmi RD.F43 doz aşım araştırma formu,
+  * **Periyodik Sağlık Muayeneleri:** İki aşamalı sağlık gözetimi, laboratuvar bulguları ve EK-1 resmi sağlık raporu,
+  * **Fiili Hizmet Zammı (FHZ):** 5510 Sayılı Kanun uyarınca yıpranma payı ve kıstelyevm şua izin hak ediş cetvelleri,
+  * **RGS / RSO Görevlendirme:** Radyasyondan Korunma Sorumlusu atama belgeleri ve sertifika takibi,
+  * **Olay Bildirimi ve DÖF:** Radyasyon kazaları, ramak kala bildirimleri ve 5 Neden kök analiz aksiyonları.
+
+### 🥇 3. Elit Paket (Tam Entegre Kurumsal Çözüm — All-in-One)
+* **Kapsam:** Radyoloji departmanını, tıbbi cihaz parkurunu, kurşun koruyucu donanımlarını ve eğitim süreçlerini NDK ve SKS standartlarında tek merkezden yönetmek isteyen hastaneler için eksiksiz çözümdür.
+* **Dahil Olan Modüller:**
+  * Pro paketinin tüm özellikleri,
+  * **Tıbbi Cihaz ve NDK Lisans Envanteri:** Cihaz takibi, NDK lisans/vize süreleri, bakım sözleşmeleri, arıza bildirimi ve HEK arşivi,
+  * **Cihaz Kalite Kontrol (QC) & Kabul Testleri:** Rutin QA/QC test protokolleri ve kalibrasyon takibi,
+  * **Radyasyon Koruyucu Ekipman (RKE) Yönetimi:** Kurşun önlük/tiroid envanteri, DIN 6857-1 / IEC 61331-3 standartlarında skopi muayene karar motoru ve karekodlu etiketleme,
+  * **Ortam Dozu ve İnteraktif Radyasyon Krokisi:** Kat planı üzerinde dedektör ölçümleri, alan sınırları ve sıcak nokta risk analizi,
+  * **Hizmet İçi Eğitim ve LMS:** Personel eğitim katalogları, online sınav modülü ve otomatik sertifikasyon.
+
+### 💡 Akıllı Paket Kalkanı ve Şeffaf Geçiş
+Alt pakette çalışan bir kurum yetkilisi, daha üst bir pakete ait bir modüle tıkladığında sistem modülü engellemekle kalmaz; ilgili özelliğin hangi paketle açılacağını ve kuruma sağlayacağı operasyonel avantajları açıklayan şeffaf bir bilgilendirme ekranı sunarak yöneticiyi doğru çözüme yönlendirir.
+
+---
+
 © 2026 Cem Kara. RADPYS V4 Kurumsal Radyasyon Personel Yönetim Sistemi. Tüm Hakları Saklıdır.
 
 

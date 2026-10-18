@@ -1,10 +1,10 @@
 {
-  "version": "4.0.4.0",
-  "release_version": "4.0.4.0",
-  "build_version": "4.0.4.0",
-  "latest_demo_version": "4.0.4.0",
-  "release_date": "2026-10-17",
+  "version": "4.0.4.1",
+  "release_version": "4.0.4.1",
+  "build_version": "4.0.4.1",
+  "latest_demo_version": "4.0.4.1",
+  "release_date": "2026-10-18",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.4.0: Sistem Genelinde Tarihsel İzlenebilirlik (Point-in-Time Historical Snapshot) ve Program Ayarları Güvenlik Mühürlemesi Mimarisi. Sağlık Muayeneleri, Dozimetre, Fiili Hizmet (FHZ) & Şua İzni, Personel İzinleri, LMS ve Cihaz Arıza & Bakım modüllerinde geçmiş birim/konum donduruldu; kriptografik yedek anahtarı mühürlenerek yasal mevzuat uyarı paneli devreye alındı.",
+  "changelog": "RADPYS V4.0.4.1: Kademeli Lisanslama ve 30 Günlük Tam Sınırsız Deneme Sürümü Mimarisi. Başlangıç (Nöbet & Personel), Pro (Radyasyon Güvenliği & Sağlık) ve Elit (Tam Entegre Çözüm) paket basamaklandırması ve modül erişim kalkanı devreye alındı.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }

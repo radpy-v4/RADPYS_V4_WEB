@@ -3,6 +3,34 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.4.1] - 2026-10-18
+
+### 🔐 Kademeli Lisanslama ve 30 Günlük Tam Sınırsız Deneme Sürümü Mimarisi
+
+Bu sürüm; sağlık kurumlarının ihtiyaçlarına göre basamaklandırılmış 3 seviyeli paket yapısını (`STARTER`, `PRO`, `ELITE`) ve değerlendirme sürecindeki kurumların tüm yetenekleri deneyimleyebilmesi için 30 günlük tam sınırsız demo modunu devreye alır.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **1. 30 Günlük Full Sınırsız Deneme Sürümü (`LicenseService`):**
+  - Demo modundaki yapay kısıtlar (maksimum 6 personel ve 3 nöbet planı limiti) tamamen kaldırıldı (`max_personel: None`).
+  - Kurumların 30 günlük yasal değerlendirme süresi boyunca Elit paket dahil tüm V4 modüllerini sınırsız personel ve nöbet çizelgesiyle test edebilmesi sağlandı.
+  - 30 gün dolduğunda kademeli uyarı ve admin kilit mekanizması korunarak güvenli lisanslama sağlandı.
+- **2. Kademeli 3 Paket Basamaklandırması:**
+  - **Başlangıç Paketi (`STARTER` / `BASIC`):** Nöbet solver & çizelgeleme, nöbet devir/ikame, puantaj/icmal, nöbet istatistikleri, personel yönetimi, izin takibi, onay kuyruğu ve temel sistem ayarları.
+  - **Pro Paket (`PRO`):** Başlangıç paketi + Kişisel Dozimetre Takibi & RDF-43 formu, Periyodik Sağlık Muayeneleri & Risk Analizi, Fiili Hizmet Zammı (FHZ) & Şua Cetveli, RGS Görevlendirme & Sertifika, Olay Bildirimi & DÖF (CAPA).
+  - **Elit Paket (`ELITE`):** Pro paketi + Tıbbi Cihaz & NDK Lisans Envanteri, Cihaz Arıza & Bakım, Kalite Kontrol (QC) & HEK Arşivi, RKE Yönetimi & DIN 6857-1 Skopi Muayene Karar Motoru, Ortam Dozu & İnteraktif Radyasyon Krokisi, Hizmet İçi Eğitim & Online Sınav LMS.
+- **3. Modüler Lisans Erişim Kalkanı (`AppController._check_module_license_access`):**
+  - Başlangıç veya Pro paketindeki kullanıcıların paket dışı modüllere erişim girişimlerinde, ilgili modülün hangi paket kapsamında sunulduğunu ve yükseltme detaylarını gösteren bilgilendirme diyalogu entegre edildi.
+  - Geriye dönük uyumluluk için `_check_elite_module_access` metodu takma ad olarak korundu.
+- **4. Lisans Anahtarı Üretici CLI Aracı (`scripts/generate_license_key.py`):**
+  - Cihaz Kimliği (Machine ID), Paket Kodu (`STARTER`, `PRO`, `ELITE`), Geçerlilik Süresi (`PERM` veya `YYYYMMDD`) ve Kurum Adı ile tek komutla Ed25519 imzalı lisans kodu ve kurumsal `.lic` dosyası üreten bağımsız komut satırı aracı geliştirildi.
+- **5. Master Studio Lisans Motoru Senkronizasyonu (`RADPYS_V4_Master_Tool_Project`):**
+  - Yönetim stüdyosundaki `PACKAGE_NAMES` sözlüğü güncellenerek `STARTER` ve `BASIC` paketleri Master Studio araçlarına dahil edildi.
+- **6. Kapsamlı Test Kapsamı (`test_license_flow.py`):**
+  - Demo modunda sınırsız erişim, Starter/Pro/Elite paket izin matrisi ve modül gereksinim çözümleme fonksiyonları için 5 yeni birim testi eklendi; tüm testler başarıyla doğrulandı.
+
+---
+
 ## [4.0.4.0] - 2026-10-17
 
 ### 🌐 Sistem Genelinde Tarihsel İzlenebilirlik (Point-in-Time Snapshot) ve Birim / Görev Yeri Mühürleme Mimarisi
