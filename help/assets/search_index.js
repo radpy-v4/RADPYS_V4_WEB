@@ -1,4 +1,4 @@
-/* Otomatik Üretilen RADPYS v4 Arama İndeksi — Toplam 364 Başlık */
+/* Otomatik Üretilen RADPYS v4 Arama İndeksi — Toplam 359 Başlık */
 window.RADPYS_SEARCH_INDEX = [
   {
     "id": "01",
@@ -1711,43 +1711,8 @@ window.RADPYS_SEARCH_INDEX = [
   {
     "id": "15",
     "module": "Radyasyon Olay Bildirimi ve DÖF / CAPA (Kök Neden Analizi)",
-    "title": "2\n Arayüz Bileşenleri ve 5N1K Kural Çözümleme Tablosu",
-    "desc": "Radyasyon Olay Bildirimi ve DÖF / CAPA (Kök Neden Analizi) modülü altında 2\n Arayüz Bileşenleri ve 5N1K Kural Çözümleme Tablosu adımı ve açıklamaları.",
-    "url": "15_olay_bildirimi_ve_dof_capa.html"
-  },
-  {
-    "id": "15",
-    "module": "Radyasyon Olay Bildirimi ve DÖF / CAPA (Kök Neden Analizi)",
-    "title": "3\n Olay Bildirim ve DÖF Kokpiti & Filtreler",
-    "desc": "Radyasyon Olay Bildirimi ve DÖF / CAPA (Kök Neden Analizi) modülü altında 3\n Olay Bildirim ve DÖF Kokpiti & Filtreler adımı ve açıklamaları.",
-    "url": "15_olay_bildirimi_ve_dof_capa.html"
-  },
-  {
-    "id": "15",
-    "module": "Radyasyon Olay Bildirimi ve DÖF / CAPA (Kök Neden Analizi)",
-    "title": "4\n 3 Adımlı Yeni Olay Bildirim Sihirbazı (Wizard)",
-    "desc": "Radyasyon Olay Bildirimi ve DÖF / CAPA (Kök Neden Analizi) modülü altında 4\n 3 Adımlı Yeni Olay Bildirim Sihirbazı (Wizard) adımı ve açıklamaları.",
-    "url": "15_olay_bildirimi_ve_dof_capa.html"
-  },
-  {
-    "id": "15",
-    "module": "Radyasyon Olay Bildirimi ve DÖF / CAPA (Kök Neden Analizi)",
-    "title": "5\n 72 Saatlik / 24 Saatlik NDK Yasal Bildirim Takip Motoru",
-    "desc": "Radyasyon Olay Bildirimi ve DÖF / CAPA (Kök Neden Analizi) modülü altında 5\n 72 Saatlik / 24 Saatlik NDK Yasal Bildirim Takip Motoru adımı ve açıklamaları.",
-    "url": "15_olay_bildirimi_ve_dof_capa.html"
-  },
-  {
-    "id": "15",
-    "module": "Radyasyon Olay Bildirimi ve DÖF / CAPA (Kök Neden Analizi)",
-    "title": "6\n Olay İnceleme, Sorumlu Atama ve Durum Yönetimi",
-    "desc": "Radyasyon Olay Bildirimi ve DÖF / CAPA (Kök Neden Analizi) modülü altında 6\n Olay İnceleme, Sorumlu Atama ve Durum Yönetimi adımı ve açıklamaları.",
-    "url": "15_olay_bildirimi_ve_dof_capa.html"
-  },
-  {
-    "id": "15",
-    "module": "Radyasyon Olay Bildirimi ve DÖF / CAPA (Kök Neden Analizi)",
-    "title": "7\n DÖF (CAPA) Faaliyetleri Planlama ve Tamamlama",
-    "desc": "Radyasyon Olay Bildirimi ve DÖF / CAPA (Kök Neden Analizi) modülü altında 7\n DÖF (CAPA) Faaliyetleri Planlama ve Tamamlama adımı ve açıklamaları.",
+    "title": "7\n DÖF (CAPA) Faaliyetleri: Olaya Bağlı ve Bağımsız Kalite Yönetimi",
+    "desc": "Radyasyon Olay Bildirimi ve DÖF / CAPA (Kök Neden Analizi) modülü altında 7\n DÖF (CAPA) Faaliyetleri: Olaya Bağlı ve Bağımsız Kalite Yönetimi adımı ve açıklamaları.",
     "url": "15_olay_bildirimi_ve_dof_capa.html"
   },
   {
@@ -1767,8 +1732,8 @@ window.RADPYS_SEARCH_INDEX = [
   {
     "id": "15",
     "module": "Radyasyon Olay Bildirimi ve DÖF / CAPA (Kök Neden Analizi)",
-    "title": "10\n Resmi SKS/NDK Olay ve DÖF Tutanağı (Baskı & PDF)",
-    "desc": "Radyasyon Olay Bildirimi ve DÖF / CAPA (Kök Neden Analizi) modülü altında 10\n Resmi SKS/NDK Olay ve DÖF Tutanağı (Baskı & PDF) adımı ve açıklamaları.",
+    "title": "10\n Resmi SKS / NDK Olay ve DÖF Tutanağı (Kurumsal Antetli PDF)",
+    "desc": "Radyasyon Olay Bildirimi ve DÖF / CAPA (Kök Neden Analizi) modülü altında 10\n Resmi SKS / NDK Olay ve DÖF Tutanağı (Kurumsal Antetli PDF) adımı ve açıklamaları.",
     "url": "15_olay_bildirimi_ve_dof_capa.html"
   },
   {
@@ -2502,8 +2467,8 @@ window.RADPYS_SEARCH_INDEX = [
   {
     "id": "23",
     "module": "Merkezi Rapor ve Matbu Tutanak Çıktı Merkezi",
-    "title": "Çıktı Formatları ve Kurumsal Şablon Yönetimi",
-    "desc": "Merkezi Rapor ve Matbu Tutanak Çıktı Merkezi modülü altında Çıktı Formatları ve Kurumsal Şablon Yönetimi adımı ve açıklamaları.",
+    "title": "Çıktı Formatları ve \"Doğru İşe Tek Format\" Standardı",
+    "desc": "Merkezi Rapor ve Matbu Tutanak Çıktı Merkezi modülü altında Çıktı Formatları ve \"Doğru İşe Tek Format\" Standardı adımı ve açıklamaları.",
     "url": "23_rapor_tutanak_merkezi.html"
   },
   {

@@ -4,6 +4,31 @@ Bu kılavuz, **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## 🗓️ RADPYS V4.0.5.5: Nöbet Planlamada İzinlerin Otomatik Entegrasyonu ve Çalışma Saati Dengelemesi
+
+Bu kritik güncelleme ile Nöbet Planlama ve Dağıtım modülünde personelin onaylanmış tüm yasal izinleri (şua izinleri, yıllık izinler, mazeret ve raporlar) doğrudan Nöbet Planlama Sihirbazı'na entegre edilmiştir. İzinli personelin çalışma saati hesabında hak kaybı yaşanması önlenmiş, izin günleri hedef çalışma süresinden otomatik olarak düşülmüş ve akıllı dağıtım motorunun izinli personele nöbet yazması kesin olarak engellenmiştir.
+
+### 📋 1. Nöbet Önizleme Ekranında Onaylı İzinlerin Eksiksiz Gösterimi
+
+* **Talepler & Mazeretler Konsolidasyonu:** Nöbet Sihirbazının 2. Adımında yer alan detay tablosunda personelin kurum veya EBYS onayından geçmiş tüm izinleri başlangıç ve bitiş tarihleri, gün sayısı ve açıklama bilgileriyle birlikte listelenir.
+* **Görsel Ayrıştırma ve Durum Takibi:** İzin kayıtları sistemde açık mavi vurgu ve yeşil onay rozetiyle ("Resmi Onaylı") belirginleştirilerek nöbet komisyonunun ve birim amirlerinin personelin durumunu bir bakışta görmesi sağlanır.
+
+### ⏱️ 2. Hedef Çalışma Saatinin İzin Günlerine Göre Otomatik Hesaplanması
+
+* **Adil Çalışma Süresi:** Radyasyon görevlileri ve sağlık personeli için aylık standart çalışma saati hesaplanırken, personelin hafta içine denk gelen onaylı izin günleri fiili çalışma günlerinden düşülür.
+* **Doğru Kota ve Fazla Mesai:** Örneğin 20 fiili iş günü bulunan bir ayda 10 gün şua veya yıllık izni olan bir radyasyon çalışanının hedef çalışma saati 140 saat yerine adil ve doğru şekilde 70 saat olarak belirlenir. Bu sayede personelin haksız borçlanması veya yanlış fazla mesaiye zorlanması bütünüyle önlenir.
+
+### 🤖 3. Otomatik Nöbet Motorunda İzin Güvenliği
+
+* **Kesin İzin Koruması:** Otomatik nöbet dağıtım algoritması personelin izinli olduğu gün ve saat aralıklarını önceden tespit eder. Algoritma nöbet ataması yaparken izinli personeli kesinlikle aday listesine almaz; izinli günlere nöbet yazılması imkansız hale getirilir.
+* **Çakışma ve İhlal Denetimi:** Manuel nöbet düzenleme ekranlarında da personelin onaylı izniyle çakışan bir nöbet yazılmak istendiğinde sistem kullanıcıyı anında uyarır.
+
+### ✨ 4. İzin Hakediş Ekranında Akıcı Kullanıcı Deneyimi
+
+* **Pürüzsüz Toplu Hesaplama:** İzin Hakediş Yönetimi ekranında toplu hakediş hesaplama veya liste yenileme işlemleri yapılırken beliren "Lütfen bir satır seçiniz." şeklindeki yanıltıcı bildirim kutusu kaldırılmış; liste işlemleri seri ve sessiz bir akışa kavuşturulmuştur.
+
+---
+
 ## ⚡ RADPYS V4.0.5.4: Ana Listeden Doğrudan Yeni DÖF Başlatma & Bağımsız Kalite Faaliyetleri
 
 Bu güncelleme ile Olay Bildirimleri ve Kalite Yönetimi ana sayfasına doğrudan **"Yeni DÖF Ekle"** butonu eklenmiştir. Artık düzeltici ve önleyici faaliyetler yalnızca bir olay kaydının içinden değil, ana liste ekranından tek tıkla hem bir olaya bağlı olarak hem de genel klinik kalite ve radyasyon güvenliği iyileştirmesi amacıyla bağımsız olarak başlatılabilmektedir.

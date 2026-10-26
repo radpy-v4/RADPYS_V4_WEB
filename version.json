@@ -1,10 +1,10 @@
 {
-  "version": "4.0.5.4",
-  "release_version": "4.0.5.4",
-  "build_version": "4.0.5.4",
-  "latest_demo_version": "4.0.5.4",
-  "release_date": "2026-10-25",
+  "version": "4.0.5.5",
+  "release_version": "4.0.5.5",
+  "build_version": "4.0.5.5",
+  "latest_demo_version": "4.0.5.5",
+  "release_date": "2026-10-26",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.5.4: Ana Listeden Doğrudan Yeni DÖF Başlatma, Manuel / Bağımsız Faaliyet Yönetimi ve Olay İlişkilendirme Desteği.",
+  "changelog": "RADPYS V4.0.5.5: Nöbet Planlama Sihirbazı ve Dağıtım Motorunda 'Resmi Onaylı' İzinlerin Otomatik Entegrasyonu ve Hedef Çalışma Saati Düşüm Düzeltmesi.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }

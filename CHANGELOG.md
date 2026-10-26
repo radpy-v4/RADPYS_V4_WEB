@@ -3,6 +3,32 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.5.5] - 2026-10-26
+
+### 🗓️ Nöbet Planlama Sihirbazı & Dağıtım Motorunda 'Resmi Onaylı' İzinlerin Entegrasyonu ve Hedef Çalışma Saati Düşüm Mimarisi
+
+Bu sürüm; Nöbet Yönetimi modülünde personel izinlerinin ("Resmi Onaylı") Nöbet Planlama Önizleme Sihirbazı'nda (Adım 2: Talepler & Mazeretler) eksiksiz olarak listelenmesini, aylık hedef çalışma saati hesabında izin günlerinin otomatik olarak fiili çalışma saatinden düşülmesini ve otomatik nöbet dağıtım algoritmasında personelin onaylı izin günlerine nöbet yazılmamasını güvence altına alan kritik çekirdek düzeltmelerini içerir.
+
+#### 🔧 Mimari İyileştirmeler ve Düzeltmeler (Fixed & Improved)
+
+- **1. İzin Servisi Onay Statüsü Genişletmesi (`izin_service.py`):**
+  - `list_active_leaves_in_period`: SQL sorgusundaki katı `WHERE i.onay_durumu = 'Onaylandı'` kısıtı `WHERE i.onay_durumu IN ('Onaylandı', 'Resmi Onaylı', 'Onayli')` olarak genişletildi.
+  - İlgili sorgunun `SELECT` projeksiyonuna `i.aciklama` ve `i.onay_durumu` alanları eklenerek mazeret tablosu hücrelerinin boş kalması önlendi.
+- **2. Otomatik Nöbet Dağıtım Motorunda İzin Güvenliği (`nobet_scheduler.py`):**
+  - `generate_schedule`: Planlama motorundaki onaylı izin çekme sorgusu (`leave_rows`) `WHERE onay_durumu IN ('Onaylandı', 'Resmi Onaylı', 'Onayli')` olarak güncellendi. İzinli personellerin izinli günlerde nöbet adayı olarak seçilmesi kesin olarak engellendi.
+- **3. Nöbet ve Çizelge Servisi Çakışma Denetimleri (`nobet_service.py` & `nobet_cizelge_service.py`):**
+  - `nobet_service.py`: `get_active_leaves` ve `get_leave_staff_for_period` metotlarında 'Resmi Onaylı' izin filtreleri eşitlendi.
+  - `nobet_cizelge_service.py`: `has_active_leave_on_date`, `validate_soft_constraints` ve `p_leaves_rows` metotlarında izin çakışma sorguları çoklu onay durumlarını kapsayacak biçimde parametrize edildi.
+- **4. Fazla Mesai & Borç/Alacak Entegrasyonu (`nobet_borc_alacak_service.py`):**
+  - `get_approved_leaves`: Aylık borç/alacak ve fazla mesai hakediş hesaplarında personelin 'Resmi Onaylı' izin günlerinin eksiksiz işlenmesi sağlandı.
+- **5. Nöbet Önizleme & Mazeret Tablosu (`nobet_plan_onizleme_controller.py`):**
+  - `_populate_leaves_and_requests` ve `_calculate_simulator_summary`: Personelin o aydaki izin günleri hafta içi fiili iş günlerinden düşülerek hedef çalışma saatinin (`standard_hours`) doğru hesaplanması (Örn: 20 iş günü ve 10 gün izin için 70 saat) sağlandı.
+  - `tblDetay` tablosunda "Resmi Onaylı" statüsü için yeşil durum rozeti (`#10B981`) desteği eklendi.
+- **6. İzin Hakediş UI Deneyimi (`izin_hakedis_controller.py`):**
+  - `_selected_row`: `silent: bool = False` parametresi eklenerek toplu hesaplama ve otomatik yenileme tetikleyicilerinde kullanıcıyı yanıltan "Lütfen bir satır seçiniz." uyarı diyalogu engellendi.
+- **7. Test Kapsamı ve Bütünlük:**
+  - Nöbet planlama algoritması, dağıtım dengesi, kısıtlar ve servis entegrasyonlarını kapsayan 54 birim/entegrasyon testinin tamamı (%100) başarıyla doğrulandı.
+
 ## [4.0.5.4] - 2026-10-25
 
 ### ⚡ Ana Listeden Doğrudan Yeni DÖF Başlatma, Manuel / Bağımsız Faaliyet & Olay İlişkilendirme Mimarisi
