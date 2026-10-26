@@ -3,6 +3,312 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.5.4] - 2026-10-25
+
+### ⚡ Ana Listeden Doğrudan Yeni DÖF Başlatma, Manuel / Bağımsız Faaliyet & Olay İlişkilendirme Mimarisi
+
+Bu sürüm; Olay Bildirimleri ve Kalite Yönetimi sayfasında yalnızca olay içinden değil, ana liste araç çubuğundan doğrudan manuel DÖF açılabilmesini sağlar. DÖF kayıtlarının hem bağımsız genel kalite faaliyeti olarak hem de mevcut bir olaya bağlanarak yönetilebilmesini uçtan uca mimari katmanlarda hayata geçirir.
+
+#### 🔧 Mimari İyileştirmeler ve Düzeltmeler (Added & Improved)
+
+- **1. Veritabanı ve Şema Güncellemesi (`V20261025_4_allow_standalone_dof.py` & `schema.sql`):**
+  - `olay_dof_takip` tablosundaki `bildirim_id` kolonu `DROP NOT NULL` yapılarak `INTEGER` (NULLABLE) standardına dönüştürüldü.
+  - Olay bildiriminden bağımsız klinik kalite, radyasyon güvenliği ve önleyici iyileştirme faaliyetlerinin veritabanında güvenle saklanması sağlandı. Sıfırdan şema kurulum testi (`test_schema_integrity.py`) doğrulandı.
+- **2. Repository ve Servis Katmanı Esnekliği (`olay_bildirim_repository.py` & `olay_bildirim_service.py`):**
+  - `add_dof`: `bildirim_id=None` desteği sağlandı; `actor_personel_id` ve `sorumlu_personel_id` alias fallback'leri eklendi.
+  - `get_dofs`: `bildirim_id=None` filtreleme desteği eklendi; `ob.bildirim_no as olay_bildirim_no` sol birleştirme (LEFT JOIN) ile getirildi.
+  - `list_open_bildirimler`: Açık ve incelemedeki olayların (`id`, `bildirim_no`, `olay_tanimi`, `birim_adi`) diyaloglara dinamik referans havuzu olarak sunulması sağlandı.
+  - `dof_olustur`: Bağımsız DÖF oluşturulduğunda audit log kaydı `create_standalone_dof` olarak üretildi.
+- **3. UI ve Form Entegrasyonu (`olay_dof_dialog.ui` & `olay_dof_dialog.py`):**
+  - Form üzerine **"İlişkili Olay Bildirimi"** (`cmbBagliOlay`) açılır kutusu eklendi; varsayılan olarak `(Bağımsız / Genel Kalite Faaliyeti — Olay Bildirimi Yok)` seçeneği ve açık olaylar listesi sunuldu.
+  - DÖF tablosuna **"İlişkili Olay"** sütunu eklenerek toplam 8 sütunlu kurumsal `Consolas` tabular yapısına kavuşturuldu.
+  - Diyalog bağımsız açıldığında başlık ve alt bilgiler genel kalite moduna, bir olay seçildiğinde ise otomatik olarak ilgili olayın künyesine dinamik olarak uyarlanır hale getirildi.
+- **4. Ana Liste Araç Çubuğuna Yeni Buton (`olay_bildirim_page.ui` & `olay_bildirim_controller.py`):**
+  - Olay Takip Listesi araç çubuğuna `btnOlayIncele`'nin yanına **"Yeni DÖF Ekle"** (`btnYeniDof`) butonu eklendi.
+  - `btnYeniDof.setProperty("variant", "secondary")` RDS semantik belirteci ve `ui/theme.py` üzerinden `plus.svg` SVG ikonu atandı.
+  - Tabloda seçili bir olay varsa o olayın detayıyla, seçili olay yoksa bağımsız genel kalite faaliyeti olarak açılması sağlandı.
+- **5. Test Kapsamı ve Bütünlük:**
+  - `test_ui_kalite_olay_controllers.py` dosyasına bağımsız mod, açık olay seçimi ve `btnYeniDof` buton aksiyonunu test eden yeni senaryolar eklenerek 23/23 test (%100) başarıyla yeşillendirildi.
+
+## [4.0.5.3] - 2026-10-25
+
+### 🔄 Olay İnceleme ve DÖF Yönetimi 4 Adımlı Doğal İş Akışı & Kapanış/Tutanak Mimarisi
+
+Bu sürüm; Olay İnceleme ve DÖF Yönetimi ekranında var olan mantık kaymalarını, erken kapatma kafa karışıklıklarını ve yazdırma adımını baştan sona çözerek kurumsal 4 adımlı doğal bir kalite yönetim döngüsüne dönüştürür.
+
+#### 🔧 Mimari İyileştirmeler ve Düzeltmeler (Changed & Improved)
+
+- **1. İki Başlı Yönetim ve Erken Kapatma Mantık Kaymasının Önlenmesi (`olay_inceleme_dialog.ui` & `olay_inceleme_dialog.py`):**
+  - **Adım 2 (İnceleme & Atama):** DÖF faaliyetleri henüz planlanmadan veya tamamlanmadan önce 2. sekmede yer alan ve kullanıcıda kafa karışıklığı yaratan `btnOlayKapat` ("Olayı Kapat") butonu arayüzden kaldırıldı. Not etiketi `lblKapanisNotu` ("Ön İnceleme / Değerlendirme Notu:") olarak düzeltildi.
+  - 2. Adımdan sonraki adıma ("Sonraki Adım >") geçildiğinde, seçilen yetkili sorumlu personel otomatik olarak kaydedilerek kullanıcının fazladan kaydet butonuna basma zorunluluğu ortadan kaldırıldı.
+- **2. Adım 4 Kapanış, Karar ve Tutanak Sayfası Entegrasyonu (`groupKapanisOzeti`):**
+  - Eskiden sadece salt metin log tablosu içeren 4. sekme, **"4. Kapanış & Tarihçe"** olarak zenginleştirildi:
+    - **DÖF Durum Rozeti (`lblKapanisDofDurum`):** Açık DÖF faaliyeti olup olmadığını canlı denetler. Eğer tamamlanmamış açık DÖF varsa kapatma butonunu pasife çekip uyarı verir; tüm DÖF'ler tamamlandığında onay mesajı ve buton aktifliği sağlar.
+    - **Nihai Kapanış ve Karar Notu (`txtKapanisNotuSonuc`):** Olay kapatılırken kalite kararı ve gerekçesinin yazılmasını zorunlu kılar; önceki adımlardaki notlarla senkron çalışır.
+    - **Olayı Kapat ve Tamamla Butonu (`btnOlayKapatSonuc`):** Açık DÖF bulunmadığında olayı resmi olarak "Kapalı" statüsüne alır, kapanış tarih/saatini işler ve anında resmi tutanak yazdırma teklifi sunar.
+    - **Resmi Tutanağı Yazdır / PDF Butonu (`btnTutanakYazdirSonuc`):** Tüm adımlar bittikten sonra resmi tutanağın tek tıkla doğrudan PDF veya yazıcıya dökülmesini sağlar.
+    - Alt kısımda ise süreç tarihçesi (`tableTarihce`) şeffaf biçimde sunulur.
+- **3. Stepper Doğrudan Tıklama Navigasyonu (`stepProgress.stepClicked`):**
+  - Üst kısımdaki sihirbaz adımlarına doğrudan tıklanarak istenen inceleme aşamasına serbestçe atlanabilmesi sağlandı.
+- **4. Test Kapsamı ve Bütünlük (`test_ui_kalite_olay_controllers.py`):**
+  - Adım 4 açık DÖF emniyeti, nihai not validasyonu, kapatma işlemi ve tutanak yazdırma akışını doğrulayan `test_olay_inceleme_dialog_step4_closure_and_print_workflow` birim testi eklendi; kalite olay denetleyicileri test paketi 21/21 (%100) başarıyla yeşillendirildi.
+
+## [4.0.5.2] - 2026-10-25
+
+### 👥 DÖF Faaliyeti Sorumlu Personel Seçim Havuzu Düzeltmesi
+
+- **DÖF Sorumlu Personel Combobox Doldurma Hatası (`olay_inceleme_dialog.py` & `olay_bildirim_controller.py`):**
+  - `OlayIncelemeDialog` diyalog penceresinin `_populate_dof_sorumlu_combo` metodunda `parent_controller` üzerinden `personel_service` erişimi sağlanırken nesne hiyerarşisi genişletildi (`_get_personel_service`); controller, üst parent (`AppController`) veya doğrudan `Database` bağlantısı üzerinden dinamik servis başlatma desteği sağlandı.
+  - Açılır kutuda personeller unvan ve birim bilgileriyle birlikte (`Ad Soyad (Unvan — Departman)`) listelenerek görevlendirme seçimi eksiksiz hale getirildi.
+
+## [4.0.5.1] - 2026-10-25
+
+### 🛡️ Olay İnceleme ve DÖF Yazdırma / Kapatma Akışı ve Liste Gösterim Düzeltmeleri
+
+Bu sürüm; Olay İnceleme ve DÖF Yönetimi modülünde son adımlarda karşılaşılan yazdırma uyarısını giderir, olay kapatma sürecini kullanıcı dostu hale getirir ve ana tablodaki personel atama ile kapanış tarihi verilerinin eksiksiz görüntülenmesini sağlar.
+
+#### 🔧 Düzeltilen Hatalar ve Mimari İyileştirmeler (Fixed & Improved)
+
+- **1. Olay Bildirim Listesi Sorumlu Personel JOIN Eksikliği (`olay_bildirim_repository.py`):**
+  - `list_bildirimler` SQL sorgusunda `personeller` tablosuna `atanan_personel_id` ve `bildiren_personel_id` üzerinden `LEFT JOIN` eklenerek `TRIM(CONCAT(p.ad, ' ', p.soyad))` ile `atanan_personel_adi` ve `bildiren_personel_adi` alanları sağlandı. Listede atanan personelin sürekli "Atanmadı" görünmesi sorunu çözüldü.
+- **2. Çok Sayfalı İnceleme ve DÖF Yazdırma Akışı (`olay_inceleme_dialog.py` & `olay_bildirim_controller.py`):**
+  - İnceleme diyalogundaki adımlar arasında veri kaydedildiğinde veya DÖF faaliyeti eklendiğinde tetiklenen tablo yenilemesi esnasında seçili olayın kaybolması önlendi (`hedef_secili_id` korunumu).
+  - `_on_yazdir_clicked` metodu `olay_id` ve `olay_detay` parametrelerini doğrudan alabilecek şekilde esnetildi. `OlayIncelemeDialog._on_yazdir` tetiklendiğinde servisten güncel detay doğrudan aktarılarak kullanıcı hangi sekmede olursa olsun veya işlemler bittikten sonra yazdır butonuna bastığında "Lütfen bir olay seçiniz" uyarısı alması kesin olarak engellendi.
+- **3. DÖF Sonrası Olay Kapatma ve Kapanış Tarihi Akışı (`_on_son_adim_tamamla`):**
+  - İnceleme ve DÖF sihirbazının son adımında ("Tamamla / Kapat") kullanıcının açık olayları resmi olarak "Kapalı" statüsüne almasını sağlayan doğrulama akışı eklendi.
+  - Açık DÖF faaliyeti varsa kullanıcı uyarılıp DÖF sekmesine yönlendirilir; tüm DÖF'ler kapalıysa kalite kuralı gereği kapanış notu alınarak olay güvenle kapatılır, `kapanis_tarihi` kaydedilir.
+  - Ana listede `kapanis_tarihi` alanı tabular `Consolas` fontunda ve kapalı olmayan olaylar için kurumsal "—" şeklinde net olarak gösterildi.
+
+## [4.0.5.0] - 2026-10-25
+
+### 📊 Proje Genelinde Dışa Aktarma Formatları Standardizasyonu ("Doğru İşe Tek Format")
+
+Bu sürüm; sistem genelindeki tüm modüllerde, Rapor Merkezi şablonlarında ve dışa aktarım motorunda var olan çoklu ve mükerrer dışa aktarma formatı (PDF/Word/Excel karmaşası) karmaşasını giderir; "Doğru İşe Tek Format" mimari prensibini uçtan uca uygular.
+
+#### 🚀 Yapılan Değişiklikler ve İyileştirmeler (Changed & Standardized)
+
+- **1. Domain Rapor Kayıt Defteri Standardizasyonu (`REPORT_REGISTRY`):**
+  - Sistemdeki 25 temel rapor tanımı kategorize edilerek desteklenen formatlar tekilleştirildi:
+    - **Sayısal & Operasyonel Tablo Raporları (20+ Rapor):** Sadece Excel (`["xlsx"]`) ve varsayılan format `"xlsx"`.
+    - **Kanuni & Matbu Resmi Tutanaklar (RD.F43, EK-1, DIN 6857, Heyet Tutanakları):** Sadece PDF (`["pdf"]`) ve varsayılan format `"pdf"`.
+    - **Mevzuat Kılavuz & RKP Taslağı (NDK KLV-014):** Sadece Word (`["docx"]`) ve varsayılan format `"docx"`.
+- **2. Veritabanı Tohum Senkronizasyonu (`report_seeder.py`):**
+  - `desteklenen_formatlar` JSON alanlarının yanı sıra, geçerliliğini yitiren eski `varsayilan_format` değerlerini de otomatik güncelleyen `sync_missing_reports` mantığı eklendi.
+  - Canlı geliştirme ve test veritabanlarında `rapor_tanimlari` tablosu başarıyla senkronize edildi.
+- **3. Rapor Motoru ve Tutanak Entegrasyonu (`report_engine.py`):**
+  - Tutanak Sihirbazı (`TutanakSihirbaziDialog`) üzerinden tablo şablonu baz alınarak veya genel tutanak akışıyla üretilen resmi tutanaklar (`tutanak_bilesik`, `tutanak_metin`, `tutanak_genel`) için resmi belge formatının güvenle PDF (`["pdf"]`) olarak üretilmesi sağlandı; format kısıtlaması korundu.
+- **4. 17 Modül UI Denetleyicisinde Mükerrer Dışa Aktarım Menülerinin Kaldırılması:**
+  - `DozimetreTakipMainTab`, `CihazYonetimiController`, `CihazArizaController`, `CihazQCController`, `RKEYonetimiController`, `RKEMuayeneListesiController`, `SaglikMuayeneListController`, `NobetPlanListController`, `IzinHakedisController`, `IzinListController`, `FiiliHizmetRaporTabController`, `PersonelListController`, `RGSGorevlendirmeController`, `HizmetIciEgitimController`, `OrtamDozuController`, `OlayBildirimController` ve `AuditLogViewerController` bileşenlerinde `formats=["xlsx"]` olarak sabitlendi; gereksiz çoklu format açılır menüleri sadeleştirildi.
+- **5. Test Paketi Bütünlüğü:**
+  - `test_imza_ve_mevzuat_raporlari.py`, `test_report_engine.py`, `test_schema_integrity.py` ve `test_tutanak_sihirbazi.py` başta olmak üzere tüm ilgili birim testleri yeni tek format mimarisine uyarlandı (124 UI testi + 29 raporlama testi %100 yeşil).
+- **6. UI (.ui XML) ve Controller Düzeyinde Ölü Buton & Kod Temizliği:**
+  - `doz_arastirma_form_dialog.ui` ve `doz_arastirma_form_controller.py`: Tanımsız `_on_export_word` ve mükerrer Word indirme butonu kaldırıldı; RD-F43 tutanağı doğrudan resmi PDF'e bağlandı.
+  - `cihaz_tutanak_dialog.ui` ve `cihaz_tutanak_dialog.py`: Heyet imzalı resmi tutanaklarda mükerrerlik yaratan Word indirme seçeneği temizlenerek sadece resmi PDF (`btnPdfIndir`) bırakıldı.
+  - `doz_arastirma_rapor_dialog.ui` ve `doz_arastirma_rapor_dialog.py`: Önceden kod ile gizlenen `btnWordIndir` butonu XML'den silindi, açılır menüdeki mükerrer Word aksiyonu temizlendi.
+  - `ndk_taahhut_dialog.ui` ve `ndk_taahhut_dialog.py`: NDK Cihaz Taahhütnamesi resmi evrak kasası standardına göre sadece resmi PDF formatına bağlandı; `btnDocx` ve `_on_export_docx` temizlendi.
+  - `personel_listesi_page.ui` ve `personel_list_controller.py`: Kodla gizlenen gereksiz `btnPrint` butonu XML'den arındırıldı; `btnExportPdf` adı genel `btnExport` standardına kavuşturuldu.
+
+## [4.0.4.9] - 2026-10-25
+
+### 🔐 Olay İnceleme ve DÖF Yönetiminde Aktör Rolü ve Yetkilendirme Entegrasyonu
+
+Bu sürüm; Olay İnceleme ve DÖF Yönetimi iletişim penceresinde (`OlayIncelemeDialog`) sorumlu atama veya durum güncelleme esnasında karşılaşılan *"Geçersiz veya pasif rol: None"* yetki hatasını giderir; kullanıcı oturumundan veya ebeveyn hiyerarşisinden aktör kimliği ve yetki rolünün (`actor_role`, `actor_personel_id`) eksiksiz çözümlenmesini ve tüm servis metotlarına doğru biçimde aktarılmasını sağlar.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **1. Güvenli Aktör Bağlam Çözümleme (`OlayIncelemeDialog._get_actor_context`):**
+  - Diyalog penceresi ilklendirilirken veya işlem butonlarına basıldığında oturum açmış kullanıcının rol bilgisini (`rol_adi`, `rol`) çözen merkezi yardımcı metot eklendi.
+  - Rol bilgisi sözlükte doğrudan bulunamadığında servis katmanındaki `resolve_user_role` aracılığıyla veritabanından güvenli çözümleme (fallback) yapıldı.
+- **2. Eksiksiz Servis Parametre Aktarımı:**
+  - `_on_guncelle`, `_on_incelemeye_al`, `_on_olay_kapat`, `_on_ndk_bildir`, `_on_dof_ekle` ve `_on_dof_tamamla` metotlarının tamamında `actor_role` ve `actor_personel_id` parametreleri servis çağrılarına bağlandı.
+- **3. Servis Katmanı Fallback ve Yetki Güvenliği (`OlayBildirimService` & `security.py`):**
+  - `OlayBildirimService._check_service_permission` metoduna `actor_personel_id` ve `guncelleyen_id` üzerinden rol çözümleme desteği entegre edildi.
+  - `check_service_permission` kontrolünde boş/None rol kontrolü koruma altına alınarak hatalı veritabanı sorgusu yürütülmesi engellendi.
+- **4. Mimari Kural 1 (Zero-SQL) Tam Uyumluluğu:**
+  - UI controller katmanından doğrudan SQL veya veritabanı sorgusu çağrılması engellendi; rol çözümleme işi servis katmanına (`resolve_user_role`) delege edildi.
+
+## [4.0.4.8] - 2026-10-25
+
+### 📄 Güvenlik ve Kalite Olay Bildirimi Resmi Tutanağı Kurumsal SKS & NDK Tasarım Modernizasyonu
+
+Bu sürüm; Olay Bildirimi ve DÖF modülü üzerinden yazdırılan resmi tutanağı (`_on_yazdir_clicked`) Sağlıkta Kalite Standartları (SKS) ve NDK resmi mevzuat formatına uygun olarak modern kurumsal şablonla yeniden tasarlar; imza bloklarının boş 2. sayfaya taşması sorununu gidererek tek A4 sayfasında eksiksiz ve estetik bir resmi evrak çıktısı sunar.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **1. Kurumsal SKS Üst Bilgi Başlığı (Header Table):**
+  - Kurum logosu (`logo_1_yolu` base64 gömülü görsel veya kurumsal güvenlik arması), kurum ve birim unvanları, resmi doküman takip kartı (Doküman No: `SKS.FR.42`, Yayın/Revizyon: `01.01.2024 / 02`, Takip No ve Sayfa: `1 / 1`) içeren kurumsal 3 sütunlu başlık tablosu eklendi.
+- **2. Sayfa Taşması ve Parçalanmayan İmza Blokları:**
+  - Önceki şablonda isimlerin 1. sayfada, imza çizgilerinin ise boş bir 2. sayfada kalmasına yol açan dikey boşluk hatası çözüldü.
+  - `QPrinter` sayfa düzenine tam oturan `paintRect(QPageLayout.Unit.Point)` boyutu `doc.setPageSize` ile senkronize edildi.
+  - İmza kutuları (`BİLDİRİMİ YAPAN`, `İNCELEYEN / BİRİM SORUMLUSU`, `RADYASYON KORUNMA SORUMLUSU (RKS)`) çerçeveli ve kurumsal SKS onay kartı şeklinde `page-break-inside: avoid` ile birleştirildi.
+- **3. Klinik Durum Rozetleri ve NDK Yasal Şeridi:**
+  - Olay Sonucu (`Ramak Kala`, `Hafif Zarar`, `Ciddi Zarar`) ve İnceleme Durumu (`Açık`, `İncelemede`, `Kapalı`) için yumuşak pastel kurumsal rozetler (Badges) eklendi.
+  - NDK bildirimine tabi olaylar için mevzuat gereği 72 saatlik bildirim takvimini ve durumunu gösteren sarı/amber yasal uyarı şeridi eklendi.
+  - İlgili Cihaz (Kod & Model) ve İlgili RKE Donanımı satırları künyeye dahil edildi.
+- **4. Ham Emoji Yasağı Uyumluluğu (Kural 13):**
+  - Çıktı metinlerinde ham emoji yerine kurumsal mevzuat etiketleri kullanılarak UI tipografi kuralına tam uyum sağlandı.
+
+## [4.0.4.7] - 2026-10-25
+
+### 🛡️ Olay İnceleme ve DÖF Modülünde Sorumlu Atama ve NDK Bildirim Entegrasyonu
+
+Bu sürüm; Olay İnceleme penceresinde (`OlayIncelemeDialog`) sorumlu personel atama veya güncelleme esnasında meydana gelen `AttributeError: 'OlayBildirimService' object has no attribute 'sorumlu_ata'` hatasını giderir; sorumlu atama, NDK resmi bildirimi ve DÖF durum güncellemelerini servis ve veritabanı denetim izi katmanına tam olarak bağlar.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **1. Sorumlu Personel Atama Servis Metodu (`OlayBildirimService.sorumlu_ata`):**
+  - Olay inceleme sürecinde yetkili birim sorumlusu / RGS personelinin atanmasını, değiştirilmesini veya kaldırılmasını atomik transaction içinde yürüten servis metodu eklendi.
+  - Atama yapılan personele anlık olarak *"Yeni Olay İnceleme Görevi"* bildiriminin iletilmesi sağlandı.
+  - Alan bazlı denetim geçmişine (`olay_bildirim_gecmisi`) aktör ve eski/yeni değer kaydı sağlandı.
+- **2. NDK Resmi Bildirim Metodu (`OlayBildirimService.ndk_bildir`):**
+  - Olayın NDK'ya (TENMAK) resmi olarak bildirildiğini kaydeden metot geliştirildi.
+  - Şemadaki `ndk_takip_durumu` (`'gerekmiyor'`, `'bekliyor'`, `'yapildi'`) check kısıtlamasına tam uyumlu hale getirildi; tarih ve denetim izi kayıtları doğrulandı.
+- **3. Parametre Uyumluluğu ve Dayanıklılık (`durum_guncelle` & `dof_durum_guncelle`):**
+  - UI controller'larından iletilen `actor_personel_id` keyword argument desteği eklenerek olası `TypeError` istisnaları önlendi.
+
+## [4.0.4.6] - 2026-10-25
+
+### ⚡ İzin Hakları Toplu Hesaplama ve Devir İşlemlerinde Modern Arka Plan Mimarisi (Sıfır Donma Standardı)
+
+Bu sürüm; Yıllık İzin Hakları ekranında toplu hakediş hesaplama ve devir/şua aktarım süreçlerinde arayüzü donduran eski `QProgressDialog` ve senkron `processEvents` döngülerini projeden tamamen temizleyerek `ModernProgressDialog` ve asenkron arka plan iş parçacığı (`run_with_progress`) mimarisine geçirir.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **1. Toplu Yıllık İzin Hesaplama Servisi (`IzinService.toplu_yillik_izin_hesapla`):**
+  - Tüm aktif personellerin kıdem, hizmet süresi ve kanuni kural hesaplamalarını tek bir veritabanı transaction'ı (`with self.db.transaction() as conn:`) içinde atomik olarak yürüten yeni servis metodu geliştirildi.
+  - İlerlemeyi anlık olarak UI'a bildiren `progress_callback` entegre edildi.
+  - Case-insensitive durum doğrulaması (`LOWER(durum) = 'aktif'`) ile veri tutarlılığı sağlandı.
+- **2. Eski `QProgressDialog` ve `processEvents` Temizliği (`IzinHakedisController._on_toplu_hesapla`):**
+  - Arayüzün kilitlenmesine ve Windows varsayılan çirkin progress penceresinin açılmasına neden olan kod blokları tamamen kaldırıldı.
+  - İşlem, projenin modern görsel yükleme göstergesi olan `run_with_progress` sarmalayıcısına taşındı.
+  - İşlem sonucunda RDS Toast ve modern `QMessageBox` geri bildirimleri bağlandı.
+- **3. Kod Tabanında Sıfır `QProgressDialog` Standartı (Rule 19):**
+  - Tüm kod tabanında arama yapılarak son kalan `QProgressDialog` ve senkron `processEvents` döngüsü temizlendi; Kural 19 ("UI Donma Önleme Standardı") tam olarak sağlandı.
+
+## [4.0.4.5] - 2026-10-25
+
+### 🔔 Doz Araştırma Beyanı ve Sağlık Muayene İlk Sevk Bildirim Entegrasyonu
+
+Bu sürüm; yüksek doz araştırma süreçlerinde çalışan beyanlarının ve periyodik sağlık kontrollerindeki ilk sevk işlemlerinin Bildirim Merkezine çift taraflı (Personel <-> RKS / İşyeri Hekimi / Yönetici) tam entegrasyonunu ve bildirim çekmecesinden tek tıkla doğrudan ilgili forma yönlendirme desteğini devreye alır.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **1. Doz Araştırma Beyanı Bildirimi ve Form Yönlendirmesi (`NotificationService`, `DozimetreService` & Web Portal):**
+  - Personel Web Portal üzerinden çalışan beyanını (Bölüm 2) tamamladığında veya masaüstü arayüzünden kaydedildiğinde; RKS, Fizikçi ve Yönetici rollerindeki tüm aktif kullanıcıların bildirim çekmecesine anlık *"Doz Araştırma Beyanı Tamamlandı"* uyarısı düşmesi sağlandı.
+  - Web Portal `arastirma.routes.ts` içerisine `kullanici_bildirimler` çoklu hedef kaydı eklendi.
+  - Bildirime tıklandığında `DozimetreTakipController.select_and_open_form_by_id` aracılığıyla doğrudan o personelin RD-F43 araştırma formu açılarak bürokratik gecikmeler önlendi.
+  - Personel sisteme giriş yaptığında henüz çalışan beyanını doldurmadığı açık bir RD-F43 dosyası varsa çekmecede *"Doz Araştırma Beyanınız Bekleniyor"* hatırlatması gösterilmesi sağlandı.
+- **2. Sağlık Muayenesi İlk Sevk Bildirimi (`SaglikMuayeneService`, `profile.routes.ts` & `SaglikMuayeneListController`):**
+  - Sağlık muayenesinde bir personel *"Sevk Edildi / Muayenede"* statüsüne alındığında;
+    - Personele: *"Sağlık Muayenesine Sevk Edildiniz: [Muayene Adı] için sevk işleminiz başlatılmıştır. Lütfen EK-1 formunu doldurunuz."* bildirimi,
+    - İşyeri Hekimi, RKS ve Yöneticilere: *"Yeni Sağlık Sevki: [Personel Adı], [Muayene Adı] için sevk edilmiştir."* bildirimi otomatik üretildi.
+  - Bildirime tıklandığında `SaglikMuayeneListController.select_muayene_by_id` ile ilgili personelin muayene detay kartı seçili olarak otomatik açıldı.
+  - Web Portal `profile.routes.ts` üzerinden EK-1 ön hazırlık formu gönderildiğinde Hekim ve RKS personellerinin çekmecesine bildirim düşürüldü.
+- **3. Veritabanı Şeması ve CHECK Kısıtlaması Güncellemesi (`V20261025_3`):**
+  - `bildirimler` tablosundaki `bildirim_tipi` CHECK kısıtlamasına `saglik_muayene`, `rke_uyari` ve `onay_bekleyen` türleri dikey entegrasyonla eklendi; PostgreSQL kısıtlama ihlali hatası giderildi.
+- **4. Bildirim Yönlendirme Düzeltmesi (`NotificationItemWidget` & `OlayBildirimController`):**
+  - Olay bildirimlerinde veritabanındaki `olay_bildirimi` türünün eşleşmeme sorunu ve `iliskili_id` desteği giderilerek doğrudan ilgili olay kaydının seçili açılması sağlandı.
+
+## [4.0.4.4] - 2026-10-25
+
+### 🔔 Proaktif Klinik Bildirim Motoru, Windows 11 Stili Açılış Bildirim Çekmecesi ve Sayaçlı Rozet Mimarisi
+
+Bu sürüm; kullanıcı sisteme giriş yaptığında gün içinde ilgilenmesi gereken kritik görevleri (dozimetre RD-F43 tutanakları, süresi yaklaşan/geçen periyodik muayeneler, periyodik cihaz bakımları, aktif arızalar, RKE kontrolleri ve onay bekleyen talepler) otomatik olarak tarayan proaktif bildirim motorunu, durum çubuğundaki bildirim zili üzerine eklenen kırmızı sayaç rozetini ve Windows 11 bildirim merkezi stili sağ alttan yukarı doğru süzülen bildirim çekmecesini devreye alır.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **1. Proaktif Klinik ve Operasyonel Tarama Motoru (NotificationService.tara_ve_uret_proaktif_bildirimler):**
+  - Kullanıcı sisteme her giriş yaptığında 4 ana dikey sütun taranarak bildirim üretilmesi sağlandı:
+    1. Açık RD-F43 Doz Araştırma Tutanakları (_tipi: dozimetre_uyari),
+    2. Süresi dolmuş veya 30 gün kalmış periyodik sağlık muayeneleri (_tipi: saglik_muayene),
+    3. Günü gelen/geçen cihaz periyodik bakımları (_tipi: cihaz_bakim), aktif cihaz arızaları (_tipi: cihaz_ariza) ve muayenesi geçmiş RKE donanımları (_tipi: rke_uyari),
+    4. Yöneticiler için onay bekleyen izin talepleri, nöbet devirleri ve resmi tutanaklar (_tipi: izin_talebi, 
+obet_devir, onay_bekleyen).
+  - Mükerrer bildirim kaydını önlemek için iliskili_id ve silindi = 0 kontrolü sağlandı.
+  - Kullanıcı talebi doğrultusunda lisans bildirimleri bu panele dahil edilmedi.
+- **2. Durum Çubuğu Sayaçlı Kırmızı Rozet Motoru (AppController._create_badged_bell_icon):**
+  - Durum çubuğundaki bildirim zili (
+otificationButton) üzerine QPainter ve QFont ile okunmamış bildirim adedini gösteren yüksek kontrastlı kırmızı rozet (#EF4444) ve beyaz sayaç (1, 3, 9+) entegre edildi.
+  - Okunmamış bildirim olduğunda buton arka planı ve çerçevesi yumuşak kırmızı tonla vurgulanarak görünürlük artırıldı.
+- **3. Windows 11 Stili Açılış Bildirim Çekmecesi (NotificationDialog & AppController):**
+  - Uygulama başlatıldıktan 1.100 ms sonra okunmamış bildirim varsa bildirim çekmecesi sağ alttan yukarı doğru QPropertyAnimation ile süzülerek otomatik açılıyor.
+  - Qt.WindowType.Popup yerine Qt.WindowType.Tool | Qt.WindowType.FramelessWindowHint kullanılarak kazara dışarı tıklandığında kaybolması önlendi.
+  - Arayüze kapatma butonu (close_btn / ✕) eklendi; otomatik zamanlayıcıyla kaybolma davranışı kaldırılarak kullanıcının tam kontrolü sağlandı.
+- **4. Tıklamayla İlgili Modül Ekranına Doğrudan Yönlendirme:**
+  - Bildirim kartına tıklandığında ilgili modül sayfası (open_saglik_muayene_list_page, open_cihaz_bakim_page, open_cihaz_ariza_page, open_cihaz_yonetimi_page, open_rke_muayene_list_page, open_onay_bekleyen_page, open_izin_list_page, open_dozimetre_takip_page) otomatik olarak açılıyor ve bildirim çekmecesi kapatılıyor.
+  - Temizle (clear_all_btn) butonuna tıklandığında tüm bildirimler okundu/arşivlendi statüsüne alınıp panel kapatılıyor.
+
+## [4.0.4.3] - 2026-10-25
+
+### 🏥 Tıbbi Cihaz Modalite Numaralandırması, Orantılı Kokpit Mimarisi, Servis Formu Kasası ve Dozimetre İyileştirmeleri
+
+Bu sürüm; tıbbi radyoloji cihazlarının uluslararası klinik modalite kodlarıyla (`CT-01`, `MR-01`, `XR-01`, `FL-01`, `DSA-01`, `ERCP-01` vb.) akıllı numaralandırılmasını, arıza ve bakım süreçlerinde yetkili servis firmasının düzenlediği servis formlarının (`PDF`, `PNG`, `JPG`) şifreli evrak kasasında saklanmasını, 7 sütunlu orantılı ve dengeli arıza takip kokpitini, 2 satırlı ferah bakım/envanter kart düzenini ve PostgreSQL `Test Asamasinda` ara süreç kısıt düzeltmesini devreye alır.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **1. Uluslararası Modalite Kodu Standardı (`CihazKodGenerator` & `CihazService` - `V20261025_1`):**
+  - Muhasebe demirbaş kodları (`253...`) yerine doğrudan uluslararası radyoloji modalite kısaltmaları (`CT`, `MR`, `XR`, `MXR`, `FL`, `DSA`, `ERCP`, `ESWL`, `MG`, `US`, `DXA`, `PET`, `SPECT`, `GAMA`, `CR`, `CS`) temel alındı.
+  - `CihazService.suggest_cihaz_no` ve `CihazKodGenerator.get_modality_prefix` entegre edilerek tür seçildiğinde modaliteye göre sıralı numara (`CT-01`, `CT-02` vb.) otomatik önerilmesi sağlandı.
+  - `V20261025_1_update_cihaz_no_to_modality.py` migrasyonu ile mevcut tüm cihazların numaraları modalite standartlarına dönüştürüldü; `demirbas_no` alanı korundu.
+- **2. Yetkili Servis Formu ve Müdahale Belgesi Evrak Kasası Entegrasyonu (`CihazArizaCozDialogController` & `DocumentServiceDB`):**
+  - `cihaz_ariza_coz_dialog.ui` formuna "Servis Raporu / Belgesi" yükleme alanı (`btnDosyaSec`, `lblSecilenDosya`, `btnBelgeGoruntule`, `btnBelgeKaldir`) eklendi.
+  - Teknisyenin düzenlediği imzalı servis formu (`PDF`, `PNG`, `JPG`, `JPEG`) AES-256 Fernet ile şifrelenerek `stored_files` tablosuna ve arıza kaydının `belge_id` alanına kaydedildi.
+  - `CihazTeknikRaporDialogController` ve `CihazBakimController` servis belgelerini orijinal dosya uzantısını koruyarak sistem tarayıcısında açacak şekilde güçlendirildi.
+- **3. 7 Sütunlu Dengeli ve Orantılı Arıza Takip Kokpiti (`CihazArizaController`):**
+  - 10 sütunluk kalabalık arıza tablosu (`tblArizalar`) 7 sütunlu orantılı düzene geçirildi: 1. `Arıza Kodu` (120px tabular), 2. `Cihaz [Kod / Model]` (%38), 3. `Birim / Konum` (%24), 4. `Arıza Tanımı` (%38 dinamik stretch), 5. `Bildirim / Çözüm Tarihi` (170px), 6. `Aciliyet` (115px RDS rozet), 7. `Durum` (135px RDS rozet).
+  - `_apply_proportional_column_widths` ve `resizeEvent` mekanizması ile pencere boyutuna göre sütun genişlikleri orantılı paylaştırıldı; metin kesilmeleri ve yatay kaydırma çubuğu engellendi.
+  - Ekli servis belgesi olan arıza kayıtlarının durum rozetine çift tıklama yönlendirme ipucu eklendi.
+- **4. PostgreSQL `cihaz_arizalar_durum_check` Kısıt Düzeltmesi (`V20261025_2`):**
+  - `app/db/schema.sql` içerisindeki `cihaz_arizalar` tablosu CHECK kısıtlamasına `'Test Asamasinda'` ara iş akışı eklendi.
+  - `V20261025_2_add_test_asamasinda_to_cihaz_arizalar_durum.py` migrasyonu ile canlı veritabanı kısıtlaması güncellenerek arıza kaydetme hatası giderildi.
+- **5. Periyodik Bakım ve Cihaz Envanter Tablolarında Çift Satırlı Modern Düzen (`CihazTwoLineDelegate`):**
+  - `tblBakimlar` 8 sütunlu ve 52px satır yüksekliğinde çift satırlı düzene geçirildi; mükerrer durum ve radar rozetleri akıllı tekil rozette birleştirildi.
+  - `tblCihazlar` tablosuna `CihazTwoLineDelegate` entegre edilerek cihaz kodu/no ve marka/model iki satırlı ferah görünüme kavuşturuldu.
+- **6. Doz Araştırma Formu Giriş Alanı Sadeleştirmesi ve Personel Profil Detayı:**
+  - `doz_arastirma_form_dialog.ui` üzerindeki form tarihi ve durum combobox'ları salt okunur `QLineEdit` alanlarına (`txtFormTarihi`, `txtFormDurum`) dönüştürüldü.
+  - Personel profilinde `DozimetreTabHandler._render_yuksek_doz_panel` güncellenerek resmi RD.F43 tutanakları, durum rozeti, net etkin doz ve doğrudan tutanağı açma/düzenleme butonları bağlandı.
+
+## [4.0.4.2] - 2026-10-24
+
+### 🏥 Tıbbi Cihaz Yönetimi, Bakım Planlama, Arıza Takip İş Akışları ve NDK Resmi Taahhütname Mimarisi
+
+Bu sürüm; tıbbi radyoloji ve radyoterapi cihazlarının klinik takip standartlarını yükselten çift numaralandırma sistemini (`cihaz_kodu` ve `cihaz_no`), NDK RKS Yetkilendirme ve Taahhütname resmi formunu, cihaz arıza ve onarım süreçlerinde ara iş akışlarını (`Servis Bekleniyor`, `Parça Bekleniyor`, `Test Aşamasında`, `Tamamlandı`), 10 sütunlu modern arıza takip kokpitini, HEK süreci evrak kasası dayanıklılığını ve periyodik bakım planlama motoru düzeltmelerini devreye alır.
+
+#### 🚀 Yapılan Düzeltmeler ve İyileştirmeler (Fixed & Enhanced)
+
+- **1. Çift Numaralandırma Standardı (Cihaz Kodu & Cihaz No - `V20261024_1`):**
+  - `cihazlar` tablosuna `cihaz_no VARCHAR(50)` kolonu ve B-tree indeksi eklendi.
+  - `CihazKodGenerator.generate_cihaz_no` metodu ile tür ve birim bazlı akıllı numara formatı (`CT-01`, `MR-01`, `ACL-CT-01`) entegre edildi.
+  - Cihaz Ekle/Düzenle penceresi (`cihaz_ekle_duzenle_dialog.ui`) ve Cihaz Yönetimi kokpitine (`cihaz_yonetimi_page.ui`) `Cihaz Kodu / No` sütunu ve rozet gösterimi bağlandı.
+- **2. Resmi NDK RKS Yetkilendirme ve Taahhütname Belgesi (`NDKTaahhutService` & `NDKTaahhutDialog`):**
+  - Resmi `docs/RKS_Taahhüt.pdf` şablonu çözümlenerek kurum bilgileri, 1. RKS, 2. RKS ve Kuruluş Yetkilisi tablolarını içeren yasal taahhütname motoru geliştirildi.
+  - Personel RGS Görevlendirme modülünde "Atama Yazısı Taslağı Üret" aksiyonuna resmi NDK taahhütnamesi ve kurum içi atama yazısı seçenekleri entegre edildi. Üretilen resmi belge otomatik olarak şifreli evrak kasasına bağlanarak görevlendirme yaşam döngüsüne (`İmza Bekliyor` / `İmzalı Belge Yükle`) dahil edildi.
+  - `ndk_taahhut_dialog.ui` ve `cihaz_tutanak_dialog.ui` XML dosyaları oluşturularak controller içerisindeki kodla widget oluşturma yapıları temizlendi, mimari kurallara tam uyum sağlandı.
+- **3. Cihaz Arıza & Onarım Ara İş Akışları ve Çok Aşamalı Süreç Takibi (`CihazService` & `CihazRepository`):**
+  - Arıza kapatma mantığı zenginleştirilerek ara iş akışları (`Servis Bekleniyor`, `Parça Bekleniyor`, `Test Aşamasında`, `Tamamlandı`, `İptal Edildi`) devreye alındı.
+  - Ara süreç kaydedildiğinde cihaz otomatik olarak `Bakımda` statüsüne geçirildi, arıza kaydı açık tutuldu; arıza sadece `Tamamlandı` seçildiğinde kapatılarak cihaz `Aktif` statüsüne döndürüldü.
+- **4. 10 Sütunlu Arıza Takip Kokpiti ve Kurumsal Rozet Delegesi (`CihazArizaController` & `RADPYSStatusDelegate`):**
+  - `tblArizalar` tablosu 10 sütunlu düzene geçirildi: `Arıza Kodu`, `Cihaz (Kodu - No / Model)`, `Birim / Konum`, `Bildirim Tarihi`, `Arıza Tanımı`, `Aciliyet`, `Durum`, `Servis Firması / Teknisyen`, `Yapılan İşlem / Müdahale`, `Çözüm / Müdahale Tarihi`.
+  - `RADPYSStatusDelegate` delege yapısı 5. sütun (Aciliyet) ve 6. sütun (Durum) için uyarlandı; `TEST AŞAMASINDA` rozeti eklendi.
+  - Excel dışa aktarım motoru 10 sütunlu yapı ve cihaz no desteğiyle güncellendi.
+- **5. HEK Süreci Evrak Kasası Dayanıklılığı (`HEKService` & `DocumentServiceDB`):**
+  - `HEKService.get_kalem_fotograflari` içine `CIHAZ` türü desteği eklendi.
+  - `DocumentServiceDB.read_stored_file` içerisindeki Fernet çözümleme hataları `raw_hash` ve dosya magic baytları (`%PDF`, `\x89PNG`, `\xff\xd8\xff`, `PK\x03\x04`, `GIF8`, `RIFF`) fallback korumasıyla güçlendirildi; bozuk/eksik belgelerin HEK rapor üretimini kilitlemesi engellendi.
+- **6. Bakım Planlama Periyot Motoru Düzeltmesi:**
+  - 3'er aylık 4 periyot, 6'şar aylık 2 periyot veya yıllık tekil planlar oluşturulurken seçilen cihaz sayısına ve periyot sıklığına göre tam sayıda bakım planı kaydı açılması sağlandı.
+- **7. Cihaz Tutanakları Ekranı Sadeleştirmesi ve Devir İşlemleri İyileştirmesi:**
+  - Cihaz devir işlemlerinde transfer edilecek cihazın birim ve zimmet bilgileriyle seçilmesi sağlandı; tutanaklar ekranı son kullanıcı dostu şablon döküm kokpitine dönüştürüldü.
+- **8. Doz Araştırma Tutanağı DÖF Başlatma Akışı ve Sıfır-SQL Düzeltmesi (`DozArastirmaFormController` & `OlayBildirimService`):**
+  - Doz Araştırma Tutanağı 4. adımındaki "DÖF Kaydı Aç / Yönet" butonunun tetiklediği akışta meydana gelen `relation "olay_bildirimleri" does not exist` hatası giderildi; PostgreSQL şema standardına uygun tablo adı (`olay_bildirimler`), kategori filtresi (`tip = 'kategori'`) ve `CHECK` kısıtlaması uyumlu `olay_sonucu` (`Ramak Kala`) sağlandı.
+  - `OlayBildirimRepository` ve `OlayBildirimService` içerisine `find_bildirim` metodu eklenerek denetleyicideki ham SQL sorguları kaldırıldı; mimari Zero-SQL ve servis-katmanı standartlarına tam uyum sağlandı.
+- **9. Dozimetre Takip & RD.F43 Rapor Rozetleri Renklendirmesi (`RADPYSStatusDelegate` & `DozimetreAksiyonlarTab`):**
+  - Dozimetre Takip ekranındaki Erken Uyarı & Aksiyon Kokpitinde yer alan "RD.F43 Raporu" sütunundaki bayrak/rozet değerleri (`MEVCUT`, `HAZIRLANDI`, `HAZIRLANMADI`, `TAKİP ÖLÇÜMÜ`, `BİRİM İNCELEME`) RDS Klinik Tasarım Sistemi semantik paletine uyarlandı.
+  - `RADPYSStatusDelegate` içerisine `PURPLE` (İzotop Moru: `#a17fee` koyu mod, `#7e22ce` açık mod) ve `PRIMARY` temaları eklendi.
+  - Tabler SVG ikon eşleştirmeleri tanımlandı: `MEVCUT` / `HAZIRLANDI` için Zümrüt Yeşili (`file-check.svg`), `HAZIRLANMADI` için Kademeli Kehribar (`alert-circle.svg`), `TAKİP ÖLÇÜMÜ` için Gök Mavisi (`activity.svg`) ve `BİRİM İNCELEME` için İzotop Moru (`building-hospital.svg`).
+  - `DozimetreAksiyonlarTab._load_aksiyon_table` içerisindeki `db.fetch_all` metot adı ve sütun uyumsuzluğu (`arastirma_formu` tablosundaki `olcum_donemi`, `form_durumu`, `rapor_no`) giderilerek resmi RD.F43 formlarının kokpitte eksiksiz algılanması ve 'MEVCUT' statüsüne geçmesi sağlandı.
+
+---
+
 ## [4.0.4.1] - 2026-10-18
 
 ### 🔐 Kademeli Lisanslama ve 30 Günlük Tam Sınırsız Deneme Sürümü Mimarisi

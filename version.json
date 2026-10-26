@@ -1,10 +1,10 @@
 {
-  "version": "4.0.4.1",
-  "release_version": "4.0.4.1",
-  "build_version": "4.0.4.1",
-  "latest_demo_version": "4.0.4.1",
-  "release_date": "2026-10-18",
+  "version": "4.0.5.4",
+  "release_version": "4.0.5.4",
+  "build_version": "4.0.5.4",
+  "latest_demo_version": "4.0.5.4",
+  "release_date": "2026-10-25",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.4.1: Kademeli Lisanslama ve 30 Günlük Tam Sınırsız Deneme Sürümü Mimarisi. Başlangıç (Nöbet & Personel), Pro (Radyasyon Güvenliği & Sağlık) ve Elit (Tam Entegre Çözüm) paket basamaklandırması ve modül erişim kalkanı devreye alındı.",
+  "changelog": "RADPYS V4.0.5.4: Ana Listeden Doğrudan Yeni DÖF Başlatma, Manuel / Bağımsız Faaliyet Yönetimi ve Olay İlişkilendirme Desteği.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }

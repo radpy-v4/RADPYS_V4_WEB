@@ -316,7 +316,7 @@
  <tbody class="divide-y divide-slate-100 dark:divide-slate-800 font-normal">
  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
  <td class="py-3.5 px-4 font-mono text-cyan-700 dark:text-cyan-400">
- <strong>İzin Tablosu & Arama (searchInput)</strong><br>
+ <strong>İzin Tablosu & Arama</strong><br>
  <span class="text-[11px] text-slate-400">Üst Filtre Çubuğu</span>
  </td>
  <td class="py-3.5 px-4">Departmandaki tüm izin hareketlerini ve onay durumlarını listelemek.</td>
@@ -327,8 +327,8 @@
 
  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
  <td class="py-3.5 px-4 font-mono text-cyan-700 dark:text-cyan-400">
- <strong>Yeni İzin Talebi (+ İzin Talep Et)</strong><br>
- <span class="text-[11px] text-slate-400">addButton (2 Adımlı Wizard)</span>
+ <strong>Yeni İzin Talebi [+ İzin Talep Et]</strong><br>
+ <span class="text-[11px] text-slate-400">2 Adımlı Talep Sihirbazı</span>
  </td>
  <td class="py-3.5 px-4">Personel adına mevzuata uygun izin kaydı açmak.</td>
  <td class="py-3.5 px-4">Adım 1'de personel seçilir ve anlık bakiye kartı açılır. Adım 2'de tarihler, tür, vekil ve açıklama girilir.</td>
@@ -338,8 +338,8 @@
 
  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
  <td class="py-3.5 px-4 font-mono text-cyan-700 dark:text-cyan-400">
- <strong>Şua İzni Hakedişi (RED-IZN-01)</strong><br>
- <span class="text-[11px] text-slate-400">izin_kural_motoru.py</span>
+ <strong>Şua İzni Hakedişi (Mevzuat Standardı)</strong><br>
+ <span class="text-[11px] text-slate-400">Yasal Hakediş Kuralı</span>
  </td>
  <td class="py-3.5 px-4">Radyasyon çalışanlarının kanuni sağlık iznini hesaplamak.</td>
  <td class="py-3.5 px-4">Fiili çalışma süresine göre her 50 saatte 1 gün hesaplanır (tavan 30 gün). Cari yıl kazanımı takip eden yıl kullanılır; devretmez, 31 Aralık'ta yanar.</td>
@@ -349,8 +349,8 @@
 
  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
  <td class="py-3.5 px-4 font-mono text-cyan-700 dark:text-cyan-400">
- <strong>Çakışma & Nöbet Kilidi (RED-IZN-02)</strong><br>
- <span class="text-[11px] text-slate-400">check_overlap / nobet_service</span>
+ <strong>Çakışma & Nöbet Kilidi</strong><br>
+ <span class="text-[11px] text-slate-400">Otomatik Çakışma Denetimi</span>
  </td>
  <td class="py-3.5 px-4">Personelin nöbet gününde izne çıkmasını veya mükerrer izin almasını engellemek.</td>
  <td class="py-3.5 px-4">Talep edilen tarihler personelin onaylı/bekleyen izniyle veya nöbet çizelgesindeki aktif göreviyle kesişiyorsa işlem durdurulur.</td>
@@ -360,7 +360,7 @@
 
  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
  <td class="py-3.5 px-4 font-mono text-cyan-700 dark:text-cyan-400">
- <strong>İzin Onayla (approveButton)</strong><br>
+ <strong>İzin Onayla</strong><br>
  <span class="text-[11px] text-slate-400">Üst Araç Çubuğu (Yeşil)</span>
  </td>
  <td class="py-3.5 px-4">Bekleyen talebi onaylayıp bakiyeyi güncellemek.</td>
@@ -371,7 +371,7 @@
 
  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
  <td class="py-3.5 px-4 font-mono text-cyan-700 dark:text-cyan-400">
- <strong>İzin Reddet (rejectButton)</strong><br>
+ <strong>İzin Reddet</strong><br>
  <span class="text-[11px] text-slate-400">Üst Araç Çubuğu (Kırmızı)</span>
  </td>
  <td class="py-3.5 px-4">Uygun görülmeyen izin talebini gerekçeli sonlandırmak.</td>
@@ -382,7 +382,7 @@
 
  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
  <td class="py-3.5 px-4 font-mono text-cyan-700 dark:text-cyan-400">
- <strong>İzin İptali (cancelButton)</strong><br>
+ <strong>İzin İptali</strong><br>
  <span class="text-[11px] text-slate-400">Üst Araç Çubuğu (Turuncu)</span>
  </td>
  <td class="py-3.5 px-4">Kullanılmayacak onaylı izni geri çekip hakkı iade etmek.</td>
@@ -397,7 +397,7 @@
  <span class="text-[11px] text-slate-400">[Devir Aktar & Yılını Kilitle Butonu]</span>
  </td>
  <td class="py-3.5 px-4">Yıllık izin devrini gerçekleştirmek, 12 aylık fiili hizmetten yeni yılın Şua İzni hakedişini kesinleştirmek ve kaynak yılı dondurmak.</td>
- <td class="py-3.5 px-4">Kapanan yılın kalan yıllık izinlerini tavan sınırına (azami 5 gün) göre devreder. Aynı anda kaynak yılın 12 aylık fiili radyasyon saatlerini tarayarak yeni yıl Şua İzni hakedişini (her 50 saate 1 gün, azami 30 gün) oluşturur ve kaynak yılı yıllık kilitle dondurur.</td>
+ <td class="py-3.5 px-4">Kapanan yılın kalan yıllık izinlerini tavan sınırına (azami 5 gün) göre devreder. Kaynak yılın 12 aylık fiili radyasyon saatlerini tarayarak yeni yıl Şua İzni hakedişini (her 50 saate 1 gün, azami 30 gün) oluşturur ve kaynak yılı dondurur. Bu işlem yüzlerce personel için arka planda asenkron iş parçacığıyla yürütülür; arayüz donmaz, canlı ilerleme penceresi gösterilir ve tamamlandığında özet bildirim kartı sunulur.</td>
  <td class="py-3.5 px-4">Yıl başında yeni yıl hakedişleri açılırken.</td>
  <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Sistem Yöneticisi, İK</td>
  </tr>
@@ -643,7 +643,7 @@ graph TD
  <li>İzin Listesi sağ üst araç çubuğundaki <strong>[Kalan Hak / Hakediş]</strong> butonuna veya sol menüden hakediş sayfasına geçin.</li>
  <li>Yıl seçicisinden incelemek istediğiniz takvim yılını belirleyin. Tüm personelin hakediş, devir ve kullanılan gün toplamları listelenir.</li>
  <li>Ocak ayı başında geçmiş tamamlanmış yıldan kalan izinleri aktarmak ve Şua hakedişini kesinleştirmek için <strong>[Devir Aktar & Yılını Kilitle]</strong> butonuna tıklayın.</li>
- <li>Sistem, yıllık izin devrini tavan sınırına (en fazla 5 gün) göre aktarır. Aynı anda kaynak yılın 12 aylık fiili hizmet puantajını tarayarak personellerin yeni yıl Şua İzni hakedişlerini yasal bareme (her 50 saate 1 gün, azami 30 gün) göre kesinleştirir ve kaynak yılı yıllık kilitle dondurur. Kaynak yıl kilitlendikten sonra buton metni <strong>[Devir Aktar (Kilitli)]</strong> olarak güncellenir.</li>
+ <li>Sistem, yıllık izin devrini tavan sınırına (en fazla 5 gün) göre aktarır. Aynı anda kaynak yılın 12 aylık fiili hizmet puantajını tarayarak personellerin yeni yıl Şua İzni hakedişlerini yasal bareme (her 50 saate 1 gün, azami 30 gün) göre kesinleştirir ve kaynak yılı yıllık kilitle dondurur. Bu toplu işlem arka planda asenkron olarak yürütülür; arayüz donmaz, canlı yüzde ilerleme penceresi görüntülenir ve işlem bittiğinde özet sonuç kartı iletilir. Kaynak yıl kilitlendikten sonra buton metni <strong>[Devir Aktar (Kilitli)]</strong> olarak güncellenir.</li>
  </ol>
  </div>
 

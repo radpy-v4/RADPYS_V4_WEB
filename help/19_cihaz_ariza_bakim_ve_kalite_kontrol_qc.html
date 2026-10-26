@@ -333,9 +333,9 @@
  Arızayı Çözümleme ve Kapatma<br>
  <span class="text-xs font-normal text-slate-400 font-mono">[Seçili Arızayı Çöz Butonu]</span>
  </td>
- <td class="py-3.5 px-4">Teknik servis müdahalesini belgeleyip cihazı tekrar hizmete açmak.</td>
- <td class="py-3.5 px-4">Çözüm açıklaması, servis firması, değişen parçalar kaydedilir; cihaz otomatik 'Aktif' statüsüne döner.</td>
- <td class="py-3.5 px-4">Yetkili servis arızayı giderip test ettiğinde.</td>
+ <td class="py-3.5 px-4">Teknik servis müdahalesini belgeleyip cihazı tekrar hizmete açmak veya test aşamasına almak.</td>
+ <td class="py-3.5 px-4">Çözüm açıklaması, servis firması ve değişen parçalar kaydedilir. Cihaz doğrudan 'Aktif' statüsüne döndürülebileceği gibi, klinik doğrulama süresince 'Test Aşamasında' ara durumunda tutularak hasta güvenliği garantiye alınabilir.</td>
+ <td class="py-3.5 px-4">Yetkili servis arızayı giderip test sürecini başlattığında veya bitirdiğinde.</td>
  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Biyomedikal / RGS</span></td>
  </tr>
 
@@ -621,7 +621,7 @@ flowchart TB
  <div class="space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
  <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
  <strong class="text-slate-900 dark:text-white text-base block mb-2">Bölüm 1: Cihaz Arızası Bildirme ve Onarımı Kapatma</strong>
- <strong>[Cihaz Yönetimi]</strong> menüsünden <strong>[Cihaz Arıza ve Onarım Takibi]</strong> ekranını açın. Sol üstteki <strong>[Yeni Arıza Bildir]</strong> butonuna tıklayın. Açılan formda arızalanan tıbbi cihazı seçin, aciliyet derecesini ve arıza tanımını girip <strong>[Kaydet]</strong> butonuna basın. Cihaz anında listede kırmızı 'Arızalı' olarak işaretlenir. Yetkili servis arızayı giderdiğinde ilgili satırı seçip <strong>[Seçili Arızayı Çöz]</strong> butonuyla yapılan müdahaleyi kaydedin; eğer X-ışını tüpü değişmişse onay kutusunu işaretleyip yeni tüp seri numarasını işleyin.
+ <strong>[Cihaz Yönetimi]</strong> menüsünden <strong>[Cihaz Arıza ve Onarım Takibi]</strong> ekranını açın. Sol üstteki <strong>[Yeni Arıza Bildir]</strong> butonuna tıklayın. Açılan formda arızalanan tıbbi cihazı seçin, aciliyet derecesini ve arıza tanımını girip <strong>[Kaydet]</strong> butonuna basın. Cihaz anında listede kırmızı 'Arızalı' olarak işaretlenir. Yetkili servis arızayı giderdiğinde ilgili satırı seçip <strong>[Seçili Arızayı Çöz]</strong> butonuyla yapılan müdahaleyi kaydedin. Parça değişimi veya onarım sonrası klinik doğrulama/fantom testleri yürütülürken cihazı <em>'Test Aşamasında'</em> ara statüsünde tutarak hasta çekimini güvenle bekletebilir, testler başarıyla bittiğinde tek tıkla arızayı tamamen kapatıp cihazı 'Aktif' kılabilirsiniz. Eğer X-ışını tüpü değişmişse onay kutusunu işaretleyip yeni tüp seri numarasını işleyin.
  </div>
 
  <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">

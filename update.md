@@ -4,6 +4,169 @@ Bu kılavuz, **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## ⚡ RADPYS V4.0.5.4: Ana Listeden Doğrudan Yeni DÖF Başlatma & Bağımsız Kalite Faaliyetleri
+
+Bu güncelleme ile Olay Bildirimleri ve Kalite Yönetimi ana sayfasına doğrudan **"Yeni DÖF Ekle"** butonu eklenmiştir. Artık düzeltici ve önleyici faaliyetler yalnızca bir olay kaydının içinden değil, ana liste ekranından tek tıkla hem bir olaya bağlı olarak hem de genel klinik kalite ve radyasyon güvenliği iyileştirmesi amacıyla bağımsız olarak başlatılabilmektedir.
+
+### 📋 1. Ana Ekrandan Tek Tıkla Yeni DÖF Başlatabilme
+
+* **Hızlı Aksiyon Butonu:** Olay Takip Listesi filtre ve araç çubuğuna **"Yeni DÖF Ekle"** butonu yerleştirilmiştir.
+* **Akıllı Seçim Entegrasyonu:** Listeden bir olay seçiliyken bu butona basıldığında açılan pencere otomatik olarak seçili olayın bilgilerini yükler. Hiçbir olay seçili değilken tıklandığında ise doğrudan genel klinik kalite ve önleyici faaliyet başlatma penceresi açılır.
+
+### 🎯 2. Bağımsız ve Olaya Bağlı Esnek Faaliyet Yönetimi
+
+* **Olay İlişkilendirme Açılır Kutusu:** DÖF penceresinde yer alan **"İlişkili Olay Bildirimi"** seçeneği sayesinde, faaliyetin bağımsız bir kalite aksiyonu mu olacağı yoksa açık durumdaki mevcut bir olay bildirimiyle mi ilişkilendirileceği kolayca belirlenebilir.
+* **Canlı Süreç Değişimi:** Kullanıcı dilerse açılır kutudan ilgili açık olayı seçerek faaliyeti anında bir olaya bağlayabilir veya bağımsız genel kalite faaliyetine dönüştürebilir.
+* **Şeffaf Tablo Takibi:** DÖF takip tablosuna **"İlişkili Olay"** sütunu eklenerek hangi faaliyetin hangi olay numarasına (veya Genel / Bağımsız faaliyete) ait olduğu net biçimde görünür kılınmıştır.
+
+---
+
+## 🔄 RADPYS V4.0.5.3: Olay İnceleme ve DÖF Yönetiminde 4 Adımlı Doğal İş Akışı & Resmi Tutanak Entegrasyonu
+
+Bu güncelleme ile Olay İnceleme ve DÖF Yönetimi ekranı, hastane ve kurum kalite standartlarına tam uyumlu 4 adımlı doğal bir iş akışına kavuşturulmuştur. İnceleme sürecindeki erken kapatma karışıklığı önlenmiş, tüm adımlar tamamlandığında resmi tutanağın tek tıkla alınabilmesi ve sürecin güvenle sonuçlandırılması sağlanmıştır.
+
+### 🧭 1. Kurumsal ve Doğal 4 Adımlı İnceleme Akışı
+
+* **1. Adım — Olay Künyesi:** Bildirilen olayın temel bilgileri, gerçekleştiği birim, bildiren personel, etkilenen taraf, NDK bildirim gerekliliği ve olay açıklaması tek bir ekranda derli toplu gözden geçirilir.
+* **2. Adım — İnceleme & Atama:** İncelemeyi yürütecek yetkili sorumlu personel seçilir ve olaya dair ön inceleme / değerlendirme notu kaydedilir. DÖF süreci başlamadan önce kullanıcının kafasını karıştıran erken kapatma seçeneği bu adımdan kaldırılarak doğal sürece uyarlanmıştır. Bir sonraki adıma geçildiğinde seçilen sorumlu otomatik olarak kaydedilir.
+* **3. Adım — DÖF Faaliyetleri:** Olayla ilgili düzeltici veya önleyici görevler açılır, hedef tarih ve sorumlu personel atanır. Görevler yerine getirildikçe sistem üzerinden "Tamamlandı" olarak işaretlenir.
+* **4. Adım — Kapanış, Karar ve Tutanak:** Tüm inceleme ve faaliyetler tamamlandıktan sonra nihai kalite kararı ve kapanış notu girilir. Sistem açık DÖF kalıp kalmadığını kontrol ederek olayın kapatılmasını sağlar ve resmi tutanağı yazdırır.
+
+### 🛡️ 2. Açık DÖF Emniyet Kilidi ve Canlı Durum Takibi
+
+* **Otomatik Kontrol:** 4. Adım açıldığında sistem bağlı DÖF faaliyetlerini anlık olarak tarar. Henüz tamamlanmamış bir DÖF faaliyeti varsa kullanıcıyı bilgilendirerek olayın vaktinden önce kapatılmasını önler ve kapatma butonunu güvenle kilitler.
+* **Kapanışa Hazır Bildirimi:** Tüm DÖF faaliyetleri başarıyla sonuçlandırıldığında ekran yeşil onay durumu verir ve "Olayı Kapat ve Tamamla" butonu aktif hale gelir.
+
+### 📄 3. İşlem Sonunda Tek Tıkla Resmi Tutanak ve PDF Çıktısı
+
+* **Süreç Bitiminde Doğal Yazdırma:** Olay kapatıldığında sistem kullanıcıya resmi tutanağı yazdırmak veya PDF olarak kaydetmek isteyip istemediğini sorar.
+* **Doğrudan Rapor Butonu:** Ayrıca 4. Adım üzerinde yer alan **"Resmi Tutanağı Yazdır / PDF"** butonuna basılarak onaylı inceleme tutanağı ve DÖF dökümü tek tıkla resmi matbu formatında alınabilir.
+* **Serbest Adım Geçişi:** Üst kısımdaki adımlara doğrudan tıklanarak istenen inceleme aşamasına zahmetsizce geçilebilir.
+
+---
+
+## 👥 RADPYS V4.0.5.2: DÖF Faaliyeti Sorumlu Personel Seçim Kolaylığı
+
+Bu güncelleme ile Olay İnceleme ve DÖF Yönetimi ekranında yeni bir Düzeltici veya Önleyici Faaliyet (DÖF) başlatılırken görevlendirilecek sorumlu personellerin listelenmesi sağlanmıştır.
+
+* **Zengin Personel Listesi:** "Sorumlu Personel" açılır kutusunda kurumdaki aktif çalışanlar, unvanları ve bağlı oldukları departman bilgileriyle birlikte (`Ad Soyad (Unvan — Birim)`) listelenir.
+* **Kolay Görevlendirme:** DÖF faaliyeti başlatılırken ilgili birim sorumlusu veya uzman doğrudan listeden seçilerek görev ve hedef tarih ataması eksiksiz yapılabilir.
+
+---
+
+## 🛡️ RADPYS V4.0.5.1: Olay İnceleme ve DÖF Yönetimi İyileştirmeleri
+
+Bu güncelleme; Olay Bildirimleri ve Düzeltici/Önleyici Faaliyet (DÖF) Yönetimi modülünde inceleme adımları tamamlandığında resmi tutanağın sorunsuz yazdırılabilmesini, olayların güvenli şekilde kapatılmasını ve takip listesindeki eksik bilgilerin net olarak görüntülenmesini sağlar.
+
+### 📋 1. Tüm İnceleme ve DÖF Adımlarında Kesintisiz Resmi Tutanak Yazdırma
+
+* **Süreç Boyunca ve En Son Adımda Yazdırabilme:** Olay inceleme formunda kök nedenler belirlenirken, inceleme notları yazılırken veya DÖF faaliyetleri eklenip sonuçlandırılırken; kullanıcı hangi adımda olursa olsun ya da tüm işlemler bittikten sonra **"Yazdır / Rapor"** butonuna tıkladığında güncel tutanak hemen yazıcıya gönderilir veya PDF olarak kaydedilebilir. Önceden adımlar arasında karşılaşılan "Lütfen olay seçiniz" uyarısı tamamen giderilmiştir.
+* **Canlı Veriyle Senkronize Çıktı:** Alınan resmi tutanak dökümünde, form üzerinde yapılan en son inceleme notları, atanan uzmanlar ve tamamlanan DÖF aksiyonları eksiksiz yer alır.
+
+### 👥 2. Olay Takip Listesinde Atanan Personel Gösterimi
+
+* **Şeffaf Görev Takibi:** Ana olay bildirim listesindeki **"Atanan"** sütununda, inceleme yapmak üzere görevlendirilen sorumlu uzmanın adı ve soyadı artık açık ve net olarak listelenir. Önceden sorumlu atanmış olmasına rağmen tabloda "Atanmadı" görünmesine yol açan eşleşme sorunu çözülmüştür.
+* **Otomatik Görev Kaydı:** İnceleme formunun 2. adımında açılır kutudan bir incelemeci seçilip bir sonraki adıma geçildiğinde sistem atamayı güvenle korur ve kaydeder.
+
+### 🏁 3. DÖF Sonrası Resmi Kapatma ve Kapanış Tarihi
+
+* **Son Adımda Akıllı Kapatma Yönlendirmesi:** İnceleme sihirbazının son adımı olan 4. Tarihçe ekranında **"Tamamla / Kapat"** butonuna basıldığında, sistem kullanıcının olayı resmi olarak "Kapalı" statüsüne almak isteyip istemediğini sorar.
+* **Açık Aksiyon Güvenlik Kilidi:** Kalite ve mevzuat kuralları gereği devam eden açık bir DÖF faaliyeti varsa, sistem olayın kapatılmasını engelleyerek kullanıcıyı DÖF sekmesine yönlendirir.
+* **Net Kapanış Tarihi Gösterimi:** Resmi olarak kapatılan olayların tam kapanış tarih ve saati ana listedeki **"Kapanış Tarihi"** sütununa anında yansıtılır; henüz incelemesi süren açık kayıtlar ise "—" işaretiyle gösterilerek takip kolaylaştırılmıştır.
+
+---
+
+## 📊 RADPYS V4.0.5.0: Rapor ve Dışa Aktarma Formatlarında Sadeleştirme ("Doğru İşe Tek Format")
+
+Bu güncelleme ile sistem genelindeki tüm modüllerde ve Rapor Merkezi'nde karşılaşılan kafa karıştırıcı çoklu dışa aktarım seçenekleri (aynı verinin hem PDF hem Excel hem Word olarak sunulması karmaşası) tamamen temizlenmiş, her iş türü için en uygun ve standart tek bir format belirlenmiştir.
+
+### 🎯 1. Operasyonel Tablolar ve Veri Listeleri İçin Standart: Excel (.xlsx)
+
+* **Temiz ve Sade Dışa Aktarma:** Cihaz Envanteri, RKE Donanım Listesi, Dozimetre Takip Dökümleri, Yıllık İzinler, Nöbet Çizelgeleri, Fiili Hizmet (FHZ) Cetvelleri ve Eğitim Katılım Listeleri gibi veri içeren tüm tablolar doğrudan ve tek tıkla kurumsal **Excel (.xlsx)** formatında dışa aktarılır.
+* **Gereksiz Format Seçeneklerine Son:** Tablolarda okunamayan, sütunları sıkışan veya düzenlenemeyen PDF/Word format karmaşası kaldırılarak kullanıcıların doğrudan üzerinde filtreleme ve hesaplama yapabileceği standart Excel dökümü sunulmuştur.
+
+### 📜 2. Resmi Kurul Tutanakları ve Kanuni Belgeler İçin Standart: PDF
+
+* **Matbu ve Değiştirilemez Resmi Evrak:** RD.F43 Doz Araştırma Tutanağı, EK-1 Sağlık Muayene Formu, DIN 6857 Muayene Heyet Tutanağı ve Kurumsal HEK/Hurda Karar Tutanakları gibi ıslak/elektronik imza taşıyan ve denetimlere sunulan tüm resmi belgeler güvenli **PDF** formatında üretilir.
+* **Yüksek Baskı Kalitesi:** Tutanak sihirbazı veya rapor merkezinden alınan tüm resmi evraklar A4 standartlarına tam oturan antetli ve çerçeveli kurumsal şablonlarla hazır gelir.
+
+### 📘 3. Düzenlenebilir Kılavuz ve Planlar İçin Standart: Word (.docx)
+
+* **Kişiselleştirilebilir Kurum Belgeleri:** Yalnızca NDK KLV-014 Radyasyondan Korunma Programı (RKP) gibi kurumların kendi özel maddelerini ve klinik prosedürlerini serbestçe eklemesi gereken mevzuat kılavuz taslakları **Word (.docx)** formatında sunulmaktadır.
+
+### 🧹 4. Kullanıcı Arayüzünde Mükerrer ve Ölü Butonların Temizlenmesi
+
+* **Ferah ve Karışıklıktan Uzak Ekranlar:** Doz araştırma formu (RD-F43), cihaz tutanakları ve resmi taahhütname pencerelerinde aynı veriyi farklı formatlarda indirmeye çalışan mükerrer Word butonları arayüzden kaldırılmıştır.
+* **Tek Tıkla Doğru Belgeye Erişim:** Kullanıcı tek bir tıklamayla mevzuata ve resmi denetime hazır, antetli ve mühürlü PDF belgesini oluşturup inceleyebilir.
+
+---
+
+## 🔐 RADPYS V4.0.4.9: Olay İnceleme ve DÖF Yönetiminde Yetki ve Rol Doğrulama İyileştirmesi
+
+Bu güncelleme ile Güvenlik ve Kalite Olay İnceleme ekranında sorumlu uzman atama veya olay durumunu güncelleme (İncelemeye Alma, Kapatma) sırasında meydana gelen rol uyarısı giderilmiş, yetkilendirme akışı kesintisiz hale getirilmiştir.
+
+### 🛡️ 1. Kesintisiz İnceleme ve Sorumlu Atama İşlemleri
+
+* **Güvenli Rol Doğrulama:** Olay kaydetme ve sorumlu atama işlemlerinde oturum açan yöneticinin ve yetkili personelin unvan ve yetki seviyesi otomatik olarak tanınır.
+* **Hatasız Form Güncelleme:** Olay inceleme notları, sorumlu değişiklikleri ve DÖF adımları tek tıkla güvenle sisteme kaydedilir.
+
+---
+
+## 📄 RADPYS V4.0.4.8: Güvenlik ve Kalite Olay Bildirimi Resmi Tutanağında Kurumsal SKS & NDK Tasarım Yeniliği
+
+Bu güncelleme ile Olay Bildirim ve DÖF süreçlerinin resmi yazıcı ve PDF çıktıları, Sağlıkta Kalite Standartları (SKS) ve NDK resmi denetim kriterlerine tam uyumlu, kurumsal kimliği yansıtan modern bir şablona kavuşturulmuştur.
+
+### 🏛️ 1. Sağlıkta Kalite Standartlarına (SKS) Tam Uyumlu Başlık ve Düzen
+
+* **Kurumsal Belge Anteti:** Formun en üstünde kurum logosu, kurum adı, kalite birimi başlığı ve resmi doküman takip kartı (Doküman No, Revizyon Tarihi ve Sayfa No) yer alır.
+* **Renkli Klinik Rozetler ve NDK Uyarı Şeridi:** Olayın sonucu (Ramak Kala, Hafif/Ciddi Zarar) ve yasal NDK 72 saatlik bildirim durumu resmi denetimlerde ilk bakışta fark edilebilecek şık rozetlerle öne çıkarılmıştır.
+* **Sayfa Taşmalarına ve İmza Parçalanmasına Son:** Önceki tasarımdaki imza çizgilerinin tek başına 2. sayfaya taşması sorunu giderilmiş; tüm olay künyesi, acil müdahale, DÖF planı ve yetkili imza kutuları (Bildiren, İnceleyen Uzman ve RKS) tek bir A4 sayfasına estetik ve eksiksiz olarak sığdırılmıştır.
+
+---
+
+## 🛡️ RADPYS V4.0.4.7: Olay İnceleme ve DÖF Süreçlerinde Sorumlu Atama ve NDK Bildirim Entegrasyonu
+
+Bu güncelleme ile Güvenlik ve Kalite Olay Bildirimleri modülünde, olayın incelemesini yürütecek sorumlu uzmanın atanması, resmi NDK yasal bildirim kaydının tutulması ve kalite düzeltici faaliyetlerinin (DÖF) takibi tam entegre hale getirilmiştir.
+
+### 📋 1. Sorumlu Uzman Atama ve Görevlendirme
+
+* **Otomatik Görev Bildirimi:** Bir olaya sorumlu uzman (Fizikçi, RKS veya Birim Sorumlusu) atandığında, ilgili personelin sistemine anında *"Yeni Olay İnceleme Görevi"* bildirimi düşer.
+* **Tarihçe ve Denetim İzi:** Olayın kim tarafından kime atandığı, ne zaman devredildiği tarihçe sekmesinde resmi denetim izleriyle kayıt altına alınır.
+* **NDK Yasal Bildirim Kaydı:** TENMAK/NDK mevzuatı gereği resmi kuruma bildirimi yapılan olaylar tek tıkla sisteme işlenir; bildirim tarihi ve evrak bilgisi güvenceye alınır.
+
+---
+
+## ⚡ RADPYS V4.0.4.6: Yıllık İzin ve Şua Devir İşlemlerinde Hızlı Arka Plan Mimarisi ve Kesintisiz Kullanıcı Deneyimi
+
+Bu güncelleme ile Yıllık İzin Hakları modülünde yer alan toplu hakediş hesaplama, devir ve şua izni aktarım süreçleri modern arka plan mimarisine taşınmış; büyük personel kadrolarında dahi ekran donmalarının ve takılmalarının önüne geçilmiştir.
+
+### 🏖️ 1. Toplu İzin Hakedişi ve Devir Süreçlerinde Kesintisiz İşlem
+
+* **Arayüz Takılmalarına Son:** Yüzlerce çalışanın yıllık izin hakedişleri hesaplanırken veya yıl sonu devir/şua izinleri aktarılırken sistem arayüzü kilitlenmez, arka planda güvenle işlenir.
+* **Modern ve Şık İlerleme Göstergesi:** Eski sistem pencereleri yerine kurumun kurumsal tasarım diline tam uyumlu, işlem yüzdesini ve tamamlanma adımlarını anlık gösteren modern ilerleme paneli devreye alınmıştır.
+* **Hızlı Sonuç Özeti:** İşlem tamamlandığında kaç personelin hakedişinin başarıyla güncellendiği veya kaç kaydın devredildiği anında şık bir bilgilendirme bildirimiyle kullanıcıya sunulur.
+
+---
+
+## 🔔 RADPYS V4.0.4.5: Doz Araştırma Beyanı ve Sağlık Muayene İlk Sevk Bildirim Entegrasyonu
+
+Bu güncelleme ile klinik ve operasyonel iş akışlarındaki iki kritik süreç tam otomatik olarak bildirim merkezine bağlanmış ve tek tıkla ilgili evrak/forma ulaşım kolaylığı sağlanmıştır.
+
+### 📋 1. Doz Araştırma Beyanı Bildirimi ve Anlık Form Erişimi
+
+* **Çalışan Beyanı Tamamlandığında:** Bir radyasyon çalışanı Web Portal veya kurum içi sistem üzerinden yüksek doz araştırma tutanağının çalışan beyanı bölümünü doldurduğu anda, kurumun Radyasyon Korunma Sorumlusu (RKS), Medikal Fizik Uzmanı ve yöneticilerinin sağ alt bildirim çekmecesine anında uyarı düşer.
+* **Tek Tıkla Doğrudan Formu Açma:** Bildirime tıklandığında ek bir menü aramaya gerek kalmadan doğrudan o çalışanın RD-F43 Doz Araştırma Formu açılarak heyet incelemesi hemen başlatılabilir.
+* **Personele Hatırlatma:** Personel sisteme girdiğinde henüz beyan vermediği açık bir yüksek doz dosyası bulunuyorsa, çekmecede *"Doz Araştırma Beyanınız Bekleniyor"* hatırlatması çıkar.
+
+### 🩺 2. Sağlık Muayenesi İlk Sevk ve EK-1 Hazırlık Bildirimi
+
+* **Muayeneye Sevk Edildiğinde:** Sağlık muayene sürecinde bir çalışan "Sevk Edildi / Muayenede" durumuna alındığında;
+  * **Çalışana:** *"Sağlık Muayenesine Sevk Edildiniz"* bildirimi gider ve ön hazırlık EK-1 formunu doldurması hatırlatılır.
+  * **İşyeri Hekimi ve RKS'ye:** *"Yeni Sağlık Sevki"* bildirimi ulaşır.
+* **Doğrudan Muayene Kartına Ulaşım:** Bildirime tıklandığında doğrudan o personelin sağlık muayene detay kartı açılarak klinik süreç takip edilebilir.
+
+---
+
 ## 🏛️ 1. RADPYS V4.0.0.0: Kurumsal Mimari Dönüşümü ve Temel Yenilikler
 
 RADPYS V4 sürümüyle birlikte sistem; yüksek veri güvenliği, kesintisiz çalışma ve mevzuat denetimlerine tam uyumluluk sağlamak amacıyla kurumsal standartlarda yeniden tasarlanmıştır.
@@ -244,11 +407,13 @@ Web Portalı; hastanenin tüm radyasyon güvenliği ve personel süreçlerini te
 ## 📅 16. RADPYS V4.0.2.5 - V4.0.2.6: Nöbet Takvimi ve Yıllık İzin Projeksiyonu
 
 ### Nöbet Takvimi Yenilikleri
+
 * **Yalnızca Nöbet Tutan Birimlerin Listelenmesi:** Nöbet planı bulunmayan birimler filtrelenerek liste sadeleştirildi.
 * **Temiz A4 Yazdırma Çıktısı:** Yazdır butonuna basıldığında gereksiz buton ve filtreler gizlenerek kurum antetli resmi nöbet çizelgesi yazdırılır.
 * **Resmi Tatil Mesai Bilgi Kartı:** İlgili aydaki tatil günleri hesaplanarak aylık mesai saatinden düşecek süre otomatik gösterilir.
 
 ### Yıllık İzin Projeksiyonu ve Klinik Çakışma Analizi
+
 * **Son 4 Yıl İzin Tercih Kalibrasyonu:** Geçmiş kurum verileri analiz edilerek personellerin izin tercihleri projeksiyon olarak sunulur.
 * **3 Farklı İnceleme Modu:**
   1. *Detaylı Liste:* Personel bazında tahmini izin aralığı ve unvan bilgileri.
@@ -256,6 +421,7 @@ Web Portalı; hastanenin tüm radyasyon güvenliği ve personel süreçlerini te
   3. *12 Aylık Zaman Çizelgesi (Mini-Gantt):* Yılın en yoğun talep aylarını ve aylık toplam izin yükünü gösteren ısı haritası.
 * **Hizmet Sınıfı ve Alt Birim Filtreleri:** Tabip, sağlık personeli ve tekniker bazında anlık filtreleme imkanı.
 * **Sayfa Ergonomisi:** Mükerrer grafikler temizlenerek sayfa gezinmesi daha hızlı ve ferah hale getirildi.
+
 ---
 
 ## 🏖️ 17. RADPYS V4.0.2.7: Yıllık İzin Projeksiyonu İyileştirmeleri
@@ -315,10 +481,12 @@ Web Portalı; hastanenin tüm radyasyon güvenliği ve personel süreçlerini te
 ## 🛡️ 23. RADPYS V4.0.2.13: Yasal Nöbet Muafiyetleri ve Doz Kısıtları
 
 Mevzuata uygun olarak 4 yeni yasal nöbet muafiyeti sistemi koruma altına almıştır:
+
 1. **Engelli Personel Muafiyeti (DMK Md. 101):** Engelli çalışanlara gece nöbeti ve 24 saatlik vardiya yazılması engellendi.
 2. **Engelli Yakını Bulunan Personel (DMK Ek Md. 39):** Bakmakla yükümlü olduğu engelli yakını bulunan personele nöbet yazılmaması sağlandı.
 3. **Sağlık Kurulu Heyet Raporu:** Tam teşekküllü hastane heyet raporu ile belgelenen sağlık durumlarında rapor süresince nöbet kısıtlaması uygulandı.
 4. **Yıllık Doz Aşımı Kısıtı (NDK Mevzuatı):** Doz aşımına uğrayan veya incelemeye alınan çalışanların radyasyonlu birimlerde nöbet tutması sistem tarafından otomatik olarak engellendi.
+
 ---
 
 ## ☢️ 24. RADPYS V4.0.2.14: Dozimetre Aksiyonları ve Birim Rotasyonu Takibi
@@ -857,7 +1025,7 @@ Arıza/onarım süreçleri ile periyodik bakım takvimi birbirinden tamamen ayr�
 
 ## 🌐 20. Sistem Genelinde Tarihsel İzlenebilirlik (Point-in-Time Historical Snapshot) ve Kurumsal Güvence
 
-Radyasyon çalışanlarının özlük hareketleri (tayin, görev yeri değişikliği, terfi, rotasyon) ve tıbbi cihazların oda/bina nakillerinde, geçmiş yıllara ait resmi denetim ve mevzuat kayıtlarının geriye dönük bozulmasını önleyen **Tarihsel İzlenebilirlik (Point-in-Time Historical Snapshot)** mimarisi sistemin tüm ilgili modüllerine entegre edilmiştir. 
+Radyasyon çalışanlarının özlük hareketleri (tayin, görev yeri değişikliği, terfi, rotasyon) ve tıbbi cihazların oda/bina nakillerinde, geçmiş yıllara ait resmi denetim ve mevzuat kayıtlarının geriye dönük bozulmasını önleyen **Tarihsel İzlenebilirlik (Point-in-Time Historical Snapshot)** mimarisi sistemin tüm ilgili modüllerine entegre edilmiştir.
 
 Böylece personel veya cihaz bugün nereye taşınırsa taşınsın; NDK, Sağlık Bakanlığı, SGK veya kalite akreditasyon denetimlerinde geçmiş bir tarihe dönük inceleme yapıldığında kayıtlar daima işlemin yapıldığı gündeki gerçek çalışma alanı ve risk ortamını aslına sadık biçimde yansıtır:
 
@@ -904,10 +1072,12 @@ Sistem parametreleri ve program yapılandırma ekranında, hem kritik veritaban�
 Sağlık kuruluşlarının, radyoloji merkezlerinin ve kliniklerin farklı operasyonel ölçeklerine ve mevzuat gereksinimlerine hitap etmek amacıyla **30 Günlük Tam Sınırsız Deneme Sürümü** ve **3 Kademeli Lisans Yapısı** devreye alınmıştır:
 
 ### 🌟 30 Günlük Tam Sınırsız Kurumsal Değerlendirme (Demo) Sürümü
+
 * **Sıfır Kısıtlama ile Tam Deneyim:** Kurulum yapıldıktan sonraki 30 gün boyunca sistemdeki tüm yapay sınırlar kaldırılmıştır. Kurumlar, hastanedeki tüm personellerini sisteme aktarabilir, diledikleri sayıda nöbet planı oluşturabilir ve Elit paket dahil olmak üzere tüm modülleri tam kapasiteyle test edebilirler.
 * **Kademeli Erken Uyarı:** Deneme süresinin bitimine 15 gün ve 3 gün kala sistem yöneticilere nazik hatırlatmalarda bulunur; 30 günün sonunda kurum verileri korunarak lisans aktivasyon ekranına güvenle yönlendirilir.
 
 ### 🥉 1. Başlangıç Paketi (Nöbet ve Personel Yönetim Çözümü)
+
 * **Kapsam:** Yalnızca klinik nöbet çizelgeleme ve personel idaresine odaklanmak isteyen birimler için tasarlanmıştır.
 * **Dahil Olan Modüller:**
   * Yapay Zeka Destekli Nöbet Çizelgeleme Motoru (Solver) ve Dinamik Kural Matrisi
@@ -917,6 +1087,7 @@ Sağlık kuruluşlarının, radyoloji merkezlerinin ve kliniklerin farklı opera
   * Evrensel Çift Onay Kuyruğu ve Temel Sistem Ayarları & Otomatik Yedekleme
 
 ### 🥈 2. Pro Paket (Radyasyon Güvenliği ve Sağlık Gözetim Çözümü)
+
 * **Kapsam:** Radyasyonlu alanlarda çalışan personelin mevzuat takibini, dozimetre izlemini ve sağlık gözetimini eksiksiz yürütmek isteyen klinikler için geliştirilmiştir.
 * **Dahil Olan Modüller:**
   * Başlangıç paketinin tüm özellikleri,
@@ -927,6 +1098,7 @@ Sağlık kuruluşlarının, radyoloji merkezlerinin ve kliniklerin farklı opera
   * **Olay Bildirimi ve DÖF:** Radyasyon kazaları, ramak kala bildirimleri ve 5 Neden kök analiz aksiyonları.
 
 ### 🥇 3. Elit Paket (Tam Entegre Kurumsal Çözüm — All-in-One)
+
 * **Kapsam:** Radyoloji departmanını, tıbbi cihaz parkurunu, kurşun koruyucu donanımlarını ve eğitim süreçlerini NDK ve SKS standartlarında tek merkezden yönetmek isteyen hastaneler için eksiksiz çözümdür.
 * **Dahil Olan Modüller:**
   * Pro paketinin tüm özellikleri,
@@ -937,10 +1109,136 @@ Sağlık kuruluşlarının, radyoloji merkezlerinin ve kliniklerin farklı opera
   * **Hizmet İçi Eğitim ve LMS:** Personel eğitim katalogları, online sınav modülü ve otomatik sertifikasyon.
 
 ### 💡 Akıllı Paket Kalkanı ve Şeffaf Geçiş
+
 Alt pakette çalışan bir kurum yetkilisi, daha üst bir pakete ait bir modüle tıkladığında sistem modülü engellemekle kalmaz; ilgili özelliğin hangi paketle açılacağını ve kuruma sağlayacağı operasyonel avantajları açıklayan şeffaf bir bilgilendirme ekranı sunarak yöneticiyi doğru çözüme yönlendirir.
 
 ---
 
+## 🏥 23. Tıbbi Cihaz Yönetimi, Bakım Planlama, Arıza Takip İş Akışları ve NDK Taahhütname Mimarisi (RADPYS V4.0.4.2)
+
+Tıbbi radyoloji, radyoterapi ve nükleer tıp cihazlarının klinik idaresini, teknik servis süreçlerini ve NDK mevzuatına uyumunu en üst seviyeye taşımak amacıyla kapsamlı yenilikler kullanıma sunulmuştur:
+
+### 🏷️ 23.1 Çift Numaralandırma Sistemi (Cihaz Kodu ve Klinik Cihaz No)
+
+* **Klinik ve Envanter Kodlarının Ayrıştırılması:** Tıbbi cihazların kurumsal demirbaş kodu ile teknisyenlerin ve servis ekiplerinin günlük pratikte kullandığı klinik oda/cihaz numaraları birbirine entegre edilmiştir.
+* **Akıllı Numaralandırma:** Cihaz ekleme veya düzenleme esnasında seçilen birim ve cihaza göre otomatik olarak klinik oda kodu (örneğin Bilgisayarlı Tomografi için `CT-01`, Manyetik Rezonans için `MR-01`, Acil Servis BT için `ACL-CT-01`) önerilir.
+* **Kokpitte Belirgin Rozet Gösterimi:** Cihaz listesi ve arıza tablolarında cihaz kodu ile birlikte renkli klinik cihaz numarası rozeti gösterilerek sahada hangi cihaza müdahale edildiği anında anlaşılır.
+
+### 📜 23.2 Resmi NDK RKS Yetkilendirme ve Taahhütname Belgesi ve Evrak Kasası Entegrasyonu
+
+* **Resmi Yasal Form Uyumluluğu:** Nükleer Düzenleme Kurumu (NDK) lisans ve vize başvurularında zorunlu tutulan resmi RKS Yetkilendirme ve Taahhütname Belgesi doğrudan sisteme entegre edilmiştir.
+* **Otomatik Veri Doldurma:** Başvuru konusu, muhatap kurum, mevzuat taahhüt maddeleri, 1. RKS (Asil), 2. RKS (Yedek) ve Kuruluş Yetkilisinin unvan ve T.C. kimlik bilgileri kurum veri tabanından otomatik olarak çekilir.
+* **Personel Görevlendirme ve Evrak Kasası Entegrasyonu:** RGS Görevlendirme ekranında yer alan "Atama Yazısı Taslağı Üret" butonu üzerinden tek tıkla hem resmi NDK taahhütname belgesi hem de kurum içi atama yazısı üretilebilir. Üretilen resmi NDK taahhütnamesi doğrudan personelin görevlendirme kaydına ve şifreli evrak kasasına bağlanarak ıslak imzalı nüsha ve tarihçe akışına dahil edilir.
+* **Tek Tıkla PDF ve Word (.docx) Çıktısı:** Tek tıkla resmi onay bloklarına ve kurum logosuna sahip ıslak imzaya hazır PDF ve Word (.docx) belgeleri üretilebilir.
+
+### 🔄 23.3 Çok Aşamalı Cihaz Arıza ve Onarım İş Akışları
+
+* **Ara Süreç Takibi:** Cihaz arızalarında doğrudan "kapatma" zorunluluğu ortadan kaldırılarak operasyonel ara aşamalar devreye alınmıştır:
+  * **Servis Bekleniyor (Firma Çağrıldı):** Yetkili teknik servis çağrıldığında kayıt güncellenir.
+  * **Parça Bekleniyor (Sipariş Verildi):** Arızalı parçanın tespiti yapılıp yurt içi/dışı sipariş verildiğinde parça bilgisiyle birlikte kaydedilir.
+  * **Test Aşamasında:** Parça montajı yapıldıktan sonra kalibrasyon ve kabul testleri süresince cihaz test durumuna alınır.
+  * **Tamamlandı / Çözüldü:** Tüm kontroller tamamlandığında arıza resmi olarak kapatılır.
+  * **İptal Edildi:** Yanlış veya mükerrer bildirimler gerekçesiyle arıza iptal edilebilir.
+* **Akıllı Cihaz Durum Yönetimi:** Ara süreçler kaydedildiğinde cihaz otomatik olarak "Bakımda" statüsüne alınarak klinik çalışanları uyarılır; arıza ancak "Tamamlandı" olarak kapatıldığında cihaz yeniden "Aktif" (çalışıyor) statüsüne döner.
+* **Eski Müdahale Notlarının Korunması:** Süreç adımları güncellenirken daha önce girilmiş olan servis firması, değişen parçalar ve teknik rapor numaraları formda korunarak kayıt kaybı önlenir.
+
+### 📊 23.4 10 Sütunlu Arıza Takip Kokpiti ve Renkli Durum Rozetleri
+
+* **Kapsamlı Tablo Düzeni:** Arıza ekranındaki liste 10 sütunlu modern düzene geçirilmiştir:
+  1. Arıza No
+  2. Cihaz (Kodu, Klinik No ve Marka/Model)
+  3. Birim / Konum
+  4. Bildirim Tarihi
+  5. Arıza Tanımı (Genişletilmiş görünüm)
+  6. Aciliyet Derecesi (Renkli Acil/Yüksek/Normal/Düşük rozeti)
+  7. İşlem Durumu (Açık, Servis Bekleniyor, Parça Bekleniyor, Test Aşamasında, Çözüldü rozetleri)
+  8. Servis Firması / Teknisyen
+  9. Yapılan İşlem ve Değişen Parça Bilgisi
+  10. Çözüm / Müdahale Tarihi
+* **Gelişmiş Excel Raporlama:** Dışa aktarılan Excel listeleri de bu 10 sütunlu yapıyı ve detaylı parça/servis bilgilerini eksiksiz olarak içerir.
+
+### 🗄️ 23.5 HEK Süreci Evrak Kasası Güvenliği ve Bakım Planı Düzeltmeleri
+
+* **Kesintisiz HEK Raporlama:** Tıbbi cihazların Hurdaya Ayırma (HEK) süreçlerinde teknik servis tutanakları ve fotoğrafları şifreli evrak kasasında korunur; eksik veya taranmamış evrak durumlarında bile sistem hata vermez, raporları güvenle üretir.
+* **Hatasız Bakım Planlaması:** 3'er aylık, 6'şar aylık ve yıllık periyodik bakım planları oluşturulurken seçilen cihaz adedine ve bakım sıklığına göre bakım takvimi eksiksiz olarak planlanır.
+
+---
+
+## 🏥 24. Uluslararası Radyoloji Modalite Standartları, Ferah Kokpit Mimarisi ve İmzalı Servis Formu Kasası (RADPYS V4.0.4.3)
+
+Bu sürümle birlikte tıbbi radyoloji ve radyoterapi cihazlarının klinik takibinde uluslararası modalite numaralandırması devreye alınmış, teknik servis firmalarının doldurduğu ıslak imzalı formların şifreli evrak kasasında saklanması sağlanmış ve arıza kokpiti ekran boyutuna duyarlı ferah 7 sütunlu orantılı düzene kavuşturulmuştur:
+
+### 🏷️ 24.1 Uluslararası Radyoloji Modalite Standartlarında Akıllı Cihaz Numaralandırması
+
+* **Klinik İletişime Uygun Numaralandırma:** Tıbbi cihazların muhasebe demirbaş kodları (örneğin 253...) yerine, radyoloji teknisyenleri, hekimler ve biyomedikal birimlerinin sahada kullandığı uluslararası modalite kodları (`CT-01`, `MR-01`, `XR-01`, `FL-01`, `DSA-01`, `ERCP-01`, `MG-01`, `US-01` vb.) temel alınmıştır.
+* **Otomatik Sıralı Numara Önerisi:** Cihaz eklenirken cihaz türü (örneğin Bilgisayarlı Tomografi) seçildiği anda sistem mevcut envanteri tarayarak boşta olan bir sonraki klinik numarayı (`CT-01`, `CT-02` vb.) otomatik olarak önerir.
+* **Demirbaş Numarasının Korunması:** Kurumun taşınır mal ve muhasebe kayıtlarına esas teşkil eden resmi demirbaş numarası bağımsız bir alanda güvenle saklanmaya devam eder.
+
+### 📑 24.2 Yetkili Servis Bakımı ve Arıza Müdahale Formu Evrak Kasası
+
+* **İmzalı Servis Raporlarının Sisteme Yüklenmesi:** Arıza onarımı veya periyodik bakım için hastaneye gelen yetkili teknik servis firmasının doldurduğu, teknisyen kaşe ve ıslak imzasını taşıyan servis formları (`PDF` veya cep telefonuyla taranmış/fotoğraflanmış `PNG`, `JPG` formatında) doğrudan arıza müdahale ekranından yüklenebilir.
+* **AES-256 Askeri Düzeyde Şifreli Kasa:** Yüklenen tüm servis formları KVKK ve veri güvenliği standartlarına uygun olarak şifreli evrak kasasında güvenle muhafaza edilir.
+* **Tek Tıkla Önizleme ve Doğrulama:** Arıza çözüm formunda veya teknik servis rapor kokpitinde yüklenmiş servis belgesi tek tıkla doğrudan sistem görüntüleyicisinde açılabilir; istenildiğinde güncellenebilir veya silinebilir.
+* **Arıza Listesinde Görsel Belge İpucu:** Ekli servis belgesi bulunan arıza kayıtlarının durum rozetinde belge mevcut olduğu belirtilir; arıza satırına çift tıklandığında servis tutanağı ve ekli orijinal belge anında ekrana gelir.
+
+### 📐 24.3 7 Sütunlu Dengeli ve Orantılı Arıza Takip Kokpiti
+
+* **Sade ve Dengeli Tablo Mimarisi:** Arıza takip tablosu gereksiz sütun kalabalığından arındırılarak 7 sütunlu net bir düzene geçirilmiştir:
+  1. **Arıza Kodu:** Tabüler sayısal fontla ortalanmış takip numarası.
+  2. **Cihaz Bilgisi:** Üst satırda cihaz kodu ve modalite numarası, alt satırda marka/model bilgisi.
+  3. **Birim / Konum:** Üst satırda bağlı olduğu klinik anabilim dalı, alt satırda oda ve kat bilgisi.
+  4. **Arıza Tanımı:** Ekran genişliğine göre esnek şekilde yayılan geniş açıklama alanı.
+  5. **Bildirim / Çözüm Tarihi:** Üst satırda arıza bildirim zamanı, alt satırda müdahale/çözüm zamanı.
+  6. **Aciliyet Derecesi:** Bağımsız sütunda kurumsal renkli rozetlerle sunulan öncelik seviyesi (`Acil`, `Yüksek`, `Normal`, `Düşük`).
+  7. **İşlem Durumu:** Arızanın güncel aşamasını belirten renkli süreç rozeti.
+* **Ekran Boyutuna Duyarlı Orantılı Ölçekleme:** Küçük ekranlı dizüstü bilgisayarlardan geniş klinik monitörlere kadar pencere boyutu değiştiğinde sütunlar önceden belirlenen oranlarda esneyerek yatay kaydırma çubuğu oluşmasını ve metinlerin kesilmesini engeller.
+
+### 📋 24.4 Periyodik Bakım ve Cihaz Envanter Tablolarında Çift Satırlı Modern Düzen
+
+* **Kompakt ve Okunaklı Kart Yapısı:** Periyodik bakım (`tblBakimlar`) ve Cihaz Envanter (`tblCihazlar`) tablolarında 52 piksel satır yüksekliğinde çift satırlı kart düzeni devreye alınmıştır.
+* **Akıllı Durum ve Zaman Radarı:** Mükerrer durum bilgileri birleştirilerek hem bakım sürecini hem de yaklaşan/geciken bakım günlerini tek bir akıllı rozette özetleyen radar gösterimi sağlanmıştır.
+* **Çoklu Belge Formatı:** Bakım kapatma ekranında imzalı servis formları hem PDF hem de taranmış fotoğraf formatlarında yüklenebilir ve görüntülenebilir.
+
+### ⚙️ 24.5 Arıza Ara Süreçlerinde "Test Aşamasında" Güvencesi
+
+* Arızalı parçanın montajı tamamlandıktan sonra kalite kontrol ve fantom ölçümleri devam ederken arıza kaydının "Test Aşamasında" olarak kaydedilebilmesi sağlanmış; cihazın bu süreç boyunca otomatik olarak "Bakımda" kalarak klinik çalışanlarını uyarması güvenceye alınmıştır.
+
+### 🔍 24.6 Dozimetre Yüksek Doz Araştırma Paneli ve Form Sadeleştirmesi
+
+* **Personel Profilinde RD.F43 Detayı:** Çalışan profili Dozimetre sekmesine yüksek doz araştırma tutanakları, durum rozetleri, net etkin doz ve doğrudan tutanağı açma/düzenleme butonları bağlanmıştır.
+* **Güvenli Form Alanları:** Doz araştırma formunda kullanıcıyı yanıltabilecek açılır kutular yerine doğrudan sistem tarafından takip edilen salt okunur metin alanları devreye alınmıştır.
+
+---
+
+## 🔔 25. Proaktif Klinik Bildirim Motoru, Windows 11 Stili Açılış Bildirim Çekmecesi ve Sayaçlı Rozet Sistemi (RADPYS V4.0.4.4)
+
+Bu sürümle birlikte sisteme giriş yapan kullanıcıların "Bugün ne yapmam gerekiyor?", "Kritik doz aşımı var mı?", "Süresi dolan muayene veya kalibrasyon var mı?", "Onayımı bekleyen bir talep var mı?" sorularına anında yanıt veren proaktif bir bildirim merkezi geliştirilmiştir:
+
+### 🚀 25.1 Otomatik Açılış Taraması ve Proaktif Karar Motoru
+
+* **Sisteme Girişte Anlık Tarama:** Program açıldığında arka planda kurum veritabanı taranır ve kullanıcıyı doğrudan ilgilendiren bekleyen klinik ve operasyonel görevler anında tespit edilir:
+  1. **Açık Yüksek Doz Tutanakları:** Yasal 10 iş günü süresi devam eden veya sonuçlandırılması gereken RD-F43 Doz Araştırma Tutanakları.
+  2. **Periyodik Sağlık Muayeneleri:** Yasal süresi dolmuş veya son 30 gün kalmış personelin periyodik sağlık gözetim ve muayene randevuları.
+  3. **Tıbbi Cihaz ve Donanım Uyarıları:** Periyodik bakım tarihi gelen/geçen radyoloji cihazları, aktif cihaz arıza kayıtları ve kontrol süresi dolmuş koruyucu kurşun donanımlar (RKE).
+  4. **Yönetici Onay Kuyruğu:** Yöneticilerin ve RKS'lerin onayını bekleyen izin talepleri, nöbet takas devirleri ve resmi tutanaklar.
+* **Mükerrer Bildirim Koruması:** Kullanıcıya daha önce iletilmiş ve henüz işlem görmemiş bildirimler mükerrer olarak listeye eklenmez.
+* **Lisans Uyarılarından Arındırılmış Sade Yapı:** Bildirim çekmecesi yalnızca günlük klinik ve idari aksiyonlara odaklanır; lisans hatırlatmalarıyla kullanıcı meşgul edilmez.
+
+### 🔴 25.2 Durum Çubuğunda Sayaçlı Kırmızı Rozet
+
+* **Gözden Kaçmayan Sayaç:** Ana pencerenin sağ alt durum çubuğundaki bildirim zili üzerine, okunmamış bildirim adedini gösteren yüksek kontrastlı kırmızı sayaç rozeti (`1`, `3`, `9+`) eklenmiştir.
+* **Görsel Vurgulama:** Bekleyen bildirim olduğunda bildirim butonu yumuşak kırmızı bir çerçeve ve arka planla vurgulanarak kullanıcının dikkatini çeker; tüm bildirimler temizlendiğinde veya okunduğunda standart haline döner.
+
+### 🪟 25.3 Windows 11 Stili Sağ Alttan Süzülen Bildirim Çekmecesi
+
+* **Modern Açılış Animasyonu:** Sisteme giriş yapıldığında bekleyen bildirim varsa, bildirim penceresi Windows 11 bildirim merkezi stiliyle ekranın sağ alt köşesinden yukarı doğru yumuşak bir animasyonla açılarak kullanıcıyı karşılar.
+* **Kullanıcı Kontrolünde Kapanma:** Bildirim paneli ekranda aniden kaybolan geçici zamanlayıcılarla kapanmaz; kullanıcı içeriği rahatça okuyabilir, sağ üst köşedeki kapatma butonuna (`✕`) basarak veya "Tümünü Temizle" seçeneğiyle kendi kontrolünde kapatabilir.
+
+### 🎯 25.4 Tıklamayla İlgili Modül Ekranına Doğrudan Geçiş
+
+* **Tek Tıkla Aksiyon:** Bildirim kartlarından herhangi birine tıklandığında (örneğin "Cihaz Bakım Günü Geldi" veya "Onay Bekleyen İzin"), sistem doğrudan o cihazın bakım takvimine veya onay paneline yönlendirir.
+* **Otomatik Kapanma:** İlgili modül sayfası ekrana geldiğinde bildirim çekmecesi otomatik olarak kapanır; böylece kullanıcı hiç vakit kaybetmeden doğrudan yapması gereken işleme odaklanabilir.
+
+---
+
 © 2026 Cem Kara. RADPYS V4 Kurumsal Radyasyon Personel Yönetim Sistemi. Tüm Hakları Saklıdır.
-
-

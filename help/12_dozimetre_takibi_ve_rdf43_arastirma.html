@@ -648,7 +648,7 @@
  </div>
  <h3 class="text-base font-bold text-slate-900 dark:text-white">Çalışan Beyanı ve Kullanım Koşulları</h3>
  <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
- Çalışanın şahsi beyanını resmi tutanağa bağlar. Bu bölüm, masaüstünde RKS tarafından doldurulabileceği gibi, <strong>Web Portal Bildirim ve Görev Entegrasyonu</strong> sayesinde doğrudan personelin kendi web ekranından da cevaplanabilir:
+ Çalışanın şahsi beyanını resmi tutanağa bağlar. Bu bölüm, masaüstünde RKS tarafından doldurulabileceği gibi, <strong>Web Portal Bildirim ve Görev Entegrasyonu</strong> sayesinde doğrudan personelin kendi web ekranından da cevaplanabilir. Personel beyanını tamamladığı anda RKS ve Medikal Fizik Uzmanının bildirim çekmecesine anında uyarı düşer; bildirime tıklanarak ek menü aramadan doğrudan RD-F43 formu açılabilir:
  </p>
  <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
  <li>&bull; <strong>Çalışma Rejimi:</strong> Aylık fiili çalışma süresi (gün), günlük çalışma saati, radyasyon kaynağı türü ve dozimetre takış konumu (Yaka, Kemer vb.).</li>
@@ -717,7 +717,7 @@
  <li>&bull; <strong>Yasal Değerlendirme Tipi:</strong> Teknik, Organizasyonel, Koruyucu Donanım Yetersizliği veya Ölçüm Tekrarı.</li>
  <li>&bull; <strong>DÖF (Düzeltici Önleyici Faaliyet):</strong> Gerekli görülen vakalarda kurumsal DÖF süreci başlatılarak DÖF takip numarası tescil edilir.</li>
  <li>&bull; <strong>KVKK Evrak Kasası:</strong> Islak imzalı resmi form taramaları veya sağlık raporları sisteme AES-256 şifreli olarak yüklenir ve güvenle saklanır.</li>
- <li>&bull; <strong>Resmi Dışa Aktarımlar:</strong> <strong>[Resmi RD.F43 İndir (.docx)]</strong> butonuyla NDK matbu formatında Word şablonu, <strong>[PDF Raporu İndir]</strong> butonuyla dijital arşiv çıktısı alınır.</li>
+ <li>&bull; <strong>Resmi Dışa Aktarımlar:</strong> Kurumsal <em>"Doğru İşe Tek Format"</em> standardı uyarınca <strong>[Resmi RD.F43 İndir (PDF)]</strong> butonuyla NDK ve Mevzuat standartlarında kilitli resmi tutanak dökümü alınır.</li>
  </ul>
  </div>
  </div>
@@ -786,7 +786,7 @@
  </li>
  <li class="flex items-start gap-2">
  <span class="text-cyan-500 font-bold">&check;</span>
- <span>NDK onaylı Jinja2 Word / PDF resmi tutanak dökümü alma ve DÖF başlatma.</span>
+ <span>NDK ve Mevzuat standartlarında kilitli resmi PDF RD.F43 tutanak dökümü alma ve DÖF başlatma.</span>
  </li>
  </ul>
  </div>
@@ -813,7 +813,7 @@
  </li>
  <li class="flex items-start gap-2">
  <span class="text-emerald-500 font-bold">&check;</span>
- <span><strong>İnceleme Bildirimi:</strong> Kendi ölçümünde inceleme başlatılan personelin Web Portal görev paneline otomatik bildirim düşer; personeli "Bölüm 2: Çalışan Beyanı" sorularını yanıtlamaya yönlendirir. Ayrıca $H_p(10) \ge 2.0$ mSv ve limit aşımlarında RKS ve Kurum Amiri paneline anlık kırmızı alarm iletilir.</span>
+ <span><strong>İnceleme Bildirimi & Çift Yönlü Çekmece Entegrasyonu:</strong> Kendi ölçümünde inceleme başlatılan personelin Web Portal görev paneline otomatik bildirim düşer; personeli "Bölüm 2: Çalışan Beyanı" sorularını yanıtlamaya yönlendirir. Çalışan beyanını portaldan tamamladığı anda, masaüstü uygulamasında RKS / Sağlık Fizikçisi bildirim çekmecesine doğrudan bildirim düşer; bildirime tıklandığında ilgili personelin RD-F43 formu anında açılarak inceleme süreci kesintisiz sürdürülür. Ayrıca $H_p(10) \ge 2.0$ mSv ve limit aşımlarında RKS ve Kurum Amiri paneline anlık kırmızı alarm iletilir.</span>
  </li>
  </ul>
  </div>

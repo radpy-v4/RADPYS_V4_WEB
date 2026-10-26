@@ -300,7 +300,7 @@
  <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
  <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Yeni Sevk Başlat]</td>
  <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
- <td class="py-3 px-4">1. Aşama Ön Hazırlık ve Sevk modalını açar; personel seçimi, anamnez soruları ve 12 belirti girişiyle sevk kaydı oluşturarak resmi iki sayfalık EK-1 PDF belgesini otomatik üretir.</td>
+ <td class="py-3 px-4">1. Aşama Ön Hazırlık ve Sevk modalını açar; personel seçimi, anamnez soruları ve 12 belirti girişiyle sevk kaydı oluşturur, hekim ve çalışan paneline anlık bildirim çekmecesi uyarısı iletir ve resmi iki sayfalık kilitli EK-1 PDF belgesini üretir.</td>
  <td class="py-3 px-4">Hekim / RKS / İSG Sorumlusu</td>
  <td class="py-3 px-4">Personelin periyodik muayene veya sevk süreci başlatıldığında</td>
  <td class="py-3 px-4">Liste Araç Çubuğu (Sol Üst)</td>
@@ -497,6 +497,10 @@
  <span class="text-cyan-500 font-bold">&bull;</span>
  <span><strong>Resmi Matbu Tipografi (Times New Roman):</strong> Şablon fontu resmi sağlık kurulu evrakı standardı olan Times New Roman ile hazırlanmış olup 4 sütunlu tam genişlikli kan sayımı matrisi sunar. Belge adı `EK1_Saglik_Muayene_{Ad_Soyad}_{TC}_{Tarih}.pdf` olarak standartlaşır.</span>
  </li>
+ <li class="flex items-start gap-2">
+ <span class="text-cyan-500 font-bold">&bull;</span>
+ <span><strong>Otomatik Bildirim Çekmecesi & Hızlı Sevk Kartı:</strong> Personel "Sevk Edildi / Muayenede" durumuna alındığı anda masaüstü bildirim çekmecesine ve personelin web paneline anlık bildirim kartı iletilir. Bildirime tek tıkla tıklandığında personelin sağlık kartı doğrudan açılarak EK-1 formunun basılması ve poliklinik randevu hazırlığı garanti altına alınır.</span>
+ </li>
  </ul>
  </div>
 
@@ -611,6 +615,10 @@
  </li>
  <li class="flex items-start gap-2">
  <span class="text-cyan-500 font-bold">&check;</span>
+ <span>Bildirim çekmecesinden tek tıkla sevk edilen personelin sağlık kartına doğrudan erişim.</span>
+ </li>
+ <li class="flex items-start gap-2">
+ <span class="text-cyan-500 font-bold">&check;</span>
  <span>Değişiklik ve silme işlemlerinde revizyon günlüğü ve evrensel onay kuyruğu.</span>
  </li>
  </ul>
@@ -639,6 +647,10 @@
  <li class="flex items-start gap-2">
  <span class="text-emerald-500 font-bold">&check;</span>
  <span><strong>Kişisel Sağlık Karnesi:</strong> Personelin bir sonraki kontrolüne kalan gün sayısını görmesi.</span>
+ </li>
+ <li class="flex items-start gap-2">
+ <span class="text-emerald-500 font-bold">&check;</span>
+ <span><strong>Sevk ve Muayene Bildirimleri:</strong> Muayeneye sevk edilen personele poliklinik hazırlık kartı ve EK-1 bilgilendirme uyarısı.</span>
  </li>
  </ul>
  </div>

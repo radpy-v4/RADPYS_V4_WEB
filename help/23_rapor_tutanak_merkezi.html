@@ -216,7 +216,7 @@
  23. Raporlama ve Tutanak Yönetim Merkezi
  </h1>
  <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 mt-2.5 max-w-4xl leading-relaxed">
- Çoklu koruyucu ekipman ve cihazlar için tek resmi tutanakta heyet kararı oluşturun; iki aşamalı yasal tasfiye döngüsüyle EBYS kapatması yapıp SHA-256 ile mühürleyin. Kurumsal 26 resmi mevzuat raporunu Word, Excel ve akıllı yönlendirmeli PDF formatında tek tıkla üretin.
+ Çoklu koruyucu ekipman ve cihazlar için tek resmi tutanakta heyet kararı oluşturun; iki aşamalı yasal tasfiye döngüsüyle EBYS kapatması yapıp SHA-256 ile mühürleyin. Kurumsal 26 resmi mevzuat raporunu "Doğru İşe Tek Format" standardıyla (tablolar için Excel, resmi tutanaklar için kilitli PDF, yönetmelik taslakları için Word) tek tıkla üretin.
  </p>
  </div>
 
@@ -553,39 +553,43 @@ graph TD
  <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
  <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
  <span class="w-2.5 h-6 rounded-full bg-cyan-600"></span>
- Çıktı Formatları ve Kurumsal Şablon Yönetimi
+ Çıktı Formatları ve "Doğru İşe Tek Format" Standardı
  </h2>
  <span class="text-xs font-mono text-slate-400">DOCXTPL-BRANDING</span>
  </div>
 
+ <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+ Sistem genelindeki çoklu ve mükerrer dışa aktarma karmaşasını önlemek amacıyla RADPYS V4.0.5.0 sürümüyle <strong>"Doğru İşe Tek Format"</strong> standardı hayata geçirilmiştir. Kullanıcının gereksiz dosya biçimi seçimiyle vakit kaybetmesi engellenmiş, her iş türü için en uygun ve resmi standart format belirlenmiştir:
+ </p>
+
  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
  <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
- <div class="flex items-center gap-2 font-bold text-blue-600 mb-1">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
- Antetli Word (.docx)
+ <div class="flex items-center gap-2 font-bold text-emerald-600 mb-1">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+ 1. Operasyonel Tablolar: Excel (.xlsx)
  </div>
- <p class="text-xs text-slate-600 dark:text-slate-300">
- Resmi yazışmalar ve komisyon kararları için antetli Word belgesi olarak üretilir. Üzerinde kurum içi düzenlemeler yapılabilir.
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ Cihaz Envanteri, RKE Donanım Listesi, Dozimetre Takip Dökümleri, İzin Bakiyeleri, Nöbet Çizelgeleri, FHZ Cetvelleri ve Olay Listeleri doğrudan filtrelenebilir kurumsal Excel formatında dökülür.
  </p>
  </div>
 
  <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
  <div class="flex items-center gap-2 font-bold text-rose-600 mb-1">
  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
- Resmi PDF (.pdf)
+ 2. Kanuni Tutanaklar: Kilitli PDF (.pdf)
  </div>
- <p class="text-xs text-slate-600 dark:text-slate-300">
- Sayfa yapısı ve mizanpajı kilitlenmiş, ıslak imza veya EBYS e-imza protokolüne hazır kurumsal denetim dökümüdür.
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ RD.F43 Doz Araştırma Formu, EK-1 Sağlık Muayene Belgesi, SKS Olay Bildirim Tutanağı, DIN 6857 RKE Muayene Tutanağı ve HEK Heyet Kararları değiştirilemez, antetli ve mühürlü PDF formatında üretilir.
  </p>
  </div>
 
  <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
- <div class="flex items-center gap-2 font-bold text-emerald-600 mb-1">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
- Veri Cetveli Excel (.xlsx)
+ <div class="flex items-center gap-2 font-bold text-blue-600 mb-1">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+ 3. Mevzuat Kılavuz Taslağı: Word (.docx)
  </div>
- <p class="text-xs text-slate-600 dark:text-slate-300">
- Mutemetlik, SGK bordrolama ve harici veri analitiği için açık veri tabloları ve filtrelenebilir sütunlar içerir.
+ <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+ Yalnızca NDK KLV-014 Radyasyondan Korunma Programı (RKP) gibi kurumların kendi özel maddelerini ve klinik prosedürlerini serbestçe eklemesi gereken mevzuat kılavuz taslakları Word formatında sunulmaktadır.
  </p>
  </div>
  </div>
