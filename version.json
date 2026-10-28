@@ -1,10 +1,10 @@
 {
-  "version": "4.0.5.5",
-  "release_version": "4.0.5.5",
-  "build_version": "4.0.5.5",
-  "latest_demo_version": "4.0.5.5",
-  "release_date": "2026-10-26",
+  "version": "4.0.5.6",
+  "release_version": "4.0.5.6",
+  "build_version": "4.0.5.6",
+  "latest_demo_version": "4.0.5.6",
+  "release_date": "2026-10-28",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.5.5: Nöbet Planlama Sihirbazı ve Dağıtım Motorunda 'Resmi Onaylı' İzinlerin Otomatik Entegrasyonu ve Hedef Çalışma Saati Düşüm Düzeltmesi.",
+  "changelog": "RADPYS V4.0.5.6: Nöbet Yönetimi, İzin, Onay Kuyruğu, Personel Yaşam Döngüsü, Fiili Hizmet (Şua) ve Web Portal Uçtan Uca Mimari Bütünlük ve Stabilizasyon Paketi.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }

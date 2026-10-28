@@ -3,6 +3,55 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.5.6] - 2026-10-28
+
+### 🛡️ Nöbet Yönetimi, İzin, Onay Kuyruğu, Personel Yaşam Döngüsü, Fiili Hizmet (Şua) ve Web Portal Uçtan Uca Mimari Bütünlük ve Stabilizasyon Paketi (Faz 1 – Faz 20)
+
+Bu sürüm; masaüstü çekirdeği (`nobet`, `izin`, `onay`, `personel`, `fiili_hizmet`, `dozimetre`), raporlama/içe aktarım katmanları ve Node.js/TypeScript Web Portalı arasında tespit edilen 20 fazlık mimari, işlemsel (transaction) ve mevzuat hesaplama uyumsuzluklarını uçtan uca giderir.
+
+#### ✨ Eklendi (Added)
+
+- **1. Mükerrer ve Yanlış Tabloya Yönlenmiş Nöbet Kısıtları Temizleme Göçü (`V20261028_1_fix_duplicate_and_misrouted_nobet_kisitlari.py`):**
+  - `personel_calisma_kisitlari` tablosuna sehven düşmüş günlük nöbet tercih talepleri (`mazeret`, `istek`, `bos_gun`, `nobet_tercih`) gerçek tablosu olan `nobet_mazeret_istek` tablosuna aktarıldı.
+  - Aynı personel ve kısıt tipi için aktif mükerrer `personel_calisma_kisitlari` kayıtları tekilleştirildi.
+- **2. Web Portal Nöbet Uygunluk ve Aylık Özet Senkronizasyon Motoru (`web_portal/src/routes/nobet.routes.ts`):**
+  - `checkPersonelShiftEligibility`: Web Portal üzerinden nöbet devri veya havuzdan nöbete talip olma işlemlerinde personelin hedef tarihte onaylı izni (`personel_izinler`), aktif çalışma/nöbet muafiyet kısıtı (`gebelik`, `sut_izni`, `engelli`, `doz_asimi`, `saglik_raporu`, `yas_50_ustu`) veya aynı gün başka aktif nöbeti olup olmadığını denetleyen merkezi doğrulayıcı eklendi.
+  - `refreshPersonelAylikOzet`: Web Portal üzerinde gerçekleşen devir/takas onayı ve acil mazeret iptallerinin ardından `nobet_aylik_ozet` tablosundaki `calisilan_saat` ve `fark_saat` değerlerini anında güncelleyen yardımcı fonksiyon eklendi.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed & Refined)
+
+- **1. Sendika İzni ve Kıstelyevm Hedef Saat Hesaplama Standardı (`hedef_saat_hesaplayici.py`):**
+  - Sendika izni (`sendika`) düşümü sabit değer yerine personelin o aydaki fiili iş günüyle orantılı **Kıstelyevm (`(fiili_is_gunu / 5.0) * haftalik_saat`)** formülüne bağlandı; yarım günlük arife/resmi tatil (`tatil_gun_sayisi = 0.5`) kesişimleri hassaslaştırıldı.
+- **2. Nöbet Planlama, Aylık Özet (`_refresh_aylik_ozet`), Borç/Alacak ve Yedek Atama (`nobet_service.py`, `nobet_borc_alacak_service.py`, `nobet_yedek_service.py`):**
+  - `_refresh_aylik_ozet`: Yalnızca o ay nöbeti olan personeller yerine birimdeki tüm aktif personelleri kapsayacak şekilde genişletildi; `IPTAL_MAZERET` durumundaki vardiyalar çalışılan saatten dışlandı; önceki ay devreden bakiye (`personel_nobet_borc_alacak.devreden_saat`) birleştirildi.
+  - `NobetBorcAlacakService`: Fazla mesai hesaplamasında bayram/resmi tatil mesai saatlerinin (`split_shift_holiday_hours`) toplam fazla mesaiyi aşmaması ve mükerrer sayılmaması sağlandı; yarım gün tatil katsayıları ve birim bazlı `gunluk_calisma_saati` entegre edildi.
+  - `NobetYedekService`: İkame aday puanlamasında `IPTAL_MAZERET` nöbetleri dışlandı, `check_personel_can_take_shift` ile kısıt/izin/dinlenme kontrolü zorunlu kılındı ve atama sonrası `_refresh_aylik_ozet` tetiklendi.
+- **3. Otomatik Nöbet Dağıtım Motoru ve Önizleme Sihirbazı (`nobet_scheduler.py`, `nobet_plan_onizleme_controller.py`):**
+  - `NobetScheduler`: Aynı plandaki korunan (`Gerçekleşti`) nöbetlerin ardışık gün ve dinlenme süresi kontrolünde dikkate alınması sağlandı; 3. faz dağıtımına `get_sifting_request` (`nobet_yazma`, `egitim`, `muafiyet`) kontrolü eklendi; `engelli`, `engelli_yakini`, `doz_asimi` kısıtlarının varsayılan fazla mesai tavanı `0.0` saat olarak sınırlandırıldı.
+  - `NobetPlanOnizlemeController`: Kapasite çarpanı (`capacity_factor`) hesabına `analik_izni`, `saglik_raporu` ve radyasyonlu birimde `gebelik`/`doz_asimi` muafiyetleri eklendi; birim günlük mesai saati dinamikleştirildi.
+- **4. Personel Yaşam Döngüsü, Gebelik/Süt İzni ve Yönetici Aksiyon Merkezi (`personel_service.py`, `yonetici_aksiyon_merkezi_dialog.py`):**
+  - `gebelik_bildirimi_kaydet`, `gebelik_sonlandir` ve `set_durum` (Ayrılış/Pasif): Etkilenen `'Planlı'`, `'Devir'` ve `'ATANDI_IKAME'` nöbetlerinin tamamı `'IPTAL_MAZERET'` durumuna çekildi, açık havuz ilanları (`'IPTAL'`) ve bekleyen devir talepleri (`'Reddedildi'`) kapatıldı, `_refresh_aylik_ozet` çalıştırıldı.
+  - `gebelik_toplu_aksiyon_uygula`: Tek atomik veritabanı işlemi (`with self.db.transaction() as conn:`) içine alındı; ikame personel kısıt/izin kontrolü eklendi; `YoneticiAksiyonMerkeziDialog` içindeki sentetik/hardcoded metinler temizlendi.
+- **5. Fiili Hizmet Süresi Zammı (FHZ / Şua) Hesaplama Motoru (`fiili_hizmet_service.py`, `fiili_hizmet_hesaplama_tab_controller.py`):**
+  - `hesaplama_kaynagi == "nobet"` modu `"hybrid"` modundan ayrıştırıldı; `'IPTAL_MAZERET'` nöbetleri ve onaylı izin günlerindeki vardiyalar dışlandı; günlük çalışma süresine `24.0` saat üst tavanı getirildi; izin sorgularındaki gevşek `LIKE '%Onay%'` filtresi `IN ('Onaylandı', 'Onaylı', 'Resmi Onaylı')` olarak sıkılaştırıldı; Excel dışa aktarım anahtarları düzeltildi.
+- **6. Raporlama Veri Setleri ve Toplu İçe Aktarım Motoru (`nobet_dataset.py`, `app/services/import_engine/strategies/nobet.py`):**
+  - `NobetHakedisDataset` ve `NobetFazlaMesaiDataset` sorgularına `nobet_aylik_ozet` fallback birleştirmesi eklendi; `NobetCizelgeDataset` içinde `'IPTAL_MAZERET'` kayıtları dışlandı ve `nt.baslangic_saat` fallback'i bağlandı.
+  - `NobetCizelgeImportStrategy`: `_normalize_durum` içinde `'IPTAL_MAZERET'` ve `'ATANDI_IKAME'` durumları korundu; `execute_row` sonunda `_refresh_aylik_ozet` çağrıldı.
+
+#### 🐛 Düzeltildi (Fixed)
+
+- **1. İzin Onay ve İptal Senkronizasyonu (`izin_service.py`, `approval_service.py`):**
+  - `IzinService._change_status`: Durum güncellemesi (`UPDATE personel_izinler SET onay_durumu = ?`) öncesinde çalışan `_apply_request_hak_usage_delta` çağrısı `UPDATE` sonrasına taşınarak `_sync_nobet_on_leave_status_change` ve `_refresh_aylik_ozet` metotlarının güncel onay durumunu görmesi sağlandı; izin onaylandığında çakışan açık havuz ilanlarının ve bekleyen devir taleplerinin otomatik kapatılması sağlandı.
+  - `ApprovalService`: Onay kuyruğunda `personel_calisma_kisitlari` ve `nobet_mazeret_istek` onay/red işlemleri atomik hale getirildi.
+- **2. Dozimetre Araştırma Formu Bildirim Hatası (`dozimetre_service.py`):**
+  - `upsert_arastirma_formu` içerisindeki tanımsız `kullanim_detay_payload` (`NameError`) değişken hatası `detay_payload` olarak düzeltildi.
+- **3. Web Portal Dashboard, Havuz ve Mesai Özeti Hataları (`nobet.routes.ts`, `dashboard.nobet.routes.ts`, `profile.routes.ts`, `sync.routes.ts`):**
+  - `/api/nobet/havuz/acil-mazeret` çağrısında havuz ilanının `'HAVUZDA'` kalması hatası `SET durum = 'IPTAL'` ile giderildi.
+  - `/api/nobet/aylik-mesai-ozet` uç noktasında `'Beklemede'` ve `'Ön Onaylı'` izinlerin hedef süreden düşülmesi ve `'IPTAL_MAZERET'` nöbetlerinin çalışılmış sayılması hatası düzeltildi.
+  - `/api/dashboard/birim-yuk` uç noktasında `nobet_devirler` tablosunda var olmayan `talep_eden_id` kolonunun sorgulanması nedeniyle oluşan SQL çökmesi `veren_personel_id` ile düzeltildi.
+- **4. Kurumsal Tipografi Standardizasyonu (`ui/pages/**/*.ui`, `ui/**/*.py`, `app/db/seeds.sql`):**
+  - Arayüz metinleri, sekme başlıkları ve tohum verilerinde `"ve"` bağlacı yerine kullanılan `" & "` / `"&amp;"` ifadeleri kurumsal Türkçe imla standardına (`"ve"`) dönüştürüldü.
+
 ## [4.0.5.5] - 2026-10-26
 
 ### 🗓️ Nöbet Planlama Sihirbazı & Dağıtım Motorunda 'Resmi Onaylı' İzinlerin Entegrasyonu ve Hedef Çalışma Saati Düşüm Mimarisi

@@ -4,6 +4,34 @@ Bu kılavuz, **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## 🛡️ RADPYS V4.0.5.6: Nöbet, İzin, Personel Yaşam Döngüsü, Fiili Hizmet (Şua) ve Web Portal Uçtan Uca Stabilizasyon Paketi
+
+Bu kapsamlı güncelleme ile Masaüstü Uygulaması, Raporlama Merkezi, Toplu Veri Aktarım Sihirbazı ve Web Portalı arasındaki tüm nöbet, izin, çalışma kısıtı, fazla mesai ve şua hesaplama kuralları tek bir kurumsal standartta birleştirilmiştir. Birimler arası veri senkronizasyonu güçlendirilmiş ve uçtan uca tam kararlılık sağlanmıştır.
+
+### ⚖️ 1. Hedef Çalışma Saati, Sendika İzni ve Fazla Mesai Hesaplama Doğruluğu
+
+* **Orantılı (Kıstelyevm) Sendika İzni Düşümü:** Sendika yönetim kurulu izni bulunan personelin aylık hedef çalışma saati düşümü, sabit saat yerine personelin o aydaki fiili çalışma günüyle orantılı olarak hesaplanır.
+* **Arife ve Yarım Gün Resmi Tatil Hassasiyeti:** Resmi tatil takvimindeki yarım günlük arife tatilleri hem masaüstü hem de Web Portalı aylık mesai özetlerinde tam hassasiyetle (0,5 gün) dikkate alınır.
+* **Bayram Fazla Mesaisi ve Devreden Bakiye Güvencesi:** Aylık borç/alacak ve fazla mesai icmallerinde bayram mesai saatlerinin mükerrer sayılması engellenmiş; önceki aydan devreden saat bakiyelerinin yeni ay özetiyle otomatik birleşmesi sağlanmıştır.
+
+### 🔄 2. Nöbet Değişim Havuzu, Devir ve Karşılıklı Takas Güvenliği
+
+* **Tam Kapsamlı Uygunluk Denetimi:** Gerek masaüstünde gerekse Web Portalında bir nöbeti devralmak veya havuzdaki ilana talip olmak isteyen personelin; ilgili tarihte onaylı izni, aktif çalışma/nöbet muafiyeti (gebelik, süt izni, doz aşımı, sağlık raporu, engellilik) veya aynı gün başka bir nöbeti varsa sistem işlemi otomatik olarak engeller ve kullanıcıyı bilgilendirir.
+* **Acil Mazeret ve İzin Onayında Otomatik Havuz Temizliği:** Bir nöbet için acil mazeret bildirildiğinde veya personelin o tarihteki izni onaylandığında, ilgili nöbete ait açık değişim havuzu ilanları ve bekleyen devir talepleri otomatik olarak kapatılır; iptal edilmiş nöbetlerin vitrinde kalması önlenir.
+* **Gerçek Hedef Saat Barajı:** Tek yönlü (karşılıksız) nöbet devirlerinde sabit saat sınırı yerine personelin o aya ait gerçek zorunlu hedef çalışma saati esas alınır; asli mesai saatlerinin karşılıksız devredilmesi engellenir.
+
+### 🤰 3. Gebelik, Süt İzni ve Personel Ayrılış Süreçlerinde Otomatik Nöbet Yönetimi
+
+* **Gebelik ve Süt İzni Bildirimi:** Gebelik bildirimi yapıldığında personelin ileri tarihli planlı ve devralınmış tüm nöbetleri otomatik olarak mazeretli iptal statüsüne çekilir. Gebelik sonlanıp süt izni dönemine geçildiğinde ise günlük 1,5 saatlik süt izni düşümü otomatik tanımlanır ve radyasyonsuz birimlerde gündüz vardiyaları korunurken yalnızca gece nöbetleri iptal edilir.
+* **Yönetici Aksiyon Merkezi ile Güvenli İkame Atama:** Gebelik veya işten ayrılış nedeniyle boşa çıkan nöbetlere Yönetici Aksiyon Merkezi üzerinden yedek personel atanırken, seçilen yedek personelin izin ve kısıt durumu anında denetlenir ve tüm atamalar tek seferde güvenle kaydedilir.
+
+### ☢️ 4. Fiili Hizmet Süresi Zammı (FHZ / Şua) ve Raporlama İyileştirmeleri
+
+* **Mazeretli İptal ve İzin Koruması:** Fiili hizmet süresi zammı hesaplamalarında mazeret nedeniyle iptal edilen nöbetler ile onaylı izin günlerine denk gelen vardiyalar hesaplama dışı bırakılır; günlük fiili çalışma süresi 24 saat tavanıyla sınırlandırılır.
+* **Rapor Merkezi ve Excel İçe Aktarım Senkronizasyonu:** Excel üzerinden toplu nöbet çizelgesi aktarıldığında aylık çalışma saati özetleri anında otomatik olarak hesaplanır; Rapor Merkezi'ndeki Nöbet Hakediş, Fazla Mesai ve Çizelge dökümleriyle Web Portalı Nöbet Panosu aynı güncel verileri sunar.
+
+---
+
 ## 🗓️ RADPYS V4.0.5.5: Nöbet Planlamada İzinlerin Otomatik Entegrasyonu ve Çalışma Saati Dengelemesi
 
 Bu kritik güncelleme ile Nöbet Planlama ve Dağıtım modülünde personelin onaylanmış tüm yasal izinleri (şua izinleri, yıllık izinler, mazeret ve raporlar) doğrudan Nöbet Planlama Sihirbazı'na entegre edilmiştir. İzinli personelin çalışma saati hesabında hak kaybı yaşanması önlenmiş, izin günleri hedef çalışma süresinden otomatik olarak düşülmüş ve akıllı dağıtım motorunun izinli personele nöbet yazması kesin olarak engellenmiştir.
