@@ -68,7 +68,7 @@
               "name": "Kapasite veya personel sayısı aşılırsa ne olur?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Başlangıç paketinde temel kullanım sınırı vardır. Pro ve Elit paketlerimizde personel ve birim ölçeği için genişletilmiş kullanım sağlanır; büyük kurumsal ekiplerde özel lisanslama yapılır."
+                "text": "Başlangıç, Pro ve Elit paketlerimizin tamamında personel tanımlama ve nöbet planlama kapasitesi sınırsızdır. Paketler arasındaki fark yalnızca aktif olan kurumsal modül kapsamıdır."
               }
             },
             {
@@ -223,8 +223,8 @@
                 id: "starter",
                 code: "STARTER / BASIC",
                 name: "Başlangıç Paketi",
-                capacity: "Maks. 5 Personel",
-                desc: "Nöbet ve personel çözümü: küçük klinikler ve tek üniteli görüntüleme merkezleri için optimize edildi.",
+                capacity: "Sınırsız Personel / Nöbet & İzin",
+                desc: "Nöbet ve personel çözümü: klinikler, görüntüleme merkezleri ve hastaneler için sınırsız personel kapasiteli temel paket.",
                 shopierUrl: "https://www.shopier.com/RADPYS/49366089",
                 badge: null,
                 features: [
@@ -248,10 +248,10 @@
                 highlight: false,
                 isElite: false,
                 prices: {
-                    1: { total: "1.500 ₺", monthly: "1.500 ₺", note: null },
-                    3: { total: "4.050 ₺", monthly: "1.350 ₺", note: "Aylık 1.350 ₺ (%10 İndirim)" },
-                    6: { total: "7.200 ₺", monthly: "1.200 ₺", note: "Aylık 1.200 ₺ (%20 İndirim)" },
-                    12: { total: "12.600 ₺", monthly: "1.050 ₺", note: "Aylık 1.050 ₺ (%30 İndirim)" }
+                    1: { total: "2.000 ₺", monthly: "2.000 ₺", note: null },
+                    3: { total: "5.400 ₺", monthly: "1.800 ₺", note: "3 aylık peşin toplam 5.400 ₺ (%10 İndirim)" },
+                    6: { total: "9.600 ₺", monthly: "1.600 ₺", note: "6 aylık peşin toplam 9.600 ₺ (%20 İndirim)" },
+                    12: { total: "16.800 ₺", monthly: "1.400 ₺", note: "12 aylık peşin toplam 16.800 ₺ (%30 İndirim)" }
                 }
             },
             {
@@ -260,7 +260,7 @@
                 name: "Pro Paket",
                 capacity: "Sınırsız Personel / Kurumsal Ölçek",
                 desc: "Radyasyon güvenliği ve sağlık takibi modülleri ile genişletilmiş çözüm: Pro paket, Başlangıç'ın tüm özelliklerini içerir ve ek radyasyon güvenliği fonksiyonları sunar.",
-                shopierUrl: "https://www.shopier.com/RADPYS/49366367",
+                shopierUrl: "https://www.shopier.com/RADPYS/49366367", isPro: true,
                 badge: null,
                 features: [
                     "Başlangıç Paketinin Tümü",
@@ -281,10 +281,10 @@
                 highlight: false,
                 isElite: false,
                 prices: {
-                    1: { total: "7.000 ₺", monthly: "7.000 ₺", note: null },
-                    3: { total: "18.900 ₺", monthly: "6.300 ₺", note: "Aylık 6.300 ₺ (%10 İndirim)" },
-                    6: { total: "33.600 ₺", monthly: "5.600 ₺", note: "Aylık 5.600 ₺ (%20 İndirim)" },
-                    12: { total: "58.800 ₺", monthly: "4.900 ₺", note: "Aylık 4.900 ₺ (%30 İndirim)" }
+                    1: { total: "4.000 ₺", monthly: "4.000 ₺", note: null },
+                    3: { total: "10.800 ₺", monthly: "3.600 ₺", note: "3 aylık peşin toplam 10.800 ₺ (%10 İndirim)" },
+                    6: { total: "19.200 ₺", monthly: "3.200 ₺", note: "6 aylık peşin toplam 19.200 ₺ (%20 İndirim)" },
+                    12: { total: "33.600 ₺", monthly: "2.800 ₺", note: "12 aylık peşin toplam 33.600 ₺ (%30 İndirim)" }
                 }
             },
             {
@@ -294,7 +294,7 @@
                 capacity: "Sınırsız Kapasite + Tüm Modüller",
                 desc: "Tam entegre kurumsal çözüm: Pro paketinin tümü + kurumsal envanter, bakım, QC, LMS ve interaktif ortam dozu krokisi gibi gelişmiş modüller.",
                 shopierUrl: "iletisim.html",
-                badge: "En Kapsamlı (v4.0.3.26)",
+                badge: "En Kapsamlı (v4.0.5.5)",
                 features: [
                     "Sınırsız Personel, Cihaz ve Birim Kapasitesi",
                     "NDK RSGD-KLV-014 RKP Belge Motoru & 8 Adımlı Başvuru Sihirbazı",
@@ -327,7 +327,7 @@
                 }
             });
 
-            const periodLabel = currentPeriod === 1 ? "aylık" : `${currentPeriod} aylık toplam`;
+            const periodLabel = "ay";
 
             document.getElementById("tiers").innerHTML = TIERS_DATA.map(t => {
                 let borderStyle = "border-white/10 bg-white/[0.02]";
@@ -336,7 +336,7 @@
                 if (t.isElite) {
                     borderStyle = "border-cyan-400/60 bg-gradient-to-b from-cyan-950/40 via-slate-900/80 to-slate-950/90";
                     containerStyle = "box-shadow: 0 0 60px -10px rgba(34, 211, 238, 0.25);";
-                } else if (t.highlight) {
+                } else if (t.highlight || t.isPro) {
                     borderStyle = "border-neon-teal/50 bg-slate-900/60";
                     containerStyle = "background:linear-gradient(180deg, rgba(20,184,166,0.1), rgba(15,23,42,0.6)); box-shadow:0 0 50px -15px rgba(20,184,166,0.3);";
                 }
@@ -351,7 +351,7 @@
                     `;
                 } else {
                     const pInfo = t.prices[currentPeriod];
-                    const formattedTotal = pInfo.total.replace(" ₺", "&nbsp;₺");
+                    const formattedTotal = pInfo.monthly.replace(" ₺", "&nbsp;₺");
                     priceSection = `
                     <div class="flex items-baseline flex-wrap gap-x-2 gap-y-1">
                       <span class="font-display text-2xl sm:text-3xl lg:text-3xl xl:text-3xl tracking-tight whitespace-nowrap">${formattedTotal}</span>
@@ -373,7 +373,7 @@
         <div>
           <div class="flex items-center justify-between gap-2">
             <h3 class="font-display text-xl sm:text-2xl ${t.isElite ? 'text-cyan-300 font-bold' : ''}">${t.name}</h3>
-            ${t.badge ? `<span class="px-2.5 py-1 rounded-full text-[9px] font-mono uppercase tracking-[0.18em] font-bold ${t.isElite ? 'bg-cyan-400 text-slate-950' : 'bg-teal-500 text-slate-950'}">${t.badge}</span>` : ''}
+            ${(t.badge || (t.isPro ? "En Çok Tercih Edilen" : null)) ? `<span class="px-2.5 py-1 rounded-full text-[9px] font-mono uppercase tracking-[0.18em] font-bold ${t.isElite ? 'bg-cyan-400 text-slate-950' : 'bg-teal-500 text-slate-950'}">${t.badge || "En Çok Tercih Edilen"}</span>` : ''}
           </div>
           <div class="mt-2 inline-block px-2.5 py-1 rounded-md text-xs font-mono font-semibold bg-white/5 border border-white/10 ${t.isElite ? 'text-cyan-300 border-cyan-500/30' : 'text-teal-300'}">
             ${t.capacity}
@@ -402,7 +402,7 @@
 
         const FAQ = [
             { q: "Elit Paket ile diğer paketler arasındaki temel farklar nelerdir?", a: "Elit Paket; tüm kurumsal modülleri, RKE ve DIN 6857-1 karar motorunu, ortam dozu krokisini, cihaz envanterini, bakım-QC-HEK akışını ve LMS eğitimi içerir. Başlangıç ve Pro paketleri daha odaklı modül setleriyle gelir." },
-            { q: "Kapasite veya personel sayısı aşılırsa ne olur?", a: "Başlangıç paketinde temel kullanım sınırı vardır. Pro ve Elit paketlerimizde personel ve birim ölçeği için genişletilmiş kullanım sağlanır; büyük kurumsal ekiplerde özel lisanslama yapılır." },
+            { q: "Kapasite veya personel sayısı aşılırsa ne olur?", a: "Başlangıç, Pro ve Elit paketlerimizin tamamında personel tanımlama ve nöbet planlama kapasitesi sınırsızdır. Paketler arasındaki fark yalnızca aktif olan kurumsal modül kapsamıdır." },
             { q: "NDK, TENMAK ve SKS 6.1 mevzuat güncellemeleri ücrete tabi midir?", a: "Hayır. Tüm paketlerimizde mevzuat güncellemeleri lisans süresi boyunca dahildir." },
             { q: "Ödeme periyotları nasıl çalışır?", a: "1, 3, 6 veya 12 aylık periyotlarla peşin ödeme seçeneği mevcuttur. Daha uzun süreli periyotlarda aylık maliyet düşer." },
             { q: "Verilerimiz nerede saklanıyor ve KVKK güvenliği nasıl sağlanıyor?", a: "RADPYS V4 verileriniz kurumunuzun kendi bünyesinde yerel sunucu veya bilgisayarlarda AES-256 ve SQLCipher ile şifrelenerek saklanır. PostgreSQL kurumsal altyapısı ile güvenli yedekleme ve KVKK uyumluluğu sağlanır." },

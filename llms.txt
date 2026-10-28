@@ -33,10 +33,9 @@ RADPYS V4, radyasyon alanında görev yapan personelin (Radyoloji Teknisyenleri/
 22. **Mobil Web Portalı & Dashboardlar:** PWA destekli, mobil ve tablet uyumlu personel kokpiti ([Rehber](https://radpys.com.tr/help/22_web_portal_ve_dashboardlar.html)).
 
 ## Paketler & Fiyatlandırma
-- **Başlangıç Paketi:** Maks. 5 Personel (Temel nöbet ve personel modülleri)
-- **Standart Paket:** Maks. 15 Personel (Dozimetre takibi ve şua izni dahil)
-- **Pro Paket:** Sınırsız Personel (Tüm temel, idari ve mevzuat takip modülleri)
-- **Elit Paket (V4 Elite):** Sınırsız Personel & Cihaz (RKE DIN 6857-1, İnteraktif Kroki, QR Arıza, Eğitim LMS, PostgreSQL ve VIP Destek)
+- **Başlangıç Paketi (STARTER):** Sınırsız Personel (Nöbet Solver, Nöbet Devir/İkame, Borç/Alacak, Personel Yönetimi, Şua/Yıllık İzin ve Evrensel Onay modülleri)
+- **Pro Paket (PRO):** Sınırsız Personel (Başlangıç Paketi + Kişisel Dozimetre & RDF-43, Periyodik Sağlık Muayeneleri, Fiili Hizmet Zammı FHZ, RGS/RSO Görevlendirme, Olay Bildirimi & DÖF)
+- **Elit Paket (ELITE):** Sınırsız Personel & Cihaz (Pro Paketi + Tıbbi Cihaz & NDK Envanteri, Cihaz Arıza/Bakım/QC/HEK, RKE DIN 6857-1 Skopi Muayene, İnteraktif Ortam Dozu Krokisi, Hizmet İçi Eğitim LMS, NDK RKP Sihirbazı ve VIP Destek)
 
 ## Bağlantılar & Kaynaklar
 - [Ana Sayfa](https://radpys.com.tr/)
