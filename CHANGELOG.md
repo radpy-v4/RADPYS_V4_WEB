@@ -3,6 +3,53 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.5.7] - 2026-10-30
+
+### 🎯 23 Modül ve Ortak Altyapı Seçici (ComboBox), SQL Sorgu, Rozet (`RADPYSStatusDelegate`) ve Katman Sınırı Standardizasyon Paketi (Faz 1 – Faz 4)
+
+Bu sürüm; 23 modül ve ortak altyapı genelinde yürütülen sistematik denetim (`docs/architecture/radpys_combo_sql_rozet_analiz_raporu.md`) sonucunda tespit edilen 42 bulguyu (`M03-01` .. `M22-02`) ve lisans imza doğrulama önbelleklemesini uçtan uca giderir.
+
+#### ✨ Eklendi (Added)
+
+- **1. Onay ve Tutanak Servis Katmanı Sorgu Metotları (`approval_service.py`, `tutanak_service.py`):**
+  - `ApprovalService`: `get_department_approval_config`, `list_approvable_departments_for_personel`, `get_leave_request_summary`, `get_nobet_plan_summary`, `get_overtime_approval_details`, `list_fhz_period_calculation_rows` ve `get_active_staff_leave_counts_by_dept` metotları eklenerek `OnayBekleyenGorevlerController` içerisindeki doğrudan SQL çağrıları servis katmanına taşındı (`M21-02`).
+  - `TutanakService`: `list_active_cihazlar_for_wizard`, `list_active_rke_for_wizard`, `save_generated_tutanak_bundle` ve `mark_tutanak_signed_with_document` metotları eklenerek `TutanakSihirbaziDialog` içerisindeki doğrudan SQL ve transaction işlemleri servis katmanına alındı (`M21-02`).
+- **2. Lisans Doğrulama Bellek İçi Önbelleği (`license_service.py`):**
+  - `LicenseService.parse_and_verify_key`: `(key, machine_id)` bazlı `_verification_cache` ve tekil uyarı kümesi (`_warned_invalid_keys`) eklenerek başlangıçta 12 kez tekrarlanan Ed25519 kriptografik doğrulama maliyeti ve boş `InvalidSignature` uyarı logları önlendi.
+- **3. Yayın Öncesi Sıfır Controller SQL Mimarisi İçin Yeni Servis ve Repository Metotları (`user_repository.py`, `user_service.py`, `permission_service.py`, `dozimetre_service.py`, `fiili_hizmet_service.py`, `saglik_muayene_service.py`, `rapor_tanim_service.py`, `report_engine.py`):**
+  - `UserRepository` & `UserService`: `find_by_username_or_email_for_sudo`, `get_user_department_assignments`, `replace_user_department_assignments`, `list_active_unlinked_personel_for_user`, `verify_sudo_credentials` ve `PermissionService.can_user_bypass_department_filter` metotları eklendi (`sudo_dialog_controller.py`, `user_departments_dialog.py`, `users_controller.py` içerisindeki ham SQL sorguları kaldırıldı).
+  - `DozimetreService`: `get_aksiyon_detail_with_personel`, `get_kurum_for_rapor_preview`, `complete_aksiyon_with_dof_sync`, `list_active_personel_id_ad_map`, `find_olcum_id_by_natural_key` ve `find_active_personel_by_tc_or_name` metotları eklendi (`aksiyon_detay_dialog.py`, `aksiyon_kapat_dialog.py`, `dozimetre_aksiyonlar_tab.py`, `dozimetre_olcum_dialog.py`, `dozimetre_handler.py` içerisindeki ham SQL sorguları kaldırıldı).
+  - `FiiliHizmetService.get_personel_radyasyon_durumu` ve `SaglikMuayeneService.get_form_init_lookups` metotları eklenerek `izin_hakedis_controller.py` ve `saglik_muayene_add_controller.py` içerisindeki doğrudan `db` erişimleri sonlandırıldı.
+  - `RaporTanimRepository`, `RaporTanimService` (`get_brand_settings`, `save_brand_settings`, `get_kurum_logo_data`, `list_active_kurumlar_short`) ve `ReportEngine` (`get_first_active_kurum_name`, `list_active_personel_choices`, `list_active_departman_choices`, `list_active_cihaz_choices`, `list_rapor_tanimlari_full`) genişletilerek `_ux_helpers.py`, `rapor_merkezi_controller.py` ve `rapor_tasarim_dialog.py` içerisindeki tüm ham SQL sorguları temizlendi (`ui/controllers/` altında `0` ham SQL).
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed & Refined)
+
+- **1. Merkezi `RADPYSStatusDelegate` Mimari Sadeleştirmesi ve Kanonik Durum Genişletmesi (`ui/widgets/status_delegate.py`):**
+  - `CANONICAL_DISPLAY_MAP`: `_normalize_ascii` dönüşümü sayesinde gereksiz hale gelen ~70 alt çizgili ve Türkçe karakterli mükerrer anahtar temizlendi; `get_display_text` metodu `O(1)` doğrudan sözlük aramasına indirgendi.
+  - Tatil türleri (`"RESMİ TATİL"`, `"DİNİ TATİL"`, `"İDARİ İZİN"`), fazla mesai/izin/nöbet iş akışı (`"SONRAKİ AYA AKTARILDI"`, `"SONRAKİ AYDAN DÜŞÜLDÜ"`, `"MESAİ BORCUNA AKTARILDI"`, `"RESMİ ONAY BEKLİYOR"`, `"ALAN ONAYI BEKLİYOR"`, `"MAZERET İPTALİ"`, `"İKAME ATANDI"`), dozimetre (`"İZLE"`) ve tutanak (`"İMZA BEKLİYOR"`, `"İMZALANDI / ARŞİVLENDİ"`, `"İPTAL EDİLDİ"`) kanonik rozet tanımları eklendi (`M03-02`, `M05-03`, `M06-02`, `M08-01`, `M09-01`, `M12-01`).
+  - `paint` ve `sizeHint` metotlarında `"—"`, `"–"`, `"Yok"` yer tutucuları ile `GG.AA.YYYY` formatındaki saf tarih hücreleri rozet çiziminden muaf tutuldu (`M18-03`, `M20-04`).
+  - İçi boş sarmalayıcı sınıflar (`_status_delegate.py`, `_cihaz_badge_delegate.py`, `_cihaz_status_subtext_delegate.py`) temizlendi (`M05-02`, `M18-04`).
+- **2. Tablo Rozet Entegrasyonu, QSS Standardizasyonu ve Emoji Arındırması (`ui/controllers/**`, `resources/*.qss.template`):**
+  - Modül 07 (`personnelRequestsTable`), Modül 13 (`gecmisTable`), Modül 15 (`tableDoflar`), Modül 16 (`tableGorevlendirmeler`), Modül 19 (`tblGecmis`), Modül 20 (`tableMuayeneler`) ve Modül 21 (`OnayBekleyenGorevlerController` 7 tablo ve `tblTutanaklar`) durum sütunlarına `RADPYSStatusDelegate` bağlandı (`M07-02`, `M13-02`, `M15-03`, `M16-01`, `M19-03`, `M20-04`, `M21-01`).
+  - `nobet_havuz_service.py` ve `rke_service.py` içerisindeki ham emoji karakterleri temizlendi (`M08-02`, `M20-02`); controller'lardaki inline `setStyleSheet` kullanımları merkezi QSS şablonlarına (`styles.qss.template`, `dark_theme.qss.template`) taşındı (`M07-01`, `M11-02`, `M12-03`, `M14-02`, `M16-02`, `M17-02`, `M22-02`).
+
+#### 🐛 Düzeltildi (Fixed)
+
+- **1. İzin Hakediş Toplu İçe Aktarım SQL ve Değişken Hatası (`app/services/import_engine/strategies/izin.py`):**
+  - `IzinHakedisImportStrategy.execute_row` içindeki tanımsız `row.conflict_ref` (`NameError`) ve `izin_haklari` güncelleme sorgusundaki `dondurulmuş_gun` kolon yazım hatası `dondurulmus_gun` olarak düzeltildi (`M22-01`).
+- **2. RKE Envanter ve Muayene `system_lookups` JOIN Uyumsuzluğu (`app/services/rke/rke_service.py`):**
+  - `get_rke_tipleri()` `system_lookups` tablosundan ID döndürürken envanter ve muayene sorgularının yalnızca eski `lookup_rke_tipleri` tablosuna `LEFT JOIN` yapması nedeniyle oluşan boş ekipman tipi sorunu `LEFT JOIN system_lookups sl ON e.tip_id = sl.id` ve `COALESCE(sl.tanim_adi, t.tanim_adi)` ile giderildi (`M20-01`).
+- **3. Cihaz Düzenleme Durum Ezilmesi ve Lisanssız Cihaz Kayıt Kaybı (`cihaz_ekle_duzenle_controller.py`, `cihaz_service.py`, `cihaz_repository.py`):**
+  - Cihaz düzenleme kaydında mevcut cihaz durumunun (`"Arızalı"`, `"Bakımda"`, `"Kalibrasyonda"`) korunmayıp `"Aktif"` olarak ezilmesi hatası ve `lisans_no` boş olduğunda `"Lisans Gerekli Değil"` / `"Lisanssız"` / `"Eksik Husus"` lisans durumlarının kaydedilememesi sorunu giderildi (`M18-01`, `M18-02`).
+- **4. Olay İnceleme NDK Takip Kartı, Ortam Dozu Kroki Pin Etiketi ve Tutanak Filtresi (`olay_inceleme_dialog.py`, `ortam_dozu_controller.py`, `tutanak_service.py`):**
+  - `OlayIncelemeDialog._load_data` içerisindeki `ndk_takip_durumu` (`"bekliyor"`, `"gecikti"`, `"yapildi"`) ve `kalan_saat`/`son_bildirim_zamani` anahtarları servis çıktısıyla eşitlendi (`M15-02`).
+  - `KrokiPinItem` üzerinde `"Limit Aşımı"` ve `"Uyarı"` durum soneklerinin ters atanması hatası düzeltildi (`M14-01`).
+  - Tutanak Yönetimi `cmbModul` filtresi ile Tutanak Sihirbazı kayıt kodları (`FHZ`/`FIILI_HIZMET`, `KALITE`/`ORTAM`/`OLAY`) senkronize edildi (`M21-03`).
+- **5. PySide6 Sinyal-Slot Argüman Çakışmaları, Mükerrer Metot Temizliği ve Daraltılmış Sol Menü (`Flyout`) Navigasyon Onarımı (`app_controller.py`, `role_permissions_controller.py`, `rgs_gorevlendirme_controller.py`):**
+  - `AppController._show_sidebar_flyout_menu`: Daraltılmış sol menüde var olmayan metot adlarını (`open_fhz_puantaj_page`, `open_dozimetre_list_page`, `open_ortam_dozu_list_page`, `open_nobet_birim_ayar_page`) aradığı için açılmayan 4 alt menü öğesi gerçek metot adlarına (`open_fiili_hizmet_list_page`, `open_dozimetre_takip_page`, `open_ortam_dozu_page`, `open_nobet_ayarlar_page`) bağlandı.
+  - `QPushButton.clicked(bool)` ve `QAction.triggered(bool)` sinyallerinden gelen `False` değerinin opsiyonel hedef sekme/filtre/ID parametrelerini ezmesini önlemek üzere `AppController` üzerindeki 11 `open_*_page` metoduna, `RolePermissionsController.refresh_roles` metoduna ve `RgsGorevlendirmeController._load_data` metoduna `isinstance(..., bool)` koruması eklendi.
+  - `approval_service.py`, `lookup_service.py`, `tutanak_service.py`, `izin_hakedis_controller.py`, `nobet_plan_list_controller.py`, `olay_bildirim_controller.py` ve `personel_list_controller.py` içerisinde birbirini ezen 14 mükerrer metot tanımı tekilleştirildi (`14 -> 0`) ve 1.166 testlik tam regresyon paketi (`1.165 PASSED, 0 FAILED, 1 SKIPPED`) ile `scripts/policy_checks.py` (`10/10 PASS`) eksiksiz doğrulandı.
+
 ## [4.0.5.6] - 2026-10-28
 
 ### 🛡️ Nöbet Yönetimi, İzin, Onay Kuyruğu, Personel Yaşam Döngüsü, Fiili Hizmet (Şua) ve Web Portal Uçtan Uca Mimari Bütünlük ve Stabilizasyon Paketi (Faz 1 – Faz 20)

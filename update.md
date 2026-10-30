@@ -4,6 +4,36 @@ Bu kılavuz, **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## 🎯 RADPYS V4.0.5.7: Tüm Modüllerde Durum Rozetleri, Filtre Tutarlılığı, Cihaz Lisanslama ve RKE/NDK Veri Bütünlüğü Paketi
+
+Bu güncelleme ile 23 modülün tamamında yer alan açılır seçim kutuları, durum filtreleri, kurumsal durum rozetleri ve arka plan veri doğrulama kuralları tek bir standartta birleştirilmiştir. Cihaz Yönetimi, Koruyucu Ekipman (RKE), Dozimetre, Olay Bildirimi (NDK), İzin ve Merkezi Onay ekranlarında operasyonel doğruluğu artıran kritik iyileştirmeler devreye alınmıştır.
+
+### 🏥 1. Tıbbi Cihaz Envanteri, NDK Lisans Takibi ve Arıza/Kalite Kontrol İyileştirmeleri
+
+* **Lisans Numarası Olmayan Cihazların Durum Kaydı:** "Lisans Gerekli Değil (Ultrason/MR vb.)", "Lisanssız", "Eksik Husus" veya "Kullanım Dışı (Depo)" statüsündeki cihazların lisans durumu, geçerlilik bilgileri ve Radyasyon Korunma Sorumlusu (RKS) atamaları lisans belge numarası girilmese dahi eksiksiz olarak kaydedilir ve düzenleme ekranında korunur.
+* **Cihaz Düzenlemede Aktif Durum Koruması:** "Arızalı", "Bakımda" veya "Kalibrasyonda" olan bir cihazın kartında bilgi güncellemesi yapıldığında cihazın mevcut operasyonel durumu korunur; otomatik olarak "Aktif" statüsüne dönmesi engellenir.
+* **Gerçek Zamanlı Bekleyen Arıza Göstergesi:** Cihaz Yönetimi özet kartlarındaki bekleyen arıza sayacına "Açık", "Parça Bekleniyor" ve "Servis Bekleniyor" kayıtlarının yanı sıra "İnceleniyor" ve "Test Aşamasında" olan arızalar da dahil edilmiştir.
+
+### 🛡️ 2. Kişisel Koruyucu Ekipman (RKE) ve Ortam Dozu Krokisi Doğruluğu
+
+* **Merkezi Ekipman Tipi Eşleşmesi:** RKE Envanter ve Fiziksel/Skopi Muayene listelerinde yeni tanımlanan tüm koruyucu ekipman tiplerinin eksiksiz görüntülenmesi sağlanmıştır.
+* **Ortam Dozu Kroki Pin Etiketleri:** Mimari kroki üzerindeki ölçüm noktalarında "Limit Aşımı" ve "Uyarı" durum açıklamalarının doğru eşleşmeyle gösterilmesi güvence altına alınmıştır.
+
+### ☢️ 3. Dozimetre Takibi, NDK Olay Bildirimi ve Hizmet İçi Eğitim Filtreleri
+
+* **NDK 24 Saatlik Acil Bildirim Kartı:** Radyasyon olay inceleme penceresinde NDK bildirimi gerektiren vakalar için kalan yasal süre (saat), gecikme uyarısı ve "NDK Bildirimi Yapıldı İşaretle" aksiyon butonu gerçek zamanlı olarak aktifleşir.
+* **Dozimetre "İzle" Seviyesi ve Araştırma Formu Bildirimleri:** Dozimetre takip ekranındaki durum filtresine "İzle" kademesi eklenmiş; kapatılmış doz araştırma formları için mükerrer hatırlatma bildirimi üretilmesi önlenmiştir.
+* **Hizmet İçi Eğitim "Süresiz Geçerli" Filtresi:** Eğitim takip ekranında "Aktif" filtresi seçildiğinde süresiz geçerli sertifikaların da listede yer alması sağlanmış, ayrıca doğrudan "Süresiz Geçerli" durumuna göre filtreleme seçeneği eklenmiştir.
+
+### ✨ 4. Kurumsal Durum Rozetleri, Tutanak Merkezi ve İzin Yönetimi
+
+* **Tüm Tablolarda Standart Renkli Durum Rozetleri:** Merkezi Onay Bekleyen Görevler Paneli, Tutanak Yönetimi, Sağlık Muayene Geçmişi, DÖF Takip Listesi, RGS Görevlendirme Listesi ve Cihaz HEK Geçmişi tablolarındaki durum sütunları kurumsal renk ve ikonlu rozet standardına kavuşturulmuştur.
+* **Bekleyen Onay Rozetlerinde Görsel Netlik:** "Resmi Onay Bekliyor", "Alan Onayı Bekliyor", "Birim Sorumlusu Onayı Bekliyor" ve "Yönetici Onayı Bekliyor" aşamasındaki kayıtların tamamı tamamlanmış yeşil rozet yerine kehribar (bekleyen/saat) rozetiyle net biçimde ayrıştırılmıştır.
+* **İzin Taleplerinde Aktif Personel Koruması ve Tutanak Filtreleme:** İzin oluşturma ekranında yalnızca aktif veya geçici görevlendirmedeki personellerin seçilebilmesi sağlanmış; Tutanak Yönetimi ekranındaki modül filtrelerinin ("Fiili Hizmet (Şua)", "Kalite / Ortam / Olay") ilgili tüm tutanakları eksiksiz listelemesi sağlanmıştır.
+* **Daraltılmış Sol Menü (İkon Modu) ve Hızlı Sayfa Geçişleri:** Sol gezinme menüsü daraltılmış (ikon) moddayken açılan hızlı erişim pencerelerinden Fiili Hizmet (Şua) Puantajı, Dozimetre Takibi, Ortam Dozu Ölçümleri ve Nöbet Birim Ayarları ekranlarına tek tıkla kesintisiz geçiş sağlanmıştır. Uygulama açılışındaki lisans doğrulama hızı iyileştirilmiş ve tüm modüller arası sayfa yönlendirmeleri stabilize edilmiştir.
+
+---
+
 ## 🛡️ RADPYS V4.0.5.6: Nöbet, İzin, Personel Yaşam Döngüsü, Fiili Hizmet (Şua) ve Web Portal Uçtan Uca Stabilizasyon Paketi
 
 Bu kapsamlı güncelleme ile Masaüstü Uygulaması, Raporlama Merkezi, Toplu Veri Aktarım Sihirbazı ve Web Portalı arasındaki tüm nöbet, izin, çalışma kısıtı, fazla mesai ve şua hesaplama kuralları tek bir kurumsal standartta birleştirilmiştir. Birimler arası veri senkronizasyonu güçlendirilmiş ve uçtan uca tam kararlılık sağlanmıştır.
