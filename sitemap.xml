@@ -226,7 +226,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radpys.com.tr/help/21_merkezi_onaylar_ve_rapor_merkezi.html</loc>
+    <loc>https://radpys.com.tr/help/21_merkezi_onaylar.html</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -236,5 +236,23 @@
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radpys.com.tr/help/23_rapor_tutanak_merkezi.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radpys.com.tr/help/23_sistem_ozellikleri_ve_entegrasyonlar.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radpys.com.tr/help/24_sss_ve_sorun_giderme.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

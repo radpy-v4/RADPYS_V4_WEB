@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description"
+    <meta name="description"
         content="RADPYS V4 — Radyoloji ve radyasyon güvenliği yönetim sistemi: Nöbet planlama yazılımı, dozimetre takibi, Şua izni, SKS 6.1 DÖF, RKE DIN 6857-1 tek platformda." />
     <meta name="author" content="RADPYS Yazılım" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -58,7 +58,7 @@
           "name": "RADPYS V4",
           "operatingSystem": "Windows 10, Windows 11, Windows Server, Web PWA",
           "applicationCategory": "HealthApplication",
-          "softwareVersion": "4.2",
+          "softwareVersion": "4.0.5.7",
           "description": "Nöbet planlamasından Şua izinlerine, dozimetre takibinden NDK ve SKS 6.1 Olay/DÖF bildirimlerine, RKE DIN 6857-1 Skopi muayenelerinden İnteraktif Ortam Dozu krokilerine ve Mobil QR Arıza Portalı'na kadar tüm radyoloji ve sağlık fiziği süreçlerini PostgreSQL ve AES-256 şifreli KVKK kasasıyla yönetin.",
           "url": "https://radpys.com.tr/",
           "inLanguage": "tr-TR",
@@ -189,7 +189,7 @@
             <div class="absolute inset-0 bg-grid bg-grid-fade opacity-70"></div>
 
             <div class="relative container-narrow z-10">
-                <span class="section-label"><span class="text-slate-500">00</span>&nbsp;RADPYS V4.0.3 — Radyoloji & Radyasyon Güvenliği Ekipleri İçin</span>
+                <span class="section-label"><span class="text-slate-500">00</span>&nbsp;<span data-radpys-version="RADPYS V{v} — Radyoloji & Radyasyon Güvenliği Ekipleri İçin">RADPYS V4.0.5.7 — Radyoloji & Radyasyon Güvenliği Ekipleri İçin</span></span>
 
                 <h1 class="mt-6 font-display font-medium leading-[0.98] tracking-[-0.035em]"
                     style="font-size:clamp(2.75rem,7.4vw,7rem)">
@@ -223,7 +223,7 @@
                 </div>
 
                 <div class="reveal mt-10 flex flex-wrap items-center gap-4">
-                    <a href="https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe"
+                    <a href="https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe" data-radpys-download
                         class="btn btn-primary">Demo İndir (Windows) →</a>
                     <a href="moduller.html" class="btn btn-ghost">Modülleri İncele ↗</a>
                     <a href="fiyatlandirma.html" class="btn btn-outline">Elit Paketi Gör 💎</a>
@@ -319,21 +319,13 @@
                                     <p class="text-xs text-slate-400 mt-1">Stok görsel değil; hastanelerde çalışan gerçek RADPYS V4 PySide6 ve PWA arayüzü</p>
                                 </div>
                                 <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
-                                    <span class="px-2.5 py-1 rounded bg-teal-500/10 border border-teal-500/30 text-teal-300 font-semibold">21 Entegre Modül</span>
+                                    <span class="px-2.5 py-1 rounded bg-teal-500/10 border border-teal-500/30 text-teal-300 font-semibold" data-radpys-module-count="{m} Entegre Modül">23 Entegre Modül</span>
                                     <a href="moduller.html" class="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-300 hover:underline">Tümünü İncele →</a>
                                 </div>
                             </div>
 
                             <!-- Ekran Sekmeleri -->
-                            <div class="flex flex-wrap gap-2 mb-4" id="hero-screen-tabs">
-                                <button type="button" onclick="switchHeroScreen(0)" class="hero-screen-tab px-3 py-1.5 rounded-lg text-xs font-mono transition-all bg-teal-500/20 text-teal-300 border border-teal-500/40">Nöbet Solver Motoru</button>
-                                <button type="button" onclick="switchHeroScreen(1)" class="hero-screen-tab px-3 py-1.5 rounded-lg text-xs font-mono transition-all bg-white/5 text-slate-400 hover:text-white border border-white/5">İnteraktif Doz Krokisi</button>
-                                <button type="button" onclick="switchHeroScreen(2)" class="hero-screen-tab px-3 py-1.5 rounded-lg text-xs font-mono transition-all bg-white/5 text-slate-400 hover:text-white border border-white/5">DIN 6857 RKE Muayene</button>
-                                <button type="button" onclick="switchHeroScreen(3)" class="hero-screen-tab px-3 py-1.5 rounded-lg text-xs font-mono transition-all bg-white/5 text-slate-400 hover:text-white border border-white/5">Dozimetre & NDK Takibi</button>
-                                <button type="button" onclick="switchHeroScreen(4)" class="hero-screen-tab px-3 py-1.5 rounded-lg text-xs font-mono transition-all bg-white/5 text-slate-400 hover:text-white border border-white/5">Cihaz & QC Yönetimi</button>
-                                <button type="button" onclick="switchHeroScreen(5)" class="hero-screen-tab px-3 py-1.5 rounded-lg text-xs font-mono transition-all bg-white/5 text-slate-400 hover:text-white border border-white/5">Merkezi Onay & Diff</button>
-                                <button type="button" onclick="switchHeroScreen(6)" class="hero-screen-tab px-3 py-1.5 rounded-lg text-xs font-mono transition-all bg-white/5 text-slate-400 hover:text-white border border-white/5">Web Dashboardlar</button>
-                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4" id="hero-screen-tabs"></div>
 
                             <!-- Ekran Görüntüsü Önizleme Kartı -->
                             <div class="relative rounded-xl overflow-hidden border border-white/10 bg-slate-900/90 group shadow-2xl">
@@ -387,7 +379,7 @@
                 <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
                     <div>
                         <span class="section-label"><span class="text-slate-500">02</span>&nbsp;Modüller & Yetenekler</span>
-                        <h2 class="reveal mt-6 font-display text-4xl md:text-5xl tracking-tight">21 Entegre Modül. <br
+                        <h2 class="reveal mt-6 font-display text-4xl md:text-5xl tracking-tight"><span data-radpys-module-count="{m} Entegre Modül.">23 Entegre Modül.</span> <br
                                 class="hidden md:block"><span class="text-neon-cyan">Tek gerçek kaynak.</span></h2>
                     </div>
                     <a href="moduller.html"
@@ -411,40 +403,7 @@
                     <a href="moduller.html#roadmap" class="reveal btn btn-outline text-sm">Tüm Ar-Ge Yol Haritası →</a>
                 </div>
 
-                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="reveal card p-7 border border-white/10 flex flex-col justify-between">
-                        <div>
-                            <span
-                                class="px-2.5 py-1 text-[11px] font-mono rounded-full border border-emerald-500/30 text-emerald-400 bg-emerald-500/10">Ar-Ge Aşaması</span>
-                            <h3 class="mt-4 font-display text-xl font-bold">Yapay Zekalı Doz Tahmini</h3>
-                            <p class="mt-2 text-xs font-mono text-neon-teal font-semibold">Öngörücü Doz Analitiği</p>
-                            <p class="mt-3 text-sm text-slate-300 leading-relaxed">Personellerin doz trendlerini analiz ederek yıl sonu yasal limit aşımı riskini 6 ay önceden tespit eden akıllı algoritma.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-white/5 font-mono text-xs text-slate-400">AI & Risk Analizi</div>
-                    </div>
-
-                    <div class="reveal card p-7 border border-white/10 flex flex-col justify-between">
-                        <div>
-                            <span
-                                class="px-2.5 py-1 text-[11px] font-mono rounded-full border border-teal-500/30 text-teal-400 bg-teal-500/10">Geliştirme Aşamasında</span>
-                            <h3 class="mt-4 font-display text-xl font-bold">PACS / DICOM Doz Köprüsü</h3>
-                            <p class="mt-2 text-xs font-mono text-neon-teal font-semibold">RDSR Entegrasyonu</p>
-                            <p class="mt-3 text-sm text-slate-300 leading-relaxed">BT ve Anjiyo cihazlarından çıkan DICOM RDSR raporlarını doğrudan PACS sunucusundan okuyan modalite doz haritası.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-white/5 font-mono text-xs text-slate-400">DICOM & RDSR</div>
-                    </div>
-
-                    <div class="reveal card p-7 border border-white/10 flex flex-col justify-between">
-                        <div>
-                            <span
-                                class="px-2.5 py-1 text-[11px] font-mono rounded-full border border-cyan-500/30 text-cyan-400 bg-cyan-500/10">Planlanan Güncelleme</span>
-                            <h3 class="mt-4 font-display text-xl font-bold">IoT Canlı Alan Telemetrisi</h3>
-                            <p class="mt-2 text-xs font-mono text-neon-teal font-semibold">Kablosuz Canlı Radyasyon</p>
-                            <p class="mt-3 text-sm text-slate-300 leading-relaxed">Odalara yerleştirilen Wi-Fi radyasyon dedektörlerinden gelen mikro-Sievert verilerini mimari krokide canlı ısı haritasına dönüştürme.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-white/5 font-mono text-xs text-slate-400">IoT & Canlı Harita</div>
-                    </div>
-                </div>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6" id="home-future-grid"></div>
             </div>
         </section>
 
@@ -464,55 +423,7 @@
                     </p>
                 </div>
 
-                <div class="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="reveal card p-6 border border-white/10 flex flex-col justify-between">
-                        <div>
-                            <div class="w-10 h-10 rounded-lg bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center font-mono text-sm font-bold">72s</div>
-                            <h3 class="mt-5 font-display text-lg font-bold text-white">NDK 72 Saatlik Acil Bildirim</h3>
-                            <p class="mt-2 text-xs font-mono text-teal-400">Limit Aşımı & RD.F43 Formu</p>
-                            <p class="mt-3 text-xs text-slate-300 leading-relaxed">
-                                Yıllık 20 mSv veya 5 yıllık 100 mSv doz aşımında personeli otomatik riskli statüye alma, 10 iş günü araştırma sayacı ve resmi NDK Form A-1 şablon ihracı.
-                            </p>
-                        </div>
-                        <div class="mt-5 pt-3 border-t border-white/5 font-mono text-[11px] text-slate-400">NDK & TAEK Yönetmeliği</div>
-                    </div>
-
-                    <div class="reveal card p-6 border border-white/10 flex flex-col justify-between">
-                        <div>
-                            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center font-mono text-sm font-bold">SKS</div>
-                            <h3 class="mt-5 font-display text-lg font-bold text-white">SKS 6.1 Kalite & DÖF</h3>
-                            <p class="mt-2 text-xs font-mono text-cyan-400">İstenmeyen Olay Bildirimi</p>
-                            <p class="mt-3 text-xs text-slate-300 leading-relaxed">
-                                Sağlıkta Kalite Standartları Versiyon 6.1 uyumlu İOBS sistemi. Doz aşımı, cihaz arızası ve ramak kala olaylarında kök neden analizli DÖF/CAPA takibi.
-                            </p>
-                        </div>
-                        <div class="mt-5 pt-3 border-t border-white/5 font-mono text-[11px] text-slate-400">Sağlık Bakanlığı SKS 6.1</div>
-                    </div>
-
-                    <div class="reveal card p-6 border border-white/10 flex flex-col justify-between">
-                        <div>
-                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center font-mono text-sm font-bold">RKE</div>
-                            <h3 class="mt-5 font-display text-lg font-bold text-white">DIN 6857-1 / DIN 6857-2</h3>
-                            <p class="mt-2 text-xs font-mono text-emerald-400">Kurşun Koruyucu Muayenesi</p>
-                            <p class="mt-3 text-xs text-slate-300 leading-relaxed">
-                                Kurşun önlük, tiroid ve gonat koruyucuların yıllık skopi kontrolü, akıllı karekodlama ve kurşun eşdeğeri (Pb) kalite kontrol arşivi.
-                            </p>
-                        </div>
-                        <div class="mt-5 pt-3 border-t border-white/5 font-mono text-[11px] text-slate-400">DIN 6857-1 / 6857-2</div>
-                    </div>
-
-                    <div class="reveal card p-6 border border-white/10 flex flex-col justify-between">
-                        <div>
-                            <div class="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center font-mono text-sm font-bold">KVKK</div>
-                            <h3 class="mt-5 font-display text-lg font-bold text-white">KVKK 6698 & AES-256</h3>
-                            <p class="mt-2 text-xs font-mono text-indigo-400">Şifreli Kasa & PostgreSQL</p>
-                            <p class="mt-3 text-xs text-slate-300 leading-relaxed">
-                                Personel özlük evrakları ve sağlık verileri diske açık yazılmaz; AES-256 Fernet şifreleme ve kurum içi PostgreSQL veritabanında güvenle saklanır.
-                            </p>
-                        </div>
-                        <div class="mt-5 pt-3 border-t border-white/5 font-mono text-[11px] text-slate-400">6698 Sayılı Kanun Madde 11</div>
-                    </div>
-                </div>
+                <div class="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="compliance-grid"></div>
             </div>
         </section>
 
@@ -529,57 +440,7 @@
                     </p>
                 </div>
 
-                <div class="mt-12 space-y-4">
-                    <details class="reveal group card p-6 border border-white/10 cursor-pointer rounded-2xl open:border-teal-500/40">
-                        <summary class="flex items-center justify-between font-display text-lg font-semibold text-white list-none">
-                            <span>RADPYS V4 dozimetre limit aşımında NDK 72 saatlik bildirim sürecini nasıl yönetir?</span>
-                            <span class="text-neon-teal transition-transform group-open:rotate-180">↓</span>
-                        </summary>
-                        <p class="mt-4 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
-                            Personelin 12 aylık kümülatif dozu 20 mSv (veya 5 yıllık 100 mSv) yasal sınırını aştığında, sistem personeli otomatik olarak "Yüksek Riskli" statüsüne alır. NDK mevzuatına uygun 72 saatlik resmi acil bildirim şablonunu (Form A-1), 10 iş günü araştırma sayacını ve 2 sayfalık resmi RD.F43 Doz Araştırma Formunu tek tıkla üretir.
-                        </p>
-                    </details>
-
-                    <details class="reveal group card p-6 border border-white/10 cursor-pointer rounded-2xl open:border-teal-500/40">
-                        <summary class="flex items-center justify-between font-display text-lg font-semibold text-white list-none">
-                            <span>Şua İzni (Sağlık İzni) takibi ve zamanaşımı uyarıları nasıl çalışır?</span>
-                            <span class="text-neon-teal transition-transform group-open:rotate-180">↓</span>
-                        </summary>
-                        <p class="mt-4 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
-                            Sağlık Bakanlığı ve NDK mevzuatı gereği 4 haftalık Şua izni parçalı kullanılamaz ve sonraki takvim yılına devretmez. RADPYS V4, yıl sonuna 60 gün ve 30 gün kala kademeli erken uyarı rozetleri ([⏳ 45g], [🚨 15g]) üreterek personelin hakkının zamanaşımına uğramasını önler.
-                        </p>
-                    </details>
-
-                    <details class="reveal group card p-6 border border-white/10 cursor-pointer rounded-2xl open:border-teal-500/40">
-                        <summary class="flex items-center justify-between font-display text-lg font-semibold text-white list-none">
-                            <span>RKE DIN 6857-1 / DIN 6857-2 Kurşun Koruyucu Ekipman modülü ne sağlar?</span>
-                            <span class="text-neon-teal transition-transform group-open:rotate-180">↓</span>
-                        </summary>
-                        <p class="mt-4 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
-                            Kurşun önlük, tiroid koruyucu, gonat koruyucu ve kurşun eldivenlerin yıllık skopi kontrollerini, fiziksel muayenelerini ve kurşun eşdeğeri (Pb mm) ölçümlerini takip eder. Her ekipmana özel karekod üretir ve hasarlı ekipmanların anında HEK / Kullanım Dışı yapılmasını sağlar.
-                        </p>
-                    </details>
-
-                    <details class="reveal group card p-6 border border-white/10 cursor-pointer rounded-2xl open:border-teal-500/40">
-                        <summary class="flex items-center justify-between font-display text-lg font-semibold text-white list-none">
-                            <span>Veri güvenliği ve KVKK 6698 uyumu nasıl sağlanır?</span>
-                            <span class="text-neon-teal transition-transform group-open:rotate-180">↓</span>
-                        </summary>
-                        <p class="mt-4 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
-                            Personel sağlık raporları, dozimetre dökümleri ve özlük evrakları sunucu diskine açık yazılmaz. AES-256 Fernet algoritmasıyla şifreli blob formatında PostgreSQL veritabanında saklanır. KVKK Madde 11 kapsamında şifreli ZIP personel veri ihracı imkanı sunar.
-                        </p>
-                    </details>
-
-                    <details class="reveal group card p-6 border border-white/10 cursor-pointer rounded-2xl open:border-teal-500/40">
-                        <summary class="flex items-center justify-between font-display text-lg font-semibold text-white list-none">
-                            <span>SKS 6.1 Kalite Standartları ve İstenmeyen Olay Bildirimi (İOBS) entegrasyonu var mı?</span>
-                            <span class="text-neon-teal transition-transform group-open:rotate-180">↓</span>
-                        </summary>
-                        <p class="mt-4 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
-                            Evet. Sağlıkta Kalite Standartları Versiyon 6.1 ile birebir uyumlu İstenmeyen Olay Bildirim Modülü içerir. Doz aşımı, cihaz arızası veya kontaminasyon durumlarında Düzeltici Önleyici Faaliyet (DÖF / CAPA) akışları başlatılır ve resmi Excel/PDF çıktıları alınabilir.
-                        </p>
-                    </details>
-                </div>
+                <div class="mt-12 space-y-4" id="home-faq-list"></div>
             </div>
         </section>
 
@@ -615,9 +476,10 @@
     <script src="assets/js/data.js"></script>
     <script src="assets/js/layout.js"></script>
     <script>
-        // Populate dynamic sections
+        // Populate dynamic sections from window.RADPYS (Single Source of Truth)
         (function () {
-            const { MODULES, STATS } = window.RADPYS;
+            const { MODULES, FUTURE_MODULES, STATS, PAGE_CONTENT } = window.RADPYS;
+            const homeData = PAGE_CONTENT.home;
 
             // Bars
             const bar = (i, off) => {
@@ -635,19 +497,12 @@
             });
 
             // Marquee
-            const MQ = ["KVKK AES-256 Şifreleme", "PostgreSQL Kurumsal DB", "DIN 6857-1 RKE Muayene", "İnteraktif Mimari Plan Krokisi", "QR Karekod Arıza Portalı", "Online Sınav LMS Motoru", "Evrensel Onay & Diff View", "Web Portalı & Mobil PWA", "SKS 6.1 & NDK 72s Takibi"];
-            const mqHtml = MQ.map((m) => `<span style="display:inline-flex; align-items:center; gap:1.25rem"><span>${m}</span><span style="width:6px;height:6px;border-radius:9999px;background:#14b8a6;box-shadow:0 0 12px #14b8a6"></span></span>`).join("");
+            const mqHtml = homeData.marquee.map((m) => `<span style="display:inline-flex; align-items:center; gap:1.25rem"><span>${m}</span><span style="width:6px;height:6px;border-radius:9999px;background:#14b8a6;box-shadow:0 0 12px #14b8a6"></span></span>`).join("");
             document.getElementById("marquee-a").innerHTML = mqHtml;
             document.getElementById("marquee-b").innerHTML = mqHtml;
 
             // Manifesto
-            const MANIFESTO = [
-                { n: "01", t: "Kağıt ve Excel karmaşasına son.", b: "Dağınık Excel çizelgeleri, kaybolan dozimetre çıktıları ve WhatsApp nöbet gruplarının sonu. Her kayıt zaman damgalı, denetlenebilir ve tek merkezde." },
-                { n: "02", t: "Şeffaf kısıtlar, adaletli dağıtım.", b: "Nöbet algoritması yasal mevzuat ve sert/yumuşak kısıtlarla çalışır. Ekip neden o gün nöbette olduğunu şeffafça görür — amirin insafı değil, kurallar geçerlidir." },
-                { n: "03", t: "Askeri düzeyde veri güvenliği.", b: "PostgreSQL altyapısı, AES-256 Fernet şifreli evrak kasası ve KVKK Madde 11 ZIP ihracı. Sağlık verileriniz kurumunuzun tam kontrolünde korunur." },
-                { n: "04", t: "Zamandan ve cezai riskten tasarruf.", b: "Denetim hazırlığı iki gün değil, iki saat. NDK 72 saatlik bildirim ve SKS 6.1 Excel raporları tek tıkla hazır. Yöneticiler saatlerce nöbet çizmekten kurtulur." },
-            ];
-            document.getElementById("manifesto").innerHTML = MANIFESTO.map(
+            document.getElementById("manifesto").innerHTML = homeData.manifesto.map(
                 (m) => `
         <div class="reveal border-t border-white/10 pt-8 grid gap-6 md:gap-10" style="grid-template-columns:auto 1fr">
           <div class="chapter-number" style="font-size:clamp(4.5rem,8vw,7rem); line-height:1">${m.n}</div>
@@ -658,7 +513,7 @@
         </div>`
             ).join("");
 
-            // Modules grid (21 Modules)
+            // Modules grid (All 23 Modules)
             document.getElementById("module-grid").innerHTML = MODULES.map(
                 (m) => `
         <a href="moduller.html#m-${m.tag}" class="reveal card card-lift p-7 h-full flex flex-col justify-between group cursor-pointer border border-white/5 hover:border-teal-500/40 transition-all duration-300 block">
@@ -677,56 +532,77 @@
           </div>
           <div class="mt-6 pt-3 flex items-center justify-between border-t border-white/5">
             <span class="text-xs font-mono text-teal-400/90 group-hover:underline">Detayları Gör →</span>
-            <span class="text-[11px] text-slate-500 font-mono">21 Modül Ekosistemi</span>
+            <span class="text-[11px] text-slate-500 font-mono">${MODULES.length} Modül Ekosistemi</span>
           </div>
         </a>`
             ).join("");
 
-            // Hero Screen Gallery
-            const HERO_SCREENS = [
-                {
-                    title: "Modül 08: Otomatik Nöbet Solver Motoru & Kısıt Çözücü",
-                    desc: "CBC / PuLP tabanlı matematiksel kısıt optimizasyonu ve adil nöbet dağıtım matrisi.",
-                    img: "help/assets/img/08_nobet_cizelge_dialog.png",
-                    link: "moduller.html#m-08"
-                },
-                {
-                    title: "Modül 14: Ortam Dozu & İnteraktif Mimari Plan Krokisi",
-                    desc: "CAD/PDF kat planında canlı radyasyon pinleri, QR pasaportları ve SKS 6.1 SRG11.02 Excel raporu.",
-                    img: "help/assets/img/14_1_ortam_dozu_kroki_haritasi_ana_ekran.png",
-                    link: "moduller.html#m-14"
-                },
-                {
-                    title: "Modül 20: RKE Kurşun Koruyucu Ekipman & DIN 6857 Skopi",
-                    desc: "İnteraktif silüet üzerinde mm² delik/çatlak tespiti, otomatik HEK kararı ve SKS muayene cetveli.",
-                    img: "help/assets/img/20_rke_muayene_kokpiti.png",
-                    link: "moduller.html#m-20"
-                },
-                {
-                    title: "Modül 12: Dozimetre Takibi & NDK 72 Saatlik Resmi Bildirim",
-                    desc: "20 mSv limit aşımında otomatik RD.F43 araştırma formu, 10 iş günü sayacı ve NDK Form A-1 üretimi.",
-                    img: "help/assets/img/12_1_dozimetre_list.png",
-                    link: "moduller.html#m-12"
-                },
-                {
-                    title: "Modül 19: Tıbbi Cihaz Arıza, Bakım & Kalite Kontrol (QC)",
-                    desc: "Karekodla arıza kaydı, X-ışını tüp değişimi senkronizasyonu ve QC güvenlik karantina kilidi.",
-                    img: "help/assets/img/19_1_cihaz_ariza_bakim_ve_kalite_kontrol_qc.png",
-                    link: "moduller.html#m-19"
-                },
-                {
-                    title: "Modül 21: Merkezi Onaylar & Kurumsal Rapor Merkezi",
-                    desc: "5 sekmeli onay paneli, 4-göz görsel Diff View karşılaştırması ve 17 resmi kurum raporu.",
-                    img: "help/assets/img/modul21_onay_merkezi.png",
-                    link: "moduller.html#m-21"
-                },
-                {
-                    title: "Modül 22: Web Portalı & 20 Yönetici Gösterge Paneli",
-                    desc: "Express/React tabanlı 20 analitik dashboard, 60s bellek önbelleği ve anlık karar destek grafikleri.",
-                    img: "help/assets/img/02_portal_launcher_paneli_on.png",
-                    link: "moduller.html#m-22"
-                }
-            ];
+            // R&D / Future Modules Preview
+            const futureGridEl = document.getElementById("home-future-grid");
+            if (futureGridEl && FUTURE_MODULES) {
+                futureGridEl.innerHTML = FUTURE_MODULES.map((f) => `
+                    <div class="reveal card p-7 border border-white/10 flex flex-col justify-between">
+                        <div>
+                            <span class="px-2.5 py-1 text-[11px] font-mono rounded-full border ${f.badgeColor}">${f.badge}</span>
+                            <h3 class="mt-4 font-display text-xl font-bold">${f.name}</h3>
+                            <p class="mt-2 text-xs font-mono text-neon-teal font-semibold">${f.highlight}</p>
+                            <p class="mt-3 text-sm text-slate-300 leading-relaxed">${f.desc}</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-white/5 font-mono text-xs text-slate-400">${f.tag}</div>
+                    </div>
+                `).join("");
+            }
+
+            // Compliance Matrix Cards
+            const compGridEl = document.getElementById("compliance-grid");
+            if (compGridEl && homeData.complianceCards) {
+                const colorStyles = {
+                    teal: "bg-teal-500/10 border-teal-500/20 text-teal-400",
+                    cyan: "bg-cyan-500/10 border-cyan-500/20 text-cyan-400",
+                    emerald: "bg-emerald-500/10 border-emerald-500/20 text-emerald-400",
+                    indigo: "bg-indigo-500/10 border-indigo-500/20 text-indigo-400"
+                };
+                const subColors = {
+                    teal: "text-teal-400",
+                    cyan: "text-cyan-400",
+                    emerald: "text-emerald-400",
+                    indigo: "text-indigo-400"
+                };
+                compGridEl.innerHTML = homeData.complianceCards.map((c) => `
+                    <div class="reveal card p-6 border border-white/10 flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-lg border ${colorStyles[c.color] || colorStyles.teal} flex items-center justify-center font-mono text-sm font-bold">${c.badge}</div>
+                            <h3 class="mt-5 font-display text-lg font-bold text-white">${c.title}</h3>
+                            <p class="mt-2 text-xs font-mono ${subColors[c.color] || 'text-teal-400'}">${c.subtitle}</p>
+                            <p class="mt-3 text-xs text-slate-300 leading-relaxed">${c.desc}</p>
+                        </div>
+                        <div class="mt-5 pt-3 border-t border-white/5 font-mono text-[11px] text-slate-400">${c.footer}</div>
+                    </div>
+                `).join("");
+            }
+
+            // Home FAQ Accordion
+            const faqListEl = document.getElementById("home-faq-list");
+            if (faqListEl && homeData.faq) {
+                faqListEl.innerHTML = homeData.faq.map((f) => `
+                    <details class="reveal group card p-6 border border-white/10 cursor-pointer rounded-2xl open:border-teal-500/40">
+                        <summary class="flex items-center justify-between font-display text-lg font-semibold text-white list-none">
+                            <span>${f.q}</span>
+                            <span class="text-neon-teal transition-transform group-open:rotate-180">↓</span>
+                        </summary>
+                        <p class="mt-4 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">${f.a}</p>
+                    </details>
+                `).join("");
+            }
+
+            // Hero Screen Gallery Tabs & Switcher
+            const HERO_SCREENS = homeData.heroScreens || [];
+            const tabsEl = document.getElementById("hero-screen-tabs");
+            if (tabsEl && HERO_SCREENS.length) {
+                tabsEl.innerHTML = HERO_SCREENS.map((s, idx) => `
+                    <button type="button" onclick="switchHeroScreen(${idx})" class="hero-screen-tab px-3 py-1.5 rounded-lg text-xs font-mono transition-all ${idx === 0 ? 'bg-teal-500/20 text-teal-300 border border-teal-500/40' : 'bg-white/5 text-slate-400 hover:text-white border border-white/5'}">${s.tabLabel}</button>
+                `).join("");
+            }
 
             window.switchHeroScreen = function(idx) {
                 const s = HERO_SCREENS[idx];
@@ -764,7 +640,7 @@
                 { k: "institutions", label: "Kurum & Hastane", suf: "+" },
                 { k: "users", label: "Aktif Kullanıcı", suf: "+" },
                 { k: "years", label: "Yıllık Deneyim", suf: "" },
-                { k: "modules", label: "Entegre Modül", suf: "+" },
+                { k: "modules", label: "Entegre Modül", suf: "" },
             ];
             document.getElementById("stats-grid").innerHTML = items
                 .map(

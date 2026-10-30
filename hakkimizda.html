@@ -123,7 +123,7 @@
                         class="w-full h-auto object-cover object-top max-h-[500px]" />
                     <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent flex items-center justify-between text-xs font-mono text-slate-300">
                         <span>RADPYS V4 — Nöbet Solver & Matematiksel Kısıt Optimizasyon Ekranı</span>
-                        <a href="moduller.html" class="text-teal-400 hover:underline">22 Modülü İncele →</a>
+                        <a href="moduller.html" class="text-teal-400 hover:underline"><span data-radpys-module-count="{m} Modülü İncele →">23 Modülü İncele →</span></a>
                     </div>
                 </div>
 
@@ -159,31 +159,10 @@
                             Sağlık fiziği ve yapay zekâ uzmanlığımız sayesinde NDK, DIN 6857-1, IAEA ve Sağlık Bakanlığı standartlarındaki teknolojik dönüşümü şekillendiriyoruz. Gelecek nesil radyoloji yönetiminde kestirimci analitik, DICOM köprüleri ve IoT telemetri çözümleriyle sektöre liderlik ediyoruz.
                         </p>
                         <div class="reveal mt-8">
-                            <a href="moduller.html#roadmap" class="btn btn-outline text-sm">Ar-Ge Yol Haritasını İnceleyin →</a>
+                            <a href="gelistirme-planlari.html" class="btn btn-outline text-sm">Ar-Ge Yol Haritasını İnceleyin →</a>
                         </div>
                     </div>
-                    <div class="md:col-span-7 grid sm:grid-cols-2 gap-4">
-                        <div class="reveal card p-6 border border-white/10">
-                            <div class="font-mono text-xs text-neon-teal font-semibold">01 / Yapay Zekâ & Analitik</div>
-                            <h3 class="mt-2 font-display text-lg font-bold">Öngörücü Doz Tahmini</h3>
-                            <p class="mt-2 text-xs text-slate-300 leading-relaxed">Geçmiş trendleri yapay zekâ ile işleyerek NDK limit aşım risklerini 6 ay önceden tahminleyen erken uyarı motoru.</p>
-                        </div>
-                        <div class="reveal card p-6 border border-white/10">
-                            <div class="font-mono text-xs text-neon-cyan font-semibold">02 / DICOM & Modalite</div>
-                            <h3 class="mt-2 font-display text-lg font-bold">PACS RDSR Doz Köprüsü</h3>
-                            <p class="mt-2 text-xs text-slate-300 leading-relaxed">BT ve Anjiyo cihazlarından çıkan DICOM RDSR yapısal doz verilerini doğrudan PACS sunucusundan otomatik okuma.</p>
-                        </div>
-                        <div class="reveal card p-6 border border-white/10">
-                            <div class="font-mono text-xs text-purple-400 font-semibold">03 / Canlı Telemetri</div>
-                            <h3 class="mt-2 font-display text-lg font-bold">IoT Gerçek Zamanlı Sensörler</h3>
-                            <p class="mt-2 text-xs text-slate-300 leading-relaxed">Kablosuz oda radyasyon dedektörlerinden gelen anlık telemetri verilerini kat planlarında canlı ısı haritasına dönüştürme.</p>
-                        </div>
-                        <div class="reveal card p-6 border border-white/10">
-                            <div class="font-mono text-xs text-amber-400 font-semibold">04 / E-Sağlık Ekosistemi</div>
-                            <h3 class="mt-2 font-display text-lg font-bold">Bakanlık & NDK Bulut Köprüsü</h3>
-                            <p class="mt-2 text-xs text-slate-300 leading-relaxed">Ulusal sağlık sistemleri ve denetim portalları ile çift yönlü, şifreli ve otomatik veri senkronizasyon katmanı.</p>
-                        </div>
-                    </div>
+                    <div class="md:col-span-7 grid sm:grid-cols-2 gap-4" id="vision-cards"></div>
                 </div>
             </div>
         </section>
@@ -194,22 +173,33 @@
     </main>
     <div id="site-footer"></div>
 
+    <script src="assets/js/data.js"></script>
     <script src="assets/js/layout.js"></script>
     <script>
-        const STACK = [
-            { name: "PySide6 & Web PWA", desc: "Native masaüstü performansı ve mobil tarayıcılardan yüklenebilir PWA portalı dengesi.", icon: "M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-4M15 3H9M9 3v18M15 3v18" },
-            { name: "PostgreSQL 14+/16", desc: "Kurumsal çok kullanıcılı, yüksek eşzamanlılıklı ve ACID uyumlu veritabanı motoru.", icon: "M4 6c0-1.1 3.6-2 8-2s8 0.9 8 2v12c0 1.1-3.6 2-8 2s-8-0.9-8-2V6zM4 6c0 1.1 3.6 2 8 2s8-0.9 8-2M4 12c0 1.1 3.6 2 8 2s8-0.9 8-2" },
-            { name: "KVKK AES-256 Kasası", desc: "stored_files tablosunda AES-256 Fernet şifreleme, KVKK Madde 11 ZIP ihracı ve Audit Trail.", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" },
-            { name: "Sağlık Fiziği Ekibi", desc: "Yazılım mühendisliği + medikal fizik uzmanlığı. Radyoloji sahasını birebir tanıyan ürün ekibi.", icon: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" },
-        ];
-        document.getElementById("stack").innerHTML = STACK.map(s => `
-      <div class="reveal card p-7 h-full">
-        <div class="w-11 h-11 rounded-xl grid place-items-center" style="background:rgba(34,211,238,0.1); border:1px solid rgba(34,211,238,0.25); color:#67e8f9">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${s.icon}"/></svg>
-        </div>
-        <h3 class="mt-6 font-display text-xl">${s.name}</h3>
-        <p class="mt-2 text-sm text-slate-400 leading-relaxed">${s.desc}</p>
-      </div>`).join("");
+        (function () {
+            const about = (window.RADPYS && window.RADPYS.PAGE_CONTENT && window.RADPYS.PAGE_CONTENT.about) || {};
+            const STACK = about.stack || [];
+            const VISION = about.visionCards || [];
+
+            document.getElementById("stack").innerHTML = STACK.map(s => `
+          <div class="reveal card p-7 h-full">
+            <div class="w-11 h-11 rounded-xl grid place-items-center" style="background:rgba(34,211,238,0.1); border:1px solid rgba(34,211,238,0.25); color:#67e8f9">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${s.icon}"/></svg>
+            </div>
+            <h3 class="mt-6 font-display text-xl">${s.name}</h3>
+            <p class="mt-2 text-sm text-slate-400 leading-relaxed">${s.desc}</p>
+          </div>`).join("");
+
+            const visionEl = document.getElementById("vision-cards");
+            if (visionEl) {
+                visionEl.innerHTML = VISION.map(v => `
+                <div class="reveal card p-6 border border-white/10">
+                    <div class="font-mono text-xs ${v.color} font-semibold">${v.tag}</div>
+                    <h3 class="mt-2 font-display text-lg font-bold">${v.title}</h3>
+                    <p class="mt-2 text-xs text-slate-300 leading-relaxed">${v.desc}</p>
+                </div>`).join("");
+            }
+        })();
     </script>
 </body>
 

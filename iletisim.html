@@ -184,14 +184,14 @@
                                     stroke-linejoin="round" style="margin-top:2px">
                                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                                     <circle cx="12" cy="10" r="3" />
-                                </svg> Cyberpark Teknoloji Geliştirme Bölgesi, Bilkent, Ankara</div>
+                                </svg> <span id="contact-address">Cyberpark Teknoloji Geliştirme Bölgesi, Bilkent, Ankara</span></div>
                             <div style="display:flex; gap:0.75rem"><svg width="18" height="18" viewBox="0 0 24 24"
                                     fill="none" stroke="#14b8a6" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" style="margin-top:2px">
                                     <path
                                         d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                                     <polyline points="22,6 12,13 2,6" />
-                                </svg> <a href="mailto:radpys.iletisim@gmail.com"
+                                </svg> <a id="contact-email" href="mailto:radpys.iletisim@gmail.com"
                                     class="hover:text-white">radpys.iletisim@gmail.com</a>
                             </div>
                             <div style="display:flex; gap:0.75rem"><svg width="18" height="18" viewBox="0 0 24 24"
@@ -199,7 +199,7 @@
                                     stroke-linejoin="round" style="margin-top:2px">
                                     <path
                                         d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.93.35 1.84.66 2.72a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.36-1.23a2 2 0 0 1 2.11-.45c.88.31 1.79.53 2.72.66A2 2 0 0 1 22 16.92z" />
-                                </svg> +90 312 000 00 00</div>
+                                </svg> <span id="contact-phone">+90 312 000 00 00</span></div>
                         </div>
                         <div class="mt-8 rounded-lg overflow-hidden border border-white/10 relative"
                             style="aspect-ratio:16/9">
@@ -212,9 +212,9 @@
                                     <div
                                         class="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.24em] text-neon-teal">
                                         <span class="w-2 h-2 rounded-full"
-                                            style="background:#14b8a6; animation:pulse 2s infinite"></span> Ankara / TR
+                                            style="background:#14b8a6; animation:pulse 2s infinite"></span> <span id="contact-city">Ankara / TR</span>
                                     </div>
-                                    <div class="mt-2 font-display text-3xl">39.90° K · 32.85° D</div>
+                                    <div id="contact-coords" class="mt-2 font-display text-3xl">39.90° K · 32.85° D</div>
                                 </div>
                             </div>
                         </div>
@@ -225,70 +225,87 @@
     </main>
     <div id="site-footer"></div>
 
+    <script src="assets/js/data.js"></script>
     <script src="assets/js/layout.js"></script>
     <script>
-        // Google Apps Script Web App URL
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyZqr30B2-7LR8TerL6G71biIAAUHuye333Pd5gFut56PvvxquLWg7Tq-3q6Sb0mm0H/exec";
+        (function () {
+            const contactCfg = (window.RADPYS && window.RADPYS.SITE_CONFIG && window.RADPYS.SITE_CONFIG.contact) || {
+                email: "radpys.iletisim@gmail.com",
+                phone: "+90 312 000 00 00",
+                address: "Cyberpark Teknoloji Geliştirme Bölgesi, Bilkent, Ankara",
+                cityTag: "Ankara / TR",
+                coords: "39.90° K · 32.85° D",
+                googleScriptUrl: "https://script.google.com/macros/s/AKfycbyZqr30B2-7LR8TerL6G71biIAAUHuye333Pd5gFut56PvvxquLWg7Tq-3q6Sb0mm0H/exec"
+            };
 
-        document.getElementById("contact-form").addEventListener("submit", function (e) {
-            e.preventDefault();
-            const btn = this.querySelector('button[type="submit"]');
-            const originalText = btn.innerText;
-            const formData = new FormData(this);
+            const addrEl = document.getElementById("contact-address");
+            const emailEl = document.getElementById("contact-email");
+            const phoneEl = document.getElementById("contact-phone");
+            const cityEl = document.getElementById("contact-city");
+            const coordsEl = document.getElementById("contact-coords");
 
-            // Script URL henüz girilmediyse mailto'yu çalıştır
-            if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("YOUR_GOOGLE_SCRIPT_URL_HERE")) {
-                const body = [
-                    "Ad Soyad: " + (formData.get("name") || "-"),
-                    "Kurum: " + (formData.get("organization") || "-"),
-                    "Rol: " + (formData.get("role") || "-"),
-                    "E-posta: " + (formData.get("email") || "-"),
-                    "Telefon: " + (formData.get("phone") || "-"),
-                    "",
-                    "Mesaj:",
-                    formData.get("message") || "-",
-                ].join("\n");
-                const subject = "[RADPYS İletişim Formu] " + (formData.get("organization") || "Yeni mesaj");
-                const url = "mailto:radpys.iletisim@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-                window.location.href = url;
-                showToast("E-posta uygulamanız açılıyor. Gönderi tamamlanınca size döneceğiz.");
-                this.reset();
-                return;
+            if (addrEl) addrEl.textContent = contactCfg.address;
+            if (emailEl) {
+                emailEl.textContent = contactCfg.email;
+                emailEl.href = "mailto:" + contactCfg.email;
             }
+            if (phoneEl) phoneEl.textContent = contactCfg.phone;
+            if (cityEl) cityEl.textContent = contactCfg.cityTag;
+            if (coordsEl) coordsEl.textContent = contactCfg.coords;
 
-            // Google Apps Script ile sessiz gönderim
-            btn.disabled = true;
-            btn.innerText = "Gönderiliyor...";
+            const GOOGLE_SCRIPT_URL = contactCfg.googleScriptUrl;
 
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: "POST",
-                body: formData
-            })
-                .then(() => {
-                    showToast("Mesajınız başarıyla alındı! En kısa sürede sizinle iletişime geçeceğiz.");
+            document.getElementById("contact-form").addEventListener("submit", function (e) {
+                e.preventDefault();
+                const btn = this.querySelector('button[type="submit"]');
+                const originalText = btn.innerText;
+                const formData = new FormData(this);
+
+                if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("YOUR_GOOGLE_SCRIPT_URL_HERE")) {
+                    const body = [
+                        "Ad Soyad: " + (formData.get("name") || "-"),
+                        "Kurum: " + (formData.get("organization") || "-"),
+                        "Rol: " + (formData.get("role") || "-"),
+                        "E-posta: " + (formData.get("email") || "-"),
+                        "Telefon: " + (formData.get("phone") || "-"),
+                        "",
+                        "Mesaj:",
+                        formData.get("message") || "-",
+                    ].join("\n");
+                    const subject = "[RADPYS İletişim Formu] " + (formData.get("organization") || "Yeni mesaj");
+                    const url = "mailto:" + contactCfg.email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+                    window.location.href = url;
+                    showToast("E-posta uygulamanız açılıyor. Gönderi tamamlanınca size döneceğiz.");
                     this.reset();
+                    return;
+                }
+
+                btn.disabled = true;
+                btn.innerText = "Gönderiliyor...";
+
+                fetch(GOOGLE_SCRIPT_URL, {
+                    method: "POST",
+                    body: formData
                 })
-                .catch(() => {
-                    showToast("E-posta uygulamanız açılıyor...");
-                    window.location.href = "mailto:radpys.iletisim@gmail.com";
-                })
-                .finally(() => {
-                    btn.disabled = false;
-                    btn.innerText = originalText;
-                });
-        });
+                    .then(() => {
+                        showToast("Mesajınız başarıyla alındı! En kısa sürede sizinle iletişime geçeceğiz.");
+                        this.reset();
+                    })
+                    .catch(() => {
+                        showToast("E-posta uygulamanız açılıyor...");
+                        window.location.href = "mailto:" + contactCfg.email;
+                    })
+                    .finally(() => {
+                        btn.disabled = false;
+                        btn.innerText = originalText;
+                    });
+            });
+        })();
     </script>
     <style>
         @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1
-            }
-
-            50% {
-                opacity: .5
-            }
+            0%, 100% { opacity: 1 }
+            50% { opacity: .5 }
         }
     </style>
 </body>

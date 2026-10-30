@@ -129,12 +129,12 @@
     <script src="assets/js/layout.js"></script>
     <script>
         (function () {
-            const { STATS, TESTIMONIALS } = window.RADPYS;
+            const { STATS, TESTIMONIALS, LOGOS } = window.RADPYS;
             const items = [
                 { k: "institutions", label: "Kurum", suf: "+" },
                 { k: "users", label: "Aktif Kullanıcı", suf: "+" },
                 { k: "years", label: "Yıllık Deneyim", suf: "" },
-                { k: "modules", label: "Modül", suf: "" },
+                { k: "modules", label: "Entegre Modül", suf: "" },
             ];
             document.getElementById("stats-grid").innerHTML = items.map(s => `
           <div class="reveal is-visible border-t border-white/10 pt-6">
@@ -142,8 +142,7 @@
             <div class="mt-2 font-mono text-[11px] uppercase tracking-[0.28em] text-slate-500">${s.label}</div>
           </div>`).join("");
 
-            const LOGOS = ["Anadolu Üniversite Hastanesi", "Mavi Görüntüleme", "Beyaz Diş Grubu", "Ege Nükleer Tıp", "Marmara Radyoloji", "Batı Veteriner Klinikleri", "Karadeniz Sağlık A.Ş.", "İç Anadolu Hastanesi", "Doğu Onkoloji"];
-            const html = LOGOS.map(l => `<span style="display:inline-flex; padding:1rem 1.5rem; border:1px solid rgba(255,255,255,0.1); border-radius:0.5rem; background:rgba(255,255,255,0.02)"><span class="font-display text-lg text-slate-300 whitespace-nowrap">${l}</span></span>`).join("");
+            const html = (LOGOS || []).map(l => `<span style="display:inline-flex; padding:1rem 1.5rem; border:1px solid rgba(255,255,255,0.1); border-radius:0.5rem; background:rgba(255,255,255,0.02)"><span class="font-display text-lg text-slate-300 whitespace-nowrap">${l}</span></span>`).join("");
             document.getElementById("mq-a").innerHTML = html;
             document.getElementById("mq-b").innerHTML = html;
 
