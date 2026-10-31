@@ -3,6 +3,30 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.5.8] - 2026-10-31
+
+### 🛡️ Web Portal Siber Güvenlik Sıkılaştırması (`SEC-PORTAL-22` .. `SEC-PORTAL-27`), Şifreli `.lic` Portal Kasası, Gömülü Cloudflare Tüneli ve Akıllı Otomatik Algılamalı SMTP / 2FA OTP Ayarları
+
+#### ✨ Eklendi (Added)
+
+- **1. Şifreli `.lic` Portal Kasası (`portal_vault`) ve Otomatik `.env` Enjeksiyonu (`license_service.py`):**
+  - `LicenseService` (`app/services/system/vault/license_service.py`) içerisine `_decrypt_portal_vault`, `_apply_portal_config_to_env` ve `_upsert_env_file_keys` metotları eklendi. Master Studio tarafından `.lic` dosyasına AES-256 Fernet (`_PORTAL_VAULT_KEY`) ile gömülen `portal_subdomain`, `cloudflare_tunnel_token`, `turnstile_site_key` ve `turnstile_secret_key` parametrelerinin lisans aktivasyonu (`activate_from_file`) anında deşifre edilerek kök `.env` dosyasına el değmeden yazılması sağlandı.
+- **2. Gömülü Cloudflare Zero Trust Tünel Orkestrasyonu (`resources/cloudflared/cloudflared.exe`, `portal_launcher.py`):**
+  - `resources/cloudflared/cloudflared.exe` taşınabilir ikili dosyası projeye dahil edildi; `user_launcher/portal_launcher.py` (`RADPYSPortalLauncher`) içerisine `Tünel:` durum rozeti, `_start_cloudflare_tunnel` ve `_stop_cloudflare_tunnel` süreç yöneticileri eklenerek `CLOUDFLARE_TUNNEL_TOKEN` tanımlı olduğunda `cloudflared.exe tunnel --no-autoupdate run --token <TOKEN>` alt sürecinin `CREATE_NO_WINDOW` bayrağıyla otomatik başlatılıp durdurulması sağlandı.
+- **3. Akıllı Otomatik Algılamalı SMTP & E-Posta / 2FA OTP Ayarları Modülü (`email_settings_service.py`, `email_settings_controller.py`, `email_settings_page.ui`):**
+  - `app/services/system/settings/email_settings_service.py` (`EmailSettingsService`, `detect_smtp_provider`, `SMTP_PROVIDERS`) oluşturuldu; Gmail, Outlook/Office 365, Yandex, Yahoo, iCloud ve Kurumsal/Sağlık Bakanlığı (`saglik.gov.tr`, `edu.tr`) e-posta adreslerinden SMTP sunucu ve port bilgilerini otomatik algılayan, ayarları hem PostgreSQL `settings` tablosuna (Fernet şifreli `smtp_pass`) hem de kök `.env` dosyasına senkronize kaydeden ve gerçek SMTP bağlantı testi (`send_test_email`) yapan servis katmanı kuruldu.
+  - `ui/pages/admin/setting/email_settings_page.ui` ve `ui/controllers/admin/system/email_settings_controller.py` (`EmailSettingsController`) oluşturularak `SystemManagementController` (`ui/controllers/admin/system/system_management_controller.py`) altında `"E-Posta ve Bildirim Ayarları"` (`email_settings`) sekmesi olarak bağlandı; uygulama şifresi alma rehber diyaloğu ve `run_in_background` tabanlı asenkron test e-postası gönderimi eklendi.
+- **4. Birim Testleri ve Güvenlik Doğrulaması (`test_email_settings_service.py`, `test_license_flow.py`, `test_web_portal_security.py`):**
+  - `tests/test_email_settings_service.py` (sağlayıcı algılama, `.env` ve DB senkron kaydı, Fernet şifreleme) ve `tests/test_license_flow.py` (`test_activate_from_file_applies_encrypted_portal_vault`) birim testleri eklendi; `tests/test_web_portal_security.py` ile birlikte 47/47 test %100 yeşil doğrulandı.
+
+#### 🔧 Değiştirildi & Düzeltildi (Changed & Fixed)
+
+- **1. Web Portal Siber Güvenlik Sıkılaştırması (`SEC-PORTAL-22` .. `SEC-PORTAL-27`):**
+  - `web_portal/src/routes/auth.routes.ts`: Cloudflare Turnstile sunucu taraflı doğrulaması (`TURNSTILE_SECRET_KEY` tanımlıysa zorunlu `siteverify` kontrolü), 6 haneli E-Posta 2FA OTP doğrulaması (`OTP_SECRET` HMAC-SHA256 imzalı `preAuthToken`) ve `SELECT ... FOR UPDATE` satır kilidiyle atomik `failed_attempts` / `locked_until` hesap kilitleme mekanizması devreye alındı.
+  - `web_portal/src/routes/auth.routes.ts` (`refreshLiveEnvFromDisk`): Masaüstü uygulamasından güncellenen `.env` içindeki `SMTP_*`, `PORTAL_ENABLE_EMAIL_OTP` ve `TURNSTILE_*` değişkenlerinin Node.js sunucusunu yeniden başlatmaya gerek kalmadan her kimlik doğrulama isteğinde canlı okunması sağlandı (`web_portal/dist/server.cjs` yeniden derlendi).
+  - `web_portal/src/routes/operations.routes.ts`, `egitim.routes.ts`, `cihaz.routes.ts`: Tüm yazma/silme uç noktalarında `requirePermission` RBAC yetki denetimi, sahiplik (ownership) doğrulaması ve `parsePositiveInt` / `validate Year-Month` girdi doğrulamaları zorunlu hale getirildi.
+  - `web_portal/vite.config.ts` ve `.env.example`: Yinelenen `web_portal/.env` kaldırılarak tüm yapılandırma kök `.env` dosyasında (`envDir: path.resolve(__dirname, '..')`) tekilleştirildi.
+
 ## [4.0.5.7] - 2026-10-30
 
 ### 🎯 23 Modül ve Ortak Altyapı Seçici (ComboBox), SQL Sorgu, Rozet (`RADPYSStatusDelegate`) ve Katman Sınırı Standardizasyon Paketi (Faz 1 – Faz 4)

@@ -1,10 +1,10 @@
 {
-  "version": "4.0.5.7",
-  "release_version": "4.0.5.7",
-  "build_version": "4.0.5.7",
-  "latest_demo_version": "4.0.5.7",
-  "release_date": "2026-10-30",
+  "version": "4.0.5.8",
+  "release_version": "4.0.5.8",
+  "build_version": "4.0.5.8",
+  "latest_demo_version": "4.0.5.8",
+  "release_date": "2026-10-31",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.5.7: 23 Modül Seçici (ComboBox), Rozet (RADPYSStatusDelegate), Sinyal-Slot Navigasyon ve Sıfır Controller SQL Katman Sınırı Standardizasyon Paketi.",
+  "changelog": "RADPYS V4.0.5.8: Web Portal Siber Güvenlik Zırhı (SEC-PORTAL-22..27), Şifreli .lic Portal Kasası & Sıfır Kurulumlu Cloudflare Tüneli ve Akıllı Otomatik Algılamalı E-Posta (SMTP) / 2FA Doğrulama Merkezi.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }

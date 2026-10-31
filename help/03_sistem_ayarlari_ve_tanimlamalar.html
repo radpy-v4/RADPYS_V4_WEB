@@ -500,6 +500,30 @@
  <td class="py-3 px-4"><span class="px-2 py-0.5 rounded font-mono text-xs bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">Sistem Yöneticisi</span></td>
  </tr>
 
+ <!-- Satır 15 -->
+ <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
+ <td class="py-3 px-4 font-semibold text-slate-900 dark:text-white">
+ <strong>Akıllı Otomatik Algılamalı E-Posta (SMTP) Ayarları</strong><br>
+ <small class="text-slate-500 dark:text-slate-400">[E-Posta ve Bildirim Ayarları] & [Test E-Postası Gönder]</small>
+ </td>
+ <td class="py-3 px-4">Kurumun bildirim ve doğrulama e-postalarını teknik sunucu/port ayarlarıyla uğraşmadan kolayca yapılandırmak.</td>
+ <td class="py-3 px-4">E-posta adresi yazıldığı anda sistem Gmail, Outlook/Office 365, Yandex, Yahoo, iCloud veya Kurumsal/Sağlık Bakanlığı (<code>saglik.gov.tr</code>, <code>edu.tr</code>) sunucu ve port ayarlarını otomatik tanır. Parola şifrelenerek saklanır ve <strong>[Test E-Postası Gönder]</strong> butonuyla canlı bağlantı doğrulanır.</td>
+ <td class="py-3 px-4">E-posta bildirimleri ve 2FA doğrulama kurulurken.</td>
+ <td class="py-3 px-4"><span class="px-2 py-0.5 rounded font-mono text-xs bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">Sistem Yöneticisi</span></td>
+ </tr>
+
+ <!-- Satır 16 -->
+ <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
+ <td class="py-3 px-4 font-semibold text-slate-900 dark:text-white">
+ <strong>Web Portal İki Aşamalı Doğrulama (2FA OTP) Anahtarı</strong><br>
+ <small class="text-slate-500 dark:text-slate-400">[Web Portal Girişinde E-Posta Doğrulama Kodu İste]</small>
+ </td>
+ <td class="py-3 px-4">Web Portalına dış ağdan yapılan girişlerde parola güvenliğini 6 haneli tek kullanımlık e-posta kodu ile güçlendirmek.</td>
+ <td class="py-3 px-4">Onay kutusu işaretlenip kaydedildiğinde, açık olan Web Portal sunucusunu yeniden başlatmaya gerek kalmadan ayar anında devreye girer ve giriş yapan personele 6 haneli doğrulama kodu gönderilir.</td>
+ <td class="py-3 px-4">Kurumsal siber güvenlik politikası etkinleştirildiğinde.</td>
+ <td class="py-3 px-4"><span class="px-2 py-0.5 rounded font-mono text-xs bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">Sistem Yöneticisi</span></td>
+ </tr>
+
  </tbody>
  </table>
  </div>
@@ -646,6 +670,21 @@
  <li><strong>Dini Bayramları Tek Tıkla Eklemek İçin:</strong> <strong>[Yeni]</strong> butonuna basın, Tatil Adı alanından <em>Ramazan Bayramı</em> veya <em>Kurban Bayramı</em> seçin. Sistem otomatik olarak <em>Dini Tatil</em> türünü ve <em>Tüm bayram günlerini otomatik oluştur</em> seçeneğini aktif eder.</li>
  <li>Tarih alanına bayramın <strong>Arife Günü</strong> tarihini girin ve <strong>[Kaydet]</strong> butonuna basın. Sistem Arife (0.5 gün) ile birlikte bayramın tüm günlerini (Ramazan için 4 gün, Kurban için 5 gün) tek seferde takvime kaydeder.</li>
  <li><strong>İdari İzin veya Özel Tatil İçin:</strong> <strong>[Yeni]</strong> butonuna basarak tekil tarih, tatil adı, tür ve gün sayısı (0.5 veya 1.0) belirleyip kaydedebilirsiniz.</li>
+ </ol>
+ </div>
+
+ <!-- Akış 4 -->
+ <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
+ <h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+ <span class="w-6 h-6 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300 text-xs flex items-center justify-center font-bold">4</span>
+ <span>Kurumsal E-Posta (SMTP) ve Web Portal 2FA Doğrulama Ayarlarını Yapılandırma</span>
+ </h3>
+ <ol class="list-decimal list-inside text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
+ <li>Sol gezinim ağacından <strong>[Sistem Ayarları] > [E-Posta ve Bildirim Ayarları]</strong> sekmesini açın.</li>
+ <li><strong>[Gönderici E-Posta Adresi]</strong> kutusuna kurumunuzun veya biriminizin e-posta adresini yazın; sistem sağlayıcıyı (Gmail, Outlook/Office 365, Yandex, Kurumsal/Sağlık Bakanlığı) otomatik olarak algılar ve sunucu/port ayarlarını kendisi doldurur.</li>
+ <li>Gmail veya Outlook kullanıyorsanız <strong>[Uygulama Şifresi Nasıl Alınır?]</strong> butonuna tıklayarak 3 adımlı görsel rehber eşliğinde oluşturduğunuz 16 haneli uygulama şifresini, kurumsal posta kullanıyorsanız e-posta parolanızı girin.</li>
+ <li>Web Portal girişlerinde personele 6 haneli tek kullanımlık doğrulama kodu gönderilmesini istiyorsanız <strong>[Web Portal girişinde E-Posta ile 6 Haneli Doğrulama Kodu (2FA OTP) iste]</strong> kutusunu işaretleyin.</li>
+ <li><strong>[Test E-Postası Gönder]</strong> butonuna basarak bağlantıyı canlı olarak doğrulayın ve ardından <strong>[Ayarları Kaydet]</strong> butonuna tıklayın.</li>
  </ol>
  </div>
  </div>

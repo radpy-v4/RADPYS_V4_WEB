@@ -433,6 +433,30 @@
  <td class="py-3.5 px-4"><span
  class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Tüm Kullanıcılar</span></td>
  </tr>
+
+ <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+ <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">
+ Şifreli Lisans (.lic) ve Gömülü Cloudflare Tüneli<br>
+ <span class="text-xs font-normal text-slate-400 font-mono">[Portal Başlatıcı &gt; Tünel Durum Rozeti]</span>
+ </td>
+ <td class="py-3.5 px-4">Modem portu açmadan ve ek program kurmadan kuruma özel alt alan adıyla (Örn: kurumadi.radpys.com) güvenli dış erişim sağlamak.</td>
+ <td class="py-3.5 px-4">Kuruma özel tünel ve Turnstile anahtarları .lic lisans dosyası içinde AES-256 şifreli gelir; lisans yüklendiğinde otomatik tanımlanır ve Portal Başlatıcı gömülü tünel motorunu arka planda kendiliğinden çalıştırır.</td>
+ <td class="py-3.5 px-4">Lisans etkinleştirildiğinde ve Portal Başlatıcı üzerinden servisler başlatıldığında.</td>
+ <td class="py-3.5 px-4"><span
+ class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">Sistem Yöneticisi (Admin)</span></td>
+ </tr>
+
+ <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+ <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">
+ Cloudflare Turnstile &amp; 2FA E-Posta Doğrulaması<br>
+ <span class="text-xs font-normal text-slate-400 text-mono">[Web Giriş Ekranı &amp; 6 Haneli OTP Kodu]</span>
+ </td>
+ <td class="py-3.5 px-4">Web Portalını otomatik bot saldırılarına ve yetkisiz parola denemelerine karşı tam korumaya almak.</td>
+ <td class="py-3.5 px-4">Sunucu taraflı Turnstile robot doğrulaması, 5 hatalı denemede 15 dakika atomik hesap kilidi ve 6 haneli tek kullanımlık e-posta doğrulama kodu (2FA OTP) ile kriptografik oturum güvenliği sağlar.</td>
+ <td class="py-3.5 px-4">Web Portalına her kullanıcı girişinde.</td>
+ <td class="py-3.5 px-4"><span
+ class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Tüm Web Kullanıcıları</span></td>
+ </tr>
  </tbody>
  </table>
  </div>

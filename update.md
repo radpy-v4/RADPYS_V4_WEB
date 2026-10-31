@@ -1324,4 +1324,33 @@ Bu sürümle birlikte sisteme giriş yapan kullanıcıların "Bugün ne yapmam g
 
 ---
 
+## 🛡️ 26. Web Portal Siber Güvenlik Zırhı, Cloudflare Sıfır Kurulumlu Tünel Mimarisi ve Akıllı E-Posta / 2FA Doğrulama Merkezi (RADPYS V4.0.5.8)
+
+Hastane dışından veya mobil cihazlardan Web Portalına güvenli erişimi kolaylaştırmak, kurum bilgi işlem birimlerini karmaşık ağ ve güvenlik duvarı ayarlarından kurtarmak ve kimlik doğrulama güvenliğini en üst düzeye çıkarmak amacıyla kapsamlı yenilikler devreye alınmıştır:
+
+### 🔐 26.1 Kurumsal Lisans Dosyası (.lic) İçinde Şifreli Tünel ve Güvenlik Kasası
+
+* **Sıfır Kurulumlu Güvenli Bağlantı:** Her sağlık kurumuna özel olarak tanımlanan Web Portal alt alan adı (örneğin `kurumadi.radpys.com`), Cloudflare Zero Trust tünel anahtarı ve Turnstile robot koruma anahtarları artık doğrudan kurumun `.lic` lisans dosyası içerisine askeri düzeyde (AES-256) şifrelenmiş olarak gömülmektedir.
+* **Tek Tıkla Otomatik Yapılandırma:** Sistem yöneticisi masaüstü uygulamasından `.lic` lisans dosyasını seçip etkinleştirdiği anda; tüm güvenli tünel ve siber güvenlik anahtarları hiçbir teknik metin dosyasına el değmeden otomatik olarak sisteme tanımlanır.
+
+### 🌐 26.2 Gömülü Cloudflare Tünel Motoru ve Portal Başlatıcı Entegrasyonu
+
+* **Ek Program Kurulumuna Son:** Kurum bilgisayarlarına harici tünel programı kurma veya Windows servisi ayarlama zorunluluğu tamamen kaldırılmıştır. Gömülü tünel motoru doğrudan RADPYS paketinin içinde hazır gelir.
+* **Modem Portu Açmadan Güvenli Yayın:** Kurum güvenlik duvarında dışarıya port açmaya veya sabit IP tahsis etmeye gerek kalmadan, **RADPYS Portal Başlatıcı** üzerinden **[Servisleri Başlat]** butonuna basıldığında güvenli tünel kendiliğinden devreye girer.
+* **Canlı Tünel Durum Göstergesi:** Portal Başlatıcı ekranına eklenen canlı **Tünel** rozeti sayesinde güvenli dış bağlantının durumu (`Aktif`, `Kapalı` veya `Yerel Ağ Modu`) anlık olarak izlenebilir.
+
+### ✉️ 26.3 Akıllı Otomatik Algılamalı E-Posta (SMTP) ve 2FA Bildirim Ayarları Ekranı
+
+* **E-Posta Adresinden Otomatik Sunucu Tanıma:** **Sistem Yönetimi > E-Posta ve Bildirim Ayarları** ekranında yönetici yalnızca kurum veya bildirim e-posta adresini yazdığında; sistem Gmail, Outlook / Office 365, Yandex, Yahoo, iCloud ve Kurumsal / Sağlık Bakanlığı (`saglik.gov.tr`, `edu.tr`) sunucu ve port ayarlarını otomatik olarak doldurur.
+* **Adım Adım Uygulama Şifresi Rehberi:** Gmail ve Microsoft hesaplarında güvenli uygulama şifresinin nasıl alınacağını anlatan yerleşik görsel rehber penceresi ve tek tıkla **Test E-Postası Gönder** doğrulama aracı eklenmiştir.
+* **Yeniden Başlatma Gerektirmeyen Canlı Güncelleme:** Masaüstü ekranından kaydedilen e-posta ve iki aşamalı doğrulama (2FA OTP) ayarları, açık olan Web Portal sunucusuna saniyesinde canlı olarak yansır.
+
+### 🛡️ 26.4 Web Portal İki Aşamalı Doğrulama (2FA OTP) ve Yetki Kalkanı
+
+* **6 Haneli E-Posta Doğrulama Kodu (2FA):** Etkinleştirildiğinde Web Portalına giriş yapan personele 6 haneli tek kullanımlık doğrulama kodu gönderilir; kriptografik oturum kilidi sayesinde doğrulama tamamlanmadan tam yetki verilmez.
+* **Cloudflare Turnstile Robot Koruması ve Atomik Hesap Kilidi:** Web giriş ekranı sunucu taraflı robot korumasıyla güçlendirilmiş; art arda 5 hatalı parola denemesinde hesabın 15 dakika süreyle otomatik kilitlenmesi garanti altına alınmıştır.
+* **Kapsamlı Rol ve Sahiplik Denetimi:** Web Portal üzerindeki izin, nöbet devri, eğitim ve cihaz işlemlerinin tamamında rol tabanlı erişim kontrolü ve kayıt sahipliği doğrulaması sıkılaştırılmıştır.
+
+---
+
 © 2026 Cem Kara. RADPYS V4 Kurumsal Radyasyon Personel Yönetim Sistemi. Tüm Hakları Saklıdır.
