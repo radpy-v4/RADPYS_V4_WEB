@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * RADPYS V4 — Tek Komutla Sürüm & İçerik Senkronizasyon Betiği (sync-release.js)
+ * RADPYS V4 — Tek Komutla Sürüm, Dokümantasyon & Arama İndeksi Senkronizasyon Betiği (sync-release.js)
  *
  * Kullanım:
  *   node scripts/sync-release.js           # Senkronize et (yalnızca değişen dosyaları yazar)
- *   node scripts/sync-release.js --verify  # Tüm sayfaları, modül görsellerini ve linkleri doğrula
+ *   node scripts/sync-release.js --verify  # Tüm sayfaları, help/ dokümanlarını, görselleri ve linkleri doğrula
  *
  * Görevleri:
  *   1. version.json ve update.md dosyalarını okur.
@@ -13,19 +13,25 @@
  *   4. assets/js/data.js içindeki VERSION_INFO nesnesini senkronize eder.
  *   5. changelog.html içindeki gömülü <script id="update-fallback-data"> bloğunu,
  *      SEO meta etiketlerini ve hero sayaçlarını otomatik günceller.
- *   6. index.html, moduller.html ve fiyatlandirma.html içindeki JSON-LD softwareVersion
- *      ve statik SEO yedek metinlerini günceller.
- *   7. sitemap.xml içerisindeki ana sayfaların <lastmod> tarihlerini günceller.
+ *   6. index.html, moduller.html, fiyatlandirma.html ve README.md içindeki sürüm metinlerini günceller.
+ *   7. help/assets/app.js ve help/*.html dosyalarındaki sürüm rozetlerini günceller.
+ *   8. help/*.html dosyalarını tarayarak help/assets/search_index.js çevrimdışı arama indeksini
+ *      (sayfa + alt bölüm #anchor derin bağlantılarıyla birlikte) otomatik üretir.
+ *   9. sitemap.xml içerisindeki <lastmod> tarihlerini günceller ve tüm URL'lerin varlığını doğrular.
  */
 
 const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
+const HELP_DIR = path.join(ROOT, 'help');
 const VERSION_JSON_PATH = path.join(ROOT, 'version.json');
 const UPDATE_MD_PATH = path.join(ROOT, 'update.md');
 const DATA_JS_PATH = path.join(ROOT, 'assets', 'js', 'data.js');
 const CHANGELOG_HTML_PATH = path.join(ROOT, 'changelog.html');
+const SITEMAP_XML_PATH = path.join(ROOT, 'sitemap.xml');
+const HELP_APP_JS_PATH = path.join(HELP_DIR, 'assets', 'app.js');
+const HELP_SEARCH_INDEX_PATH = path.join(HELP_DIR, 'assets', 'search_index.js');
 
 function compareVersions(a, b) {
   const pa = String(a).replace(/^v/i, '').split('.').map(Number);
@@ -47,6 +53,159 @@ function writeIfChanged(filePath, newContent, label) {
   fs.writeFileSync(filePath, newContent, 'utf8');
   console.log(`[sync-release] ↻ Güncellendi: ${label}`);
   return true;
+}
+
+function stripTags(html) {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&gt;/g, '>')
+    .replace(/&lt;/g, '<')
+    .replace(/&bull;/g, '•')
+    .replace(/&rarr;/g, '→')
+    .replace(/&larr;/g, '←')
+    .replace(/&ge;/g, '≥')
+    .replace(/&le;/g, '≤')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function getModuleCategory(fileName) {
+  const prefix = parseInt(fileName.slice(0, 2), 10);
+  if (prefix >= 1 && prefix <= 4) return '1. Sistem, Kurulum & Güvenlik';
+  if (prefix >= 5 && prefix <= 6) return '2. İnsan Kaynakları & İzin';
+  if (prefix >= 7 && prefix <= 11) return '3. Akıllı Nöbet & Mesai';
+  if (prefix >= 12 && prefix <= 17) return '4. Radyasyon Güvenliği & Eğitim';
+  if (prefix >= 18 && prefix <= 20) return '5. Cihaz, Kalite (QC) & RKE';
+  return '6. Dijital Dönüşüm, Onay & Rapor';
+}
+
+function buildHelpSearchIndex() {
+  if (!fs.existsSync(HELP_DIR)) return;
+  const htmlFiles = fs.readdirSync(HELP_DIR)
+    .filter(f => f.endsWith('.html') && f !== 'index.html')
+    .sort();
+
+  const indexEntries = [];
+
+  for (const file of htmlFiles) {
+    const fullPath = path.join(HELP_DIR, file);
+    const raw = fs.readFileSync(fullPath, 'utf8');
+    const mainMatch = raw.match(/<main[^>]*>([\s\S]*?)<\/main>/i);
+    const mainHtml = mainMatch ? mainMatch[1] : raw;
+
+    const h1Match = mainHtml.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+    const pageTitle = h1Match ? stripTags(h1Match[1]) : file.replace('.html', '');
+    const category = getModuleCategory(file);
+
+    // İlk açıklama paragrafı
+    const pMatch = mainHtml.match(/<h1[\s\S]*?<\/h1>[\s\S]*?<p[^>]*>([\s\S]*?)<\/p>/i);
+    const summary = pMatch ? stripTags(pMatch[1]).slice(0, 260) : pageTitle;
+
+    // Tüm h2 ve h3 başlıkları
+    const headings = [];
+    const hRegex = /<h[23][^>]*>([\s\S]*?)<\/h[23]>/gi;
+    let hm;
+    while ((hm = hRegex.exec(mainHtml)) !== null) {
+      const hText = stripTags(hm[1]);
+      if (hText) headings.push(hText);
+    }
+
+    const fullText = stripTags(mainHtml);
+
+    // 1. Ana modül kaydı
+    indexEntries.push({
+      id: file.replace('.html', ''),
+      title: pageTitle,
+      category: category,
+      url: file,
+      summary: summary,
+      headings: headings.slice(0, 25),
+      content: fullText.slice(0, 6000)
+    });
+
+    // 2. Sayfa içi <section id="..."> derin bağlantı kayıtları
+    const secRegex = /<section\s+[^>]*id="([^"]+)"[^>]*>([\s\S]*?)<\/section>/gi;
+    let sm;
+    while ((sm = secRegex.exec(mainHtml)) !== null) {
+      const secId = sm[1];
+      const secInner = sm[2];
+      const secH2Match = secInner.match(/<h[23][^>]*>([\s\S]*?)<\/h[23]>/i);
+      if (!secH2Match) continue;
+      const secTitle = stripTags(secH2Match[1]);
+      if (!secTitle || secTitle.length < 3) continue;
+
+      const secText = stripTags(secInner);
+      indexEntries.push({
+        id: `${file.replace('.html', '')}#${secId}`,
+        title: `${secTitle} — ${pageTitle.split(':')[0]}`,
+        category: `${category} › Bölüm`,
+        url: `${file}#${secId}`,
+        summary: secText.slice(0, 220),
+        headings: [secTitle, pageTitle],
+        content: secText.slice(0, 2500)
+      });
+    }
+  }
+
+  const output = `// RADPYS V4 — Otomatik Üretilen Çevrimdışı Arama İndeksi (sync-release.js tarafından güncellenir)\nwindow.RADPYS_SEARCH_INDEX = ${JSON.stringify(indexEntries, null, 2)};\n`;
+  writeIfChanged(HELP_SEARCH_INDEX_PATH, output, `help/assets/search_index.js (${indexEntries.length} arama kaydı)`);
+}
+
+function syncHelpFiles(version) {
+  if (!fs.existsSync(HELP_DIR)) return;
+
+  // 1. help/assets/app.js içindeki FALLBACK_VERSION değerini güncelle
+  if (fs.existsSync(HELP_APP_JS_PATH)) {
+    const appJs = fs.readFileSync(HELP_APP_JS_PATH, 'utf8');
+    const updatedAppJs = appJs.replace(
+      /const FALLBACK_VERSION = "[^"]+";/,
+      `const FALLBACK_VERSION = "${version}";`
+    );
+    writeIfChanged(HELP_APP_JS_PATH, updatedAppJs, `help/assets/app.js (v${version})`);
+  }
+
+  // 2. help/index.html ve modül sayfalarındaki v4.2 / v4.x rozetlerini güncelle
+  const htmlFiles = fs.readdirSync(HELP_DIR).filter(f => f.endsWith('.html'));
+  let updatedCount = 0;
+  for (const file of htmlFiles) {
+    const filePath = path.join(HELP_DIR, file);
+    let html = fs.readFileSync(filePath, 'utf8');
+    const orig = html;
+
+    // Header rozetindeki >v4.2< veya >v4.x.x.x< metnini >v{version}< yap
+    html = html.replace(
+      /(<span class="[^"]*font-mono[^"]*">)\s*v4\.(?:2|\d+\.\d+\.\d+)\s*(<\/span>)/g,
+      `$1v${version}$2`
+    );
+
+    // help/index.html içindeki sol menüde #bolum-6 eksikse ekle ve rozeti güncelle
+    if (file === 'index.html') {
+      html = html.replace(
+        /RADPYS v4\.(?:2|\d+\.\d+\.\d+)\s*•\s*Kurumsal Dokümantasyon\s*&\s*Kullanıcı Rehberi/g,
+        `RADPYS v${version} • Kurumsal Dokümantasyon & Kullanıcı Rehberi`
+      );
+      if (!html.includes('href="#bolum-6"')) {
+        html = html.replace(
+          /(<a href="#bolum-5"[\s\S]*?<\/a>)/,
+          `$1\r\n          <a href="#bolum-6" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">6. Dijital Dönüşüm &amp; Rapor</a>`
+        );
+      }
+    }
+
+    if (html !== orig) {
+      fs.writeFileSync(filePath, html, 'utf8');
+      updatedCount++;
+    }
+  }
+  if (updatedCount > 0) {
+    console.log(`[sync-release] ↻ Güncellendi: ${updatedCount} adet help/*.html sayfası (v${version})`);
+  } else {
+    console.log(`[sync-release] ✓ Güncel: help/*.html sayfaları (v${version})`);
+  }
 }
 
 function verifyIntegrity(version, sectionCount) {
@@ -109,8 +268,59 @@ function verifyIntegrity(version, sectionCount) {
       errors++;
     }
   }
-
   console.log(`• 9 kök HTML sayfası tarandı — Hata sayısı: ${errors}`);
+
+  // 3. help/*.html kırık link ve kırık görsel kontrolü
+  const helpHtmlFiles = fs.readdirSync(HELP_DIR).filter(f => f.endsWith('.html'));
+  let helpImgCount = 0;
+  for (const file of helpHtmlFiles) {
+    const html = fs.readFileSync(path.join(HELP_DIR, file), 'utf8');
+    const imgRe = /<img[^>]+src="([^"]+)"/g;
+    let m;
+    while ((m = imgRe.exec(html)) !== null) {
+      const src = m[1];
+      if (/^(https?:|data:)/i.test(src)) continue;
+      helpImgCount++;
+      const decoded = decodeURIComponent(src);
+      const targetPath = path.resolve(HELP_DIR, decoded);
+      if (!fs.existsSync(targetPath)) {
+        console.error(`  ✗ Kırık görsel [help/${file}]: ${src}`);
+        errors++;
+      }
+    }
+    const hrefRe = /<a[^>]+href="([^"]+)"/g;
+    while ((m = hrefRe.exec(html)) !== null) {
+      const href = m[1];
+      if (/^(https?:|mailto:|tel:|#|javascript:)/i.test(href)) continue;
+      const cleanHref = href.split('#')[0].split('?')[0];
+      if (!cleanHref) continue;
+      const targetPath = path.resolve(HELP_DIR, cleanHref);
+      if (!fs.existsSync(targetPath)) {
+        console.error(`  ✗ Kırık link [help/${file}]: ${href}`);
+        errors++;
+      }
+    }
+  }
+  console.log(`• ${helpHtmlFiles.length} help/*.html sayfası ve ${helpImgCount} ekran görüntüsü doğrulandı.`);
+
+  // 4. sitemap.xml URL doğrulaması
+  if (fs.existsSync(SITEMAP_XML_PATH)) {
+    const sitemap = fs.readFileSync(SITEMAP_XML_PATH, 'utf8');
+    const locRe = /<loc>https:\/\/radpys\.com\.tr\/([^<]*)<\/loc>/g;
+    let lm;
+    let locCount = 0;
+    while ((lm = locRe.exec(sitemap)) !== null) {
+      locCount++;
+      const rel = lm[1] || 'index.html';
+      const target = path.join(ROOT, rel);
+      if (!fs.existsSync(target)) {
+        console.error(`  ✗ sitemap.xml içinde var olmayan dosya: ${rel}`);
+        errors++;
+      }
+    }
+    console.log(`• sitemap.xml içerisindeki ${locCount} URL doğrulandı.`);
+  }
+
   if (errors > 0) process.exit(1);
 }
 
@@ -207,7 +417,7 @@ function main() {
       writeIfChanged(CHANGELOG_HTML_PATH, clHtml, `changelog.html (${sectionCount} bölüm)`);
     }
 
-    // 3. index.html, moduller.html ve fiyatlandirma.html statik SEO yedeklerini güncelle
+    // 3. index.html, moduller.html, fiyatlandirma.html ve README.md statik sürüm yedeklerini güncelle
     const seoFiles = ['index.html', 'moduller.html', 'fiyatlandirma.html'];
     for (const file of seoFiles) {
       const filePath = path.join(ROOT, file);
@@ -218,6 +428,27 @@ function main() {
         .replace(/(data-radpys-version="v">)v4\.\d+\.\d+\.\d+(<\/span>)/g, `$1v${version}$2`)
         .replace(/(data-radpys-version="V">)V4\.\d+\.\d+\.\d+(<\/span>)/g, `$1V${version}$2`);
       writeIfChanged(filePath, updated, `${file} (SEO v${version})`);
+    }
+
+    const readmePath = path.join(ROOT, 'README.md');
+    if (fs.existsSync(readmePath)) {
+      const readme = fs.readFileSync(readmePath, 'utf8');
+      const updatedReadme = readme.replace(
+        /(\*\s*\*\*Güncel Sürüm:\*\*\s*`)v4\.\d+\.\d+\.\d+(`\s*\(`)V4\.\d+\.\d+(`\s*Serisi\))/,
+        `$1v${version}$2${series}$3`
+      );
+      writeIfChanged(readmePath, updatedReadme, `README.md (v${version})`);
+    }
+
+    // 4. help/ dosyalarını ve search_index.js arama indeksini senkronize et
+    syncHelpFiles(version);
+    buildHelpSearchIndex();
+
+    // 5. sitemap.xml <lastmod> tarihlerini güncelle
+    if (fs.existsSync(SITEMAP_XML_PATH)) {
+      const sitemap = fs.readFileSync(SITEMAP_XML_PATH, 'utf8');
+      const updatedSitemap = sitemap.replace(/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/g, `<lastmod>${releaseDate}</lastmod>`);
+      writeIfChanged(SITEMAP_XML_PATH, updatedSitemap, `sitemap.xml (lastmod: ${releaseDate})`);
     }
   }
 

@@ -2,14 +2,69 @@
  * RADPYS V4 - Profesyonel Çevrimdışı & Web Yardım Portalı İstemci Motoru
  * ======================================================================
  * - %100 Çevrimdışı Uyumluluk (file:/// ve http://)
- * - Anlık Arama Modalı (Ctrl+K)
- * - Açık / Koyu Tema Desteği & Kalıcı Bellek
- * - Dinamik Mermaid Şema Çizimi
- * - Mobil Yan Menü (Sidebar Drawer)
+ * - Merkezi Sürüm Rozeti, Sol Modül Menüsü ve Otomatik Sağ İçindekiler (TOC)
+ * - Ana Sayfa Canlı Modül Filtreleme + Anlık Arama Modalı (Ctrl+K, Türkçe Duyarlı)
+ * - Dinamik Mermaid Şema Çizimi & Ekran Görüntüsü Tam Ekran Büyütme (Lightbox)
  */
 
 (function () {
   "use strict";
+
+  let currentVersion = "4.0.5.7";
+
+  const MODULE_NAV_ITEMS = [
+    { num: "01", title: "Kurulum & İlk Giriş", url: "01_kurulum_ve_ilk_giris.html" },
+    { num: "02", title: "Kullanıcı & Rol Yönetimi", url: "02_kullanici_ve_rol_yonetimi.html" },
+    { num: "03", title: "Sistem Ayarları & Tanımlar", url: "03_sistem_ayarlari_ve_tanimlamalar.html" },
+    { num: "04", title: "Veritabanı Bakım & Kasa", url: "04_veritabani_bakim_ve_guvenlik.html" },
+    { num: "05", title: "Personel & Excel Aktarım", url: "05_personel_yonetimi_ve_toplu_aktarim.html" },
+    { num: "06", title: "İzin Yönetimi & Şua", url: "06_izin_yonetimi_ve_hakedis.html" },
+    {
+      num: "07",
+      title: "Nöbet Ayarları & Kısıtlar",
+      url: "07_nobet_ayarlari_ve_kisit_hiyerarsisi.html",
+      children: [
+        { num: "07.1", title: "Temel Ayarlar & Standartlar", url: "07_1_temel_ayarlar_ve_calisma_standartlari.html" },
+        { num: "07.2", title: "Birim Kuralları & Slotlar", url: "07_2_birim_kurallari_ve_slot_yonetimi.html" },
+        { num: "07.3", title: "Gelişmiş Kısıtlar & Adalet", url: "07_3_gelismis_kisitlar_ve_adalet_agirliklari.html" },
+        { num: "07.4", title: "Sağlık & Yasal Kısıtlar", url: "07_4_personel_ozel_saglik_ve_yasal_kisitlar.html" },
+        { num: "07.5", title: "Personel Talepleri & Onay", url: "07_5_personel_talepleri_ve_onay_yonetimi.html" }
+      ]
+    },
+    { num: "08", title: "Nöbet Hazırlık & Solver", url: "08_nobet_hazirlik_ve_solver_motoru.html" },
+    { num: "09", title: "Nöbet Devir & İkame", url: "09_nobet_devir_ikame_ve_acil_mazeret.html" },
+    { num: "10", title: "Nöbet Borç & Fazla Mesai", url: "10_nobet_borc_alacak_ve_fazla_mesai.html" },
+    { num: "11", title: "Fiili Hizmet (FHZ) & Şua", url: "11_fiili_hizmet_ve_sua_hesaplama.html" },
+    { num: "12", title: "Dozimetre & RD.F43", url: "12_dozimetre_takibi_ve_rdf43_arastirma.html" },
+    { num: "13", title: "Sağlık Muayeneleri", url: "13_saglik_muayeneleri_ve_periyodik_takip.html" },
+    { num: "14", title: "Ortam Dozu & Kroki", url: "14_ortam_dozu_ve_kroki_haritasi.html" },
+    { num: "15", title: "Olay Bildirimi & DÖF", url: "15_olay_bildirimi_ve_dof_capa.html" },
+    { num: "16", title: "RGS / RSO Görevlendirme", url: "16_rgs_rso_gorevlendirme_ve_sertifika.html" },
+    { num: "17", title: "Hizmet İçi Eğitim & LMS", url: "17_hizmet_ici_egitim_ve_online_sinav.html" },
+    { num: "18", title: "Tıbbi Cihaz & NDK Lisans", url: "18_tibbi_cihaz_ve_ndk_lisans_envanteri.html" },
+    { num: "19", title: "Cihaz Arıza & QA/QC", url: "19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html" },
+    { num: "20", title: "Koruyucu Ekipman (RKE)", url: "20_rke_koruyucu_ekipman_ve_din6857.html" },
+    { num: "21", title: "Merkezi Onaylar", url: "21_merkezi_onaylar.html" },
+    { num: "22", title: "Web Portal & Dashboard", url: "22_web_portal_ve_dashboardlar.html" },
+    { num: "23", title: "Rapor & Tutanak Merkezi", url: "23_rapor_tutanak_merkezi.html" }
+  ];
+
+  function normalizeTr(str) {
+    if (!str) return "";
+    return String(str)
+      .toLocaleLowerCase("tr-TR")
+      .replace(/ı/g, "i")
+      .replace(/ğ/g, "g")
+      .replace(/ü/g, "u")
+      .replace(/ş/g, "s")
+      .replace(/ö/g, "o")
+      .replace(/ç/g, "c");
+  }
+
+  function getCurrentFileName() {
+    const p = window.location.pathname.split("/").pop();
+    return p || "index.html";
+  }
 
   // ─── 1. KALICI KOYU KLİNİK TEMA (Permanent Clinical Dark Mode) ───────────
   const htmlEl = document.documentElement;
@@ -17,6 +72,178 @@
   try {
     localStorage.setItem("radpys_help_theme", "dark");
   } catch (e) {}
+
+  // ─── 1.5 MERKEZİ SÜRÜM, ÜST BAR VE SOL/SAĞ MENÜ YÖNETİMİ ─────────────────
+  function applyVersionText(ver) {
+    currentVersion = ver;
+    document.querySelectorAll("header a[href='index.html'] span.font-mono").forEach(badge => {
+      badge.textContent = "v" + ver;
+    });
+    document.querySelectorAll("footer p").forEach(p => {
+      if (p.textContent.includes("RADPYS V4.2")) {
+        p.textContent = p.textContent.replace("RADPYS V4.2", `RADPYS V4 (v${ver})`);
+      }
+    });
+  }
+
+  function setupHeaderAndVersion() {
+    applyVersionText(currentVersion);
+
+    // Web ortamında (http/https) çalışıyorsa "../version.json" ile canlı senkronize ol
+    // ve üst bara "← Ana Siteye Dön" butonu ekle
+    if (window.location.protocol === "http:" || window.location.protocol === "https:") {
+      fetch("../version.json", { cache: "no-store" })
+        .then(r => (r.ok ? r.json() : null))
+        .then(data => {
+          if (data && data.version) {
+            applyVersionText(String(data.version).replace(/^v/i, ""));
+          }
+        })
+        .catch(() => {});
+
+      const headerActions = document.querySelector("header .max-w-\\[1720px\\] > div:last-child");
+      if (headerActions && !headerActions.querySelector("[data-back-to-main-site]")) {
+        const backBtn = document.createElement("a");
+        backBtn.href = "../index.html";
+        backBtn.setAttribute("data-back-to-main-site", "true");
+        backBtn.className = "inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/30 transition";
+        backBtn.innerHTML = `
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          <span>Ana Siteye Dön</span>
+        `;
+        headerActions.insertBefore(backBtn, headerActions.firstChild);
+      }
+    }
+  }
+
+  function setupSidebarNavigation() {
+    const sidebar = document.getElementById("sidebarNav");
+    if (!sidebar) return;
+
+    const currentFile = getCurrentFileName();
+    const isIndexPage = currentFile === "index.html" || document.getElementById("moduleCardsContainer");
+
+    if (isIndexPage) {
+      // Ana sayfada Bölüm 1..6 bağlantılarının tam olduğundan emin ol
+      const nav = sidebar.querySelector("nav");
+      if (nav && !nav.querySelector("a[href='#bolum-6']")) {
+        const b5 = nav.querySelector("a[href='#bolum-5'] span:last-child");
+        if (b5) b5.textContent = "Bölüm 5: Cihaz & RKE Envanteri";
+        const b6Link = document.createElement("a");
+        b6Link.href = "#bolum-6";
+        b6Link.className = "flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition";
+        b6Link.innerHTML = `
+          <span class="w-2.5 h-2.5 rounded-full bg-purple-500 shrink-0"></span>
+          <span>Bölüm 6: Merkezi Onaylar & Web Portal</span>
+        `;
+        nav.appendChild(b6Link);
+      }
+      return;
+    }
+
+    // Modül detay sayfalarında 23 modüllük sol menüyü merkezi diziden oluştur
+    const nav = sidebar.querySelector("nav");
+    if (!nav) return;
+
+    const isMod07Group = currentFile.startsWith("07_");
+    let html = "";
+
+    for (const item of MODULE_NAV_ITEMS) {
+      const isActive = currentFile === item.url;
+      if (isActive) {
+        html += `
+          <a href="${item.url}" data-active-nav="true" class="flex items-center justify-between px-3 py-2.5 rounded-xl bg-cyan-50 text-cyan-800 dark:bg-cyan-950/60 dark:text-cyan-300 font-semibold border-l-4 border-cyan-500">
+            <div class="flex items-center gap-2.5">
+              <span class="font-mono text-xs text-cyan-600 dark:text-cyan-400 font-bold">${item.num}</span>
+              <span>${item.title}</span>
+            </div>
+            <span class="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span>
+          </a>`;
+      } else {
+        html += `
+          <a href="${item.url}" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+            <span class="font-mono text-xs opacity-60">${item.num}</span>
+            <span>${item.title}</span>
+          </a>`;
+      }
+
+      if (item.children && isMod07Group) {
+        html += `<div class="pl-5 space-y-1 border-l border-slate-200 dark:border-slate-800 ml-3 my-1">`;
+        for (const sub of item.children) {
+          const isSubActive = currentFile === sub.url;
+          html += `
+            <a href="${sub.url}" ${isSubActive ? 'data-active-nav="true"' : ""} class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs ${isSubActive
+              ? "bg-cyan-950/70 text-cyan-300 font-bold border border-cyan-700/50"
+              : "text-slate-500 dark:text-slate-400 hover:text-white hover:bg-slate-800/60"} transition">
+              <span class="font-mono text-[10px] opacity-75">${sub.num}</span>
+              <span class="truncate">${sub.title}</span>
+            </a>`;
+        }
+        html += `</div>`;
+      }
+    }
+
+    nav.innerHTML = html;
+
+    const activeEl = nav.querySelector("[data-active-nav='true']");
+    if (activeEl) {
+      setTimeout(() => {
+        activeEl.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      }, 80);
+    }
+  }
+
+  function setupOnPageToc() {
+    const tocNav = document.getElementById("onPageToc");
+    const mainEl = document.querySelector("main");
+    if (!tocNav || !mainEl) return;
+
+    const sections = Array.from(mainEl.querySelectorAll("section[id]"));
+    if (sections.length === 0) return;
+
+    const tocItems = [];
+    sections.forEach(sec => {
+      const id = sec.getAttribute("id");
+      if (!id || id === "overview" || id === "genel-bakis") return;
+      const heading = sec.querySelector("h2, h3, h1");
+      if (!heading) return;
+      const cleanTitle = heading.textContent
+        .replace(/\s+/g, " ")
+        .replace(/^\d+\.\s*/, "")
+        .trim();
+      if (cleanTitle) {
+        tocItems.push({ id, title: cleanTitle, el: sec });
+      }
+    });
+
+    if (tocItems.length === 0) return;
+
+    tocNav.innerHTML = tocItems.map(item => `
+      <a href="#${item.id}" data-toc-link="${item.id}"
+         class="block py-1 pl-2.5 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-400 transition leading-snug">
+        ${escapeHtml(item.title)}
+      </a>
+    `).join("");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const activeId = entry.target.getAttribute("id");
+            tocNav.querySelectorAll("[data-toc-link]").forEach(link => {
+              if (link.dataset.tocLink === activeId) {
+                link.className = "block py-1 pl-2.5 border-l-2 border-cyan-400 text-xs font-bold text-cyan-400 transition leading-snug";
+              } else {
+                link.className = "block py-1 pl-2.5 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-400 transition leading-snug";
+              }
+            });
+          }
+        });
+      }, { rootMargin: "-15% 0px -70% 0px", threshold: 0 });
+
+      tocItems.forEach(item => observer.observe(item.el));
+    }
+  }
 
   // ─── 2. MERMAID İŞ AKIŞI DİYAGRAMI MOTORU ─────────────────────────────────
   let originalMermaidSources = new Map();
@@ -81,7 +308,6 @@
         });
       }).catch(err => {
         console.warn("Mermaid şema çizim uyarısı:", err);
-        // Fallback: hata olsa bile gizli kalmasın
         nodes.forEach(node => {
           node.classList.remove("opacity-0");
           node.classList.add("opacity-100");
@@ -107,11 +333,9 @@
     if (!card) return;
     card.classList.add("relative");
 
-    // Eski toolbar & hint varsa kaldır
     card.querySelector(".mermaid-toolbar")?.remove();
     card.querySelector(".mermaid-hint")?.remove();
 
-    // Standart Tuval Görünümü (520px CAD / Dot-grid Klinik Viewport)
     mermaidNode.style.cursor = "grab";
     mermaidNode.style.userSelect = "none";
     mermaidNode.style.overflow = "hidden";
@@ -127,7 +351,6 @@
       : "radial-gradient(circle, rgba(203, 213, 225, 0.6) 1px, transparent 1px) 0 0 / 20px 20px, #f8fafc";
     mermaidNode.style.borderRadius = "1rem";
 
-    // SVG İlk Yerleşim
     svg.style.maxWidth = "92%";
     svg.style.maxHeight = "90%";
     svg.style.width = "auto";
@@ -137,7 +360,6 @@
     svg.style.transformOrigin = "center center";
     svg.style.transition = "transform 0.1s ease-out";
 
-    // Sağ Üst Standart Araç Çubuğu
     const toolbar = document.createElement("div");
     toolbar.className = "mermaid-toolbar absolute top-3 right-3 z-20 flex items-center gap-1 p-1 rounded-xl bg-white/95 dark:bg-slate-800/95 backdrop-blur-md border border-slate-200 dark:border-slate-700 shadow-lg";
     toolbar.innerHTML = `
@@ -158,7 +380,6 @@
     `;
     card.appendChild(toolbar);
 
-    // Sol Alt İpucu Rozeti
     const hint = document.createElement("div");
     hint.className = "mermaid-hint absolute bottom-3 left-3 z-10 pointer-events-none flex items-center gap-1.5 text-[11px] font-medium text-slate-500 dark:text-slate-400 bg-white/85 dark:bg-slate-900/85 px-2.5 py-1 rounded-lg border border-slate-200/80 dark:border-slate-800/80 backdrop-blur-xs shadow-xs";
     hint.innerHTML = `
@@ -314,9 +535,118 @@
     });
   }
 
-  // ─── 3. ÇEVRİMDIŞI ARAMA MODALI (Ctrl+K) ──────────────────────────────────
+  // ─── 2.8 EKRAN GÖRÜNTÜLERİ TAM EKRAN BÜYÜTME (LIGHTBOX) ──────────────────
+  function setupImageLightbox() {
+    const images = document.querySelectorAll("main figure img, main section img");
+    if (images.length === 0) return;
+
+    images.forEach(img => {
+      img.classList.add("cursor-zoom-in", "transition-transform", "duration-200", "hover:scale-[1.01]");
+      img.title = "Tam ekran incelemek için tıklayın";
+      img.addEventListener("click", () => {
+        openImageLightbox(img.src, img.alt || "RADPYS V4 Ekran Görüntüsü");
+      });
+    });
+  }
+
+  function openImageLightbox(src, caption) {
+    let lb = document.getElementById("radpysImageLightbox");
+    if (!lb) {
+      lb = document.createElement("div");
+      lb.id = "radpysImageLightbox";
+      lb.className = "fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex flex-col p-4 sm:p-6";
+      lb.innerHTML = `
+        <div class="flex items-center justify-between pb-3 border-b border-slate-800 text-white">
+          <div class="flex items-center gap-2 truncate pr-4">
+            <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 shrink-0"></span>
+            <span id="lbCaption" class="font-bold text-xs sm:text-sm truncate"></span>
+          </div>
+          <button id="lbCloseBtn" class="px-3 py-1.5 text-xs font-bold bg-rose-600 hover:bg-rose-500 text-white rounded-lg transition shrink-0">✕ Kapat (ESC)</button>
+        </div>
+        <div id="lbBackdrop" class="flex-1 overflow-auto flex items-center justify-center p-2 sm:p-6">
+          <img id="lbImage" src="" alt="" class="max-w-full max-h-[85vh] object-contain rounded-xl border border-slate-700 shadow-2xl" />
+        </div>
+      `;
+      document.body.appendChild(lb);
+      const close = () => lb.classList.add("hidden");
+      lb.querySelector("#lbCloseBtn").addEventListener("click", close);
+      lb.querySelector("#lbBackdrop").addEventListener("click", (e) => {
+        if (e.target.id === "lbBackdrop") close();
+      });
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !lb.classList.contains("hidden")) close();
+      });
+    }
+    lb.querySelector("#lbImage").src = src;
+    lb.querySelector("#lbImage").alt = caption;
+    lb.querySelector("#lbCaption").textContent = caption;
+    lb.classList.remove("hidden");
+  }
+
+  // ─── 3. ANA SAYFA CANLI MODÜL FİLTRELEME & ÇEVRİMDIŞI ARAMA MODALI (Ctrl+K) ─
+  let openSearchModalFn = null;
+
+  function setupIndexModuleFilter() {
+    const heroInput = document.getElementById("heroFilterInput");
+    const topInput = document.getElementById("moduleFilterInput");
+    const cardsContainer = document.getElementById("moduleCardsContainer");
+    const noResultsMsg = document.getElementById("noResultsMsg");
+
+    if (!cardsContainer) return;
+
+    const sections = Array.from(cardsContainer.querySelectorAll(".module-section"));
+
+    function filterCards(rawQuery, sourceInput) {
+      if (sourceInput === heroInput && topInput) topInput.value = rawQuery;
+      if (sourceInput === topInput && heroInput) heroInput.value = rawQuery;
+
+      const q = normalizeTr(rawQuery.trim());
+      let totalVisibleCards = 0;
+
+      sections.forEach(sec => {
+        const cards = Array.from(sec.querySelectorAll(".module-card"));
+        let visibleInSec = 0;
+
+        cards.forEach(card => {
+          const text = normalizeTr((card.getAttribute("data-search") || "") + " " + card.textContent);
+          if (!q || text.includes(q)) {
+            card.classList.remove("hidden");
+            visibleInSec++;
+            totalVisibleCards++;
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+
+        if (visibleInSec > 0) {
+          sec.classList.remove("hidden");
+        } else {
+          sec.classList.add("hidden");
+        }
+      });
+
+      if (noResultsMsg) {
+        if (totalVisibleCards === 0) {
+          noResultsMsg.classList.remove("hidden");
+        } else {
+          noResultsMsg.classList.add("hidden");
+        }
+      }
+    }
+
+    [heroInput, topInput].forEach(inp => {
+      if (!inp) return;
+      inp.addEventListener("input", (e) => filterCards(e.target.value, inp));
+      inp.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && inp.value.trim().length >= 2 && openSearchModalFn) {
+          e.preventDefault();
+          openSearchModalFn(inp.value.trim());
+        }
+      });
+    });
+  }
+
   function setupSearchModal() {
-    // Arama modal HTML bileşenini dinamik ekle (sayfada yoksa)
     if (!document.getElementById("radpysSearchModal")) {
       const modalHtml = `
       <div id="radpysSearchModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-start justify-center pt-20 p-4 transition-opacity">
@@ -354,25 +684,27 @@
     const resultsContainer = document.getElementById("radpysSearchResults");
     const closeBtn = document.getElementById("closeSearchModalBtn");
 
-    function openSearch() {
+    function openSearch(initialQuery) {
       if (!modal) return;
       modal.classList.remove("hidden");
-      input.value = "";
-      renderSearchResults("");
+      const q = typeof initialQuery === "string" ? initialQuery : "";
+      input.value = q;
+      renderSearchResults(q);
       setTimeout(() => input.focus(), 50);
     }
+
+    openSearchModalFn = openSearch;
 
     function closeSearch() {
       if (!modal) return;
       modal.classList.add("hidden");
     }
 
-    // Tetikleyiciler
     document.addEventListener("keydown", (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         if (modal.classList.contains("hidden")) {
-          openSearch();
+          openSearch("");
         } else {
           closeSearch();
         }
@@ -386,15 +718,15 @@
       if (e.target === modal) closeSearch();
     });
 
-    // Sayfa üzerindeki mevcut arama kutularına tıklandığında modalı aç
     document.querySelectorAll(".quick-search-trigger, [placeholder*='Dokümanda ara']").forEach(el => {
+      if (el.id === "radpysSearchInput") return;
       el.addEventListener("click", (e) => {
         e.preventDefault();
-        openSearch();
+        openSearch("");
       });
       el.addEventListener("focus", (e) => {
         e.preventDefault();
-        openSearch();
+        openSearch("");
       });
     });
 
@@ -414,17 +746,17 @@
         return;
       }
 
-      const q = query.toLowerCase();
+      const qNorm = normalizeTr(query);
       const matches = [];
 
       for (const item of index) {
-        const titleMatch = item.title && item.title.toLowerCase().includes(q);
-        const descMatch = item.desc && item.desc.toLowerCase().includes(q);
-        const moduleMatch = item.module && item.module.toLowerCase().includes(q);
+        const titleMatch = item.title && normalizeTr(item.title).includes(qNorm);
+        const descMatch = item.desc && normalizeTr(item.desc).includes(qNorm);
+        const moduleMatch = item.module && normalizeTr(item.module).includes(qNorm);
 
         if (titleMatch || descMatch || moduleMatch) {
           matches.push(item);
-          if (matches.length >= 20) break; // İlk 20 sonuç
+          if (matches.length >= 25) break;
         }
       }
 
@@ -460,8 +792,12 @@
     if (!text) return "";
     const safeText = escapeHtml(text);
     const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const regex = new RegExp(`(${escapedQuery})`, "gi");
-    return safeText.replace(regex, '<mark class="bg-cyan-200 dark:bg-cyan-900/80 text-cyan-950 dark:text-cyan-200 px-1 rounded-sm">$1</mark>');
+    try {
+      const regex = new RegExp(`(${escapedQuery})`, "gi");
+      return safeText.replace(regex, '<mark class="bg-cyan-200 dark:bg-cyan-900/80 text-cyan-950 dark:text-cyan-200 px-1 rounded-sm">$1</mark>');
+    } catch (e) {
+      return safeText;
+    }
   }
 
   // ─── 4. MOBİL MENÜ ÇEKMECESİ ───────────────────────────────────────────────
@@ -477,8 +813,13 @@
 
   // ─── 5. BAŞLATMA (Bootstrap) ──────────────────────────────────────────────
   document.addEventListener("DOMContentLoaded", () => {
+    setupHeaderAndVersion();
+    setupSidebarNavigation();
+    setupOnPageToc();
     setupMobileMenu();
     setupSearchModal();
+    setupIndexModuleFilter();
     renderMermaidDiagrams();
+    setupImageLightbox();
   });
 })();

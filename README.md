@@ -1,30 +1,32 @@
-# RADPYS V4 — Web Tanıtım Portalı
+# RADPYS V4 — Kurumsal Web & Dokümantasyon Portalı
 
-**RADPYS V4** (Radyoloji, Radyasyon Güvenliği ve Departman Yönetim Sistemi) resmi tanıtım, modül vitrini, lisanslama ve demo talep sitesidir.
+**RADPYS V4** (Radyoloji, Radyasyon Güvenliği ve Departman Yönetim Sistemi) resmi tanıtım, **23 entegre modül** vitrini, sürüm notları (changelog), teknik dokümantasyon, lisanslama ve demo talep portalıdır.
 
 * **Canlı Site:** [https://radpys.com.tr](https://radpys.com.tr)
-* **Mimari:** Statik HTML5 / CSS3 / Vanilla JS (Backend gerektirmez, GitHub Pages üzerinde barınır).
+* **Güncel Sürüm:** `v4.0.5.7` (`V4.0.5` Serisi)
+* **Mimari:** Merkezi Veri Katmanlı (`Single Source of Truth`) HTML5 / Tailwind CSS / Vanilla JS — GitHub & Cloudflare Pages CDN altyapısı üzerinde çalışır.
 
 ---
 
 ## 🩺 RADPYS V4 Nedir?
 
-**RADPYS V4**, hastaneler, radyoloji klinikleri, nükleer tıp ve radyasyon onkolojisi merkezleri için sağlık fizikçileri ve yazılım mühendisleri tarafından geliştirilmiş **entegre radyoloji departmanı ve radyasyon güvenliği yönetim platformudur**.
+**RADPYS V4**, hastaneler, radyoloji klinikleri, nükleer tıp ve radyasyon onkolojisi merkezleri için sağlık fizikçileri ve yazılım mühendisleri tarafından geliştirilmiş **23 modüllü entegre radyoloji departmanı ve radyasyon güvenliği yönetim platformudur**.
 
 ### 🌟 Öne Çıkan Yetenekler
 
 * **🤖 Otomatik Nöbet Solver Motoru:** Yasal çalışma kısıtları, nöbet ertesi dinlenme kuralları, adalet katsayıları ve personel mazeretlerini matematiksel optimizasyonla çözerek adil aylık çizelgeler üretir.
 * **☢️ Dozimetre Takibi & Yasal Bildirim:** TENMAK ve RADAT verilerini otomatik aktarır; doz aşımı durumunda NDK mevzuatına uygun resmi **RD.F43** inceleme tutanağını tek tıkla hazırlar.
 * **🛡️ RKE Koruyucu Ekipman (DIN 6857-1):** Kurşun önlük, tiroid ve gonad koruyucuların yıllık skopi muayenelerini, QR barkod pasaportlarını ve HEK/imha süreçlerini kayıt altına alır.
-* **⏳ Şua (Sağlık) İzni Takibi:** Devretmeyen 4 haftalık yasal şua izinlerinin yıl sonuna doğru zamanaşımına uğramasını önleyen kademeli erken uyarı bildirimleri sunar.
+* **⏳ Fiili Hizmet (FHZ) & Şua İzni Takibi:** 5510 sayılı Kanun md. 40 kapsamında net fiili hizmet saatlerini ve devretmeyen 30 günlük yasal şua izinlerini otomatik hesaplar.
 * **🗺️ Ortam Dozu & İnteraktif Mimari Kroki:** Kat planı ve departman krokileri üzerinde radyasyon alanlarının canlı doz haritasını ve kapı QR pasaportlarını üretir.
-* **🔒 NDK, SKS 6.1 ve KVKK 6698 Uyum:** AES-256 şifrelemeli veri kasası, denetime hazır İOBS/DÖF modülleri ve hibrit (Masaüstü + Web Portalı/PWA) kullanım desteği sağlar.
+* **📊 Rapor & Tutanak Merkezi (Modül 23):** 14 resmi kurumsal tutanak şablonu, 5 adımlı Tutanak Sihirbazı, SHA-256 doğrulama mührü ve Denetim Paketi (ZIP) üretimi sunar.
+* **🔒 NDK, SKS 6.1 ve KVKK 6698 Uyum:** AES-256-GCM şifrelemeli veri kasası, Merkezi Onaylar & Diff View (`Four-Eyes Principle`), denetime hazır İOBS/DÖF modülleri ve hibrit (Masaüstü + Web Portalı/PWA) kullanım desteği sağlar.
 
 ---
 
 ## 🚀 Yerelde Çalıştırma
 
-Font ve stil kaynaklarının düzgün yüklenmesi için basit bir yerel HTTP sunucusu ile açın:
+Font, stil ve canlı `fetch` kaynaklarının (`version.json`, `update.md`) düzgün yüklenmesi için yerel bir HTTP sunucusu ile açın:
 
 ```bash
 # Python ile:
@@ -38,47 +40,44 @@ Tarayıcıdan **`http://localhost:8000`** adresine gidin.
 
 ---
 
-## 📁 Dosya Yapısı
+## 📁 Proje Dosya Yapısı
 
-```
+```text
 RADPYS_V4_WEB/
-├── index.html              → Ana Sayfa (Genel tanıtım, özellikler, SSS)
-├── moduller.html           → 22 Modülün detaylı tanıtımı
-├── fiyatlandirma.html      → Lisans paketleri ve karşılaştırma tablosu
-├── referanslar.html        → Referanslar ve kullanıcı yorumları
-├── kaynaklar.html          → Blog ve bilgilendirici içerikler
-├── hakkimizda.html         → Ekip ve sağlık fiziği vizyonu
-├── iletisim.html           → İletişim ve demo talep formu
-├── gelistirme-planlari.html→ Sürüm yol haritası ve yenilikler
-├── version.json            → Masaüstü uygulaması otomatik güncelleme dosyası
-├── sitemap.xml & robots.txt→ Arama motoru indeksleme dosyaları
-├── CNAME                   → radpys.com.tr alan adı yönlendirmesi
+├── index.html               → Ana Sayfa (Hero ekran vitrini, 23 modül bento ızgarası, mevzuat, SSS)
+├── moduller.html            → 23 Entegre Modülün detaylı incelemesi ve gelecek modüller
+├── fiyatlandirma.html       → Lisans paketleri, özellik matrisi ve fiyatlandırma SSS
+├── changelog.html           → Dinamik Sürüm Notları (update.md canlı ayrıştırıcı ve seri filtreleri)
+├── gelistirme-planlari.html → Ürün yol haritası (Dalga 1-3, Faz 01-08) ve teknoloji sütunları
+├── dokumanlar.html          → Teknik dokümantasyon ve kullanım kılavuzu merkezi
+├── kaynaklar.html           → Mevzuat rehberleri ve teknik blog yazıları
+├── referanslar.html         → Referans kurumlar, istatistikler ve kullanıcı görüşleri
+├── hakkimizda.html          → Mimari katmanlar, kurumsal vizyon ve değerler
+├── iletisim.html            → İletişim bilgileri, interaktif harita ve demo talep formu
+├── gizlilik.html            → KVKK aydınlatma metni ve gizlilik politikası
 │
-├── assets/                 → Tasarım, stiller ve dinamik veriler
-│   ├── css/tokens.css      → Renk paleti, tipografi ve efektler
+├── version.json             → Masaüstü uygulaması ve web sitesi canlı sürüm kaynağı
+├── update.md                → Tüm sürümlerin resmi Markdown sürüm notları kaynağı
+├── sitemap.xml & robots.txt → Arama motoru indeksleme ve site haritası dosyaları
+│
+├── assets/
+│   ├── css/tokens.css       → Tasarım sistemi, renk paleti, tipografi ve cam efektleri
 │   └── js/
-│       ├── data.js         → Blog yazıları ve referans verileri
-│       └── layout.js       → Ortak navbar, mobil menü ve footer
+│       ├── data.js          → Merkezi Veri & Sayfa İçeriği Katmanı (Single Source of Truth)
+│       └── layout.js        → Ortak üst menü, alt bilgi ve canlı sürüm/DOM bağlayıcı
 │
-├── help/                   → Modül ekran görüntüleri ve kullanım kılavuzları
-└── images/                 → Logolar, ikonlar ve marka görselleri
+├── scripts/
+│   └── sync-release.js      → Tek komutla sürüm senkronizasyonu ve bütünlük doğrulama betiği
+│
+├── help/                    → 23 modülün detaylı HTML kullanım kılavuzları ve ekran görüntüleri
+└── images/                  → Logolar, ikonlar ve kurumsal marka görselleri
 ```
 
 ---
 
-## ✍️ İçerik Nasıl Güncellenir?
+## 🚢 Yayınlama (Cloudflare Pages & GitHub)
 
-* **Blog Yazısı Eklemek:** `assets/js/data.js` dosyasındaki `BLOG_POSTS` dizisine yeni bir kayıt ekleyin. Liste ve detay sayfasına otomatik yansır.
-* **Müşteri Yorumu / Referans Eklemek:** `assets/js/data.js` içindeki `TESTIMONIALS` dizisine ekleyin.
-* **Üst Menü / Linkleri Değiştirmek:** `assets/js/layout.js` başındaki `NAV_LINKS` dizisini güncelleyin; tüm sayfalarda anında güncellenir.
-* **Fiyat veya Paket Değiştirmek:** `fiyatlandirma.html` dosyasındaki fiyat kartlarını düzenleyin.
-* **İletişim E-postası:** Form gönderim adresini değiştirmek için `iletisim.html` içindeki form eylemini düzenleyin.
-* **Yeni Sürüm Notu Eklemek:** `gelistirme-planlari.html` sayfasına yeni sürüm maddesini ekleyin.
+Proje GitHub deposuna bağlı **Cloudflare Pages** üzerinde yayınlanmaktadır:
 
----
-
-## 🚢 Yayınlama (Deploy)
-
-Site doğrudan GitHub Pages üzerinden yayınlanmaktadır:
-1. Değişiklikleri `main` branch'ine push edin.
-2. GitHub Pages otomatik olarak `radpys.com.tr` üzerinden yayına alır.
+1. Değişiklikler `main` dalına (`branch`) gönderildiğinde (`git push`),
+2. Cloudflare Pages otomatik olarak yeni dağıtımı oluşturur ve **`https://radpys.com.tr`** üzerinde yayına alır.
