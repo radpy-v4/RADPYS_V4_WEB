@@ -3,7 +3,7 @@
 **RADPYS V4** (Radyoloji, Radyasyon Güvenliği ve Departman Yönetim Sistemi) resmi tanıtım, **23 entegre modül** vitrini, sürüm notları (changelog), teknik dokümantasyon, lisanslama ve demo talep portalıdır.
 
 * **Canlı Site:** [https://radpys.com.tr](https://radpys.com.tr)
-* **Güncel Sürüm:** `v4.0.5.7` (`V4.0.5` Serisi)
+* **Güncel Sürüm:** `v4.0.5.8` (`V4.0.5` Serisi)
 * **Mimari:** Merkezi Veri Katmanlı (`Single Source of Truth`) HTML5 / Tailwind CSS / Vanilla JS — GitHub & Cloudflare Pages CDN altyapısı üzerinde çalışır.
 
 ---

@@ -9,11 +9,11 @@
 
 (function () {
     const VERSION_INFO = {
-        version: "4.0.5.7",
+        version: "4.0.5.8",
         series: "V4.0.5",
-        release_date: "2026-10-30",
+        release_date: "2026-11-01",
         download_url: "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-        changelog_sections: 74
+        changelog_sections: 76
     };
 
     const SITE_CONFIG = {

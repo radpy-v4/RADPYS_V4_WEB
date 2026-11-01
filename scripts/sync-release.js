@@ -158,12 +158,12 @@ function buildHelpSearchIndex() {
 function syncHelpFiles(version) {
   if (!fs.existsSync(HELP_DIR)) return;
 
-  // 1. help/assets/app.js içindeki FALLBACK_VERSION değerini güncelle
+  // 1. help/assets/app.js içindeki currentVersion değerini güncelle
   if (fs.existsSync(HELP_APP_JS_PATH)) {
     const appJs = fs.readFileSync(HELP_APP_JS_PATH, 'utf8');
     const updatedAppJs = appJs.replace(
-      /const FALLBACK_VERSION = "[^"]+";/,
-      `const FALLBACK_VERSION = "${version}";`
+      /let currentVersion = "[^"]+";/,
+      `let currentVersion = "${version}";`
     );
     writeIfChanged(HELP_APP_JS_PATH, updatedAppJs, `help/assets/app.js (v${version})`);
   }

@@ -10,7 +10,7 @@
 (function () {
   "use strict";
 
-  let currentVersion = "4.0.5.7";
+  let currentVersion = "4.0.5.8";
 
   const MODULE_NAV_ITEMS = [
     { num: "01", title: "Kurulum & İlk Giriş", url: "01_kurulum_ve_ilk_giris.html" },
