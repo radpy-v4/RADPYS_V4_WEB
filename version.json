@@ -3,8 +3,8 @@
   "release_version": "4.0.5.8",
   "build_version": "4.0.5.8",
   "latest_demo_version": "4.0.5.8",
-  "release_date": "2026-10-31",
+  "release_date": "2026-11-01",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.5.8: Web Portal Siber Güvenlik Zırhı (SEC-PORTAL-22..27), Şifreli .lic Portal Kasası & Sıfır Kurulumlu Cloudflare Tüneli ve Akıllı Otomatik Algılamalı E-Posta (SMTP) / 2FA Doğrulama Merkezi.",
+  "changelog": "RADPYS V4.0.5.8: Web Portal Siber Güvenlik Zırhı (SEC-PORTAL-22..29), Canlı Donanım Kimliğine (Machine ID) Bağlı Şifreli .lic Portal Kasası & Sıfır Kurulumlu Cloudflare Tüneli (%100 Yerel KVKK Veri Egemenliği, Sıfır Bulut Veri Saklama), Windows DPAPI Güvenli Parola Kasası ve Parola Maskeleme (SEC-UI-MASK), Güvenli Kapanmalı (Fail-Closed) ve SHA-256 Özetli Kalıcı 2FA E-Posta Doğrulama Kodu (OTP) ve Akıllı Otomatik Algılamalı E-Posta Merkezi.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }

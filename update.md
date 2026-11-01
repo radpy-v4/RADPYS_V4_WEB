@@ -4,6 +4,34 @@ Bu kılavuz, **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## 🛡️ RADPYS V4.0.5.8: Kurumsal Web Portalı Güvenli Dış Ağ Tüneli, KVKK %100 Yerel Veri Egemenliği, İki Aşamalı E-Posta Doğrulaması (2FA OTP) ve Akıllı E-Posta Merkezi
+
+Bu sürüm; hastane ve üniversite radyoloji birimlerinin bilgi işlem (IT) güvenlik duvarında hiçbir port açmasına veya dış IP tanımlamasına gerek kalmadan **Web Portalına ve Mobil QR Ekranlarına kuruma özel güvenli alt alan adıyla (`https://kurumadi.radpys.com.tr`)** erişebilmesini sağlarken, **6698 sayılı KVKK** kapsamında tüm verilerin %100 kurum içi yerel sunucuda kalmasını garanti altına alır.
+
+### 🔒 1. KVKK ve Bilgi Güvenliği Kapsamında %100 Yerel Veri Egemenliği (Sıfır Bulut Veri Saklama)
+
+* **Verileriniz Asla Kurum Dışına Çıkmaz:** Yeni güvenli tünel mimarisinde personel özlük bilgileri, TC Kimlik numaraları, dozimetre ölçüm sonuçları, sağlık muayene kayıtları, nöbet çizelgeleri, cihaz envanteri ve resmi evraklar **kesinlikle hiçbir dış sunucuya, bulut veritabanına veya üçüncü taraf veri merkezine aktarılmaz, kopyalanmaz ve dışarıda saklanmaz**.
+* **Uçtan Uca Şifreli Geçiş Köprüsü:** Tüm veritabanı ve şifreli evrak kasası yalnızca kurumunuzun kendi yerel bilgisayarında barındırılmaya devam eder. Kurumsal tünel yalnızca yetkili personelin cep telefonu veya tarayıcısı ile kurum içi yerel bilgisayarınız arasında uçtan uca şifreli (TLS/HTTPS) anlık bir geçiş köprüsü kurar; Portal Başlatıcı kapatıldığında dış bağlantı anında kesilir.
+
+### 🌐 2. Cihaz Kimliğine (Machine ID) Kilitli Şifreli Lisans Kasası ve Sıfır Ayarlı Tünel Kurulumu
+
+* **Donanım Kimliğine Bağlı Şifreli Lisans Kasası:** Kuruma özel tanımlanan güvenli tünel anahtarı ve siber koruma parametreleri, lisans dosyasının (`.lic`) içerisine **AES-256** standardında şifrelenmiş olarak gömülür ve yalnızca kurumun kendi fiziksel bilgisayarının **Cihaz Kimliği (Machine ID)** ile açılabilir. Lisans dosyası başka bir bilgisayara kopyalansa dahi içindeki tünel anahtarları deşifre edilemez.
+* **Tek Tıkla Otomatik Tünel Başlatma:** Sistem Yöneticisi lisans dosyasını yükleyip **RADPYS Portal Başlatıcı** üzerinden **[Servisleri Başlat]** butonuna tıkladığında, sistem içindeki gömülü tünel motoru hiçbir ek kurulum gerektirmeden arka planda otomatik çalışır ve durum rozeti **"Tünel: Aktif (Cloudflare)"** olarak yeşile döner.
+
+### 🔐 3. Çift Katmanlı Web Portal Giriş Koruması ve Zorunlu 2 Aşamalı E-Posta Doğrulaması (2FA OTP)
+
+* **Akıllı Ağ Ayrımı (Yerel Ağ vs. Dış Ağ):** Hastane yerel ağından (`localhost` veya kurum içi yerel IP) yapılan bağlantılarda personel kesintisiz hızla giriş yapar (hatalı denemelerde yalnızca yerel resimli doğrulama kodu gösterilir); dış ağdan (internet/mobil) yapılan bağlantılarda ise **Cloudflare Turnstile** siber koruma kalkanı ve **6 Haneli E-Posta Doğrulama Kodu (2FA OTP)** otomatik olarak devreye girer.
+* **Güvenli Kapanma (Fail-Closed) Koruması:** Dış ağdan giriş yapan bir personelin e-posta doğrulama kodu herhangi bir e-posta sunucu hatası veya eksik e-posta adresi nedeniyle gönderilemezse sistem güvenlikten ödün vermez; oturumu açmaz ve denetim izine uyarı kaydederek kullanıcıyı bilgilendirir.
+* **Kalıcı Kriptografik Koruma:** Üretilen 6 haneli tek kullanımlık doğrulama kodları ve hatalı giriş deneme sayaçları yüksek güvenlikli özetleme ile yerel veritabanında korunur; 5 hatalı denemede hesap 15 dakika süreyle otomatik kilitlenir.
+
+### ✉️ 4. Akıllı Otomatik Algılamalı E-Posta Merkezi ve Windows Güvenli Parola Kasası
+
+* **Otomatik E-Posta Sağlayıcı Algılama:** **Sistem Yönetimi > E-Posta ve Bildirim Ayarları** ekranına e-posta adresi yazıldığı anda sistem sağlayıcıyı (**Gmail, Outlook/Office 365, Yandex, Yahoo, iCloud ve Kurumsal / Sağlık Bakanlığı / Üniversite `edu.tr`**) otomatik olarak tanır ve sunucu/port ayarlarını kendisi doldurur.
+* **3 Adımlı Uygulama Şifresi Rehberi ve Canlı Test:** Kurumsal veya Gmail/Outlook hesaplarında 16 haneli uygulama şifresinin nasıl alınacağını anlatan yerleşik görsel rehber penceresi ve arka planda çalışan **[Test E-Postası Gönder]** doğrulama aracı eklendi.
+* **Windows Güvenli Anahtar Kasası ve Parola Gizleme Kalkanı:** Kaydedilen e-posta parolası işletim sisteminin donanım korumalı güvenli anahtar kasasında saklanır ve açık olan Web Portal sunucusuna anında bildirilir. Ayar ekranı tekrar açıldığında mevcut parola ekrana geri doldurulmaz ve **"Göster"** butonuyla dahi okunamaz; yalnızca *"Kayıtlı parola mevcut — değiştirmek için yeni parola giriniz"* bilgisi gösterilerek tam gizlilik sağlanır.
+
+---
+
 ## 🎯 RADPYS V4.0.5.7: Tüm Modüllerde Durum Rozetleri, Filtre Tutarlılığı, Cihaz Lisanslama ve RKE/NDK Veri Bütünlüğü Paketi
 
 Bu güncelleme ile 23 modülün tamamında yer alan açılır seçim kutuları, durum filtreleri, kurumsal durum rozetleri ve arka plan veri doğrulama kuralları tek bir standartta birleştirilmiştir. Cihaz Yönetimi, Koruyucu Ekipman (RKE), Dozimetre, Olay Bildirimi (NDK), İzin ve Merkezi Onay ekranlarında operasyonel doğruluğu artıran kritik iyileştirmeler devreye alınmıştır.
@@ -1328,27 +1356,28 @@ Bu sürümle birlikte sisteme giriş yapan kullanıcıların "Bugün ne yapmam g
 
 Hastane dışından veya mobil cihazlardan Web Portalına güvenli erişimi kolaylaştırmak, kurum bilgi işlem birimlerini karmaşık ağ ve güvenlik duvarı ayarlarından kurtarmak ve kimlik doğrulama güvenliğini en üst düzeye çıkarmak amacıyla kapsamlı yenilikler devreye alınmıştır:
 
-### 🔐 26.1 Kurumsal Lisans Dosyası (.lic) İçinde Şifreli Tünel ve Güvenlik Kasası
+### 🔐 26.1 Kurumsal Lisans Dosyası (.lic) İçinde Cihaz Kimliğine Kilitli Şifreli Tünel Kasası ve %100 Yerel KVKK Güvencesi
 
-* **Sıfır Kurulumlu Güvenli Bağlantı:** Her sağlık kurumuna özel olarak tanımlanan Web Portal alt alan adı (örneğin `kurumadi.radpys.com`), Cloudflare Zero Trust tünel anahtarı ve Turnstile robot koruma anahtarları artık doğrudan kurumun `.lic` lisans dosyası içerisine askeri düzeyde (AES-256) şifrelenmiş olarak gömülmektedir.
+* **KVKK Kapsamında Sıfır Bulut Veri Saklama:** Güvenli tünel mimarisinde personel özlük bilgileri, TC Kimlik numaraları, dozimetre sonuçları, sağlık muayene kayıtları ve resmi evraklar **kesinlikle hiçbir dış sunucuya veya bulut veritabanına aktarılmaz ve dışarıda saklanmaz**. Tüm veriler %100 kurumun kendi yerel bilgisayarında kalır; tünel yalnızca uçtan uca şifreli (TLS/HTTPS) anlık geçiş köprüsü görevi görür.
+* **Sıfır Kurulumlu ve Cihaz Kimliğine Bağlı Güvenli Bağlantı:** Her sağlık kurumuna özel olarak tanımlanan Web Portal alt alan adı (örneğin `kurumadi.radpys.com.tr`), Cloudflare Zero Trust tünel anahtarı ve Turnstile robot koruma anahtarları doğrudan kurumun `.lic` lisans dosyası içerisine askeri düzeyde (AES-256) şifrelenmiş olarak gömülür ve yalnızca o bilgisayarın **Cihaz Kimliği (Machine ID)** ile açılabilir.
 * **Tek Tıkla Otomatik Yapılandırma:** Sistem yöneticisi masaüstü uygulamasından `.lic` lisans dosyasını seçip etkinleştirdiği anda; tüm güvenli tünel ve siber güvenlik anahtarları hiçbir teknik metin dosyasına el değmeden otomatik olarak sisteme tanımlanır.
 
 ### 🌐 26.2 Gömülü Cloudflare Tünel Motoru ve Portal Başlatıcı Entegrasyonu
 
 * **Ek Program Kurulumuna Son:** Kurum bilgisayarlarına harici tünel programı kurma veya Windows servisi ayarlama zorunluluğu tamamen kaldırılmıştır. Gömülü tünel motoru doğrudan RADPYS paketinin içinde hazır gelir.
 * **Modem Portu Açmadan Güvenli Yayın:** Kurum güvenlik duvarında dışarıya port açmaya veya sabit IP tahsis etmeye gerek kalmadan, **RADPYS Portal Başlatıcı** üzerinden **[Servisleri Başlat]** butonuna basıldığında güvenli tünel kendiliğinden devreye girer.
-* **Canlı Tünel Durum Göstergesi:** Portal Başlatıcı ekranına eklenen canlı **Tünel** rozeti sayesinde güvenli dış bağlantının durumu (`Aktif`, `Kapalı` veya `Yerel Ağ Modu`) anlık olarak izlenebilir.
+* **Canlı Tünel Durum Göstergesi:** Portal Başlatıcı ekranına eklenen canlı **Tünel** rozeti sayesinde güvenli dış bağlantının durumu (`Aktif (Cloudflare)`, `Hazır (Başlatılmadı)` veya `Yapılandırılmadı (Yerel Ağ)`) anlık olarak izlenebilir.
 
-### ✉️ 26.3 Akıllı Otomatik Algılamalı E-Posta (SMTP) ve 2FA Bildirim Ayarları Ekranı
+### ✉️ 26.3 Akıllı Otomatik Algılamalı E-Posta (SMTP) Merkezi ve Windows Güvenli Parola Kasası
 
 * **E-Posta Adresinden Otomatik Sunucu Tanıma:** **Sistem Yönetimi > E-Posta ve Bildirim Ayarları** ekranında yönetici yalnızca kurum veya bildirim e-posta adresini yazdığında; sistem Gmail, Outlook / Office 365, Yandex, Yahoo, iCloud ve Kurumsal / Sağlık Bakanlığı (`saglik.gov.tr`, `edu.tr`) sunucu ve port ayarlarını otomatik olarak doldurur.
-* **Adım Adım Uygulama Şifresi Rehberi:** Gmail ve Microsoft hesaplarında güvenli uygulama şifresinin nasıl alınacağını anlatan yerleşik görsel rehber penceresi ve tek tıkla **Test E-Postası Gönder** doğrulama aracı eklenmiştir.
+* **Adım Adım Uygulama Şifresi Rehberi ve Parola Gizleme Kalkanı:** Gmail ve Microsoft hesaplarında güvenli uygulama şifresinin nasıl alınacağını anlatan yerleşik görsel rehber penceresi ve tek tıkla **Test E-Postası Gönder** doğrulama aracı eklenmiştir. Kaydedilen e-posta parolası işletim sisteminin donanım korumalı güvenli anahtar kasasında saklanır; ayar ekranı tekrar açıldığında parola kutuya geri doldurulmaz ve **"Göster"** butonuyla dahi okunamaz.
 * **Yeniden Başlatma Gerektirmeyen Canlı Güncelleme:** Masaüstü ekranından kaydedilen e-posta ve iki aşamalı doğrulama (2FA OTP) ayarları, açık olan Web Portal sunucusuna saniyesinde canlı olarak yansır.
 
-### 🛡️ 26.4 Web Portal İki Aşamalı Doğrulama (2FA OTP) ve Yetki Kalkanı
+### 🛡️ 26.4 Web Portal İki Aşamalı Doğrulama (2FA OTP), Güvenli Kapanma ve Yetki Kalkanı
 
-* **6 Haneli E-Posta Doğrulama Kodu (2FA):** Etkinleştirildiğinde Web Portalına giriş yapan personele 6 haneli tek kullanımlık doğrulama kodu gönderilir; kriptografik oturum kilidi sayesinde doğrulama tamamlanmadan tam yetki verilmez.
-* **Cloudflare Turnstile Robot Koruması ve Atomik Hesap Kilidi:** Web giriş ekranı sunucu taraflı robot korumasıyla güçlendirilmiş; art arda 5 hatalı parola denemesinde hesabın 15 dakika süreyle otomatik kilitlenmesi garanti altına alınmıştır.
+* **6 Haneli E-Posta Doğrulama Kodu (2FA) ve Güvenli Kapanma:** Dış ağdan Web Portalına giriş yapan personele 6 haneli tek kullanımlık doğrulama kodu gönderilir; doğrulama e-postası herhangi bir nedenle iletilemezse sistem güvenlikten ödün vermez ve dış ağ oturumunu açmaz.
+* **Yerel Ağ ve Dış Ağ Akıllı Ayrımı:** Kurum içi yerel ağ bağlantılarında hızlı giriş korunurken, dış ağ bağlantılarında sunucu taraflı **Cloudflare Turnstile** robot koruması devreye girer; art arda 5 hatalı parola denemesinde hesabın 15 dakika süreyle otomatik kilitlenmesi ve doğrulama kodlarının kriptografik özetle veritabanında korunması garanti altına alınmıştır.
 * **Kapsamlı Rol ve Sahiplik Denetimi:** Web Portal üzerindeki izin, nöbet devri, eğitim ve cihaz işlemlerinin tamamında rol tabanlı erişim kontrolü ve kayıt sahipliği doğrulaması sıkılaştırılmıştır.
 
 ---
