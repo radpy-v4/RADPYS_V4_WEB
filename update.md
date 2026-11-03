@@ -4,6 +4,34 @@ Bu kılavuz, **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## 🛡️ RADPYS V4.0.5.9: Kurulum & Lisans Koruması, Rol/Yetki Matrisi (RBAC) İzolasyonu ve Personel Yaşam Döngüsü Veri Bütünlüğü Paketi
+
+Bu sürüm; **Kurulum, İlk Giriş ve Lisans Yönetimi**, **Kullanıcı, Rol ve İzin Yönetimi** ile **Personel Yönetimi ve Toplu Excel Aktarımı** modüllerinde uçtan uca yapılan kapsamlı güvenlik, yetki izolasyonu ve veri bütünlüğü iyileştirmelerini içerir.
+
+### 🔐 1. Kurulum, İlk Giriş, Parola Güvenliği ve Lisans Paket Koruması
+
+* **Ticari Lisans ve Paket Seviyesi Koruması:** Kurumsal lisans anahtarıyla etkinleştirilen sistemlerde uygulama yeniden başlatıldığında lisans durumunun deneme (Demo) moduna dönmesi engellendi; Başlangıç, Profesyonel ve Kurumsal (Elite) paket kapsamındaki modül erişim sınırları tam zamanlı olarak devreye alındı.
+* **Lisans Süresi Dolumunda Tam Yönetici Kilidi:** Lisans süresi dolduğunda Sistem Yöneticisi (Admin) hesabıyla oturum açıldığında yalnızca **Lisans Aktivasyon** penceresine erişime izin verilir; Evrensel Arama (**Ctrl+K**), üst menüler veya kısayollar üzerinden diğer operasyonel ekranların açılması tamamen kapatıldı.
+* **İlk Giriş Şifre Değişiminde E-Posta Koruması:** Sisteme ilk kez giriş yapan veya parolası sıfırlanan personelin zorunlu şifre belirleme adımında, kullanıcı kartında kayıtlı kurumsal e-posta adresinin korunması garanti altına alındı.
+* **Parola Sıfırlama Kodu Güvenliği ve Kesintisiz Gönderim:** E-posta ile gönderilen 6 haneli parola sıfırlama kodlarına 5 hatalı deneme sınırı getirildi; e-posta gönderimi arka planda yürütülerek gönderim sırasında ekranın beklemesi önlendi.
+
+### 👥 2. Kullanıcı, Rol ve Yetki Matrisi (RBAC) Güvenlik Sıkılaştırması
+
+* **Kullanıcı Hesabı ile Personel Çalışma Durumu Ayrımı:** **Kullanıcı Yönetimi** ekranından bir kullanıcının sistem giriş hesabı pasife alındığında, personelin İnsan Kaynakları çalışma durumunun otomatik olarak "Pasif" statüsüne düşmesi engellendi. Böylece personelin nöbet, izin ve özlük kayıtları etkilenmeden yalnızca sistem oturum yetkisi kapatılıp açılabilir.
+* **Kapsam ve İşlem Yetkisi İzolasyonu:** Görev kapsamı "Tüm Birimler" olan ancak yalnızca görüntüleme yetkisine sahip rollerin (örneğin **İzleyici** rolünün) kayıt ekleme, düzenleme veya silme işlemi yapabilmesini sağlayan yetki geçişi kapatıldı; özel kullanıcı kapsam tanımlamalarının rol kapsamından öncelikli çalışması sağlandı.
+* **Okuma ve Yazma Yetkisi Tutarlılığı:** **Rol Yetkileri** ve **Kullanıcı Özel Yetkileri** matrislerinde bir modül için Ekleme, Güncelleme veya Silme yetkisi işaretlendiğinde **Okuma (Görüntüleme)** yetkisi otomatik olarak etkinleştirilir; Okuma yetkisi kaldırıldığında ise alt işlem yetkileri otomatik temizlenir.
+* **Korumalı Sistem Rolleri ve Çoklu Silme Onayı:** Sistemin temel taşları olan **Admin**, **Yönetici**, **Kullanıcı** ve **İzleyici** rollerinin silinmesi veya adlarının değiştirilmesi ile **Admin** rolünün yetkilerinin kısıtlanması engellendi. Çoklu kullanıcı silme işlemlerinde yönetici şifre doğrulaması zorunlu kılındı.
+* **Birim Sorumluluğu Filtreleme Koruması:** **Sorumlu Birimler** penceresinde arama kutusuyla filtreleme yaparak birim seçildiğinde, listede o an gizlenmiş olan diğer atanmış birimlerin korunması sağlandı; **Dozimetre** ve **Nöbet** sorumluluk türleri birim atama seçeneklerine eklendi.
+
+### 👨‍⚕️ 3. Personel Yönetimi, Şifreli Evrak Kasası ve Toplu Excel Aktarımı İyileştirmeleri
+
+* **Şifreli Personel Belgeleri ve Eğitim Sertifikası Koruması:** Personel kartı kaydedilirken mevcut yüklenmiş belgelerin ve eğitim sertifikalarının şifreli evrak kasasındaki bağlantılarının korunması sağlandı; eğitim ekleme ve düzenleme pencerelerinden seçilen diploma/sertifika dosyalarının doğrudan ilgili eğitim satırına bağlanması düzeltildi.
+* **Gebelik ve Süt İzni Alt Birim Radyasyon Denetimi:** Gebelik bildirimi ve gebelik sonlandırma (süt izni) işlemlerinde personelin yalnızca ana departmanına değil, görev yaptığı **Alt Birimin** (BT, Anjiyografi, Skopi vb.) radyasyonlu alan niteliğine de bakılarak otomatik birim kaydırma ve nöbet kısıtlaması uygulanması sağlandı.
+* **İşten Ayrılış ve Pasife Almada Koruyucu Ekipman (RKE) Zimmet İadesi:** Üzerinde zimmetli kurşun önlük veya koruyucu ekipman bulunan bir personel pasife alınırken veya işten ayrılışı yapılırken, zimmetli ekipmanların tek onayla otomatik olarak envantere iade alınması sağlandı.
+* **Toplu Excel Aktarımı Doğruluk Kontrolleri:** Excel'den toplu personel aktarımında aynı dosya içindeki mükerrer TC Kimlik ve Sicil Numarası kayıtlarının anında tespit edilmesi, Türkçe karakterli soyadların (`i -> İ`) doğru büyük harfe dönüştürülmesi ve yeni açılan unvanların varsayılan olarak radyasyonsuz tanımlanması sağlandı.
+
+---
+
 ## 🛡️ RADPYS V4.0.5.8: Kurumsal Web Portalı Güvenli Dış Ağ Tüneli, KVKK %100 Yerel Veri Egemenliği, İki Aşamalı E-Posta Doğrulaması (2FA OTP) ve Akıllı E-Posta Merkezi
 
 Bu sürüm; hastane ve üniversite radyoloji birimlerinin bilgi işlem (IT) güvenlik duvarında hiçbir port açmasına veya dış IP tanımlamasına gerek kalmadan **Web Portalına ve Mobil QR Ekranlarına kuruma özel güvenli alt alan adıyla (`https://kurumadi.radpys.com.tr`)** erişebilmesini sağlarken, **6698 sayılı KVKK** kapsamında tüm verilerin %100 kurum içi yerel sunucuda kalmasını garanti altına alır.

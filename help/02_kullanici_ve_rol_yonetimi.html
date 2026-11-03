@@ -34,7 +34,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.8</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.2</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Karar Destek Portalı</span>
           </div>
@@ -338,7 +338,7 @@
  <span class="text-xs font-normal text-slate-400 font-mono">[Aktif/Pasif Butonu]</span>
  </td>
  <td class="py-3.5 px-4">Yetkiyi dondururken geçmiş kayıtları korumak.</td>
- <td class="py-3.5 px-4">Kullanıcı seçilip pasife alınır. Fiziksel silme yapılmaz; personelin geçmiş işlem izi bozulmadan korunur.</td>
+ <td class="py-3.5 px-4">Kullanıcı seçilip pasife alınır. Personelin İK çalışma durumu etkilenmez; yalnızca sistem oturum yetkisi kapatılır ve işlem izi korunur.</td>
  <td class="py-3.5 px-4">Personel ayrıldığında veya yetkisi durdurulduğunda.</td>
  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Sistem Yöneticisi</span></td>
  </tr>
@@ -349,7 +349,7 @@
  <span class="text-xs font-normal text-slate-400 font-mono">[Sistem Güvenlik Kilidi]</span>
  </td>
  <td class="py-3.5 px-4">Sistemin yöneticisiz kalmasını engellemek.</td>
- <td class="py-3.5 px-4">Açık oturum sahibi kendi hesabını pasife alamaz. Ana Admin kullanıcısı ve rolü asla pasife alınamaz.</td>
+ <td class="py-3.5 px-4">Açık oturum sahibi kendi hesabını pasife alamaz. Yerleşik sistem rolleri (Admin, Yönetici, Kullanıcı, İzleyici) silinemez veya yeniden adlandırılamaz; Admin rolünün yetkileri kısıtlanamaz.</td>
  <td class="py-3.5 px-4">Yanlışlıkla işlem yapılmaya çalışıldığında.</td>
  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300">Otomatik Kilit</span></td>
  </tr>

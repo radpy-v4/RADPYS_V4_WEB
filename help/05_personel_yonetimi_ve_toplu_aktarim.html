@@ -34,7 +34,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.8</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.2</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Karar Destek Portalı</span>
           </div>
@@ -243,7 +243,7 @@
  <div class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
  <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase text-[10px] tracking-wider block">2. Yapılacak İşlem</span>
  <p class="font-semibold text-slate-800 dark:text-slate-100">
- <strong>[Yeni Personel Ekle]</strong> ile kayıt açın, gebe/emzirme durumunu bildirin, ayrılışta zimmetleri kapatıp <strong>`kvkk_arsiv_{tc}.zip`</strong> paketini oluşturun.
+ <strong>[Yeni Personel Ekle]</strong> ile kayıt açın, gebe/emzirme durumunu bildirin, ayrılışta zimmetleri kapatıp <strong>30 Yıllık KVKK Arşiv Paketini (ZIP)</strong> oluşturun.
  </p>
  </div>
 
@@ -316,22 +316,22 @@
  <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 text-slate-600 dark:text-slate-300">
  <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
  <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
- <strong>Metin Arama (txtSearch)</strong><br>
+ <strong>Metin Arama Kutusu</strong><br>
  <span class="text-[11px] text-slate-400">Üst Filtre Çubuğu</span>
  </td>
  <td class="py-3.5 px-4">Yüzlerce çalışan arasından hedeflenen personele anında ulaşmak.</td>
- <td class="py-3.5 px-4">Ad, Soyad, TC Kimlik No, Sicil No ve E-posta alanlarında harf girildikçe <code>textChanged</code> sinyaliyle dinamik filtreleme yapar.</td>
+ <td class="py-3.5 px-4">Ad, Soyad, TC Kimlik No, Sicil No ve E-posta alanlarında harf girildikçe anlık dinamik filtreleme yapar.</td>
  <td class="py-3.5 px-4">Personel sorgulama ve işlem öncesinde.</td>
  <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Tüm Kullanıcılar</td>
  </tr>
 
  <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
  <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
- <strong>Durum Filtresi (cmbDurumFilter)</strong><br>
+ <strong>Çalışma Durumu Filtresi</strong><br>
  <span class="text-[11px] text-slate-400">Üst Filtre Çubuğu</span>
  </td>
  <td class="py-3.5 px-4">Aktif çalışanlar ile işten ayrılmış eski personeli ayırmak.</td>
- <td class="py-3.5 px-4">"Tümü", "Aktif Çalışanlar" ve "Ayrılmış / Pasif" seçeneklerine göre SQL sorgusunu filtreler.</td>
+ <td class="py-3.5 px-4">"Tümü", "Aktif Çalışanlar" ve "Ayrılmış / Pasif" seçeneklerine göre listeyi filtreler.</td>
  <td class="py-3.5 px-4">Rutin işlemlerde aktifleri, denetimlerde eski personelleri incelerken.</td>
  <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Tüm Kullanıcılar</td>
  </tr>
@@ -364,7 +364,7 @@
  <span class="text-[11px] text-slate-400">Yeni Personel Formu</span>
  </td>
  <td class="py-3.5 px-4">Personelin masaüstü veya web portalına giriş yapabilmesini sağlamak.</td>
- <td class="py-3.5 px-4">Kutucuk seçildiğinde kullanıcı adı ve rolü belirlenir; <code>user_service</code> ile personelle eşleşen giriş hesabı açılır.</td>
+ <td class="py-3.5 px-4">Kutucuk seçildiğinde kullanıcı adı ve rolü belirlenir; personelle eşleşen sistem giriş hesabı otomatik açılır.</td>
  <td class="py-3.5 px-4">Personel sisteme kendi oturumuyla girecekse.</td>
  <td class="py-3.5 px-4 font-medium text-cyan-600 dark:text-cyan-400">Sistem Yöneticisi</td>
  </tr>
@@ -375,7 +375,7 @@
  <span class="text-[11px] text-purple-600 dark:text-purple-400 font-bold">Sağlık & Koruma Sekmesi</span>
  </td>
  <td class="py-3.5 px-4">Mevzuat gereği anne ve bebeği radyasyon riskinden tam korumaya almak.</td>
- <td class="py-3.5 px-4">Etkin doz eşiği 1 mSv'e kilitlenir; gece nöbetleri sıfırlanır, fazla mesai engellenir; doğumdan sonra 1 yıl emzirme muafiyeti sürer.</td>
+ <td class="py-3.5 px-4">Ana birim ve alt birimin radyasyonlu alan durumu denetlenir; etkin doz eşiği 1 mSv'e kilitlenir, gece nöbetleri sıfırlanır, fazla mesai engellenir ve doğumdan sonra 1 yıl emzirme muafiyeti sürer.</td>
  <td class="py-3.5 px-4">Gebelik bildirimi veya doğum sonrası emzirme döneminde.</td>
  <td class="py-3.5 px-4 font-medium text-purple-600 dark:text-purple-400">RGS / Hekim / Admin</td>
  </tr>
@@ -386,7 +386,7 @@
  <span class="text-[11px] text-rose-500 font-bold">Personel İşlem Menüsü</span>
  </td>
  <td class="py-3.5 px-4">Ayrılan personelin zimmetlerini kapatıp lisans kotasını serbest bırakmak.</td>
- <td class="py-3.5 px-4">Zimmetli RKE ve aktif dozimetreler denetlenir; ilişik kesilir; <code>kvkk_arsiv_{tc}.zip</code> paketi oluşturulup personel pasife alınır.</td>
+ <td class="py-3.5 px-4">Zimmetli RKE ve aktif dozimetreler denetlenir (tek onayla otomatik zimmet iadesi yapılabilir); ilişik kesilir ve 30 yıllık KVKK arşiv paketi (ZIP) oluşturulup personel pasife alınır.</td>
  <td class="py-3.5 px-4">İşten ayrılma, tayin veya emeklilik durumunda.</td>
  <td class="py-3.5 px-4 font-medium text-rose-600 dark:text-rose-400">Admin / RGS</td>
  </tr>
