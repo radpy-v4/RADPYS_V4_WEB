@@ -4,6 +4,80 @@ Bu kılavuz, **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## 🖥️ RADPYS V4.0.5.12: Farklı Ekran Çözünürlükleri İçin Ergonomik Form Görünümü, Merkezi Tablo Tasarımı, KVKK / NDK Denetim İzi Yenilemesi ve Nöbet Çizelgesi İyileştirmeleri
+
+Bu sürüm; dizüstü bilgisayarlar, standart hastane monitörleri ve yüksek ölçeklemeli ekranlar dahil **tüm ekran çözünürlüklerinde formların ferah ve okunaklı görünmesini sağlayan ergonomik arayüz iyileştirmelerini**, **KVKK / NDK Denetim İzi ve Sistem Günlükleri tablolarının kurumsal tasarım standardına kavuşturulmasını** ve **Nöbet Çizelgesi matris görünümünün iyileştirilmesini** içerir.
+
+### 📐 1. Tüm Ekran Çözünürlüklerine Uyumlu Ergonomik Formlar ve İki Satırlı Ana Tablolar
+
+* **Standart Windows Form Ergonomisi:** Metin giriş kutuları, açılır seçim menüleri, tarih seçiciler ve işlem butonları yazı tipi yüksekliği baz alınarak standart Windows masaüstü form oranlarına kavuşturuldu. Böylece daha küçük çözünürlüklü ekranlarda veya %125–%150 ekran ölçeklemesi kullanılan bilgisayarlarda formların sıkışması ve taşması tamamen önlendi.
+* **Ana Veri Tablolarında Ferah İki Satırlı Görünüm:** Personel Listesi, Cihaz Envanteri ve Koruyucu Ekipman (RKE) gibi alt alta iki satır bilgi (Ad Soyad + TC Kimlik, Cihaz Kodu + Kısa Kod, Marka + Model) ve renkli durum rozeti barındıran ana listelerde 44 piksel ideal satır yüksekliği korunarak tüm bilgilerin net ve kesintisiz okunması sağlandı.
+
+### 🛡️ 2. KVKK / NDK Denetim İzi, Sistem Günlükleri ve Yardımcı Tablolarda Merkezi Görünüm
+
+* **Yenilenen KVKK / NDK Denetim İzi Ekranı:** Sistem Günlükleri altındaki **KVKK / NDK Denetim İzi** sekmesinin üst bilgi kartı, **SHA-256 Bütünlük Doğrulandı** durum rozeti ve filtreleme araç çubuğu kurumsal tasarım sistemiyle yenilendi; başlık etrafındaki fazlalık çerçeve çizgileri temizlendi.
+* **Merkezi Tablo Standardı ve Hizalama:** Denetim İzi, Kullanıcı Etkileşim Günlüğü, Veritabanı Yedekleme Listesi, Dozimetre Gösterge Paneli ve Özel Yetki pencerelerindeki tüm tablolar tek bir kurumsal tablo görünümünde birleştirildi. Sol kenardaki mükerrer satır numaraları kaldırıldı; sıra numaraları ve zaman damgaları hizalı sayısal yazı tipiyle, işlem sonuçları ise okunaklı durum renkleriyle sunuldu.
+
+### 🗓️ 3. Nöbet Çizelgesi Matrisi ve Plan İnceleme Görünümü İyileştirmeleri
+
+* **Birleşik Nöbet Çizelgesi Matris Deneyimi:** Nöbet Plan Detay ve Nöbet Plan İnceleme ekranlarındaki aylık nöbet matrisi tek bir merkezi bileşende birleştirildi; hafta sonu, resmi tatil/bayram günleri, devredilen nöbetler ve seçili personel vurgulamalarının tüm ekranlarda aynı netlik ve hızda çalışması sağlandı.
+
+---
+
+## 🗓️ RADPYS V4.0.5.11: Nöbet Çizelgesinde Çapraz Birimden Otomatik Boş Slot Doldurma Motoru, Akıllı Çapraz Birim İkame Önerisi, Ana Birim Çakışma Kalkanı ve Mesai Özeti Görünüm İyileştirmesi
+
+Bu sürüm; özellikle **Mobil Röntgen, Acil Radyoloji ve diğer klinik alt birimler** arasında yapılan çapraz nöbet görevlendirmelerinde yaşanan ikame arama, ana birim nöbet çakışması ve boş günlerin tek tıkla doldurulması ihtiyaçlarını uçtan uca çözen operasyonel yenilikler içerir.
+
+### 🔁 1. Çapraz Birimden Otomatik Boş Slot Doldurma Motoru
+
+* **Tek Tıkla Boş Günleri ve Vardiyaları Tamamlama:** Birim içi kadronun tüm ayı doldurmaya yetmediği durumlarda (örneğin hafta içi birim personeliyle doldurulup hafta sonu ve resmi tatil günlerinin açık kaldığı nöbet planlarında), Nöbet Çizelgesi üst araç çubuğuna eklenen **Çapraz Birimden Doldur** özelliği ile destek alınacak birim seçilerek kalan tüm boş nöbet hücrelerinin tek seferde otomatik doldurulması sağlandı.
+* **Mevcut Nöbetleri Koruyan Akıllı Dağıtım:** Otomatik çapraz doldurma motoru çalıştırıldığında çizelgede önceden atanmış hiçbir nöbet değiştirilmez; yalnızca boş kalan vardiya hücreleri taranır ve seçilen destek birimindeki uygun personeller arasında adil iş yükü dengesiyle dağıtılır.
+
+### 🛡️ 2. Akıllı Çapraz İkame Önerisi, Ana Birim Çakışma Kalkanı ve Yönetici İhlal Onayı
+
+* **Seçilen Çapraz Birim İçinden Doğrudan İkame Önerisi:** Nöbet atama ve düzenleme penceresinde **Diğer Birimlerden Atama Yap** seçeneği işaretlenip bir destek birimi seçildiğinde, **Uygun İkame Öner** butonunun artık ana departman yerine doğrudan seçilen çapraz birimdeki personelleri taraması ve alt birim kadrolarını eksiksiz listelemesi sağlandı.
+* **Ana Birim Nöbet Çakışması ve Dinlenme Kalkanı:** Başka bir birimden çapraz görevlendirilecek veya ikame önerilecek personelin aynı gün kendi ana biriminde (veya başka bir nöbet planında) nöbetinin bulunup bulunmadığı, önceki/sonraki gün nöbetleriyle 24 saat dinlenme ve 48 saat gece nöbeti boşluğu kuralları ile ardışık nöbet sınırı otomatik olarak denetlenir; çakışması olan personeller otomatik öneri ve otomatik doldurma listelerinden elenir.
+* **Yönetici Manuel İhlal Onayı Yetkisinin Korunması:** Otomatik motorun kurallar gereği boş bıraktığı zorunlu hallerde, yetkili yöneticinin hücre düzenleme penceresinden **Kural İhlallerini Onaylıyorum** seçeneğini işaretleyerek manuel atama yapabilme yetkisi korundu.
+
+### 📊 3. Personel Mesai ve Nöbet Özeti Tablosu Okunabilirlik İyileştirmesi
+
+* **Tam İsim ve Fazla Mesai Görünümü:** Nöbet Çizelgesi ekranının sağ tarafında yer alan personel mesai özeti tablosunda personel ad-soyadlarının üç nokta ile kırpılması ve sütun başlıklarının sıkışması sorunu giderildi; hem birim kadrosunun hem de çapraz görevlendirilen personellerin adları, toplam/birim içi nöbet sayıları, hedef süreleri, fiili çalışma saatleri ve fazla mesai değerleri tek bakışta tam okunabilir hale getirildi.
+
+---
+
+## 🛡️ RADPYS V4.0.5.10: 14 Operasyonel Modülde Uçtan Uca Kilit Denetimi, DIN 6857-1 & NDK Mevzuat Güvencesi, Nöbet/İzin Doğruluk Motoru ve Evrak Kasası Bütünlük Paketi
+
+Bu kapsamlı sürüm; **Sistem Tanımlamaları, İzin Yönetimi, Nöbet Planlama ve Fazla Mesai, Dozimetre ve RD.F43 Araştırma, Periyodik Sağlık Muayeneleri, Ortam Dozu ve Kroki Haritası, Olay Bildirimi ve DÖF, RGS Görevlendirme, Hizmet İçi Eğitim ve Online Sınav, Cihaz Arıza/Bakım/QC/HEK** ile **Koruyucu Ekipman (RKE) ve DIN 6857-1 Muayene** modüllerinde gerçekleştirilen uçtan uca denetim, veri bütünlüğü ve kullanıcı deneyimi iyileştirmelerini içerir.
+
+### 🦺 1. Koruyucu Ekipman (RKE) Envanteri, DIN 6857-1 Muayene ve Mühürlü Kayıt Koruması
+
+* **Mühürlü (HEK / EBYS Tescilli) Ekipman Koruması:** Resmi komisyon tutanağı ve EBYS üst yazısıyla hurdaya (HEK) ayrılıp mühürlenmiş koruyucu ekipmanların kart bilgilerinin değiştirilmesi, zimmetinin devredilmesi veya üzerine yeni muayene girilmesi hem masaüstü hem de mobil saha ekranlarında kesin olarak engellendi.
+* **Merkezi DIN 6857-1 Karar Eşikleri Uyumu:** Masaüstü kalite kontrol kokpiti ile mobil saha muayene ekranlarının aynı dinamik DIN 6857-1 karar eşiklerini (kritik bölgede sıfır tolerans, kritik olmayan bölgede 5 mm² uygunluk ve 5–15 mm² şartlı kullanım sınırı) kullanması sağlandı.
+* **Çakışmasız Akıllı Ekipman Kodu Üretimi:** Aradan kayıt silindiğinde veya özel numaralı ekipman eklendiğinde dahi yeni ekipman ve koruyucu numaralarının mevcut kayıtlarla çakışmadan sıralı üretilmesi güvence altına alındı.
+* **Muayene Raporunda Tam Silüet Pin Gösterimi ve Kurşun Eşdeğeri Doğruluğu:** Muayene raporu ve önizleme ekranında Yelek, Etek, Tiroid ve Gonad koruyucular dahil tüm ekipman tiplerinin ön ve arka yüz kusur pinlerinin eksiksiz çizilmesi ve gerçek ön/arka kurşun eşdeğeri (mm Pb) değerlerinin gösterilmesi sağlandı.
+
+### 🏥 2. Tıbbi Cihaz Arıza, Periyodik Bakım, Kalite Kontrol (QC) ve HEK Süreçleri
+
+* **Cihaz Envanterinden Doğrudan Filtreli Geçiş:** Cihaz Envanteri ekranından bir cihaz seçilerek **Kalite Kontrol (QC)**, **Arıza Takibi** veya **Periyodik Bakım** ekranına geçildiğinde, açılan ekranın doğrudan seçili cihaza göre filtrelenmesi ve yeni arıza bildiriminde cihazın otomatik seçili gelmesi sağlandı.
+* **Arıza Çözümünde Müdahale Geçmişi ve Servis/Personel Koruması:** Devam eden ("İnceleniyor", "Parça Bekleniyor", "Test Aşamasında") arızaların çözüm penceresi tekrar açıldığında önceki müdahale tarihinin korunması ve hem dış servis firması hem de kurum içi çözen personel bilgisinin birlikte kaydedilmesi sağlandı.
+* **Aktif Arıza Göstergelerinde HEK İzolasyonu:** Hurdaya (HEK) ayrılmış veya kayıttan düşülmüş cihazların geçmiş arızalarının aktif arıza özet kartlarını etkilemesi önlendi.
+
+### 🗓️ 3. İzin Yönetimi, Nöbet Planlama Motoru, Devir/İkame ve Fazla Mesai İcmali
+
+* **İzin Onay Güvenliği ve Otomatik Bakiye Senkronizasyonu:** Kullanıcının kendi oluşturduğu izin talebini kendisinin onaylaması engellendi; onaylı bir izin iptal edildiğinde veya tarihleri güncellendiğinde yıllık/şua izin bakiyesinin ve yıl sonu taşmalı resmi tatil düşümlerinin otomatik olarak yeniden hesaplanması sağlandı.
+* **Nöbet Ayarları ve Birim Vardiya Esnekliği:** 12+12=24 saat vardiya birleştirme tercihi, haftalık mesai standartları ve emzirme/gebelik/sendika yasal kısıt parametrelerinin tüm nöbet kurallarıyla çift yönlü senkronize çalışması sağlandı; birime özel vardiya tanımlanmadığında genel vardiya tanımlarının otomatik devreye girmesi güvence altına alındı.
+* **Nöbet Devir, Acil Mazeret ve Kilitli Plan Koruması:** Yayınlanmış veya arşivlenmiş nöbet planlarında tablo hücrelerine çift tıklayarak değişiklik yapılması kapatıldı; nöbet devir ve acil mazeret pencerelerinde yalnızca ilgili birimde ve hizmet sınıfında görevli (geçici görevlendirilenler dahil) uygun adayların hızlıca listelenmesi sağlandı.
+* **Fazla Mesai Devir Doğruluğu ve Bildirim Cetveli:** Önceki ayda ödemesi tamamlanmış fazla mesai saatlerinin yeni aya mükerrer devredilmesi önlendi; Fazla Mesai Bildirim Cetveli çıktılarında personel unvanlarının ve seçili birim/hizmet sınıfı filtrelerinin eksiksiz yer alması sağlandı.
+
+### ☢️ 4. Dozimetre (RD.F43), Periyodik Sağlık Muayeneleri, Ortam Dozu ve Eğitim (LMS)
+
+* **NDK RD.F43 Dönem Eşleşmesi ve Dürüst Veri Standardı:** Yüksek doz aksiyonları kapatılırken tamamlanmış RD.F43 Doz Araştırma Formunun mutlaka ilgili ölçüm dönemine ait olması şartı getirildi; henüz doldurulmamış araştırma formlarında varsayılan/yapay koruyucu ekipman seçimi yapılması kaldırılarak son ölçüm değerlerinin doğrudan forma aktarılması sağlandı.
+* **KVKK Klinik Sağlık Bulgusu Koruması:** Klinik muayene bulgularını görme yetkisi bulunmayan kullanıcılar tarafından muayene kaydına belge eklendiğinde veya tarih güncellendiğinde, arka plandaki gerçek uzman hekim bulgularının korunması garanti altına alındı; muayene geçmişi ve revizyon pencerelerine de KVKK yetki maskelemesi eklendi.
+* **Ortam Dozu ve Olay/DÖF Onay Kuyruğu Entegrasyonu:** Onay gerektiren kullanıcılar tarafından girilen ortam dozu ölçümlerinin, yalnızca yönetici onayından geçtikten sonra kroki ısı haritasına, SKS denetim raporuna ve otomatik DÖF sürecine yansıması sağlandı.
+* **Hizmet İçi Eğitim ve Online Sınav İyileştirmeleri:** Başka eğitimden soru kopyalama ve Excel'den soru aktarma akışları iyileştirildi; resimli sınav sorularının ve şık görsellerinin sınav ekranında gösterilmesi, sınavı başarıyla tamamlayan personelin eğitim durumunun doğrudan "Tamamlandı" olarak işlenmesi ve eğitim uyum matrisinde yenilenen eğitimlerin tekil satırda hesaplanması sağlandı.
+
+---
+
 ## 🛡️ RADPYS V4.0.5.9: Kurulum & Lisans Koruması, Rol/Yetki Matrisi (RBAC) İzolasyonu ve Personel Yaşam Döngüsü Veri Bütünlüğü Paketi
 
 Bu sürüm; **Kurulum, İlk Giriş ve Lisans Yönetimi**, **Kullanıcı, Rol ve İzin Yönetimi** ile **Personel Yönetimi ve Toplu Excel Aktarımı** modüllerinde uçtan uca yapılan kapsamlı güvenlik, yetki izolasyonu ve veri bütünlüğü iyileştirmelerini içerir.

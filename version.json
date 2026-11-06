@@ -1,10 +1,10 @@
 {
-  "version": "4.0.5.9",
-  "release_version": "4.0.5.9",
-  "build_version": "4.0.5.9",
-  "latest_demo_version": "4.0.5.9",
-  "release_date": "2026-11-04",
+  "version": "4.0.5.12",
+  "release_version": "4.0.5.12",
+  "build_version": "4.0.5.12",
+  "latest_demo_version": "4.0.5.12",
+  "release_date": "2026-11-06",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.5.9: Kurulum, İlk Giriş & Lisans Yönetimi (Modül 01), Kullanıcı, Rol & İzin Yönetimi / RBAC (Modül 02) ve Personel Yönetimi & Toplu Aktarım (Modül 05) Uçtan Uca Mimari Güvenlik, Yetki İzolasyonu ve Veri Bütünlüğü Sıkılaştırması.",
+  "changelog": "RADPYS V4.0.5.12: Farklı Ekran Çözünürlükleri İçin Standart Windows Form Yoğunluğu, Merkezi RDS Tablo Stili, KVKK/NDK Denetim İzi Arayüz Yenilemesi ve Nöbet Çizelgesi Matris Merkezileştirmesi.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }

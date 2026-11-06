@@ -3,6 +3,105 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.5.12] - 2026-11-06
+
+### 🖥️ Farklı Ekran Çözünürlükleri İçin Standart Windows Form Yoğunluğu, Merkezi RDS Tablo Stili (`apply_global_table_styles`), KVKK / NDK Denetim İzi `.ui` Dönüşümü ve Nöbet Çizelgesi Matris Merkezileştirmesi
+
+Bu sürüm; farklı ekran çözünürlüklerinde ve DPI ölçeklemelerinde form bileşenlerinin sıkışmasını önleyen font yüksekliği (`12px` / `9pt`) tabanlı Standart Windows Form yoğunluk mimarisini, tüm modül/log tablolarında merkezi RDS tablo stili standardizasyonunu, KVKK / NDK Denetim İzi ekranının `.ui` şablonuna taşınmasını ve Nöbet Çizelgesi matris bileşeninin merkezileştirilmesini içerir.
+
+#### ✨ Eklendi (Added)
+
+- **1. KVKK / NDK Denetim İzi `.ui` Şablonu (`ui/pages/admin/system/audit_log_viewer_page.ui`):**
+  - `AGENTS.md` Mimari Sınırlar 1 ve Kural 14 uyarınca `AuditLogViewerController` için XML tabanlı `audit_log_viewer_page.ui` şablonu oluşturuldu; üst bilgi kartı (`frameIntegrityRozet`), doğrulama rozeti (`integrityPill`), filtre çubuğu (`searchInput`, `categoryCombo`, `outcomeCombo`, `btnVerify`, `btnExport`) ve denetim izi tablosu (`tableWidget`) merkezi tasarım belirteçleriyle tanımlandı.
+- **2. Global `.ui` Yerleşim Sıkılaştırıcı (`_normalize_loaded_layouts` — `ui/qt_loader.py`):**
+  - `load_ui_widget` içerisine eklenen `_normalize_loaded_layouts` fonksiyonu ile `.ui` dosyalarından yüklenen tüm `QLayout` ve `QFormLayout` nesnelerinde aşırı geniş kenar boşlukları (`margins > 12px` ➔ `10px`) ve bileşen aralıkları (`spacing > 8px` ➔ `6px`) otomatik olarak normalize edildi.
+- **3. Merkezi Nöbet Çizelgesi Matris Bileşeni ve Delegesi (`NobetCizelgeTableWidget`, `CizelgeTableDelegate` — `ui/widgets/nobet_cizelge_table.py`):**
+  - `NobetPlanDetayController` ve `NobetPlanInceleController` içinde mükerrer yazılan çizelge matris mantığı, hafta sonu / resmi tatil / personel nöbet vurgulama boyaması ve hücre bilgi kutucukları (tooltips) merkezi `NobetCizelgeTableWidget` sınıfında birleştirildi.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed & Refined)
+
+- **1. Font Yüksekliği Bazlı Standart Windows Form Bileşen Boyutları (`ui/tokens.py`, `resources/styles.qss`, `resources/dark_theme.qss`, `ui/theme.py`):**
+  - `Geometry` tasarım belirteçlerinde `HEIGHT_INPUT_SM = "22px"`, `HEIGHT_INPUT_MD = "26px"`, `HEIGHT_BUTTON_SM = "24px"`, `HEIGHT_BUTTON_MD = "26px"` olarak güncellendi; `QLineEdit`, `QComboBox`, `QSpinBox`, `QDateEdit` ve `QPushButton` iç dolguları (`padding: 2px 6px`, `min-height: 20px–22px`) standart Windows masaüstü form oranlarına çekildi.
+  - İki satırlı zengin içerik ve durum rozeti barındıran ana veri tablolarında (`Personel Listesi`, `Cihaz Envanteri` vb.) satır yüksekliği `HEIGHT_TABLE_ROW = "44px"`, kompakt/yardımcı tablolarda `HEIGHT_TABLE_ROW_COMPACT = "28px"` ve tablo başlık yüksekliği `HEIGHT_TABLE_HEADER = "30px"` olarak yapılandırıldı.
+- **2. KVKK / NDK Denetim İzi, Etkileşim Günlüğü ve Yardımcı Tabloların Merkezileştirilmesi (`audit_log_viewer_controller.py`, `interaction_log_viewer.py`, `log_kayitlari_controller.py`, `_ux_helpers.py`):**
+  - `AuditLogViewerController` ve `InteractionLogViewerController` içindeki hardcoded inline `setStyleSheet` ve hex renk kodları kaldırıldı; `get_tabular_font()`, `get_semantic_table_text_color()`, `get_semantic_table_bg_color()` ve merkezi `apply_global_table_styles` devreye alındı.
+  - `configure_table` (`ui/controllers/_ux_helpers.py`), `LogKayitlariController._on_tab_changed`, `DbMaintenanceController`, `DozimetreDashboardController`, `VarlikSecimDialog` ve `UserCustomPermissionsDialog` içindeki tüm tablolara merkezi RDS tablo stili (`PERSONEL_LIST_TABLE_STYLE`) bağlandı.
+
+#### 🐛 Düzeltildi (Fixed)
+
+- **1. KVKK / NDK Denetim İzi Sekmesinde Mükerrer Satır Numarası ve Çerçeve Sızıntısı (`audit_log_viewer_controller.py`):**
+  - Üst başlık `QFrame` bileşenine verilen inline `QFrame { border: 1px solid ... }` stilinin alt `QLabel` başlıklarına sızarak iç içe kutular çizmesi ve tablonun sol kenarında Qt varsayılan dikey satır başlığının (`verticalHeader`) `Sıra` sütunuyla mükerrer görünmesi hatası giderildi.
+- **2. CI Test Paketinde `QInputDialog.getText` Kaynaklı Modal Takılma (`tests/test_personel_istek_approval.py`):**
+  - `test_onay_bekleyen_gorevler_nobet_istekleri` testinde `OnayBekleyenGorevlerController._reject_istek` çağrılırken `QInputDialog.getText` diyalog penceresinin mock'lanmaması nedeniyle CI ortamında testin kullanıcı girdisi bekleyerek asılı kalması sorunu giderildi.
+
+## [4.0.5.11] - 2026-11-05
+
+### 🗓️ Nöbet Çizelgesinde Çapraz Birimden Otomatik Boş Slot Doldurma Motoru (`auto_fill_empty_slots_from_department`), Akıllı Çapraz Birim İkame Önerisi, Ana Birim Nöbet Çakışma Kalkanı ve Mesai Özeti Tablosu Okunabilirlik İyileştirmesi
+
+#### ✨ Eklendi (Added)
+
+- **1. Çapraz Birimden Otomatik Boş Slot Doldurma Motoru ve Diyaloğu (`nobet_capraz_doldur_dialog.ui`, `NobetCaprazDoldurDialogController`, `NobetCrossFillWorker`, `NobetCizelgeService.auto_fill_empty_slots_from_department`):**
+  - `ui/pages/nobet/nobet_plan_detay_page.ui` ve `ui/pages/nobet/nobet_capraz_doldur_dialog.ui`: Nöbet Plan Detay araç çubuğuna `caprazDoldurButton` ("Çapraz Birimden Doldur") eklendi ve `AGENTS.md` Mimari Sınırlar 1 uyumlu XML diyalog şablonu oluşturuldu.
+  - `NobetCizelgeService.auto_fill_empty_slots_from_department` (`app/services/nobet/nobet_cizelge_service.py`) ve `NobetService.auto_fill_empty_slots_from_department` (`app/services/nobet/nobet_service.py`): Mevcut dolu nöbet hücrelerine dokunmadan yalnızca boş kalan gün ve vardiya slotlarını tarayan, seçilen çapraz görevlendirme birimindeki (`source_departman_id`) uygun personelleri ana birim nöbetleri, izin/rapor kayıtları, 24 saat dinlenme, 48 saat gece boşluğu ve ardışık gün sınırlarıyla karşılaştırarak adil biçimde dağıtan ve atanan personelleri otomatik `nobet_gecici_personel` tablosuna işleyen servis motoru eklendi.
+  - `NobetCrossFillWorker` ve `NobetCaprazDoldurDialogController` (`ui/controllers/nobet/nobet_plan_detay_controller.py`): `AGENTS.md` Kural 19 uyarınca çapraz birimden toplu doldurma işlemini `QThread` arka plan iş parçacığında (`ModernProgressDialog` eşliğinde) yürüten işçi sınıfı ve birim seçim kontrolcüsü eklendi.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed)
+
+- **1. Ana Birim ve Diğer Planlarla Çakışma Kalkanı + Admin Manuel İhlal Onayı (`_has_personel_conflict`, `validate_soft_constraints`, `upsert_cizelge`):**
+  - `NobetCizelgeService._has_personel_conflict` ve `validate_soft_constraints` (`app/services/nobet/nobet_cizelge_service.py`): Çapraz görevlendirilen veya ikame önerilen personelin aynı tarihte kendi ana biriminde ya da başka bir aktif nöbet planında (`plan_id != ?`) nöbetinin bulunup bulunmadığını denetleyen çapraz plan çakışma kontrolü eklendi.
+  - `NobetCizelgeService.upsert_cizelge`: Otomatik dağıtım ve standart kayıtlarda çakışmaları engellerken, manuel hücre düzenlemelerinde yönetici yetkisiyle `override_leave=True` (`overrideCheckBox` — "Kural İhlallerini Onaylıyorum") işaretlendiğinde Admin'in bilinçli atama yapabilme yetkisi korundu.
+- **2. Alt Departman (`alt_departman_id`) Çözümlemesi (`lookup_repository.py`, `nobet_service.py`, `nobet_scheduler.py`, `nobet_gecici_personel_dialog_controller.py`):**
+  - `LookupRepository.get_personel_department_id` (`app/infrastructure/db/repositories/lookup_repository.py`): Personelin birim kimliği sorgulanırken `COALESCE(alt_departman_id, departman_id)` kullanılacak şekilde güncellendi.
+  - `NobetService.get_eligible_personnel_for_scheduling`, `get_active_personnel_except_department`, `NobetScheduler.generate_schedule` ve `NobetGeciciPersonelDialogController._load_personnel`: Alt departman bazlı kadroların (`Acil Radyoloji`, `Mobil Röntgen` vb.) eksiksiz eşleşmesi sağlandı.
+
+#### 🐛 Düzeltildi (Fixed)
+
+- **1. Çapraz Görevlendirmede "Uygun İkame Öner" (`suggest_shift_substitutes`) Birim ve Kısıt Hatası (`nobet_cizelge_dialog_controller.py`, `nobet_cizelge_service.py`, `nobet_devir_service.py`):**
+  - `NobetCizelgeDialogController._on_suggest_substitutes` (`ui/controllers/nobet/nobet_cizelge_dialog_controller.py`): "Diğer Birimlerden Atama Yap" (`chkDigerAtama`) kutusu işaretliyken seçilen hedef departman kimliğinin (`target_departman_id`) `suggest_shift_substitutes` servisine iletilmemesi nedeniyle ikamenin ana departmandan aranması hatası giderildi.
+  - `NobetCizelgeService.suggest_shift_substitutes` ve `NobetDevirService.check_personel_nobet_kisiti`: Geçmiş ay/dönem planlamalarında `allow_past_dates=True` desteği eklendi; aday puanlamasında personelin tüm birimlerdeki (ana birim dahil) mevcut nöbetleri üzerinden aynı gün çakışması, 24 saat dinlenme / 48 saat gece boşluğu (`check_rest_and_night_gap`) ve ardışık gün sınırı (`check_consecutive_streak`) kontrolleri zorunlu hale getirildi.
+- **2. Nöbet Plan Detay Sağ Özet Tablosu (`tableView`) Sütun Sıkışması ve `...` Kırpılması (`nobet_plan_detay_controller.py`, `nobet_plan_detay_page.ui`):**
+  - `NobetPlanDetayController._setup_tables` ve `_refresh_summary_table` (`ui/controllers/nobet/nobet_plan_detay_controller.py`): Sağ paneldeki personel mesai özeti tablosunda tüm sütunların `Stretch` modunda kalması nedeniyle `Personel` isimlerinin `...` şeklinde kırpılması ve `Fazla Mesai` başlığının okunamaması sorunu giderildi; `0..3` sütunları `QHeaderView.ResizeMode.ResizeToContents`, `4` (`Fazla Mesai`) sütunu `Stretch` yapıldı, çapraz görevlendirilen personeller özet tablosuna dahil edildi ve sağ panel genişliği (`minimumSize=580`, `maximumSize=780`) optimize edildi.
+
+## [4.0.5.10] - 2026-11-04
+
+### 🛡️ 14 Operasyonel Modülde (Modül 03, 06, 07, 08, 09, 10, 12, 13, 14, 15, 16, 17, 19 ve 20) Uçtan Uca Kilit Denetimi, RBAC Güvenlik Kalkanı, Evrensel Onay Sistemi ve Veri Bütünlüğü Sıkılaştırması
+
+#### ✨ Eklendi (Added)
+
+- **1. Yeni `.ui` Şablonları (Sıfır Controller Widget İnşası — `AGENTS.md` Mimari Sınırlar 1):**
+  - `ui/pages/admin/system/kroki_bilgi_dialog.ui`, `ui/pages/cihaz/hek_ebys_kapat_dialog.ui`, `ui/pages/dozimetre/aksiyon_detay_dialog.ui`, `ui/pages/kalite/olay_secim_satir_widget.ui`, `ui/pages/kalite/ortam_dozu_nokta_dialog.ui` ve `ui/pages/rke/rke_kusur_giris_dialog.ui` XML şablonları oluşturuldu; controller/dialog sınıflarında Python koduyla dinamik widget oluşturma çağrıları tamamen kaldırıldı.
+- **2. Veritabanı Göçü, Yardımcı Fonksiyonlar ve Yeni Servis Metotları (`V20261104_1_add_aktif_to_izin_turleri.py`, `app/utils/__init__.py`):**
+  - `app/db/migrations/V20261104_1_add_aktif_to_izin_turleri.py` ve `app/db/schema.sql`: `izin_turleri` tablosuna `aktif INTEGER DEFAULT 1` sütunu eklendi.
+  - `app/utils/__init__.py`: Excel/CSV dışa aktarımlarında CWE-1236 Formula Injection saldırılarını önleyen merkezi `sanitize_excel_value` yardımcı fonksiyonu dışa aktarıldı.
+  - `RkeService` (`app/services/rke/rke_service.py`): `_check_rke_writable` (mühürlü `kilitli = TRUE` ve `silinme_tarihi IS NOT NULL` kontrolü) ve `get_karar_esikleri` (`rke_karar_esikleri` tablosundan dinamik DIN 6857-1 eşik okuma) metotları eklendi.
+- **3. 14 Modül Kilit Denetim Raporu ve Regresyon Testleri (`docs/kilit_raporlari/`, `tests/`):**
+  - `docs/kilit_raporlari/` altında Modül 03, 06, 07, 08, 09, 10, 12, 13, 14, 15, 16, 17, 19 ve 20 için uçtan uca kilit denetim raporları ve `tests/test_nobet_settings_service.py` başta olmak üzere regresyon testleri eklendi.
+
+#### 🔧 Değiştirildi & Düzeltildi (Changed & Fixed)
+
+- **1. Modül 03 — Sistem Ayarları & Tanımlamalar (`lookup_repository.py`, `lookup_service.py`, `lookup_controller.py`):**
+  - `insert_department`, `insert_title`, `insert_leave_type`, `insert_holiday`, `insert_nobet_turu`, `insert_cihaz_kategorisi`, `upsert_medical_exam_type` ve `EgitimService.create_type` sorgularına PostgreSQL `RETURNING id` eklendi (`rowcount=1` nedeniyle yeni departman sorumlusunun `id=1` departmanını ezmesi önlendi).
+  - `get_department_dependencies` ve `merge_departments` metotları 12+ bağımlı tabloyu (`cihazlar`, `rke_envanter`, `personeller.alt_departman_id`, `fiziksel_konumlar`, `kroki_odalar`, `ortam_olcum_noktalari`, `nobet_planlari`, `kullanici_sorumlu_departmanlar`) kapsayacak şekilde genişletildi; tüm lookup kategorilerinde `AGENTS.md` Kural 21–22 hibrit silme (`aktif = 0` vs `DELETE`) ve RBAC `_check_service_permission` kontrolleri tamamlandı.
+- **2. Modül 06 — İzin Yönetimi & Hakediş Motoru (`izin_service.py`, `izin_repository.py`, `izin_kural_motoru.py`):**
+  - `approve_request` ve `reject_request` metotlarına kendi talebini onaylama (`Self-Approval`) engeli, onaylı izin iptali/silinmesi/güncellenmesinde `recalculate_used_days_for_year` bakiye senkronizasyonu ve `list_holiday_dates` içinde `tatil_takvimi` tablosu üzerinden yıl sonu taşmalı resmi tatil iş günü hesabı eklendi.
+- **3. Modül 07, 08, 09 ve 10 — Nöbet Ayarları, Solver Planlama Motoru, Devir/İkame/Acil Mazeret ve Borç/Alacak Fazla Mesai (`nobet_*.py`):**
+  - `NobetSettingsService`: `upsert_nobet_ayarlari` içine `combine_12h_to_24h` ile haftalık mesai saatlerinin `nobet_kisitlari` senkronizasyonu, `update_yasal_kisit_parametresi` çift yönlü güncellemesi ve `update_department_nobet_settings` RBAC/audit kontrolü eklendi.
+  - `NobetScheduler`, `NobetCizelgeService`, `NobetHavuzService` & `NobetDevirService`: Controller/servis katmanlarındaki `or "admin"` yetki yükseltme açıkları kapatıldı; `list_effective_nobet_turleri` ile hizmet sınıfı ve global vardiya fallback'i standartlaştırıldı; `nobet_gecici_personel` ve `gunluk_saat_azaltim` sorguları düzeltildi; `validate_soft_constraints` içinde hafta sonu ve bayram nöbet limitleri ayrıştırıldı; kilitli (`Yayında`/`Arşiv`) planda çift tıklamayla düzenleme engellendi.
+  - `NobetBorcAlacakService` & `hedef_saat_hesaplayici.py`: Tam ödeme (`devreden_saat=0.0`) sonrası `fark_saat`'in mükerrer devredilmesi ve `get_overtime_trend` kümülatif toplama hatası giderildi; `_refresh_data` içindeki N+1 sorgular toplu (`get_temp_assigned_personel_ids`, `get_previous_month_carryover_map`) hale getirildi; Fazla Mesai Bildirim Cetveli (`get_fm_payment_records`) `unvanlar` JOIN ve birim/hizmet sınıfı filtreleriyle düzeltildi.
+- **4. Modül 12 — Dozimetre Takibi & RD.F43 Araştırma Formu (`dozimetre_service.py`, `doz_arastirma_form_controller.py`, `aksiyon_kapat_dialog.py`):**
+  - `_build_measurement_filters` içindeki tanımsız `c.cihaz_kodu` ve `_send_threshold_alert` içindeki `d.ad` (`d.departman_adi`) SQL hataları ile `create_measurement` `RETURNING id` eksikliği giderildi.
+  - `close_action` ve `get_completed_rdf43_summary_for_personel` içine dönem (`olcum_donemi = donem`) doğrulaması eklendi; `get_arastirma_formu` içindeki sentetik/farazi KKD ve çalışma süresi üretimi (`AGENTS.md` Kural 20) kaldırıldı; `update_action_status` içindeki `"Admin"` rol yükseltmesi temizlendi.
+- **5. Modül 13 — Sağlık Muayeneleri & Periyodik Takip (`saglik_muayene_service.py`, `saglik_muayene_detail_controller.py`, `onay_bekleyen_gorevler_controller.py`):**
+  - `_upsert_belge` `RETURNING id` ve `delete_muayene` `dict_row` erişim hataları düzeltildi; yetkisiz kullanıcıda maskelenen klinik bulguların (`"— (Klinik Veri Kısıtlı) —"`) kayıt sırasında gerçek hekim bulgularını ezmesi (`_clinical_masked`) engellendi; `MuayeneGecmisiController` ve `SaglikMuayeneRevizyonDialog` ekranlarına KVKK klinik veri maskelemesi ve erişim loglaması eklendi; onay kuyruğundaki `personel_saglik_muayene` taleplerinin mükerrer kayıt üretmeden onaylanması sağlandı.
+- **6. Modül 14 ve Modül 15 — Ortam Dozu & Kroki Haritası ile Olay Bildirimi & DÖF/CAPA (`ortam_dozu_service.py`, `olay_bildirim_service.py`, `approval_service.py`):**
+  - `ApprovalService` içine `ortam_dozu_olcumleri`, `olay_bildirimler` ve `olay_dof_takip` tam şema uyumlu onay/red işleyicileri eklendi; onay bekleyen ortam dozu ölçümlerinin erken Olay/DÖF tetiklemesi ve kroki ısı haritasını/SKS raporunu etkilemesi önlendi; `OrtamDozuController.MODUL_ADI = "ortam_dozu"` olarak düzeltildi.
+- **7. Modül 16 ve Modül 17 — RGS Görevlendirme & Hizmet İçi Eğitim / LMS (`rgs_gorevlendirme_service.py`, `hizmet_ici_egitim_service.py`, `hizmet_ici_egitim_controller.py`):**
+  - `RgsGorevlendirmeService`: `MODUL_ADI = "personel"` hizalaması, sertifika dosyası (`file_bytes`) onay kuyruğuna girmeden önce `DocumentService` kasasına kaydedilerek `bytes` JSON serileştirme çökmesinin giderilmesi, `temp_file_opener` ile güvenli geçici dosya temizliği ve PDF başlığında `turkish_upper` kullanımı sağlandı.
+  - `HizmetIciEgitimService` & `HizmetIciEgitimController`: Başka eğitimden soru kopyalama (`copy_sorular_between_egitimler`) ve Excel'den soru aktarma (`import_sorular_from_file`) parametre uyuşmazlıkları (`TypeError`) giderildi; `get("rol", "admin")` yetki yükseltmesi kaldırıldı; `get_uyum_raporu` ve `EgitimMatrisDataset` içinde `DISTINCT ON (personel_id, egitim_id)` ile mükerrer satırlar önlendi; online sınavı geçen personelin tamamlama kaydının doğrudan `'Onaylandı'` olması ve soru/şık görsellerinin sınav ekranında gösterilmesi sağlandı.
+- **8. Modül 19 ve Modül 20 — Cihaz Arıza/Bakım/QC/HEK ve Koruyucu Ekipman (RKE) & DIN 6857-1 Muayene (`cihaz_service.py`, `hek_service.py`, `rke_service.py`, `rke_saha_service.py`, `rke_kod_generator.py`):**
+  - Modül 19: Cihaz Envanteri'nden QC/Arıza/Bakım ekranlarına geçişte `set_cihaz_filter(cihaz_id)` senkronizasyonu, `CihazBakimController` `close_subwindow(self)` bağlantısı, `CihazArizaCozDialogController` müdahale tarihi ve servis/personel bilgisi koruması, `get_ariza_kpi_summary` silinmiş/HEK cihaz filtresi ve `HekService` dosya rollback temizliği tamamlandı.
+  - Modül 20: `RkeService` (`OnayliServisTabani`) ve `RkeSahaService` üzerinde mühürlü (`kilitli = TRUE`) ve silinmiş (`silinme_tarihi IS NOT NULL`) ekipmanlara karşı yazma/zimmet/muayene engeli (`_check_rke_writable`), `rke_karar_esikleri` tablosundan dinamik DIN 6857-1 karar motoru, `RkeKodGenerator` içinde `MAX + 1` ve DB çakışma kontrolü, `RkeMuayeneRaporDialog` kurşun eşdeğeri (`pb_esdegeri_on`/`arka`) ve Yelek/Etek/Tiroid/Gonad ön-arka (`yuz`) kroki pin çizimi, `RkeMuayeneDialog._on_foto_sil` `staged_files` senkronizasyonu, `update_muayene`/`reject_muayene` yetim `stored_files` kasa temizliği ve tüm RBAC `_check_service_permission` kontrolleri tamamlandı (`39/39` RKE testi PASS).
+
 ## [4.0.5.9] - 2026-11-04
 
 ### 🛡️ Modül 01 (Kurulum, İlk Giriş & Lisans Yönetimi), Modül 02 (Kullanıcı, Rol & İzin Yönetimi — RBAC) ve Modül 05 (Personel Yönetimi & Toplu Excel Aktarımı) Uçtan Uca Kilit Denetimi, Güvenlik ve Veri Bütünlüğü Sıkılaştırması
@@ -243,7 +342,7 @@ Bu sürüm; Olay İnceleme ve DÖF Yönetimi ekranında var olan mantık kaymala
 
 - **1. İki Başlı Yönetim ve Erken Kapatma Mantık Kaymasının Önlenmesi (`olay_inceleme_dialog.ui` & `olay_inceleme_dialog.py`):**
   - **Adım 2 (İnceleme & Atama):** DÖF faaliyetleri henüz planlanmadan veya tamamlanmadan önce 2. sekmede yer alan ve kullanıcıda kafa karışıklığı yaratan `btnOlayKapat` ("Olayı Kapat") butonu arayüzden kaldırıldı. Not etiketi `lblKapanisNotu` ("Ön İnceleme / Değerlendirme Notu:") olarak düzeltildi.
-  - 2. Adımdan sonraki adıma ("Sonraki Adım >") geçildiğinde, seçilen yetkili sorumlu personel otomatik olarak kaydedilerek kullanıcının fazladan kaydet butonuna basma zorunluluğu ortadan kaldırıldı.
+  - 1. Adımdan sonraki adıma ("Sonraki Adım >") geçildiğinde, seçilen yetkili sorumlu personel otomatik olarak kaydedilerek kullanıcının fazladan kaydet butonuna basma zorunluluğu ortadan kaldırıldı.
 - **2. Adım 4 Kapanış, Karar ve Tutanak Sayfası Entegrasyonu (`groupKapanisOzeti`):**
   - Eskiden sadece salt metin log tablosu içeren 4. sekme, **"4. Kapanış & Tarihçe"** olarak zenginleştirildi:
     - **DÖF Durum Rozeti (`lblKapanisDofDurum`):** Açık DÖF faaliyeti olup olmadığını canlı denetler. Eğer tamamlanmamış açık DÖF varsa kapatma butonunu pasife çekip uyarı verir; tüm DÖF'ler tamamlandığında onay mesajı ve buton aktifliği sağlar.
@@ -425,7 +524,7 @@ Bu sürüm; kullanıcı sisteme giriş yaptığında gün içinde ilgilenmesi ge
     1. Açık RD-F43 Doz Araştırma Tutanakları (_tipi: dozimetre_uyari),
     2. Süresi dolmuş veya 30 gün kalmış periyodik sağlık muayeneleri (_tipi: saglik_muayene),
     3. Günü gelen/geçen cihaz periyodik bakımları (_tipi: cihaz_bakim), aktif cihaz arızaları (_tipi: cihaz_ariza) ve muayenesi geçmiş RKE donanımları (_tipi: rke_uyari),
-    4. Yöneticiler için onay bekleyen izin talepleri, nöbet devirleri ve resmi tutanaklar (_tipi: izin_talebi, 
+    4. Yöneticiler için onay bekleyen izin talepleri, nöbet devirleri ve resmi tutanaklar (_tipi: izin_talebi,
 obet_devir, onay_bekleyen).
   - Mükerrer bildirim kaydını önlemek için iliskili_id ve silindi = 0 kontrolü sağlandı.
   - Kullanıcı talebi doğrultusunda lisans bildirimleri bu panele dahil edilmedi.
@@ -725,6 +824,7 @@ Bu sürüm; Cihaz Yönetimi modülünde **"Tutanak Oluştur"** aksiyonunun cihaz
 ### 📁 Modül ve Bireysel Personel Odaklı Dinamik Çıktı Klasörleme (Öneri A) ve Standart Dosya Adlandırma Motoru
 
 Bu sürüm; merkezi dışa aktarım (Export) sisteminde tüm Excel, Word ve PDF raporlarının tek bir klasöre yığılarak karmaşaya yol açmasını engeller; kullanıcı kararı doğrultusunda **Öneri A (Personel Odaklı Dijital Özlük Arşivi)** hiyerarşisini devreye alır. Masaüstündeki veya ayarlanan varsayılan ana çıktı klasörü altında:
+
 1. **Bireysel Personel Çıktıları:** `Personel/[Ad_Soyad]_[TC]/[Modül_Alt_Klasörü]/` yapısında (Örn: `Personel/Ahmet_Yilmaz_12345678901/Sağlık Muayenesi/`, `Personel/Ahmet_Yilmaz_12345678901/Dozimetre/`, `Personel/Ahmet_Yilmaz_12345678901/İzin/`) toplanır.
 2. **Cihaz Çıktıları:** `Cihaz ve Lisans/[Cihaz_Kodu]/` altında arşivlenir.
 3. **Genel ve Toplu Listeler:** İlgili modülün genel klasöründe (`Dozimetre`, `Sağlık Muayenesi`, `Personel`, `Cihaz ve Lisans`, `Koruyucu Ekipman (RKE)`, `Nöbet`, `İzin`, `Ortam Dozu`, `Eğitim`, `Fiili Hizmet`, `Olay Bildirimi`, `Tutanaklar ve Kalite`, `Sistem ve Tanımlar`, `Genel Raporlar`) düzenli olarak muhafaza edilir.
@@ -979,7 +1079,7 @@ Bu sürüm; üretilen resmi NDK RKP belgesinde eksik kalan tüm KB bölümlerini
   - **KB.5:** Tıbbi radyoloji cihazları envanteri tablosu (No, Son Durumu, Cinsi, Kullanım Şekli Sabit/Mobil, Markası, Modeli, Seri No / NDK No, Kullanım Amacı Grafi/Skopi, Bulunduğu Yer, Satın/Devir Kuruluşu, Maks kV ve mA, Denetimli Alan, Gözetimli Alan).
   - **KB.6 (Eksikliği Giderildi):** Radyasyon ölçüm cihazları (Survey Metre) tablosu (No, Cinsi, Markası, Modeli, Seri No, Ölçüm Aralığı, Kalibrasyon Geçerlilik Tarihi).
   - **KB.7 (Eksikliği Giderildi):** Aktif (anlık okuma yapan) kişisel dozimetre cihazları (EPD) tablosu (No, Cinsi, Markası, Modeli, Seri No, Ölçüm Aralığı, Kalibrasyon Geçerlilik Tarihi).
-  - **KB.8 (Tam Kapsamlı 13 Kolonlu Matris):** Cihaz modaliteleri bazında Kişisel Koruyucu Donanım (RKE) ve Güvenlik Sistemleri matrisi (Uygulama/Modalite, Kurşun Önlük*, Gonad Koruyucu**, Tiroid Koruyucu, Kurşun Gözlük, Kurşun Eldiven, Gözetleme Penceresi/Kamera, Yatak Altı Pb Levha***, Statif Arkası Pb Levha***, Hareketli Paravan, Kapı Kilidi, Uzatma Kablosu, Saçak/Kabin) ve resmi 3 dipnot (*, **, ***).
+  - **KB.8 (Tam Kapsamlı 13 Kolonlu Matris):** Cihaz modaliteleri bazında Kişisel Koruyucu Donanım (RKE) ve Güvenlik Sistemleri matrisi (Uygulama/Modalite, Kurşun Önlük*, Gonad Koruyucu**, Tiroid Koruyucu, Kurşun Gözlük, Kurşun Eldiven, Gözetleme Penceresi/Kamera, Yatak Altı Pb Levha***, Statif Arkası Pb Levha***, Hareketli Paravan, Kapı Kilidi, Uzatma Kablosu, Saçak/Kabin) ve resmi 3 dipnot (*,**, ***).
 - **II. Bölüm (T.1 - T.11) ve III. Bölüm (Resmi Onay ve İmza Heyeti):**
   - T.1'den T.11'e kadar tüm talimat maddeleri ve Hazırlayan (RKS) / Onaylayan (Kuruluş Mesul Müdürü / Başhekim) resmi imza bloğu korundu.
 - **Sihirbaz Tablo Arayüzü Eşitlemesi:**
