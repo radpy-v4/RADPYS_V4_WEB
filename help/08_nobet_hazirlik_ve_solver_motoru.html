@@ -401,6 +401,16 @@
  <td class="py-3.5 px-4">Olağanüstü acil iptal hallerinde.</td>
  <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Yönetici (Sudo Doğrulama)</td>
  </tr>
+ <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+ <td class="py-3.5 px-4 font-semibold text-cyan-700 dark:text-cyan-400">
+ <strong class="text-slate-900 dark:text-white">[Adalet Sayacı] (Yıllık Dağılım)</strong><br>
+ <span class="text-[11px] text-slate-500 dark:text-slate-400">Yıllık Nöbet, Hafta Sonu, Bayram ve İzin Dengesi</span>
+ </td>
+ <td class="py-3.5 px-4">Seçilen yıl boyunca birimdeki personeller arasındaki kümülatif nöbet ve tatil yükü adaletini denetlemek.</td>
+ <td class="py-3.5 px-4">Yılın tüm planlarını birleştirerek toplam nöbet, toplam saat, hafta sonu, bayram/tatil, gece nöbeti, onaylı izin günü ve birim ortalamasından sapma değerlerini hesaplar ve gösterir.</td>
+ <td class="py-3.5 px-4">Yıllık adalet kontrolünde.</td>
+ <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Birim Sorumlusu &amp; Yönetici</td>
+ </tr>
  </tbody>
  </table>
  </div>
@@ -622,6 +632,7 @@ graph TD
  <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
  <li>Oluşturulan taslak planın satırına tıklayıp <strong>[Çizelgeyi Düzenle]</strong> butonuna basın.</li>
  <li>Üst araç çubuğundaki mavi <strong>[Otomatik Olustur]</strong> butonuna tıklayın.</li>
+ <li>Planlama başlamadan önce sistem, fazla mesai devrinin kaynağı olan dönemin (planlanan aydan iki ay önceki dönem) mutabakatını denetler. Bu dönemde nöbeti olup <strong>[Fazla Mesai Borç / Alacak Devri]</strong> ekranında kaydedilmemiş personel varsa otomatik oluşturma durdurulur ve eksik personel listelenir; önce ilgili dönemin mutabakatını hesaplayıp kaydedin. Sistemin ilk kullanımında veya o dönemde hiç nöbet yoksa devir 0 kabul edilir.</li>
  <li>Sistem arka planda aşağıdaki güvenlik ve hesaplama adımlarını işletir:
  <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-0.5">
  <li>Mevcut çizelgenin zaman damgalı JSON anlık görüntüsü (snapshot) otomatik arşivlenir.</li>
@@ -648,6 +659,7 @@ graph TD
  <li>Matris tablosunda değiştirmek istediğiniz hücreye çift tıklayın.</li>
  <li>Açılan personel listesinden yeni görevliyi seçin.</li>
  <li>Eğer seçilen personel o gün izinliyse, 24 saatlik dinlenme süresini doldurmamışsa veya fazla mesai tavanını aşıyorsa sistem kırmızı renkli <strong>Kural İhlali Uyarısı</strong> görüntüler.</li>
+ <li>Aynı gün içinde çakışmayan gündüz ve gece vardiyaları (örneğin 08:00-20:00 ve 20:00-08:00) birimin günlük izin verilen süresini (örneğin 24 saat) aşmıyorsa, sistem "aynı tarihte nöbeti var" veya "24 saat dinlenme" uyarısı vermez. Bayram ve hafta sonu nöbet sayacında bu iki vardiya ise iki ayrı nöbet sayılır; böylece 24 saat tutan personel ile 12 saat tutan personel arasında bayram adaleti korunur. Limit uyarıları "Aylık maksimum bayram/tatil nöbeti üst limiti" ve "Aylık maksimum hafta sonu nöbeti üst limiti" olarak ayrı ayrı gösterilir.</li>
  <li>Acil klinik zorunluluk nedeniyle bu atamayı yapmak zorundaysanız:
  <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-0.5">
  <li>Diyalogdaki <strong>[Kural ihlallerini onaylıyorum]</strong> onay kutusunu işaretleyin.</li>

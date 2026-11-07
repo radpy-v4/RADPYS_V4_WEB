@@ -190,7 +190,7 @@
  <span class="px-2.5 py-1 rounded-lg text-xs font-bold font-mono uppercase bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/80">
  Alt Modül 07.4
  </span>
- <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">Sekme: nobet_person_kisit.ui | Kod: nobet_ayarlar_personel_kisitlar_tab.py</span>
+ <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">Bölüm: Nöbet Ayarları &gt; Personel Özel Kısıtları</span>
  </div>
  <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
  Personel Özel Sağlık Kısıtları, Yasal Haklar ve Fazla Mesai Engelleri
@@ -232,7 +232,7 @@
  <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
  <span class="font-bold text-emerald-600 dark:text-emerald-400 uppercase text-[10px] tracking-wider block">3. Sistem Etkisi</span>
  <p class="font-semibold text-slate-800 dark:text-slate-100">
- Nöbet dağıtım motoru bu personele kesinlikle gece nöbeti yazmaz; emzirme ve sendika saatlerini aylık zorunlu çalışma hedefinden otomatik düşer.
+ Gebelik ve doz aşımında radyasyonlu alan nöbetleri kapatılır (radyasyonsuz alanda gündüz vardiyası ve yasal devir korunur); sağlık kurulu ve analık raporlarında rapor günleri aylık hedeften otomatik düşülür.
  </p>
  </div>
  </div>
@@ -295,23 +295,23 @@
  <td class="py-3 px-4">İK / Nöbet Sorumlusu</td>
  </tr>
  <tr>
- <td class="py-3 px-4 font-semibold text-slate-800 dark:text-slate-100">Kısıt Tipi (Açılır Kutu)</td>
+ <td class="py-3 px-4 font-semibold text-slate-800 dark:text-slate-100">[Kısıt Tipi] (Açılır Kutu)</td>
  <td class="py-3 px-4">Yasal muafiyet veya sağlık kısıtının gerekçesini seçmek.</td>
- <td class="py-3 px-4">"süt_emzirme", "gebelik", "sendika", "engelli", "ozel_mazeret" seçeneklerini içerir. Seçilen tipe göre saat azaltım kuralları devreye girer.</td>
+ <td class="py-3 px-4">Yasal Emzirme İzni, Gebelik Muafiyeti (5 Fazlı Yaşam Döngüsü), Analık İzni, Sendika Muafiyeti, Engelli / Engelli Yakını, Sağlık Kurulu Raporu, Doz Sınırı Aşımı ve Diğer Özel Durumlar seçeneklerini içerir.</td>
  <td class="py-3 px-4">Rapor geldiğinde.</td>
  <td class="py-3 px-4">Yetkili Kullanıcı</td>
  </tr>
  <tr>
- <td class="py-3 px-4 font-semibold text-slate-800 dark:text-slate-100">Saat Azaltım (Günlük)</td>
- <td class="py-3 px-4">Personelin günlük mesaisinden kaç saat düşüleceğini belirlemek.</td>
- <td class="py-3 px-4">Emzirme için ilk 6 ay 3 saat, ikinci 6 ay 1.5 saat girilir. Nöbet dağıtım motoru aylık mesai hedefinden bu saatleri otomatik eksiltir.</td>
- <td class="py-3 px-4">Süt izni süresince.</td>
+ <td class="py-3 px-4 font-semibold text-slate-800 dark:text-slate-100">[Saat Azaltım] &amp; [Azaltım Türü]</td>
+ <td class="py-3 px-4">Personelin günlük, haftalık veya aylık mesaisinden düşülecek süreyi belirlemek.</td>
+ <td class="py-3 px-4">Süt izninde ilk 6 ay 3 saat, ikinci 6 ay 1.5 saat; sendika izninde haftalık saat; sağlık kurulu ve analık raporunda ise rapor tarih aralığındaki iş günleri aylık zorunlu çalışma hedefinden otomatik eksiltilir.</td>
+ <td class="py-3 px-4">Kısıt süresince.</td>
  <td class="py-3 px-4">İK Uzmanı</td>
  </tr>
  <tr>
- <td class="py-3 px-4 font-semibold text-slate-800 dark:text-slate-100">Personel Max Fazla Mesai</td>
+ <td class="py-3 px-4 font-semibold text-slate-800 dark:text-slate-100">[Fazla Mesai Yazılamaz (FM Off)] &amp; [Personel Max FM]</td>
  <td class="py-3 px-4">Personelin ayda yapabileceği azami fazla mesai tavanını kişiye özel sınırlamak.</td>
- <td class="py-3 px-4">0 girilirse personele hiç FM yazılamaz. Özel sağlık kısıtında genel 60 saat tavanı yerine buradaki değer uygulanır.</td>
+ <td class="py-3 px-4">Gebelik, süt izni, analık, engelli/engelli yakını ve doz aşımında fazla mesai otomatik 0 saate kilitlenir (doz aşımında koruma kalıcıdır). Sağlık raporunda özel istek yoksa rapor tarihleri dışında mesai yazılabilir.</td>
  <td class="py-3 px-4">Bireysel sınırlamada.</td>
  <td class="py-3 px-4">Klinik Amiri</td>
  </tr>

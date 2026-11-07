@@ -4,6 +4,41 @@ Bu kılavuz, **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## 🛡️ RADPYS V4.0.5.14: Nöbet Personel Özel Kısıtları, Personel Talepleri, Sağlık Raporu & Gebelik Muafiyet Motoru ve Yıllık Nöbet Adalet Sayacı
+
+Bu sürüm; **Sağlık Kurulu Raporu, Gebelik, Analık İzni, Süt İzni ve Doz Aşımı** gibi özel çalışma kısıtlarının nöbet planlama ve hedef mesai hesaplama motoruyla tam uyumlu çalışmasını, **Personel Talepleri ve Lisansüstü Ders Programı Revizyonu** akışlarının güçlendirilmesini ve **Yıllık Nöbet Adalet Sayacı** penceresinin masaüstü uygulamasına kazandırılmasını içerir.
+
+### 🏥 1. Sağlık Raporu, Gebelik, Analık İzni ve Doz Aşımı Muafiyet Motoru
+
+* **Sağlık Raporu ve Analık İzninde Otomatik Hedef Saat Düşümü ve Dönemsel Muafiyet:** Sağlık kurulu (heyet) raporu veya analık izni tanımlanan personelin rapor tarih aralığına denk gelen hafta içi iş günleri aylık zorunlu çalışma hedefinden otomatik olarak düşülür ve rapor süresince personele nöbet yazılmaz. Sağlık raporu süresi bittiğinde personel için özel bir fazla mesai yasağı işaretlenmemişse, ayın kalan günlerinde normal mesai ve nöbet planlaması kesintisiz devam eder.
+* **Doz Aşımı ve Gebelikte Radyasyonsuz Alan Gündüz Vardiyası ve Devir Esnekliği:** Doz aşımı durumunda radyasyon güvenliği gereği fazla mesai koruması kalıcı olarak sürdürülürken, personelin radyasyonsuz birimlerde yasal sınırlar içinde vardiya alabilmesi ve nöbet devri yapabilmesi sağlandı. Gebe personellerde ise radyasyonlu alan nöbetleri ve tüm gece/24 saatlik nöbetler kesin olarak engellenirken, radyasyonsuz birimlerdeki gündüz (08:00–16:00) vardiyalarına atama ve gündüz vardiyası devri yapılabilmesine olanak tanındı.
+* **Gebelik Yaşam Döngüsü ve Kısıt Kayıtlarında Tam Tarih ve Veri Tutarlılığı:** Gebelik bildirimi, süt izni, analık izni, sağlık raporu ve doz aşımı kayıtlarında başlangıç ve bitiş tarihi doğrulaması ile aynı dönemde mükerrer kayıt engeli devreye alındı. Kısıt kaydı silindiğinde veya pasife alındığında personel kartındaki gebelik ve fazla mesai muafiyet bilgileri otomatik olarak güncellenir; doğum tarihi güncellendiğinde yeni analık ve süt izni tarihlerine denk gelen uygunsuz nöbetler otomatik iptal edilir.
+
+### 📅 2. Personel Talepleri, Ders Programı Revizyonu ve Yıllık Nöbet Adalet Sayacı
+
+* **Personel Talepleri ve Lisansüstü Eğitim Ders Programı Revizyonu:** Eğitim/ders kısıtlarında yalnızca hafta içi günlerin (Pazartesi–Cuma) seçilmesi ve nöbet dağıtım motorunun sadece seçilen ders günlerinde muafiyet uygulaması sağlandı. Dönem içi **Ders Programı Revizyonu** penceresinde revizyon tarihi doğrulaması güçlendirildi; aynı güne birden fazla talep denk geldiğinde sistemin en koruyucu kuralı (Muafiyet > Eğitim > Nöbet Yazılmasın > Nöbet Yazılsın) uygulaması garanti altına alındı.
+* **Masaüstü Yıllık Nöbet Adalet Sayacı Penceresi:** Nöbet Planlama ekranına eklenen **Adalet Sayacı** butonu ile seçilen yıl, birim ve hizmet sınıfındaki tüm personellerin yıllık toplam nöbet, toplam saat, hafta sonu, bayram/tatil, gece nöbeti, onaylı izin günü ve birim ortalamasından sapma değerleri tek ekranda izlenebilir hale getirildi.
+
+---
+
+## 🔁 RADPYS V4.0.5.13: Fazla Mesai İki Ay Gecikmeli Devir, Planlamada Zorunlu Mutabakat ve Daha Doğru Nöbet Uyarıları
+
+Bu sürüm; nöbet çizelgelerinin ay bitmeden hazırlanması gerçeğine uygun **İki Ay Gecikmeli Fazla Mesai Devir Kuralını**, otomatik nöbet planlama öncesinde **Zorunlu Fazla Mesai Mutabakat Denetimini**, **12+12 saatlik nöbet ve bayram/hafta sonu uyarı iyileştirmelerini** ve **Web Portal Yıllık Nöbet Dağılım Adaleti** görünümünü içerir.
+
+### ⚖️ 1. İki Ay Gecikmeli Fazla Mesai Devri ve Planlamada Zorunlu Mutabakat
+
+* **İki Ay Gecikmeli Fazla Mesai Devri:** Bir ayın fazla mesai bakiyesi artık hemen sonraki aya değil iki ay sonrasına devreder (Ocak ➔ Mart, Şubat ➔ Nisan; Kasım ➔ ertesi yıl Ocak, Aralık ➔ ertesi yıl Şubat). Nöbet listesi ayın bitmesine 5–10 gün kala hazırlandığı için, devredecek ayın fazla mesai hesabı planlama sırasında her zaman kesinleşmiş olur; tahmine veya eksik veriye dayalı dağıtım yapılmaz.
+* **Planlamada Zorunlu Fazla Mesai Mutabakatı:** **Otomatik Oluştur** ile yeni bir ayın nöbet planı hazırlanırken, devredecek dönemde nöbeti olup **Fazla Mesai Borç / Alacak Devri** ekranında mutabakatı kaydedilmemiş personel varsa işlem durdurulur ve eksik personelin adları uyarı metninde listelenir. Mevcut taslak çizelge bu durumda silinmez. Sistemin ilk kullanımında veya devredecek dönemde hiç nöbet yoksa devir 0 kabul edilir ve planlama engellenmez.
+
+### 🗓️ 2. Nöbet Çizelgesi Uyarıları, Yıllık Dağılım Adaleti ve Bildirim İyileştirmeleri
+
+* **Aynı Gün Gündüz + Gece (12+12 Saat) Nöbetlerde Gereksiz Uyarı Kalktı:** Birimin günlük izin verilen nöbet süresi 24 saat iken aynı güne yazılan 08:00–20:00 ve 20:00–08:00 vardiyaları artık "aynı tarihte nöbeti var" veya "24 saat dinlenme süresi ihlal edildi" uyarısı üretmez. Saatler çakışırsa veya günlük toplam izin verilen süreyi aşarsa uyarı yine gösterilir.
+* **Bayram ve Hafta Sonu Nöbet Limitleri Ayrı Sayılıyor:** Hafta sonu nöbetleri artık bayram/tatil nöbeti sayısını şişirmez. Uyarılar "Aylık maksimum bayram/tatil nöbeti üst limiti" ve "Aylık maksimum hafta sonu nöbeti üst limiti" olarak ayrı ayrı gösterilir. Bayram adaleti için 12+12 saatlik tek günlük nöbet iki nöbet olarak sayılmaya devam eder; böylece 24 saat tutan personel ile 12 saat tutan personel eşit görünmez.
+* **Web Portal Nöbet Dağılım Adaleti Seçili Yılın Tamamını Gösteriyor:** **Nöbet Dağılım Adaleti** sekmesi artık yalnızca son ayın planını değil, seçili yılın tüm aylarının toplamını gösterir. Tabloya **Bayram / Tatil** ve **Onaylı İzin** sütunları eklendi; uzun süre izinli personelin neden düşük nöbetli göründüğü doğrudan izlenebilir.
+* **Bildirim Kutuları Ekranın Dışına Taşmıyor:** Art arda yapılan işlemlerde ekranın sağ altında beliren bildirimler artık düzenli şekilde yukarı doğru dizilir; bir bildirim kapandığında diğerleri yerine kayar. Uzun mesajlar satır kırılarak gösterilir ve aynı anda en fazla 5 bildirim görünür.
+
+---
+
 ## 🖥️ RADPYS V4.0.5.12: Farklı Ekran Çözünürlükleri İçin Ergonomik Form Görünümü, Merkezi Tablo Tasarımı, KVKK / NDK Denetim İzi Yenilemesi ve Nöbet Çizelgesi İyileştirmeleri
 
 Bu sürüm; dizüstü bilgisayarlar, standart hastane monitörleri ve yüksek ölçeklemeli ekranlar dahil **tüm ekran çözünürlüklerinde formların ferah ve okunaklı görünmesini sağlayan ergonomik arayüz iyileştirmelerini**, **KVKK / NDK Denetim İzi ve Sistem Günlükleri tablolarının kurumsal tasarım standardına kavuşturulmasını** ve **Nöbet Çizelgesi matris görünümünün iyileştirilmesini** içerir.

@@ -311,7 +311,7 @@
  D --> F["Toplam Fiili Saat"]
  C --> G["Bu Ayki Net Fark = Fiili - Hedef"]
  F --> G
- G --> H["+ Önceki Aydan Devreden Saat"]
+ G --> H["+ İki Ay Önceki Dönemden Devreden Saat (Ocak Mart ayına devreder)"]
  H --> I["Kümülatif Toplam Saat Bakiyesi"]
  
  I -->|"Kümülatif <= 0 (Borç/Eksik)"| J["Ödeme Pasif - Sonraki Aya Zorunlu Devir"]
@@ -394,6 +394,22 @@
  <td class="p-3.5 text-slate-500">Butona basıldığında</td>
  <td class="p-3.5">Nöbet Sorumlusu</td>
  <td class="p-3.5 text-center"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-400">Aktif</span></td>
+ </tr>
+ <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/40">
+  <td class="p-3.5 font-bold text-slate-900 dark:text-white">İki Ay Gecikmeli Devir Kuralı</td>
+  <td class="p-3.5">Fazla mesai bakiyesinin, hesabı kesinleştikten sonra güvenle bir sonraki planlara yansıtılmasını sağlamak.</td>
+  <td class="p-3.5 font-mono text-xs">Ocak bakiyesi Mart planına, Şubat bakiyesi Nisan planına devreder (Kasım ve Aralık ertesi yılın Ocak ve Şubat planına). Devredecek dönemde kayıt yoksa devir 0 kabul edilir.</td>
+  <td class="p-3.5 text-slate-500">Otomatik nöbet planı oluşturulurken ve tablo hesaplanırken</td>
+  <td class="p-3.5">Nöbet Sorumlusu</td>
+  <td class="p-3.5 text-center"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-400">Aktif</span></td>
+ </tr>
+ <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/40">
+  <td class="p-3.5 font-bold text-slate-900 dark:text-white">Planlamada Zorunlu Mutabakat</td>
+  <td class="p-3.5">Devredecek dönemin fazla mesai hesabı yapılmadan eksik veriyle nöbet dağıtılmasını önlemek.</td>
+  <td class="p-3.5 font-mono text-xs">Devredecek dönemde nöbeti olup mutabakatı kaydedilmemiş personel varsa [Otomatik Oluştur] durdurulur ve eksik personel adları listelenir.</td>
+  <td class="p-3.5 text-slate-500">[Otomatik Oluştur] butonuna basıldığında</td>
+  <td class="p-3.5">Nöbet Sorumlusu, Amir</td>
+  <td class="p-3.5 text-center"><span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-400">Aktif</span></td>
  </tr>
  <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/40">
  <td class="p-3.5 font-bold text-slate-900 dark:text-white">[Değişiklikleri Kaydet]</td>
@@ -479,7 +495,8 @@
  <li>Sol menüden <strong>[Nöbet Yönetimi] &gt; [Nöbet Borç / Alacak Devri]</strong> sayfasına gidin.</li>
  <li>Üst araç çubuğundaki <strong>[Yıl]</strong> ve <strong>[Ay]</strong> alanlarından hesaplanacak nöbet dönemini seçin.</li>
  <li>Gerekiyorsa <strong>[Birim]</strong> ve <strong>[Hizmet Sınıfı]</strong> filtrelerini daraltın ve <strong>[Yenile]</strong> butonuna basın.</li>
- <li>Tabloda personellerin yasal hedef saatleri, fiili saatleri, ayın net farkı, önceki aydan devreden bakiye ve kümülatif toplam saatleri listelenir:
+ <li><strong>Devir mantığı:</strong> Fazla mesai bakiyesi iki ay gecikmeli devreder: Ocak dönemi Mart, Şubat dönemi Nisan planına yansır. Nöbet çizelgesi ayın bitmesine 5-10 gün kala hazırlandığı için devredecek ayın mutabakatı o sırada kesinleşmiş olur. Yeni bir ayın otomatik planını oluşturmadan önce, iki ay öncesinin mutabakatını bu ekranda hesaplayıp <strong>[Değişiklikleri Kaydet]</strong> ile kaydetmeniz gerekir.</li>
+ <li>Tabloda personellerin yasal hedef saatleri, fiili saatleri, ayın net farkı, iki ay önceki dönemden devreden bakiye ve kümülatif toplam saatleri listelenir:
  <ul class="list-disc list-inside pl-5 mt-1 space-y-1 text-xs">
  <li><span class="text-emerald-600 dark:text-emerald-400 font-bold">Artı Kümülatif Saatler:</span> Yeşil renkle gösterilir; personelin fazla mesai hak edişi olduğunu belirtir.</li>
  <li><span class="text-rose-600 dark:text-rose-400 font-bold">Eksi Kümülatif Saatler:</span> Kırmızı renkle gösterilir; personelin çalışma saati borcu olduğunu ve sonraki aya devredeceğini gösterir.</li>

@@ -3,6 +3,90 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.5.14] - 2026-11-07
+
+### 🛡️ Nöbet Personel Talepleri (`personel_nobet_istekleri`) ve Personel Özel Kısıtları (`personel_calisma_kisitlari`) Uçtan Uca Kilit Denetimi, Gebelik / Sağlık Raporu / Doz Aşımı Hedef Saat ve Nöbet Muafiyeti İyileştirmeleri, Eğitim Ders Programı Revizyonu ve Yıllık Nöbet Adalet Sayacı Penceresi
+
+Bu sürüm; Nöbet modülü altındaki **Personel Talepleri** ve **Personel Özel Kısıtları** ekranlarında gerçekleştirilen çok turlu uçtan uca denetimde tespit edilen tüm planlama kilitlerini, `saglik_raporu` ve `analik_izni` hedef saat düşümü eksikliklerini, `doz_asimi` ve `gebelik` radyasyonsuz alan gündüz vardiyası devir/planlama kurallarını, `egitim` haftalık ders günü filtreleme/revizyon hatalarını ve masaüstü Yıllık Nöbet Adalet Sayacı penceresini içerir.
+
+#### ✨ Eklendi (Added)
+
+- **1. Masaüstü Yıllık Nöbet Adalet Sayacı Penceresi (`ui/controllers/nobet/nobet_adalet_sayaci_controller.py`, `ui/pages/nobet/nobet_adalet_sayaci_page.ui`):**
+  - `NobetPlanMainController` ve `NobetPlanDetayController` üzerinden açılan bağımsız yıllık adalet sayacı penceresi eklendi; seçili yıl, birim ve hizmet sınıfına göre personellerin yıllık toplam nöbet sayısı, toplam saat, hafta sonu, resmi tatil/bayram, gece nöbeti, onaylı izin günü ve ortalamadan sapma değerlerini tabular font ve renkli sapma rozetiyle listeler (`NobetCizelgeService.get_yillik_nobet_dagilim_adaleti`).
+- **2. `saglik_raporu` ve `analik_izni` Tam Muafiyet Hedef Saat Düşümü (`app/domain/nobet/hedef_saat_hesaplayici.py`):**
+  - `calculate_reduction` içinde `saglik_raporu` ve `analik_izni` kısıtlarında `gunluk_saat_azaltim == 0` ve `aylik_saat_azaltim == 0` olduğunda, kısıt tarih aralığına (`baslangic_tarihi .. bitis_tarihi`) düşen hafta içi iş günlerinin (`applicable_days * std_daily`) aylık zorunlu hedef saatten otomatik düşülmesi sağlandı.
+- **3. Çakışan Nöbet Talepleri İçin Sertlik Öncelik Motoru (`get_sifting_request` — `app/services/nobet/nobet_scheduler.py`):**
+  - Aynı personel ve aynı gün için birden fazla onaylı `personel_nobet_istekleri` kaydı bulunduğunda deterministik öncelik sırası (`muafiyet (4) > egitim (3) > nobet_yazma (2) > nobet_yaz (1)`) uygulandı ve `egitim` taleplerinin yalnızca seçilen `tekrar_gunleri` (`1..5`, Pazartesi-Cuma) günlerinde devreye girmesi sağlandı.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed & Refined)
+
+- **1. `saglik_raporu`, `doz_asimi` ve `gebelik` Fazla Mesai / Vardiya / Devir Kuralları (`nobet_settings_service.py`, `nobet_scheduler.py`, `nobet_devir_service.py`, `nobet_cizelge_service.py`):**
+  - `doz_asimi` kısıtında radyasyon güvenliği gereği `personeller.fm_off = 1` kalıcı olarak korunurken, `saglik_raporu` kısıtı zorunlu sıfır fazla mesai (`resolved_max_fm = 0`) listesinden çıkarıldı; böylece heyet raporlu personel rapor tarih aralığında nöbetten tam muaf tutulurken, rapor tarihleri dışında özel istek yoksa mesai ve nöbet yazılabilmesi sağlandı.
+  - `gebelik` ve `doz_asimi` kısıtlarında radyasyonlu birimlerde (`radyasyonlu_alan = 1`) tüm nöbet ve devirler engellenirken; radyasyonsuz birimlerde (`radyasyonlu_alan = 0`) `doz_asimi` için yasal sınırlar içinde devir/atama, `gebelik` için ise gündüz vardiyası (`is_night_shift == False`) atama ve devir işlemlerine izin verildi.
+  - `NobetScheduler._get_max_fm_limit` ve `NobetPlanOnizlemeController._calculate_simulator_summary` içinde yasal sıfır fazla mesai kısıtları (`custom_fm_limits.get(pid) == 0.0`) onaylı `fazla_mesai` taleplerinin üstüne (1. önceliğe) taşındı; ayrıca tarih aralıklı kısıtlardan kaynaklanan `fm_off = 1` bayrağının kısıt tarihi dışındaki ayları kilitlemesi engellendi (`SON-01`).
+- **2. Gebelik Yaşam Döngüsü ve Kısıt Silme/Pasife Alma Senkronizasyonu (`nobet_settings_service.py`, `personel_service.py`, `approval_service.py`, `personel.routes.ts`):**
+  - `gebelik`, `analik_izni`, `emzirme`, `saglik_raporu` ve `doz_asimi` kısıtlarında başlangıç/bitiş tarihi zorunluluğu ve mükerrer/çakışan aktif kısıt kontrolü eklendi.
+  - Kısıt silindiğinde (`delete_personel_calisma_kisiti`, zincir silme dahil) veya `aktif = 0` yapıldığında `personeller.gebelik_bildirim_tarihi`, `gebelik_tahmini_bitis` ve (`doz_asimi` hariç) `personeller.fm_off` alanlarının otomatik senkronize edilmesi sağlandı.
+  - `upsert_personel_calisma_kisiti`, `create_gebelik_yasam_dongusu` ve `update_gebelik_dogum_tarihi` içindeki otomatik nöbet iptal sorguları kısıt bitiş tarihi ve vardiya/birim türü (`radyasyonlu_alan` / `is_night_shift`) ile sınırlandırıldı.
+- **3. Personel Talepleri ve Eğitim Revizyonu İyileştirmeleri (`nobet_ayarlar_personel_istekleri_tab.py`, `nobet_egitim_revizyon_dialog.py`, `nobet_hizli_istek_dialog.py`):**
+  - Eğitim kısıtında sadece hafta içi günlerin (`Pzt..Cum`) seçilmesi zorunlu kılındı; `revise_egitim_istegi` içinde revizyon tarihi (`revizyon_tarihi > eski_baslangic` ve `<= eski_bitis`) doğrulaması eklendi.
+  - Masaüstü yönetim ekranlarından (`NobetAyarlarPersonelIstekleriTab`, `NobetHizliIstekDialog`) eklenen taleplerin doğrudan `Onaylandi` statüsüyle kaydedilmesi, `Onaylandi`/`Reddedildi` taleplerin mükerrer onay/red butonlarının kilitlenmesi ve çoklu aya yayılan (`baslangic_tarihi .. bitis_tarihi`) taleplerin dönem filtrelerinde kesişimle listelenmesi sağlandı.
+
+#### 🐛 Düzeltildi (Fixed)
+
+- **1. Web Portal Gebelik Bildirimi ve `ApprovalService` Alan Uyumsuzluğu (`approval_service.py`, `personel.routes.ts`):**
+  - Web Portal `POST /api/personel/gebelik-bildirimi` uç noktasından gelen `bildirim_tarihi` ve `tahmini_dogum_tarihi` alanlarının `ApprovalService.approve_request` içinde `baslangic_tarihi` / `bitis_tarihi` olarak eşlenmemesi nedeniyle onay sırasında oluşan hata giderildi; onay öncesinde kısıtın `aktif = 0` açılması ve red halinde `personeller.gebelik_*` alanlarının temizlenmesi sağlandı.
+- **2. `NobetAyarlarPersonelKisitlarTab` Sinyal Bloklama ve Önizleme Tablosu `Süre (Gün)` Hesabı (`nobet_ayarlar_personel_kisitlar_tab.py`, `nobet_plan_onizleme_controller.py`):**
+  - Tablodan kısıt seçildiğinde `pcPersonCombo` ve `pcTypeCombo` sinyalleri bloke edilerek kaydın mevcut `personel_max_fazla_mesai_saat` ve saat azaltım değerlerinin varsayılanlarla ezilmesi önlendi; önizleme simülasyon tablosunda kısıt süresi toplam gün yerine planlanan ay içindeki etkin gün sayısı olarak düzeltildi.
+
+#### 🧪 Test
+
+- `tests/test_gebelik_kisit_entegrasyonu.py`, `tests/test_gebelik_yasam_dongusu.py`, `tests/test_personel_calisma_kisit_fm_limit.py`, `tests/test_nobet_settings_service.py`: 21 test geçti.
+
+## [4.0.5.13] - 2026-11-06
+
+### 🔁 Fazla Mesai İki Ay Gecikmeli Devir Kuralı (`devir_kaynak_ayi`), Planlamada Zorunlu Mutabakat Kontrolü (`get_carryover_readiness`), Aynı Gün 12+12 Saat Nöbet Soft Kısıt Düzeltmesi, Yıllık Nöbet Dağılım Adaleti Panosu ve Toast Dizilim Düzeltmesi
+
+Bu sürüm; nöbet listesinin ayın bitmesine 5-10 gün kala hazırlanması nedeniyle bir önceki ayın resmi fazla mesai mutabakatının planlama anında hiç mevcut olmaması sorununu, fazla mesai devrini iki ay gecikmeli (Ocak ➔ Mart) hale getirerek ve plan üretiminde kaynak ay mutabakatını zorunlu kılarak çözer; ayrıca `validate_soft_constraints` içindeki bayram/hafta sonu sayaç karışıklığını ve aynı gün 12+12 saatlik nöbetlerdeki yanlış pozitif uyarıları, Web Portal adalet panosunun yalnızca tek planı göstermesini ve toast yığınının ekran dışına taşmasını giderir.
+
+#### ✨ Eklendi (Added)
+
+- **1. İki Ay Gecikmeli Devir Kuralı (`app/domain/nobet/devir_kurali.py`):**
+  - `DEVIR_GECIKME_AY = 2` sabiti, `devir_kaynak_ayi(yil, ay, gecikme_ay)` ve `ay_adi(ay)` yardımcıları eklendi. Devir: Ocak ➔ Mart, Şubat ➔ Nisan, yıl geçişi Kasım ➔ ertesi yıl Ocak, Aralık ➔ ertesi yıl Şubat.
+  - Kural, ayara bağlanmayıp domain sabiti olarak tutuldu (şema/migration değişikliği gerektirmez).
+- **2. Planlamada Zorunlu Fazla Mesai Mutabakatı (`NobetBorcAlacakService.get_carryover_readiness`, `NobetService.get_carryover_readiness`):**
+  - Kaynak ayda (plan ayı − 2) `nobet_cizelgesi` kaydı bulunup `personel_nobet_borc_alacak` satırı olmayan personeli (`DISTINCT`, iptal/mazeret ve iptal planlar hariç) listeler; dönüş: `hazir`, `kaynak_yil`, `kaynak_ay`, `kaynak_ay_adi`, `eksik`.
+  - `NobetScheduler.generate_schedule` plan yüklendikten hemen sonra bu kontrolü çağırır; eksik varsa `SonucYonetici.hata` döner ve mevcut taslak çizelge silinmez. Kaynak ayda hiç nöbet yoksa (sistemin ilk çalıştırılması) devir 0 kabul edilir ve plan engellenmez.
+- **3. Yıllık Nöbet Dağılım Adaleti (`web_portal/src/routes/dashboard/dashboard.nobet.routes.ts`, `NobetDashboard.tsx`):**
+  - Adalet verisi seçili planın değil, seçili yılın tüm planlarının kişi bazlı toplamı olarak üretilir (`np.yil = $yil`, iptaller hariç, departman yetki filtresi korunur).
+  - `bayramSayisi` (resmi/dini tatil, `tatil_takvimi`), `haftaSonuSayisi` (tatiller hariç) ve `izinGun` (onaylı izinler, yalnızca nöbet planı bulunan ilk-son ay aralığına kırpılmış) alanları ve tabloya `Bayram / Tatil` ile `Onaylı İzin` sütunları eklendi.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed & Refined)
+
+- **1. `get_previous_month_carryover` / `get_previous_month_carryover_map` (`nobet_borc_alacak_service.py`):**
+  - Önceki ay yerine `devir_kaynak_ayi` ile iki ay öncesini okur. Dağıtıcı (`NobetScheduler`), `NobetCizelgeService`, plan önizleme ve borç/alacak ekranı bu iki fonksiyonu kullandığı için otomatik olarak yeni kurala geçti.
+- **2. `validate_soft_constraints` Bayram / Hafta Sonu Sayaç Ayrımı (`nobet_cizelge_service.py`):**
+  - `mevcut_bayram` yalnızca resmi tatil nöbetlerini, `mevcut_haftasonu` yalnızca (tatil olmayan) cumartesi/pazar nöbetlerini sayar; `count_weekend_as_holiday = 1` iken hafta sonu nöbetlerinin bayram sayacını şişirmesi engellendi.
+  - Uyarı metinleri "Aylık maksimum bayram/tatil nöbeti üst limiti" ve "Aylık maksimum hafta sonu nöbeti üst limiti" olarak netleştirildi.
+- **3. Toast Dizilimi (`ui/widgets/toast.py`):**
+  - Konum, `Toast._reposition_all` ile aktif toast'ların gerçek yükseklikleri toplanarak hesaplanır; bir toast kapanmaya başlayınca diğerleri hemen yerine kayar. Genişlik `MAX_WIDTH = 460`, yükseklik `MAX_HEIGHT = 220` ile sınırlandı, uzun mesajlar satır kırılır; `MAX_VISIBLE = 5` ve ekrana sığmayan en eski toast'lar kapatılır.
+
+#### 🐛 Düzeltildi (Fixed)
+
+- **1. Aynı Gün 12+12 Saat Nöbette Yanlış Pozitif Uyarılar (`nobet_cizelge_service.py` — `validate_soft_constraints`):**
+  - Birim günlük 24 saate izin veriyorken aynı planda çakışmayan 08:00-20:00 + 20:00-08:00 vardiyaları "seçili tarihte bu planda zaten nöbeti bulunuyor" ve "Kalan dinlenme süresi: 0.0 saat" uyarıları üretiyordu. Bölüm 0.1 yalnızca saat çakışması veya `gunluk_max` aşımında uyarır; `other_shifts` döngüsü çakışmayan ve `gunluk_max` içindeki aynı gün vardiyalarını `check_rest_and_night_gap` dışında bırakır (`NobetScheduler` ile aynı davranış).
+  - Bayram/hafta sonu sayımı bilinçli olarak vardiya (slot) bazlı bırakıldı: 12s + 12s = 2 nöbet; bayram adaleti 24 saat tutanı 12 saat tutanla eşitlememek için korunur (`v_nobet_denge_ozeti` ile tutarlı).
+- **2. Web Portal Adalet Panosunun Yalnızca Son Planı Göstermesi:**
+  - `plan_id` gelmediğinde en son yayındaki plan (`selectedPlanId`) seçiliyor ve adalet istatistikleri yalnızca bu plan üzerinden hesaplanıyordu; veri yıllık toplama taşındı. Tam ay izinli personelin "2 nöbet" ile en düşük yük görünmesi izin sütunu ve yıllık kapsamla giderildi.
+- **3. Toast Yığınının Ekran Dışına Taşması (`ui/widgets/toast.py`):**
+  - Konum `aktif sayı × kendi yüksekliği` ile hesaplandığından farklı yükseklikteki toast'lar üst üste biniyor, kapananların yeri doldurulmuyordu; ayrıca satır kırılmayan uzun mesajlar ekrandan taşıyordu.
+
+#### 🧪 Test
+
+- `tests/test_nobet_service.py`: `test_devir_kaynak_ayi_iki_ay_gecikmeli_ve_yil_gecisli`, `test_carryover_iki_ay_gecikmeli_kaynak_ayi_okur`, `test_carryover_readiness_ilk_calistirmada_hazir_sayilir`, `test_carryover_readiness_eksik_mutabakati_listeler_ve_dagitici_engeller` eklendi; `test_validate_soft_constraints_new_rules` aynı gün 12+12 saat (senaryo G) ve bayram/hafta sonu sayaç ayrımı için genişletildi.
+- `tests/test_nobet_havuz_service.py`: devir kontrolü iki ay gecikmeli kurala göre güncellendi.
+- `tests/test_nobet_havuz_service.py`, `tests/test_nobet_scheduler.py`, `tests/test_nobet_service.py` birlikte: 77 test geçti.
+
 ## [4.0.5.12] - 2026-11-06
 
 ### 🖥️ Farklı Ekran Çözünürlükleri İçin Standart Windows Form Yoğunluğu, Merkezi RDS Tablo Stili (`apply_global_table_styles`), KVKK / NDK Denetim İzi `.ui` Dönüşümü ve Nöbet Çizelgesi Matris Merkezileştirmesi

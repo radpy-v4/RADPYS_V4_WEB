@@ -1,10 +1,10 @@
 {
-  "version": "4.0.5.12",
-  "release_version": "4.0.5.12",
-  "build_version": "4.0.5.12",
-  "latest_demo_version": "4.0.5.12",
-  "release_date": "2026-11-06",
+  "version": "4.0.5.14",
+  "release_version": "4.0.5.14",
+  "build_version": "4.0.5.14",
+  "latest_demo_version": "4.0.5.14",
+  "release_date": "2026-11-07",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.5.12: Farklı Ekran Çözünürlükleri İçin Standart Windows Form Yoğunluğu, Merkezi RDS Tablo Stili, KVKK/NDK Denetim İzi Arayüz Yenilemesi ve Nöbet Çizelgesi Matris Merkezileştirmesi.",
+  "changelog": "RADPYS V4.0.5.14: Nöbet Personel Talepleri ve Personel Özel Kısıtları Uçtan Uca Kilit Çözümleri, Gebelik/Sağlık Raporu/Doz Aşımı Hedef Saat ve Nöbet Muafiyeti İyileştirmeleri, Eğitim Ders Programı Revizyonu ve Yıllık Nöbet Adalet Sayacı Penceresi.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }

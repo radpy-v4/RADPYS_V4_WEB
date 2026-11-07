@@ -528,7 +528,7 @@ Personel kayıtları hem masaüstü Windows arayüzünden (`ui/controllers/perso
 - **24 Saat ve Dinlenme Standartları:** Günlük maksimum nöbet 24 saat, nöbet sonrası zorunlu dinlenme en az 24 saat, ardışık nöbet en fazla 2 gündür. Gece nöbetleri arasında asgari 48 saat boşluk gözetilir.
 - **Fazla Mesai Tavan Hiyerarşisi:** Kurumsal temel fazla mesai sınırı 60 saattir; ancak acil servis ve olağanüstü durumlarda **Yönetici Onayı ile esnetilebilir**. Yasal nihai sınır 130 saattir.
 - **Yaş ve Kıdem Muafiyet Esnekliği:** 50 yaş ve 25 kıdem yılını dolduran personellere algoritma öncelikli olarak gündüz nöbeti verir; ancak boş slot kaldığında veya zorunlu aylık mesai eksik olduğunda sistem bu kısıtı esneterek gece nöbeti atayabilir.
-- **Yasal Mesai Azaltımları:** Emzirme ilk 6 ay günde 3 saat, ikinci 6 ay 1.5 saat azaltım. Sendika memur haftalık 4 saat, işçi haftalık 2 saat azaltım. Gebelik durumunda gece nöbeti ve fazla mesai tamamen kapatılır.
+- **Yasal Mesai Azaltımları ve Özel Kısıt Kuralları:** Emzirme ilk 6 ay günde 3 saat, ikinci 6 ay 1.5 saat azaltım. Sendika memur haftalık 4 saat, işçi haftalık 2 saat azaltım. Sağlık kurulu (heyet) raporu ve analık izninde rapor tarih aralığındaki iş günleri aylık zorunlu çalışma hedefinden otomatik düşülür; sağlık raporunda özel istek yoksa rapor tarihleri dışında mesai yazılabilir. Doz aşımında radyasyon güvenliği gereği `FM Off = 1` kalıcı korunur ancak radyasyonsuz alanda yasal sınırlar içinde çalışılabilir. Gebelikte radyasyonlu alan ve tüm gece nöbetleri kapatılırken radyasyonsuz alanda gündüz vardiyaları ve gündüz devri serbesttir.
 - **Platform:** 🖥️ Masaüstü Yönetim Kokpiti (5 Sekmeli Kural ve Solver Yapılandırması).
 - **Etkileşimli Kılavuz Sayfaları:** Detaylı parametre incelemeleri için sistemde 5 odaklı alt sayfa ve 1 ana kokpit bulunmaktadır:
   1. `07_1_temel_ayarlar_ve_calisma_standartlari.html`: Dinlenme, 24 saat kuralı, 60s FM sınırı ve 50 yaş muafiyeti.
@@ -655,6 +655,7 @@ Personel kayıtları hem masaüstü Windows arayüzünden (`ui/controllers/perso
 | **Kural İhlali Onay Kutusu**<br><small>`[Kural İhlallerini Onaylıyorum]`</small> | Olağanüstü durumlarda soft kısıt ihlalli manuel atama yapabilmek. | İhlal durumunda form kilitlenir; yetkili kullanıcı kutuyu işaretleyip kaydettiğinde ihlal açıklaması planın silinemez denetim izine loglanır. | İhlalli manuel nöbet kaydında. | Birim Amiri, Yönetici |
 | **Ay Ortası Kısmi Plan İptali**<br><small>`[Ay Ortası Plan İptali]` Butonu</small> | Yayındaki planda çalışılmış günleri koruyup kalan günleri taslağa çekmek. | Kesim tarihine kadar olan nöbetler 'Gerçekleşti' olarak dondurulur; sonrakiler iptal edilerek plan yeniden düzenlenebilir 'Taslak' durumuna alınır. | Ay ortası personel ayrılışı veya revizyonda. | Yönetici (Sudo Parolalı) |
 | **Planı Taslağa Geri Çekme**<br><small>`[Taslağa Dön]` Butonu</small> | Yayınlanan planı tamamen düzenleme moduna geri almak. | Sistem ayarlarında yetki açıksa devreye girer; Sudo yönetici parolası doğrulaması ile plan 'Taslak' durumuna döndürülür. | Kapsamlı çizelge revizyonunda. | Sistem Yöneticisi (Admin) |
+| **Yıllık Nöbet Adalet Sayacı**<br><small>`[Adalet Sayacı]` Butonu</small> | Seçilen yıl boyunca birimdeki personeller arasındaki kümülatif nöbet ve tatil yükü adaletini denetlemek. | Yılın tüm planlarını birleştirerek toplam nöbet, toplam saat, hafta sonu, bayram/tatil, gece nöbeti, onaylı izin günü ve birim ortalamasından sapma değerlerini gösterir. | Yıllık dağılım adaleti kontrolünde. | Birim Sorumlusu, Yönetici |
 
 ---
 
@@ -833,7 +834,8 @@ Bu modül; radyoloji ve sağlık çalışanlarının aylık yasal mesai rejimler
 - **Resmi Bayram Mesaisi Ayrımı:** Dini/milli bayramlarda ve arife günü saat 13:00'ten sonra tutulan nöbetler normal fazla mesai havuzundan ayrılarak bordro cetvelinde ayrı bir sütun olarak mutemetliğe bildirilir.
 - **Yasal Mutlak Tavan (130 Saat):** Mevzuat gereği bir personele bir ayda ödenebilecek fazla mesai toplamı 130 saati aşamaz. Kümülatif fazla mesai 130 saatin üzerinde olsa dahi o ay en fazla 130 saat ödenebilir; kalan bakiye zorunlu olarak sonraki aya devreder.
 - **Kurumsal Koruyucu Sağlık Kotası (60 Saat):** 60 saatlik kurumsal kota bir ödeme/bütçe kısıtı olmayıp, **personelin fiziksel ve ruhsal sağlığını korumak, aşırı çalışma yükünü sınırlandırmak ve mesleki tükenmişliği (burnout) engellemek amacıyla kurum tarafından konulmuş koruyucu bir iş sağlığı sınırıdır**. Sistem hızlı seçimlerde ve toplu işlemlerde personeli korumak adına 60 saat ödeme ve kalanının devrini varsayılan olarak önerir.
-- **Eksik Mesai / Borç Devri:** Kümülatif bakiyesi yasal hedefin altında kalan (eksi bakiye) personelde ödeme seçeneği pasifize edilir; borç saat doğrudan bir sonraki aya devredilir.
+- **Eksik Mesai / Borç Devri:** Kümülatif bakiyesi yasal hedefin altında kalan (eksi bakiye) personelde ödeme seçeneği pasifize edilir; borç saat iki ay gecikmeli devir kuralıyla devredilir.
+- **İki Ay Gecikmeli Devir ve Planlamada Zorunlu Mutabakat:** Fazla mesai bakiyesi hemen sonraki aya değil iki ay sonrasına devreder (Ocak ➔ Mart, Şubat ➔ Nisan; Kasım ➔ ertesi yıl Ocak, Aralık ➔ ertesi yıl Şubat). Nöbet çizelgesi ayın bitmesine 5-10 gün kala hazırlandığı için devredecek ayın mutabakatı o sırada kesinleşmiş olur. Otomatik nöbet planı oluşturulurken devredecek dönemde nöbeti olup mutabakatı kaydedilmemiş personel varsa işlem durdurulur ve eksik personel listelenir. Devredecek dönemde hiç nöbet yoksa (ilk kullanım) devir 0 kabul edilir.
 - **Dönem Kilidi ve Sudo Yetkilendirmesi:** Fazla mesai ödemeleri onaylanıp kesinleştiğinde (`FM Ödendi`) dönem otomatik olarak kilitlenir. Kilitli bir dönemde değişiklik yapmak yalnızca yönetici şifre doğrulaması (`Kilidi Aç`) ile mümkündür.
 
 ### 2. Arayüz Bileşenleri ve 5N1K Tablosu
@@ -859,7 +861,7 @@ Bu modül; radyoloji ve sağlık çalışanlarının aylık yasal mesai rejimler
 2. Üst araç çubuğundaki **[Yıl]** ve **[Ay]** alanlarından incelemek istediğiniz dönemi seçin.
 3. İhtiyaç halinde **[Birim]** ve **[Hizmet Sınıfı]** filtrelerini daraltın.
 4. **[Yenile]** butonuna tıklayın.
-5. Tabloda personellerin yasal hedef saatleri, fiili nöbet saatleri, ayın net farkı, önceki aydan devreden bakiye ve kümülatif toplam saatleri listelenir:
+5. Tabloda personellerin yasal hedef saatleri, fiili nöbet saatleri, ayın net farkı, iki ay önceki dönemden devreden bakiye ve kümülatif toplam saatleri listelenir:
    - Kümülatif bakiyesi **artı** olan saatler yeşil renkle gösterilir.
    - Kümülatif bakiyesi **eksi** (borçlu) olan saatler kırmızı renkle gösterilir.
    - Fiili saat veya net fark hücresinin üzerine geldiğinizde açılan zengin bilgi kutucuğunda (tooltip) personelin kendi biriminde tuttuğu saatler, diğer birimlerdeki saatler, bayram mesaisi ve 35s/40s hibrit denklik oranları detaylı olarak izlenebilir.
