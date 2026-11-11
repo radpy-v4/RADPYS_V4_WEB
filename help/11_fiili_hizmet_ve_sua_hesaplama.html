@@ -212,20 +212,20 @@
  <div class="w-8 h-8 rounded-lg bg-cyan-600 text-white flex items-center justify-center font-bold text-sm">
  20s
  </div>
- <h2 class="text-xl font-bold text-slate-900 dark:text-white">Vizyonder Hızlı Karar Reçetesi (FHZ & Şua Özeti)</h2>
+ <h2 class="text-xl font-bold text-slate-900 dark:text-white">Vizyonder Hızlı Karar Reçetesi (4 Adımda FHZ & Şua Sihirbazı)</h2>
  </div>
  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
  <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
- <span class="font-bold text-cyan-600 dark:text-cyan-400 block mb-1">1. Dönem Döngüsünü Seçin</span>
- Kurumunuzun bordro takvimine göre 15-14 SGK dönemini veya takvim ayını seçin. Onaylı izin günleri fiili süreden otomatik arındırılır.
+ <span class="font-bold text-cyan-600 dark:text-cyan-400 block mb-1">1. Görev Yerlerini Onayla</span>
+ 15-14 SGK döneminde varsayılan birimler otomatik hazır gelir. Sadece rotasyon veya geçici görevi olan personeli güncelleyip <strong>[1. Görev Yerlerini Onayla ve Hesaplamaya Geç]</strong> butonuna basın.
  </div>
  <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
- <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-1">2. 50 Saate 1 Gün Baremi</span>
- Sistem personelin radyasyonlu birimdeki fiili çalışma saatlerini hesaplar; her 50 tam saat için 1 tam gün Şua izni otomatik tahakkuk ettirilir.
+ <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-1">2. Hesapla, Kaydet ve Kilitle</span>
+ Radyasyonlu birimdeki her 50 tam fiili çalışma saati için 1 gün Şua izni hesaplanır; <strong>[2. Hesaplamayı Kaydet, Kilitle ve Rapor Çıktısına Geç]</strong> butonuyla tek tıkla kaydedilip dönem kilitlenir.
  </div>
  <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
- <span class="font-bold text-blue-600 dark:text-blue-400 block mb-1">3. Sıralı Kilit & Yıllık Tavan</span>
- Geçmiş aylar kilitlenmeden cari ay kilitlenemez. Yıllık toplamda 30 günlük yasal tavan aşılamaz; yıl sonunda yönetici tek tıkla yıllık kilidi onaylar.
+ <span class="font-bold text-blue-600 dark:text-blue-400 block mb-1">3. Rapor Çıktısı Al &amp; 4. Kapat</span>
+ Resmi puantaj cetveli hazır açılır; <strong>[3. Rapor Çıktısı Al (Excel / PDF)]</strong> ile indirilir ve <strong>[4. Tamamla ve Kapat]</strong> ile süreç tamamlanır.
  </div>
  </div>
  </div>
@@ -299,34 +299,27 @@
  <!-- 3. İŞ AKIŞI ŞEMASI (MERMAID) -->
  <section id="is-akisi-semasi" class="space-y-4">
  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span>3. 3 Adımlı Entegre Puantaj Sihirbazı İş Akışı</span>
+ <span>3. 4 Adımlı Doğrusal Puantaj Sihirbazı İş Akışı</span>
  </h2>
 
  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm overflow-x-auto">
  <pre class="mermaid text-center">
 graph TD
- A["Bordro Dönemi Seçimi: 15.AA - 14.AA"] --> B["1. Adım: Görev Dağılımı"]
- B --> C{"Görev Kaydı Var mı?"}
- C -->|Hayır| D["Otomatik Görev Ata"]
- D --> E["Taslak Dağılımlar Listelenir"]
- C -->|Evet| E
- E --> F["Farklı Birimde Çalışanları İncele: Sadece Değişenler"]
- F --> G["Onayla ve Hesaplamaya Geç"]
+ A["Bordro Dönemi Seçimi: 15.AA - 14.AA"] --> B["1. Adım: Görev Yerlerini Onayla"]
+ B --> C["Varsayılan Birimler Otomatik Hazır Gelir"]
+ C --> D["Rotasyon Varsa: Görev Yerini Değiştir / Ek Görev Ekle"]
+ D --> E["1. Görev Yerlerini Onayla ve Hesaplamaya Geç"]
  
- G --> H["2. Adım: Fiili Hizmet Hesaplama"]
- H --> I{"Dönemde Onaysız İzin Var mı?"}
- I -->|Evet| J["UYARI: FhzOnaysizIzinUyariDialog<br/>İzin Yönetimi Ekranından Resmi Onay Veriniz"]
- I -->|Hayır| K["Hesaplama Motoru: Koşul A 7s / Koşul B 8s"]
- K --> L["İzin Düşümü & Net Fiili Radyasyon Saati"]
- L --> M["Şua Gün Hesabı: Her 50s = 1 Gün, Maks 30 Gün"]
- M --> N{"Bir Önceki Dönem Kilitli mi?"}
- N -->|Hayır| O["HATA: Önceki Dönemi Kilitleyiniz"]
- N -->|Evet| P["Dönemi Kilitle: Veri Dondurulur"]
+ E --> F["2. Adım: Fiili Hizmeti Hesapla"]
+ F --> G{"Dönemde Onaysız İzin Var mı?"}
+ G -->|Evet| H["UYARI: Onaysız İzin Güvenlik Bariyeri<br/>İzin Yönetimi Ekranından Resmi Onay Veriniz"]
+ G -->|Hayır| I["Hesaplama Motoru: Koşul A 7s / Koşul B 8s"]
+ I --> J["İzin Düşümü & Net Fiili Radyasyon Saati"]
+ J --> K["Şua Gün Hesabı: Her 50s = 1 Gün, Maks 30 Gün"]
+ K --> L["2. Hesaplamayı Kaydet, Kilitle ve Rapor Çıktısına Geç"]
  
- P --> Q["Yıl Sonu: Yıllık Kilidi Kapat Admin Rolü"]
- P --> R["3. Adım: Puantaj Raporuna Geç"]
- R --> S["SGK ve Mutemetlik İcmal Tablosu"]
- S --> T["Excel İndir & Resmi Bordroya İlet"]
+ L --> M["3. Adım: Rapor Çıktısı Al (Excel / PDF)"]
+ M --> N["4. Adım: Tamamla ve Kapat"]
  </pre>
  </div>
  </section>
@@ -352,22 +345,22 @@ graph TD
  <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
  <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
  <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Sihirbaz Adım Göstergesi]</td>
- <td class="py-3.5 px-4">3 adımlı iş akışını (Görev Dağılımı Hesaplama Rapor) yönlendirmek.</td>
+ <td class="py-3.5 px-4">4 adımlı iş akışını (1. Görev Yerlerini Onayla ➔ 2. Fiili Hizmeti Hesapla ➔ 3. Rapor Çıktısı Al ➔ 4. Tamamla ve Kapat) yönlendirmek.</td>
  <td class="py-3.5 px-4">Adım tıklandığında sekme değişir; dönem parametreleri sekmeler arası senkronize edilir.</td>
  <td class="py-3.5 px-4">Adım çubuğuna tıklandığında</td>
  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Nöbet Sorumlusu, Amir</span></td>
  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
  </tr>
  <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
- <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Yıl] & [Ay] Seçimi</td>
+ <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Yıl] &amp; [Ay] Seçimi</td>
  <td class="py-3.5 px-4">5510 Sayılı Kanun kapsamındaki 15-14 bordro dönemini seçmek.</td>
- <td class="py-3.5 px-4">15.ay ile 14.(ay+1) aralığı dinamik hesaplanır. Ayarlar sekmesinden esnetilebilir.</td>
- <td class="py-3.5 px-4">Açılır kutu veya chevron değiştiğinde</td>
+ <td class="py-3.5 px-4">15.ay ile 14.(ay+1) aralığı dinamik hesaplanır ve varsayılan görev yerleri otomatik yüklenir.</td>
+ <td class="py-3.5 px-4">Açılır kutu veya ok butonları değiştiğinde</td>
  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Sorumlu, Mutemet</span></td>
  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
  </tr>
  <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
- <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Sadece Değişenleri Göster]</td>
+ <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Sadece Görev Yeri Değişenler]</td>
  <td class="py-3.5 px-4">Asıl birimi dışında görevlendirilen personelleri hızlıca süzmek.</td>
  <td class="py-3.5 px-4">Kadro birimi ile görev yeri farklı olan satırları filtreler; kırmızı renkle vurgular.</td>
  <td class="py-3.5 px-4">Onay kutusu işaretlendiğinde</td>
@@ -375,43 +368,43 @@ graph TD
  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
  </tr>
  <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
- <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Otomatik Görev Ata]</td>
- <td class="py-3.5 px-4">Dönemdeki personellerin görev yerlerini tek tıkla otomatik doldurmak.</td>
- <td class="py-3.5 px-4">Personelin varsayılan birimini ve nöbet çizelgesini tarayarak taslak dağılım üretir.</td>
- <td class="py-3.5 px-4">Butona tıklandığında</td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Nöbet Sorumlusu</span></td>
+ <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Görev Yerini Değiştir] &amp; [Rotasyon / Ek Görev Ekle]</td>
+ <td class="py-3.5 px-4">Nöbet listesi dışında başka birimde görevlendirilen veya rotasyona çıkan personelin çalışma alanını tanımlamak.</td>
+ <td class="py-3.5 px-4">Yetki kapsamındaki personeller için tarih aralığı, birim ve günlük çalışma saatini (0-24s) kaydeder.</td>
+ <td class="py-3.5 px-4">Butona veya satıra çift tıklandığında</td>
+ <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Birim Sorumlusu, Nöbet Sorumlusu</span></td>
  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
  </tr>
  <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
- <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Onayla ve Hesaplamaya Geç]</td>
- <td class="py-3.5 px-4">Taslak görev dağılımlarını onaylayıp 2. Adıma (Hesaplama) aktarmak.</td>
- <td class="py-3.5 px-4">Taslak satırları 'Onaylı' yapar ve sekmeyi otomatik olarak [Fiili Hizmet Hesaplama] sekmesine taşır.</td>
- <td class="py-3.5 px-4">Butona tıklandığında</td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Birim Sorumlusu, Amir</span></td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
- </tr>
- <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
- <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Dönemi Kilitle] / [Kilidi Aç]</td>
- <td class="py-3.5 px-4">Hesaplanmış ayın fiili hizmet puantajını kesinleştirip yetkisiz değişiklikleri engellemek.</td>
- <td class="py-3.5 px-4">Önceki dönemin kilit durumunu denetler; otomatik kayıt yapar ve dönemi kilitler/açar.</td>
+ <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[1. Görev Yerlerini Onayla ve Hesaplamaya Geç]</td>
+ <td class="py-3.5 px-4">Dönemdeki tüm hizmet sınıflarının taslak görev dağılımlarını onaylayıp 2. Adıma (Hesaplama) aktarmak.</td>
+ <td class="py-3.5 px-4">Dönemdeki tüm taslak satırları 'Onaylı' yapar ve sekmeyi otomatik olarak [2. Fiili Hizmeti Hesapla] adımına taşır.</td>
  <td class="py-3.5 px-4">Butona tıklandığında</td>
  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Birim Sorumlusu, Amir</span></td>
  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
  </tr>
  <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
- <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Yılı Kilitle] / [Yıllık Kilit Aç]</td>
- <td class="py-3.5 px-4">Yılın tüm 12 ayını ve Şua izni hakedişlerini kalıcı dondurmak.</td>
- <td class="py-3.5 px-4">Hesaplama araç çubuğundaki [Yılı Kilitle] butonuyla veya İzin modülündeki [Devir Aktar & Yılını Kilitle] işlemiyle tetiklenir. Yılın 12 ayı tamamlandığında kaynak yılın fiili saatlerini dondurur ve yeni yılın Şua İzni hakedişini kesinleştirir. Sadece Admin yetkisiyle açılabilir.</td>
- <td class="py-3.5 px-4">Butona tıklandığında veya İzin devir aktarımında</td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-400">Sistem Yöneticisi (Admin)</span></td>
+ <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[2. Hesaplamayı Kaydet, Kilitle ve Rapor Çıktısına Geç]</td>
+ <td class="py-3.5 px-4">Hesaplanan aylık fiili hizmet ve Şua hakedişlerini tek adımda kaydedip dönemi kilitlemek ve 3. Adıma geçmek.</td>
+ <td class="py-3.5 px-4">Taslak nöbet planlarını ve önceki dönem kilidini denetler; filtre seçili olsa dahi tüm hizmet sınıflarını kaydeder, dönemi kilitler, yayındaki nöbet planlarını arşivler ve 3. adıma geçer.</td>
+ <td class="py-3.5 px-4">Butona tıklandığında</td>
+ <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Birim Sorumlusu, Amir</span></td>
  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
  </tr>
  <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
- <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Excel İndir]</td>
- <td class="py-3.5 px-4">SGK ve mutemetlik onaylı resmi puantaj dökümünü Excel formatında almak.</td>
- <td class="py-3.5 px-4">Kimlik no, ad soyad, SGK günü, izin, fiili saat ve Şua günlerini Excel'e aktarır.</td>
+ <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Dönem Kilidini Aç] &amp; [Yılı Kilitle]</td>
+ <td class="py-3.5 px-4">Kilitli bir dönemi revizyon için açmak veya yıl sonunda tüm 12 ayı kalıcı olarak dondurmak.</td>
+ <td class="py-3.5 px-4">[Dönem Kilidini Aç] yalnızca dönem kilitliyken görünür. [Yılı Kilitle] ise sadece Sistem Yöneticisi (Admin) veya Süpervizör yetkisiyle tüm yılı dondurur.</td>
  <td class="py-3.5 px-4">Butona tıklandığında</td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Mutemet, İdari Amir</span></td>
+ <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-400">Amir / Sistem Yöneticisi (Admin)</span></td>
+ <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
+ </tr>
+ <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+ <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[3. Rapor Çıktısı Al (Excel / PDF)] &amp; [4. Tamamla ve Kapat]</td>
+ <td class="py-3.5 px-4">SGK ve mutemetlik onaylı resmi puantaj dökümünü Excel/PDF olarak almak ve sihirbazı kapatmak.</td>
+ <td class="py-3.5 px-4">Kullanıcının yetki kapsamındaki personellerin kimlik no, ad soyad, SGK günü, izin, fiili saat ve Şua günlerini dışa aktarır; [4. Tamamla ve Kapat] pencereyi kapatır.</td>
+ <td class="py-3.5 px-4">Butona tıklandığında</td>
+ <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Mutemet, Birim Sorumlusu</span></td>
  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
  </tr>
  </tbody>
@@ -465,7 +458,7 @@ graph TD
  <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
  ️ Ekran Konumu: <strong class="text-slate-900 dark:text-white font-semibold">Fiili Hizmet Hesaplama > Onaysız İzin Güvenlik Uyarısı</strong>
  </span>
- <span class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">FhzOnaysizIzinUyariDialog Emniyet Kilidi</span>
+ <span class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">Onaysız İzin Emniyet Kilidi</span>
  </div>
  <img src="assets/img/11_fhz_onaysiz_izin_uyari_dialog.png" alt="Onaysız İzin Güvenlik Uyarısı Diyaloğu" class="w-full h-auto block" loading="lazy">
  <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
@@ -484,41 +477,30 @@ graph TD
  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
  <div class="flex items-center gap-3">
  <span class="w-8 h-8 rounded-full bg-cyan-500 text-white font-bold flex items-center justify-center font-mono">1</span>
- <h3 class="text-lg font-bold text-slate-900 dark:text-white">Dönemsel Görev Dağılımını İnceleme ve Otomatik Görev Atama</h3>
+ <h3 class="text-lg font-bold text-slate-900 dark:text-white">1. Adım: Görev Yerlerini Kontrol Etme ve Onaylama</h3>
  </div>
  <ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 pl-2">
  <li>Sol ana menüden <strong>[Fiili Hizmet ve Şua]</strong> modülüne tıklayın.</li>
- <li>Sihirbaz göstergesinde <strong>1. Adım: Görev Dağılımı</strong> sekmesinde olduğunuzu doğrulayın.</li>
- <li><strong>[Yıl]</strong> ve <strong>[Ay]</strong> kutularından SGK bordro dönemini seçin (Dönem tarihleri altta <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-cyan-600 dark:text-cyan-400">15.AA.YYYY - 14.AA.YYYY</code> olarak görünür).</li>
- <li>Eğer dönemin görev dağılımı henüz oluşturulmamışsa, üst paneldeki <strong>[Otomatik Görev Ata]</strong> butonuna tıklayın. Sistem personellerin kadro birimlerini ve nöbet çizelgelerini tarayarak taslak dağılımları tek tıkla oluşturur.</li>
- <li>Farklı bir birimde geçici çalışan personelleri incelemek için <strong>[Sadece Değişenleri Göster]</strong> kutusunu işaretleyin (Farklı birim görevlendirmeleri kırmızı renkle vurgulanır).</li>
- <li>Özel görevlendirme tanımlamak için personelin satırını seçip <strong>[Düzenle]</strong> butonuna basın (veya yeni bir satır için <strong>[Yeni Görev]</strong> butonuna tıklayın); açılan modal pencerede tarih aralığı, birim ve günlük çalışma saatini (0-24s) girip onaylayın.</li>
+ <li>Sihirbaz göstergesinde <strong>1. Görev Yerlerini Onayla</strong> sekmesinde olduğunuzu doğrulayın.</li>
+ <li><strong>[Yıl]</strong> ve <strong>[Dönem]</strong> kutularından SGK bordro dönemini seçin. Tüm personelin varsayılan çalışma birimleri otomatik olarak listeye hazır gelir.</li>
+ <li>Farklı bir birimde geçici çalışan personelleri süzmek için <strong>[Sadece Görev Yeri Değişenler]</strong> kutusunu işaretleyebilirsiniz.</li>
+ <li>Nöbet listesi dışında farklı bir birimde görevlendirilen veya rotasyona çıkan personel varsa satırı seçip <strong>[Görev Yerini Değiştir]</strong> (veya ek görev için <strong>[Rotasyon / Ek Görev Ekle]</strong>) butonuna tıklayarak tarih aralığı, birim ve günlük çalışma saatini (0-24s) kaydedin.</li>
+ <li>Sağ üstteki <strong>[1. Görev Yerlerini Onayla ve Hesaplamaya Geç]</strong> butonuna tıklayarak doğrudan 2. adıma ilerleyin.</li>
  </ol>
  </div>
 
- <!-- Adım B: Toplu Onay ve Hesaplamaya Geçiş -->
+ <!-- Adım B: Hesaplama, Kaydetme ve Kilitleme -->
  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
  <div class="flex items-center gap-3">
  <span class="w-8 h-8 rounded-full bg-cyan-500 text-white font-bold flex items-center justify-center font-mono">2</span>
- <h3 class="text-lg font-bold text-slate-900 dark:text-white">Toplu Onay ve Fiili Hizmet Hesaplamaya Geçiş</h3>
- </div>
- <p class="text-sm text-slate-600 dark:text-slate-300">
- Görev dağılım listesini gözden geçirdikten sonra sağ üstteki <strong>[Onayla ve Hesaplamaya Geç]</strong> butonuna tıklayın. Sistem tüm taslak satırları resmi onay durumuna geçirir ve sihirbazı otomatik olarak <strong>2. Adım: Fiili Hizmet Hesaplama</strong> ekranına aktarır.
- </p>
- </div>
-
- <!-- Adım C: Hesaplama ve Kilit -->
- <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
- <div class="flex items-center gap-3">
- <span class="w-8 h-8 rounded-full bg-cyan-500 text-white font-bold flex items-center justify-center font-mono">3</span>
- <h3 class="text-lg font-bold text-slate-900 dark:text-white">Fiili Hizmet Hesaplama, Kilit Güvenliği ve Şua Hakedişleri</h3>
+ <h3 class="text-lg font-bold text-slate-900 dark:text-white">2. Adım: Fiili Hizmeti Hesaplama, Kaydetme ve Dönemi Kilitleme</h3>
  </div>
  <div class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
  <p>
- <strong>Fiili Hizmet Hesaplama</strong> ekranında seçili dönemin iş günü, resmi tatil ve personelin nöbet/görev saatleri harmanlanarak tablo otomatik doldurulur:
+ <strong>2. Fiili Hizmeti Hesapla</strong> ekranında seçili dönemin iş günü, resmi tatil ve personelin nöbet/görev saatleri harmanlanarak tablo otomatik hesaplanır:
  </p>
  <ul class="list-disc list-inside pl-4 space-y-1">
- <li><strong>Çalışma Koşulu:</strong> Radyasyonlu alanda çalışan personelde <code class="px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono">Koşul A</code> (7.0 saat), idari alandakilerde <code class="px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono">Koşul B</code> (8.0 saat) olarak listelenir.</li>
+ <li><strong>Çalışma Koşulu:</strong> Radyasyonlu alanda çalışan personelde <code class="px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono">Koşul A</code> (7.0 saat), izlenen/idari alandakilerde <code class="px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono">Koşul B</code> (8.0 saat) olarak listelenir.</li>
  <li><strong>Brüt İş Günü &amp; İzin Düşümü:</strong> Ay içi mesai günleri hesaplanır; personelin resmi onaylı izinleri düşülerek net çalışma günleri gösterilir.</li>
  <li><strong>Net Fiili Çalışma Saati:</strong> Fiilen radyasyonlu alanda icra edilen nöbet ve mesai saatlerinin net toplamıdır.</li>
  <li><strong>Hesaplanan Şua İzni (Gün):</strong> Her 50 fiili radyasyon saatine 1 gün olarak hesaplanır (Yıllık 30 gün tavanı aşıldığında sistem otomatik tavan kısıtı koyar).</li>
@@ -528,31 +510,31 @@ graph TD
  <div class="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 text-amber-900 dark:text-amber-200 space-y-1">
  <div class="font-bold flex items-center gap-2">
  <svg class="w-4 h-4 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
- <span>Onaysız İzin Güvenlik Uyarısı (FhzOnaysizIzinUyariDialog)</span>
+ <span>Onaysız İzin Güvenlik Uyarısı</span>
  </div>
  <p class="text-xs leading-relaxed">
- Eğer dönem içinde henüz resmi onayı tamamlanmamış (taslak veya ön onaylı) izinler varsa sistem yasal hatayı önlemek adına hesaplamayı durdurur. Bu durumda <strong>İzin Yönetimi</strong> sayfasına geçerek izinlere resmi onay verdikten sonra hesaplama ekranına dönünüz.
+ Eğer dönem içinde radyasyon görevlilerine ait henüz resmi onayı tamamlanmamış (taslak veya ön onaylı) izinler varsa sistem yasal hatayı önlemek adına hesaplamayı durdurur. Bu durumda <strong>İzin Yönetimi</strong> sayfasına geçerek izinlere resmi onay verdikten sonra hesaplama ekranına dönünüz.
  </p>
  </div>
 
  <p>
- Sonuçlar doğrulandığında üst araç çubuğundaki <strong>[Dönemi Kilitle]</strong> butonuna tıklayın. Sistem bir önceki dönemin kilitli olup olmadığını kontrol eder ve dönemi yetkisiz değişikliklere kapatır.
+ Sonuçlar doğrulandığında sağ üstteki <strong>[2. Hesaplamayı Kaydet, Kilitle ve Rapor Çıktısına Geç]</strong> butonuna tıklayın. Sistem hesaplamayı kaydeder, dönemi kilitler, yayındaki nöbet planlarını arşivler ve sizi doğrudan 3. adıma aktarır.
  </p>
  </div>
  </div>
 
- <!-- Adım D: Yıllık Kilit ve Puantaj Raporu -->
+ <!-- Adım C & D: Rapor Çıktısı ve Kapatma -->
  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
  <div class="flex items-center gap-3">
- <span class="w-8 h-8 rounded-full bg-cyan-500 text-white font-bold flex items-center justify-center font-mono">4</span>
- <h3 class="text-lg font-bold text-slate-900 dark:text-white">Yıllık Kilit ve SGK Puantaj Raporu Alma</h3>
+ <span class="w-8 h-8 rounded-full bg-cyan-500 text-white font-bold flex items-center justify-center font-mono">3</span>
+ <h3 class="text-lg font-bold text-slate-900 dark:text-white">3. Adım: Rapor Çıktısı Alma &amp; 4. Adım: Tamamla ve Kapat</h3>
  </div>
  <div class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
  <p>
- Yılın 12 dönemi de tamamlandıktan sonra, Sistem Yöneticisi (Admin) tarafından <strong>[Yıllık Kilidi Kapat]</strong> butonuna basılarak tüm yıl dondurulur ve Şua izinleri İzin Modülü'ne aktarılmak üzere kesinleştirilir.
+ <strong>3. Rapor Çıktısı Al</strong> sekmesinde SGK ve mutemetlik onaylı nihai icmal tablosu hazır olarak açılır. Sağ üstteki <strong>[3. Rapor Çıktısı Al (Excel / PDF)]</strong> butonuna basarak resmi bildirim cetvelini bilgisayarınıza aktarın ve <strong>[4. Tamamla ve Kapat]</strong> butonuyla işlemi sonlandırın.
  </p>
  <p>
- <strong>3. Adım: Puantaj Raporu</strong> sekmesine geçildiğinde SGK ve mutemetlik onaylı nihai icmal tablosu açılır. <strong>[Excel İndir]</strong> butonuna basılarak resmi bildirim cetveli bilgisayara aktarılır.
+ Yılın 12 dönemi de tamamlandıktan sonra, Sistem Yöneticisi (Admin) tarafından 2. adımdaki <strong>[Yılı Kilitle]</strong> butonuna basılarak tüm yıl dondurulur ve Şua izinleri İzin Modülü'ne aktarılmak üzere kesinleştirilir.
  </p>
  </div>
  </div>

@@ -225,8 +225,8 @@
  </div>
 
  <p class="text-sm text-slate-700 dark:text-slate-200 mb-5 leading-relaxed">
- <strong>Yapılacak İşlem:</strong> <strong>[Kullanıcılar]</strong> sekmesinden <strong>[Yeni Kullanıcı]</strong> butonuna tıklayın. Kullanıcı adı, e-posta, kurumdaki görevine uygun rolü ve sağlık personeli ise <strong>[Personel Bağlantısı]</strong>'nı seçerek en az 8 karakterli geçici şifresini kaydedin.<br>
- <strong>Sistem Güvencesi:</strong> Personelin nöbet, izin ve dozimetre takipleri doğrudan özlük kartıyla entegre olur; personelin veri görme/düzenleme sınırları rolüne tanımlı kapsam kuralına (Kendisi veya Kendi Departmanı) göre anında kilitlenir.
+ <strong>Yapılacak İşlem:</strong> <strong>[Kullanıcı İşlemleri]</strong> sekmesinden <strong>[Yeni Kullanıcı]</strong> butonuna tıklayın; kullanıcı adı, e-posta, kurumdaki görevine uygun rolü ve sağlık personeli ise <strong>[Personel Bağlantısı]</strong>'nı seçerek en az 8 karakterli geçici şifresini kaydedin. Birim amirlerini ve saha görevlerini (RKE muayene, cihaz bakım, ortam dozu, dozimetre, eğitim) atamak için <strong>[Birim Sorumlulukları]</strong> sekmesinden ilgili departmanı seçip <strong>[Sorumluyu Değiştir]</strong> veya <strong>[Görev Ata]</strong> butonunu kullanın.<br>
+ <strong>Sistem Güvencesi:</strong> Personelin nöbet, izin ve dozimetre takipleri doğrudan özlük kartıyla entegre olur; her departmanın yalnızca bir asli <strong>Departman Sorumlusu</strong> bulunur ve saha iş yükünü paylaşmak üzere seçilen personellere görev tahsisi (delegasyon) yapılabilir.
  </p>
 
  <!-- 4 METRİK HAPI (METRIC PILLS) -->
@@ -417,6 +417,28 @@
  <td class="py-3.5 px-4">Kullanıcıların rol seviyelerini ve hesap durumlarını tek bakışta ayırt etmek.</td>
  <td class="py-3.5 px-4">Kullanıcı tablosunda rol sütunu yetki türüne göre simgeli ve renkli rozetle (Kırmızı Admin, Sarı Yönetici, Mavi Birim Sorumlusu, Nötr Kullanıcı); hesap aktifliği ise yeşil [Aktif] veya gri [Pasif] rozetle gösterilir.</td>
  <td class="py-3.5 px-4">Kullanıcı ve rol listesi incelenirken.</td>
+ <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Sistem Yöneticisi</span></td>
+ </tr>
+
+ <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+ <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+ Kişiye Özel Yetki İstisnaları<br>
+ <span class="text-xs font-normal text-slate-400 font-mono">[Özel İzin Kutusu &amp; Özel Yetkileri Kaydet]</span>
+ </td>
+ <td class="py-3.5 px-4">Kullanıcının rolünü değiştirmeden belirli modüllerde kişiye özel yetki/kapsam istisnası tanımlamak.</td>
+ <td class="py-3.5 px-4">Sol listeden kullanıcı seçildiğinde sağdaki [Kişiye Özel Yetkiler] matrisinde [Özel İzin] işaretlenerek Oku/Yaz/Güncelle/Sil ve Erişim Kapsamı (Kendi / Birim / Tüm) özelleştirilir; [Role Dön (İstisnaları Kaldır)] ile varsayılan rol yetkilerine dönülür.</td>
+ <td class="py-3.5 px-4">Bir personele bağlı olduğu rol dışında ek modül yetkisi gerektiğinde.</td>
+ <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Sistem Yöneticisi</span></td>
+ </tr>
+
+ <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+ <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">
+ Birim Sorumlusu ve Saha Görev Tahsisi<br>
+ <span class="text-xs font-normal text-slate-400 font-mono">[Birim Sorumlulukları > Sorumluyu Değiştir / Görev Ata]</span>
+ </td>
+ <td class="py-3.5 px-4">Her departmanın asli birim amirini belirlemek ve saha görevlerini çalışanlara devretmek.</td>
+ <td class="py-3.5 px-4">[Birim Sorumlulukları] sekmesinde sol kart listesinden departman seçilir; [Sorumluyu Değiştir] ile tek asli birim sorumlusu atanır, [Görev Ata] ile RKE Muayene, Cihaz Bakım/Arıza, Ortam Dozu, Dozimetre ve Eğitim saha görevleri personellere tahsis edilir.</td>
+ <td class="py-3.5 px-4">Birim amiri atamalarında ve saha iş yükü görev dağılımında.</td>
  <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Sistem Yöneticisi</span></td>
  </tr>
  </tbody>

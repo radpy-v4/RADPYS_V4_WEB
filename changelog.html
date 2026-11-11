@@ -5,14 +5,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description"
-        content="RADPYS V4 sürüm notları ve yenilikler kılavuzu (v4.0.5.7): 23 modül standardizasyonu, nöbet/izin/şua entegrasyonu, DÖF sihirbazı, NDK RSGD-KLV-014, DIN 6857-1 skopi kalite kontrolü ve PostgreSQL kurumsal mimarisi." />
-    <meta name="keywords" content="RADPYS sürüm notları, changelog, RADPYS V4.0.5.7, RADPYS güncellemeler, yeni özellikler, versiyon geçmişi, RADPYS V4 changelog, update.md" />
+        content="RADPYS V4 sürüm notları ve yenilikler kılavuzu (v4.0.5.19): 23 modül standardizasyonu, web portal saha bildirimleri, nöbet/izin/şua entegrasyonu, DÖF sihirbazı, NDK RSGD-KLV-014, DIN 6857-1 skopi kalite kontrolü ve PostgreSQL kurumsal mimarisi." />
+    <meta name="keywords" content="RADPYS sürüm notları, changelog, RADPYS V4.0.5.19, RADPYS güncellemeler, yeni özellikler, versiyon geçmişi, RADPYS V4 changelog, update.md" />
     <meta name="author" content="RADPYS Yazılım" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="theme-color" content="#0f172a" />
     <meta name="geo.region" content="TR" />
     <meta name="geo.placename" content="Türkiye" />
-    <title>Sürüm Notları ve Yenilikler (v4.0.5.7) — RADPYS V4</title>
+    <title>Sürüm Notları ve Yenilikler (v4.0.5.19) — RADPYS V4</title>
 
     <link rel="icon" type="image/x-icon" href="images/logo.ico" />
     <link rel="icon" type="image/webp" href="images/logo.webp" />
@@ -24,9 +24,9 @@
     <meta property="og:url" content="https://radpys.com.tr/changelog.html" />
     <meta property="og:site_name" content="RADPYS V4" />
     <meta property="og:locale" content="tr_TR" />
-    <meta property="og:title" content="Sürüm Notları ve Yenilikler (v4.0.5.7) — RADPYS V4" />
+    <meta property="og:title" content="Sürüm Notları ve Yenilikler (v4.0.5.19) — RADPYS V4" />
     <meta property="og:description"
-        content="RADPYS V4 sürüm notları ve yenilikler kılavuzu (v4.0.5.7): 23 modül standardizasyonu, nöbet/izin/şua entegrasyonu, DÖF sihirbazı, NDK RSGD-KLV-014, DIN 6857-1 skopi kalite kontrolü ve PostgreSQL kurumsal mimarisi." />
+        content="RADPYS V4 sürüm notları ve yenilikler kılavuzu (v4.0.5.19): 23 modül standardizasyonu, web portal saha bildirimleri, nöbet/izin/şua entegrasyonu, DÖF sihirbazı, NDK RSGD-KLV-014, DIN 6857-1 skopi kalite kontrolü ve PostgreSQL kurumsal mimarisi." />
     <meta property="og:image" content="https://radpys.com.tr/images/main_logo.webp" />
     <meta property="og:image:secure_url" content="https://radpys.com.tr/images/main_logo.webp" />
     <meta property="og:image:type" content="image/webp" />
@@ -36,9 +36,9 @@
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Sürüm Notları ve Yenilikler (v4.0.5.7) — RADPYS V4" />
+    <meta name="twitter:title" content="Sürüm Notları ve Yenilikler (v4.0.5.19) — RADPYS V4" />
     <meta name="twitter:description"
-        content="RADPYS V4 sürüm notları ve yenilikler kılavuzu (v4.0.5.7): 23 modül standardizasyonu, nöbet/izin/şua entegrasyonu, DÖF sihirbazı, NDK RSGD-KLV-014, DIN 6857-1 skopi kalite kontrolü ve PostgreSQL kurumsal mimarisi." />
+        content="RADPYS V4 sürüm notları ve yenilikler kılavuzu (v4.0.5.19): 23 modül standardizasyonu, web portal saha bildirimleri, nöbet/izin/şua entegrasyonu, DÖF sihirbazı, NDK RSGD-KLV-014, DIN 6857-1 skopi kalite kontrolü ve PostgreSQL kurumsal mimarisi." />
     <meta name="twitter:image" content="https://radpys.com.tr/images/main_logo.webp" />
     <meta name="twitter:image:alt" content="RADPYS V4 Sürüm Notları Logo" />
 
@@ -216,10 +216,10 @@
                         Canlı Kaynak: update.md
                     </span>
                     <span id="cl-hero-count" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300">
-                        76 Temel Bölüm
+                        78 Temel Bölüm
                     </span>
                     <span id="cl-hero-version" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-cyan-300">
-                        v4.0.5.8 Güncel Sürüm
+                        v4.0.5.19 Güncel Sürüm
                     </span>
                 </div>
             </div>
@@ -472,15 +472,16 @@
                     });
                 }
 
-                // update.md içerisinde "1. RADPYS V4.0.0.0" öncesinde en üstte yer alan yeni sürümler
-                // ters kronolojik sırada (en yeniden eskiye), "1. RADPYS V4.0.0.0" ve sonrası ise
-                // düz kronolojik sırada (eskiden yeniye) yer alır.
+                // update.md standart olarak ters kronolojik sırada (en yeniden eskiye: V4.0.5.x -> V4.0.0.0) tutulur.
+                // Kronolojik sıra numarası (Bölüm 1 = V4.0.0.0 ... Bölüm N = Güncel Sürüm) için listeyi ters çeviriyoruz.
                 const v400Index = rawItems.findIndex(item => item.explicitNum === 1 && /V4\.0\.0\.0/i.test(item.rest));
                 let orderedItems = [];
                 if (v400Index > 0) {
                     const topNewestFirst = rawItems.slice(0, v400Index);
                     const baseOldestFirst = rawItems.slice(v400Index);
                     orderedItems = [...baseOldestFirst, ...topNewestFirst.reverse()];
+                } else if (rawItems.length > 1 && /V4\.0\.0\.0/i.test(rawItems[rawItems.length - 1].rest)) {
+                    orderedItems = [...rawItems].reverse();
                 } else {
                     orderedItems = rawItems;
                 }
@@ -666,6 +667,19 @@
                         continue;
                     }
 
+                    const imgMatch = line.match(/^!\[([^\]]*)\]\(([^\)]+)\)$/);
+                    if (imgMatch) {
+                        closeLists();
+                        const altText = imgMatch[1] || 'Ekran Görüntüsü';
+                        const rawSrc = imgMatch[2].trim();
+                        const resolvedSrc = rawSrc.replace(/^docs\/help\//, 'help/');
+                        html += `<figure class="my-4 rounded-xl border border-white/10 bg-slate-950/60 p-3 shadow-lg">
+                            <img src="${resolvedSrc}" alt="${altText.replace(/"/g, '&quot;')}" loading="lazy" class="w-full max-h-96 object-contain rounded-lg mx-auto" />
+                            <figcaption class="mt-2 text-center text-xs text-slate-400 font-mono">📸 ${formatInline(altText)}</figcaption>
+                        </figure>`;
+                        continue;
+                    }
+
                     const numMatch = line.match(/^(\d+)\.\s+(.*)$/);
                     if (numMatch) {
                         const isSubNum = rawLine.startsWith('  ') || rawLine.startsWith('\t');
@@ -714,6 +728,10 @@
                     .replace(/&/g, '&amp;')
                     .replace(/</g, '&lt;')
                     .replace(/>/g, '&gt;')
+                    .replace(/\[([^\]]+)\]\(([^\)]+)\)/g, (m, label, url) => {
+                        const resolvedUrl = url.trim().replace(/^docs\/help\//, 'help/');
+                        return `<a href="${resolvedUrl}" class="text-cyan-300 hover:text-cyan-200 underline underline-offset-4 font-medium transition-colors">${label} ↗</a>`;
+                    })
                     .replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>')
                     .replace(/`([^`]+)`/g, '<code class="px-1.5 py-0.5 rounded bg-white/10 text-cyan-300 font-mono text-xs border border-white/10">$1</code>')
                     .replace(/\*([^*]+)\*/g, '<em class="text-slate-200 italic">$1</em>');

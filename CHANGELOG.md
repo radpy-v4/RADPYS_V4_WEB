@@ -3,6 +3,220 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.5.19] - 2026-11-10
+
+### 🏢 Merkezi Birim Sorumlulukları ve Saha Görev Tahsisi (Delegasyon) Kokpiti, Kişiye Özel Yetki Matrisi Ergonomisi ve Geriye Dönük Parola Doğrulama Güvencesi
+
+Bu sürüm; **Kullanıcı ve Rol Yönetimi** modülü altında dağınık birim sorumlusu atama noktalarının **Birim Sorumlulukları (`UnitResponsibilitiesController`)** sekmesinde merkezileştirilmesini, **Departman Sorumlusu (Tek Asli Amir — `GENEL`)** ile **Saha Görev Tahsisi / Delegasyon (`RKE`, `CIHAZ`, `ORTAM_DOZU`, `DOZIMETRE`, `EGITIM`)** mimarisinin ayrıştırılmasını, **Kullanıcı İşlemleri** ve **Roller & Yetkiler** matrislerindeki QSS radyo/onay kutusu geometrisi ile satır çizgisi bütünlüğünü ve `verify_password()` katmanında hex olmayan eski parola özetleri için hatasız geriye dönük uyumluluğu içerir.
+
+#### ✨ Eklendi (Added)
+
+- **1. Merkezi Birim Sorumlulukları ve Saha Görev Tahsisi Sekmesi (`UnitResponsibilitiesController`, `BirimAtamaDialog`, `birim_sorumluluklari_page.ui`, `birim_atama_dialog.ui`):**
+  - `UserManagementMainController` (`kullanici_yonetim_main.ui`) içerisine 3. ana sekme olarak **Birim Sorumlulukları** (`UnitResponsibilitiesController`) eklendi.
+  - Sol panelde `variant="card-list"` (`custom_row_height=76`, `430-600px` genişlik) kullanan `AvatarDepartmentDelegate` ile her departman için renkli baş harf avatarı, departman adı, sorumlu amir adı ve sağda aktif görev sayısını gösteren **`X görev`** hap rozeti oluşturuldu.
+  - Sağ panelde seçili departman için **Departman Sorumlusu** özet kartı (**[Sorumluyu Değiştir]** butonu) ve altında `AvatarUserDelegate` + `RADPYSStatusDelegate` kullanan **Görevler** tablosu (**[Görev Ata]**, **[Görevi Kaldır]**, arama ve görev türü filtresi) konumlandırıldı.
+  - `BirimAtamaDialog` ile hem tekil **Departman Sorumlusu (`GENEL`)** ataması/kaldırılması hem de **Saha Görev Tahsisi (`RKE`, `CIHAZ`, `ORTAM_DOZU`, `DOZIMETRE`, `EGITIM`)** delegasyonu tek modal pencereden yönetilebilir hale getirildi (`NOBET` planlama yetkisi yalnızca asli birim sorumlusuna bırakıldı).
+- **2. Servis Katmanı Görev Tahsisi ve Çift Yönlü Senkronizasyon (`PermissionService`):**
+  - `PermissionService` içerisine `DELEGATABLE_TASK_TYPES`, `list_department_responsibility_overview()`, `list_department_task_delegates()`, `add_department_task_delegate()`, `remove_department_task_delegate()` ve `assign_department_responsible()` metotları eklendi.
+  - `assign_department_responsible()` metodu `departmanlar.birim_sorumlusu_user_id` alanı ile `kullanici_sorumlu_departmanlar` tablosundaki `sorumluluk_turu = 'GENEL'` kaydını tek transaction içinde çift yönlü senkronize eder.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed & Refined)
+
+- **1. Mükerrer Birim Sorumlusu Atama Alanlarının Temizlenmesi (`lookup_departman_dialog.ui`, `lookup_departman_controller.py`, `lookup_service.py`, `kullanici_yonetim_page.ui`, `users_controller.py`):**
+  - **Departman Tanımları** (`LookupDepartmanController`) diyaloğundaki `birimSorumlusuCombo` ve **Kullanıcı İşlemleri** sağ panelindeki `tabUserDepartments` sekmesi kaldırılarak tüm sorumluluk ve görev atamaları **Birim Sorumlulukları** sekmesinde tekilleştirildi; araç çubuğundaki `btnDepartments` (**[Birim Sorumlulukları]**) butonu doğrudan 3. ana sekmeye yönlendirildi.
+- **2. Kullanıcı İşlemleri & Rol Yetki Matrisi Panel Oranı ve Tablo Ergonomisi (`users_controller.py`, `role_permissions_controller.py`, `kullanici_yonetim_page.ui`, `ui/theme.py`):**
+  - `Kullanıcı İşlemleri` ekranındaki `userSplitter` başlangıç oranı `showEvent` ve `_apply_initial_splitter_ratio` ile sol kullanıcı listesi (`~%57`) ve sağ `Kişiye Özel Yetkiler` paneli (`~%43`, min `640px`) olarak dengelendi; mükerrer `btnCustomPermissions` araç çubuğu butonu gizlendi.
+  - Sol `usersTable` tablosunda `Ad Soyad` ve `Email` sütunları esnek (`Stretch`), `Son Giriş` sütunu sabit (`105px`) yapıldı; sağ `tableCustomPerms` tablosunda `setWordWrap(False)` ve optimize sütun genişlikleri (`Özel İzin: 68px`, `Güncelle: 66px`, `Erişim Kapsamı: 218px`) ile modül adlarının ve başlıkların tek satırda kesintisiz görünmesi sağlandı.
+
+#### 🐛 Düzeltildi (Fixed)
+
+- **1. Parola Doğrulama ve Güncelleme Hex Ayrıştırma Hatası (`app/services/auth/security.py`, `web_portal/src/services/auth.service.ts`, `app/services/auth/user_service.py`):**
+  - `verify_password()` fonksiyonunda `bytes.fromhex(salt_hex)` çağrısının hex olmayan veya eski formatlı (`$`, `:` ayraçlı ya da düz metin) parola özetlerinde fırlattığı `ValueError: non-hexadecimal number found in fromhex() arg at position 0` hatası giderildi; üç kademeli güvenli doğrulama ve `user_service.py` parola güncelleme koruması eklendi.
+- **2. `PermissionService.list_responsible_candidates` PostgreSQL Kolon Hatası (`app/services/auth/permission_service.py`):**
+  - `personeller` tablosunda bulunmayan `p.aktif = 1` filtresi nedeniyle oluşan `psycopg.errors.UndefinedColumn: column p.aktif does not exist` hatası `p.silinme_tarihi IS NULL AND COALESCE(p.durum, 'Aktif') = 'Aktif'` olarak düzeltildi.
+- **3. Radyo Buton / Onay Kutusu Geometrisi, Pasif Seçili Görünüm ve Tablo Satır Çizgileri (`resources/dark_theme.qss`, `resources/styles.qss`, `ui/theme.py`, `status_delegate.py`, `unit_responsibilities_controller.py`):**
+  - `QCheckBox::indicator` (`border-radius: 4px`) ve `QRadioButton::indicator` (`border-radius: 9px`) tüm durumlarda (`normal`, `:hover`, `:checked`, `:disabled`, `:checked:disabled`) `16x16px` + `1px` çerçeve (`18x18px` dış kutu) olarak eşitlendi; seçili olmayan radyo butonlarındaki karemsi (`squircle`) bozulma ve `:checked:disabled` durumunda miras alınan kapsamın görünmeme sorunu giderildi.
+  - `QWidget[table-compact="true"]` hücre konteynerlerinde `WA_StyledBackground` ve `border-bottom` etkinleştirilerek `setCellWidget` sütunları altında kesintisiz satır çizgisi sağlandı; `AvatarUserDelegate` ve `RADPYSStatusDelegate` alt çizgi kırılmaları ile `no_selection="true"` tablolardaki yarım satır seçim/hover vurgusu giderildi.
+
+---
+
+## [4.0.5.18] - 2026-11-10
+
+### 🌐 Web Portal 4 Katmanlı Modüler Mimari Dönüşümü (%100 Tamamlanma), Profilim Merkezileştirmesi, Saha Asistanları, Atomik Nöbet Devir/İkame Havuzu, EK-1 & RD.F43 Tam Masaüstü Uyumu ve Dozimetre Aksiyon Takip Kokpiti
+
+Bu sürüm; `web_portal/` altındaki tüm React bileşenlerini ve Express rotalarını masaüstü uygulamasındaki mimari sınırlara paralel olarak **4 Katmanlı Modüler Mimariye** (`UI & Alt-Sekme Orkestratörleri` ➔ `HTTP Route & RBAC` ➔ `Service & Atomik Transaction` ➔ `Repository & Domain`) dönüştürür (`Aşama 1–3` ve `Kademe 1–4`), tüm Express rotalarında **sıfır ham SQL (`0 query()`)** standardını kesinleştirir, kişisel işlem formlarını (**Sağlık Sevk & EK-1**, **Gebelik ve Sağlık Muafiyeti**, **Doz Araştırma Beyanı RD.F43**) **Profilim** ekranı altında merkezileştirir, **Periyodik Sağlık (EK-1)** ile **Doz Araştırma (RD.F43 Bölüm 2)** formlarını masaüstü ana programla %100 birebir eşitler ve **Dozimetre Aksiyon Takip Kokpitini (`DozimetreAksiyonKokpiti.tsx`)** devreye alır.
+
+#### ✨ Eklendi (Added)
+
+- **1. Web Portal Mimari Anayasası ve Aşama 1–2 Çekirdek/Auth Katmanı (`web_portal/AGENTS.md`, `config/paths.ts`, `db.ts`, `middleware/*`, `repositories/auth/auth.repo.ts`, `services/auth/challenge.service.ts`, `components/auth/*`, `components/layout/*`, `config/viewRegistry.ts`):**
+  - Web Portal için 4 katmanlı sorumluluk sınırlarını, ~300–500 satırlık dosya boyutu tavanını, `withTransaction(client => ...)` atomik veritabanı kuralını ve `Route` katmanında ham SQL yasağını tanımlayan `web_portal/AGENTS.md` oluşturuldu.
+  - `db.ts` içerisine `withTransaction<T>(fn: (client: PoolClient) => Promise<T>)` (`BEGIN` / `COMMIT` / `ROLLBACK`), `paths.ts` içerisine merkezi yol çözümleyici ve `repositories/common/calendar.repo.ts` içerisine tatil/iş günü sorguları eklendi.
+  - `serverApp.ts` (418 ➔ 175 satır), `auth.routes.ts` (873 ➔ 552 satır), `LoginScreen.tsx` (798 ➔ 305 satır; `SecurityChallengeBox`, `EmailOtpForm`, `FirstTimePasswordForm`, `ForgotPasswordWizard`) ve `App.tsx` (1.341 ➔ 748 satır; `viewRegistry.ts`, `PortalSidebar.tsx`, `PortalHeader.tsx`) modüler katmanlarına ayrıldı.
+- **2. Aşama 3 — Merkezileştirilmiş Profilim ve Koşullu Gebelik & Muafiyet Sekmesi (`PersonnelProfileView.tsx`, `ProfileHeaderCard.tsx`, `profile.repo.ts`, `profile.service.ts`, `components/profile/*`):**
+  - `profile.routes.ts` (557 ➔ 114 satır) yalnızca HTTP orkestrasyonu yapacak şekilde sadeleştirildi; `PersonnelProfileView.tsx` (1.546 ➔ 320 satır) bağımsız sekme bileşenlerine ayrıştırıldı.
+  - Kadın personel veya aktif gebelik/sağlık muafiyeti bulunan personel için **Profilim** ekranına özel `Gebelik & Muafiyet` sekmesi eklendi; `İzin Özeti` (`ProfileIzinNobetTab.tsx`) sekmesi yalnızca izin bakiye ve taleplerine odaklanacak şekilde sadeleştirildi.
+- **3. Kademe 1 & 2 (Adım 4.1–4.5) — İzin/Şua/Takvim, Olay/RD.F43, Personel/LMS, Sağlık Ek-1/Kısıtlar ve Cihaz/RKE/Ortam Dozu Saha Asistanları & Kokpitleri:**
+  - `izin.repo.ts`, `sua.repo.ts`, `olay.repo.ts`, `arastirma.repo.ts`, `egitim.repo.ts`, `personel.repo.ts`, `saglik.repo.ts`, `cihaz.repo.ts`, `rke.repo.ts` ve `ortamDozu.repo.ts` oluşturularak ilgili tüm `*.routes.ts` dosyalarındaki ham SQL sorguları temizlendi.
+  - `CihazArizaView.tsx` (1.950 ➔ 396 satır), `RkeView.tsx` (2.043 ➔ 596 satır), `OrtamDozuView.tsx` (2.356 ➔ 680 satır), `CihazDashboard.tsx` (2.532 ➔ 489 satır), `RkeDashboard.tsx` (1.585 ➔ 498 satır), `OrtamDozuDashboard.tsx` (1.156 ➔ 452 satır), `SaglikEk1FormView.tsx` (1.278 ➔ 468 satır), `LeaveRequestForm.tsx` (1.281 ➔ 435 satır), `IncidentReportForm.tsx` (1.012 ➔ 427 satır), `DozArastirmaBeyanView.tsx` (1.073 ➔ 418 satır) ve `PersonelView.tsx` (1.261 ➔ 425 satır) modüler alt sekme ve diyalog bileşenlerine ayrıştırıldı.
+- **4. Kademe 3 & 4 (Adım 4.6–4.8) — Yönetici Özeti, SKS/NDK Denetim, Nöbet Planlama, Atomik Devir/Takas ve İkame Havuzu:**
+  - `genelDashboard.repo.ts`, `admin.repo.ts`, `nobetDashboard.repo.ts`, `nobet.repo.ts` ve `nobetDevir.repo.ts` ile `dashboard.genel.routes.ts` (806 ➔ 48 satır), `admin.routes.ts` (703 ➔ 111 satır), `dashboard.nobet.routes.ts` (1.824 ➔ 119 satır) ve `nobet.routes.ts` (1.949 ➔ 285 satır) sadeleştirildi.
+  - `nobetDevir.repo.ts` içindeki `approveDevirByManagerTransactional`, `respondHavuzTeklifTransactional` ve `reportHavuzAcilMazeretTransactional` işlemlerinde `withTransaction(async (client) => ...)` ile tek `PoolClient` üzerinde gerçek atomik `BEGIN / COMMIT / ROLLBACK` güvencesi sağlandı.
+  - `NobetDashboard.tsx` (2.584 ➔ 995 satır), `ShiftExchangeHubView.tsx` (2.013 ➔ 645 satır), `BirimNobetCizelgesiView.tsx` (1.687 ➔ 678 satır), `NobetDevirDashboard.tsx` (1.200 ➔ 678 satır), `ShiftPoolView.tsx` (1.070 ➔ 431 satır), `GenelDashboard.tsx` (1.196 ➔ 441 satır), `DenetimHazirlikDashboard.tsx` (1.097 ➔ 498 satır) ve `ZimmetDashboard.tsx` (1.087 ➔ 509 satır) alt bileşenlerine bölündü.
+- **5. Dozimetre Aksiyon Takip Kokpiti (`DozimetreAksiyonKokpiti.tsx`, `dozimetre.repo.ts`, `dashboard.dozimetre.routes.ts`):**
+  - Masaüstü uygulamasındaki `DozimetreAksiyonlarTab` (`dozimetre_takip_page.ui` — Sekme 2: *"Doz Riskleri, İnceleme ve DÖF Aksiyon Takip Kokpiti"*) ile birebir uyumlu 8 sütunlu birleşik kokpit tablosu (`Ad Soyad`, `Birim`, `Dönem`, `Hp(10)`, `Risk Seviyesi`, `Gerekçe`, `İnceleme Durumu`, `RD.F43 Raporu`: `MEVCUT` / `HAZIRLANMADI` / `TAKİP ÖLÇÜMÜ` / `BİRİM İNCELEME`) oluşturuldu.
+  - `dozimetre_aksiyonlar` kayıtları ile henüz aksiyon başlatılmamış erken uyarı ve istatistiksel anomali (`hp10 >= 2 * personal_avg`) adayları (`BEKLİYOR`) aynı listede birleştirildi; `Tüm Kayıtlar`, `İnceleme Bekleyenler`, `Açık Aksiyonlar` ve `Kapatılanlar` durum filtresi ile **Doz Araştırma Formu (RD.F43)**, **Birim Notu Ekle (`BirimIncelemeDialog`)**, **Takip Ölçümü Planla (`TakipOlcumuPlanlamaDialog`)** ve **Aksiyonu Kapat (`AksiyonKapatDialog`)** diyalogları eklendi.
+- **6. Periyodik Sağlık Gözetim Formu (EK-1) Tam Masaüstü Eşleşmesi (`SaglikEk1FormView.tsx`, `Ek1SymptomAndAnamnezSections.tsx`, `profile.repo.ts`, `profile.routes.ts`):**
+  - Masaüstü `saglik_muayene_dialog.ui` ile birebir aynı 4 sekmeli yapı, 19 semptom + 17 klinik bulgu alanı, tetkik tarihleri (`tetkik_hemogram_tarihi`, `tetkik_periferik_yayma_tarihi`, `tetkik_goz_muayene_tarihi`, `tetkik_cilt_muayene_tarihi`), `cilt_yasi`, `radyasyona_bagli_mi`, `sonraki_kontrol_ay`, `sonuc_kanaat` ve hekim/çalışan rol bazlı alan kilitlemesi eklendi.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed & Refined)
+
+- **1. %100 Domain/Katman Klasör Organizasyonu ve Sıfır Ham SQL (`web_portal/src/components/**`, `web_portal/src/routes/**/*.ts`):**
+  - `components/dashboards/` kök dizinindeki 21 ana dashboard orkestratör dosyası ve `components/` kök dizinindeki 31 bileşen dosyası kendi modül/domain alt klasörlerine taşındı; tüm `*.routes.ts` dosyalarında doğrudan `query(...)` kullanımı sıfırlandı (`0` eşleşme).
+- **2. Sol Menü ve Navigasyon Sadeleştirmesi (`web_portal/src/config/sidebar.ts`, `viewRegistry.ts`):**
+  - `"Profilim & Doz Karnem"` menü başlığı `"Profilim"` olarak sadeleştirildi; zaten **Profilim** sekmeleri içinden erişilen `Sağlık Sevk & EK-1 Formu` (`saglik_ek1`), `Gebelik ve Sağlık Muafiyeti` (`pregnancy`) ve `Doz Araştırma Beyanı (RD.F43)` (`arastirma_beyan`) sol menüden kaldırıldı; `İzin Talep Formu` (`leave`) `"Kişisel İşlemlerim"` grubuna taşındı.
+- **3. Gebelik & Sağlık Muafiyeti Formunda Ergonomik Radyasyonsuz Görev Yeri Seçimi (`lookup.service.ts`, `PersonnelRequestForm.tsx`, `PersonnelRequestSections.tsx`):**
+  - `/api/lookups` yanıtına `departman_adi` ve `radyasyonlu_alan` alanları eklendi; radyasyonlu birimler ve çatı `ABD` kayıtları elendi, mükerrer `(Radyasyonsuz Alan)` sonekleri temizlendi, 5 hızlı seçim hapı ve 3'lü `<optgroup>` kategori yapısı eklendi.
+- **4. Olay Bildirimi ve DÖF Formunda (`S5`) Otomatik ve Salt-Okunur Bildiren Personel (`IncidentReportForm.tsx`, `IncidentWizardSteps.tsx`):**
+  - `Bildiren Personel` alanı açılır seçim kutusundan (`<select>`) çıkarılarak oturum açan kullanıcıya bağlı salt-okunur (`readOnly`) metin kutusuna dönüştürüldü; `Bildiren Görev / Rol` ve `Gerçekleştiği Birim` alanlarının personelin kendi unvan ve biriminden otomatik doldurulması sağlandı.
+
+#### 🐛 Düzeltildi (Fixed)
+
+- **1. Çalışan Beyanı (RD.F43 Bölüm 2) 5. Soru (`yaninda_bulunduruldu_mu`) Konum ve Sıfırlama Hatası (`BeyanFormSections.tsx`, `DozArastirmaBeyanView.tsx`, `printRdF43Beyan.ts`, `arastirma.repo.ts`):**
+  - Masaüstü `doz_arastirma_form_dialog.ui` içinde bağımsız 5. soru olan *"5. Dozimetre çalışma süresince sürekli yanınızda mıydı?"* alanının web portalda 4. sorunun alt koşulu içine gömülmesi ve tıbbi tetkike *"Hayır"* denildiğinde `0` olarak sıfırlanması hatası giderildi.
+  - `Dozimetre Taşıma Konumu` açılır kutusuna eksik olan `Gözlük` (`Gozluk`) seçeneği eklendi; yeni formlarda KKD ve taşıma varsayılanları (`Kurşun Önlük = 1`, `Tiroid Koruyucu = 1`, `Önlük İçi = 1`, `Sürekli Yanında = 1`) masaüstü `doz_arastirma_form_controller.py` ile eşitlendi.
+- **2. Resmi Form ve Tutanaklarda Sabit Kurum Başlıklarının Temizlenmesi (`printEk1Form.ts`, `hek_service.py`, `saglik_muayene_ek1_template.py`):**
+  - Sabit `"T.C. SAĞLIK BAKANLIĞI / ÜNİVERSİTE HASTANESİ"` ve `"SAĞLIK KURULUŞU BAŞHEKİMLİĞİ"` başlıkları kaldırılarak `program_ayarlari` (`kurum_adi`, `ust_kurum_adi`) ve `rapor_sablon_antet_ayarlari` tablolarından dinamik okuma sağlandı.
+- **3. Kural 20 (Zero Fake Data & Honest Empty State) Temizliği (`genelDashboard.repo.ts`, `dozimetre.repo.ts`, `arastirma.repo.ts`):**
+  - Veri olmadığında rastgele personel döndüren `fallbackStaffRes` (`LIMIT 15`) kalıntıları ile `COALESCE(af.hp10, 2.5)` ve `COALESCE(af.hesaplanmis_doz_msv, 0.45)` gibi sentetik SQL varsayılanları temizlenerek dürüst boş durum (`[]` ve `0.0`) standardı uygulandı.
+
+#### 🧪 Derleme & Doğrulama
+
+- `npm --prefix web_portal run build`: Vite üretim paketlemesi (`dist/`, 2.418 modül) ve esbuild sunucu derlemesi (`dist/server.cjs`, 1.4 MB) sıfır TypeScript/bundle hatası ile (`Exit Code: 0`) doğrulandı.
+
+---
+
+## [4.0.5.17] - 2026-11-09
+
+### 🧙‍♂️ Fiili Hizmet ve Şua Hesaplama (FHZ — Modül 11) 4 Adımlı Doğrusal Sihirbaz İş Akışı, Otomatik Kayıt+Kilit Birleştirme, Tam Kapsam Kilit Güvencesi ve Birim Sorumlusu RBAC İzolasyonu
+
+Bu sürüm; **Fiili Hizmet ve Şua Hesaplama (FHZ)** modülünün saha kullanım ergonomisini sadeleştiren **4 adımlı doğrusal sihirbaz iş akışını** (`1. Görev Yerlerini Onayla -> 2. Fiili Hizmeti Hesapla, Kaydet ve Kilitle -> 3. Rapor Çıktısı Al -> 4. Tamamla ve Kapat`), 2. adımda mükerrer kilitleme butonunu kaldırarak kaydetme ve dönem kilitlemeyi tek aksiyonda birleştiren mimariyi ve 3 turlu derin kilit/yan etki denetiminde (`KİLİT-01..07`, `YAN-ETKİ-01..10`) tespit edilen kapsam, RBAC, N+1 sorgu ve QSS tema iyileştirmelerini içerir.
+
+#### ✨ Eklendi (Added)
+
+- **1. 4 Adımlı Doğrusal Sihirbaz Navigasyonu ve Tek Tıkla Kayıt+Kilit+Rapor Geçişi (`ui/pages/fiili/*.ui`, `ui/controllers/fiili/*.py`):**
+  - **Adım 1 (`FiiliHizmetDagilimTabController`):** Dönem açıldığında varsayılan birim atamalarının otomatik hazır gelmesi, `btnBulkApprove` (*"1. Görev Yerlerini Onayla ve Hesaplamaya Geç"*) ile tüm hizmet sınıflarının görev dağılımlarının onaylanarak doğrudan 2. adıma geçilmesi sağlandı.
+  - **Adım 2 (`FiiliHizmetHesaplamaTabController`):** `btnBackToDagilim` (*"← 1. Görev Yerlerine Dön"*) ve `btnNextToRapor` (*"2. Hesaplamayı Kaydet, Kilitle ve Rapor Çıktısına Geç"*) eklendi. Mükerrer `[Dönemi Kilitle]` butonu kaldırılarak dönem açıkken `kilitButton` gizlendi; yalnızca dönem kilitliyken *"Dönem Kilidini Aç"* olarak görünmesi sağlandı.
+  - **Adım 3 & 4 (`FiiliHizmetRaporTabController`):** `btnBackToHesaplama` (*"← 2. Hesaplama Adımına Dön"*), `excelButton` (*"3. Rapor Çıktısı Al (Excel / PDF)"*) ve alt pencereyi güvenle kapatan `btnFinishClose` (*"4. Tamamla ve Kapat"*) eklendi.
+- **2. Ortak FHZ Kapsam Dışı Hizmet Sınıfı SQL Sabiti (`app/services/personel/fiili_hizmet/fhz_constants.py` — `KİLİT-07`):**
+  - İdari personeli FHZ hesaplamalarından hariç tutan SQL filtresi `NON_FHZ_HIZMET_TIPLERI` ve `non_fhz_hizmet_tipi_sql(column_expr)` olarak tek merkezde toplandı ve `fhz_dagilim_service.py`, `fhz_hesaplama_service.py`, `fiili_hizmet_service.py` ile `fiili_hizmet_repository.py` genelinde tekilleştirildi.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed & Refined)
+
+- **1. `StepProgressWidget` Merkezi QSS Dinamik Özellik Standardı (`ui/widgets/step_progress_widget.py`, `resources/styles.qss`, `resources/dark_theme.qss` — `KİLİT-06`):**
+  - `StepProgressWidget` içerisindeki inline `setStyleSheet` ve hardcoded hex renkleri kaldırılarak `step_badge`, `step_state` ve `step_line` dinamik özellikleri (`done`, `active`, `pending`) üzerinden merkezi açık/koyu QSS temasına taşındı.
+- **2. `kaydet_donem_hesaplama` İçinde `SHUA` İzin Türü Önbelleklemesi (`app/services/personel/fiili_hizmet/fhz_hesaplama_service.py` — `KİLİT-04`):**
+  - Her personel için döngü içinde tekrarlanan `SELECT id FROM izin_turleri WHERE izin_kodu = 'SHUA'` sorgusu döngü dışına çıkarılarak `_refresh_ozet(..., shua_izin_turu_id=...)` metoduna önbellekli parametre olarak geçirildi.
+- **3. FHZ Sihirbaz Buton İkon Eşleştirmeleri ve Ölü Kod Temizliği (`ui/theme.py`, `ui/controllers/fiili/*.py` — `YAN-ETKİ-05`, `YAN-ETKİ-07`):**
+  - `_MODULE_BUTTON_ICON_OVERRIDES["fiili"]` tablosu yeni sihirbaz butonlarıyla (`btnbulkapprove`, `btnnexttorapor`, `btnbacktodagilim`, `btnbacktohesaplama`, `btnfinishclose`, `kilitbutton`) güncellendi; kullanılmayan eski `_on_generate_defaults`, `_hesapla_ve_kaydet`, `_rapor_olustur_clicked`, `_is_partial_scope` metotları ve `.ui` üzerindeki gizli ölü butonlar temizlendi.
+
+#### 🐛 Düzeltildi (Fixed)
+
+- **1. Hizmet Sınıfı Filtresi Seçiliyken Kısmi Kayıt Sonrası Tüm Dönemin Kilitlenmesi (`FiiliHizmetHesaplamaTabController._on_next_to_rapor`, `FiiliHizmetDagilimTabController._on_bulk_approve` — `KİLİT-01`, `YAN-ETKİ-03`, `YAN-ETKİ-06`):**
+  - 1. adımda belirli bir Hizmet Sınıfı seçiliyken (o sınıfta taslak kayıt bulunsun veya bulunmasın) 2. adıma geçilirken dönemdeki tüm hizmet sınıflarının görev dağılımlarının kontrol edilip onaylanması; 2. adımda Hizmet Sınıfı filtresi aktifken kaydet ve kilitle tıklandığında ise dönem kilitlenmeden önce tam kapsamın (`hizmet_sinifi=None`) hesaplanıp kaydedilmesi sağlandı.
+- **2. Üst Adım Çubuğundan (`StepProgressWidget`) Sekme Geçişinde Onaysız Otomatik Kayıt (`FiiliHizmetListController._on_tab_changed` — `KİLİT-03`, `YAN-ETKİ-04`):**
+  - Kullanıcının 2. adımdaki onay butonuna basmadan üstteki adım çubuğundan doğrudan 3. sekmeye tıklaması halinde çalışan sessiz `kaydet_donem_hesaplama` çağrısı kaldırıldı; 3. adımda kayıt yoksa kullanıcıyı 2. adımdaki kaydet ve kilitle butonuna yönlendiren dürüst boş durum mesajı eklendi.
+- **3. Revize Nöbet Mühürlemesinde Taslak Nöbet Planı ve Onaysız İzin Kapsam Kontrolleri (`fhz_kilit_service.py`, `fiili_hizmet_repository.py` — `KİLİT-02`, `KİLİT-05`):**
+  - `relock_revised_personnel` içerisine `list_draft_nobet_plans` kontrolü eklendi; `check_unapproved_leaves_for_period` ve `list_unapproved_leaves_between` sorgularına FHZ kapsam dışı idari personel filtresi ile `personel_id`, `responsible_for_personel_id` ve `hizmet_sinifi` kapsam parametreleri eklendi.
+- **4. Birim Sorumlusu (`responsible_for_personel_id`) Rapor Dışa Aktarma ve Görev Dağılımı Diyaloğu RBAC Sızıntısı (`FiiliHizmetRaporTabController._on_export_report`, `FiiliHizmetDataset.fetch_data`, `FiiliHizmetDagilimDialog` — `YAN-ETKİ-08`, `YAN-ETKİ-09`):**
+  - 3. adımda `ReportEngine` üzerinden dışa aktarım yapılırken ve 1. adımda `FiiliHizmetDagilimDialog` personel listesi doldurulurken oturum kullanıcısının `personel_id` ve `responsible_for_personel_id` yetki kapsamı filtrelerinin eksiksiz uygulanması sağlandı; `FiiliHizmetDataset.fetch_data` içindeki mükerrer departman filtresi temizlendi.
+
+#### 🧪 Test
+
+- `pytest tests/test_ui_doz_fhz_controllers.py tests/test_fiili_hizmet_report_filters.py -k "fiili or module_5 or dataset or distinct" -q`: 8 testin tamamı başarıyla geçti.
+
+---
+
+## [4.0.5.16] - 2026-11-09
+
+### 🛡️ Fiili Hizmet ve Şua Hesaplama (FHZ — Modül 11) Uçtan Uca Kilit Denetimi, İşe Giriş / Ayrılış Kıstelyevm Puantajı, Tarihsel Birim İzlenebilirliği ve `app/services/personel/` Modüler Alt Paket Mimarisi
+
+Bu sürüm; **Fiili Hizmet ve Şua Hesaplama (FHZ)** modülünde gerçekleştirilen çok turlu uçtan uca denetim bulgularının (işe giriş/ayrılış tarih sınırları, çoklu birim saat ağırlıklı birincil birim belirleme, Aralık-Ocak yıl geçişli kilit denetimi, `recalculate_for_personel` N+1 sorgu optimizasyonu, `FiiliHizmetRepository` ve ortak UI yardımcı katmanı) uygulanmasını ve `app/services/personel/` dizininin 6 alt pakete (`ozluk/`, `izin/`, `fiili_hizmet/`, `dozimetre/`, `saglik/`, `egitim/`) ayrılarak 9.500+ satırlık 3 devasa servisin Tek Sorumluluk İlkesine (SRP) göre modülerleştirilmesini içerir.
+
+#### ✨ Eklendi (Added)
+
+- **1. `app/services/personel/` 6 Alt Paket Organizasyonu ve Sanal Modül Yönlendirmesi (`app/services/personel/__init__.py`, `app/services/registry.py`):**
+  - `app/services/personel/` altındaki tüm servisler domain sorumluluklarına göre 6 alt pakete (`ozluk/`, `izin/`, `fiili_hizmet/`, `dozimetre/`, `saglik/`, `egitim/`) taşındı.
+  - `app/services/personel/__init__.py` içerisine `_VIRTUAL_MODULES` (`sys.modules` kaydı) eklenerek kök dizinde fiziksel stub dosyası bırakmadan `from app.services.personel.<servis> import ...` biçimindeki tüm mevcut importların %100 geriye dönük uyumlu çalışması sağlandı.
+- **2. `FiiliHizmetService`, `DozimetreService` ve `PersonelService` SRP Modüler Ayrıştırması:**
+  - **`app/services/personel/fiili_hizmet/`**: 3.292 satırlık servis; `fhz_constants.py`, `fhz_dagilim_service.py` (`FhzDagilimMixin`), `fhz_hesaplama_service.py` (`FhzHesaplamaMixin`), `fhz_kilit_service.py` (`FhzKilitMixin`) ve ana cephe `fiili_hizmet_service.py` (`FiiliHizmetService`) olarak ayrıştırıldı.
+  - **`app/services/personel/dozimetre/`**: 3.563 satırlık servis; `doz_analiz_service.py` (`DozimetreAnalizMixin`), `doz_import_service.py` (`DozimetreImportMixin`), `doz_aksiyon_service.py` (`DozimetreAksiyonMixin`), `doz_olcum_service.py` (`DozimetreOlcumMixin`) ve ana cephe `dozimetre_service.py` (`DozimetreService`) olarak ayrıştırıldı.
+  - **`app/services/personel/ozluk/`**: 2.711 satırlık servis; `personel_gebelik_service.py` (`PersonelGebelikMixin`), `personel_durum_service.py` (`PersonelDurumMixin`), `personel_hesap_service.py` (`PersonelHesapMixin`), `personel_belge_service.py` (`PersonelBelgeMixin`) ve ana cephe `personel_service.py` (`PersonelService`) olarak ayrıştırıldı.
+- **3. `FiiliHizmetRepository` ve Ortak FHZ UI Yardımcı Modülü (`app/infrastructure/db/repositories/fiili_hizmet_repository.py`, `ui/controllers/fiili/_fhz_ui_helpers.py`):**
+  - Kilit durumu, onaylı görev dağılımı ve dönem kayıt sayısı sorgularını merkezi olarak yürüten `FiiliHizmetRepository` eklendi.
+  - FHZ sekmelerinde tekrarlanan `SortableTableWidgetItem`, `AY_ADLARI`, `fmt_fhz_number`, `resolve_actor_context`, `resolve_donem_aralik`, `resolve_departman_gunluk_saat` ve `resolve_hesaplama_kaynagi` yardımcıları `ui/controllers/fiili/_fhz_ui_helpers.py` altında toplandı.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed & Refined)
+
+- **1. İşe Giriş (`ise_giris_tarihi`) ve İşten Ayrılış (`isten_cikis_tarihi`) Kıstelyevm Tarih Kırpma (`fhz_dagilim_service.py`, `fhz_hesaplama_service.py`):**
+  - `list_gorev_dagilim`, `generate_default_dagilim`, `hesapla_donem`, `_recalculate_single_person_donem` ve `_personel_donem_gun_izin` metotlarının tamamında personelin işe giriş ve ayrılış tarihleri dönem sınırlarıyla (`max(donem_bas, ise_giris_tarihi)` ve `min(donem_bit, ayrilis_tarihi)`) kesiştirildi.
+  - Geçmiş dönemde aktif çalışıp daha sonraki bir tarihte işten ayrılan (`durum = 'Pasif'` / `'Ayrıldı'`) personellerin geçmiş dönem görev dağılımı, fiili hizmet ve puantaj hesaplamalarından düşürülmesi engellendi.
+- **2. `recalculate_for_personel` Toplu (Batch) Önbellek ve Atomik Özet/Şua Senkronizasyonu (`fhz_hesaplama_service.py`):**
+  - Personel bazlı yeniden hesaplamada döngü içi N+1 sorgular kaldırılarak `_build_izin_gunleri_map`, `_build_nobet_cizelge_map` ve `_build_onceki_saat_map` ile tüm dönem verileri tek seferde önbelleğe alındı; kayıt sonrasında `_refresh_fiili_hizmet_ozet` ve `_sync_sua_hakedis_for_year` aynı transaction içinde çağrılarak yıllık özet ve Şua hakedişlerinin anında eşitlenmesi sağlandı.
+- **3. FHZ Arayüz Denetleyicilerinde RBAC Aktör Bağlamı ve Public Servis Sözleşmesi (`ui/controllers/fiili/*.py`):**
+  - `FiiliHizmetListController`, `FiiliHizmetDagilimTabController`, `FiiliHizmetHesaplamaTabController`, `FiiliHizmetRaporTabController` ve `FiiliHizmetDagilimDialog` içinde tüm yazma/güncelleme/silme/kilitleme çağrılarına `actor_role` ve `actor_personel_id` parametreleri eksiksiz bağlandı; özel (`_get_*`) metot çağrıları public `get_donem_aralik`, `get_departman_gunluk_saat` ve `get_hesaplama_kaynagi` metotlarına geçirildi.
+
+#### 🐛 Düzeltildi (Fixed)
+
+- **1. Aralık-Ocak (`15.12.YYYY - 14.01.YYYY+1`) Yıl Geçişli Dönemlerde Kilit Bypass Açıkları (`fhz_dagilim_service.py`, `fhz_kilit_service.py`):**
+  - `upsert_gorev_dagilim`, `delete_gorev_dagilim`, `approve_donem_dagilim`, `generate_default_dagilim`, `set_donem_lock` ve `set_yillik_kilit` içinde hem `baslangic_tarihi` hem de `bitis_tarihi` yıllarının yıllık kilit durumu (`is_yil_locked`) ve tarih aralığıyla kesişen tüm kilitli dönemler (`_find_locked_overlapping_donem`) denetlenerek kilitli dönem/yıl verisinin değiştirilmesi engellendi.
+- **2. Çoklu Görev Dağılımında Birincil Birim ve Tarihsel `birim` / `departman_id` Kaybı (`fhz_hesaplama_service.py`):**
+  - Aynı dönemde birden fazla birimde görev dağılımı bulunan personelde `birim` ve `departman_id` alanlarının son satır yerine en yüksek fiili çalışma saatine (`max_birim_saat`) sahip birime göre belirlenmesi ve `kaydet_donem_hesaplama` ile `fiili_hizmet_kayitlari` tablosuna tarihsel olarak yazılması sağlandı.
+- **3. `FhzDomainCalculator` Koşul B Saat Hesabı ve Silinen Personel Yıllık Özet Temizliği (`fhz_calculator.py`, `fhz_hesaplama_service.py`):**
+  - Koşul B (radyasyonsuz alan) satırlarında fiili radyasyon çalışma saatinin `0.0` olarak korunması ve `kaydet_donem_hesaplama(..., overwrite=True)` sırasında dönemden çıkarılan personellerin `fiili_hizmet_ozet` kayıtlarının temizlenmesi sağlandı.
+
+#### 🧪 Test
+
+- `pytest tests/test_fiili_hizmet_service.py tests/test_ui_doz_fhz_controllers.py tests/test_dozimetre_service.py tests/test_ui_personel_controllers.py tests/test_postgres_fixes.py -q`: Tüm birim ve PostgreSQL entegrasyon testleri başarıyla geçti.
+
+---
+
+## [4.0.5.15] - 2026-11-08
+
+### ⚖️ Buçuklu (`0.5 / 1.0 / 2.0`) Ağırlıklı Hafta Sonu ve Bayram Nöbet Adaleti, Adalet Sayacı Saat Karşılığı Gösterimi (`(... sa)`), Gece Muafiyetli Personel Gündüz Nöbet Rezervasyonu ve Kısa Kodlu Çapraz Görev Özeti
+
+Bu sürüm; 7 saatlik kısa mesai vardiyaları (Mobil Röntgen vb.), 12 saatlik standart vardiyalar ve 24 saatlik birleşik nöbetler arasındaki hafta sonu ve bayram adaletsizliğini gidermek üzere veritabanı görünümü (`v_nobet_denge_ozeti`), servis katmanı (`NobetService`, `NobetCizelgeService`), otomatik dağıtım motoru (`NobetScheduler`) ve **Nöbet Adalet Sayacı** (`NobetAdaletSayaciController`) ekranında gerçekleştirilen buçuklu (`0.5 / 1.0 / 2.0`) ağırlıklı nöbet sayımı, saat karşılığı (`(... sa)`) gösterimi ve çapraz rotasyon dengeleme iyileştirmelerini içerir.
+
+#### ✨ Eklendi (Added)
+
+- **1. `v_nobet_denge_ozeti` Görünümünde Buçuklu (`0.5 / 1.0 / 2.0`) Nöbet Sayımı ve Saat Sütunları (`app/db/schema.sql`, `app/db/migrations/V20261108_1_weighted_weekend_holiday_counts_in_denge_view.py`):**
+  - `v_nobet_denge_ozeti` SQL görünümü güncellenerek hafta sonu (`hafta_sonu_sayisi`) ve resmi tatil/bayram (`bayram_sayisi`) nöbet sayılarında `COALESCE(nc.sure_saat, nv.sure_saat, 0) < 10.0` olan kısa vardiyaların (örn. 7 saatlik Mobil Röntgen) **`0.5` nöbet**, `10.0..19.9` saat arası standart vardiyaların **`1.0` nöbet** ve `>= 20.0` saatlik tek satır 24 saat nöbetlerin **`2.0` nöbet** olarak ağırlıklandırılması sağlandı.
+  - Görünüme kümülatif hafta sonu çalışma saati (`hafta_sonu_saati`) ve resmi tatil/bayram çalışma saati (`bayram_saati`) sütunları eklendi (`V20261108_1_weighted_weekend_holiday_counts_in_denge_view.py`).
+- **2. Gelecek Mimari Yol Haritası Dokümanı (`docs/gelecek_planlarimiz.md`):**
+  - PACS / DICOM RDSR radyasyon telemetrisi, tetkik zorluk/efor katsayı matrisi, 3 seviyeli yetkinlik matrisi (`Seviye 0/1/2`), 5 kovalı merkezi havuz nöbet dağıtım algoritması ve radyoloji dışı klinik personelin (ERCP, C-Kollu skopi, Anjiyo, ESWL) RDSR tabanlı fiili hizmet süresi zammı (FHSZ) ve şua izni hesaplama mimarisini içeren kapsamlı tasarım dokümanı oluşturuldu.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed & Refined)
+
+- **1. `NobetService` Ağırlıklı Tatil/Hafta Sonu Sayımı ve Saat Hesaplamaları (`app/services/nobet/nobet_service.py`):**
+  - `_get_holiday_and_weekend_transfer_deltas`, `get_past_weekend_counts`, `get_past_holiday_counts` ve `list_adalet_sayaci_ozeti` metotları `float` (`0.5 / 1.0 / 2.0`) ağırlıklı nöbet sayımına geçirildi; `list_adalet_sayaci_ozeti` çıktısına `hafta_sonu_saati`, `fiili_hafta_sonu_saati`, `bayram_saati`, `fiili_bayram_saati` ve `toplam_capraz_saat` alanları eklendi.
+- **2. `NobetCizelgeService` Çapraz Rotasyon ve Bayram/Hafta Sonu Aday Sıralaması (`app/services/nobet/nobet_cizelge_service.py`):**
+  - `_get_validation_warnings` ve `get_replacement_candidates` içindeki hafta sonu ve bayram sayaçları `0.5` ağırlıklı yapıya uyarlandı; çapraz görevlendirme aday sıralamasında (`cross_sort_key`) o ayki ve geçmiş kümülatif çapraz nöbet sayısı ile bayram/hafta sonu yükü birlikte dengelendi.
+- **3. `NobetAdaletSayaciController` Saat Karşılığı Gösterimi ve Kısa Kodlu Çapraz Görev Özeti (`ui/controllers/nobet/nobet_adalet_sayaci_controller.py`):**
+  - **Hafta Sonu Sayacı**, **Bayram Sayacı** ve **Çapraz Nöbet Sayacı** sütunlarında buçuklu nöbet adedi (`_fmt_cnt`, örn. `33.5 Nöbet`) ve parantez içinde toplam saat karşılığı (`33.5 Nöbet (405 sa)`) birlikte gösterildi.
+  - **Fazla Mesai Sayacı** ve **Çapraz Nöbet Sayacı** hücreleri 2 satırlı kompakt düzene (`48px` satır yüksekliği) kavuşturuldu; **Çapraz Görev Yaptığı Birimler** sütununda uzun departman adları yerine birim kısa kodları (`kisa_kod`, örn. `MOBİL: 15 (105 sa)`) kullanıldı.
+
+#### 🐛 Düzeltildi (Fixed)
+
+- **1. Gece Nöbeti Muafiyetli Personelin Hafta Sonu/Bayram Gündüz Slot Rezervasyonu ve `fm_off` Bayram Dağıtımı (`app/services/nobet/nobet_scheduler.py`):**
+  - Gece nöbeti muafiyeti olup hafta sonu/bayram muafiyeti bulunmayan personeller (örn. `Şerife Kaya`) için 24 saat birleştirme aşamasında (`run_combination_phase`) yeterli sayıda hafta sonu ve bayram gündüz vardiyasının 24 saate birleştirilmeden (`reserved_day_only_dates`) 12 saat gündüz nöbeti olarak ayrılması ve `run_standard_phase` içinde gündüz vardiyalarının gece vardiyalarından önce dağıtılması sağlandı.
+  - `fm_off = 1` olan personellerin (`Hüseyin KORKMAZ`) Stage 1 (hafta sonu) aşamasında fazla mesai tavanı korunurken, Stage 2 (resmi tatil/bayram) aşamasında zorunlu bayram nöbeti adaletine ortak olmaları sağlandı (`not is_stage2`).
+  - `generate_schedule` içinde `reserved_day_only_dates` sözlüğünün kapsamı düzeltilerek olası `NameError` hatası giderildi.
+
+#### 🧪 Test
+
+- `pytest tests/test_nobet_ikame_oneri.py -q` (7/7 başarılı) ve 2026 yılı 12 aylık tam nöbet simülasyonu ile 23 personelin tamamında hafta sonu (`32.5..35.0 Nöbet`), bayram (`5.0..7.5 Nöbet`) ve çapraz görev dağılım dengesi doğrulandı.
+
+---
+
 ## [4.0.5.14] - 2026-11-07
 
 ### 🛡️ Nöbet Personel Talepleri (`personel_nobet_istekleri`) ve Personel Özel Kısıtları (`personel_calisma_kisitlari`) Uçtan Uca Kilit Denetimi, Gebelik / Sağlık Raporu / Doz Aşımı Hedef Saat ve Nöbet Muafiyeti İyileştirmeleri, Eğitim Ders Programı Revizyonu ve Yıllık Nöbet Adalet Sayacı Penceresi

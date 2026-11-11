@@ -1,10 +1,10 @@
 {
-  "version": "4.0.5.14",
-  "release_version": "4.0.5.14",
-  "build_version": "4.0.5.14",
-  "latest_demo_version": "4.0.5.14",
-  "release_date": "2026-11-07",
+  "version": "4.0.5.19",
+  "release_version": "4.0.5.19",
+  "build_version": "4.0.5.12",
+  "latest_demo_version": "4.0.5.19",
+  "release_date": "2026-11-10",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.5.14: Nöbet Personel Talepleri ve Personel Özel Kısıtları Uçtan Uca Kilit Çözümleri, Gebelik/Sağlık Raporu/Doz Aşımı Hedef Saat ve Nöbet Muafiyeti İyileştirmeleri, Eğitim Ders Programı Revizyonu ve Yıllık Nöbet Adalet Sayacı Penceresi.",
+  "changelog": "RADPYS V4.0.5.19: Merkezi Birim Sorumlulukları ve Saha Görev Tahsisi (Delegasyon) Kokpiti, Kişiye Özel Yetki Matrisi Ergonomisi ve Geriye Dönük Parola Doğrulama Güvencesi.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }
