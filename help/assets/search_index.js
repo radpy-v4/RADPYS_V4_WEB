@@ -1,4 +1,4 @@
-/* Otomatik Üretilen RADPYS v4 Arama İndeksi — Toplam 366 Başlık */
+/* Otomatik Üretilen RADPYS v4 Arama İndeksi — Toplam 365 Başlık */
 window.RADPYS_SEARCH_INDEX = [
   {
     "id": "01",
@@ -1116,8 +1116,8 @@ window.RADPYS_SEARCH_INDEX = [
   {
     "id": "11",
     "module": "Fiili Hizmet Zammı (FHZ - Yıpranma Payı) ve Şua Hesaplama",
-    "title": "Vizyonder Hızlı Karar Reçetesi (FHZ & Şua Özeti)",
-    "desc": "Fiili Hizmet Zammı (FHZ - Yıpranma Payı) ve Şua Hesaplama modülü altında Vizyonder Hızlı Karar Reçetesi (FHZ & Şua Özeti) adımı ve açıklamaları.",
+    "title": "Vizyonder Hızlı Karar Reçetesi (4 Adımda FHZ & Şua Sihirbazı)",
+    "desc": "Fiili Hizmet Zammı (FHZ - Yıpranma Payı) ve Şua Hesaplama modülü altında Vizyonder Hızlı Karar Reçetesi (4 Adımda FHZ & Şua Sihirbazı) adımı ve açıklamaları.",
     "url": "11_fiili_hizmet_ve_sua_hesaplama.html"
   },
   {
@@ -1130,8 +1130,8 @@ window.RADPYS_SEARCH_INDEX = [
   {
     "id": "11",
     "module": "Fiili Hizmet Zammı (FHZ - Yıpranma Payı) ve Şua Hesaplama",
-    "title": "3. 3 Adımlı Entegre Puantaj Sihirbazı İş Akışı",
-    "desc": "Fiili Hizmet Zammı (FHZ - Yıpranma Payı) ve Şua Hesaplama modülü altında 3. 3 Adımlı Entegre Puantaj Sihirbazı İş Akışı adımı ve açıklamaları.",
+    "title": "3. 4 Adımlı Doğrusal Puantaj Sihirbazı İş Akışı",
+    "desc": "Fiili Hizmet Zammı (FHZ - Yıpranma Payı) ve Şua Hesaplama modülü altında 3. 4 Adımlı Doğrusal Puantaj Sihirbazı İş Akışı adımı ve açıklamaları.",
     "url": "11_fiili_hizmet_ve_sua_hesaplama.html"
   },
   {
@@ -1158,29 +1158,22 @@ window.RADPYS_SEARCH_INDEX = [
   {
     "id": "11",
     "module": "Fiili Hizmet Zammı (FHZ - Yıpranma Payı) ve Şua Hesaplama",
-    "title": "Dönemsel Görev Dağılımını İnceleme ve Otomatik Görev Atama",
-    "desc": "Fiili Hizmet Zammı (FHZ - Yıpranma Payı) ve Şua Hesaplama modülü altında Dönemsel Görev Dağılımını İnceleme ve Otomatik Görev Atama adımı ve açıklamaları.",
+    "title": "1. Adım: Görev Yerlerini Kontrol Etme ve Onaylama",
+    "desc": "Fiili Hizmet Zammı (FHZ - Yıpranma Payı) ve Şua Hesaplama modülü altında 1. Adım: Görev Yerlerini Kontrol Etme ve Onaylama adımı ve açıklamaları.",
     "url": "11_fiili_hizmet_ve_sua_hesaplama.html"
   },
   {
     "id": "11",
     "module": "Fiili Hizmet Zammı (FHZ - Yıpranma Payı) ve Şua Hesaplama",
-    "title": "Toplu Onay ve Fiili Hizmet Hesaplamaya Geçiş",
-    "desc": "Fiili Hizmet Zammı (FHZ - Yıpranma Payı) ve Şua Hesaplama modülü altında Toplu Onay ve Fiili Hizmet Hesaplamaya Geçiş adımı ve açıklamaları.",
+    "title": "2. Adım: Fiili Hizmeti Hesaplama, Kaydetme ve Dönemi Kilitleme",
+    "desc": "Fiili Hizmet Zammı (FHZ - Yıpranma Payı) ve Şua Hesaplama modülü altında 2. Adım: Fiili Hizmeti Hesaplama, Kaydetme ve Dönemi Kilitleme adımı ve açıklamaları.",
     "url": "11_fiili_hizmet_ve_sua_hesaplama.html"
   },
   {
     "id": "11",
     "module": "Fiili Hizmet Zammı (FHZ - Yıpranma Payı) ve Şua Hesaplama",
-    "title": "Fiili Hizmet Hesaplama, Kilit Güvenliği ve Şua Hakedişleri",
-    "desc": "Fiili Hizmet Zammı (FHZ - Yıpranma Payı) ve Şua Hesaplama modülü altında Fiili Hizmet Hesaplama, Kilit Güvenliği ve Şua Hakedişleri adımı ve açıklamaları.",
-    "url": "11_fiili_hizmet_ve_sua_hesaplama.html"
-  },
-  {
-    "id": "11",
-    "module": "Fiili Hizmet Zammı (FHZ - Yıpranma Payı) ve Şua Hesaplama",
-    "title": "Yıllık Kilit ve SGK Puantaj Raporu Alma",
-    "desc": "Fiili Hizmet Zammı (FHZ - Yıpranma Payı) ve Şua Hesaplama modülü altında Yıllık Kilit ve SGK Puantaj Raporu Alma adımı ve açıklamaları.",
+    "title": "3. Adım: Rapor Çıktısı Alma &amp; 4. Adım: Tamamla ve Kapat",
+    "desc": "Fiili Hizmet Zammı (FHZ - Yıpranma Payı) ve Şua Hesaplama modülü altında 3. Adım: Rapor Çıktısı Alma &amp; 4. Adım: Tamamla ve Kapat adımı ve açıklamaları.",
     "url": "11_fiili_hizmet_ve_sua_hesaplama.html"
   },
   {
@@ -1326,36 +1319,36 @@ window.RADPYS_SEARCH_INDEX = [
   {
     "id": "12",
     "module": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması",
-    "title": "5. Rol Tabanlı RD.F43 Doz Araştırma Sihirbazı ve Akıllı Karar Motoru (CDSS)",
-    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında 5. Rol Tabanlı RD.F43 Doz Araştırma Sihirbazı ve Akıllı Karar Motoru (CDSS) adımı ve açıklamaları.",
+    "title": "5. Rol Tabanlı 3 Adımlı RD.F43 Doz Araştırma Sihirbazı ve Akıllı Karar Motoru (CDSS)",
+    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında 5. Rol Tabanlı 3 Adımlı RD.F43 Doz Araştırma Sihirbazı ve Akıllı Karar Motoru (CDSS) adımı ve açıklamaları.",
     "url": "12_dozimetre_takibi_ve_rdf43_arastirma.html"
   },
   {
     "id": "12",
     "module": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması",
-    "title": "Çalışan Beyanı ve Kullanım Koşulları",
-    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında Çalışan Beyanı ve Kullanım Koşulları adımı ve açıklamaları.",
+    "title": "1. Çalışan Beyanı (Sayfa 1 — Soru 1–9)",
+    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında 1. Çalışan Beyanı (Sayfa 1 — Soru 1–9) adımı ve açıklamaları.",
     "url": "12_dozimetre_takibi_ve_rdf43_arastirma.html"
   },
   {
     "id": "12",
     "module": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması",
-    "title": "RKS Saha İncelemesi ve Ortam Doğrulaması",
-    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında RKS Saha İncelemesi ve Ortam Doğrulaması adımı ve açıklamaları.",
+    "title": "2. RKS Saha İncelemesi (Sayfa 2 — Soru 1–7)",
+    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında 2. RKS Saha İncelemesi (Sayfa 2 — Soru 1–7) adımı ve açıklamaları.",
     "url": "12_dozimetre_takibi_ve_rdf43_arastirma.html"
   },
   {
     "id": "12",
     "module": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması",
-    "title": "Akıllı Klinik Karar ve Teşhis Motoru",
-    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında Akıllı Klinik Karar ve Teşhis Motoru adımı ve açıklamaları.",
+    "title": "3. Karar, DÖF ve Evrak — Akıllı Teşhis Motoru",
+    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında 3. Karar, DÖF ve Evrak — Akıllı Teşhis Motoru adımı ve açıklamaları.",
     "url": "12_dozimetre_takibi_ve_rdf43_arastirma.html"
   },
   {
     "id": "12",
     "module": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması",
-    "title": "Yasal Değerlendirme, DÖF ve KVKK Kasası",
-    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında Yasal Değerlendirme, DÖF ve KVKK Kasası adımı ve açıklamaları.",
+    "title": "Yasal Değerlendirme, DÖF, KVKK Kasası ve Aksiyonu Kapatma",
+    "desc": "Kişisel Dozimetre Takibi ve RD.F43 Doz Aşımı Araştırması modülü altında Yasal Değerlendirme, DÖF, KVKK Kasası ve Aksiyonu Kapatma adımı ve açıklamaları.",
     "url": "12_dozimetre_takibi_ve_rdf43_arastirma.html"
   },
   {

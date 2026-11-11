@@ -1061,14 +1061,15 @@ Radyasyonla çalışan personelin mesleki maruziyetinin izlenmesi, Nükleer Düz
 | **[Dönem Filtresi]** | Açılır Kutu | Tabloyu seçili yıl/dönem aralığına göre süzer | Tüm Yetkililer | Geçmiş dönem kayıtları inceleneceğinde | Filtre Paneli | Seçilen döneme ait doz kayıtlarını anında listeler. |
 | **[Dozimetre Tipi Filtresi]** | Açılır Kutu | Tüm Vücut, Yüzük, Göz Lensi vb. filtreler | RKS | Belirli bir dozimetre tipi sorgulanırken | Filtre Paneli | Tabloyu seçilen tipe göre daraltır. |
 | **[Doz Alarm Seviyesi]** | Açılır Kutu | Normal, İnceleme (>2mSv), Aşım filtreler | RKS / Kalite | Riskli kayıtlar ayıklanırken | Filtre Paneli | Eşik değerlerine göre satırları renklendirerek süzer. |
-| **[Bütünleşik Aksiyon Kokpiti]** | Tablo | Tüm yasal aşım ve anomalileri tek potada 8 sütunla gösterir | RKS / Kurum Amiri | Risk analizi ve süreç takibinde | Aksiyonlar Sekmesi | 8 Sütun: [Ad Soyad, Birim, Dönem, Hp(10), Risk Rozeti, Gerekçe, İnceleme Durumu, RD.F43 Raporu]. |
-| **[Doz Araştırma Formu (RD.F43)]** | Buton | 2.0 mSv eşiğini aşan kayıt için 4 adımlı resmi sihirbazı açar | RKS / Kurum Amiri | Eşik aşımı veya istatistiksel anomali tespitinde | Aksiyonlar Araç Çubuğu | Açık vakada düzenleme, yeni vakada başlatma, kapalı vakada salt okunur resmi raporu açar. |
-| **[Aksiyonu Kapat]** | Buton | Güvenlik kilitli modern kapatma penceresini açar | RKS / Kurum Amiri | Soruşturması biten dosyaların arşivlenmesinde | Aksiyonlar Araç Çubuğu | RD.F43 tutanağı düzenlenmemiş veya resmi dosya no girilmemiş dosyaların erken kapatılmasını engeller. |
+| **[Bütünleşik Aksiyon Kokpiti]** | Tablo | Tüm yasal aşım ve anomalileri tek potada 8 sütun ve 5 aşamalı süreç rozetleriyle gösterir | RKS / Kurum Amiri | Risk analizi ve süreç takibinde | Aksiyonlar Sekmesi | 8 Sütun: `[Ad Soyad, Birim, Dönem, Hp(10), Risk Rozeti, Gerekçe, İnceleme Durumu, RD.F43 Raporu]`. `RD.F43 Raporu` sütununda `HAZIRLANMADI` ➔ `BEYAN BEKLİYOR` ➔ `BEYAN GELDİ` ➔ `RKS İNCELEMEDE` ➔ `TAMAMLANDI` rozetleri yer alır. |
+| **[İnceleme Başlat]** | Buton | Seçili vaka için inceleme kaydını başlatır ve çalışana Web Portal beyan bildirimi gönderir | RKS / Dozimetre Sorumlusu | İnceleme bekleyen yeni aşım veya anomali vakalarında | Aksiyonlar Araç Çubuğu | Formu açmadan doğrudan dosyayı `BEYAN BEKLİYOR` aşamasına geçirir ve personelin Profilim ekranına görev düşürür. |
+| **[Doz Araştırma Formu (RD.F43)]** | Buton | 2.0 mSv eşiğini aşan kayıt için 3 adımlı resmi NDK/TENMAK sihirbazını açar | RKS / Kurum Amiri | Çalışan beyanı geldikten sonra saha incelemesi ve kararda | Aksiyonlar Araç Çubuğu | Çalışan beyanı gelmeden RKS taslak kaydına izin vermez; açık vakada düzenleme, kapalı vakada salt okunur resmi raporu açar. |
+| **[Aksiyonu Kapat]** | Buton | Güvenlik kilitli kapatma işlemini yürütür | RKS / Kurum Amiri | Soruşturması biten dosyaların arşivlenmesinde | Aksiyonlar Araç Çubuğu & RD.F43 3. Adım | Çalışan beyanı, tüm RKS soru yanıtları ve değerlendirme açıklaması tamamlanmadan erken kapatmayı engeller; tamamlandığında `TAMAMLANDI` rozetine geçirir. |
 | **[Birim İncelemesi Ekle]** | Buton | RKS saha gözlemini ve ortam radyasyon notlarını kaydeder | RKS / Dozimetre Sorumlusu | Birim çalışma şartları denetiminde | Aksiyonlar Araç Çubuğu | Modern inceleme formuyla cihaz kusuru, zırhlama ve saha notlarını işler. |
 | **[Takip Ölçümü Planla]** | Buton | Şüpheli ölçümlerde ara takip veya EPD görevi tanımlar | RKS / Dozimetre Sorumlusu | Risk incelemesi ve yakın takipte | Aksiyonlar Araç Çubuğu | Modern planlama penceresiyle takip periyodu ve özel dozimetre türü belirler. |
 | **[Geçmiş Ölçümler & Birim Takibi]** | Tablo | Personelin geçmiş ölçümlerini ve çalıştığı birimleri listeler | Tüm Yetkililer | Personel rotasyonları ve birim dozu sorgulanırken | Ölçümler Sekmesi (Sağ Panel) | 5 Sütun: Dönem, Birim, Hp(10), Hp(0.07), Durum. Rotasyon takibi sağlar. |
-| **[Önerilen Kararı Forma Aktar]** | Buton | CDSS karar motoru teşhis ve gerekçesini tutanağa kopyalar | RKS | CDSS analizi resmi karara bağlanırken | RD.F43 Formu (3. Adım) | Canlı zümrüt yeşili (RDS variant="success") 36px ergonomik buton. |
-| **[Resmi RD.F43 İndir (Word/PDF)]** | Buton | NDK matbu 13 soruluk resmi araştırma tutanağını üretir | RKS / Kurum Amiri | Form tamamlanıp imzaya veya NDK'ya sunulacağında | Form Başlığı / Rapor Kokpiti | Word (.docx) ve PDF olarak `RD-F43_{RaporNo}_{Ad_Soyad}` adıyla indirir. |
+| **[Önerilen Kararı Forma Aktar]** | Buton | CDSS karar motoru teşhis ve gerekçesini aynı ekrandaki tutanak alanlarına kopyalar | RKS | CDSS analizi resmi karara bağlanırken | RD.F43 Formu (3. Adım) | Canlı zümrüt yeşili 36px ergonomik buton; hem nihai tutanak notunu hem RKS değerlendirme alanını doldurur. |
+| **[Resmi RD.F43 İndir (Word/PDF)]** | Buton | Resmi NDK/TENMAK matbu araştırma tutanağını üretir | RKS / Kurum Amiri | Form tamamlanıp imzaya veya NDK'ya sunulacağında | Form Alt Paneli / Rapor Kokpiti | Word (.docx) ve PDF olarak kurumsal antetli resmi tutanağı indirir. |
 | **[Excel'e Aktar]** | Buton | Listeyi resmi denetim formatında dışa aktarır | RKS / Yönetici | NDK denetimlerinde veya arşivlemede | Araç Çubuğu | Tablodaki verileri biçimlendirilmiş XLSX dosyası olarak kaydeder. |
 
 ---
@@ -1119,49 +1120,44 @@ Radyasyonla çalışan personelin mesleki maruziyetinin izlenmesi, Nükleer Düz
    - **Dozimetre Barkod / Seri No:** Dozimetre kasedi üzerindeki kimlik numarasını girin.
 3. **[Kaydet]** butonuna basarak işlemi tamamlayın. Doz değeri eşik üstündeyse sistem kullanıcıyı hemen uyararak araştırma formuna yönlendirir ve yöneticilere bildirim üretir.
 
-#### D. Bütünleşik 8 Sütunlu Aksiyon Kokpiti ve Güvenlik Kilitli İşlemler
+#### D. Bütünleşik 8 Sütunlu Aksiyon Kokpiti, 5 Aşamalı Rozetler ve Güvenlik Kilitli İşlemler
 
-1. Sayfanın ikinci sekmesi olan **Aksiyonlar** sekmesine geçin. Bu ekranda sıkışık çift tablolu düzen kaldırılmış, tam sayfa genişliğinde 8 sütunlu tekil ve ferah kokpit sunulmuştur:
+1. Sayfanın ikinci sekmesi olan **Aksiyonlar** sekmesine geçin. Bu ekranda tam sayfa genişliğinde 8 sütunlu tekil kokpit sunulmuştur:
    - **Kokpit Sütunları:** `[Personel Adı Soyadı | Birim | Ölçüm Dönemi | Hp(10) (mSv) | Risk Seviyesi Rozeti | Aşım Gerekçesi | İnceleme Durumu | RD.F43 Raporu]`.
+   - **5 Aşamalı `RD.F43 Raporu` Süreç Rozetleri:** `HAZIRLANMADI` (inceleme başlatılmadı) ➔ `BEYAN BEKLİYOR` (`[İnceleme Başlat]` tıklandı, personel beyanı bekleniyor) ➔ `BEYAN GELDİ` (personel Web Portal üzerinden beyanını gönderdi) ➔ `RKS İNCELEMEDE` (RKS saha incelemesini kaydetti) ➔ `TAMAMLANDI` (tutanak ve aksiyon kapatıldı).
    - **Durum Filtresi:** `Tüm Kayıtlar`, `İnceleme Bekleyenler (Başlatılmadı)`, `Açık Aksiyonlar` ve `Kapatılanlar` seçenekleriyle süreç canlı filtrelenir.
-2. **Güvenlik Kilitli Aksiyon Kapatma (`AksiyonuKapatDialog`):**
-   - Açık bir aksiyon seçilip **[Aksiyonu Kapat]** tıklandığında modern kapatma kokpiti açılır.
-   - Sistem, ilgili aşım için NDK onaylı RD.F43 araştırma tutanağının hazırlanıp hazırlanmadığını arka planda otomatik denetler. Form eksikse kapatma butonu kilitlenir ve tek tıkla forma yönlendiren `[Formu Doldur / Görüntüle]` butonu sunulur.
-   - Kapatma türü, yasal NDK bildirim teyidi ve resmi dosya/karar numarası girilmeden dosyanın erken kapatılması engellenir.
-3. **Birim İncelemesi Ekleme (`BirimIncelemeDialog`):**
+2. **Güvenlik Kilitli Aksiyon Kapatma:**
+   - Hem Aksiyonlar araç çubuğundaki hem de RD.F43 sihirbazının 3. adımındaki **[Aksiyonu Kapat]** butonu, çalışan beyanının gelmiş olmasını, RKS inceleme sorularının eksiksiz yanıtlanmasını ve nihai değerlendirme açıklamasının girilmiş olmasını denetler. Eksik adım varsa kullanıcıyı ilgili adıma yönlendirerek erken kapatmayı engeller.
+3. **Birim İncelemesi Ekleme:**
    - RKS saha gözlemi, ortam radyasyon ölçümü, cihaz kalibrasyon kontrolü ve zırhlama sızıntı testleri kurumsal form üzerinden kayıt altına alınır.
-4. **Takip Ölçümü Planlama (`TakipOlcumuPlanlamaDialog`):**
+4. **Takip Ölçümü Planlama:**
    - Riskli vakalar için 15 günlük acil izlem veya 1 aylık hızlandırılmış okuma periyodu ve özel dozimetre türü (Webster çift dozimetre, yüzük, lens) belirlenerek takip görevi atanır.
 
-#### E. Rol Tabanlı 4 Adımlı RD.F43 Sihirbazı, CDSS Karar Motoru ve Çift Yönlü Bildirim
+#### E. Rol Tabanlı 3 Adımlı RD.F43 Sihirbazı, Çalışan Beyanı Kilidi ve CDSS Karar Motoru
 
-Resmi **RD.F43 Doz Araştırma Formu**, Web Portal ve RKS görevlerini ayrıştıran 4 adımlı modern sihirbaz olarak çalışır:
+Resmi **NDK/TENMAK RD.F43 Doz Araştırma Formu**, Web Portal çalışan beyanı ile RKS saha incelemesini ayrıştıran **3 adımlı** modern sihirbaz olarak çalışır:
 
-1. **Adım 1 - Çalışan Beyanı (Bölüm 2):**
-   - Çalışma süresi, kaynak türü, koruyucu donanımlar (KKE), unutulma ve şahsi tıbbi tetkik beyanı alınır. Aksiyon açıldığında çalışan personele Web Portal üzerinden görev bildirimi gönderilir; çalışan kendi ekranından bu soruları yanıtlayabilir.
-2. **Adım 2 - RKS Saha İncelemesi (Bölüm 3):**
-   - RKS tarafından tesis durumu, cihaz kusurları, radyoaktif kirlilik, ortam dozu artışı ve diğer çalışanların dozu taranır.
-3. **Adım 3 - CDSS Karar Motoru & Doz Analizi:**
-   - **Akla Yatkınlık (Uyum) Skoru:** Ters kare kanunu teorik hesabı ile ölçüm kıyaslanarak alanda unutulma iddiası bilimsel doğrulanır.
-   - **Webster Algoritması:** Kurşun önlük üstü kullanımlarda tahmini iç organ biyolojik dozu hesaplanır.
-   - **Otomatik Teşhis:** Medikal tetkik, kanıtlanmış unutulma, önlük dışı kullanım, tesis kaçağı veya yasal limit aşımı kategorisi otomatik belirlenir.
-   - **[Önerilen Kararı ve Bulguları Forma Aktar] (Canlı Zümrüt Yeşili Buton):** 36px ergonomik yeşil butona tıklandığında CDSS teşhisi, NDK resmi gerekçesi ve DÖF kararı tek tıkla 4. adıma aktarılır.
-4. **Adım 4 - Yasal Karar, DÖF ve KVKK Kasası (Bölüm 4):**
-   - Değerlendirme tipi, DÖF takip numarası ve resmi kaşe/imzalar tamamlanır.
+1. **Adım 1 - Çalışan Beyanı (Sayfa 1 — Soru 1–9):**
+   - Çalışma süresi, radyasyon kaynağı, iki kademeli dozimetre taşıma konumu, koruyucu donanımlar, alanda unutulma, çalışma süresince yanında bulundurma ve şahsi tıbbi tetkik beyanı alınır. **[İnceleme Başlat]** tıklandığında personele Web Portal üzerinden görev bildirimi gider; çalışan beyanını iletmeden RKS taslak kaydı veya kapatma yapamaz.
+2. **Adım 2 - RKS Saha İncelemesi (Sayfa 2 — Soru 1–7):**
+   - RKS tarafından tesiste/kaynakta değişiklik, olağandışı durum, radyoaktif bulaşma, ortam dozu artışı, diğer çalışanların dozu ve eğitim yeterliliği eksiksiz yanıtlanır (hiçbir soru varsayılan olarak "Hayır" işaretlenmez).
+3. **Adım 3 - Karar, DÖF ve Evrak (CDSS Motoru + Nihai Tutanak + Aksiyon Kapatma):**
+   - **Akıllı Karar Motoru (CDSS):** Ters kare kanunu uyum skoru, NCRP 122 Webster çift dozimetre efektif doz hesabı ve otomatik teşhis kategorisi gerçek yanıtlara göre hesaplanır.
+   - **[Önerilen Kararı ve Bulguları Forma Aktar]:** Zümrüt yeşili butona tıklandığında CDSS teşhisi, NDK gerekçesi ve DÖF önerisi aynı ekrandaki nihai tutanak ve RKS değerlendirme alanlarına tek tıkla aktarılır.
+   - **Yasal Karar, DÖF, KVKK Kasası ve [Aksiyonu Kapat]:** Değerlendirme tipi, DÖF takip numarası ve AES-256 şifreli ıslak imzalı evrak eki tamamlanarak aynı pencereden **[Aksiyonu Kapat]** butonuyla dosya kapatılır.
 
-#### F. NDK Birebir Resmi Matbu Soru-Cevap Word ve PDF Çıktıları
+#### F. NDK/TENMAK Birebir Resmi Matbu Soru-Cevap Word ve PDF Çıktıları
 
 1. Araştırma formu tamamlandığında **[Resmi RD.F43 İndir (.docx)]** veya **[PDF Raporu İndir]** butonuna tıklayın.
-2. Belge, NDK'nın resmi 2 sayfalık matbu formatına birebir uyumlu olarak 13 sorunun tamamını soru metinleri, seçenekleri ve çalışan/RKS beyanlarıyla birlikte kurumsal antetle üretir.
-3. Dışa aktarılan dosya adı otomatik olarak `RD-F43_{RaporNo}_{Ad_Soyad}.(docx|pdf)` formatında düzenlenir ve sistem tarafından hemen açılır.
-4. Islak imzalanmış resmi tutanaklar KVKK Fernet şifreli kasasında arşivlenir.
+2. Belge, NDK/TENMAK resmi 2 sayfalık matbu formatına birebir uyumlu olarak Sayfa 1 (Çalışan Beyanı) ve Sayfa 2 (RKS Saha İncelemesi) sorularının tamamını kurumsal antetle üretir.
+3. Islak imzalanmış resmi tutanaklar KVKK şifreli evrak kasasında arşivlenir.
 
 ---
 
 ### 4. Hibrit Arayüz ve Web Portalı Görünümü
 
 - **Masaüstü Uygulaması (Yönetim ve RKS Merkezi):** Toplu dosya içe aktarımı, veri temizleme, anomali eşik ayarları, resmi RD.F43 araştırma formu tanzimi, yasal geri sayım takibi ve DÖF başlatma işlemleri tam yetkiyle masaüstü istemcisi üzerinden yürütülür.
-- **Web Portalı (Dozimetre Dashboard):** Web portalında görev yapan birim sorumluları ve personeller `DozimetreDashboard` bileşeni üzerinden:
+- **Web Portalı (Dozimetre Gösterge Paneli ve Profilim > Doz Araştırma Beyanım):** Web portalında görev yapan birim sorumluları ve personeller:
   - **Dozimetre Radyal Göstergesi (Radial Gauge):** Personelin yıllık 20.0 mSv tavanına olan mesafesini yüzdesel ve renkli halka grafiği üzerinde anlık görüntüler.
   - **Dönemsel Doz Trendi Çizgisi:** Son 12 ayın ölçüm geçmişini çizgi grafik üzerinde göstererek ani sıçramaları görselleştirir.
   - **Doz Aşımı Uyarı Bildirimleri:** Kendi üzerinde inceleme veya araştırma formu açılan çalışanlara bilgilendirici rozet gösterilir.

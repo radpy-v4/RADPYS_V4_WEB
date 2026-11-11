@@ -265,8 +265,8 @@
  Derin doz ($H_p(10)$) 2.0 mSv aylık eşiği aşarsa sarı alarm; kümülatif doz 20 mSv sınırına yaklaştığında kırmızı alarm verilir ve nöbet planı uyarılır.
  </div>
  <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
- <span class="font-bold text-blue-600 dark:text-blue-400 block mb-1">3. 10 İş Gününde RD.F43 Tanzimi</span>
- Eşik aşımında sistem resmi RD.F43 sürecini başlatır. Tıbbi tetkik veya artefakt ayrımı yapılarak net mesleki doz hesaplanır ve 10 iş gününde form kapatılır.
+ <span class="font-bold text-blue-600 dark:text-blue-400 block mb-1">3. 10 İş Gününde 3 Adımlı RD.F43 Tanzimi</span>
+ Eşik aşımında [İnceleme Başlat] ile personele Web Portal beyan görevi düşer; çalışan beyanı geldikten sonra RKS 3 adımlı sihirbazda incelemeyi tamamlayarak 10 iş gününde dosyayı kapatır.
  </div>
  </div>
  </div>
@@ -329,11 +329,19 @@
  <td class="py-3 px-4">Filtre Paneli</td>
  </tr>
  <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
+ <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[İnceleme Başlat]</td>
+ <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
+ <td class="py-3 px-4">Seçili eşik aşımı veya anomali kaydı için araştırma dosyasını başlatır, durumu <em>BEYAN BEKLİYOR</em> aşamasına geçirir ve çalışanın Web Portal ekranına anında beyan doldurma bildirimi gönderir.</td>
+ <td class="py-3 px-4">RKS / Dozimetre Sorumlusu</td>
+ <td class="py-3 px-4">İnceleme bekleyen yeni aşım veya anomali vakalarında</td>
+ <td class="py-3 px-4">Aksiyonlar Sekmesi (Üst Araç Çubuğu)</td>
+ </tr>
+ <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
  <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Doz Araştırma Formu Aç]</td>
  <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
- <td class="py-3 px-4">2.0 mSv eşiğini aşan veya anomali gösteren vaka için IAEA GSG-7, Webster formüllü ve NDK karar matrisli 4 adımlı resmi RD.F43 sihirbazını başlatır. Daha önce başlatılmış açık bir inceleme varsa engellemeden doğrudan kaldığı yerden devam ettirir.</td>
+ <td class="py-3 px-4">Resmi NDK/TENMAK RD.F43 formuyla birebir uyumlu, IAEA GSG-7 ve Webster formüllü 3 adımlı (<em>1. Çalışan Beyanı</em>, <em>2. RKS Saha İncelemesi</em>, <em>3. Karar, DÖF ve Evrak</em>) araştırma sihirbazını açar. Çalışan beyanı gelmeden RKS taslak kaydına veya kapatmaya izin vermez.</td>
  <td class="py-3 px-4">RKS / Kurum Amiri</td>
- <td class="py-3 px-4">Eşik aşımı veya doz anomalisi tespitinde</td>
+ <td class="py-3 px-4">Çalışan beyanı geldikten sonra saha incelemesi ve karar aşamasında</td>
  <td class="py-3 px-4">Aksiyonlar Sekmesi (Üst Araç Çubuğu)</td>
  </tr>
  <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
@@ -371,23 +379,23 @@
  <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
  <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Aksiyonu Kapat]</td>
  <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Buton</td>
- <td class="py-3 px-4">Güvenlik kilitli modern kapatma penceresini açar. RD.F43 tutanağı düzenlenmemiş ve resmi dosya/karar numarası girilmemiş vakaların kapatılmasını engelleyerek denetim açığını önler; gerekçe ve resmi dosya numarasıyla yasal olarak arşive kaldırır.</td>
+ <td class="py-3 px-4">Hem Aksiyonlar araç çubuğunda hem de RD.F43 sihirbazının 3. adımında yer alır. Çalışan beyanı, RKS tüm soru yanıtları ve nihai değerlendirme açıklaması tamamlanmadan dosyanın erken kapatılmasını engeller; tamamlanan dosyayı tek tıkla <em>TAMAMLANDI</em> durumuna geçirip arşivler.</td>
  <td class="py-3 px-4">RKS / Kurum Amiri</td>
  <td class="py-3 px-4">Soruşturması tamamlanan RD.F43 dosyalarının arşivlenmesinde</td>
- <td class="py-3 px-4">Aksiyonlar Sekmesi (Üst Araç Çubuğu)</td>
+ <td class="py-3 px-4">Aksiyonlar Sekmesi &amp; RD.F43 Sihirbazı (3. Adım)</td>
  </tr>
  <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
  <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[Önerilen Kararı ve Bulguları Forma Aktar]</td>
  <td class="py-3 px-4 font-mono text-emerald-600 dark:text-emerald-400">Buton</td>
- <td class="py-3 px-4">RDS kurumsal zümrüt yeşili, 36px ergonomik yüksek kontrastlı buton. CDSS karar motorunun ürettiği bilimsel teşhis özetini, IAEA/NCRP gerekçe metnini ve kurumsal DÖF tavsiyesini tek tıkla 4. Adımdaki resmi karar formuna aktarır.</td>
+ <td class="py-3 px-4">RDS kurumsal zümrüt yeşili, 36px ergonomik yüksek kontrastlı buton. CDSS karar motorunun ürettiği bilimsel teşhis özetini, IAEA/NCRP gerekçe metnini ve DÖF tavsiyesini aynı ekrandaki (3. Adım) nihai tutanak ve RKS değerlendirme alanlarına tek tıkla aktarır.</td>
  <td class="py-3 px-4">RKS</td>
  <td class="py-3 px-4">CDSS teşhis ve analiz sonuçları resmi tutanağa bağlanırken</td>
- <td class="py-3 px-4">RD.F43 Sihirbazı (3. Adım CDSS Paneli)</td>
+ <td class="py-3 px-4">RD.F43 Sihirbazı (3. Adım: Karar, DÖF ve Evrak)</td>
  </tr>
  <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition">
  <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">[İleri] / [Geri]</td>
  <td class="py-3 px-4 font-mono text-cyan-600 dark:text-cyan-400">Butonlar</td>
- <td class="py-3 px-4">RDS kurumsal stilleriyle (Primary Blue ve Secondary) 4 adımlı RD.F43 sihirbazında adımlar arasında kontrollü ve ergonomik geçiş sağlar.</td>
+ <td class="py-3 px-4">RDS kurumsal stilleriyle 3 adımlı RD.F43 sihirbazında adımlar arasında kontrollü ve ergonomik geçiş sağlar; eksik yanıt varsa ilgili adıma otomatik odaklanır.</td>
  <td class="py-3 px-4">RKS / Kurum Amiri</td>
  <td class="py-3 px-4">RD.F43 form adımları doldurulurken</td>
  <td class="py-3 px-4">RD.F43 Form Alt Gezinti Paneli</td>
@@ -595,9 +603,10 @@
  Bölünmüş ve daraltılmış eski tablolar yerine, tüm yasal eşik aşımları ve istatistiksel doz anomalileri tek bir ferah ana tabloda birleştirilmiştir:
  </p>
  <ul class="space-y-1.5 pl-2">
- <li>&bull; <strong>8 Sütunlu Bütünleşik Tablo Düzeni:</strong> <code>[Personel Adı Soyadı | Birim | Ölçüm Dönemi | Hp(10) (mSv) | Risk Seviyesi | Aşım Gerekçesi | İnceleme Durumu | RD.F43 Raporu]</code>. Her vakanın araştırma raporu durumu ve inceleme aşaması doğrudan tablo satırında canlı izlenir.</li>
- <li>&bull; <strong>Canlı Durum Filtreleme:</strong> Tablo üstündeki filtreleme menüsüyle <em>Tümü</em>, <em>Açık (İnceleme Bekleyenler / Süreci Devam Edenler)</em> ve <em>Kapalı (Arşiv)</em> kayıtlar tek tıkla süzülür.</li>
- <li>&bull; <strong>Güvenlik Kilitli Aksiyon Kapatma:</strong> Bir aksiyonun kapatılabilmesi için resmi RD.F43 raporunun tanzim edilmiş olması ve kurumsal dosya / karar numarasının girilmiş olması zorunludur. Raporu bulunmayan kayıtlar için sistem denetim uyarısı vererek yetkisiz veya erken kapatmayı engeller.</li>
+ <li>&bull; <strong>8 Sütunlu Bütünleşik Tablo Düzeni:</strong> <code>[Personel Adı Soyadı | Birim | Ölçüm Dönemi | Hp(10) (mSv) | Risk Seviyesi | Aşım Gerekçesi | İnceleme Durumu | RD.F43 Raporu]</code>.</li>
+ <li>&bull; <strong>5 Aşamalı Canlı <code>RD.F43 Raporu</code> Süreç Rozetleri:</strong> Dosyanın hangi aşamada olduğu tek bakışta izlenir: <code>HAZIRLANMADI</code> (inceleme başlatılmadı) &rarr; <code>BEYAN BEKLİYOR</code> (personele bildirim gitti, beyan bekleniyor) &rarr; <code>BEYAN GELDİ</code> (personel Web Portaldan yanıtladı) &rarr; <code>RKS İNCELEMEDE</code> (RKS saha incelemesi kaydedildi) &rarr; <code>TAMAMLANDI</code> (resmi tutanak ve aksiyon kapatıldı).</li>
+ <li>&bull; <strong>Canlı Durum Filtreleme:</strong> Tablo üstündeki filtreleme menüsüyle <em>Tüm Kayıtlar</em>, <em>İnceleme Bekleyenler</em>, <em>Açık Aksiyonlar</em> ve <em>Kapatılanlar</em> tek tıkla süzülür.</li>
+ <li>&bull; <strong>Çalışan Beyanı ve Tam Yanıt Kilidi:</strong> Bir aksiyonun taslak kaydedilebilmesi veya kapatılabilmesi için önce çalışanın beyanının alınmış olması, tüm RKS sorularının eksiksiz yanıtlanması ve değerlendirme açıklamasının girilmiş olması zorunludur.</li>
  <li>&bull; <strong>Modern Kurumsal Diyaloglar:</strong> Basit girişler yerine; <em>Takip Ölçümü Planlama</em> (tür, süre, klinik gerekçe), <em>Birim İncelemesi</em> (saha çalışma koşulları, ortam notu) ve <em>Aksiyonu Kapat</em> (dosya no, onay notu) işlemleri için özel tasarlanmış pencereler açılır.</li>
  </ul>
  </div>
@@ -625,67 +634,66 @@
  <section id="rdf43-sureci" class="space-y-6">
  <div class="space-y-2">
  <div class="flex items-center gap-2">
- <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">RADPYS V4.0.3.30</span>
- <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400">IAEA GSG-7 & NCRP 122 Uyumlu</span>
+ <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">RADPYS V4.0.5.20</span>
+ <span class="text-xs font-semibold text-emerald-600 dark:text-emerald-400">Resmi NDK/TENMAK RD.F43 &amp; IAEA GSG-7 / NCRP 122 Uyumlu</span>
  </div>
  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span>5. Rol Tabanlı RD.F43 Doz Araştırma Sihirbazı ve Akıllı Karar Motoru (CDSS)</span>
+ <span>5. Rol Tabanlı 3 Adımlı RD.F43 Doz Araştırma Sihirbazı ve Akıllı Karar Motoru (CDSS)</span>
  </h2>
  <p class="text-sm text-slate-600 dark:text-slate-300">
- Aylık 2.0 mSv eşiğini aşan veya kişisel ortalamasından belirgin sapma gösteren ölçümlerde, NDK mevzuatı gereği <strong>en geç 10 iş günü içinde</strong> düzenlenmesi zorunlu resmi Doz Araştırma Formu (RD.F43). Sistem, çalışan ifadesi ile RKS teknik incelemesini iki ayrı sorumluluk alanına ayırarak akıllı bir Klinik Karar Destek Sistemi (CDSS) koşturur:
+ Aylık 2.0 mSv eşiğini aşan veya kişisel ortalamasından belirgin sapma gösteren ölçümlerde, NDK mevzuatı gereği <strong>en geç 10 iş günü içinde</strong> düzenlenmesi zorunlu resmi Doz Araştırma Formu (RD.F43). Sistem, çalışan beyanı ile RKS saha incelemesini ayırır ve 3. adımda CDSS karar motoru, DÖF ve resmi evrak kapatma işlemlerini tek ekranda birleştirir:
  </p>
  </div>
 
- <!-- 4 Step Wizard Showcase -->
+ <!-- 3 Step Wizard Showcase -->
  <div class="space-y-6">
  
  <!-- Steps 1 & 2 -->
  <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
  <div class="flex items-center justify-between">
- <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-blue-100 text-blue-800 dark:bg-blue-900/60 dark:text-blue-300">1. ADIM (BÖLÜM 2)</span>
+ <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-blue-100 text-blue-800 dark:bg-blue-900/60 dark:text-blue-300">1. ADIM (SAYFA 1)</span>
  <span class="text-xs text-slate-400 font-medium">Sorumlu: Çalışan / Web Portal</span>
  </div>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">Çalışan Beyanı ve Kullanım Koşulları</h3>
+ <h3 class="text-base font-bold text-slate-900 dark:text-white">1. Çalışan Beyanı (Sayfa 1 — Soru 1–9)</h3>
  <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
- Çalışanın şahsi beyanını resmi tutanağa bağlar. Bu bölüm, masaüstünde RKS tarafından doldurulabileceği gibi, <strong>Web Portal Bildirim ve Görev Entegrasyonu</strong> sayesinde doğrudan personelin kendi web ekranından da cevaplanabilir. Personel beyanını tamamladığı anda RKS ve Medikal Fizik Uzmanının bildirim çekmecesine anında uyarı düşer; bildirime tıklanarak ek menü aramadan doğrudan RD-F43 formu açılabilir:
+ Resmi NDK/TENMAK RD.F43 Sayfa 1 sorularını birebir içerir. İnceleme başlatıldığında personelin kendi <strong>Web Portal &gt; Profilim</strong> ekranına bildirim düşer; çalışan beyanını gönderdiğinde rozet <code>BEYAN GELDİ</code> olur ve RKS değerlendirme kilidi açılır:
  </p>
  <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
- <li>&bull; <strong>Çalışma Rejimi:</strong> Aylık fiili çalışma süresi (gün), günlük çalışma saati, radyasyon kaynağı türü ve dozimetre takış konumu (Yaka, Kemer vb.).</li>
- <li>&bull; <strong>Olay ve Artefakt Beyanı:</strong> Dozimetrenin başkası tarafından kullanılması, depolama alanının şua odasında olması veya dozimetrenin alanda unutulması (unutulma süresi ve kaynağa mesafe).</li>
- <li>&bull; <strong>Şahsi Tıbbi Tetkik:</strong> Personelin bizzat hasta olarak radyolojik tetkik (Nükleer Tıp, Sintigrafi, BT vb.) yaptırıp yaptırmadığı.</li>
- <li>&bull; <strong>Kullanılan Koruyucu Donanımlar (KKE):</strong> Kurşun önlük, dozimetrenin önlük içinde mi dışında mı takıldığı, tiroid koruyucu, kurşun paravan, kurşun camlı gözlük ve eldiven kullanımı.</li>
+ <li>&bull; <strong>Çalışma Rejimi ve Taşıma Konumu:</strong> Günlük/aylık çalışma süresi, radyasyon kaynağı türü ve iki kademeli dozimetre taşıma konumu (kurşun önlük üstü/altı, yaka, göğüs, kemer, bilek, gözlük vb.).</li>
+ <li>&bull; <strong>Olay ve Artefakt Soruları:</strong> Dozimetrenin başkası tarafından kullanılması, saklama yerinin radyasyon alanında olması, alanda unutulması (süre ve mesafe) ve çalışma süresince sürekli yanında bulundurulması.</li>
+ <li>&bull; <strong>Şahsi Tıbbi Tetkik ve Koruyucu Ekipman:</strong> Personelin bizzat hasta olarak radyolojik/nükleer tıp tetkiki yaptırıp yaptırmadığı, kullanılan koruyucu donanımlar ve çalışan açıklaması.</li>
  </ul>
  </div>
 
  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
  <div class="flex items-center justify-between">
- <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300">2. ADIM (BÖLÜM 3)</span>
+ <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300">2. ADIM (SAYFA 2)</span>
  <span class="text-xs text-slate-400 font-medium">Sorumlu: RKS / Medikal Fizikçi</span>
  </div>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">RKS Saha İncelemesi ve Ortam Doğrulaması</h3>
+ <h3 class="text-base font-bold text-slate-900 dark:text-white">2. RKS Saha İncelemesi (Sayfa 2 — Soru 1–7)</h3>
  <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
- Çalışanın beyanından bağımsız olarak Radyasyon Korunma Sorumlusu tarafından sahada yürütülen teknik denetim adımıdır:
+ Çalışanın beyanı ulaştıktan sonra Radyasyondan Korunma Sorumlusu tarafından sahada yürütülen teknik denetim adımıdır; hiçbir soru varsayılan "Hayır" kabul edilmez, tüm sorular açıkça yanıtlanır:
  </p>
  <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
- <li>&bull; <strong>Tesis & Cihaz Kontrolü:</strong> Tesiste veya cihazda olağandışı bir durum, arıza veya jeneratör modifikasyonu olup olmadığı.</li>
- <li>&bull; <strong>Bulaşma & Radyoizotop:</strong> Radyoaktif kirlilik (kontaminasyon) şüphesi ve varsa kullanılan radyoizotop türü (Tc-99m, I-131, F-18 vb.).</li>
- <li>&bull; <strong>Çevresel Doğrulama:</strong> Ortam radyasyon ölçümlerinde artış olup olmadığı ve aynı alanda çalışan diğer mesai arkadaşlarında paralel bir doz yükselmesi bulunup bulunmadığı.</li>
- <li>&bull; <strong>Eğitim Durumu:</strong> Personelin radyasyon güvenliği eğitim durumu ve periyodik hizmet içi eğitim kayıtları.</li>
+ <li>&bull; <strong>Tesis, Kaynak ve Olağandışı Durum:</strong> Tesiste, kaynakta veya çalışma koşullarında değişiklik, cihaz kusuru ve periyot içinde olağandışı bir durum olup olmadığı.</li>
+ <li>&bull; <strong>Bulaşma &amp; Radyoizotop:</strong> Radyoaktif kirlilik (kontaminasyon) tespiti ve kullanılan radyoizotop açıklaması.</li>
+ <li>&bull; <strong>Ortam Dozu &amp; Personel Doğrulaması:</strong> Ortam radyasyon ölçümlerinde artış, diğer çalışanlarda paralel doz artışı, kullanıcının radyasyon güvenliği bilgisi ve hizmet içi eğitim durumu.</li>
+ <li>&bull; <strong>RKS Genel Kanaati:</strong> RKS değerlendirme tipi ve teknik inceleme açıklaması.</li>
  </ul>
  </div>
  </div>
 
- <!-- Step 3 & 4 (RKS Dose Engine & Decision) -->
+ <!-- Step 3 (Unified CDSS + Legal Decision + Close) -->
  <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
  <div class="flex items-center justify-between">
- <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-purple-100 text-purple-800 dark:bg-purple-900/60 dark:text-purple-300">3. ADIM (CDSS MOTORU)</span>
+ <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-purple-100 text-purple-800 dark:bg-purple-900/60 dark:text-purple-300">3. ADIM — BÖLÜM A (CDSS MOTORU)</span>
  <span class="text-xs text-purple-600 dark:text-purple-400 font-bold">Akıllı Karar Matrisi</span>
  </div>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">Akıllı Klinik Karar ve Teşhis Motoru</h3>
+ <h3 class="text-base font-bold text-slate-900 dark:text-white">3. Karar, DÖF ve Evrak — Akıllı Teşhis Motoru</h3>
  <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
- Form yanıtlarına göre kural motoru arka planda anlık olarak çalışır ve bilimsel teşhis koyar:
+ 1. ve 2. adımdaki gerçek yanıtlara göre kural motoru bilimsel teşhis üretir (boş formlarda yapay ön teşhis üretilmez):
  </p>
  <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2 pl-2">
  <li>&bull; <strong>Akla Yatkınlık (Uyum) Skoru:</strong> Alanda unutulma vakalarında süre ve mesafeden ters kare kanunuyla teorik maruziyet hesaplanır ve laboratuvardan gelen ölçümle uyum skoru (%0-%100) üretilir.</li>
@@ -699,25 +707,24 @@
  <span class="px-2 py-0.5 rounded bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300 border border-rose-300">[KAT-D3: Yasal Aşım]</span>
  </div>
  </li>
- <li>&bull; <strong>[Önerilen Kararı ve Bulguları Forma Aktar] (RDS Zümrüt Yeşili Buton):</strong> Formun içinde kaybolmayı önlemek adına 36px yükseklikte, canlı zümrüt yeşili, beyaz kalın tipografi ve evrak ikonuyla öne çıkarılmıştır. Butona tıklandığında CDSS karar motorunun ürettiği bilimsel teşhis özeti, IAEA/NDK resmi gerekçe metni ve DÖF kararı 4. adımdaki resmi tutanağa tek tıkla aktarılır.</li>
- <li>&bull; <strong>Ergonomik Gezinti [İleri] / [Geri]:</strong> Form adımları arasında geçiş sağlayan kurumsal navigasyon butonları yüksek kontrastla konumlandırılmış olup kullanıcının form içinde adımları rahatça denetlemesini sağlar.</li>
+ <li>&bull; <strong>[Önerilen Kararı ve Bulguları Forma Aktar]:</strong> Zümrüt yeşili butona tıklandığında CDSS teşhis özeti, IAEA/NDK gerekçe metni ve DÖF önerisi hemen altındaki nihai tutanak ve RKS değerlendirme alanlarına tek tıkla işlenir.</li>
  </ul>
  </div>
 
  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
  <div class="flex items-center justify-between">
- <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">4. ADIM (BÖLÜM 4)</span>
- <span class="text-xs text-slate-400 font-medium">Yasal Karar & Çıktılar</span>
+ <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-300">3. ADIM — BÖLÜM B (NİHAİ TUTANAK)</span>
+ <span class="text-xs text-slate-400 font-medium">Yasal Karar, Evrak &amp; Kapatma</span>
  </div>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">Yasal Değerlendirme, DÖF ve KVKK Kasası</h3>
+ <h3 class="text-base font-bold text-slate-900 dark:text-white">Yasal Değerlendirme, DÖF, KVKK Kasası ve Aksiyonu Kapatma</h3>
  <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
- İncelemenin resmi kurum kararına bağlanması ve kanıt belgelerinin saklanması adımıdır:
+ Aynı 3. adım ekranının alt bölümünde resmi kurum kararı tamamlanarak dosya tek tıkla kapatılır:
  </p>
  <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
- <li>&bull; <strong>Yasal Değerlendirme Tipi:</strong> Teknik, Organizasyonel, Koruyucu Donanım Yetersizliği veya Ölçüm Tekrarı.</li>
+ <li>&bull; <strong>Yasal Değerlendirme Tipi ve Nihai Not:</strong> Teknik, Organizasyonel, Koruyucu Donanım Yetersizliği veya Ölçüm Tekrarı seçilerek nihai tutanak notu kaydedilir.</li>
  <li>&bull; <strong>DÖF (Düzeltici Önleyici Faaliyet):</strong> Gerekli görülen vakalarda kurumsal DÖF süreci başlatılarak DÖF takip numarası tescil edilir.</li>
- <li>&bull; <strong>KVKK Evrak Kasası:</strong> Islak imzalı resmi form taramaları veya sağlık raporları sisteme AES-256 şifreli olarak yüklenir ve güvenle saklanır.</li>
- <li>&bull; <strong>Resmi Dışa Aktarımlar:</strong> Kurumsal <em>"Doğru İşe Tek Format"</em> standardı uyarınca <strong>[Resmi RD.F43 İndir (PDF)]</strong> butonuyla NDK ve Mevzuat standartlarında kilitli resmi tutanak dökümü alınır.</li>
+ <li>&bull; <strong>KVKK Evrak Kasası:</strong> Islak imzalı resmi form taramaları veya sağlık raporları sisteme AES-256 şifreli olarak yüklenir.</li>
+ <li>&bull; <strong>Tek Tıkla [Aksiyonu Kapat] ve [PDF Raporu İndir]:</strong> Resmi RD.F43 PDF dökümü indirilir ve <strong>[Aksiyonu Kapat]</strong> butonuyla pencereden ayrılmadan dosya <code>TAMAMLANDI</code> durumuna alınır.</li>
  </ul>
  </div>
  </div>

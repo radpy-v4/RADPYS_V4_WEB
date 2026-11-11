@@ -3,6 +3,41 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.5.20] - 2026-11-11
+
+### ☢️ Resmi NDK/TENMAK RD.F43 Doz Araştırma Formu Birebir Hizalaması, 3 Adımlı Sihirbaz İş Akışı, 5 Aşamalı Süreç Rozetleri ve Veritabanı Bağlantı Kurtarma Diyaloğu
+
+Bu sürüm; resmi **NDK/TENMAK RD.F43 Doz Araştırma Formu** Sayfa 1 (Çalışan Beyanı) ve Sayfa 2 (RKS Saha İncelemesi) soru setlerinin şema, masaüstü, Web Portal ve PDF/Word çıktılarında birebir hizalanmasını, RD.F43 sihirbazının **3 adımlı** (`1. Çalışan Beyanı`, `2. RKS Saha İncelemesi`, `3. Karar, DÖF ve Evrak`) bütünleşik akışa sadeleştirilmesini, çalışan beyanı gelmeden RKS taslak/kapatma kilidini, aksiyon kokpitinde **5 aşamalı `RD.F43 Raporu` süreç rozetlerini** (`HAZIRLANMADI` ➔ `BEYAN BEKLİYOR` ➔ `BEYAN GELDİ` ➔ `RKS İNCELEMEDE` ➔ `TAMAMLANDI`) ve açılışta PostgreSQL bağlantı tanı/kurtarma diyaloğunu içerir.
+
+#### ✨ Eklendi (Added)
+
+- **1. RD.F43 Sayfa 1 & Sayfa 2 Tam Şema ve Migration Hizalaması (`V20261111_1_align_kullanim_detay_rd_f43.py`, `V20261111_2_align_rks_page2_rd_f43.py`, `app/db/schema.sql`, `app/services/personel/dozimetre/rd_f43_form.py`):**
+  - `kullanim_detay` (Sayfa 1 — Çalışan Beyanı Soru 1–9, koşullu açıklama alanları ve 2 kademeli dozimetre taşıma konumu) ile `doz_arastirma_formlari` (Sayfa 2 — RKS Saha İncelemesi Soru 1–7, koşullu açıklamalar, `rks_yorum_tipi`, `rks_degerlendirme_notu`) kolonları resmi NDK/TENMAK RD.F43 formuyla birebir eşitlendi.
+- **2. Dozimetre Aksiyon Kokpitinde `[İnceleme Başlat]` ve 5 Aşamalı `RD.F43 Raporu` Rozet Sistemi (`DozAksiyonService.list_arastirma_form_summaries`, `DozAnalizService.get_personel_arastirma_and_actions`, `DozimetreAksiyonlarTab`, `RADPYSStatusDelegate`):**
+  - `list_arastirma_form_summaries` sorgusuna `LEFT JOIN kullanim_detay` eklenerek çalışan beyanı (`has_beyan`) ve RKS değerlendirmesi (`has_rks`) varlığı tek sorguda hesaplandı.
+  - Aksiyon kokpitindeki tek tip yeşil `"MEVCUT"` rozeti kaldırılarak 5 aşamalı süreç rozetleri tanımlandı: `HAZIRLANMADI` (`WARNING`/`alert-circle.svg`) ➔ `BEYAN BEKLİYOR` (`WARNING`/`clock.svg`) ➔ `BEYAN GELDİ` (`INFO`/`file-check.svg`) ➔ `RKS İNCELEMEDE` (`PURPLE`/`notes.svg`) ➔ `TAMAMLANDI` (`SUCCESS`/`circle-check.svg`).
+  - `[İnceleme Başlat]` (`btnIncelemeBaslat`) aksiyonu formu açmadan doğrudan inceleme kaydını başlatıp ilgili personele Web Portal beyan görevi gönderecek şekilde yapılandırıldı.
+- **3. Veritabanı Bağlantı Tanılama/Kurtarma Diyaloğu ve Güncelleme Penceresi (`DbConnectionErrorDialog`, `db_connection_error_dialog.ui`, `UpdateDialog`, `main.pyw`):**
+  - Uygulama açılışında PostgreSQL sunucusuna erişilemediğinde bağlantı parametrelerini tanılama ve yeniden deneme imkanı sunan kurumsal `DbConnectionErrorDialog` eklendi; `UpdateDialog` sürüm notu gösterimi iyileştirildi.
+- **4. Önce-İndeks Okuma Protokolü ve Güncel Kod Sembol Haritaları (`AGENTS.md` Kural 23 & Pitfall 20, `scripts/generate_code_index.py`, `docs/architecture/code_symbols_index.md`):**
+  - Kaynak kod okumadan önce `radpys_21_modul_dosya_haritasi.md` ve `docs/architecture/symbols/01_*.md`–`07_*.md` sembol haritalarından hedef satır aralığını belirlemeyi zorunlu kılan mimari okuma standardı eklendi ve tüm sembol indeksleri yeniden üretildi.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed)
+
+- **1. 3 Adımlı RD.F43 Sihirbaz İş Akışı (`doz_arastirma_form_dialog.ui`, `DozArastirmaFormDialogController`):**
+  - Eski 4 adımlı yapı sadeleştirilerek 3. ve 4. adımlar **`3. Karar, DÖF ve Evrak`** adımında birleştirildi; CDSS karar motoru çıktısı, nihai tutanak notu, DÖF bağlantısı, KVKK evrak kasası ve `[Aksiyonu Kapat]` butonu tek ekranda toplandı.
+- **2. Çalışan Beyanı Kilidi ve Eksiksiz Soru Doğrulaması (`DozArastirmaFormDialogController._validate_before_save`, `DozArastirmaBeyanView.tsx`, `BeyanFormSections.tsx`):**
+  - Çalışan Web Portal üzerinden Sayfa 1 beyanını iletmeden RKS'nin taslak kaydetmesi veya aksiyonu kapatması engellendi; RKS incelemesinde tüm evet/hayır sorularının ve koşullu açıklamaların eksiksiz yanıtlanması zorunlu kılındı.
+
+#### 🐛 Düzeltildi (Fixed)
+
+- **1. Yanıtlanmamış RKS Sorularında Sahte `"Hayır"` Kirliliği ve Boş Formda Sentetik `[KAT-A1]` Teşhisi (`DozArastirmaFormDialogController`, `DozimetreHandler`, `DozArastirmaRaporDialogController`):**
+  - Veritabanı varsayılan `0` değerlerinin henüz yanıtlanmamış RKS sorularını otomatik `"Hayır"` olarak işaretlemesi ve boş başlangıç formlarında `DozArastirmaEngine.degerlendir` üzerinden sentetik teşhis üretilmesi engellendi; `DozArastirmaRaporDialogController` içindeki farazi metin üretimleri temizlendi.
+- **2. RD.F43 3. Adımda ve `AksiyonKapatDialog` Üzerinde `[Aksiyonu Kapat]` Tıklama/Doğrulama Kopukluğu (`DozArastirmaFormDialogController._on_takip_notu_kaydet`, `AksiyonKapatDialog._on_form_ac_clicked`):**
+  - `[Önerilen Kararı ve Bulguları Forma Aktar]` tıklandığında hem `txtTakipNotu` hem `txtYorumAciklama` senkronize edildi; kapatma doğrulamasında iki alandan birinin (`>= 5` karakter) dolu olması yeterli kılındı, doğrulama hatasında ilgili adıma otomatik odaklanma + toast/ipucu mesajı eklendi ve kapatma başarılı olduğunda sihirbaz ile `AksiyonKapatDialog` pencerelerinin otomatik `accept()` ile kapanması sağlandı.
+- **3. Web Portal RD.F43 Beyan Sahiplik, Tekil Ölçüm Eşleşmesi ve XSS Kaçışı (`arastirma.routes.ts`, `arastirma.repo.ts`, `printRdF43Beyan.ts`):**
+  - Web Portal beyan rotalarında personel sahiplik kontrolü sıkılaştırıldı, `LEFT JOIN LATERAL` ile dönem bazlı tekil ölçüm kaydı eşleştirildi ve yazdırma çıktısında `escHtml` koruması uygulandı.
+
 ## [4.0.5.19] - 2026-11-10
 
 ### 🏢 Merkezi Birim Sorumlulukları ve Saha Görev Tahsisi (Delegasyon) Kokpiti, Kişiye Özel Yetki Matrisi Ergonomisi ve Geriye Dönük Parola Doğrulama Güvencesi

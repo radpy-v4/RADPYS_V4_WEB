@@ -6,6 +6,34 @@ Bu kılavuz; **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## ☢️ RADPYS V4.0.5.20: Resmi NDK/TENMAK RD.F43 Doz Araştırma Formu Birebir Uyumu, 3 Adımlı Hızlı Sihirbaz, 5 Aşamalı Süreç Rozetleri ve Bağlantı Kurtarma Asistanı
+
+Bu sürümle birlikte **Kişisel Dozimetre Takibi ve Doz Araştırma (RD.F43)** süreci resmi NDK/TENMAK matbu formuyla masaüstü, Web Portal ve resmi çıktılarda birebir eşitlenmiş; araştırma sihirbazı **3 adıma** indirilerek hızlandırılmış, aksiyon kokpitine **5 aşamalı canlı süreç rozetleri** eklenmiş ve veritabanı bağlantı kesintileri için akıllı kurtarma ekranı devreye alınmıştır:
+
+### 🌟 Öne Çıkan Yenilikler (Hızlı Bakış)
+
+* **Resmi NDK/TENMAK RD.F43 Formuyla %100 Birebir Uyum ve 3 Adımlı Sihirbaz:** Sayfa 1 (Çalışan Beyanı) ve Sayfa 2 (RKS Saha İncelemesi) soruları resmi formla birebir hizalandı; karar motoru, nihai tutanak, DÖF ve evrak yükleme adımları tek bir **3. Karar, DÖF ve Evrak** ekranında birleştirildi.
+* **5 Aşamalı Canlı `RD.F43 Raporu` Süreç Rozetleri:** Aksiyon kokpitindeki tek tip "Mevcut" etiketi kaldırılarak dosyanın gerçek durumunu gösteren **`HAZIRLANMADI` ➔ `BEYAN BEKLİYOR` ➔ `BEYAN GELDİ` ➔ `RKS İNCELEMEDE` ➔ `TAMAMLANDI`** rozetleri getirildi.
+* **Çalışan Beyanı Kilidi ve Eksiksiz Soru Güvencesi:** İnceleme başlatıldığında personele Web Portal üzerinden anında bildirim gider; çalışan kendi beyanını iletmeden ve RKS tüm saha inceleme sorularını eksiksiz yanıtlamadan taslak kaydı veya dosya kapatma işlemine izin verilmez.
+
+### 📋 Resmi NDK/TENMAK RD.F43 Birebir Uyumu ve 3 Adımlı Sihirbaz
+
+* **Sayfa 1 ve Sayfa 2 Tam Soru Eşleşmesi:** Çalışanın Web Portaldan doldurduğu **1. Çalışan Beyanı (Sayfa 1)** bölümündeki 9 temel soru, koşullu açıklama alanları ve iki kademeli dozimetre taşıma konumu ile RKS'nin doldurduğu **2. RKS Saha İncelemesi (Sayfa 2)** bölümündeki 7 teknik denetim sorusu ve genel kanaat alanları resmi NDK/TENMAK formuyla birebir uyumlu hale getirildi.
+* **Tek Ekranda Karar, DÖF ve Aksiyon Kapatma (3. Adım):** Eski 4 adımlı yapı sadeleştirilerek **3. Karar, DÖF ve Evrak** adımında birleştirildi. **[Önerilen Kararı ve Bulguları Forma Aktar]** butonuna basıldığında bilimsel teşhis ve gerekçe metni resmi tutanak alanlarına otomatik işlenir ve **[Aksiyonu Kapat]** butonuyla pencereden çıkmadan dosya tek tıkla kapatılıp arşivlenir.
+* **Çalışan Beyanı Önceliği ve Gerçek Yanıt Doğrulaması:** Hakkında inceleme başlatılan personel Web Portal üzerinden beyanını göndermeden RKS tarafında erken kayıt veya kapatma yapılması engellenir. Ayrıca henüz işaretlenmemiş hiçbir soru sistem tarafından varsayılan olarak "Hayır" kabul edilmez; denetim güvenliği için tüm soruların açıkça yanıtlanması zorunlu tutulur.
+
+### 🎯 Dozimetre Aksiyon Kokpitinde 5 Aşamalı Canlı Süreç Takibi
+
+* **Tek Tıkla `[İnceleme Başlat]` ve Otomatik Görev Bildirimi:** Aksiyon kokpitinde eşik aşımı veya anomali satırı seçilip **[İnceleme Başlat]** butonuna basıldığında araştırma kaydı anında açılır ve ilgili çalışanın Web Portal ekranına beyan doldurma görevi düşer.
+* **Anlık Aşama Rozetleri:** RKS ve kurum yöneticileri, **RD.F43 Raporu** sütunundaki renkli süreç rozetleri sayesinde hangi dosyanın henüz başlatılmadığını (**`HAZIRLANMADI`**), hangisinde personelin yanıtının beklendiğini (**`BEYAN BEKLİYOR`**), hangi personelin beyanını gönderdiğini (**`BEYAN GELDİ`**), hangisinin RKS değerlendirmesinde olduğunu (**`RKS İNCELEMEDE`**) ve hangisinin resmi olarak kapandığını (**`TAMAMLANDI`**) tabloyu açmadan tek bakışta izler.
+
+### 🔌 Bağlantı Kurtarma Asistanı ve Yenilenen Güncelleme Penceresi
+
+* **Veritabanı Bağlantı Tanılama Ekranı:** Uygulama açılışında hastane ağı veya sunucu kaynaklı bir veritabanı erişim sorunu yaşandığında teknik hata mesajı yerine bağlantı durumunu anlaşılır şekilde açıklayan ve yeniden bağlanma imkanı sunan kurumsal bağlantı kurtarma penceresi açılır.
+* **Zenginleştirilmiş Sürüm Bilgilendirme Penceresi:** Yeni sürüm bildirim penceresi okunabilirliği artırılmış modern kart düzeniyle yenilendi.
+
+---
+
 ## 🏢 RADPYS V4.0.5.19: Merkezi Birim Sorumlulukları ve Saha Görev Tahsisi (Delegasyon) Kokpiti, Kişiye Özel Yetki Matrisi Ergonomisi ve Güvenli Parola Doğrulama
 
 Bu sürümle birlikte **Kullanıcı ve Rol Yönetimi** modülüne hastane organizasyon yapısına tam uyumlu **Birim Sorumlulukları ve Saha Görev Tahsisi** merkezi eklenmiş, **Kişiye Özel Yetkiler** ile **Rol Yetki Matrisi** ekranlarının görsel ergonomisi yenilenmiş ve parola güncelleme altyapısı güçlendirilmiştir:
