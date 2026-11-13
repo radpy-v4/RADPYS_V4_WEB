@@ -3,7 +3,43 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
-## [4.0.5.22] - 2026-11-13
+## [4.0.5.23] - 2026-11-13
+
+### 📚 Canlı Web Yardım Portalı ve 366 Sayfalık Çevrimdışı Kurumsal PDF Kılavuzu Entegrasyonu, Akıllı Hibrit Yardım Gezintisi (Web/PDF/MDI), Güncelleme Diyaloğu Çoklu Sürüm Başlık Özeti ve Otomatik 5N1K Dokümantasyon Senkronizasyonu
+
+Bu sürüm; masaüstü uygulamasındaki yardım ve kullanım kılavuzu mimarisinin hantal statik HTML dosyalarından arındırılarak canlı web yardım portalı (`https://radpys.com.tr/help/`) ve çevrimdışı 366 sayfalık kurumsal A4 PDF kılavuzuna (`RADPYS_V4_Kullanim_Kilavuzu.pdf`) geçirilmesini, internet bağlantısına göre otomatik karar veren akıllı hibrit yardım yönlendirmesini (çevrimiçi: Web portalı, çevrimdışı: yerel PDF, fallback: dahili MDI penceresi ve sağ tık bağlam menüsü), `ui/widgets/update_dialog.py` bileşeninde kullanıcının mevcut sürümü ile güncel sürüm arasındaki tüm ara sürümlerin başlıklarını (`rel.headline`) sade ve şık kartlarla listeleyen çoklu sürüm özet motorunu, tek dokümantasyon kaynağı (SSOT) olarak `docs/help_src/*.md` Markdown şablonlarının konumlandırılmasını, `scripts/update_help_5n1k.py` otomasyon aracı ile 5N1K tablolarının tek komutla güncellenebilmesini ve `scripts/sync_release_and_web.py` üzerinden web yardım portalının `node scripts/build-help.js` ile otomatik derlenmesini içerir.
+
+#### ✨ Eklendi (Added)
+
+- **1. 366 Sayfalık Resimli Kurumsal Kullanım Kılavuzu (PDF) ve Derleme Motoru (`scripts/build_manual_pdf.py`, `docs/RADPYS_V4_Kullanim_Kilavuzu.pdf`):**
+  - PySide6 `QTextDocument` ve `QPdfWriter` motorları kullanılarak 23 modülün künyesi, 5N1K tabloları, 20 saniyelik hızlı reçeteleri, saha uyarı kutuları ve 87 adet yüksek çözünürlüklü gerçek arayüz ekran görüntüsü tek bir kurumsal A4 el kitabında toplandı.
+  - Kapak sayfası, otomatik İçindekiler Tablosu (TOC) ve baskı standartlarına tam uyumlu 20.75 MB boyutunda 366 sayfalık resmi PDF kılavuz üretildi.
+  - `radpys.spec` dosyasına `docs/RADPYS_V4_Kullanim_Kilavuzu.pdf` eklenerek kurulum paketine otomatik dahil edilmesi sağlandı.
+- **2. Akıllı Hibrit Yardım Gezintisi ve Bağlam Menüsü (`ui/controllers/app_controller.py`):**
+  - `open_yardim_page(force_offline=False)` metodu yeniden tasarlandı:
+    - 0.5 saniyelik hızlı soket denetimiyle dış internet erişimi varsa doğrudan güncel canlı Web Yardım Portalını (`https://radpys.com.tr/help/index.html`) açar.
+    - İnternetsiz veya izole hastane ağlarında otomatik olarak `docs/RADPYS_V4_Kullanim_Kilavuzu.pdf` dosyasını sistemin varsayılan PDF okuyucusunda açar.
+    - PDF dosyası bulunamazsa yerleşik MDI `YardimController` penceresine düşer.
+  - Üst araç çubuğundaki `helpButton` butonuna sağ tık bağlam menüsü (`QMenu`) entegre edildi:
+    - 🌐 *Web Yardım Portalı (Canlı)*
+    - 📄 *Çevrimdışı PDF Kılavuzu (A4)*
+    - 📖 *Pencere İçi Kılavuz (MDI)*
+- **3. Otomatik 5N1K Kural Güncelleme Betiği (`scripts/update_help_5n1k.py`):**
+  - İlgili modülün `docs/help_src/[MODUL].md` şablonunu otomatik tespit edip `| NE? | NEDEN? | NASIL? | NE ZAMAN? | KİM? |` tablosuna sıfır kod sızıntısıyla yeni kural satırı ekleyen / güncelleyen CLI aracı geliştirildi.
+- **4. Otomatik Web Derleme ve Dağıtım Senkronizasyonu Entegrasyonu (`scripts/sync_release_and_web.py`):**
+  - `docs/help_src/` altındaki Markdown şablonlarını `RADPYS_V4_WEB/help/src/` dizinine aktarma ve ardından `node scripts/build-help.js` komutunu otomatik tetikleyerek web sitesindeki 29 yardım sayfasını tek tıkla derleme pipeline'ı kuruldu.
+  - Eski `docs/help/` HTML klasörünün Release depolarından otomatik temizlenmesi sağlandı.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed)
+
+- **1. Güncelleme Bildirim Penceresinde Sade Çoklu Sürüm Başlık Görünümü (`ui/widgets/update_dialog.py`):**
+  - Kullanıcının mevcut sürümü ile yayınlanan en son sürüm arasındaki tüm sürümler `update.md` içinden filtrelenerek her sürümün yalnızca öne çıkan ana başlığı (`rel.headline`) versiyon rozeti ve RDS kartı ile listelendi; aşırı uzun madde işaretleri temizlenerek kullanıcı için çok daha hızlı, okunabilir ve odaklı bir deneyim sağlandı.
+- **2. Eski HTML Yardım Dosyalarının Arşivlenmesi ve SSOT Markdown Standardı:**
+  - `docs/help/` altındaki 23 adet eski HTML dosyası `docs/archive/help/` klasörüne arşivlendi.
+  - 87 adet yüksek çözünürlüklü ekran görüntüsü `docs/assets/img/` dizininde merkezileştirildi.
+  - Dokümantasyonun tek yazım kaynağı (SSOT) `docs/help_src/*.md` olarak belirlendi.
+- **3. `radpys-daily-update-sync` Yeteneğinin Modernizasyonu:**
+  - Yetenek dokümanı (`SKILL.md`) hantal HTML düzenlemelerinden arındırılarak `docs/help_src/[MODUL].md` ve `scripts/update_help_5n1k.py` otomasyonuna uyarlandı.
 
 ### 🔄 Birim Nöbet Çizelgesi Hızlı Değişim Butonu, 3 Modlu Değişim, 24-Saatlik Ön Süre Güvencesi, Aynı Ay İçi Takas Kısıtı, Yayınlanmış Dönem Talep Kilidi, Dinlenme Kuralı ve S2 Evrak Arşivi
 
@@ -55,6 +91,10 @@ Bu sürüm; Birim Nöbet Çizelgesi (S12) aylık matrisinde personelin kendi nö
   - `createNobetDevirRequest` use-case'inde hem talep açan hem de karşı personelin nöbet tarihleri için geçmiş tarih (`< today`) ve 24 saat kuralı denetimleri eklendi (otomasyon test ortamları için sandbox emniyeti korundu).
 - **4. Havuz API Uç Noktalarına Zod Doğrulama Kalkanı (`nobet.routes.ts`):**
   - `/api/nobet/havuz/ilan-ver`, `/api/nobet/havuz/talip-ol`, `/api/nobet/havuz/teklif-yanitla` ve `/api/nobet/havuz/geri-cek` rotalarına Zod girdi şemaları (`havuzIlanSchema`, `havuzTalipSchema`, `havuzTeklifYanitSchema`, `havuzGeriCekSchema`) ve `validateBody` middleware'i bağlandı.
+- **5. Çoklu Sürüm Kapsamlı Güncelleme Fark Özeti (`UpdateDialog`, `ui/widgets/update_dialog.py`):**
+  - Masaüstü güncelleme bilgilendirme penceresi (`UpdateDialog`) yeniden yapılandırıldı; kullanıcının mevcut sürümü ile sunucuda yayınlanan sürüm arasındaki tüm ara sürümler (`current_version < ver <= new_version`) `update.md` üzerinden dinamik ayıklanarak bülten formatına kavuşturuldu.
+  - Tek satırlık özet yerine kullanıcının atladığı tüm sürümlerin başlıkları (`headline`) ve öne çıkan yenilik maddeleri (`Öne Çıkan Yenilikler`) kurumsal RDS tasarım sistemiyle zengin HTML kartları olarak sunuldu.
+  - İstemcide henüz kurulmamış yeni sürümlerin notlarının web üzerinden temini için dinamik ve güvenli yedekleme mekanizması entegre edildi.
 
 #### 🐛 Düzeltildi (Fixed)
 

@@ -1,10 +1,10 @@
 {
-  "version": "4.0.5.22",
-  "release_version": "4.0.5.22",
-  "build_version": "4.0.5.22",
-  "latest_demo_version": "4.0.5.22",
+  "version": "4.0.5.23",
+  "release_version": "4.0.5.23",
+  "build_version": "4.0.5.23",
+  "latest_demo_version": "4.0.5.23",
   "release_date": "2026-11-13",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.5.22: Birim Nöbet Çizelgesi (S12) Hızlı Değişim Butonu, Sadeleştirilmiş 3 Modlu Değişim ve Havuz Akışı, 24-Saatlik Ön Süre Güvencesi, Aynı Ay İçi Takas Kuralı (Puantaj Koruması), 24 Saatlik Zorunlu Dinlenme Denetimi ve S2 Gebelik Evrak Kasası Arşivi.",
+  "changelog": "RADPYS V4.0.5.23: Canlı Web Yardım Portalı ve 366 Sayfalık Çevrimdışı Kurumsal PDF Kılavuzu Entegrasyonu, Akıllı Hibrit Yardım Gezintisi (Web/PDF/MDI), Güncelleme Diyaloğu Çoklu Sürüm Başlık Özeti ve Otomatik 5N1K Dokümantasyon Senkronizasyonu.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }

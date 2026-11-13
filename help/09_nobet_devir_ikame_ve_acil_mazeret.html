@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.22</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.23</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -161,11 +161,39 @@
     </thead>
     <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">[Nöbet Devir Talebi]</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">P2P Nöbet Devir & Takas Penceresi</span></td>
-        <td class="py-3.5 px-4">Personelin bir nöbetini meslektaşına devretmesini veya karşılıklı takas etmesini sağlamak.</td>
-        <td class="py-3.5 px-4">Alan personel açılır menüden seçilir; sağlık kısıtı, gebelik ve hizmet sınıfı eşitliği denetlenir. Zorunlu gerekçe girilip talep kaydedilir.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">[Hızlı Nöbet Değişimi]</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">S12 Çizelge Üzerinden Hızlı Takas Butonu</span></td>
+        <td class="py-3.5 px-4">Çizelge üzerinde gezinirken tek tıkla ilgili personelin ve günün nöbet takasını başlatmak.</td>
+        <td class="py-3.5 px-4">Çizelgedeki ilgili nöbet hücresi seçilip [Nöbet Değişimi] butonuna basıldığında form personeli, tarihi ve vardiyayı otomatik doldurarak açılır.</td>
+        <td class="py-3.5 px-4">Çizelge incelenirken ay içi nöbet devrinde.</td>
+        <td class="py-3.5 px-4">Birim Sorumlusu, Nöbetçi</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">[Nöbet Devir Talebi]</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">3 Modlu P2P Nöbet Devir & Takas Penceresi</span></td>
+        <td class="py-3.5 px-4">Personelin nöbetini meslektaşıyla takas etmesini, tek taraflı devretmesini veya havuza bırakmasını sağlamak.</td>
+        <td class="py-3.5 px-4">3 mod sunar: Birebir Karşılıklı Takas, Tek Taraflı Devir ve Havuza Bırakma. Alan personelin sağlık kısıtı, gebeliği ve hizmet sınıfı eşitliği denetlenir. Zorunlu gerekçe girilip talep kaydedilir.</td>
         <td class="py-3.5 px-4">Nöbete gelinemeyeceği anlaşıldığında.</td>
         <td class="py-3.5 px-4">Nöbetçi Personel</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">Aynı Ay İçi Takas Kuralı</strong></td>
+        <td class="py-3.5 px-4">Puantaj ve bordro karışmasını engellemek</td>
+        <td class="py-3.5 px-4">Farklı aylardaki nöbetler takas edilemez; yalnızca aynı ay içi nöbetler eşleştirilir.</td>
+        <td class="py-3.5 px-4">Takas işlemi sırasında.</td>
+        <td class="py-3.5 px-4">Sistem Güvenlik Kilidi</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">24 Saat Ön Süre Güvencesi</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">Son Dakika Nöbet Kaçışını Önleme</span></td>
+        <td class="py-3.5 px-4">Nöbet başlangıcına çok az süre kala personelin sahipsiz nöbet bırakmasını engellemek.</td>
+        <td class="py-3.5 px-4">Başlangıcına 24 saatten az kalan nöbetler için personel P2P devir talebi açamaz; acil durumlarda sadece Birim Sorumlusu Acil Mazeret modülüyle ikame atayabilir.</td>
+        <td class="py-3.5 px-4">Nöbete 24 saatten az kaldığında.</td>
+        <td class="py-3.5 px-4">Sistem Güvenlik Kilidi</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">24 Saat Zorunlu Dinlenme Denetimi</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">İş Sağlığı & Asgari Dinlenme Standardı</span></td>
+        <td class="py-3.5 px-4">Nöbet devralan personelin üst üste nöbete gelmesini ve tükenmişlik yaşamasını engellemek.</td>
+        <td class="py-3.5 px-4">Devralınan nöbetin hemen öncesindeki veya sonrasındaki 24 saat içinde personelin başka bir nöbeti varsa sistem takasa izin vermez.</td>
+        <td class="py-3.5 px-4">Devir/takas talebi açılırken.</td>
+        <td class="py-3.5 px-4">Sistem Güvenlik Kilidi</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">[Tüm Devir İşlemleri Listesi]</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">7 Sütunlu Merkezi İzleme Tablosu</span></td>
@@ -592,7 +620,7 @@ graph TD
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.22) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.23) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
     </div>
   </footer>
 

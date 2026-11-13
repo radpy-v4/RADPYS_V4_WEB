@@ -6,6 +6,23 @@ Bu kılavuz; **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## 📚 RADPYS V4.0.5.23: Canlı Web Yardım Portalı ve 366 Sayfalık Çevrimdışı Kurumsal PDF Kılavuzu Entegrasyonu, Akıllı Hibrit Yardım Gezintisi (Web/PDF/MDI) ve Çoklu Sürüm Başlık Özeti
+
+Bu sürümle birlikte **Kullanıcı Yardım & Dokümantasyon** altyapısı baştan sona modernize edilmiş; hem internete bağlı klinikler hem de dış ağa kapalı izole hastane ortamları için çift yönlü akıllı yardım motoru devreye alınmış; 23 modülün tamamını kapsayan 366 sayfalık kurumsal A4 PDF el kitabı hazırlanmış ve güncelleme bildirim penceresine tüm ara sürümleri özetleyen sade başlık kartları entegre edilmiştir:
+
+### 🌟 Öne Çıkan Yenilikler (Hızlı Bakış)
+
+* **Canlı Web Yardım Portalı Entegrasyonu:** Masaüstündeki Yardım butonuna tıklandığında, sistem internet bağlantısını otomatik algılayarak kullanıcıyı doğrudan en güncel, interaktif web yardım portalına (`https://radpys.com.tr/help/`) yönlendirir. Böylece mevzuat, arayüz veya kural değişiklikleri program güncellemesi beklemeden anında en güncel haliyle incelenebilir.
+* **366 Sayfalık Resimli Çevrimdışı PDF El Kitabı:** Dış internete kapalı hastane ağları veya kalite/akreditasyon (SKS) denetimleri için projenin 23 modülü, 5N1K tabloları, 20 saniyelik hızlı reçeteleri, saha uyarı kutuları ve 87 adet yüksek çözünürlüklü ekran görüntüsü tek bir kurumsal A4 PDF el kitabında (`RADPYS_V4_Kullanim_Kilavuzu.pdf`) toplandı.
+* **Akıllı Hibrit Yönlendirme ve Sağ Tık Seçenekleri:** Üst araç çubuğundaki **Yardım** simgesine tıklandığında:
+  - İnternet varsa anında canlı web portalını açar.
+  - İnternetsiz veya kısıtlı hastane bilgisayarlarında otomatik olarak 366 sayfalık yerel PDF kılavuzunu açar.
+  - Yardım butonuna **sağ tıklandığında** ise kullanıcıya üç net seçenek sunulur: *🌐 Canlı Web Portalı*, *📄 Çevrimdışı PDF Kılavuzu (A4)* ve *📖 Pencere İçi Kılavuz (MDI)*.
+* **Güncelleme Bildiriminde Sade Çoklu Sürüm Başlıkları:** Kullanıcı kendi sürümünden yeni bir sürüme geçerken, aradaki tüm sürümlere ait yenilikler gereksiz detay ve uzun maddelerden arındırılarak sadece öne çıkan başlıklar ve şık sürüm rozetleriyle sunulur. Böylece güncellemenin getirdiği ana yetenekler 10 saniyede gözden geçirilebilir.
+* **Tek Dokümantasyon Kaynağı (SSOT) ve Anlık Web Derlemesi:** Dokümantasyon tek bir merkezden yönetilmeye başlandı; yapılan her kural değişikliği tek komutla hem web portalına hem de kurumsal PDF el kitabına otomatik yansıtılır.
+
+---
+
 ## 🔄 RADPYS V4.0.5.22: Birim Çizelgesinde Hızlı Nöbet Değişimi, 3 Seçenekli Sadeleştirilmiş Havuz ve Takas Ekranı, 24-Saatlik Ön Süre Güvencesi, Aynı Ay İçi Takas Kuralı, Yayınlanmış Dönem Talep Koruması ve Dinlenme Standartları
 
 Bu sürümle birlikte **Birim Nöbet Çizelgesi ve Nöbet Değişim / Becayiş** modüllerinde personelin nöbet takas ve devir işlemleri sadeleştirilerek tek tıkla yürütülebilir hale getirilmiş; personeller arası değişimlerde 24 saatlik ön süre ve aynı ay takas güvenceleri devreye alınmış; nöbet listesi onaylanıp yayınlanmış aylar için ön hazırlık isteklerinin açılması engellenerek süreç disiplini sağlanmış; NDK ve SKS mevzuatı uyarınca nöbet dinlenme süreleri otomatik kontrole bağlanmış ve gebelik bildirim raporları kalıcı evrak kasasına alınmıştır:
@@ -28,6 +45,7 @@ Bu sürümle birlikte **Birim Nöbet Çizelgesi ve Nöbet Değişim / Becayiş**
   - **Eğitim Kısıtı:** Hafta sonu günleri (Cumartesi-Pazar) kaldırılarak yalnızca hafta içi 5 ders gününe (`Pazartesi - Cuma`) bağlandı ve dönem tarih aralığı doğrudan açık hale getirildi.
   - **Nöbet Yazılsın / Yazılmasın:** Tarih aralıkları gizli onay kutusundan kurtarılarak form açıldığında doğrudan doldurulabilir duruma getirildi; tek tıkla "Tüm Ay Boyunca Nöbet Yazılmasın" seçeneği ve dönem ayı seçicisi eklenerek gelecek aylar için kolay planlama sağlandı.
   - **Fazla Mesai Talebi:** İlgili ay seçici, iki net tercih ("Fazla Mesai İstemiyorum (0 Saat)" ve "Fazla Mesai Almak İstiyorum"), hızlı saat butonları (+16, +24, +32, +48, +60) ve 130 saatlik yasal tavan uyarısıyla son derece pratik ve modern bir yapıya kavuşturuldu.
+* **Çoklu Sürüm Kapsamlı Güncelleme Özeti:** Kullanıcılar mevcut sürümlerinden yeni bir sürüme geçerken, aradaki tüm sürümlere ait yenilikleri, başlıkları ve öne çıkan maddeleri tek bir güncelleme penceresinde toplu bülten olarak görebilir. Böylece atlanan sürümlerin getirdiği avantajlar ve mevzuat kolaylıkları hiçbir detay kaybolmadan incelenebilir.
 
 ### 📅 Birim Çizelgesinde Hızlı Nöbet Değişimi
 
