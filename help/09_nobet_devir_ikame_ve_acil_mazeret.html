@@ -16,42 +16,36 @@
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
 
-  <!-- TOP HEADER NAVBAR (Wide Fluid Layout) -->
+  <!-- TOP HEADER NAVBAR -->
   <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
     <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between gap-4">
-      
-      <!-- Brand & Version -->
       <div class="flex items-center gap-3">
         <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Menüyü Aç/Kapat">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
-
         <a href="index.html" class="flex items-center gap-3 group">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-            </svg>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.2</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.22</span>
             </span>
-            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Karar Destek Portalı</span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
         </a>
       </div>
 
-      <!-- Quick Search Bar (Ctrl+K) -->
       <div class="flex-1 max-w-xl hidden md:block">
         <div class="relative">
           <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           </div>
-          <input 
-            type="text" 
-            placeholder="Dokümanda ara... (Ctrl+K ile hızlı arama)" 
-            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition cursor-pointer"
+          <input
+            type="text"
             readonly
+            placeholder="Dokümanda ara... (Ctrl+K ile hızlı arama)"
+            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition cursor-pointer"
           >
           <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
             <kbd class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600 font-semibold">Ctrl+K</kbd>
@@ -59,358 +53,181 @@
         </div>
       </div>
 
-      <!-- Action Buttons -->
       <div class="flex items-center gap-3">
-        <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-          <span>Tüm Modüller</span>
-        </a>
+        <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition"><span>Tüm Modüller</span></a>
       </div>
     </div>
   </header>
 
-  <!-- MAIN 3-COLUMN CONTAINER (Fluid & Wide Layout) -->
+  <!-- MAIN CONTAINER -->
   <div class="flex-1 max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 flex gap-8">
+    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar"></aside>
 
-    <!-- LEFT SIDEBAR: NAVIGATION -->
-    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar">
-      <div class="mb-4">
-        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3">23 Modül Rehberi</span>
-      </div>
-      <nav class="space-y-1 text-sm font-medium">
-        <a href="01_kurulum_ve_ilk_giris.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">01</span>
-          <span>Kurulum & İlk Giriş</span>
-        </a>
-        <a href="02_kullanici_ve_rol_yonetimi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">02</span>
-          <span>Kullanıcı & Rol Yönetimi</span>
-        </a>
-        <a href="03_sistem_ayarlari_ve_tanimlamalar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">03</span>
-          <span>Sistem Ayarları & Tanımlar</span>
-        </a>
-        <a href="04_veritabani_bakim_ve_guvenlik.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">04</span>
-          <span>Veritabanı Bakım & Kasa</span>
-        </a>
-        <a href="05_personel_yonetimi_ve_toplu_aktarim.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">05</span>
-          <span>Personel & Excel Aktarım</span>
-        </a>
-        <a href="06_izin_yonetimi_ve_hakedis.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">06</span>
-          <span>İzin Yönetimi & Şua</span>
-        </a>
-        <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">07</span>
-          <span>Nöbet Ayarları & Kısıtlar</span>
-        </a>
-        <a href="08_nobet_hazirlik_ve_solver_motoru.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">08</span>
-          <span>Nöbet Hazırlık & Solver</span>
-        </a>
-        <!-- 09 AKTİF -->
-        <a href="#overview" class="flex items-center justify-between px-3 py-2.5 rounded-xl bg-cyan-50 text-cyan-800 dark:bg-cyan-950/60 dark:text-cyan-300 font-semibold border-l-4 border-cyan-600">
-          <div class="flex items-center gap-2.5">
-            <span class="font-mono text-xs text-cyan-600 dark:text-cyan-400 font-bold">09</span>
-            <span>Nöbet Devir & İkame</span>
-          </div>
-          <span class="w-2 h-2 rounded-full bg-cyan-600 animate-pulse"></span>
-        </a>
-        <a href="10_nobet_borc_alacak_ve_fazla_mesai.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">10</span>
-          <span>Nöbet Borç & Fazla Mesai</span>
-        </a>
-        <a href="11_fiili_hizmet_ve_sua_hesaplama.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">11</span>
-          <span>Fiili Hizmet (FHZ) & Şua</span>
-        </a>
-        <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">12</span>
-          <span>Dozimetre & RD.F43</span>
-        </a>
-        <a href="13_saglik_muayeneleri_ve_periyodik_takip.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">13</span>
-          <span>Sağlık Muayeneleri</span>
-        </a>
-        <a href="14_ortam_dozu_ve_kroki_haritasi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">14</span>
-          <span>Ortam Dozu & Kroki</span>
-        </a>
-        <a href="15_olay_bildirimi_ve_dof_capa.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">15</span>
-          <span>Olay Bildirimi & DÖF</span>
-        </a>
-        <a href="16_rgs_rso_gorevlendirme_ve_sertifika.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">16</span>
-          <span>RGS / RSO Görevlendirme</span>
-        </a>
-        <a href="17_hizmet_ici_egitim_ve_online_sinav.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">17</span>
-          <span>Hizmet İçi Eğitim & LMS</span>
-        </a>
-        <a href="18_tibbi_cihaz_ve_ndk_lisans_envanteri.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">18</span>
-          <span>Tıbbi Cihaz & NDK Lisans</span>
-        </a>
-        <a href="19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">19</span>
-          <span>Cihaz Arıza & QA/QC</span>
-        </a>
-        <a href="20_rke_koruyucu_ekipman_ve_din6857.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">20</span>
-          <span>Koruyucu Ekipman (RKE)</span>
-        </a>
-        <a href="21_merkezi_onaylar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">21</span>
-          <span>Merkezi Onaylar</span>
-        </a>
-        <a href="22_web_portal_ve_dashboardlar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">22</span>
-          <span>Web Portal & Dashboard</span>
-        </a>
-        <a href="23_rapor_tutanak_merkezi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">23</span>
-          <span>Rapor & Tutanak Merkezi</span>
-        </a>
-      </nav>
-    </aside>
-
-    <!-- CENTER COLUMN: CORE DOCUMENTATION (Wide & Readable) -->
     <main class="flex-1 min-w-0 py-8">
-      <!-- Breadcrumb & Badges -->
       <nav class="flex items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
         <a href="index.html" class="hover:text-cyan-600 transition">Kılavuz Ana Sayfası</a>
         <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         <span>Bölüm 3: Nöbet Dağıtım Motoru</span>
         <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">09. Nöbet Devir & İkame</span>
+        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">09. Nöbet Devir &amp; İkame</span>
       </nav>
 
-<!-- HERO & METADATA BLOCK -->
- <section id="overview" class="space-y-4">
- <div class="flex flex-wrap items-center gap-2.5">
- <span class="px-2.5 py-1 rounded-lg text-xs font-bold font-mono uppercase bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/80">
- Modül 09
- </span>
- <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
- ⭐ Tier 3: Algoritmik Karar & İkame
- </span>
- <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
- NDK Gebe Kalkanı & Emniyet Kilidi
- </span>
- <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-purple-100 text-purple-800 dark:bg-purple-900/50 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
- Yönetici Aksiyon Sihirbazı
- </span>
- <span class="text-xs text-slate-400 dark:text-slate-500 font-mono ml-auto">
- Tahmini Okuma: 6 Dakika | Sürüm: RADPYS v4.2
- </span>
- </div>
+<section id="overview" class="mb-10 border-b border-slate-200 dark:border-slate-800 pb-6">
+  <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+    <div class="flex flex-wrap items-center gap-2.5"></div>
+    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Tahmini Okuma: 6 Dakika</span>
+  </div>
+  <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3">
+    Nöbet Devir, İkame & Acil Mazeret Yönetimi
+  </h1>
+  <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
+    Personeller arası P2P nöbet devri ve karşılıklı takas akışı, çok kademeli onay zinciri, acil mazeretlerde akıllı ikame puanlayıcı, nöbet değişim pazaryeri (havuz), gebe personeli radyasyonsuz alana transfer eden 3 adımlı Yönetici Aksiyon Sihirbazı ve eğitim programı revizyon rehberi.
+  </p>
+  
+  
+  
+</section>
 
- <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
- Nöbet Devir, İkame & Acil Mazeret Yönetimi
- </h1>
- <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
- Personeller arası P2P nöbet devri ve karşılıklı takas akışı, çok kademeli onay zinciri, acil mazeretlerde akıllı ikame puanlayıcı, nöbet değişim pazaryeri (havuz), gebe personeli radyasyonsuz alana transfer eden 3 adımlı Yönetici Aksiyon Sihirbazı ve eğitim programı revizyon rehberi.
- </p>
- </section>
+<section id="quick-recipe" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Hızlı Reçete: Ay Ortası Nöbet Değişimleri, İkame Önerisi ve Gebelik Transferi</span>
+  </h2>
+  <div class="p-6 sm:p-7 rounded-3xl bg-cyan-50/70 dark:bg-cyan-950/30 border border-cyan-200/90 dark:border-cyan-800/60 shadow-md">
+  <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+    <div class="flex items-center gap-2.5 text-cyan-900 dark:text-cyan-200 font-bold text-sm sm:text-base">
+      <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      <span>Hızlı Reçete: Ay Ortası Nöbet Değişimleri, İkame Önerisi ve Gebelik Transferi</span>
+    </div>
+    <span class="text-xs font-mono px-2.5 py-1 rounded bg-cyan-200/80 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-300 font-bold">20 SANİYELİK AKIŞ</span>
+  </div>
+  
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5 text-xs sm:text-sm">
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
+      <span class="font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider text-[11px] block">1. İstenen Sonuç</span>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Kesinleşmiş nöbet çizelgelerindeki ay içi mazeret ve takasların mevzuata (NDK, hizmet sınıfı, dinlenme süresi) tam uyumlu, adil ve sahipsiz slot bırakmadan çözülmesi.</p>
+    </div>
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
+      <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider text-[11px] block">2. Yapılacak İşlem</span>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">P2P devir için <strong>[Nöbet Devret]</strong> ile talep açın; ani krizlerde <strong>[Acil Mazeret]</strong> ile ikameleri hesaplayın; gebelikte <strong>[Yönetici Aksiyon Merkezi]</strong> sihirbazını uygulayın.</p>
+    </div>
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
+      <span class="font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider text-[11px] block">3. Sistem Etkisi</span>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Gebe personele nöbet devri engellenir; taban saat karşılıksız devredilemez; 3 kademeli onay tamamlanınca çizelge güncellenir; hatalı mazeretler tek tıkla geri alınır.</p>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-cyan-200/60 dark:border-cyan-800/40">
+    <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Yasal Kalkan</span>
+      <span class="text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 font-mono">Gebe Nöbet Yasağı</span>
+    </div>
+    <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Hizmet Sınıfı</span>
+      <span class="text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 font-mono">Eşit Unvanlar Arası</span>
+    </div>
+    <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">36s Havuz TTL</span>
+      <span class="text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 font-mono">İdari İnisiyatif & Kota</span>
+    </div>
+    <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Geri Alma</span>
+      <span class="text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 font-mono">Tek Tıkla Mazeret İptali</span>
+    </div>
+  </div>
+</div>
+</section>
 
- <!-- HIZLI REÇETE KUTUSU & 4 METRİK HAPI (ZORUNLU - VİZYONDER UX STANDARD) -->
- <section id="quick-recipe" class="p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-cyan-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-900/90 dark:to-cyan-950/40 border-2 border-cyan-500/30 dark:border-cyan-500/20 shadow-xl shadow-cyan-500/5 space-y-6">
- <div class="flex items-center gap-3">
- <div class="w-10 h-10 rounded-2xl bg-cyan-600 text-white flex items-center justify-center font-bold text-lg shadow-md shadow-cyan-600/30">
- 
- </div>
- <div>
- <h2 class="text-lg font-bold text-slate-900 dark:text-white">
- Hızlı Reçete: Ay Ortası Nöbet Değişimleri, İkame Önerisi ve Gebelik Transferi
- </h2>
- <p class="text-xs text-slate-500 dark:text-slate-400">
- P2P devir onayları, acil mazeret yönetimi, havuz kotası ve 3 adımlı yönetici aksiyonu
- </p>
- </div>
- </div>
-
- <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
- <div class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
- <span class="font-bold text-slate-400 uppercase text-[10px] tracking-wider block">1. İstenen Sonuç</span>
- <p class="font-semibold text-slate-800 dark:text-slate-100">
- Kesinleşmiş nöbet çizelgelerindeki ay içi mazeret ve takasların mevzuata (NDK, hizmet sınıfı, dinlenme süresi) tam uyumlu, adil ve sahipsiz slot bırakmadan çözülmesi.
- </p>
- </div>
-
- <div class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
- <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase text-[10px] tracking-wider block">2. Yapılacak İşlem</span>
- <p class="font-semibold text-slate-800 dark:text-slate-100">
- P2P devir için <strong>[Nöbet Devret]</strong> ile talep açın; ani krizlerde <strong>[Acil Mazeret]</strong> ile ikameleri hesaplayın; gebelikte <strong>[Yönetici Aksiyon Merkezi]</strong> sihirbazını uygulayın.
- </p>
- </div>
-
- <div class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
- <span class="font-bold text-emerald-600 dark:text-emerald-400 uppercase text-[10px] tracking-wider block">3. Sistem Etkisi</span>
- <p class="font-semibold text-slate-800 dark:text-slate-100">
- Gebe personele nöbet devri engellenir; taban saat karşılıksız devredilemez; 3 kademeli onay tamamlanınca çizelge güncellenir; hatalı mazeretler tek tıkla geri alınır.
- </p>
- </div>
- </div>
-
- <!-- 4 Metrik Hapı (Pills) -->
- <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-cyan-100 dark:border-cyan-900/40">
- <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50">
- <span class="text-base">️</span>
- <div class="flex flex-col">
- <span class="text-[10px] uppercase font-bold text-slate-400">Yasal Kalkan</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Gebe Nöbet Yasağı</span>
- </div>
- </div>
-
- <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50">
- <span class="text-base">️</span>
- <div class="flex flex-col">
- <span class="text-[10px] uppercase font-bold text-slate-400">Hizmet Sınıfı</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Eşit Unvanlar Arası</span>
- </div>
- </div>
-
- <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50">
- <span class="text-base">⏱️</span>
- <div class="flex flex-col">
- <span class="text-[10px] uppercase font-bold text-slate-400">36s Havuz TTL</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">İdari İnisiyatif & Kota</span>
- </div>
- </div>
-
- <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50">
- <span class="text-base"></span>
- <div class="flex flex-col">
- <span class="text-[10px] uppercase font-bold text-slate-400">Geri Alma</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Tek Tıkla Mazeret İptali</span>
- </div>
- </div>
- </div>
- </section>
-
- <!-- 5N1K KURAL VE BİLEŞEN ÇÖZÜMLEME TABLOSU (ZORUNLU) -->
- <section id="5w1h" class="space-y-4">
- <div class="space-y-1">
- <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
- <span> 5N1K Kural ve Arayüz Çözümleme Tablosu</span>
- </h2>
+<section id="5w1h" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>5N1K Kural ve Arayüz Çözümleme Tablosu</span>
+  </h2>
+  <div class="space-y-1">
  <p class="text-sm text-slate-500 dark:text-slate-400">
  Nöbet devri, takas, mazeret, havuz ve yönetici aksiyon merkezindeki kontrollerin işleyiş mantığı.
  </p>
  </div>
 
- <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
- <table class="w-full text-left text-xs sm:text-sm text-slate-600 dark:text-slate-300">
- <thead class="bg-slate-100 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 uppercase text-[11px] font-bold tracking-wider border-b border-slate-200 dark:border-slate-800">
- <tr>
- <th class="py-3.5 px-4">NE? (Bileşen / İşlem)</th>
- <th class="py-3.5 px-4">NEDEN? (Amacı)</th>
- <th class="py-3.5 px-4">NASIL? (Çalışma Mantığı)</th>
- <th class="py-3.5 px-4">NE ZAMAN?</th>
- <th class="py-3.5 px-4">KİM?</th>
- </tr>
- </thead>
- <tbody class="divide-y divide-slate-100 dark:divide-slate-800 font-normal">
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
- <td class="py-3.5 px-4 font-semibold text-cyan-700 dark:text-cyan-400">
- <strong class="text-slate-900 dark:text-white">[Nöbet Devir Talebi]</strong><br>
- <span class="text-[11px] text-slate-500 dark:text-slate-400">P2P Nöbet Devir & Takas Penceresi</span>
- </td>
- <td class="py-3.5 px-4">Personelin bir nöbetini meslektaşına devretmesini veya karşılıklı takas etmesini sağlamak.</td>
- <td class="py-3.5 px-4">Alan personel açılır menüden seçilir; sağlık kısıtı, gebelik ve hizmet sınıfı eşitliği denetlenir. Zorunlu gerekçe girilip talep kaydedilir.</td>
- <td class="py-3.5 px-4">Nöbete gelinemeyeceği anlaşıldığında.</td>
- <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Nöbetçi Personel</td>
- </tr>
+<div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 custom-scrollbar shadow-sm my-4">
+  <table class="w-full text-left border-collapse text-xs sm:text-sm">
+    <thead>
+      <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/80 uppercase text-xs font-bold tracking-wider text-slate-500 dark:text-slate-400">
+        <th class="py-3.5 px-4">NE? (Bileşen / İşlem)</th>
+        <th class="py-3.5 px-4">NEDEN? (Amacı)</th>
+        <th class="py-3.5 px-4">NASIL? (Çalışma Mantığı)</th>
+        <th class="py-3.5 px-4">NE ZAMAN?</th>
+        <th class="py-3.5 px-4">KİM?</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">[Nöbet Devir Talebi]</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">P2P Nöbet Devir & Takas Penceresi</span></td>
+        <td class="py-3.5 px-4">Personelin bir nöbetini meslektaşına devretmesini veya karşılıklı takas etmesini sağlamak.</td>
+        <td class="py-3.5 px-4">Alan personel açılır menüden seçilir; sağlık kısıtı, gebelik ve hizmet sınıfı eşitliği denetlenir. Zorunlu gerekçe girilip talep kaydedilir.</td>
+        <td class="py-3.5 px-4">Nöbete gelinemeyeceği anlaşıldığında.</td>
+        <td class="py-3.5 px-4">Nöbetçi Personel</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">[Tüm Devir İşlemleri Listesi]</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">7 Sütunlu Merkezi İzleme Tablosu</span></td>
+        <td class="py-3.5 px-4">Kurum genelindeki tüm devir/takas hareketlerini ve onay aşamalarını tek ekrandan izlemek.</td>
+        <td class="py-3.5 px-4">Talep tarihi, nöbet günü, türü, devreden, devralan, birim ve tek sütunluk renkli durum rozetiyle salt-okunur listeler. Sağ panelde doğal dil özeti sunar.</td>
+        <td class="py-3.5 px-4">Rutin denetim ve izlemede.</td>
+        <td class="py-3.5 px-4">Birim Sorumlusu, Yönetici</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">3 Aşamalı Onay Zinciri</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">Alan Personel Birim Sorumlusu Yönetici</span></td>
+        <td class="py-3.5 px-4">İlgili personelin rızası ve amirlerin onayı olmadan çizelgenin bozulmasını engellemek.</td>
+        <td class="py-3.5 px-4">Önce devralan meslektaş kabul eder; ardından birim sorumlusu klinik uygunluğu onaylar; son olarak yönetici onaylar. Yönetici acil hallerde tek tıkla bypass edebilir.</td>
+        <td class="py-3.5 px-4">Talep açıldığında aşama aşama.</td>
+        <td class="py-3.5 px-4">Meslektaş, Amir, Yönetici</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">[Acil Mazeret] & Toplu İkame</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">Akıllı İkame Öneri Algoritması</span></td>
+        <td class="py-3.5 px-4">Ani hastalık veya kaza durumunda nöbetlerin açıkta kalmasını engellemek.</td>
+        <td class="py-3.5 px-4">Personel ve tarih aralığı seçilip [Hesapla] denir. Sistem boş kalan her slot için dinlenme süresi dolmuş ve hedef saat açığı olan meslektaşları puanlayıp ikame önerir.</td>
+        <td class="py-3.5 px-4">Beklenmeyen kriz hallerinde.</td>
+        <td class="py-3.5 px-4">Birim Sorumlusu, Yönetici</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">[Geri Al] (Mazeret İptali)</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">Mazeret ve İkame Kaydını Geri Döndürme</span></td>
+        <td class="py-3.5 px-4">Hatalı girilen mazeretlerde çizelgeyi eski haline getirmek.</td>
+        <td class="py-3.5 px-4">Geçmiş sekmesinden ilgili mazeret seçilip [Geri Al] butonuna basılır. Sistem ikame atamalarını siler ve mazeretli personelin nöbetlerini geri yükler.</td>
+        <td class="py-3.5 px-4">Hatalı mazeret girişlerinde.</td>
+        <td class="py-3.5 px-4">Yönetici (Sudo Parolalı)</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">[Ders Programı Revizyonu]</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">Eğitim Kısıtı Güncelleme Diyalogu</span></td>
+        <td class="py-3.5 px-4">Üniversite ders günleri dönem ortasında değişen personeli güncellemek.</td>
+        <td class="py-3.5 px-4">Revizyon tarihi seçilir; eski talep dondurulur; yeni haftalık ders günleri (Pazartesi .. Pazar) işaretlenerek yeni kısıt kaydı oluşturulur.</td>
+        <td class="py-3.5 px-4">Dönem içi ders programı değiştiğinde.</td>
+        <td class="py-3.5 px-4">Personel, Birim Sorumlusu</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">[Yönetici Aksiyon Merkezi]</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">3 Adımlı Gebe Personel Yönetim Sihirbazı</span></td>
+        <td class="py-3.5 px-4">Gebe personelin haklarını korurken klinik nöbet ve mesai açıklarını tek ekrandan çözmek.</td>
+        <td class="py-3.5 px-4">1. Adım: Radyasyonsuz birime transfer 2. Adım: Eski birimdeki boş nöbetlere ikame ataması 3. Adım: Yeni birimde eksik saatler için gündüz vardiyaları oluşturma.</td>
+        <td class="py-3.5 px-4">Gebelik doktor raporu çıktığında.</td>
+        <td class="py-3.5 px-4">Başhekimlik, İdari Yönetici</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">Nöbet Değişim Havuzu & 36s TTL</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">Web Portal Marketplace & Zaman Aşımı</span></td>
+        <td class="py-3.5 px-4">Muhatap aramadan nöbet değişimini pazaryerine sunmak; son 36 saatte idari süreci başlatmak.</td>
+        <td class="py-3.5 px-4">Personel nöbetini havuza bırakır (maks 48s/ay); meslektaşlar teklif verir. Nöbete 36 saat kala havuz ilanı zaman aşımına uğrar; personelin talebi ve yöneticinin tespitiyle acil mazerete aktarılır.</td>
+        <td class="py-3.5 px-4">Nöbet takası arayışında.</td>
+        <td class="py-3.5 px-4">Personel, İdari Yönetici</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</section>
 
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
- <td class="py-3.5 px-4 font-semibold text-cyan-700 dark:text-cyan-400">
- <strong class="text-slate-900 dark:text-white">[Tüm Devir İşlemleri Listesi]</strong><br>
- <span class="text-[11px] text-slate-500 dark:text-slate-400">7 Sütunlu Merkezi İzleme Tablosu</span>
- </td>
- <td class="py-3.5 px-4">Kurum genelindeki tüm devir/takas hareketlerini ve onay aşamalarını tek ekrandan izlemek.</td>
- <td class="py-3.5 px-4">Talep tarihi, nöbet günü, türü, devreden, devralan, birim ve tek sütunluk renkli durum rozetiyle salt-okunur listeler. Sağ panelde doğal dil özeti sunar.</td>
- <td class="py-3.5 px-4">Rutin denetim ve izlemede.</td>
- <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Birim Sorumlusu, Yönetici</td>
- </tr>
-
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
- <td class="py-3.5 px-4 font-semibold text-cyan-700 dark:text-cyan-400">
- <strong class="text-slate-900 dark:text-white">3 Aşamalı Onay Zinciri</strong><br>
- <span class="text-[11px] text-slate-500 dark:text-slate-400">Alan Personel Birim Sorumlusu Yönetici</span>
- </td>
- <td class="py-3.5 px-4">İlgili personelin rızası ve amirlerin onayı olmadan çizelgenin bozulmasını engellemek.</td>
- <td class="py-3.5 px-4">Önce devralan meslektaş kabul eder; ardından birim sorumlusu klinik uygunluğu onaylar; son olarak yönetici onaylar. Yönetici acil hallerde tek tıkla bypass edebilir.</td>
- <td class="py-3.5 px-4">Talep açıldığında aşama aşama.</td>
- <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Meslektaş, Amir, Yönetici</td>
- </tr>
-
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
- <td class="py-3.5 px-4 font-semibold text-cyan-700 dark:text-cyan-400">
- <strong class="text-slate-900 dark:text-white">[Acil Mazeret] & Toplu İkame</strong><br>
- <span class="text-[11px] text-slate-500 dark:text-slate-400">Akıllı İkame Öneri Algoritması</span>
- </td>
- <td class="py-3.5 px-4">Ani hastalık veya kaza durumunda nöbetlerin açıkta kalmasını engellemek.</td>
- <td class="py-3.5 px-4">Personel ve tarih aralığı seçilip [Hesapla] denir. Sistem boş kalan her slot için dinlenme süresi dolmuş ve hedef saat açığı olan meslektaşları puanlayıp ikame önerir.</td>
- <td class="py-3.5 px-4">Beklenmeyen kriz hallerinde.</td>
- <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Birim Sorumlusu, Yönetici</td>
- </tr>
-
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
- <td class="py-3.5 px-4 font-semibold text-cyan-700 dark:text-cyan-400">
- <strong class="text-slate-900 dark:text-white">[Geri Al] (Mazeret İptali)</strong><br>
- <span class="text-[11px] text-slate-500 dark:text-slate-400">Mazeret ve İkame Kaydını Geri Döndürme</span>
- </td>
- <td class="py-3.5 px-4">Hatalı girilen mazeretlerde çizelgeyi eski haline getirmek.</td>
- <td class="py-3.5 px-4">Geçmiş sekmesinden ilgili mazeret seçilip [Geri Al] butonuna basılır. Sistem ikame atamalarını siler ve mazeretli personelin nöbetlerini geri yükler.</td>
- <td class="py-3.5 px-4">Hatalı mazeret girişlerinde.</td>
- <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Yönetici (Sudo Parolalı)</td>
- </tr>
-
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
- <td class="py-3.5 px-4 font-semibold text-cyan-700 dark:text-cyan-400">
- <strong class="text-slate-900 dark:text-white">[Ders Programı Revizyonu]</strong><br>
- <span class="text-[11px] text-slate-500 dark:text-slate-400">Eğitim Kısıtı Güncelleme Diyalogu</span>
- </td>
- <td class="py-3.5 px-4">Üniversite ders günleri dönem ortasında değişen personeli güncellemek.</td>
- <td class="py-3.5 px-4">Revizyon tarihi seçilir; eski talep dondurulur; yeni haftalık ders günleri (Pazartesi .. Pazar) işaretlenerek yeni kısıt kaydı oluşturulur.</td>
- <td class="py-3.5 px-4">Dönem içi ders programı değiştiğinde.</td>
- <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Personel, Birim Sorumlusu</td>
- </tr>
-
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
- <td class="py-3.5 px-4 font-semibold text-cyan-700 dark:text-cyan-400">
- <strong class="text-slate-900 dark:text-white">[Yönetici Aksiyon Merkezi]</strong><br>
- <span class="text-[11px] text-slate-500 dark:text-slate-400">3 Adımlı Gebe Personel Yönetim Sihirbazı</span>
- </td>
- <td class="py-3.5 px-4">Gebe personelin haklarını korurken klinik nöbet ve mesai açıklarını tek ekrandan çözmek.</td>
- <td class="py-3.5 px-4">1. Adım: Radyasyonsuz birime transfer 2. Adım: Eski birimdeki boş nöbetlere ikame ataması 3. Adım: Yeni birimde eksik saatler için gündüz vardiyaları oluşturma.</td>
- <td class="py-3.5 px-4">Gebelik doktor raporu çıktığında.</td>
- <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Başhekimlik, İdari Yönetici</td>
- </tr>
-
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
- <td class="py-3.5 px-4 font-semibold text-cyan-700 dark:text-cyan-400">
- <strong class="text-slate-900 dark:text-white">Nöbet Değişim Havuzu & 36s TTL</strong><br>
- <span class="text-[11px] text-slate-500 dark:text-slate-400">Web Portal Marketplace & Zaman Aşımı</span>
- </td>
- <td class="py-3.5 px-4">Muhatap aramadan nöbet değişimini pazaryerine sunmak; son 36 saatte idari süreci başlatmak.</td>
- <td class="py-3.5 px-4">Personel nöbetini havuza bırakır (maks 48s/ay); meslektaşlar teklif verir. Nöbete 36 saat kala havuz ilanı zaman aşımına uğrar; personelin talebi ve yöneticinin tespitiyle acil mazerete aktarılır.</td>
- <td class="py-3.5 px-4">Nöbet takası arayışında.</td>
- <td class="py-3.5 px-4 font-medium text-slate-700 dark:text-slate-300">Personel, İdari Yönetici</td>
- </tr>
- </tbody>
- </table>
- </div>
- </section>
-
- <!-- MİT AVCISI (MYTH-BUSTING) KARTI (ZORUNLU) -->
- <section id="myth-buster" class="p-6 rounded-3xl bg-amber-50/80 dark:bg-amber-950/30 border-2 border-amber-500/40 shadow-sm space-y-4">
- <div class="flex items-center gap-3">
+<section id="myth-buster" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)</span>
+  </h2>
+  <div class="flex items-center gap-3">
  <div class="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-lg shadow-sm">
- 
  </div>
  <div>
  <h3 class="text-base font-bold text-slate-900 dark:text-white">
@@ -434,21 +251,22 @@
  </p>
  </div>
  </div>
- </section>
+</section>
 
- <!-- SÜREÇ AKIŞ ŞEMASI (MERMAID.JS) (ZORUNLU) -->
- <section id="workflow" class="space-y-4">
- <div class="space-y-1">
- <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
- <span> Devir, İkame, Mazeret ve Aksiyon Akış Şeması</span>
- </h2>
+<section id="workflow" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Devir, İkame, Mazeret ve Aksiyon Akış Şeması</span>
+  </h2>
+  <div class="space-y-1">
  <p class="text-sm text-slate-500 dark:text-slate-400">
  P2P devir talebinden 3 kademeli onaya, acil mazeretten gebe personel sihirbazına kadar tüm karar döngüsü.
  </p>
  </div>
 
  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex justify-center">
- <pre class="mermaid text-xs opacity-0 transition-opacity duration-300" id="mermaidFlow">
+
+<div class="mermaid text-sm">
 graph TD
  A(["Ay İçi Nöbet Değişim İhtiyacı"]) --> B{"Talep Türü Nedir?"}
  
@@ -496,94 +314,98 @@ graph TD
  style T fill:#8b5cf6,stroke:#7c3aed,stroke-width:2px,color:#fff
  style V fill:#ec4899,stroke:#db2777,stroke-width:2px,color:#fff
  style AB fill:#059669,stroke:#047857,stroke-width:2px,color:#fff
- </pre>
- </div>
- </section>
+</div>
 
- <!-- EKRAN GÖRÜNTÜLERİ VE ROZETLERİ (ZORUNLU) -->
- <section id="screenshots" class="space-y-6">
- <div class="space-y-1">
- <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
- <span>️ Arayüz Ekran Görünümleri</span>
- </h2>
+ </div>
+</section>
+
+<section id="screenshots" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Arayüz Ekran Görünümleri</span>
+  </h2>
+  <div class="space-y-1">
  <p class="text-sm text-slate-500 dark:text-slate-400">
  Nöbet devir listesi, devir talep formu, pazar yeri havuzu ve yönetici aksiyon merkezi ekranları.
  </p>
  </div>
 
- <!-- GÖRSEL 1: NÖBET DEVİR LİSTESİ -->
- <figure class="my-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
- <div class="p-3 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
- <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
- ️ Ekran Konumu: <strong class="text-slate-900 dark:text-white font-semibold">Nöbet Yönetimi > Nöbet Devir Listesi</strong>
- </span>
- <span class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">7 Sütunlu İzleme & Doğal Dil Hikaye Paneli</span>
- </div>
- <img src="assets/img/09_nobet_devir_listesi.png" alt="Tüm Nöbet Devir ve Değişim İşlemleri Listesi" class="w-full h-auto">
- <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
- <svg class="w-3.5 h-3.5 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
- <span><strong>Yasal Bilgilendirme:</strong> Görseldeki personel adları, birimler ve onay statüleri simülasyon amacıyla yapılandırılmıştır.</span>
- </figcaption>
- </figure>
+<figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+    <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
+      <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Nöbet Yönetimi > Nöbet Devir Listesi</strong>
+      </span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">7 Sütunlu İzleme &amp; Doğal Dil Hikaye Paneli</span>
+    </div>
+  <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+    <img src="assets/img/09_nobet_devir_listesi.png" alt="Tüm Nöbet Devir ve Değişim İşlemleri Listesi" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+  </div>
+    <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+      <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span><span><strong>Yasal Bilgilendirme:</strong> Görseldeki personel adları, birimler ve onay statüleri simülasyon amacıyla yapılandırılmıştır.</span></span>
+    </figcaption>
+</figure>
 
- <!-- GÖRSEL 2: NÖBET DEVİR TALEP DİYALOĞU -->
- <figure class="my-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
- <div class="p-3 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
- <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
- ️ Ekran Konumu: <strong class="text-slate-900 dark:text-white font-semibold">Nöbet Çizelgesi > [Nöbet Devret] Diyalogu</strong>
- </span>
- <span class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">P2P Devir Formu, Kısıt Doğrulaması & Zorunlu Gerekçe</span>
- </div>
- <img src="assets/img/09_nobet_devir_dialog.png" alt="Nöbet Devir Talebi Oluşturma Ekranı" class="w-full h-auto">
- <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
- <svg class="w-3.5 h-3.5 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
- <span><strong>Yasal Bilgilendirme:</strong> Devralacak personel seçildiğinde yasal çalışma kısıtları ve hizmet sınıfı uygunluğu anlık denetlenir.</span>
- </figcaption>
- </figure>
+<figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+    <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
+      <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Nöbet Çizelgesi > [Nöbet Devret] Diyalogu</strong>
+      </span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">P2P Devir Formu, Kısıt Doğrulaması &amp; Zorunlu Gerekçe</span>
+    </div>
+  <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+    <img src="assets/img/09_nobet_devir_dialog.png" alt="Nöbet Devir Talebi Oluşturma Ekranı" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+  </div>
+    <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+      <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span><span><strong>Yasal Bilgilendirme:</strong> Devralacak personel seçildiğinde yasal çalışma kısıtları ve hizmet sınıfı uygunluğu anlık denetlenir.</span></span>
+    </figcaption>
+</figure>
 
- <!-- GÖRSEL 3: WEB PORTAL DEĞİŞİM HAVUZU -->
- <figure class="my-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
- <div class="p-3 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
- <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
- Ekran Konumu: <strong class="text-slate-900 dark:text-white font-semibold">Web Portal > Nöbet Değişim Havuzu</strong>
- </span>
- <span class="text-[10px] font-medium text-purple-700 dark:text-purple-300 bg-purple-100/70 dark:bg-purple-900/50 px-2 py-0.5 rounded border border-purple-200 dark:border-purple-800/60">Açık Pazar İlanları, Teklifler & 36s TTL</span>
- </div>
- <img src="assets/img/09_nobet_havuz.png" alt="Web Portal Nöbet Değişim Havuzu Arayüzü" class="w-full h-auto">
- <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
- <svg class="w-3.5 h-3.5 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
- <span><strong>Yasal Bilgilendirme:</strong> Personel ayda en fazla 48 saat havuza nöbet bırakabilir; nöbete 36 saat kala havuz ilanı zaman aşımına uğrar.</span>
- </figcaption>
- </figure>
+<figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+    <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
+      <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Web Portal > Nöbet Değişim Havuzu</strong>
+      </span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-purple-100 text-purple-800 dark:bg-purple-950/80 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60">Açık Pazar İlanları, Teklifler &amp; 36s TTL</span>
+    </div>
+  <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+    <img src="assets/img/09_nobet_havuz.png" alt="Web Portal Nöbet Değişim Havuzu Arayüzü" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+  </div>
+    <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+      <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span><span><strong>Yasal Bilgilendirme:</strong> Personel ayda en fazla 48 saat havuza nöbet bırakabilir; nöbete 36 saat kala havuz ilanı zaman aşımına uğrar.</span></span>
+    </figcaption>
+</figure>
 
- <!-- GÖRSEL 4: YÖNETİCİ AKSİYON MERKEZİ -->
- <figure class="my-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
- <div class="p-3 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
- <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
- ️ Ekran Konumu: <strong class="text-slate-900 dark:text-white font-semibold">Sistem Menüsü > Yönetici Aksiyon Merkezi</strong>
- </span>
- <span class="text-[10px] font-medium text-emerald-700 dark:text-emerald-300 bg-emerald-100/70 dark:bg-emerald-900/50 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800/60">3 Adımlı Gebe Personel ve İkame Dengeleme Sihirbazı</span>
- </div>
- <img src="assets/img/09_yonetici_aksiyon_merkezi.png" alt="Merkezi Yönetici Aksiyon ve Onay Sihirbazı" class="w-full h-auto">
- <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
- <svg class="w-3.5 h-3.5 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
- <span><strong>Yasal Bilgilendirme:</strong> Gebe personelin radyasyonsuz alana nakli, boş nöbetlere ikame ve gündüz vardiyaları tek tıkla işlenir.</span>
- </figcaption>
- </figure>
- </section>
+<figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+    <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
+      <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Sistem Menüsü > Yönetici Aksiyon Merkezi</strong>
+      </span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">3 Adımlı Gebe Personel ve İkame Dengeleme Sihirbazı</span>
+    </div>
+  <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+    <img src="assets/img/09_yonetici_aksiyon_merkezi.png" alt="Merkezi Yönetici Aksiyon ve Onay Sihirbazı" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+  </div>
+    <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+      <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span><span><strong>Yasal Bilgilendirme:</strong> Gebe personelin radyasyonsuz alana nakli, boş nöbetlere ikame ve gündüz vardiyaları tek tıkla işlenir.</span></span>
+    </figcaption>
+</figure>
+</section>
 
- <!-- ADIM ADIM İŞLEM KILAVUZU -->
- <section id="step-by-step" class="space-y-6">
- <div class="space-y-1">
- <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
- <span> Adım Adım İşlem Rehberi</span>
- </h2>
+<section id="step-by-step" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Adım Adım İşlem Rehberi</span>
+  </h2>
+  <div class="space-y-1">
  <p class="text-sm text-slate-500 dark:text-slate-400">
  Nöbet devri, takas, mazeret, havuz ve idari transfer senaryolarında izlenecek uygulama adımları.
  </p>
  </div>
 
- <!-- ADIM 1 -->
  <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
  <div class="flex items-center gap-3">
  <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 flex items-center justify-center font-bold text-sm">
@@ -607,7 +429,6 @@ graph TD
  </ol>
  </div>
 
- <!-- ADIM 2 -->
  <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
  <div class="flex items-center gap-3">
  <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 flex items-center justify-center font-bold text-sm">
@@ -625,7 +446,6 @@ graph TD
  </ol>
  </div>
 
- <!-- ADIM 3 -->
  <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
  <div class="flex items-center gap-3">
  <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 flex items-center justify-center font-bold text-sm">
@@ -645,7 +465,6 @@ graph TD
  </ol>
  </div>
 
- <!-- ADIM 4 -->
  <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
  <div class="flex items-center gap-3">
  <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 flex items-center justify-center font-bold text-sm">
@@ -663,7 +482,6 @@ graph TD
  </ol>
  </div>
 
- <!-- ADIM 5 -->
  <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
  <div class="flex items-center gap-3">
  <span class="w-7 h-7 rounded-xl bg-rose-100 text-rose-800 dark:bg-rose-900/60 dark:text-rose-300 flex items-center justify-center font-bold text-sm">
@@ -686,130 +504,98 @@ graph TD
  <li><strong>[Tüm Aksiyonları Onayla ve Çizelgeyi Güncelle]</strong> butonuna basarak işlemi tek adımda tamamlayın.</li>
  </ol>
  </div>
- </section>
+</section>
 
- <!-- SIKÇA SORULAN SORULAR (SSS AKORDEONU) (ZORUNLU) -->
- <section id="faq" class="space-y-4">
- <div class="space-y-1">
- <h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
- <span> Sıkça Sorulan Sorular (SSS)</span>
- </h2>
- <p class="text-sm text-slate-500 dark:text-slate-400">
- Nöbet devri, takas, mazeret ve havuz yönetimi hakkında en çok merak edilen sorular.
- </p>
- </div>
+<section id="faq" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Sıkça Sorulan Sorular (SSS)</span>
+  </h2>
+  <div class="space-y-3" id="faqAccordion">
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>Gebe veya emziren personele nöbet devredilebilir mi?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <strong>Kesinlikle hayır.</strong> RADPYS Güvenlik Kalkanı (`RED-NOBET_RADIATION_PREGNANCY_BREACH_IN_SWAP`) uyarınca aktif gebelik bildirimi, emzirme izni, heyet raporu veya radyasyon doz aşımı bulunan personele sistem hiçbir koşulda nöbet devrine veya takasına izin vermez. Devir formu bu personelleri seçim listesine dahil etmez.
+    </div>
+  </details>
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>Radyoloji Teknikeri ile Hemşire arasında nöbet devri veya takası yapılabilir mi?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <strong>Hayır.</strong> Hizmet Sınıfı Eşitliği ilkesi gereğince nöbet devri ve takası yalnızca aynı hizmet sınıfındaki meslektaşlar arasında yapılabilir. Farklı unvanlara sahip personeller (örn: Hemşire ile Radyasyon Teknikeri) birbirinin nöbetini devralamaz.
+    </div>
+  </details>
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>Bir personel aylık zorunlu taban çalışma saatini tek yönlü olarak başkasına devredebilir mi?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Hayır. Personelin aylık zorunlu çalışma süresi (örneğin 140 saat) altındaki taban nöbetleri karşılıksız devredilemez. Yalnızca fazla mesai kapsamındaki nöbetler tek yönlü devredilebilir. Personel taban süresini doldurmamışsa mutlaka <strong>"Karşılıklı Takas"</strong> seçeneğini kullanmak zorundadır.</p>
+    </div>
+  </details>
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>Nöbet değişim havuzunda 36 saat kala nöbet otomatik olarak acil mazerete mi düşer?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Hayır. Nöbet saatine 36 saat kaldığında sistem nöbetin açıkta kalmasını önlemek için havuz ilanını zaman aşımına uğratır (<code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-cyan-700 dark:text-cyan-300 text-xs font-mono">ZAMAN_ASIMI</code>). Ancak acil mazeret ve ikame atama süreci otomatik olarak işletilmez. Personelin yöneticiye başvurusu ve amirin klinik bir zorunluluk olduğunu teyit etmesi neticesinde yönetici inisiyatifiyle acil mazeret protokolü devreye alınır.</p>
+    </div>
+  </details>
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>Acil mazeretle iptal edilen nöbetler sonradan geri alınabilir mi?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Evet. Acil mazeret diyalogundaki <strong>[Geçmiş]</strong> sekmesine gidilerek ilgili mazeret kaydı seçilip <strong>[Geri Al]</strong> butonuna basıldığında, sistem atanan ikame nöbetleri siler ve mazeretli personelin orijinal nöbetlerini çizelgeye geri döndürür.</p>
+    </div>
+  </details>
+</div>
+</section>
 
- <div class="space-y-3">
- <!-- Soru 1 -->
- <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 transition-all">
- <summary class="flex justify-between items-center font-semibold cursor-pointer text-slate-900 dark:text-white text-sm">
- <span>Gebe veya emziren personele nöbet devredilebilir mi?</span>
- <span class="transition group-open:rotate-180">
- <svg class="w-4 h-4 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
- </span>
- </summary>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 leading-relaxed">
- <strong>Kesinlikle hayır.</strong> RADPYS Güvenlik Kalkanı (`RED-NOBET_RADIATION_PREGNANCY_BREACH_IN_SWAP`) uyarınca aktif gebelik bildirimi, emzirme izni, heyet raporu veya radyasyon doz aşımı bulunan personele sistem hiçbir koşulda nöbet devrine veya takasına izin vermez. Devir formu bu personelleri seçim listesine dahil etmez.
- </p>
- </details>
-
- <!-- Soru 2 -->
- <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 transition-all">
- <summary class="flex justify-between items-center font-semibold cursor-pointer text-slate-900 dark:text-white text-sm">
- <span>Radyoloji Teknikeri ile Hemşire arasında nöbet devri veya takası yapılabilir mi?</span>
- <span class="transition group-open:rotate-180">
- <svg class="w-4 h-4 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
- </span>
- </summary>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 leading-relaxed">
- <strong>Hayır.</strong> Hizmet Sınıfı Eşitliği ilkesi gereğince nöbet devri ve takası yalnızca aynı hizmet sınıfındaki meslektaşlar arasında yapılabilir. Farklı unvanlara sahip personeller (örn: Hemşire ile Radyasyon Teknikeri) birbirinin nöbetini devralamaz.
- </p>
- </details>
-
- <!-- Soru 3 -->
- <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 transition-all">
- <summary class="flex justify-between items-center font-semibold cursor-pointer text-slate-900 dark:text-white text-sm">
- <span>Bir personel aylık zorunlu taban çalışma saatini tek yönlü olarak başkasına devredebilir mi?</span>
- <span class="transition group-open:rotate-180">
- <svg class="w-4 h-4 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
- </span>
- </summary>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 leading-relaxed">
- Hayır. Personelin aylık zorunlu çalışma süresi (örneğin 140 saat) altındaki taban nöbetleri karşılıksız devredilemez. Yalnızca fazla mesai kapsamındaki nöbetler tek yönlü devredilebilir. Personel taban süresini doldurmamışsa mutlaka <strong>"Karşılıklı Takas"</strong> seçeneğini kullanmak zorundadır.
- </p>
- </details>
-
- <!-- Soru 4 -->
- <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 transition-all">
- <summary class="flex justify-between items-center font-semibold cursor-pointer text-slate-900 dark:text-white text-sm">
- <span>Nöbet değişim havuzunda 36 saat kala nöbet otomatik olarak acil mazerete mi düşer?</span>
- <span class="transition group-open:rotate-180">
- <svg class="w-4 h-4 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
- </span>
- </summary>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 leading-relaxed">
- Hayır. Nöbet saatine 36 saat kaldığında sistem nöbetin açıkta kalmasını önlemek için havuz ilanını zaman aşımına uğratır (`ZAMAN_ASIMI`). Ancak acil mazeret ve ikame atama süreci otomatik olarak işletilmez. Personelin yöneticiye başvurusu ve amirin klinik bir zorunluluk olduğunu teyit etmesi neticesinde yönetici inisiyatifiyle acil mazeret protokolü devreye alınır.
- </p>
- </details>
-
- <!-- Soru 5 -->
- <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 transition-all">
- <summary class="flex justify-between items-center font-semibold cursor-pointer text-slate-900 dark:text-white text-sm">
- <span>Acil mazeretle iptal edilen nöbetler sonradan geri alınabilir mi?</span>
- <span class="transition group-open:rotate-180">
- <svg class="w-4 h-4 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
- </span>
- </summary>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 leading-relaxed">
- Evet. Acil mazeret diyalogundaki **[Geçmiş]** sekmesine gidilerek ilgili mazeret kaydı seçilip **[Geri Al]** butonuna basıldığında, sistem atanan ikame nöbetleri siler ve mazeretli personelin orijinal nöbetlerini çizelgeye geri döndürür.
- </p>
- </details>
- </div>
- </section>
-
- <!-- NAVIGATION FOOTER -->
-
-      <!-- FOOTER PREV / NEXT -->
-      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800">
+<footer class="pt-8 border-t border-slate-200 dark:border-slate-800">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <a href="08_nobet_hazirlik_ve_solver_motoru.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition group">
             <span class="text-xs font-mono uppercase text-slate-400 block mb-1">← Önceki Doküman</span>
-            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">08. Nöbet Hazırlık & Solver</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">08. Nöbet Hazırlık &amp; Solver</span>
           </a>
           <a href="10_nobet_borc_alacak_ve_fazla_mesai.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition text-right group">
             <span class="text-xs font-mono uppercase text-slate-400 block mb-1">Sonraki Doküman →</span>
-            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">10. Nöbet Borç & Fazla Mesai</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">10. Nöbet Borç &amp; Fazla Mesai</span>
           </a>
         </div>
       </footer>
     </main>
 
-    <!-- RIGHT SIDEBAR: ON-PAGE TOC -->
     <aside class="w-64 shrink-0 hidden xl:block py-8 pl-6 border-l border-slate-200 dark:border-slate-800">
       <div class="sticky top-24 space-y-4">
         <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-3">Bu Sayfada</span>
         <nav class="space-y-2.5 text-sm" id="onPageToc">
-          <a href="#overview" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 transition">Genel Bakış</a>
-          <a href="#quick-recipe" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 transition">Kısa Reçete (4 Metrik)</a>
-          <a href="#myth-buster" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 transition">Mit Avcısı (Yanlış Algı)</a>
-          <a href="#workflow" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 transition">Kural & Süreç Şeması</a>
-          <a href="#screenshots" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 transition">Ekran Rehberi</a>
-          <a href="#step-by-step" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 transition">Adım Adım Eylem</a>
-          <a href="#faq" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 transition">Sıkça Sorulan Sorular</a>
+          <a href="#quick-recipe" data-toc-link="quick-recipe" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Hızlı Reçete: Ay Ortası Nöbet Değişimleri, İkame Önerisi ve Gebelik Transferi</a>
+          <a href="#5w1h" data-toc-link="5w1h" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">5N1K Kural ve Arayüz Çözümleme Tablosu</a>
+          <a href="#myth-buster" data-toc-link="myth-buster" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)</a>
+          <a href="#workflow" data-toc-link="workflow" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Devir, İkame, Mazeret ve Aksiyon Akış Şeması</a>
+          <a href="#screenshots" data-toc-link="screenshots" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Arayüz Ekran Görünümleri</a>
+          <a href="#step-by-step" data-toc-link="step-by-step" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Adım Adım İşlem Rehberi</a>
+          <a href="#faq" data-toc-link="faq" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Sıkça Sorulan Sorular (SSS)</a>
         </nav>
       </div>
     </aside>
-
   </div>
 
-  <!-- FOOTER -->
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi — Sağlık Bilgi Güvenliği & KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.22) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
     </div>
   </footer>
 
-  <!-- RADPYS Offline Search & App Engine -->
   <script src="assets/search_index.js"></script>
   <script src="assets/app.js"></script>
 </body>

@@ -16,42 +16,36 @@
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
 
-  <!-- TOP HEADER NAVBAR (Wide Fluid Layout) -->
+  <!-- TOP HEADER NAVBAR -->
   <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
     <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between gap-4">
-      
-      <!-- Brand & Version -->
       <div class="flex items-center gap-3">
         <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Menüyü Aç/Kapat">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
-
         <a href="index.html" class="flex items-center gap-3 group">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-            </svg>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.2</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.22</span>
             </span>
-            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Karar Destek Portalı</span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
         </a>
       </div>
 
-      <!-- Quick Search Bar (Ctrl+K) -->
       <div class="flex-1 max-w-xl hidden md:block">
         <div class="relative">
           <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           </div>
-          <input 
-            type="text" 
-            placeholder="Dokümanda ara... (Ctrl+K ile hızlı arama)" 
-            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition cursor-pointer"
+          <input
+            type="text"
             readonly
+            placeholder="Dokümanda ara... (Ctrl+K ile hızlı arama)"
+            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition cursor-pointer"
           >
           <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
             <kbd class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600 font-semibold">Ctrl+K</kbd>
@@ -59,186 +53,78 @@
         </div>
       </div>
 
-      <!-- Action Buttons -->
       <div class="flex items-center gap-3">
-        <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-          <span>Tüm Modüller</span>
-        </a>
+        <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition"><span>Tüm Modüller</span></a>
       </div>
     </div>
   </header>
 
-  <!-- MAIN 3-COLUMN CONTAINER (Fluid & Wide Layout) -->
+  <!-- MAIN CONTAINER -->
   <div class="flex-1 max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 flex gap-8">
+    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar"></aside>
 
-    <!-- LEFT SIDEBAR: NAVIGATION -->
-    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar">
-      <div class="mb-4">
-        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3">23 Modül Rehberi</span>
-      </div>
-      <nav class="space-y-1 text-sm font-medium">
-        <a href="01_kurulum_ve_ilk_giris.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">01</span>
-          <span>Kurulum & İlk Giriş</span>
-        </a>
-        <a href="02_kullanici_ve_rol_yonetimi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">02</span>
-          <span>Kullanıcı & Rol Yönetimi</span>
-        </a>
-        <a href="03_sistem_ayarlari_ve_tanimlamalar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">03</span>
-          <span>Sistem Ayarları & Tanımlar</span>
-        </a>
-        <a href="04_veritabani_bakim_ve_guvenlik.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">04</span>
-          <span>Veritabanı Bakım & Kasa</span>
-        </a>
-        <a href="05_personel_yonetimi_ve_toplu_aktarim.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">05</span>
-          <span>Personel & Excel Aktarım</span>
-        </a>
-        <a href="06_izin_yonetimi_ve_hakedis.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">06</span>
-          <span>İzin Yönetimi & Şua</span>
-        </a>
-        <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">07</span>
-          <span>Nöbet Ayarları & Kısıtlar</span>
-        </a>
-        <a href="08_nobet_hazirlik_ve_solver_motoru.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">08</span>
-          <span>Nöbet Hazırlık & Solver</span>
-        </a>
-        <a href="09_nobet_devir_ikame_ve_acil_mazeret.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">09</span>
-          <span>Nöbet Devir & İkame</span>
-        </a>
-        <a href="10_nobet_borc_alacak_ve_fazla_mesai.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">10</span>
-          <span>Nöbet Borç & Fazla Mesai</span>
-        </a>
-        <!-- 11 AKTİF -->
-        <a href="#overview" class="flex items-center justify-between px-3 py-2.5 rounded-xl bg-cyan-50 text-cyan-800 dark:bg-cyan-950/60 dark:text-cyan-300 font-semibold border-l-4 border-cyan-600">
-          <div class="flex items-center gap-2.5">
-            <span class="font-mono text-xs text-cyan-600 dark:text-cyan-400 font-bold">11</span>
-            <span>Fiili Hizmet (FHZ) & Şua</span>
-          </div>
-          <span class="w-2 h-2 rounded-full bg-cyan-600 animate-pulse"></span>
-        </a>
-        <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">12</span>
-          <span>Dozimetre & RD.F43</span>
-        </a>
-        <a href="13_saglik_muayeneleri_ve_periyodik_takip.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">13</span>
-          <span>Sağlık Muayeneleri</span>
-        </a>
-        <a href="14_ortam_dozu_ve_kroki_haritasi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">14</span>
-          <span>Ortam Dozu & Kroki</span>
-        </a>
-        <a href="15_olay_bildirimi_ve_dof_capa.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">15</span>
-          <span>Olay Bildirimi & DÖF</span>
-        </a>
-        <a href="16_rgs_rso_gorevlendirme_ve_sertifika.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">16</span>
-          <span>RGS / RSO Görevlendirme</span>
-        </a>
-        <a href="17_hizmet_ici_egitim_ve_online_sinav.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">17</span>
-          <span>Hizmet İçi Eğitim & LMS</span>
-        </a>
-        <a href="18_tibbi_cihaz_ve_ndk_lisans_envanteri.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">18</span>
-          <span>Tıbbi Cihaz & NDK Lisans</span>
-        </a>
-        <a href="19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">19</span>
-          <span>Cihaz Arıza & QA/QC</span>
-        </a>
-        <a href="20_rke_koruyucu_ekipman_ve_din6857.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">20</span>
-          <span>Koruyucu Ekipman (RKE)</span>
-        </a>
-        <a href="21_merkezi_onaylar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">21</span>
-          <span>Merkezi Onaylar</span>
-        </a>
-        <a href="22_web_portal_ve_dashboardlar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">22</span>
-          <span>Web Portal & Dashboard</span>
-        </a>
-        <a href="23_rapor_tutanak_merkezi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">23</span>
-          <span>Rapor & Tutanak Merkezi</span>
-        </a>
-      </nav>
-    </aside>
-
-    <!-- CENTER COLUMN: CORE DOCUMENTATION (Wide & Readable) -->
     <main class="flex-1 min-w-0 py-8">
-      <!-- Breadcrumb & Badges -->
       <nav class="flex items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
         <a href="index.html" class="hover:text-cyan-600 transition">Kılavuz Ana Sayfası</a>
         <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         <span>Bölüm 3: Nöbet Dağıtım Motoru</span>
         <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">11. Fiili Hizmet (FHZ) & Şua</span>
+        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">11. Fiili Hizmet (FHZ) &amp; Şua</span>
       </nav>
 
-<!-- HERO INTRO -->
- <section id="genel-bakis" class="space-y-4">
- <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-cyan-100 dark:bg-cyan-900/60 text-cyan-800 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800">
- <span>Modül 11</span>
- <span class="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
- <span>SGK Yıpranma & Şua İzni Hakedişi</span>
- </div>
+<section id="genel-bakis" class="mb-10 border-b border-slate-200 dark:border-slate-800 pb-6">
+  <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+    <div class="flex flex-wrap items-center gap-2.5"></div>
+    
+  </div>
+  <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3">
+    Fiili Hizmet ve Şua Hesaplama (FHZ)
+  </h1>
+  <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
+    Bu modül; radyoloji ve nükleer tıp çalışanlarının <strong>5510 Sayılı Kanun</strong> kapsamındaki <em>Fiili Hizmet Süresi Zammı (FHZ / Yıpranma Payı)</em> puantajlarını ve Sağlık Bakanlığı'nın mevzuat baremlerine göre <em>Sağlık İzni (Şua İzni)</em> hakedişlerini <strong>3 adımlı entegre bir sihirbaz</strong> üzerinden yönetir. Personellerin çalıştığı radyasyonlu birimlere, nöbet çizelgelerine ve resmi onaylı izinlerine göre net fiili çalışma saatlerini, yıpranma sürelerini ve yıllık Şua günlerini hesaplayıp kilit altına alır.
+  </p>
+  
+  
+  
+</section>
 
- <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
- Fiili Hizmet ve Şua Hesaplama (FHZ)
- </h1>
+<section id="hizli-recete" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Vizyonder Hızlı Karar Reçetesi (4 Adımda FHZ & Şua Sihirbazı)</span>
+  </h2>
+  <div class="p-6 sm:p-7 rounded-3xl bg-cyan-50/70 dark:bg-cyan-950/30 border border-cyan-200/90 dark:border-cyan-800/60 shadow-md">
+  <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+    <div class="flex items-center gap-2.5 text-cyan-900 dark:text-cyan-200 font-bold text-sm sm:text-base">
+      <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      <span>Vizyonder Hızlı Karar Reçetesi (4 Adımda FHZ & Şua Sihirbazı)</span>
+    </div>
+    <span class="text-xs font-mono px-2.5 py-1 rounded bg-cyan-200/80 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-300 font-bold">20 SANİYELİK AKIŞ</span>
+  </div>
+  
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5 text-xs sm:text-sm">
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
+      <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider text-[11px] block">1. Görev Yerlerini Onayla</span>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">15-14 SGK döneminde varsayılan birimler otomatik hazır gelir. Sadece rotasyon veya geçici görevi olan personeli güncelleyip <strong>[1. Görev Yerlerini Onayla ve Hesaplamaya Geç]</strong> butonuna basın.</p>
+    </div>
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
+      <span class="font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider text-[11px] block">2. Hesapla, Kaydet ve Kilitle</span>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Radyasyonlu birimdeki her 50 tam fiili çalışma saati için 1 gün Şua izni hesaplanır; <strong>[2. Hesaplamayı Kaydet, Kilitle ve Rapor Çıktısına Geç]</strong> butonuyla tek tıkla kaydedilip dönem kilitlenir.</p>
+    </div>
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
+      <span class="font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider text-[11px] block">3. Rapor Çıktısı Al & 4. Kapat</span>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Resmi puantaj cetveli hazır açılır; <strong>[3. Rapor Çıktısı Al (Excel / PDF)]</strong> ile indirilir ve <strong>[4. Tamamla ve Kapat]</strong> ile süreç tamamlanır.</p>
+    </div>
+  </div>
+</div>
+</section>
 
- <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
- Bu modül; radyoloji ve nükleer tıp çalışanlarının <strong>5510 Sayılı Kanun</strong> kapsamındaki <em>Fiili Hizmet Süresi Zammı (FHZ / Yıpranma Payı)</em> puantajlarını ve Sağlık Bakanlığı'nın mevzuat baremlerine göre <em>Sağlık İzni (Şua İzni)</em> hakedişlerini <strong>3 adımlı entegre bir sihirbaz</strong> üzerinden yönetir. Personellerin çalıştığı radyasyonlu birimlere, nöbet çizelgelerine ve resmi onaylı izinlerine göre net fiili çalışma saatlerini, yıpranma sürelerini ve yıllık Şua günlerini hesaplayıp kilit altına alır.
- </p>
- </section>
-
- <!-- VİZYONDER HIZLI REÇETE (20 SANİYE KURALI) -->
- <section id="hizli-recete" class="mb-10">
- <div class="p-6 rounded-2xl bg-gradient-to-br from-cyan-900/10 via-slate-900/5 to-blue-900/10 dark:from-cyan-950/40 dark:via-slate-900/40 dark:to-blue-950/40 border border-cyan-200 dark:border-cyan-800/50 shadow-sm">
- <div class="flex items-center gap-3 mb-4">
- <div class="w-8 h-8 rounded-lg bg-cyan-600 text-white flex items-center justify-center font-bold text-sm">
- 20s
- </div>
- <h2 class="text-xl font-bold text-slate-900 dark:text-white">Vizyonder Hızlı Karar Reçetesi (4 Adımda FHZ & Şua Sihirbazı)</h2>
- </div>
- <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
- <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
- <span class="font-bold text-cyan-600 dark:text-cyan-400 block mb-1">1. Görev Yerlerini Onayla</span>
- 15-14 SGK döneminde varsayılan birimler otomatik hazır gelir. Sadece rotasyon veya geçici görevi olan personeli güncelleyip <strong>[1. Görev Yerlerini Onayla ve Hesaplamaya Geç]</strong> butonuna basın.
- </div>
- <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
- <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-1">2. Hesapla, Kaydet ve Kilitle</span>
- Radyasyonlu birimdeki her 50 tam fiili çalışma saati için 1 gün Şua izni hesaplanır; <strong>[2. Hesaplamayı Kaydet, Kilitle ve Rapor Çıktısına Geç]</strong> butonuyla tek tıkla kaydedilip dönem kilitlenir.
- </div>
- <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
- <span class="font-bold text-blue-600 dark:text-blue-400 block mb-1">3. Rapor Çıktısı Al &amp; 4. Kapat</span>
- Resmi puantaj cetveli hazır açılır; <strong>[3. Rapor Çıktısı Al (Excel / PDF)]</strong> ile indirilir ve <strong>[4. Tamamla ve Kapat]</strong> ile süreç tamamlanır.
- </div>
- </div>
- </div>
- </section>
-
- <!-- 2. KPI KARTLARI (TEMEL EŞİKLER) -->
- <section id="kpi-kartlari" class="space-y-4">
- <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span>2. Temel Eşikler & Yasal Baremler</span>
- </h2>
-
- <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
- <!-- KPI 1: 50 Saate 1 Gün -->
+<section id="kpi-kartlari" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Temel Eşikler & Yasal Baremler</span>
+  </h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
  <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
  <div class="flex items-center justify-between">
  <span class="text-xs font-bold font-mono uppercase tracking-wider text-cyan-600 dark:text-cyan-400">Şua Hak Ediş Baremi</span>
@@ -251,8 +137,6 @@
  Sağlık Bakanlığı baremleri gereğince personelin fiilen radyasyon alanında çalıştığı her 50 saat için 1 tam gün Şua izni hakedilir.
  </p>
  </div>
-
- <!-- KPI 2: Yıllık 30 Gün Tavanı -->
  <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
  <div class="flex items-center justify-between">
  <span class="text-xs font-bold font-mono uppercase tracking-wider text-rose-600 dark:text-rose-400">Yıllık Azami Tavan</span>
@@ -265,8 +149,6 @@
  Personel ne kadar fiili çalışma yaparsa yapsın, bir takvim yılı içinde kazanılabilecek Şua İzni azami 30 gün ile sınırlandırılmıştır.
  </p>
  </div>
-
- <!-- KPI 3: Koşul A vs Koşul B -->
  <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
  <div class="flex items-center justify-between">
  <span class="text-xs font-bold font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Çalışma Koşulu</span>
@@ -279,8 +161,6 @@
  Koşul A (7.0s radyasyon, Şua hakkı var) ile Koşul B (8.0s idari/destek, Şua hakkı yok) kurumsal rejimlere göre tam ayrıştırılır.
  </p>
  </div>
-
- <!-- KPI 4: 15-14 Bordro Dönemi -->
  <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
  <div class="flex items-center justify-between">
  <span class="text-xs font-bold font-mono uppercase tracking-wider text-amber-600 dark:text-amber-400">SGK Bordro Döngüsü</span>
@@ -294,16 +174,16 @@
  </p>
  </div>
  </div>
- </section>
+</section>
 
- <!-- 3. İŞ AKIŞI ŞEMASI (MERMAID) -->
- <section id="is-akisi-semasi" class="space-y-4">
- <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span>3. 4 Adımlı Doğrusal Puantaj Sihirbazı İş Akışı</span>
- </h2>
+<section id="is-akisi-semasi" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>3. 4 Adımlı Doğrusal Puantaj Sihirbazı İş Akışı</span>
+  </h2>
+  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm overflow-x-auto">
 
- <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm overflow-x-auto">
- <pre class="mermaid text-center">
+<div class="mermaid text-sm">
 graph TD
  A["Bordro Dönemi Seçimi: 15.AA - 14.AA"] --> B["1. Adım: Görev Yerlerini Onayla"]
  B --> C["Varsayılan Birimler Otomatik Hazır Gelir"]
@@ -320,161 +200,174 @@ graph TD
  
  L --> M["3. Adım: Rapor Çıktısı Al (Excel / PDF)"]
  M --> N["4. Adım: Tamamla ve Kapat"]
- </pre>
- </div>
- </section>
+</div>
 
- <!-- 4. 5N1K BİLEŞEN ENVANTERİ -->
- <section id="5n1k-tablosu" class="space-y-4">
- <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span>4. 5N1K Kural ve Arayüz Bileşen Envanteri</span>
- </h2>
+ </div>
+</section>
 
- <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
- <table class="w-full text-left text-sm border-collapse">
- <thead>
- <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50/75 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 font-semibold">
- <th class="py-3.5 px-4">Arayüz Bileşeni</th>
- <th class="py-3.5 px-4">Görevi ve Amacı (NE/NEDEN)</th>
- <th class="py-3.5 px-4">Formül / Mantık (NASIL)</th>
- <th class="py-3.5 px-4">Tetiklenme Anı (NE ZAMAN)</th>
- <th class="py-3.5 px-4">Yetkili Rol (KİM)</th>
- <th class="py-3.5 px-4">Durum</th>
- </tr>
- </thead>
- <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
- <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
- <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Sihirbaz Adım Göstergesi]</td>
- <td class="py-3.5 px-4">4 adımlı iş akışını (1. Görev Yerlerini Onayla 2. Fiili Hizmeti Hesapla 3. Rapor Çıktısı Al 4. Tamamla ve Kapat) yönlendirmek.</td>
- <td class="py-3.5 px-4">Adım tıklandığında sekme değişir; dönem parametreleri sekmeler arası senkronize edilir.</td>
- <td class="py-3.5 px-4">Adım çubuğuna tıklandığında</td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Nöbet Sorumlusu, Amir</span></td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
- </tr>
- <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
- <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Yıl] &amp; [Ay] Seçimi</td>
- <td class="py-3.5 px-4">5510 Sayılı Kanun kapsamındaki 15-14 bordro dönemini seçmek.</td>
- <td class="py-3.5 px-4">15.ay ile 14.(ay+1) aralığı dinamik hesaplanır ve varsayılan görev yerleri otomatik yüklenir.</td>
- <td class="py-3.5 px-4">Açılır kutu veya ok butonları değiştiğinde</td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Sorumlu, Mutemet</span></td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
- </tr>
- <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
- <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Sadece Görev Yeri Değişenler]</td>
- <td class="py-3.5 px-4">Asıl birimi dışında görevlendirilen personelleri hızlıca süzmek.</td>
- <td class="py-3.5 px-4">Kadro birimi ile görev yeri farklı olan satırları filtreler; kırmızı renkle vurgular.</td>
- <td class="py-3.5 px-4">Onay kutusu işaretlendiğinde</td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Birim Sorumlusu</span></td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
- </tr>
- <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
- <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Görev Yerini Değiştir] &amp; [Rotasyon / Ek Görev Ekle]</td>
- <td class="py-3.5 px-4">Nöbet listesi dışında başka birimde görevlendirilen veya rotasyona çıkan personelin çalışma alanını tanımlamak.</td>
- <td class="py-3.5 px-4">Yetki kapsamındaki personeller için tarih aralığı, birim ve günlük çalışma saatini (0-24s) kaydeder.</td>
- <td class="py-3.5 px-4">Butona veya satıra çift tıklandığında</td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Birim Sorumlusu, Nöbet Sorumlusu</span></td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
- </tr>
- <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
- <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[1. Görev Yerlerini Onayla ve Hesaplamaya Geç]</td>
- <td class="py-3.5 px-4">Dönemdeki tüm hizmet sınıflarının taslak görev dağılımlarını onaylayıp 2. Adıma (Hesaplama) aktarmak.</td>
- <td class="py-3.5 px-4">Dönemdeki tüm taslak satırları 'Onaylı' yapar ve sekmeyi otomatik olarak [2. Fiili Hizmeti Hesapla] adımına taşır.</td>
- <td class="py-3.5 px-4">Butona tıklandığında</td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Birim Sorumlusu, Amir</span></td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
- </tr>
- <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
- <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[2. Hesaplamayı Kaydet, Kilitle ve Rapor Çıktısına Geç]</td>
- <td class="py-3.5 px-4">Hesaplanan aylık fiili hizmet ve Şua hakedişlerini tek adımda kaydedip dönemi kilitlemek ve 3. Adıma geçmek.</td>
- <td class="py-3.5 px-4">Taslak nöbet planlarını ve önceki dönem kilidini denetler; filtre seçili olsa dahi tüm hizmet sınıflarını kaydeder, dönemi kilitler, yayındaki nöbet planlarını arşivler ve 3. adıma geçer.</td>
- <td class="py-3.5 px-4">Butona tıklandığında</td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Birim Sorumlusu, Amir</span></td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
- </tr>
- <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
- <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[Dönem Kilidini Aç] &amp; [Yılı Kilitle]</td>
- <td class="py-3.5 px-4">Kilitli bir dönemi revizyon için açmak veya yıl sonunda tüm 12 ayı kalıcı olarak dondurmak.</td>
- <td class="py-3.5 px-4">[Dönem Kilidini Aç] yalnızca dönem kilitliyken görünür. [Yılı Kilitle] ise sadece Sistem Yöneticisi (Admin) veya Süpervizör yetkisiyle tüm yılı dondurur.</td>
- <td class="py-3.5 px-4">Butona tıklandığında</td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-400">Amir / Sistem Yöneticisi (Admin)</span></td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
- </tr>
- <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
- <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">[3. Rapor Çıktısı Al (Excel / PDF)] &amp; [4. Tamamla ve Kapat]</td>
- <td class="py-3.5 px-4">SGK ve mutemetlik onaylı resmi puantaj dökümünü Excel/PDF olarak almak ve sihirbazı kapatmak.</td>
- <td class="py-3.5 px-4">Kullanıcının yetki kapsamındaki personellerin kimlik no, ad soyad, SGK günü, izin, fiili saat ve Şua günlerini dışa aktarır; [4. Tamamla ve Kapat] pencereyi kapatır.</td>
- <td class="py-3.5 px-4">Butona tıklandığında</td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Mutemet, Birim Sorumlusu</span></td>
- <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
- </tr>
- </tbody>
- </table>
- </div>
- </section>
+<section id="5n1k-tablosu" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>4. 5N1K Kural ve Arayüz Bileşen Envanteri</span>
+  </h2>
+  <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 custom-scrollbar shadow-sm my-4">
+  <table class="w-full text-left border-collapse text-xs sm:text-sm">
+    <thead>
+      <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/80 uppercase text-xs font-bold tracking-wider text-slate-500 dark:text-slate-400">
+        <th class="py-3.5 px-4">Arayüz Bileşeni</th>
+        <th class="py-3.5 px-4">Görevi ve Amacı (NE/NEDEN)</th>
+        <th class="py-3.5 px-4">Formül / Mantık (NASIL)</th>
+        <th class="py-3.5 px-4">Tetiklenme Anı (NE ZAMAN)</th>
+        <th class="py-3.5 px-4">Yetkili Rol (KİM)</th>
+        <th class="py-3.5 px-4">Durum</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">[Sihirbaz Adım Göstergesi]</td>
+        <td class="py-3.5 px-4">4 adımlı iş akışını (1. Görev Yerlerini Onayla 2. Fiili Hizmeti Hesapla 3. Rapor Çıktısı Al 4. Tamamla ve Kapat) yönlendirmek.</td>
+        <td class="py-3.5 px-4">Adım tıklandığında sekme değişir; dönem parametreleri sekmeler arası senkronize edilir.</td>
+        <td class="py-3.5 px-4">Adım çubuğuna tıklandığında</td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Nöbet Sorumlusu, Amir</span></td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">[Yıl] &amp; [Ay] Seçimi</td>
+        <td class="py-3.5 px-4">5510 Sayılı Kanun kapsamındaki 15-14 bordro dönemini seçmek.</td>
+        <td class="py-3.5 px-4">15.ay ile 14.(ay+1) aralığı dinamik hesaplanır ve varsayılan görev yerleri otomatik yüklenir.</td>
+        <td class="py-3.5 px-4">Açılır kutu veya ok butonları değiştiğinde</td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Sorumlu, Mutemet</span></td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">[Sadece Görev Yeri Değişenler]</td>
+        <td class="py-3.5 px-4">Asıl birimi dışında görevlendirilen personelleri hızlıca süzmek.</td>
+        <td class="py-3.5 px-4">Kadro birimi ile görev yeri farklı olan satırları filtreler; kırmızı renkle vurgular.</td>
+        <td class="py-3.5 px-4">Onay kutusu işaretlendiğinde</td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Birim Sorumlusu</span></td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">[Görev Yerini Değiştir] &amp; [Rotasyon / Ek Görev Ekle]</td>
+        <td class="py-3.5 px-4">Nöbet listesi dışında başka birimde görevlendirilen veya rotasyona çıkan personelin çalışma alanını tanımlamak.</td>
+        <td class="py-3.5 px-4">Yetki kapsamındaki personeller için tarih aralığı, birim ve günlük çalışma saatini (0-24s) kaydeder.</td>
+        <td class="py-3.5 px-4">Butona veya satıra çift tıklandığında</td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Birim Sorumlusu, Nöbet Sorumlusu</span></td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">[1. Görev Yerlerini Onayla ve Hesaplamaya Geç]</td>
+        <td class="py-3.5 px-4">Dönemdeki tüm hizmet sınıflarının taslak görev dağılımlarını onaylayıp 2. Adıma (Hesaplama) aktarmak.</td>
+        <td class="py-3.5 px-4">Dönemdeki tüm taslak satırları 'Onaylı' yapar ve sekmeyi otomatik olarak [2. Fiili Hizmeti Hesapla] adımına taşır.</td>
+        <td class="py-3.5 px-4">Butona tıklandığında</td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Birim Sorumlusu, Amir</span></td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">[2. Hesaplamayı Kaydet, Kilitle ve Rapor Çıktısına Geç]</td>
+        <td class="py-3.5 px-4">Hesaplanan aylık fiili hizmet ve Şua hakedişlerini tek adımda kaydedip dönemi kilitlemek ve 3. Adıma geçmek.</td>
+        <td class="py-3.5 px-4">Taslak nöbet planlarını ve önceki dönem kilidini denetler; filtre seçili olsa dahi tüm hizmet sınıflarını kaydeder, dönemi kilitler, yayındaki nöbet planlarını arşivler ve 3. adıma geçer.</td>
+        <td class="py-3.5 px-4">Butona tıklandığında</td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Birim Sorumlusu, Amir</span></td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">[Dönem Kilidini Aç] &amp; [Yılı Kilitle]</td>
+        <td class="py-3.5 px-4">Kilitli bir dönemi revizyon için açmak veya yıl sonunda tüm 12 ayı kalıcı olarak dondurmak.</td>
+        <td class="py-3.5 px-4">[Dönem Kilidini Aç] yalnızca dönem kilitliyken görünür. [Yılı Kilitle] ise sadece Sistem Yöneticisi (Admin) veya Süpervizör yetkisiyle tüm yılı dondurur.</td>
+        <td class="py-3.5 px-4">Butona tıklandığında</td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-400">Amir / Sistem Yöneticisi (Admin)</span></td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">[3. Rapor Çıktısı Al (Excel / PDF)] &amp; [4. Tamamla ve Kapat]</td>
+        <td class="py-3.5 px-4">SGK ve mutemetlik onaylı resmi puantaj dökümünü Excel/PDF olarak almak ve sihirbazı kapatmak.</td>
+        <td class="py-3.5 px-4">Kullanıcının yetki kapsamındaki personellerin kimlik no, ad soyad, SGK günü, izin, fiili saat ve Şua günlerini dışa aktarır; [4. Tamamla ve Kapat] pencereyi kapatır.</td>
+        <td class="py-3.5 px-4">Butona tıklandığında</td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Mutemet, Birim Sorumlusu</span></td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">Aktif</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</section>
 
- <!-- EKRAN GÖRÜNTÜLERİ -->
- <section id="ekran-goruntuleri" class="space-y-4">
- <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span> Ekran Konumları ve Görsel Rehber</span>
- </h2>
- <figure class="my-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
- <div class="p-3 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
- <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
- ️ Ekran Konumu: <strong class="text-slate-900 dark:text-white font-semibold">Fiili Hizmet ve Şua > 1. Adım: Dönemsel Görev Dağılımı</strong>
- </span>
- <span class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">1. Adım: Görev Dağılımı & Otomatik Atama</span>
- </div>
- <img src="assets/img/11_1_fiili_hizmet_hesaplama_ana_ekran.png" alt="Fiili Hizmet 1. Adım Görev Dağılımı Ekranı" class="w-full h-auto block" loading="lazy">
- <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
- <span><strong>Simülasyon Notu:</strong> 15.AA - 14.AA SGK bordro döneminde personel görev dağılımı ve otomatik görev atama ekranı.</span>
- </figcaption>
- </figure>
- <figure class="my-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
- <div class="p-3 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
- <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
- ️ Ekran Konumu: <strong class="text-slate-900 dark:text-white font-semibold">Fiili Hizmet ve Şua > 2. Adım: Fiili Hizmet ve Şua Hesaplama</strong>
- </span>
- <span class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">2. Adım: FHZ & Şua Hakediş Hesaplama</span>
- </div>
- <img src="assets/img/11_2_fiili_hizmet_hesaplama_ana_ekran.png" alt="Fiili Hizmet 2. Adım Hesaplama Ekranı" class="w-full h-auto block" loading="lazy">
- <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
- <span><strong>Simülasyon Notu:</strong> Koşul A (7s) / Koşul B (8s) ayrımı, onaylı izin düşümleri ve 50 saate 1 gün Şua izni hakediş tablosu.</span>
- </figcaption>
- </figure>
- <figure class="my-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
- <div class="p-3 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
- <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
- ️ Ekran Konumu: <strong class="text-slate-900 dark:text-white font-semibold">Fiili Hizmet ve Şua > 3. Adım: Puantaj Raporu</strong>
- </span>
- <span class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">3. Adım: Resmi SGK Puantaj İcmali</span>
- </div>
- <img src="assets/img/11_3_fiili_hizmet_hesaplama_ana_ekran.png" alt="Fiili Hizmet 3. Adım Puantaj Raporu Ekranı" class="w-full h-auto block" loading="lazy">
- <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
- <span><strong>Simülasyon Notu:</strong> SGK ve mutemetlik bildirimine hazır aylık/yıllık resmi Fiili Hizmet Zammı puantaj cetveli.</span>
- </figcaption>
- </figure>
- <figure class="my-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
- <div class="p-3 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
- <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
- ️ Ekran Konumu: <strong class="text-slate-900 dark:text-white font-semibold">Fiili Hizmet Hesaplama > Onaysız İzin Güvenlik Uyarısı</strong>
- </span>
- <span class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">Onaysız İzin Emniyet Kilidi</span>
- </div>
- <img src="assets/img/11_fhz_onaysiz_izin_uyari_dialog.png" alt="Onaysız İzin Güvenlik Uyarısı Diyaloğu" class="w-full h-auto block" loading="lazy">
- <figcaption class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
- <span><strong>Simülasyon Notu:</strong> Dönem içinde onayı tamamlanmamış izin bulunduğunda hatalı SGK bildirimini önleyen güvenlik bariyeri.</span>
- </figcaption>
- </figure>
- </section>
+<section id="ekran-goruntuleri" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Ekran Konumları ve Görsel Rehber</span>
+  </h2>
+  <figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+    <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
+      <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Fiili Hizmet ve Şua > 1. Adım: Dönemsel Görev Dağılımı</strong>
+      </span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">1. Adım: Görev Dağılımı &amp; Otomatik Atama</span>
+    </div>
+  <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+    <img src="assets/img/11_1_fiili_hizmet_hesaplama_ana_ekran.png" alt="Fiili Hizmet 1. Adım Görev Dağılımı Ekranı" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+  </div>
+    <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+      <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span><span><strong>Simülasyon Notu:</strong> 15.AA - 14.AA SGK bordro döneminde personel görev dağılımı ve otomatik görev atama ekranı.</span></span>
+    </figcaption>
+</figure>
 
- <!-- 5. KULLANIM REHBERİ -->
- <section id="kullanim-rehberi" class="space-y-6">
- <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span>5. Adım Adım İşlem Rehberi</span>
- </h2>
+<figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+    <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
+      <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Fiili Hizmet ve Şua > 2. Adım: Fiili Hizmet ve Şua Hesaplama</strong>
+      </span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">2. Adım: FHZ &amp; Şua Hakediş Hesaplama</span>
+    </div>
+  <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+    <img src="assets/img/11_2_fiili_hizmet_hesaplama_ana_ekran.png" alt="Fiili Hizmet 2. Adım Hesaplama Ekranı" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+  </div>
+    <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+      <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span><span><strong>Simülasyon Notu:</strong> Koşul A (7s) / Koşul B (8s) ayrımı, onaylı izin düşümleri ve 50 saate 1 gün Şua izni hakediş tablosu.</span></span>
+    </figcaption>
+</figure>
 
- <!-- Adım A: Görev Dağılımı -->
- <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+<figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+    <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
+      <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Fiili Hizmet ve Şua > 3. Adım: Puantaj Raporu</strong>
+      </span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">3. Adım: Resmi SGK Puantaj İcmali</span>
+    </div>
+  <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+    <img src="assets/img/11_3_fiili_hizmet_hesaplama_ana_ekran.png" alt="Fiili Hizmet 3. Adım Puantaj Raporu Ekranı" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+  </div>
+    <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+      <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span><span><strong>Simülasyon Notu:</strong> SGK ve mutemetlik bildirimine hazır aylık/yıllık resmi Fiili Hizmet Zammı puantaj cetveli.</span></span>
+    </figcaption>
+</figure>
+
+<figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+    <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
+      <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Fiili Hizmet Hesaplama > Onaysız İzin Güvenlik Uyarısı</strong>
+      </span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">Onaysız İzin Emniyet Kilidi</span>
+    </div>
+  <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+    <img src="assets/img/11_fhz_onaysiz_izin_uyari_dialog.png" alt="Onaysız İzin Güvenlik Uyarısı Diyaloğu" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+  </div>
+    <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+      <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span><span><strong>Simülasyon Notu:</strong> Dönem içinde onayı tamamlanmamış izin bulunduğunda hatalı SGK bildirimini önleyen güvenlik bariyeri.</span></span>
+    </figcaption>
+</figure>
+</section>
+
+<section id="kullanim-rehberi" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Adım Adım İşlem Rehberi</span>
+  </h2>
+  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
  <div class="flex items-center gap-3">
  <span class="w-8 h-8 rounded-full bg-cyan-500 text-white font-bold flex items-center justify-center font-mono">1</span>
  <h3 class="text-lg font-bold text-slate-900 dark:text-white">1. Adım: Görev Yerlerini Kontrol Etme ve Onaylama</h3>
@@ -489,7 +382,6 @@ graph TD
  </ol>
  </div>
 
- <!-- Adım B: Hesaplama, Kaydetme ve Kilitleme -->
  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
  <div class="flex items-center gap-3">
  <span class="w-8 h-8 rounded-full bg-cyan-500 text-white font-bold flex items-center justify-center font-mono">2</span>
@@ -505,8 +397,6 @@ graph TD
  <li><strong>Net Fiili Çalışma Saati:</strong> Fiilen radyasyonlu alanda icra edilen nöbet ve mesai saatlerinin net toplamıdır.</li>
  <li><strong>Hesaplanan Şua İzni (Gün):</strong> Her 50 fiili radyasyon saatine 1 gün olarak hesaplanır (Yıllık 30 gün tavanı aşıldığında sistem otomatik tavan kısıtı koyar).</li>
  </ul>
-
- <!-- Alert: Onaysız İzin Uyarısı -->
  <div class="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 text-amber-900 dark:text-amber-200 space-y-1">
  <div class="font-bold flex items-center gap-2">
  <svg class="w-4 h-4 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
@@ -516,14 +406,12 @@ graph TD
  Eğer dönem içinde radyasyon görevlilerine ait henüz resmi onayı tamamlanmamış (taslak veya ön onaylı) izinler varsa sistem yasal hatayı önlemek adına hesaplamayı durdurur. Bu durumda <strong>İzin Yönetimi</strong> sayfasına geçerek izinlere resmi onay verdikten sonra hesaplama ekranına dönünüz.
  </p>
  </div>
-
  <p>
  Sonuçlar doğrulandığında sağ üstteki <strong>[2. Hesaplamayı Kaydet, Kilitle ve Rapor Çıktısına Geç]</strong> butonuna tıklayın. Sistem hesaplamayı kaydeder, dönemi kilitler, yayındaki nöbet planlarını arşivler ve sizi doğrudan 3. adıma aktarır.
  </p>
  </div>
  </div>
 
- <!-- Adım C & D: Rapor Çıktısı ve Kapatma -->
  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
  <div class="flex items-center gap-3">
  <span class="w-8 h-8 rounded-full bg-cyan-500 text-white font-bold flex items-center justify-center font-mono">3</span>
@@ -538,18 +426,17 @@ graph TD
  </p>
  </div>
  </div>
- </section>
+</section>
 
- <!-- 6. HİBRİT ARAYÜZ VE WEB PORTALI -->
- <section id="hibrit-entegrasyon" class="space-y-4">
- <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span>6. Web Portalı Şua Karnesi & Risk Seviyeleri</span>
- </h2>
-
- <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<section id="hibrit-entegrasyon" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Web Portalı Şua Karnesi & Risk Seviyeleri</span>
+  </h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
  <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span class="p-2 rounded-xl bg-cyan-100 dark:bg-cyan-950 text-cyan-600 dark:text-cyan-400">️</span>
+ <span class="p-2 rounded-xl bg-cyan-100 dark:bg-cyan-950 text-cyan-600 dark:text-cyan-400"> </span>
  <span>Masaüstü Uygulaması (Yetkili Merkez)</span>
  </h3>
  <ul class="text-sm text-slate-600 dark:text-slate-300 space-y-2 pl-4 list-disc">
@@ -560,7 +447,6 @@ graph TD
  <li>SGK formatında Excel ve PDF puantaj rapor dökümü</li>
  </ul>
  </div>
-
  <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
  <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
  <span class="p-2 rounded-xl bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400"></span>
@@ -585,22 +471,14 @@ graph TD
  </div>
  </div>
  </div>
- </section>
+</section>
 
- <!-- YANLIŞ ALGIYI YIKAN "MİT AVCISI" (MYTH-BUSTING) KARTLARI -->
- <section id="mit-avcilari" class="mb-12">
- <div class="flex items-center gap-2 mb-4">
- <span class="p-1.5 rounded-lg bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
- d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
- </svg>
- </span>
- <h2 class="text-xl font-bold text-slate-900 dark:text-white">FHZ, Şua İzni & Mit Avcısı (Kritik Kurallar)</h2>
- </div>
-
- <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
- <!-- Mit 1 -->
+<section id="mit-avcilari" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>FHZ, Şua İzni & Mit Avcısı (Kritik Kurallar)</span>
+  </h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
  <div class="rounded-2xl border border-red-200 dark:border-red-900/40 bg-gradient-to-br from-red-50/50 via-white to-slate-50 dark:from-red-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
  <div class="flex items-center gap-2 text-red-600 dark:text-red-400 font-bold text-xs uppercase tracking-wider mb-2">
  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -623,8 +501,6 @@ graph TD
  </p>
  </div>
  </div>
-
- <!-- Mit 2 -->
  <div class="rounded-2xl border border-amber-200 dark:border-amber-900/40 bg-gradient-to-br from-amber-50/50 via-white to-slate-50 dark:from-amber-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
  <div class="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wider mb-2">
  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -647,8 +523,6 @@ graph TD
  </p>
  </div>
  </div>
-
- <!-- Mit 3 -->
  <div class="rounded-2xl border border-blue-200 dark:border-blue-900/40 bg-gradient-to-br from-blue-50/50 via-white to-slate-50 dark:from-blue-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
  <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold text-xs uppercase tracking-wider mb-2">
  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -672,85 +546,82 @@ graph TD
  </div>
  </div>
  </div>
- </section>
+</section>
 
- <!-- 7. SSS VE SORUN GİDERME -->
- <section id="sss-ve-sorun-giderme" class="space-y-4">
- <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span>7. Sıkça Sorulan Sorular ve Kritik Kilitler</span>
- </h2>
+<section id="sss-ve-sorun-giderme" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Sıkça Sorulan Sorular ve Kritik Kilitler</span>
+  </h2>
+  <div class="space-y-3" id="faqAccordion">
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>Soru 1: Bir dönemi kilitlemek istediğimde "Bir önceki dönem kilitlenmeden bu dönem kilitlenemez" hatası alıyorum. Neden?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Mevzuat ve SGK denetim bütünlüğü gereğince dönemler atlanarak kilitlenemez. Önceki aylara ait eksik puantajların tamamlanıp kilitlenmesi zorunludur. Geçmiş ayları sırasıyla kilitleyerek cari aya ulaşabilirsiniz.</p>
+    </div>
+  </details>
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>Soru 2: Personelin o yılki fiili radyasyon çalışması 1.800 saat (36 gün Şua) çıktı, fakat sistem 30 gün yazdı. Bir hesaplama hatası mı var?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Hayır, bu bir hata değildir. Sağlık Bakanlığı'nın mevzuat baremleri uyarınca bir takvim yılı içerisinde kazanılabilecek Şua İzni toplamı <strong>azami 30 gün</strong> ile sınırlandırılmıştır. 30 günü aşan kısımlarda sistem yasal tavan kısıtını uygular.</p>
+    </div>
+  </details>
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>Soru 3: Yıllık Kilidi Kapat butonunu neden göremiyorum veya tıklayamıyorum?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Yıllık kilit işlemi, geçmişe dönük tüm puantajı ve Şua hakedişlerini kalıcı olarak dondurduğundan (RED-09 emniyet kilidi), yalnızca <strong>Sistem Yöneticisi (Admin)</strong> veya <strong>Süpervizör</strong> rolüne sahip kullanıcılar tarafından yürütülebilir.</p>
+    </div>
+  </details>
+</div>
+</section>
 
- <div class="space-y-3">
- <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
- <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span class="text-cyan-600 dark:text-cyan-400">Soru 1:</span>
- <span>Bir dönemi kilitlemek istediğimde "Bir önceki dönem kilitlenmeden bu dönem kilitlenemez" hatası alıyorum. Neden?</span>
- </h3>
- <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
- Mevzuat ve SGK denetim bütünlüğü gereğince dönemler atlanarak kilitlenemez. Önceki aylara ait eksik puantajların tamamlanıp kilitlenmesi zorunludur. Geçmiş ayları sırasıyla kilitleyerek cari aya ulaşabilirsiniz.
- </p>
- </div>
-
- <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
- <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span class="text-cyan-600 dark:text-cyan-400">Soru 2:</span>
- <span>Personelin o yılki fiili radyasyon çalışması 1.800 saat (36 gün Şua) çıktı, fakat sistem 30 gün yazdı. Bir hesaplama hatası mı var?</span>
- </h3>
- <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
- Hayır, bu bir hata değildir. Sağlık Bakanlığı'nın mevzuat baremleri uyarınca bir takvim yılı içerisinde kazanılabilecek Şua İzni toplamı <strong>azami 30 gün</strong> ile sınırlandırılmıştır. 30 günü aşan kısımlarda sistem yasal tavan kısıtını uygular.
- </p>
- </div>
-
- <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
- <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span class="text-cyan-600 dark:text-cyan-400">Soru 3:</span>
- <span>Yıllık Kilidi Kapat butonunu neden göremiyorum veya tıklayamıyorum?</span>
- </h3>
- <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
- Yıllık kilit işlemi, geçmişe dönük tüm puantajı ve Şua hakedişlerini kalıcı olarak dondurduğundan (RED-09 emniyet kilidi), yalnızca <strong>Sistem Yöneticisi (Admin)</strong> veya <strong>Süpervizör</strong> rolüne sahip kullanıcılar tarafından yürütülebilir.
- </p>
- </div>
- </div>
- </section>
-
- <!-- NAVIGATION FOOTER -->
-
-      <!-- FOOTER PREV / NEXT -->
-      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800">
+<footer class="pt-8 border-t border-slate-200 dark:border-slate-800">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <a href="10_nobet_borc_alacak_ve_fazla_mesai.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition group">
             <span class="text-xs font-mono uppercase text-slate-400 block mb-1">← Önceki Doküman</span>
-            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">10. Nöbet Borç & Fazla Mesai</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">10. Nöbet Borç &amp; Fazla Mesai</span>
           </a>
           <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition text-right group">
             <span class="text-xs font-mono uppercase text-slate-400 block mb-1">Sonraki Doküman →</span>
-            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">12. Dozimetre & RD.F43</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">12. Dozimetre &amp; RD.F43</span>
           </a>
         </div>
       </footer>
     </main>
 
-    <!-- RIGHT SIDEBAR: ON-PAGE TOC -->
     <aside class="w-64 shrink-0 hidden xl:block py-8 pl-6 border-l border-slate-200 dark:border-slate-800">
       <div class="sticky top-24 space-y-4">
         <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-3">Bu Sayfada</span>
         <nav class="space-y-2.5 text-sm" id="onPageToc">
-          <a href="#hizli-recete" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 transition">Kısa Reçete (4 Metrik)</a>
-          <a href="#5n1k-tablosu" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 transition">5N1K Kural Matrisi</a>
+          <a href="#hizli-recete" data-toc-link="hizli-recete" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Vizyonder Hızlı Karar Reçetesi (4 Adımda FHZ &amp; Şua Sihirbazı)</a>
+          <a href="#kpi-kartlari" data-toc-link="kpi-kartlari" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Temel Eşikler &amp; Yasal Baremler</a>
+          <a href="#is-akisi-semasi" data-toc-link="is-akisi-semasi" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">4 Adımlı Doğrusal Puantaj Sihirbazı İş Akışı</a>
+          <a href="#5n1k-tablosu" data-toc-link="5n1k-tablosu" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">5N1K Kural ve Arayüz Bileşen Envanteri</a>
+          <a href="#ekran-goruntuleri" data-toc-link="ekran-goruntuleri" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Ekran Konumları ve Görsel Rehber</a>
+          <a href="#kullanim-rehberi" data-toc-link="kullanim-rehberi" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Adım Adım İşlem Rehberi</a>
+          <a href="#hibrit-entegrasyon" data-toc-link="hibrit-entegrasyon" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Web Portalı Şua Karnesi &amp; Risk Seviyeleri</a>
+          <a href="#mit-avcilari" data-toc-link="mit-avcilari" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">FHZ, Şua İzni &amp; Mit Avcısı (Kritik Kurallar)</a>
+          <a href="#sss-ve-sorun-giderme" data-toc-link="sss-ve-sorun-giderme" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Sıkça Sorulan Sorular ve Kritik Kilitler</a>
         </nav>
       </div>
     </aside>
-
   </div>
 
-  <!-- FOOTER -->
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi — Sağlık Bilgi Güvenliği & KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.22) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
     </div>
   </footer>
 
-  <!-- RADPYS Offline Search & App Engine -->
   <script src="assets/search_index.js"></script>
   <script src="assets/app.js"></script>
 </body>

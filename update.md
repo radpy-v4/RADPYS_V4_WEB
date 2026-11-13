@@ -26,7 +26,7 @@ Bu sürümle birlikte **Birim Nöbet Çizelgesi ve Nöbet Değişim / Becayiş**
 * **Gebelik Bildirimi Doktor Raporu Güvencesi:** Personelin ilettiği hekim ve heyet raporları dijital evrak kasasında güvenle arşivlenir ve birim amirinin onayına sunulur.
 * **Personel İstek Formunun Akıllı Alanları ve Sadeleştirilmesi:** Resmi belge ve idari onay gerektiren muafiyetler personelin rutin istek formundan kaldırılarak menü 4 temel günlük ihtiyaca odaklandı:
   - **Eğitim Kısıtı:** Hafta sonu günleri (Cumartesi-Pazar) kaldırılarak yalnızca hafta içi 5 ders gününe (`Pazartesi - Cuma`) bağlandı ve dönem tarih aralığı doğrudan açık hale getirildi.
-  - **Nöbet Yazılsın / Yazılmasın:** Tarih aralıkları gizli onay kutusundan kurtarılarak form açıldığında doğrudan doldurulabilir duruma getirildi; tek tıkla "Tüm Ay Boyunca Nöbet Yazılmasın" seçeneği eklendi.
+  - **Nöbet Yazılsın / Yazılmasın:** Tarih aralıkları gizli onay kutusundan kurtarılarak form açıldığında doğrudan doldurulabilir duruma getirildi; tek tıkla "Tüm Ay Boyunca Nöbet Yazılmasın" seçeneği ve dönem ayı seçicisi eklenerek gelecek aylar için kolay planlama sağlandı.
   - **Fazla Mesai Talebi:** İlgili ay seçici, iki net tercih ("Fazla Mesai İstemiyorum (0 Saat)" ve "Fazla Mesai Almak İstiyorum"), hızlı saat butonları (+16, +24, +32, +48, +60) ve 130 saatlik yasal tavan uyarısıyla son derece pratik ve modern bir yapıya kavuşturuldu.
 
 ### 📅 Birim Çizelgesinde Hızlı Nöbet Değişimi

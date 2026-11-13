@@ -10,43 +10,151 @@
 (function () {
   "use strict";
 
-  let currentVersion = "4.0.5.8";
+  let currentVersion = "4.0.5.22";
 
   const MODULE_NAV_ITEMS = [
-    { num: "01", title: "Kurulum & İlk Giriş", url: "01_kurulum_ve_ilk_giris.html" },
-    { num: "02", title: "Kullanıcı & Rol Yönetimi", url: "02_kullanici_ve_rol_yonetimi.html" },
-    { num: "03", title: "Sistem Ayarları & Tanımlar", url: "03_sistem_ayarlari_ve_tanimlamalar.html" },
-    { num: "04", title: "Veritabanı Bakım & Kasa", url: "04_veritabani_bakim_ve_guvenlik.html" },
-    { num: "05", title: "Personel & Excel Aktarım", url: "05_personel_yonetimi_ve_toplu_aktarim.html" },
-    { num: "06", title: "İzin Yönetimi & Şua", url: "06_izin_yonetimi_ve_hakedis.html" },
     {
-      num: "07",
-      title: "Nöbet Ayarları & Kısıtlar",
-      url: "07_nobet_ayarlari_ve_kisit_hiyerarsisi.html",
-      children: [
-        { num: "07.1", title: "Temel Ayarlar & Standartlar", url: "07_1_temel_ayarlar_ve_calisma_standartlari.html" },
-        { num: "07.2", title: "Birim Kuralları & Slotlar", url: "07_2_birim_kurallari_ve_slot_yonetimi.html" },
-        { num: "07.3", title: "Gelişmiş Kısıtlar & Adalet", url: "07_3_gelismis_kisitlar_ve_adalet_agirliklari.html" },
-        { num: "07.4", title: "Sağlık & Yasal Kısıtlar", url: "07_4_personel_ozel_saglik_ve_yasal_kisitlar.html" },
-        { num: "07.5", title: "Personel Talepleri & Onay", url: "07_5_personel_talepleri_ve_onay_yonetimi.html" }
+      "num": "01",
+      "title": "Kurulum & İlk Giriş",
+      "url": "01_kurulum_ve_ilk_giris.html"
+    },
+    {
+      "num": "02",
+      "title": "Kullanıcı & Rol Yönetimi",
+      "url": "02_kullanici_ve_rol_yonetimi.html"
+    },
+    {
+      "num": "03",
+      "title": "Sistem Ayarları & Tanımlar",
+      "url": "03_sistem_ayarlari_ve_tanimlamalar.html"
+    },
+    {
+      "num": "04",
+      "title": "Veritabanı Bakım & Kasa",
+      "url": "04_veritabani_bakim_ve_guvenlik.html"
+    },
+    {
+      "num": "05",
+      "title": "Personel & Excel Aktarım",
+      "url": "05_personel_yonetimi_ve_toplu_aktarim.html"
+    },
+    {
+      "num": "06",
+      "title": "İzin Yönetimi & Şua",
+      "url": "06_izin_yonetimi_ve_hakedis.html"
+    },
+    {
+      "num": "07",
+      "title": "Nöbet Ayarları & Kısıtlar",
+      "url": "07_nobet_ayarlari_ve_kisit_hiyerarsisi.html",
+      "children": [
+        {
+          "num": "07.1",
+          "title": "Temel Ayarlar & Standartlar",
+          "url": "07_1_temel_ayarlar_ve_calisma_standartlari.html"
+        },
+        {
+          "num": "07.2",
+          "title": "Birim Kuralları & Slotlar",
+          "url": "07_2_birim_kurallari_ve_slot_yonetimi.html"
+        },
+        {
+          "num": "07.3",
+          "title": "Gelişmiş Kısıtlar & Adalet",
+          "url": "07_3_gelismis_kisitlar_ve_adalet_agirliklari.html"
+        },
+        {
+          "num": "07.4",
+          "title": "Sağlık & Yasal Kısıtlar",
+          "url": "07_4_personel_ozel_saglik_ve_yasal_kisitlar.html"
+        },
+        {
+          "num": "07.5",
+          "title": "Personel Talepleri & Onay",
+          "url": "07_5_personel_talepleri_ve_onay_yonetimi.html"
+        }
       ]
     },
-    { num: "08", title: "Nöbet Hazırlık & Solver", url: "08_nobet_hazirlik_ve_solver_motoru.html" },
-    { num: "09", title: "Nöbet Devir & İkame", url: "09_nobet_devir_ikame_ve_acil_mazeret.html" },
-    { num: "10", title: "Nöbet Borç & Fazla Mesai", url: "10_nobet_borc_alacak_ve_fazla_mesai.html" },
-    { num: "11", title: "Fiili Hizmet (FHZ) & Şua", url: "11_fiili_hizmet_ve_sua_hesaplama.html" },
-    { num: "12", title: "Dozimetre & RD.F43", url: "12_dozimetre_takibi_ve_rdf43_arastirma.html" },
-    { num: "13", title: "Sağlık Muayeneleri", url: "13_saglik_muayeneleri_ve_periyodik_takip.html" },
-    { num: "14", title: "Ortam Dozu & Kroki", url: "14_ortam_dozu_ve_kroki_haritasi.html" },
-    { num: "15", title: "Olay Bildirimi & DÖF", url: "15_olay_bildirimi_ve_dof_capa.html" },
-    { num: "16", title: "RGS / RSO Görevlendirme", url: "16_rgs_rso_gorevlendirme_ve_sertifika.html" },
-    { num: "17", title: "Hizmet İçi Eğitim & LMS", url: "17_hizmet_ici_egitim_ve_online_sinav.html" },
-    { num: "18", title: "Tıbbi Cihaz & NDK Lisans", url: "18_tibbi_cihaz_ve_ndk_lisans_envanteri.html" },
-    { num: "19", title: "Cihaz Arıza & QA/QC", url: "19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html" },
-    { num: "20", title: "Koruyucu Ekipman (RKE)", url: "20_rke_koruyucu_ekipman_ve_din6857.html" },
-    { num: "21", title: "Merkezi Onaylar", url: "21_merkezi_onaylar.html" },
-    { num: "22", title: "Web Portal & Dashboard", url: "22_web_portal_ve_dashboardlar.html" },
-    { num: "23", title: "Rapor & Tutanak Merkezi", url: "23_rapor_tutanak_merkezi.html" }
+    {
+      "num": "08",
+      "title": "Nöbet Hazırlık & Solver",
+      "url": "08_nobet_hazirlik_ve_solver_motoru.html"
+    },
+    {
+      "num": "09",
+      "title": "Nöbet Devir & İkame",
+      "url": "09_nobet_devir_ikame_ve_acil_mazeret.html"
+    },
+    {
+      "num": "10",
+      "title": "Nöbet Borç & Fazla Mesai",
+      "url": "10_nobet_borc_alacak_ve_fazla_mesai.html"
+    },
+    {
+      "num": "11",
+      "title": "Fiili Hizmet (FHZ) & Şua",
+      "url": "11_fiili_hizmet_ve_sua_hesaplama.html"
+    },
+    {
+      "num": "12",
+      "title": "Dozimetre & RD.F43",
+      "url": "12_dozimetre_takibi_ve_rdf43_arastirma.html"
+    },
+    {
+      "num": "13",
+      "title": "Sağlık Muayeneleri",
+      "url": "13_saglik_muayeneleri_ve_periyodik_takip.html"
+    },
+    {
+      "num": "14",
+      "title": "Ortam Dozu & Kroki",
+      "url": "14_ortam_dozu_ve_kroki_haritasi.html"
+    },
+    {
+      "num": "15",
+      "title": "Olay Bildirimi & DÖF",
+      "url": "15_olay_bildirimi_ve_dof_capa.html"
+    },
+    {
+      "num": "16",
+      "title": "RGS / RSO Görevlendirme",
+      "url": "16_rgs_rso_gorevlendirme_ve_sertifika.html"
+    },
+    {
+      "num": "17",
+      "title": "Hizmet İçi Eğitim & LMS",
+      "url": "17_hizmet_ici_egitim_ve_online_sinav.html"
+    },
+    {
+      "num": "18",
+      "title": "Tıbbi Cihaz & NDK Lisans",
+      "url": "18_tibbi_cihaz_ve_ndk_lisans_envanteri.html"
+    },
+    {
+      "num": "19",
+      "title": "Cihaz Arıza & QA/QC",
+      "url": "19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html"
+    },
+    {
+      "num": "20",
+      "title": "Koruyucu Ekipman (RKE)",
+      "url": "20_rke_koruyucu_ekipman_ve_din6857.html"
+    },
+    {
+      "num": "21",
+      "title": "Merkezi Onaylar",
+      "url": "21_merkezi_onaylar.html"
+    },
+    {
+      "num": "22",
+      "title": "Web Portal & Dashboard",
+      "url": "22_web_portal_ve_dashboardlar.html"
+    },
+    {
+      "num": "23",
+      "title": "Rapor & Tutanak Merkezi",
+      "url": "23_rapor_tutanak_merkezi.html"
+    }
   ];
 
   function normalizeTr(str) {
@@ -62,8 +170,12 @@
   }
 
   function getCurrentFileName() {
-    const p = window.location.pathname.split("/").pop();
-    return p || "index.html";
+    const raw = (window.location.pathname || "").split(/[\\/]/).pop() || "";
+    try {
+      return decodeURIComponent(raw) || "index.html";
+    } catch (e) {
+      return raw || "index.html";
+    }
   }
 
   // ─── 1. KALICI KOYU KLİNİK TEMA (Permanent Clinical Dark Mode) ───────────
@@ -121,6 +233,8 @@
     if (!sidebar) return;
 
     const currentFile = getCurrentFileName();
+    if (sidebar.getAttribute("data-nav-built") === currentFile) return;
+
     const isIndexPage = currentFile === "index.html" || document.getElementById("moduleCardsContainer");
 
     if (isIndexPage) {
@@ -138,11 +252,18 @@
         `;
         nav.appendChild(b6Link);
       }
+      sidebar.setAttribute("data-nav-built", currentFile);
       return;
     }
 
-    // Modül detay sayfalarında 23 modüllük sol menüyü merkezi diziden oluştur
-    const nav = sidebar.querySelector("nav");
+    // Modül detay sayfalarında sol menüyü merkezi MODULE_NAV_ITEMS dizisinden oluştur
+    let nav = sidebar.querySelector("nav");
+    if (!nav) {
+      sidebar.innerHTML = `
+        <div class="mb-4"><span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3">${MODULE_NAV_ITEMS.length} Modül Rehberi</span></div>
+        <nav class="space-y-1 text-sm font-medium"></nav>`;
+      nav = sidebar.querySelector("nav");
+    }
     if (!nav) return;
 
     const isMod07Group = currentFile.startsWith("07_");
@@ -168,12 +289,12 @@
       }
 
       if (item.children && isMod07Group) {
-        html += `<div class="pl-5 space-y-1 border-l border-slate-200 dark:border-slate-800 ml-3 my-1">`;
+        html += `<div class="pl-5 space-y-1 border-l border-slate-200 dark:border-slate-800 ml-2 my-2">`;
         for (const sub of item.children) {
           const isSubActive = currentFile === sub.url;
           html += `
             <a href="${sub.url}" ${isSubActive ? 'data-active-nav="true"' : ""} class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs ${isSubActive
-              ? "bg-cyan-950/70 text-cyan-300 font-bold border border-cyan-700/50"
+              ? "bg-cyan-50 dark:bg-cyan-950/60 text-cyan-800 dark:text-cyan-300 font-bold border border-cyan-300 dark:border-cyan-700/50"
               : "text-slate-500 dark:text-slate-400 hover:text-white hover:bg-slate-800/60"} transition">
               <span class="font-mono text-[10px] opacity-75">${sub.num}</span>
               <span class="truncate">${sub.title}</span>
@@ -184,6 +305,7 @@
     }
 
     nav.innerHTML = html;
+    sidebar.setAttribute("data-nav-built", currentFile);
 
     const activeEl = nav.querySelector("[data-active-nav='true']");
     if (activeEl) {
@@ -650,6 +772,10 @@
     if (!document.getElementById("radpysSearchModal")) {
       const modalHtml = `
       <div id="radpysSearchModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-start justify-center pt-20 p-4 transition-opacity">
+        <style>
+          #radpysSearchModal mark { background: rgba(34, 211, 238, 0.14); color: #67e8f9; padding: 0 3px; border-radius: 4px; font-weight: 600; }
+          #radpysSearchModal p mark { background: rgba(34, 211, 238, 0.09); color: #a5f3fc; padding: 0 2px; font-weight: 500; }
+        </style>
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden flex flex-col max-h-[80vh] animate-in fade-in zoom-in-95 duration-150">
           <!-- Arama Başlığı & Input -->
           <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center gap-3">
@@ -737,8 +863,9 @@
     function renderSearchResults(query) {
       if (!resultsContainer) return;
       const index = window.RADPYS_SEARCH_INDEX || [];
+      const tokens = normalizeTr(query).split(/\s+/).filter(Boolean);
 
-      if (!query || query.length < 2) {
+      if (!query || query.length < 2 || tokens.length === 0) {
         resultsContainer.innerHTML = `
           <div class="py-8 text-center text-sm text-slate-400">
             Aramak istediğiniz terimi yazın (en az 2 karakter)...
@@ -746,19 +873,51 @@
         return;
       }
 
-      const qNorm = normalizeTr(query);
-      const matches = [];
+      const foldCode = (s) => s.replace(/([a-zğıüşöç])\.([a-zğıüşöç0-9])/gi, "$1$2").replace(/-/g, "");
+      const hasTok = (rawNorm, foldedNorm, tok, tokFold) =>
+        rawNorm.includes(tok) || (tokFold !== "" && foldedNorm.includes(tokFold));
 
+      const scored = [];
       for (const item of index) {
-        const titleMatch = item.title && normalizeTr(item.title).includes(qNorm);
-        const descMatch = item.desc && normalizeTr(item.desc).includes(qNorm);
-        const moduleMatch = item.module && normalizeTr(item.module).includes(qNorm);
+        const mod = item.module || item.category || "Modül Rehberi";
+        const baseDesc = item.desc || item.summary || "";
+        const titleNorm = normalizeTr(item.title || "");
+        const modNorm = normalizeTr(mod);
+        const descNorm = normalizeTr(baseDesc);
+        const headNorm = normalizeTr((item.headings || []).join(" "));
+        const contentNorm = normalizeTr(item.content || "");
 
-        if (titleMatch || descMatch || moduleMatch) {
-          matches.push(item);
-          if (matches.length >= 25) break;
+        const titleFold = foldCode(titleNorm);
+        const modFold = foldCode(modNorm);
+        const descFold = foldCode(descNorm);
+        const headFold = foldCode(headNorm);
+        const contentFold = foldCode(contentNorm);
+
+        let allMatch = true;
+        let score = item.id ? 0 : 2;
+        for (const tok of tokens) {
+          const tokFold = foldCode(tok);
+          const inTitle = hasTok(titleNorm, titleFold, tok, tokFold);
+          const inModHead = hasTok(modNorm, modFold, tok, tokFold) || hasTok(headNorm, headFold, tok, tokFold);
+          const inDesc = hasTok(descNorm, descFold, tok, tokFold);
+          const inContent = hasTok(contentNorm, contentFold, tok, tokFold);
+
+          if (!inTitle && !inModHead && !inDesc && !inContent) {
+            allMatch = false;
+            break;
+          }
+          if (inTitle) score += 30;
+          if (inModHead) score += 12;
+          if (inDesc) score += 8;
+          if (inContent) score += 3;
+        }
+        if (allMatch) {
+          scored.push({ item, mod, baseDesc, titleNorm, titleFold, descNorm, descFold, score });
         }
       }
+
+      scored.sort((a, b) => b.score - a.score);
+      const matches = scored.slice(0, 25);
 
       if (matches.length === 0) {
         resultsContainer.innerHTML = `
@@ -768,36 +927,83 @@
         return;
       }
 
-      resultsContainer.innerHTML = matches.map(item => `
-        <a href="${item.url}" class="block p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition group">
+      resultsContainer.innerHTML = matches.map(({ item, mod, baseDesc, titleNorm, titleFold, descNorm, descFold }) => {
+        const metaCovered = tokens.every(tok => {
+          const tokFold = foldCode(tok);
+          return hasTok(titleNorm, titleFold, tok, tokFold) || hasTok(descNorm, descFold, tok, tokFold);
+        });
+        const snippet = (!metaCovered && item.content)
+          ? buildContextSnippet(item.content, query) || baseDesc
+          : baseDesc;
+
+        return `
+        <a href="${escapeHtml(item.url)}" class="block p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition group">
           <div class="flex items-center justify-between text-xs text-cyan-600 dark:text-cyan-400 font-semibold mb-1">
-            <span>${escapeHtml(item.module || "Modül Rehberi")}</span>
-            ${item.id ? `<span class="font-mono text-[10px] bg-slate-200 dark:bg-slate-700 px-1.5 py-0.5 rounded text-slate-600 dark:text-slate-300">#${item.id}</span>` : ""}
+            <span>${escapeHtml(mod)}</span>
+            ${item.id ? `<span class="font-mono text-[10px] bg-slate-200 dark:bg-slate-700 px-1.5 py-0.5 rounded text-slate-600 dark:text-slate-300">#${escapeHtml(item.id)}</span>` : ""}
           </div>
           <div class="text-sm font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
             ${highlightText(item.title, query)}
           </div>
-          ${item.desc ? `<p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${highlightText(item.desc, query)}</p>` : ""}
-        </a>
-      `).join("");
+          ${snippet ? `<p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${highlightText(snippet, query)}</p>` : ""}
+        </a>`;
+      }).join("");
     }
   }
 
   function escapeHtml(str) {
     if (!str) return "";
-    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  function buildTrQueryRegex(query) {
+    const trMap = {
+      i: "[iİıI]", ı: "[iİıI]", İ: "[iİıI]", I: "[iİıI]",
+      g: "[gğGĞ]", ğ: "[gğGĞ]", G: "[gğGĞ]", Ğ: "[gğGĞ]",
+      u: "[uüUÜ]", ü: "[uüUÜ]", U: "[uüUÜ]", Ü: "[uüUÜ]",
+      s: "[sşSŞ]", ş: "[sşSŞ]", S: "[sşSŞ]", Ş: "[sşSŞ]",
+      o: "[oöOÖ]", ö: "[oöOÖ]", O: "[oöOÖ]", Ö: "[oöOÖ]",
+      c: "[cçCÇ]", ç: "[cçCÇ]", C: "[cçCÇ]", Ç: "[cçCÇ]"
+    };
+    const tokens = Array.from(new Set(String(query || "").trim().split(/\s+/).filter(Boolean)))
+      .sort((a, b) => b.length - a.length);
+    if (tokens.length === 0) return null;
+    const patterns = tokens.map(tok => {
+      const isCodeToken = /^[a-z0-9ığüşöç.-]+$/i.test(tok) && /[a-zığüşöç]/i.test(tok) && /\d/.test(tok) && tok.length >= 4;
+      const chars = Array.from(isCodeToken ? tok.replace(/[.-]/g, "") : tok);
+      const mapped = chars.map(ch => trMap[ch] || ch.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+      return mapped.join(isCodeToken ? "[.\\-]?" : "");
+    });
+    try {
+      return new RegExp(`(${patterns.join("|")})`, "gi");
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function buildContextSnippet(content, query) {
+    const text = String(content || "");
+    if (!text) return "";
+    const regex = buildTrQueryRegex(query);
+    if (!regex) return text.slice(0, 160);
+    const hit = regex.exec(text);
+    const hitIdx = hit ? hit.index : 0;
+    const start = Math.max(0, hitIdx - 50);
+    const end = Math.min(text.length, start + 165);
+    const prefix = start > 0 ? "…" : "";
+    const suffix = end < text.length ? "…" : "";
+    return `${prefix}${text.slice(start, end).trim()}${suffix}`;
   }
 
   function highlightText(text, query) {
     if (!text) return "";
-    const safeText = escapeHtml(text);
-    const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    try {
-      const regex = new RegExp(`(${escapedQuery})`, "gi");
-      return safeText.replace(regex, '<mark class="bg-cyan-200 dark:bg-cyan-900/80 text-cyan-950 dark:text-cyan-200 px-1 rounded-sm">$1</mark>');
-    } catch (e) {
-      return safeText;
-    }
+    const cleanText = String(text).replace(/[\u0001\u0002]/g, "");
+    const regex = buildTrQueryRegex(query);
+    if (!regex) return escapeHtml(cleanText);
+    const marked = cleanText.replace(regex, "\u0001$1\u0002");
+    return escapeHtml(marked)
+      .replace(/\u0001/g, '<mark class="bg-cyan-500/10 text-cyan-300 px-1 rounded">')
+      .replace(/\u0002/g, "</mark>");
   }
 
   // ─── 4. MOBİL MENÜ ÇEKMECESİ ───────────────────────────────────────────────
@@ -812,6 +1018,10 @@
   }
 
   // ─── 5. BAŞLATMA (Bootstrap) ──────────────────────────────────────────────
+  if (document.getElementById("sidebarNav")) {
+    setupSidebarNavigation();
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     setupHeaderAndVersion();
     setupSidebarNavigation();

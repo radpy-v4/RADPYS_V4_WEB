@@ -16,42 +16,36 @@
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
 
-  <!-- TOP HEADER NAVBAR (Wide Fluid Layout) -->
+  <!-- TOP HEADER NAVBAR -->
   <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
     <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between gap-4">
-      
-      <!-- Brand & Version -->
       <div class="flex items-center gap-3">
         <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Menüyü Aç/Kapat">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
-
         <a href="index.html" class="flex items-center gap-3 group">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-            </svg>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.2</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.22</span>
             </span>
-            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu & Karar Destek Portalı</span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
         </a>
       </div>
 
-      <!-- Quick Search Bar (Ctrl+K) -->
       <div class="flex-1 max-w-xl hidden md:block">
         <div class="relative">
           <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           </div>
-          <input 
-            type="text" 
-            placeholder="Dokümanda ara... (Ctrl+K ile hızlı arama)" 
-            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition cursor-pointer"
+          <input
+            type="text"
             readonly
+            placeholder="Dokümanda ara... (Ctrl+K ile hızlı arama)"
+            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition cursor-pointer"
           >
           <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
             <kbd class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600 font-semibold">Ctrl+K</kbd>
@@ -59,484 +53,196 @@
         </div>
       </div>
 
-      <!-- Action Buttons -->
       <div class="flex items-center gap-3">
-        <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-          <span>Tüm Modüller</span>
-        </a>
+        <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition"><span>Tüm Modüller</span></a>
       </div>
     </div>
   </header>
 
-  <!-- MAIN 3-COLUMN CONTAINER (Fluid & Wide Layout) -->
+  <!-- MAIN CONTAINER -->
   <div class="flex-1 max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 flex gap-8">
+    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar"></aside>
 
-    <!-- LEFT SIDEBAR: NAVIGATION -->
-    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar">
-      <div class="mb-4">
-        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-3">23 Modül Rehberi</span>
-      </div>
-      <nav class="space-y-1 text-sm font-medium">
-        <a href="01_kurulum_ve_ilk_giris.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">01</span>
-          <span>Kurulum & İlk Giriş</span>
-        </a>
-        <a href="02_kullanici_ve_rol_yonetimi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">02</span>
-          <span>Kullanıcı & Rol Yönetimi</span>
-        </a>
-        <a href="03_sistem_ayarlari_ve_tanimlamalar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">03</span>
-          <span>Sistem Ayarları & Tanımlar</span>
-        </a>
-        <a href="04_veritabani_bakim_ve_guvenlik.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">04</span>
-          <span>Veritabanı Bakım & Kasa</span>
-        </a>
-        <a href="05_personel_yonetimi_ve_toplu_aktarim.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">05</span>
-          <span>Personel & Excel Aktarım</span>
-        </a>
-        <a href="06_izin_yonetimi_ve_hakedis.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">06</span>
-          <span>İzin Yönetimi & Şua</span>
-        </a>
-        <a href="07_nobet_ayarlari_ve_kisit_hiyerarsisi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">07</span>
-          <span>Nöbet Ayarları & Kısıtlar</span>
-        </a>
-        <a href="08_nobet_hazirlik_ve_solver_motoru.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">08</span>
-          <span>Nöbet Hazırlık & Solver</span>
-        </a>
-        <a href="09_nobet_devir_ikame_ve_acil_mazeret.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">09</span>
-          <span>Nöbet Devir & İkame</span>
-        </a>
-        <a href="10_nobet_borc_alacak_ve_fazla_mesai.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">10</span>
-          <span>Nöbet Borç & Fazla Mesai</span>
-        </a>
-        <a href="11_fiili_hizmet_ve_sua_hesaplama.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">11</span>
-          <span>Fiili Hizmet (FHZ) & Şua</span>
-        </a>
-        <a href="12_dozimetre_takibi_ve_rdf43_arastirma.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">12</span>
-          <span>Dozimetre & RD.F43</span>
-        </a>
-        <a href="13_saglik_muayeneleri_ve_periyodik_takip.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">13</span>
-          <span>Sağlık Muayeneleri</span>
-        </a>
-        <a href="14_ortam_dozu_ve_kroki_haritasi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">14</span>
-          <span>Ortam Dozu & Kroki</span>
-        </a>
-        <a href="15_olay_bildirimi_ve_dof_capa.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">15</span>
-          <span>Olay Bildirimi & DÖF</span>
-        </a>
-        <a href="16_rgs_rso_gorevlendirme_ve_sertifika.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">16</span>
-          <span>RGS / RSO Görevlendirme</span>
-        </a>
-        <a href="17_hizmet_ici_egitim_ve_online_sinav.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">17</span>
-          <span>Hizmet İçi Eğitim & LMS</span>
-        </a>
-        <a href="18_tibbi_cihaz_ve_ndk_lisans_envanteri.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">18</span>
-          <span>Tıbbi Cihaz & NDK Lisans</span>
-        </a>
-        <a href="19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">19</span>
-          <span>Cihaz Arıza & QA/QC</span>
-        </a>
-        <!-- 20 AKTİF -->
-        <a href="#overview" class="flex items-center justify-between px-3 py-2.5 rounded-xl bg-cyan-50 text-cyan-800 dark:bg-cyan-950/60 dark:text-cyan-300 font-semibold border-l-4 border-cyan-600">
-          <div class="flex items-center gap-2.5">
-            <span class="font-mono text-xs text-cyan-600 dark:text-cyan-400 font-bold">20</span>
-            <span>Koruyucu Ekipman (RKE)</span>
-          </div>
-          <span class="w-2 h-2 rounded-full bg-cyan-600 animate-pulse"></span>
-        </a>
-        <a href="21_merkezi_onaylar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">21</span>
-          <span>Merkezi Onaylar</span>
-        </a>
-        <a href="22_web_portal_ve_dashboardlar.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">22</span>
-          <span>Web Portal & Dashboard</span>
-        </a>
-        <a href="23_rapor_tutanak_merkezi.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-          <span class="font-mono text-xs opacity-60">23</span>
-          <span>Rapor & Tutanak Merkezi</span>
-        </a>
-      </nav>
-    </aside>
-
-    <!-- CENTER COLUMN: CORE DOCUMENTATION (Wide & Readable) -->
     <main class="flex-1 min-w-0 py-8">
-      <!-- Breadcrumb & Badges -->
       <nav class="flex items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
         <a href="index.html" class="hover:text-cyan-600 transition">Kılavuz Ana Sayfası</a>
         <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        <span>Bölüm 5: Tıbbi Cihaz & RKE</span>
+        <span>Bölüm 5: Tıbbi Cihaz &amp; RKE</span>
         <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         <span class="text-cyan-600 dark:text-cyan-400 font-semibold">20. Koruyucu Ekipman (RKE)</span>
       </nav>
 
-<!-- PAGE TITLE & METADATA -->
- <div id="overview" class="mb-8">
- <div class="flex flex-wrap items-center gap-2.5 mb-3">
- <span
- class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-cyan-100 text-cyan-800 dark:bg-cyan-950/80 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/60">
- DIN 6857-1 & IEC 61331-1/3 Standardı
- </span>
- <span
- class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60">
- Sağlık Bakanlığı SKS 6.1 Uyumlu
- </span>
- <span
- class="px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-950/80 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60">
- AES-256 Şifreli Evrak Kasası
- </span>
- <span class="text-xs text-slate-400 dark:text-slate-500 ml-auto flex items-center gap-1.5 font-mono">
- <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
- d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
- </svg>
- Okuma Süresi: 6 Dakika | RADPYS v4.2
- </span>
- </div>
+<section id="overview" class="mb-10 border-b border-slate-200 dark:border-slate-800 pb-6">
+  <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+    <div class="flex flex-wrap items-center gap-2.5"></div>
+    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Tahmini Okuma: 6 Dakika</span>
+  </div>
+  <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3">
+    20. Radyasyon Koruyucu Ekipman (RKE) & DIN 6857 Kalite Kontrol Yönetimi
+  </h1>
+  <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
+    Radyoloji, nükleer tıp, kardiyoloji ve skopi ameliyathanelerinde kullanılan kurşun önlük, palto, etek-yelek, tiroid ve gonad koruyucularının yaşam döngüsünü, akıllı kodlamasını, fiziksel kontrollerini, skopi altındaki interaktif delik/çatlak krokisini, matematiksel karar motorunu ve Sağlık Bakanlığı SKS 6.1 resmi denetim çizelgelerini yönetin.
+  </p>
+  
+  
+  
+</section>
 
- <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
- 20. Radyasyon Koruyucu Ekipman (RKE) & DIN 6857 Kalite Kontrol Yönetimi
- </h1>
- <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 mt-2.5 max-w-4xl leading-relaxed">
- Radyoloji, nükleer tıp, kardiyoloji ve skopi ameliyathanelerinde kullanılan kurşun önlük, palto, etek-yelek,
- tiroid ve gonad koruyucularının yaşam döngüsünü, akıllı kodlamasını, fiziksel kontrollerini, skopi altındaki
- interaktif delik/çatlak krokisini, matematiksel karar motorunu ve Sağlık Bakanlığı SKS 6.1 resmi denetim
- çizelgelerini yönetin.
- </p>
- </div>
+<section id="hizli-recete" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Kısa Reçete (20 Saniye Kuralı)</span>
+  </h2>
+  <div class="p-6 sm:p-7 rounded-3xl bg-cyan-50/70 dark:bg-cyan-950/30 border border-cyan-200/90 dark:border-cyan-800/60 shadow-md">
+  <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+    <div class="flex items-center gap-2.5 text-cyan-900 dark:text-cyan-200 font-bold text-sm sm:text-base">
+      <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      <span>Hızlı Reçete (20 Saniye Kuralı)</span>
+    </div>
+    <span class="text-xs font-mono px-2.5 py-1 rounded bg-cyan-200/80 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-300 font-bold">20 SANİYELİK AKIŞ</span>
+  </div>
+  <p class="text-sm text-slate-700 dark:text-slate-200 mb-5 leading-relaxed">Tablodan ekipmanı seçin <strong class="text-cyan-700 dark:text-cyan-300">[Muayene Yap]</strong> butonuna basın Bütünleşik Kokpitte sol taraftaki dokunmatik krokiye tıklayarak kusurları pinleyin, sağ taraftaki 5 rutin fiziki kriteri onaylayın veya ekipman kusursuzsa doğrudan <strong class="text-emerald-700 dark:text-emerald-300">[1-Tıkla Kusursuz / Uygun Onayla]</strong> butonuna basın.</p>
+</div>
+</section>
 
- <!-- VIZYONDER QUICK RECIPE CARD & 4 METRIC PILLS -->
- <section id="hizli-recete" class="mb-10">
- <div
- class="rounded-2xl border-2 border-cyan-500/30 bg-gradient-to-br from-cyan-500/5 via-white to-blue-500/5 dark:from-cyan-950/20 dark:via-slate-900 dark:to-blue-950/20 p-6 shadow-sm">
-
- <div class="flex items-center justify-between gap-4 mb-4">
- <div class="flex items-center gap-2.5">
- <span class="p-2 rounded-xl bg-cyan-600 text-white shadow-md shadow-cyan-600/20">
- <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
- d="M13 10V3L4 14h7v7l9-11h-7z" />
- </svg>
- </span>
- <div>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">Vizyonder Hızlı Operasyon Reçetesi (20
- Saniye Kuralı)</h3>
- <p class="text-xs text-slate-500 dark:text-slate-400">Teknik destek aramadan periyodik muayene sonucunu
- belirleme ve onaylama formülü</p>
- </div>
- </div>
- <span
- class="text-xs font-mono font-semibold px-2.5 py-1 rounded-lg bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800">
- Operasyonel Kısayol
- </span>
- </div>
-
- <!-- 3-Column Instruction Row -->
- <div
- class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 rounded-xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 mb-5">
- <div>
- <span
- class="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-1">İstenen
- Sonuç</span>
- <p class="text-sm font-semibold text-slate-800 dark:text-slate-100">
- Kurşun önlüğün yıllık kontrolünü DIN 6857-1 standardına uygun olarak kesinleştirmek ve SKS çizelgesine
- işlemek.
- </p>
- </div>
- <div>
- <span
- class="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-1">Yapılacak
- İşlem</span>
- <p class="text-sm text-slate-700 dark:text-slate-200">
- Tablodan ekipmanı seçin <strong class="text-cyan-700 dark:text-cyan-300">[Muayene Yap]</strong>
- butonuna basın Bütünleşik Kokpitte sol taraftaki dokunmatik krokiye tıklayarak kusurları pinleyin,
- sağ taraftaki 5 rutin fiziki kriteri onaylayın veya ekipman kusursuzsa doğrudan <strong class="text-emerald-700 dark:text-emerald-300">[1-Tıkla Kusursuz / Uygun
- Onayla]</strong> butonuna basın.
- </p>
- </div>
- <div>
- <span
- class="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-1">Sistem
- Etkisi & Güvence</span>
- <p class="text-sm text-slate-700 dark:text-slate-200">
- Sistem hasar alanını otomatik hesaplar; kritik bölgede delik yoksa ve toplam alan 5{mm}^2 ise
- geçerlilik süresini 1 yıl uzatır. Hurda veya kayıp önlüklerin zimmet transferini güvenlik kilidiyle
- engeller.
- </p>
- </div>
- </div>
-
- <!-- 4 METRIC PILLS -->
- <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
- <div
- class="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/50">
- <span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 block">Yasal Standart</span>
- <span class="text-sm font-extrabold text-cyan-600 dark:text-cyan-400 font-mono mt-0.5 block">DIN 6857 /
- IEC 61331</span>
- </div>
- <div
- class="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/50">
- <span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 block">Yetkili Rol</span>
- <span class="text-sm font-extrabold text-slate-800 dark:text-slate-100 font-mono mt-0.5 block">Medikal
- Fizikçi & RKS</span>
- </div>
- <div
- class="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/50">
- <span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 block">Rutin Muayene
- Takvimi</span>
- <span class="text-sm font-extrabold text-amber-600 dark:text-amber-400 font-mono mt-0.5 block">12 Ay
- (Yıllık Döngü)</span>
- </div>
- <div
- class="p-3 rounded-xl bg-slate-100/80 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/50">
- <span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 block">Saha & Platform</span>
- <span class="text-sm font-extrabold text-emerald-600 dark:text-emerald-400 font-mono mt-0.5 block">️
- Kokpit & QR Pasaport</span>
- </div>
- </div>
-
- </div>
- </section>
-
- <!-- 5N1K KURAL VE AYAR ÇÖZÜMLEME TABLOSU -->
- <section id="5n1k-tablosu" class="mb-12">
- <div class="flex items-center gap-2 mb-4">
- <span class="p-1.5 rounded-lg bg-cyan-100 dark:bg-cyan-900/50 text-cyan-700 dark:text-cyan-300">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
- d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
- </svg>
- </span>
- <h2 class="text-xl font-bold text-slate-900 dark:text-white">5N1K Kural ve Ayar Çözümleme Tablosu</h2>
- </div>
-
- <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+<section id="5n1k-tablosu" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>5N1K Kural ve Ayar Çözümleme Tablosu</span>
+  </h2>
+  <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
  Aşağıdaki tablo, koruyucu donanım yönetiminde kullanılan tüm operasyonel fonksiyonları, kısıtları, formülleri
  ve yetki sınırlarını teknik kod karmaşası olmaksızın açıklar:
  </p>
 
- <div
- class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900 custom-scrollbar">
- <table class="w-full text-left border-collapse text-xs sm:text-sm">
- <thead>
- <tr
- class="bg-slate-100 dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 border-b border-slate-200 dark:border-slate-800">
- <th class="p-3.5 font-bold">NE? (Ayar & Ekran Bileşeni)</th>
- <th class="p-3.5 font-bold">NEDEN? (Gerekçe & Amaç)</th>
- <th class="p-3.5 font-bold">NASIL? (Çalışma Mantığı & Formül)</th>
- <th class="p-3.5 font-bold">NE ZAMAN? (Tetiklenme Anı)</th>
- <th class="p-3.5 font-bold">KİM? (Yetkili Rol)</th>
- </tr>
- </thead>
- <tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
- <td class="p-3.5 font-semibold text-slate-900 dark:text-white">
- [Yeni Ekipman]<br>
- <span class="text-[11px] font-normal text-slate-500">Ana Toolbar Butonu</span>
- </td>
- <td class="p-3.5">Yeni satın alınan koruyucu önlük veya donanımı envantere işlemek.</td>
- <td class="p-3.5">Tip, klinik departman, ön/arka kurşun eşdeğeri, beden ve marka seçilir. Sistem
- benzersiz kod üretir.</td>
- <td class="p-3.5">Klinik tesliminde veya ilk kabulde.</td>
- <td class="p-3.5"><span
- class="px-2 py-0.5 rounded bg-cyan-100 dark:bg-cyan-900/60 text-cyan-800 dark:text-cyan-300 text-xs font-semibold">Medikal
- Fizikçi, RKS</span></td>
- </tr>
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
- <td class="p-3.5 font-semibold text-slate-900 dark:text-white">
- Akıllı Kod Önerisi<br>
- <span class="text-[11px] font-normal text-slate-500">Otomatik Format</span>
- </td>
- <td class="p-3.5">Departman ve tip bazında mükerrersiz standart künye oluşturmak.</td>
- <td class="p-3.5"><code
- class="font-mono text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">RKE-[KISA_KOD]-[DEPT]-[SIRA]</code>
- şablonu (Örn: <code class="font-mono text-xs text-cyan-600">RKE-Ö-RAD-001</code>).</td>
- <td class="p-3.5">Tip veya departman kutusu değiştirildiğinde.</td>
- <td class="p-3.5">Sistem (Otomatik)</td>
- </tr>
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
- <td class="p-3.5 font-semibold text-slate-900 dark:text-white">
- [Muayene ve QC]<br>
- <span class="text-[11px] font-normal text-slate-500">Kalite Kontrol Kokpiti</span>
- </td>
- <td class="p-3.5">DIN 6857-1 standardına göre yıllık delik, çatlak ve fiziksel kontrol yapmak.</td>
- <td class="p-3.5">Çift modlu ekran açılır; 5 fiziksel kriter kontrol edilir veya dokunmatik SVG krokide
- delikler işaretlenir.</td>
- <td class="p-3.5">Yıllık periyotta veya şüphe durumunda.</td>
- <td class="p-3.5"><span
- class="px-2 py-0.5 rounded bg-cyan-100 dark:bg-cyan-900/60 text-cyan-800 dark:text-cyan-300 text-xs font-semibold">Medikal
- Fizik Uzmanı</span></td>
- </tr>
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
- <td class="p-3.5 font-semibold text-slate-900 dark:text-white">
- İnteraktif Kusur Krokisi<br>
- <span class="text-[11px] font-normal text-slate-500">Dokunmatik SVG Tuvali</span>
- </td>
- <td class="p-3.5">Skopi görüntüsündeki radyasyon sızıntı noktalarını milimetrik haritalamak.</td>
- <td class="p-3.5">Ön/Arka silüet üzerine tıklanarak delik/çatlak pini konur; çap ($mm$) ve alan ($mm^2$)
- otomatik hesaplanır.</td>
- <td class="p-3.5">Skopi altında tarama yapılırken.</td>
- <td class="p-3.5">Medikal Fizikçi</td>
- </tr>
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
- <td class="p-3.5 font-semibold text-slate-900 dark:text-white">
- DIN 6857-1 Karar Motoru<br>
- <span class="text-[11px] font-normal text-slate-500">Otomatik Yasal Eşikler</span>
- </td>
- <td class="p-3.5">Hata payını sıfırlamak ve dünya standartlarında yasal karar üretmek.</td>
- <td class="p-3.5">
- • Kritik Organ: $>0\text{ mm}^2 \rightarrow$ <strong>HEK / Hurda</strong>.<br>
- • Non-Kritik: $\le 5\text{ mm}^2 \rightarrow$ <strong>Uygun</strong>, $5-15\text{ mm}^2 \rightarrow$
- <strong>Şartlı</strong>, $>15\text{ mm}^2 \rightarrow$ <strong>HEK</strong>.
- </td>
- <td class="p-3.5">Tuvale her kusur pini eklendiğinde/silindiğinde.</td>
- <td class="p-3.5">Sistem (Otomatik)</td>
- </tr>
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
- <td class="p-3.5 font-semibold text-slate-900 dark:text-white">
- 10+ Yıl Kullanım Ömrü Uyarısı<br>
- <span class="text-[11px] font-normal text-slate-500">Ömür & Malzeme Yorulması</span>
- </td>
- <td class="p-3.5">Eski kurşun katmanların görünmeyen yorulmasına karşı erken uyarı üretmek.</td>
- <td class="p-3.5">Donanım yaşı $\ge 10$ yıl ise sistem karar rozetinde <em>"10+ Yıl Ömür Aşımı -> HEK
- Önerisi"</em> uyarısı üretir.</td>
- <td class="p-3.5">Muayene formu açıldığında ve kaydedilirken.</td>
- <td class="p-3.5">Sistem (Kurumsal İnisiyatif)</td>
- </tr>
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
- <td class="p-3.5 font-semibold text-slate-900 dark:text-white">
- [1-Tıkla Kusursuz / Uygun Onayla]<br>
- <span class="text-[11px] font-normal text-slate-500">Hızlı Muayene Butonu</span>
- </td>
- <td class="p-3.5">Toplu tarama günlerinde hatasız ekipmanları saniyeler içinde onaylamak.</td>
- <td class="p-3.5">Tüm fiziki kriterleri tam sağlam yapar, kusurları sıfırlar, kararı "Kullanıma Uygun"
- yapıp doğrudan kaydeder.</td>
- <td class="p-3.5">Görsel ve radyolojik kusur bulunmadığında.</td>
- <td class="p-3.5">Medikal Fizikçi, Yetkili Tekniker</td>
- </tr>
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
- <td class="p-3.5 font-semibold text-slate-900 dark:text-white">
- [Toplu Muayene]<br>
- <span class="text-[11px] font-normal text-slate-500">Toplu Kalite Kontrol</span>
- </td>
- <td class="p-3.5">Klinikteki onlarca donanımı tek ekranda seçip toplu muayeneden geçirmek.</td>
- <td class="p-3.5">[Gecikenleri Seç] ile işaretleme yapılır, skopi cihazı ve varsayılan karar seçilip tek
- işlemle kaydedilir.</td>
- <td class="p-3.5">Yıllık departman taramalarında.</td>
- <td class="p-3.5">Medikal Fizik Uzmanı, RKS</td>
- </tr>
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
- <td class="p-3.5 font-semibold text-slate-900 dark:text-white">
- [Zimmet Transfer]<br>
- <span class="text-[11px] font-normal text-slate-500">Birim & Personel Devri</span>
- </td>
- <td class="p-3.5">Önlüğün zimmetli olduğu personeli veya bağlı olduğu odayı/kliniği değiştirmek.</td>
- <td class="p-3.5">Hedef birim, teslim eden/alan personel ve gerekçe girilir; zimmet hareket kaydı tescil
- edilir.</td>
- <td class="p-3.5">Personel değişimi veya oda transferinde.</td>
- <td class="p-3.5">Birim Sorumlusu, RKS</td>
- </tr>
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
- <td class="p-3.5 font-semibold text-slate-900 dark:text-white">
- Hurda Devir Güvenlik Kilidi<br>
- <span class="text-[11px] font-normal text-slate-500">Emniyet Kilidi</span>
- </td>
- <td class="p-3.5">Hurdaya ayrılmış, resmi EBYS tutanağıyla mühürlenmiş veya kayıp önlüklerin değiştirilmesini ve personele dağıtılmasını önlemek.</td>
- <td class="p-3.5">Ekipman durumu HEK veya Kayıp ise transfer formu açıldığında uyarı verilir ve kaydet
- butonu kilitlenir.</td>
- <td class="p-3.5">Geçersiz ekipmana zimmet yapılmak istendiğinde.</td>
- <td class="p-3.5">Sistem (Otomatik Kilit)</td>
- </tr>
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
- <td class="p-3.5 font-semibold text-slate-900 dark:text-white">
- [QR Etiket] & Toplu Baskı Paketi (.ZIP)<br>
- <span class="text-[11px] font-normal text-slate-500">[Toplu QR Etiket İhracı] / Sağ Tık Menüsü</span>
- </td>
- <td class="p-3.5">Önlüğe dikilecek suya dayanıklı dijital kimlik etiketini tekil basmak veya matbaa üretimi için tüm önlük etiketlerini topluca paketlemek.</td>
- <td class="p-3.5">Tekil QR etiketi basılabilir veya üst araç çubuğundaki [Toplu QR Etiket İhracı] ve sağ tık menüsünden seçili/tüm ekipmanlar için 300 DPI ultra net PNG etiketleri, medikal PVC/PET teknik şartnamesi (00_Baski_ve_Uretim_Rehberi.txt) ve icmal fihristi (00_Etiket_Listesi_Icmal.csv) içeren endüstriyel .ZIP paketi olarak ihraç edilir.</td>
- <td class="p-3.5">Yeni kabulde, etiket yıprandığında veya toplu matbaa siparişlerinde.</td>
- <td class="p-3.5">Medikal Fizikçi, Radyoloji Teknikeri, RKS</td>
- </tr>
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
- <td class="p-3.5 font-semibold text-slate-900 dark:text-white">
- [SKS Çizelgesi]<br>
- <span class="text-[11px] font-normal text-slate-500">Resmi Excel Raporu</span>
- </td>
- <td class="p-3.5">Sağlık Bakanlığı SKS 6.1 denetimlerine anında hazır resmi çizelge üretmek.</td>
- <td class="p-3.5">Envanterdeki tüm donanımları, askılık konumlarını, kurşun kalınlıklarını ve son
- muayene tarihlerini Excel'e döker.</td>
- <td class="p-3.5">SKS denetimlerinde veya yıl sonu raporunda.</td>
- <td class="p-3.5">RKS, Kalite Direktörü</td>
- </tr>
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
- <td class="p-3.5 font-semibold text-slate-900 dark:text-white">
- RKE Tanımlama Silme Kalkanı<br>
- <span class="text-[11px] font-normal text-slate-500">[Sil] Butonu (RKE Tanımları)</span>
- </td>
- <td class="p-3.5">Kullanımda olan bir ekipman türü/kategorisi silindiğinde kayıtlı önlüklerin yetim kalarak SKS denetim izinin kopmasını engellemek.</td>
- <td class="p-3.5">Seçilen RKE tanımına bağlı en az 1 ekipman kaydı varsa sistem fiziksel silme yapmaz; kaydı güvenle <strong>[Pasif]</strong> statüye alır ve yeni ekipman kayıt listelerinden gizler. Hiçbir donanımla eşleşmemiş tanımlar ise doğrudan kalıcı silinir.</td>
- <td class="p-3.5">RKE Tanımları ekranında satır seçilip silme istendiğinde.</td>
- <td class="p-3.5">Sistem Yöneticisi / RKS</td>
- </tr>
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
- <td class="p-3.5 font-semibold text-slate-900 dark:text-white">
- Toplu RKE &amp; Muayene İçe Aktar<br>
- <span class="text-[11px] font-normal text-slate-500">[Excel İçe Aktar Butonu]</span>
- </td>
- <td class="p-3.5">Yüzlerce kurşun önlük, tiroid koruyucu veya yıllık muayene sonucunu tek tek girmek yerine 2 sayfalı şablonla tek seferde sisteme yüklemek.</td>
- <td class="p-3.5">Evrensel İçe Aktarım Sihirbazı açılır. RKE envanteri veya geçmiş muayene listesi seçilir; sistemde tanımlı olmayan yeni ekipman türleri veya birimler dinamik sözlükte eşlenir; Dry-Run doğrulamasının ardından asenkron olarak kaydedilir.</td>
- <td class="p-3.5">İlk SKS envanteri oluşturulurken veya toplu yıllık kalite kontrol sonuçları girilirken.</td>
- <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-cyan-100 dark:bg-cyan-900/60 text-cyan-800 dark:text-cyan-300 text-xs font-semibold">Medikal Fizikçi, RKS</span></td>
- </tr>
- <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
- <td class="p-3.5 font-semibold text-slate-900 dark:text-white">
- Toplu HEK Tutanağı Oluşturma<br>
- <span class="text-[11px] font-normal text-slate-500">[HEK Tutanağı Butonu / Sağ Tık Menüsü]</span>
- </td>
- <td class="p-3.5">DIN 6857-1 yıllık kontrolünde veya ömür aşımında hurdaya ayrılan birden fazla koruyucu donanımı (örn. 20 adet kurşun önlüğü) tek bir resmi komisyon tutanağında birleştirmek.</td>
- <td class="p-3.5">RKE envanter tablosunda klavyeden Ctrl veya Shift tuşlarıyla birden çok satır seçilir. Üst araç çubuğundaki <strong>[HEK Tutanağı]</strong> butonuna veya sağ tık menüsündeki <em>"Seçili Ekipmanlar İçin Toplu HEK Tutanağı Oluştur..."</em> komutuna tıklanır. Tutanak Sihirbazı açılarak seçili tüm donanımları dinamik tabloya işler ve kilitli resmi PDF Hurda Komisyon Tutanağı üretir.</td>
- <td class="p-3.5">Yıllık kalite taraması sonucunda hurdaya sevk edilecek ekipman listesi kesinleştiğinde.</td>
- <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-cyan-100 dark:bg-cyan-900/60 text-cyan-800 dark:text-cyan-300 text-xs font-semibold">Medikal Fizikçi, RKS, Birim Amiri</span></td>
- </tr>
- </tbody>
- </table>
- </div>
- </section>
+<div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 custom-scrollbar shadow-sm my-4">
+  <table class="w-full text-left border-collapse text-xs sm:text-sm">
+    <thead>
+      <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/80 uppercase text-xs font-bold tracking-wider text-slate-500 dark:text-slate-400">
+        <th class="py-3.5 px-4">NE? (Ayar & Ekran Bileşeni)</th>
+        <th class="py-3.5 px-4">NEDEN? (Gerekçe & Amaç)</th>
+        <th class="py-3.5 px-4">NASIL? (Çalışma Mantığı & Formül)</th>
+        <th class="py-3.5 px-4">NE ZAMAN? (Tetiklenme Anı)</th>
+        <th class="py-3.5 px-4">KİM? (Yetkili Rol)</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">[Yeni Ekipman]<br> <span class="text-[11px] font-normal text-slate-500">Ana Toolbar Butonu</span></td>
+        <td class="py-3.5 px-4">Yeni satın alınan koruyucu önlük veya donanımı envantere işlemek.</td>
+        <td class="py-3.5 px-4">Tip, klinik departman, ön/arka kurşun eşdeğeri, beden ve marka seçilir. Sistem benzersiz kod üretir.</td>
+        <td class="py-3.5 px-4">Klinik tesliminde veya ilk kabulde.</td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-cyan-100 dark:bg-cyan-900/60 text-cyan-800 dark:text-cyan-300 text-xs font-semibold">Medikal Fizikçi, RKS</span></td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Akıllı Kod Önerisi<br> <span class="text-[11px] font-normal text-slate-500">Otomatik Format</span></td>
+        <td class="py-3.5 px-4">Departman ve tip bazında mükerrersiz standart künye oluşturmak.</td>
+        <td class="py-3.5 px-4"><code class="font-mono text-xs bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">RKE-[KISA_KOD]-[DEPT]-[SIRA]</code> şablonu (Örn: <code class="font-mono text-xs text-cyan-600">RKE-Ö-RAD-001</code>).</td>
+        <td class="py-3.5 px-4">Tip veya departman kutusu değiştirildiğinde.</td>
+        <td class="py-3.5 px-4">Sistem (Otomatik)</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">[Muayene ve QC]<br> <span class="text-[11px] font-normal text-slate-500">Kalite Kontrol Kokpiti</span></td>
+        <td class="py-3.5 px-4">DIN 6857-1 standardına göre yıllık delik, çatlak ve fiziksel kontrol yapmak.</td>
+        <td class="py-3.5 px-4">Çift modlu ekran açılır; 5 fiziksel kriter kontrol edilir veya dokunmatik SVG krokide delikler işaretlenir.</td>
+        <td class="py-3.5 px-4">Yıllık periyotta veya şüphe durumunda.</td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-cyan-100 dark:bg-cyan-900/60 text-cyan-800 dark:text-cyan-300 text-xs font-semibold">Medikal Fizik Uzmanı</span></td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">İnteraktif Kusur Krokisi<br> <span class="text-[11px] font-normal text-slate-500">Dokunmatik SVG Tuvali</span></td>
+        <td class="py-3.5 px-4">Skopi görüntüsündeki radyasyon sızıntı noktalarını milimetrik haritalamak.</td>
+        <td class="py-3.5 px-4">Ön/Arka silüet üzerine tıklanarak delik/çatlak pini konur; çap (mm) ve alan (mm²) otomatik hesaplanır.</td>
+        <td class="py-3.5 px-4">Skopi altında tarama yapılırken.</td>
+        <td class="py-3.5 px-4">Medikal Fizikçi</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">DIN 6857-1 Karar Motoru<br> <span class="text-[11px] font-normal text-slate-500">Otomatik Yasal Eşikler</span></td>
+        <td class="py-3.5 px-4">Hata payını sıfırlamak ve dünya standartlarında yasal karar üretmek.</td>
+        <td class="py-3.5 px-4">• Kritik Organ: &gt; 0 mm² → <strong>HEK / Hurda</strong>.<br> • Non-Kritik: ≤ 5 mm² → <strong>Uygun</strong>, 5–15 mm² → <strong>Şartlı</strong>, &gt; 15 mm² → <strong>HEK</strong>.</td>
+        <td class="py-3.5 px-4">Tuvale her kusur pini eklendiğinde/silindiğinde.</td>
+        <td class="py-3.5 px-4">Sistem (Otomatik)</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">10+ Yıl Kullanım Ömrü Uyarısı<br> <span class="text-[11px] font-normal text-slate-500">Ömür & Malzeme Yorulması</span></td>
+        <td class="py-3.5 px-4">Eski kurşun katmanların görünmeyen yorulmasına karşı erken uyarı üretmek.</td>
+        <td class="py-3.5 px-4">Donanım yaşı ≥ 10 yıl ise sistem karar rozetinde <em>"10+ Yıl Ömür Aşımı -> HEK Önerisi"</em> uyarısı üretir.</td>
+        <td class="py-3.5 px-4">Muayene formu açıldığında ve kaydedilirken.</td>
+        <td class="py-3.5 px-4">Sistem (Kurumsal İnisiyatif)</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">[1-Tıkla Kusursuz / Uygun Onayla]<br> <span class="text-[11px] font-normal text-slate-500">Hızlı Muayene Butonu</span></td>
+        <td class="py-3.5 px-4">Toplu tarama günlerinde hatasız ekipmanları saniyeler içinde onaylamak.</td>
+        <td class="py-3.5 px-4">Tüm fiziki kriterleri tam sağlam yapar, kusurları sıfırlar, kararı "Kullanıma Uygun" yapıp doğrudan kaydeder.</td>
+        <td class="py-3.5 px-4">Görsel ve radyolojik kusur bulunmadığında.</td>
+        <td class="py-3.5 px-4">Medikal Fizikçi, Yetkili Tekniker</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">[Toplu Muayene]<br> <span class="text-[11px] font-normal text-slate-500">Toplu Kalite Kontrol</span></td>
+        <td class="py-3.5 px-4">Klinikteki onlarca donanımı tek ekranda seçip toplu muayeneden geçirmek.</td>
+        <td class="py-3.5 px-4">[Gecikenleri Seç] ile işaretleme yapılır, skopi cihazı ve varsayılan karar seçilip tek işlemle kaydedilir.</td>
+        <td class="py-3.5 px-4">Yıllık departman taramalarında.</td>
+        <td class="py-3.5 px-4">Medikal Fizik Uzmanı, RKS</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">[Zimmet Transfer]<br> <span class="text-[11px] font-normal text-slate-500">Birim & Personel Devri</span></td>
+        <td class="py-3.5 px-4">Önlüğün zimmetli olduğu personeli veya bağlı olduğu odayı/kliniği değiştirmek.</td>
+        <td class="py-3.5 px-4">Hedef birim, teslim eden/alan personel ve gerekçe girilir; zimmet hareket kaydı tescil edilir.</td>
+        <td class="py-3.5 px-4">Personel değişimi veya oda transferinde.</td>
+        <td class="py-3.5 px-4">Birim Sorumlusu, RKS</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Hurda Devir Güvenlik Kilidi<br> <span class="text-[11px] font-normal text-slate-500">Emniyet Kilidi</span></td>
+        <td class="py-3.5 px-4">Hurdaya ayrılmış, resmi EBYS tutanağıyla mühürlenmiş veya kayıp önlüklerin değiştirilmesini ve personele dağıtılmasını önlemek.</td>
+        <td class="py-3.5 px-4">Ekipman durumu HEK veya Kayıp ise transfer formu açıldığında uyarı verilir ve kaydet butonu kilitlenir.</td>
+        <td class="py-3.5 px-4">Geçersiz ekipmana zimmet yapılmak istendiğinde.</td>
+        <td class="py-3.5 px-4">Sistem (Otomatik Kilit)</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">[QR Etiket] & Toplu Baskı Paketi (.ZIP)<br> <span class="text-[11px] font-normal text-slate-500">[Toplu QR Etiket İhracı] / Sağ Tık Menüsü</span></td>
+        <td class="py-3.5 px-4">Önlüğe dikilecek suya dayanıklı dijital kimlik etiketini tekil basmak veya matbaa üretimi için tüm önlük etiketlerini topluca paketlemek.</td>
+        <td class="py-3.5 px-4">Tekil QR etiketi basılabilir veya üst araç çubuğundaki [Toplu QR Etiket İhracı] ve sağ tık menüsünden seçili/tüm ekipmanlar için 300 DPI ultra net PNG etiketleri, medikal PVC/PET teknik şartnamesi (00_Baski_ve_Uretim_Rehberi.txt) ve icmal fihristi (00_Etiket_Listesi_Icmal.csv) içeren endüstriyel .ZIP paketi olarak ihraç edilir.</td>
+        <td class="py-3.5 px-4">Yeni kabulde, etiket yıprandığında veya toplu matbaa siparişlerinde.</td>
+        <td class="py-3.5 px-4">Medikal Fizikçi, Radyoloji Teknikeri, RKS</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">[SKS Çizelgesi]<br> <span class="text-[11px] font-normal text-slate-500">Resmi Excel Raporu</span></td>
+        <td class="py-3.5 px-4">Sağlık Bakanlığı SKS 6.1 denetimlerine anında hazır resmi çizelge üretmek.</td>
+        <td class="py-3.5 px-4">Envanterdeki tüm donanımları, askılık konumlarını, kurşun kalınlıklarını ve son muayene tarihlerini Excel'e döker.</td>
+        <td class="py-3.5 px-4">SKS denetimlerinde veya yıl sonu raporunda.</td>
+        <td class="py-3.5 px-4">RKS, Kalite Direktörü</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">RKE Tanımlama Silme Kalkanı<br> <span class="text-[11px] font-normal text-slate-500">[Sil] Butonu (RKE Tanımları)</span></td>
+        <td class="py-3.5 px-4">Kullanımda olan bir ekipman türü/kategorisi silindiğinde kayıtlı önlüklerin yetim kalarak SKS denetim izinin kopmasını engellemek.</td>
+        <td class="py-3.5 px-4">Seçilen RKE tanımına bağlı en az 1 ekipman kaydı varsa sistem fiziksel silme yapmaz; kaydı güvenle <strong>[Pasif]</strong> statüye alır ve yeni ekipman kayıt listelerinden gizler. Hiçbir donanımla eşleşmemiş tanımlar ise doğrudan kalıcı silinir.</td>
+        <td class="py-3.5 px-4">RKE Tanımları ekranında satır seçilip silme istendiğinde.</td>
+        <td class="py-3.5 px-4">Sistem Yöneticisi / RKS</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Toplu RKE &amp; Muayene İçe Aktar<br> <span class="text-[11px] font-normal text-slate-500">[Excel İçe Aktar Butonu]</span></td>
+        <td class="py-3.5 px-4">Yüzlerce kurşun önlük, tiroid koruyucu veya yıllık muayene sonucunu tek tek girmek yerine 2 sayfalı şablonla tek seferde sisteme yüklemek.</td>
+        <td class="py-3.5 px-4">Evrensel İçe Aktarım Sihirbazı açılır. RKE envanteri veya geçmiş muayene listesi seçilir; sistemde tanımlı olmayan yeni ekipman türleri veya birimler dinamik sözlükte eşlenir; Dry-Run doğrulamasının ardından asenkron olarak kaydedilir.</td>
+        <td class="py-3.5 px-4">İlk SKS envanteri oluşturulurken veya toplu yıllık kalite kontrol sonuçları girilirken.</td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-cyan-100 dark:bg-cyan-900/60 text-cyan-800 dark:text-cyan-300 text-xs font-semibold">Medikal Fizikçi, RKS</span></td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Toplu HEK Tutanağı Oluşturma<br> <span class="text-[11px] font-normal text-slate-500">[HEK Tutanağı Butonu / Sağ Tık Menüsü]</span></td>
+        <td class="py-3.5 px-4">DIN 6857-1 yıllık kontrolünde veya ömür aşımında hurdaya ayrılan birden fazla koruyucu donanımı (örn. 20 adet kurşun önlüğü) tek bir resmi komisyon tutanağında birleştirmek.</td>
+        <td class="py-3.5 px-4">RKE envanter tablosunda klavyeden Ctrl veya Shift tuşlarıyla birden çok satır seçilir. Üst araç çubuğundaki <strong>[HEK Tutanağı]</strong> butonuna veya sağ tık menüsündeki <em>"Seçili Ekipmanlar İçin Toplu HEK Tutanağı Oluştur..."</em> komutuna tıklanır. Tutanak Sihirbazı açılarak seçili tüm donanımları dinamik tabloya işler ve kilitli resmi PDF Hurda Komisyon Tutanağı üretir.</td>
+        <td class="py-3.5 px-4">Yıllık kalite taraması sonucunda hurdaya sevk edilecek ekipman listesi kesinleştiğinde.</td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-cyan-100 dark:bg-cyan-900/60 text-cyan-800 dark:text-cyan-300 text-xs font-semibold">Medikal Fizikçi, RKS, Birim Amiri</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</section>
 
- <!-- YANLIŞ ALGIYI YIKAN "MİT AVCISI" (MYTH-BUSTING) KARTLARI -->
- <section id="mit-avcilari" class="mb-12">
- <div class="flex items-center gap-2 mb-4">
- <span class="p-1.5 rounded-lg bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
- d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
- </svg>
- </span>
- <h2 class="text-xl font-bold text-slate-900 dark:text-white">Klinik Radyasyon Güvenliği & Mit Avcısı (Kritik
- Kurallar)</h2>
- </div>
-
- <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-
- <!-- Mit 1 -->
+<section id="mit-avcilari" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Klinik Radyasyon Güvenliği & Mit Avcısı (Kritik Kurallar)</span>
+  </h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
  <div
  class="rounded-2xl border border-red-200 dark:border-red-900/40 bg-gradient-to-br from-red-50/50 via-white to-slate-50 dark:from-red-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
  <div
@@ -564,8 +270,6 @@
  </p>
  </div>
  </div>
-
- <!-- Mit 2 -->
  <div
  class="rounded-2xl border border-amber-200 dark:border-amber-900/40 bg-gradient-to-br from-amber-50/50 via-white to-slate-50 dark:from-amber-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
  <div
@@ -593,8 +297,6 @@
  </p>
  </div>
  </div>
-
- <!-- Mit 3 -->
  <div
  class="rounded-2xl border border-cyan-200 dark:border-cyan-900/40 bg-gradient-to-br from-cyan-50/50 via-white to-slate-50 dark:from-cyan-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
  <div
@@ -622,26 +324,19 @@
  </p>
  </div>
  </div>
-
  </div>
- </section>
+</section>
 
- <!-- MERMAID PROCESS FLOW DIAGRAM -->
- <section id="surec-akisi" class="mb-12">
- <div class="flex items-center gap-2 mb-4">
- <span class="p-1.5 rounded-lg bg-cyan-100 dark:bg-cyan-900/50 text-cyan-700 dark:text-cyan-300">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
- d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
- </svg>
- </span>
- <h2 class="text-xl font-bold text-slate-900 dark:text-white">Tek Ekranda Bütünleşik Muayene ve Karar İş Akış Şeması</h2>
- </div>
-
- <div
+<section id="surec-akisi" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Tek Ekranda Bütünleşik Muayene ve Karar İş Akış Şeması</span>
+  </h2>
+  <div
  class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-x-auto">
- <div class="mermaid opacity-0 transition-opacity duration-500 min-w-[700px]">
- graph TD
+
+<div class="mermaid text-sm">
+graph TD
  A["RKE Seçimi (Envanter Listesi)"] --> B["Bütünleşik Kalite Kontrol Kokpiti (Tek Ekran)"]
 
  B --> C["Sol Panel: Dokunmatik Kroki & Kusur Tablosu"]
@@ -656,11 +351,11 @@
  E -->|"Hayır, Çevre 5-15 mm²"| H["Şartlı Kullanım (Düşük Doz / Refakatçi)"]
  F -->|"Dikiş/Askı/Hijyen Hasarı"| H
 
- E -->|"Kusursuz / &lt;= 5 mm²"| I{"Fiziki Sağlam ve Yaş &lt; 10 Yıl?"}
+ E -->|"Kusursuz / <= 5 mm²"| I{"Fiziki Sağlam ve Yaş < 10 Yıl?"}
  F -->|"Fiziki Tam Sağlam"| I
 
  I -->|"Evet"| J["Kullanıma Uygun (1 Yıl Geçerli)"]
- I -->|"Yaş &gt;= 10 Yıl"| G
+ I -->|"Yaş >= 10 Yıl"| G
 
  G --> K["RKS Resmi Onayı & KVKK AES-256 Arşiv"]
  H --> K
@@ -674,40 +369,29 @@
  style J fill:#22c55e,stroke:#16a34a,stroke-width:2px,color:#fff
  style K fill:#dc2626,stroke:#b91c1c,stroke-width:2px,color:#fff
  style M fill:#3b82f6,stroke:#2563eb,stroke-width:2px,color:#fff
- </div>
- </div>
- </section>
+</div>
 
- <!-- DIN 6857-1 MATEMATİKSEL HASAR VE KARAR MOTORU DETAYI -->
- <section id="karar-motoru" class="mb-12">
- <div class="flex items-center gap-2 mb-4">
- <span class="p-1.5 rounded-lg bg-cyan-100 dark:bg-cyan-900/50 text-cyan-700 dark:text-cyan-300">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
- d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
- </svg>
- </span>
- <h2 class="text-xl font-bold text-slate-900 dark:text-white">DIN 6857-1 / IEC 61331 Karar Motoru & Eşik
- Değerleri</h2>
  </div>
+</section>
 
- <div class="space-y-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+<section id="karar-motoru" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>DIN 6857-1 / IEC 61331 Karar Motoru & Eşik Değerleri</span>
+  </h2>
+  <div class="space-y-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
  <p>
  RADPYS V4, skopi veya röntgen şutlaması altında yapılan kalite kontrol muayenelerinde medikal fizikçinin
  sübjektif değerlendirmesini ortadan kaldıran <strong>matematiksel bir karar motoru</strong> barındırır.
- Dokunmatik SVG tuvali üzerinde işaretlenen her deliğin çapı ($d$) girildiğinde sistem daire alan formülüyle
+ Dokunmatik SVG tuvali üzerinde işaretlenen her deliğin çapı (<em>d</em>) girildiğinde sistem daire alan formülüyle
  hasar büyüklüğünü hesaplar:
  </p>
-
  <div
  class="p-3.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 font-mono text-xs sm:text-sm text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 flex items-center justify-between">
- <span>Hasar Alanı Formülü: <strong>Alan ($mm^2$) = $\pi \cdot (çap / 2)^2$</strong></span>
+ <span>Hasar Alanı Formülü: <strong>Alan (mm²) = π · (çap / 2)²</strong></span>
  <span class="text-cyan-600 dark:text-cyan-400 font-bold">Otomatik Hassas Hesaplama</span>
  </div>
-
  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-
- <!-- Durum 1: Yeşil -->
  <div
  class="p-4 rounded-xl border border-emerald-200 dark:border-emerald-800/60 bg-emerald-50/40 dark:bg-emerald-950/20">
  <div class="flex items-center justify-between mb-2">
@@ -717,14 +401,12 @@
  Yıl Geçerli</span>
  </div>
  <ul class="text-xs space-y-1.5 text-slate-700 dark:text-slate-300">
- <li>• Toplam hasar alanı $\le 5.0\text{ mm}^2$.</li>
+ <li>• Toplam hasar alanı ≤ 5.0 mm².</li>
  <li>• Kritik organ bölgesinde delik/çatlak <strong>YOK</strong>.</li>
  <li>• Kurşun blok katlanması veya kayması <strong>YOK</strong>.</li>
  <li>• Tüm klinik ve ameliyathanelerde serbest kullanım.</li>
  </ul>
  </div>
-
- <!-- Durum 2: Sarı -->
  <div
  class="p-4 rounded-xl border border-amber-200 dark:border-amber-800/60 bg-amber-50/40 dark:bg-amber-950/20">
  <div class="flex items-center justify-between mb-2">
@@ -734,14 +416,12 @@
  Alan</span>
  </div>
  <ul class="text-xs space-y-1.5 text-slate-700 dark:text-slate-300">
- <li>• Toplam hasar alanı $5.0 - 15.0\text{ mm}^2$ aralığında.</li>
+ <li>• Toplam hasar alanı 5.0 – 15.0 mm² aralığında.</li>
  <li>• Veya dikiş/toka açılması mevcut.</li>
  <li>• Primer ışınlama alanında (Anjiyo, C-Kollu Skopi) <strong>YASAK</strong>.</li>
  <li>• Yalnızca hasta refakati ve düşük dozlu alanlarda.</li>
  </ul>
  </div>
-
- <!-- Durum 3: Kırmızı -->
  <div class="p-4 rounded-xl border border-red-200 dark:border-red-800/60 bg-red-50/40 dark:bg-red-950/20">
  <div class="flex items-center justify-between mb-2">
  <span class="font-bold text-red-800 dark:text-red-300">HEK / Hurdaya Ayır</span>
@@ -750,32 +430,22 @@
  Dışı</span>
  </div>
  <ul class="text-xs space-y-1.5 text-slate-700 dark:text-slate-300">
- <li>• Kritik organ bölgesinde $> 0\text{ mm}^2$ delik (Sıfır Tolerans).</li>
- <li>• Non-kritik alanda toplam hasar $> 15.0\text{ mm}^2$.</li>
+ <li>• Kritik organ bölgesinde &gt; 0 mm² delik (Sıfır Tolerans).</li>
+ <li>• Non-kritik alanda toplam hasar &gt; 15.0 mm².</li>
  <li>• Kurşun blok katlanması veya blok kayması.</li>
  <li>• Önlük derhal klinikten çekilir ve imhaya sevk edilir.</li>
  </ul>
  </div>
-
  </div>
  </div>
- </section>
+</section>
 
- <!-- TOPLU MUAYENE & ZİMMET GÜVENLİĞİ -->
- <section id="toplu-muayene-ve-zimmet" class="mb-12">
- <div class="flex items-center gap-2 mb-4">
- <span class="p-1.5 rounded-lg bg-cyan-100 dark:bg-cyan-900/50 text-cyan-700 dark:text-cyan-300">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
- d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
- </svg>
- </span>
- <h2 class="text-xl font-bold text-slate-900 dark:text-white">Toplu Muayene Kokpiti & Zimmet Güvenlik Kilidi
- </h2>
- </div>
-
- <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-600 dark:text-slate-300">
-
+<section id="toplu-muayene-ve-zimmet" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Toplu Muayene Kokpiti & Zimmet Güvenlik Kilidi</span>
+  </h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-600 dark:text-slate-300">
  <div
  class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
  <h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-3">
@@ -806,7 +476,6 @@
  </li>
  </ul>
  </div>
-
  <div
  class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
  <h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-3">
@@ -825,24 +494,15 @@
  seçilip transfer yapılmak istendiğinde sistem transferi engeller ve kaydetme butonunu kilitler.
  </div>
  </div>
-
  </div>
- </section>
+</section>
 
- <!-- KAREKOD (QR) PASAPORT VE SAHA MOBİL KONSOLU -->
- <section id="qr-pasaport" class="mb-12">
- <div class="flex items-center gap-2 mb-4">
- <span class="p-1.5 rounded-lg bg-cyan-100 dark:bg-cyan-900/50 text-cyan-700 dark:text-cyan-300">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
- d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
- </svg>
- </span>
- <h2 class="text-xl font-bold text-slate-900 dark:text-white">Karekod (QR) Pasaport Etiketi & Mobil Saha
- Muayenesi</h2>
- </div>
-
- <div
+<section id="qr-pasaport" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Karekod (QR) Pasaport Etiketi & Mobil Saha Muayenesi</span>
+  </h2>
+  <div
  class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm text-sm text-slate-600 dark:text-slate-300">
  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
  <div class="md:col-span-2 space-y-3">
@@ -861,11 +521,9 @@
  kroki üzerinde delikleri işaretleyip canlı kamera fotoğrafı ekleyerek testi onaylayabilir.</li>
  </ul>
  </div>
-
  <div
  class="p-4 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center text-center">
  <div class="w-24 h-24 rounded-lg bg-white p-2 shadow-sm mb-3 flex items-center justify-center">
- <!-- Simüle QR Görseli -->
  <svg class="w-20 h-20 text-slate-800" fill="currentColor" viewBox="0 0 24 24">
  <path
  d="M2 2h8v8H2V2zm2 2v4h4V4H4zm10-2h8v8h-8V2zm2 2v4h4V4h-4zM2 14h8v8H2v-8zm2 2v4h4v-4H4zm14-2h2v2h-2v-2zm-4 0h2v2h-2v-2zm2 2h2v2h-2v-2zm2 2h2v2h-2v-2zm-4 0h2v2h-2v-2zm2 2h2v2h-2v-2z" />
@@ -877,255 +535,111 @@
  </div>
  </div>
  </div>
- </section>
+</section>
 
- <!-- EKRAN GÖRÜNTÜLERİ VE EKRAN KONUMU ROZETLERİ -->
- <section id="ekran-goruntuleri" class="mb-12">
- <div class="flex items-center gap-2 mb-4">
- <span class="p-1.5 rounded-lg bg-cyan-100 dark:bg-cyan-900/50 text-cyan-700 dark:text-cyan-300">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
- d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
- </svg>
- </span>
- <h2 class="text-xl font-bold text-slate-900 dark:text-white">Arayüz Rehberi & Ekran Görünümleri</h2>
- </div>
+<section id="ekran-goruntuleri" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Arayüz Rehberi & Ekran Görünümleri</span>
+  </h2>
+  <figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+  <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+    <img src="assets/img/20_rke_ana_yonetim.png" alt="RKE Envanter Ana Ekranı" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+  </div>
+    <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+      <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span><span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki ekipman kodları, seri numaraları ve konumlar test amaçlı sentetik veridir. Gerçek envanter kayıtlarıyla benzerlikler tesadüfidir.</span></span>
+    </figcaption>
+</figure>
 
- <!-- Görsel 1: RKE Ana Yönetim Ekranı -->
- <figure
- class="my-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
- <div
- class="p-3 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
- <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
- ️ Ekran Konumu: <strong class="text-slate-900 dark:text-white font-semibold">Cihaz & Donanım > Koruyucu
- Ekipman (RKE) Yönetimi</strong>
- </span>
- <span
- class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">
- RKE Envanter & KPI Paneli
- </span>
- </div>
- <div
- class="p-8 bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center text-center border-b border-slate-200 dark:border-slate-800">
- <img src="assets/img/20_rke_ana_yonetim.png" alt="RKE Envanter Ana Ekranı"
- class="max-w-full h-auto rounded-xl shadow-md border border-slate-200 dark:border-slate-800"
- onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'py-12 flex flex-col items-center justify-center text-slate-400\'><svg class=\'w-16 h-16 mb-2 stroke-1\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\'></path></svg><span class=\'text-sm font-semibold\'>Görsel: RKE Ana Yönetim ve KPI Ekranı</span><span class=\'text-xs text-slate-500 mt-1\'>Konum: assets/img/20_rke_ana_yonetim.png</span></div>';">
- </div>
- <figcaption
- class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
- <svg class="w-3.5 h-3.5 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
- d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
- </svg>
- <span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki ekipman kodları, seri numaraları ve konumlar test
- amaçlı sentetik veridir. Gerçek envanter kayıtlarıyla benzerlikler tesadüfidir.</span>
- </figcaption>
- </figure>
+<figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+  <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+    <img src="assets/img/20_rke_muayene_kokpiti.png" alt="DIN 6857 Kalite Kontrol Kokpiti" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+  </div>
+    <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+      <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span><span><strong>Yasal Bilgilendirme:</strong> Sol taraftaki SVG silüet üzerindeki hasar pinleri ve test parametreleri tamamen kurgusal olup standart eşiklerin gösterimi amacıyla üretilmiştir.</span></span>
+    </figcaption>
+</figure>
+</section>
 
- <!-- Görsel 2: DIN 6857 Kalite Kontrol Kokpiti -->
- <figure
- class="my-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
- <div
- class="p-3 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
- <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
- ️ Ekran Konumu: <strong class="text-slate-900 dark:text-white font-semibold">RKE Yönetimi > [Muayene ve
- QC]</strong>
- </span>
- <span
- class="text-[10px] font-medium text-cyan-700 dark:text-cyan-300 bg-cyan-100/70 dark:bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-200 dark:border-cyan-800/60">
- Dokunmatik Kroki & Karar Kokpiti
- </span>
- </div>
- <div
- class="p-8 bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center text-center border-b border-slate-200 dark:border-slate-800">
- <img src="assets/img/20_rke_muayene_kokpiti.png" alt="DIN 6857 Kalite Kontrol Kokpiti"
- class="max-w-full h-auto rounded-xl shadow-md border border-slate-200 dark:border-slate-800"
- onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'py-12 flex flex-col items-center justify-center text-slate-400\'><svg class=\'w-16 h-16 mb-2 stroke-1\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\'></path></svg><span class=\'text-sm font-semibold\'>Görsel: DIN 6857-1 Kalite Kontrol ve Muayene Kokpiti</span><span class=\'text-xs text-slate-500 mt-1\'>Konum: assets/img/20_rke_muayene_kokpiti.png</span></div>';">
- </div>
- <figcaption
- class="p-2.5 bg-slate-50 dark:bg-slate-900/80 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-1.5">
- <svg class="w-3.5 h-3.5 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
- d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
- </svg>
- <span><strong>Yasal Bilgilendirme:</strong> Sol taraftaki SVG silüet üzerindeki hasar pinleri ve test
- parametreleri tamamen kurgusal olup standart eşiklerin gösterimi amacıyla üretilmiştir.</span>
- </figcaption>
- </figure>
+<section id="sss" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Sıkça Sorulan Sorular (SSS)</span>
+  </h2>
+  <div class="space-y-3" id="faqAccordion">
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>1. Muayenesi yaklaşan veya geçen önlükleri ana ekranda nasıl hızlıca filtreleyebilirim?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Filtre çubuğundaki <strong class="text-slate-800 dark:text-slate-200">[Tüm Kontrol & Ömür Durumları]</strong> açılır kutusundan <em>"Kontrolü Gecikenler"</em> seçildiğinde süresi dolmuş kırmızı alarmlı kayıtlar; <em>"Kontrolü Yaklaşanlar (30 Gün)"</em> seçildiğinde ise son 30 günü kalan donanımlar listelenir. Ayrıca tablonun en üstündeki <em>"Kontrolü Geciken"</em> KPI kartına tıklayarak da anında erişebilirsiniz.</p>
+    </div>
+  </details>
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>2. Tiroid veya gonad koruyucuda milimetrik dahi olsa delik çıkarsa ne yapılmalıdır?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">DIN 6857-1 standardı uyarınca tiroid ve gonad bölgeleri doğrudan kritik organları koruduğu için <strong>tolerans sıfırdır (0.0 mm²)</strong>. 1 mm dahi delik tespit edilse ekipman kesinlikle şartlı kullanılamaz; doğrudan <strong>HEK / Hurdaya Ayrılmalı</strong> kararı verilerek derhal hizmetten çekilmelidir.</p>
+    </div>
+  </details>
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>3. Hurdaya ayrılan bir önlük listede kalmaya devam eder mi, kazara tekrar kullanılabilir mi?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Hurdaya ayrılan önlükler geçmiş denetim izlerinin korunması amacıyla sistemde silinmez; ancak durumu kırmızı <em>"HEK (Hurda)"</em> olarak işaretlenir. Aktif envanter listesinde ve SKS çizelgesinde kullanım dışı görünür. Ayrıca bu önlüklerin başka personele devredilmesini engelleyen <strong>Hurda Devir Güvenlik Kilidi</strong> devreye girer.</p>
+    </div>
+  </details>
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>4. Muayeneye eklenen hasar fotoğrafları ve skopi röntgenleri nereye kaydedilir?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Yüklenen görsel ve PDF servis belgeleri masaüstündeki açık klasörlerde korunmasız tutulmaz. Form kaydedildiği anda <strong>KVKK uyumlu Evrak Kasasında Fernet AES-256 algoritmasıyla şifrelenerek</strong> PostgreSQL veritabanı blob alanında saklanır. Yalnızca yetkili kullanıcılar detay ekranından deşifre ederek görüntüleyebilir.</p>
+    </div>
+  </details>
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>5. Bir RKE donanım tanımını (tür/kategori) sildiğimde mevcut önlük ve ekipmanlar kaybolur mu?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <strong>Asla kaybolmaz.</strong> RADPYS'nin <em>"Veri Bütünlüğü Odaklı Hibrit Silme"</em> mimarisi gereğince; silinmek istenen tanıma (örneğin "Kurşun Önlük Çift Taraflı") bağlı en az bir ekipman veya geçmiş muayene kaydı varsa sistem fiziksel silme yapmaz, kaydı güvenle <strong>Pasife</strong> çeker. Böylece geçmiş SKS çizelgeleri, zimmetler ve muayene kusur kayıtları bozulmaz; tanım yalnızca yeni ekipman ekleme listesinden gizlenir. Yalnızca hiçbir ekipmanla ilişkilendirilmemiş tanımlar kalıcı olarak silinir.
+    </div>
+  </details>
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>6. Yıllık muayenede hurdaya ayrılan 15-20 adet kurşun önlüğü tek bir resmi tutanakta nasıl birleştirebilirim?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">RADPYS V4.0.3.0 ile gelen çoklu seçim desteği sayesinde, RKE envanter tablosunda hurdaya sevk edilecek ekipmanları klavyeden Ctrl veya Shift tuşuna basarak topluca seçebilirsiniz. Ardından üst araç çubuğundaki <strong>[HEK Tutanağı]</strong> butonuna veya sağ tık menüsündeki <em>"Seçili Ekipmanlar İçin Toplu HEK Tutanağı Oluştur..."</em> seçeneğine tıklayın. Sistem doğrudan <strong>Tutanak ve Matbu Evrak Sihirbazı</strong>'nı açar; seçilen 20 ekipmanın künye, seri no, marka ve kusur bilgilerini tek bir tablo halinde resmi Word (.docx) HEK komisyon şablonuna otomatik olarak işler.</p>
+    </div>
+  </details>
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>7. Hastanedeki yüzlerce kurşun önlük ve koruyucu ekipmanın QR etiketlerini dış matbaada veya profesyonel etiket makinesinde topluca nasıl bastırabilirim?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">RKE Envanter tablosu üst araç çubuğundaki <strong>[Toplu QR Etiket İhracı]</strong> butonuna tıklayın veya dilediğiniz ekipmanları seçip sağ tıklayarak <em>"Toplu QR Etiket Paketi (.ZIP)"</em> komutunu çalıştırın. Sistem arka plan iş parçacığıyla seçilen ekipmanlar için <strong>300 DPI (800x1050 px)</strong> yüksek çözünürlüklü PNG etiketler, matbaa ve etiket üreticisine doğrudan iletilebilecek PVC/PET medikal malzeme teknik şartnamesi (<strong>00_Baski_ve_Uretim_Rehberi.txt</strong>) ve tüm ekipmanların künye/kurşun eşdeğeri dökümünü içeren <strong>00_Etiket_Listesi_Icmal.csv</strong> dosyasını tek bir <strong>.ZIP</strong> arşivi halinde kaydeder.</p>
+    </div>
+  </details>
+</div>
+</section>
 
- </section>
-
- <!-- SIKÇA SORULAN SORULAR (SSS) AKORDEONU -->
- <section id="sss" class="mb-12">
- <div class="flex items-center gap-2 mb-4">
- <span class="p-1.5 rounded-lg bg-cyan-100 dark:bg-cyan-900/50 text-cyan-700 dark:text-cyan-300">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
- d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
- </svg>
- </span>
- <h2 class="text-xl font-bold text-slate-900 dark:text-white">Sıkça Sorulan Sorular (SSS)</h2>
- </div>
-
- <div class="space-y-3">
-
- <!-- Soru 1 -->
- <details
- class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 transition [&_summary::-webkit-details-marker]:hidden">
- <summary
- class="flex items-center justify-between cursor-pointer font-semibold text-slate-800 dark:text-slate-200 text-sm">
- <span>1. Muayenesi yaklaşan veya geçen önlükleri ana ekranda nasıl hızlıca filtreleyebilirim?</span>
- <span
- class="p-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 group-open:rotate-180 transition-transform">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
- </svg>
- </span>
- </summary>
- <div
- class="mt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-3 leading-relaxed">
- Filtre çubuğundaki <strong class="text-slate-800 dark:text-slate-200">[Tüm Kontrol & Ömür
- Durumları]</strong> açılır kutusundan <em>"Kontrolü Gecikenler"</em> seçildiğinde süresi dolmuş kırmızı
- alarmlı kayıtlar; <em>"Kontrolü Yaklaşanlar (30 Gün)"</em> seçildiğinde ise son 30 günü kalan donanımlar
- listelenir. Ayrıca tablonun en üstündeki <em>"Kontrolü Geciken"</em> KPI kartına tıklayarak da anında
- erişebilirsiniz.
- </div>
- </details>
-
- <!-- Soru 2 -->
- <details
- class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 transition [&_summary::-webkit-details-marker]:hidden">
- <summary
- class="flex items-center justify-between cursor-pointer font-semibold text-slate-800 dark:text-slate-200 text-sm">
- <span>2. Tiroid veya gonad koruyucuda milimetrik dahi olsa delik çıkarsa ne yapılmalıdır?</span>
- <span
- class="p-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 group-open:rotate-180 transition-transform">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
- </svg>
- </span>
- </summary>
- <div
- class="mt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-3 leading-relaxed">
- DIN 6857-1 standardı uyarınca tiroid ve gonad bölgeleri doğrudan kritik organları koruduğu için
- <strong>tolerans sıfırdır ($0.0\text{ mm}^2$)</strong>. $1\text{ mm}$ dahi delik tespit edilse ekipman
- kesinlikle şartlı kullanılamaz; doğrudan <strong>HEK / Hurdaya Ayrılmalı</strong> kararı verilerek derhal
- hizmetten çekilmelidir.
- </div>
- </details>
-
- <!-- Soru 3 -->
- <details
- class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 transition [&_summary::-webkit-details-marker]:hidden">
- <summary
- class="flex items-center justify-between cursor-pointer font-semibold text-slate-800 dark:text-slate-200 text-sm">
- <span>3. Hurdaya ayrılan bir önlük listede kalmaya devam eder mi, kazara tekrar kullanılabilir mi?</span>
- <span
- class="p-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 group-open:rotate-180 transition-transform">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
- </svg>
- </span>
- </summary>
- <div
- class="mt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-3 leading-relaxed">
- Hurdaya ayrılan önlükler geçmiş denetim izlerinin korunması amacıyla sistemde silinmez; ancak durumu
- kırmızı <em>"HEK (Hurda)"</em> olarak işaretlenir. Aktif envanter listesinde ve SKS çizelgesinde kullanım
- dışı görünür. Ayrıca bu önlüklerin başka personele devredilmesini engelleyen <strong>Hurda Devir Güvenlik
- Kilidi</strong> devreye girer.
- </div>
- </details>
-
- <!-- Soru 4 -->
- <details
- class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 transition [&_summary::-webkit-details-marker]:hidden">
- <summary
- class="flex items-center justify-between cursor-pointer font-semibold text-slate-800 dark:text-slate-200 text-sm">
- <span>4. Muayeneye eklenen hasar fotoğrafları ve skopi röntgenleri nereye kaydedilir?</span>
- <span
- class="p-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 group-open:rotate-180 transition-transform">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
- </svg>
- </span>
- </summary>
- <div
- class="mt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-3 leading-relaxed">
- Yüklenen görsel ve PDF servis belgeleri masaüstündeki açık klasörlerde korunmasız tutulmaz. Form
- kaydedildiği anda <strong>KVKK uyumlu Evrak Kasasında Fernet AES-256 algoritmasıyla şifrelenerek</strong>
- PostgreSQL veritabanı blob alanında saklanır. Yalnızca yetkili kullanıcılar detay ekranından deşifre
- ederek görüntüleyebilir.
- </div>
- </details>
-
- <!-- Soru 5: RKE Tanımları ve Veri Bütünlüğü -->
- <details
- class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 transition [&_summary::-webkit-details-marker]:hidden">
- <summary
- class="flex items-center justify-between cursor-pointer font-semibold text-slate-800 dark:text-slate-200 text-sm">
- <span>5. Bir RKE donanım tanımını (tür/kategori) sildiğimde mevcut önlük ve ekipmanlar kaybolur mu?</span>
- <span
- class="p-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 group-open:rotate-180 transition-transform">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
- </svg>
- </span>
- </summary>
- <div
- class="mt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-3 leading-relaxed">
- <strong>Asla kaybolmaz.</strong> RADPYS'nin <em>"Veri Bütünlüğü Odaklı Hibrit Silme"</em> mimarisi gereğince; silinmek istenen tanıma (örneğin "Kurşun Önlük Çift Taraflı") bağlı en az bir ekipman veya geçmiş muayene kaydı varsa sistem fiziksel silme yapmaz, kaydı güvenle <strong>Pasife</strong> çeker. Böylece geçmiş SKS çizelgeleri, zimmetler ve muayene kusur kayıtları bozulmaz; tanım yalnızca yeni ekipman ekleme listesinden gizlenir. Yalnızca hiçbir ekipmanla ilişkilendirilmemiş tanımlar kalıcı olarak silinir.
- </div>
- </details>
-
- <!-- Soru 6: Toplu HEK Tutanağı ve Tutanak Sihirbazı Entegrasyonu -->
- <details
- class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 transition [&_summary::-webkit-details-marker]:hidden">
- <summary
- class="flex items-center justify-between cursor-pointer font-semibold text-slate-800 dark:text-slate-200 text-sm">
- <span>6. Yıllık muayenede hurdaya ayrılan 15-20 adet kurşun önlüğü tek bir resmi tutanakta nasıl birleştirebilirim?</span>
- <span
- class="p-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 group-open:rotate-180 transition-transform">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
- </svg>
- </span>
- </summary>
- <div
- class="mt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-3 leading-relaxed">
- RADPYS V4.0.3.0 ile gelen çoklu seçim desteği sayesinde, RKE envanter tablosunda hurdaya sevk edilecek ekipmanları klavyeden Ctrl veya Shift tuşuna basarak topluca seçebilirsiniz. Ardından üst araç çubuğundaki <strong>[HEK Tutanağı]</strong> butonuna veya sağ tık menüsündeki <em>"Seçili Ekipmanlar İçin Toplu HEK Tutanağı Oluştur..."</em> seçeneğine tıklayın. Sistem doğrudan <strong>Tutanak ve Matbu Evrak Sihirbazı</strong>'nı açar; seçilen 20 ekipmanın künye, seri no, marka ve kusur bilgilerini tek bir tablo halinde resmi Word (.docx) HEK komisyon şablonuna otomatik olarak işler.
- </div>
- </details>
-
- <!-- Soru 7: Toplu QR Etiket Paketi ve Matbaa Üretimi -->
- <details
- class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 transition [&_summary::-webkit-details-marker]:hidden">
- <summary
- class="flex items-center justify-between cursor-pointer font-semibold text-slate-800 dark:text-slate-200 text-sm">
- <span>7. Hastanedeki yüzlerce kurşun önlük ve koruyucu ekipmanın QR etiketlerini dış matbaada veya profesyonel etiket makinesinde topluca nasıl bastırabilirim?</span>
- <span
- class="p-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 group-open:rotate-180 transition-transform">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
- </svg>
- </span>
- </summary>
- <div
- class="mt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-3 leading-relaxed">
- RKE Envanter tablosu üst araç çubuğundaki <strong>[Toplu QR Etiket İhracı]</strong> butonuna tıklayın veya dilediğiniz ekipmanları seçip sağ tıklayarak <em>"Toplu QR Etiket Paketi (.ZIP)"</em> komutunu çalıştırın. Sistem arka plan iş parçacığıyla seçilen ekipmanlar için <strong>300 DPI (800x1050 px)</strong> yüksek çözünürlüklü PNG etiketler, matbaa ve etiket üreticisine doğrudan iletilebilecek PVC/PET medikal malzeme teknik şartnamesi (<strong>00_Baski_ve_Uretim_Rehberi.txt</strong>) ve tüm ekipmanların künye/kurşun eşdeğeri dökümünü içeren <strong>00_Etiket_Listesi_Icmal.csv</strong> dosyasını tek bir <strong>.ZIP</strong> arşivi halinde kaydeder.
- </div>
- </details>
-
- </div>
- </section>
-
- <!-- MODÜL GEZİNTİ FOOTER (PREV / NEXT) -->
-
-      <!-- FOOTER PREV / NEXT -->
-      <footer class="pt-8 border-t border-slate-200 dark:border-slate-800">
+<footer class="pt-8 border-t border-slate-200 dark:border-slate-800">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <a href="19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition group">
             <span class="text-xs font-mono uppercase text-slate-400 block mb-1">← Önceki Doküman</span>
-            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">19. Cihaz Arıza & QA/QC</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">19. Cihaz Arıza &amp; QA/QC</span>
           </a>
           <a href="21_merkezi_onaylar.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition text-right group">
             <span class="text-xs font-mono uppercase text-slate-400 block mb-1">Sonraki Doküman →</span>
@@ -1135,28 +649,30 @@
       </footer>
     </main>
 
-    <!-- RIGHT SIDEBAR: ON-PAGE TOC -->
     <aside class="w-64 shrink-0 hidden xl:block py-8 pl-6 border-l border-slate-200 dark:border-slate-800">
       <div class="sticky top-24 space-y-4">
         <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-3">Bu Sayfada</span>
         <nav class="space-y-2.5 text-sm" id="onPageToc">
-          <a href="#overview" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 transition">Genel Bakış</a>
-          <a href="#hizli-recete" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 transition">Kısa Reçete (4 Metrik)</a>
-          <a href="#5n1k-tablosu" class="block text-slate-600 dark:text-slate-400 hover:text-cyan-600 transition">5N1K Kural Matrisi</a>
+          <a href="#hizli-recete" data-toc-link="hizli-recete" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Kısa Reçete (20 Saniye Kuralı)</a>
+          <a href="#5n1k-tablosu" data-toc-link="5n1k-tablosu" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">5N1K Kural ve Ayar Çözümleme Tablosu</a>
+          <a href="#mit-avcilari" data-toc-link="mit-avcilari" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Klinik Radyasyon Güvenliği &amp; Mit Avcısı (Kritik Kurallar)</a>
+          <a href="#surec-akisi" data-toc-link="surec-akisi" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Tek Ekranda Bütünleşik Muayene ve Karar İş Akış Şeması</a>
+          <a href="#karar-motoru" data-toc-link="karar-motoru" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">DIN 6857-1 / IEC 61331 Karar Motoru &amp; Eşik Değerleri</a>
+          <a href="#toplu-muayene-ve-zimmet" data-toc-link="toplu-muayene-ve-zimmet" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Toplu Muayene Kokpiti &amp; Zimmet Güvenlik Kilidi</a>
+          <a href="#qr-pasaport" data-toc-link="qr-pasaport" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Karekod (QR) Pasaport Etiketi &amp; Mobil Saha Muayenesi</a>
+          <a href="#ekran-goruntuleri" data-toc-link="ekran-goruntuleri" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Arayüz Rehberi &amp; Ekran Görünümleri</a>
+          <a href="#sss" data-toc-link="sss" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Sıkça Sorulan Sorular (SSS)</a>
         </nav>
       </div>
     </aside>
-
   </div>
 
-  <!-- FOOTER -->
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi — Sağlık Bilgi Güvenliği & KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.22) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
     </div>
   </footer>
 
-  <!-- RADPYS Offline Search & App Engine -->
   <script src="assets/search_index.js"></script>
   <script src="assets/app.js"></script>
 </body>

@@ -67,6 +67,12 @@ Bu sürüm; Birim Nöbet Çizelgesi (S12) aylık matrisinde personelin kendi nö
 - **4. Değişiklik Talepleri Onay Durumu Karakter Uyumsuzluğu ve CHECK Kısıtı Hatası (`nobet_settings_service.py`, `V20261113_1_allow_turkish_onaylandi_in_checks.py`, `schema.sql`):**
   - Masaüstü onay kuyruğunda nöbet isteği onaylanırken `NobetSettingsService.set_personel_nobet_istegi_durum` metodunun `degisiklik_talepleri` tablosuna Türkçe noktalı `'Onaylandı'` yazması nedeniyle oluşan `degisiklik_talepleri_onay_durumu_check` kısıt ihlali hatası giderildi.
   - Kod seviyesinde `onay_durumu` değeri `'Onaylandi'` olarak normalize edildi ve `V20261113_1_allow_turkish_onaylandi_in_checks.py` migrasyonu ile veritabanı kısıtları (`degisiklik_talepleri` ve `personel_nobet_istekleri`) her iki yazımı da destekleyecek şekilde genişletildi.
+- **5. Nöbet Devir ve İzin Talepleri Onay/İptal Kısıtı Güvencesi (`V20261113_2_allow_turkish_and_cancel_in_devir_checks.py`, `schema.sql`):**
+  - `nobet_devirler` tablosundaki `alan_onay_durumu`, `yonetici_onay_durumu` ve `onay_durumu` check kısıtları ile `personel_izinler` tablosundaki `onay_durumu` kısıtına hem ASCII `'Onaylandi'` hem de iptal durumları (`'İptal'`, `'İptal Edildi'`) eklenerek kullanıcı talep iptallerinde oluşan kısıt ihlalleri tamamen engellendi.
+- **6. Yayınlanmış Çizelge Kilit Kapsamı ve Kurum Geneli Plan Desteği (`personel.repo.ts`):**
+  - `checkPublishedRosterForPersonnel` fonksiyonundaki kilit koşulu genişletilerek `Birim Onaylı`, `Onaylandi`, `Yayında` ve `Arşiv` statülerindeki tüm planlar ile kurum geneli (`departman_id IS NULL`) nöbet çizelgeleri kilit kapsamına dahil edildi; kapalı aylara talep sızması önlendi.
+- **7. Tüm Ay Nöbet Muafiyetlerinde Dönem Ayı Seçimi ve Saat Ayrıştırma İyileştirmesi (`PersonnelRequestForm.tsx`, `PersonnelRequestSections.tsx`, `BirimNobetCizelgesiSections.tsx`):**
+  - Personel talep formunda "Tüm Ay Boyunca Nöbet Yazılmasın" seçildiğinde ay seçici (`type="month"`) entegre edilerek personelin ileri aylar için talep iletebilmesi sağlandı; `baslangicSaat` bilgisi nöbet modelinden okunarak 24 saatlik ön süre kontrolü saat hassasiyetine bağlandı.
 
 ## [4.0.5.21] - 2026-11-12
 

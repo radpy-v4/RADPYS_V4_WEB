@@ -10,11 +10,11 @@
  *   1. version.json ve update.md dosyalarını okur.
  *   2. update.md içerisindeki toplam bölüm sayısını (örn. 74) ve en güncel sürümü tespit eder.
  *   3. update.md içerisinde version.json'dan daha yeni bir sürüm varsa version.json'ı da günceller.
- *   4. assets/js/data.js içindeki VERSION_INFO nesnesini senkronize eder.
+ *   4. assets/js/content/site-config.js içindeki VERSION_INFO nesnesini senkronize eder.
  *   5. changelog.html içindeki gömülü <script id="update-fallback-data"> bloğunu,
  *      SEO meta etiketlerini ve hero sayaçlarını otomatik günceller.
- *   6. index.html, moduller.html, fiyatlandirma.html ve README.md içindeki sürüm metinlerini günceller.
- *   7. help/assets/app.js ve help/*.html dosyalarındaki sürüm rozetlerini günceller.
+ *   6. index.html, moduller.html, fiyatlandirma.html, gizlilik.html ve README.md içindeki sürüm metinlerini günceller.
+ *   7. help/src/*.md kaynaklarını scripts/build-help.js ile derler ve help/assets/app.js sürümünü günceller.
  *   8. help/*.html dosyalarını tarayarak help/assets/search_index.js çevrimdışı arama indeksini
  *      (sayfa + alt bölüm #anchor derin bağlantılarıyla birlikte) otomatik üretir.
  *   9. sitemap.xml içerisindeki <lastmod> tarihlerini günceller ve tüm URL'lerin varlığını doğrular.
@@ -25,9 +25,12 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const HELP_DIR = path.join(ROOT, 'help');
+const HELP_SRC_DIR = path.join(HELP_DIR, 'src');
 const VERSION_JSON_PATH = path.join(ROOT, 'version.json');
 const UPDATE_MD_PATH = path.join(ROOT, 'update.md');
-const DATA_JS_PATH = path.join(ROOT, 'assets', 'js', 'data.js');
+const CONTENT_DIR = path.join(ROOT, 'assets', 'js', 'content');
+const SITE_CONFIG_JS_PATH = path.join(CONTENT_DIR, 'site-config.js');
+const CONTENT_FILES = ['site-config.js', 'modules.js', 'pricing.js', 'blog.js', 'pages.js'];
 const CHANGELOG_HTML_PATH = path.join(ROOT, 'changelog.html');
 const SITEMAP_XML_PATH = path.join(ROOT, 'sitemap.xml');
 const HELP_APP_JS_PATH = path.join(HELP_DIR, 'assets', 'app.js');
@@ -59,11 +62,13 @@ function stripTags(html) {
   return html
     .replace(/<script[\s\S]*?<\/script>/gi, ' ')
     .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<svg[\s\S]*?<\/svg>/gi, ' ')
     .replace(/<[^>]+>/g, ' ')
     .replace(/&nbsp;/g, ' ')
     .replace(/&amp;/g, '&')
     .replace(/&gt;/g, '>')
     .replace(/&lt;/g, '<')
+    .replace(/&quot;/g, '"')
     .replace(/&bull;/g, '•')
     .replace(/&rarr;/g, '→')
     .replace(/&larr;/g, '←')
@@ -102,7 +107,7 @@ function buildHelpSearchIndex() {
     const category = getModuleCategory(file);
 
     // İlk açıklama paragrafı
-    const pMatch = mainHtml.match(/<h1[\s\S]*?<\/h1>[\s\S]*?<p[^>]*>([\s\S]*?)<\/p>/i);
+    const pMatch = mainHtml.match(/<h1[\s\S]*?<\/h1>[\s\S]*?<p\b[^>]*>([\s\S]*?)<\/p>/i);
     const summary = pMatch ? stripTags(pMatch[1]).slice(0, 260) : pageTitle;
 
     // Tüm h2 ve h3 başlıkları
@@ -118,13 +123,13 @@ function buildHelpSearchIndex() {
 
     // 1. Ana modül kaydı
     indexEntries.push({
-      id: file.replace('.html', ''),
+      id: '',
+      module: category,
       title: pageTitle,
-      category: category,
-      url: file,
-      summary: summary,
+      desc: summary,
       headings: headings.slice(0, 25),
-      content: fullText.slice(0, 6000)
+      content: fullText.slice(0, 6000),
+      url: file
     });
 
     // 2. Sayfa içi <section id="..."> derin bağlantı kayıtları
@@ -140,13 +145,13 @@ function buildHelpSearchIndex() {
 
       const secText = stripTags(secInner);
       indexEntries.push({
-        id: `${file.replace('.html', '')}#${secId}`,
-        title: `${secTitle} — ${pageTitle.split(':')[0]}`,
-        category: `${category} › Bölüm`,
-        url: `${file}#${secId}`,
-        summary: secText.slice(0, 220),
+        id: secId,
+        module: `${category} › Bölüm`,
+        title: `${secTitle} — ${pageTitle.split(/[:—]/)[0].trim()}`,
+        desc: secText.slice(0, 220),
         headings: [secTitle, pageTitle],
-        content: secText.slice(0, 2500)
+        content: secText.slice(0, 2500),
+        url: `${file}#${secId}`
       });
     }
   }
@@ -168,62 +173,38 @@ function syncHelpFiles(version) {
     writeIfChanged(HELP_APP_JS_PATH, updatedAppJs, `help/assets/app.js (v${version})`);
   }
 
-  // 2. help/index.html ve modül sayfalarındaki v4.2 / v4.x rozetlerini güncelle
-  const htmlFiles = fs.readdirSync(HELP_DIR).filter(f => f.endsWith('.html'));
-  let updatedCount = 0;
-  for (const file of htmlFiles) {
-    const filePath = path.join(HELP_DIR, file);
-    let html = fs.readFileSync(filePath, 'utf8');
-    const orig = html;
-
-    // Header rozetindeki >v4.2< veya >v4.x.x.x< metnini >v{version}< yap
-    html = html.replace(
-      /(<span class="[^"]*font-mono[^"]*">)\s*v4\.(?:2|\d+\.\d+\.\d+)\s*(<\/span>)/g,
-      `$1v${version}$2`
-    );
-
-    // help/index.html içindeki sol menüde #bolum-6 eksikse ekle ve rozeti güncelle
-    if (file === 'index.html') {
-      html = html.replace(
-        /RADPYS v4\.(?:2|\d+\.\d+\.\d+)\s*•\s*Kurumsal Dokümantasyon\s*&\s*Kullanıcı Rehberi/g,
-        `RADPYS v${version} • Kurumsal Dokümantasyon & Kullanıcı Rehberi`
-      );
-      if (!html.includes('href="#bolum-6"')) {
-        html = html.replace(
-          /(<a href="#bolum-5"[\s\S]*?<\/a>)/,
-          `$1\r\n          <a href="#bolum-6" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">6. Dijital Dönüşüm &amp; Rapor</a>`
-        );
-      }
-    }
-
-    if (html !== orig) {
-      fs.writeFileSync(filePath, html, 'utf8');
-      updatedCount++;
-    }
-  }
-  if (updatedCount > 0) {
-    console.log(`[sync-release] ↻ Güncellendi: ${updatedCount} adet help/*.html sayfası (v${version})`);
-  } else {
-    console.log(`[sync-release] ✓ Güncel: help/*.html sayfaları (v${version})`);
-  }
+  // 2. help/src/*.md kaynaklarını build-help.js ile derle
+  const { buildHelp } = require('./build-help');
+  buildHelp(version);
 }
 
 function verifyIntegrity(version, sectionCount) {
   console.log('\n--- RADPYS V4 Bütünlük ve Merkezileştirme Doğrulaması ---');
-  global.window = {};
-  require(DATA_JS_PATH);
-  const R = global.window.RADPYS;
-
   let errors = 0;
 
+  global.window = {};
+  for (const f of CONTENT_FILES) {
+    const fp = path.join(CONTENT_DIR, f);
+    if (!fs.existsSync(fp)) {
+      console.error(`  ✗ Eksik veri modülü: assets/js/content/${f}`);
+      errors++;
+    } else {
+      delete require.cache[require.resolve(fp)];
+      require(fp);
+    }
+  }
+  const R = global.window.RADPYS || {};
+
   // 1. Modül sayısı ve dosya varlığı kontrolü
-  console.log(`• Toplam Modül Sayısı: ${R.MODULES.length} (STATS.modules: ${R.STATS.modules})`);
-  if (R.MODULES.length !== 23 || R.STATS.modules !== 23) {
+  const mods = Array.isArray(R.MODULES) ? R.MODULES : [];
+  const modStat = R.STATS ? R.STATS.modules : undefined;
+  console.log(`• Toplam Modül Sayısı: ${mods.length} (STATS.modules: ${modStat})`);
+  if (mods.length !== 23 || modStat !== 23) {
     console.error('  ✗ HATA: Modül sayısı 23 olmalı!');
     errors++;
   }
 
-  for (const m of R.MODULES) {
+  for (const m of mods) {
     const imgPath = path.join(ROOT, m.img);
     const guidePath = path.join(ROOT, 'help', m.guideFile);
     if (!fs.existsSync(imgPath)) {
@@ -239,7 +220,7 @@ function verifyIntegrity(version, sectionCount) {
     console.log('• 23 modülün tamamının görsel (help/assets/img/*) ve rehber (help/*.html) dosyaları doğrulandı.');
   }
 
-  // 2. Kök HTML sayfalarında eski sürüm veya modül sayısı kalıntısı kontrolü
+  // 2. Kök HTML sayfalarında eski sürüm, eski data.js veya modül sayısı kalıntısı kontrolü
   const rootHtmlFiles = [
     'index.html',
     'moduller.html',
@@ -249,14 +230,19 @@ function verifyIntegrity(version, sectionCount) {
     'referanslar.html',
     'kaynaklar.html',
     'iletisim.html',
-    'changelog.html'
+    'changelog.html',
+    'gizlilik.html'
   ];
 
   for (const file of rootHtmlFiles) {
     const p = path.join(ROOT, file);
     const content = fs.readFileSync(p, 'utf8');
-    if (!content.includes('assets/js/data.js') && file !== 'dokumanlar.html') {
-      console.error(`  ✗ ${file} içinde assets/js/data.js yüklenmiyor!`);
+    if (!content.includes('assets/js/content/site-config.js')) {
+      console.error(`  ✗ ${file} içinde assets/js/content/site-config.js yüklenmiyor!`);
+      errors++;
+    }
+    if (content.includes('assets/js/data.js')) {
+      console.error(`  ✗ ${file} içinde eski assets/js/data.js referansı kaldı!`);
       errors++;
     }
     if (/2[12]\s+(?:Entegre\s+)?Modül/i.test(content)) {
@@ -268,13 +254,38 @@ function verifyIntegrity(version, sectionCount) {
       errors++;
     }
   }
-  console.log(`• 9 kök HTML sayfası tarandı — Hata sayısı: ${errors}`);
+  console.log(`• ${rootHtmlFiles.length} kök HTML sayfası tarandı — Hata sayısı: ${errors}`);
 
-  // 3. help/*.html kırık link ve kırık görsel kontrolü
+  // 2b. help/src/_catalog.json ve tüm Markdown kaynak dosyaları kontrolü
+  const catalogPath = path.join(HELP_SRC_DIR, '_catalog.json');
+  if (!fs.existsSync(catalogPath)) {
+    console.error('  ✗ Eksik yardım kataloğu: help/src/_catalog.json');
+    errors++;
+  } else {
+    const cat = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
+    const guides = cat.guides || [];
+    for (const g of guides) {
+      if (!fs.existsSync(path.join(HELP_SRC_DIR, `${g.slug}.md`))) {
+        console.error(`  ✗ Eksik yardım kaynağı: help/src/${g.slug}.md`);
+        errors++;
+      }
+    }
+    console.log(`• help/src/_catalog.json ve ${guides.length} Markdown kaynak dosyası doğrulandı.`);
+  }
+
+  // 3. help/*.html kırık link, kırık görsel, ham LaTeX ve ham mermaid fence kontrolü
   const helpHtmlFiles = fs.readdirSync(HELP_DIR).filter(f => f.endsWith('.html'));
   let helpImgCount = 0;
   for (const file of helpHtmlFiles) {
     const html = fs.readFileSync(path.join(HELP_DIR, file), 'utf8');
+    if (/\$[^$\n]{1,60}\$|\\text\{|\{mm\}\^/.test(html)) {
+      console.error(`  ✗ Ham LaTeX kalıntısı [help/${file}]`);
+      errors++;
+    }
+    if (html.includes('```mermaid')) {
+      console.error(`  ✗ Derlenmemiş \`\`\`mermaid bloğu [help/${file}]`);
+      errors++;
+    }
     const imgRe = /<img[^>]+src="([^"]+)"/g;
     let m;
     while ((m = imgRe.exec(html)) !== null) {
@@ -374,20 +385,20 @@ function main() {
   const downloadUrl = versionData.download_url || '';
 
   if (!isVerifyOnly) {
-    // 1. assets/js/data.js güncelle
-    if (fs.existsSync(DATA_JS_PATH)) {
-      const dataJs = fs.readFileSync(DATA_JS_PATH, 'utf8');
+    // 1. assets/js/content/site-config.js güncelle
+    if (fs.existsSync(SITE_CONFIG_JS_PATH)) {
+      const siteConfigJs = fs.readFileSync(SITE_CONFIG_JS_PATH, 'utf8');
       const versionInfoRegex = /const VERSION_INFO = \{[\s\S]*?\};/;
       const newVersionInfoBlock = `const VERSION_INFO = {
-        version: "${version}",
-        series: "${series}",
-        release_date: "${releaseDate}",
-        download_url: "${downloadUrl}",
-        changelog_sections: ${sectionCount}
+            "version": "${version}",
+            "series": "${series}",
+            "release_date": "${releaseDate}",
+            "download_url": "${downloadUrl}",
+            "changelog_sections": ${sectionCount}
     };`;
-      if (versionInfoRegex.test(dataJs)) {
-        const updatedDataJs = dataJs.replace(versionInfoRegex, newVersionInfoBlock);
-        writeIfChanged(DATA_JS_PATH, updatedDataJs, `assets/js/data.js (v${version}, ${sectionCount} bölüm)`);
+      if (versionInfoRegex.test(siteConfigJs)) {
+        const updatedSiteConfigJs = siteConfigJs.replace(versionInfoRegex, newVersionInfoBlock);
+        writeIfChanged(SITE_CONFIG_JS_PATH, updatedSiteConfigJs, `assets/js/content/site-config.js (v${version}, ${sectionCount} bölüm)`);
       }
     }
 
@@ -401,6 +412,11 @@ function main() {
       }
 
       clHtml = clHtml
+        .replace(/<head\b[\s\S]*?<\/head>/i, head =>
+          head
+            .replace(/\(v4\.\d+\.\d+(?:\.\d+)?\)/gi, `(v${version})`)
+            .replace(/RADPYS V4\.\d+\.\d+(?:\.\d+)?/gi, `RADPYS V${version}`)
+        )
         .replace(/V4\.0\.0\.0'dan V4\.\d+\.\d+\.\d+'[a-zğüşıöç]+ kadar tüm\s*\d+\s*bölüm/gi,
           `V4.0.0.0'dan V${version}'ye kadar tüm ${sectionCount} bölüm`)
         .replace(/V4\.0\.0\.0'dan V4\.\d+\.\d+\.\d+'[a-zğüşıöç]+ kadar tüm\s*\d+\s*sürüm/gi,
@@ -417,8 +433,8 @@ function main() {
       writeIfChanged(CHANGELOG_HTML_PATH, clHtml, `changelog.html (${sectionCount} bölüm)`);
     }
 
-    // 3. index.html, moduller.html, fiyatlandirma.html ve README.md statik sürüm yedeklerini güncelle
-    const seoFiles = ['index.html', 'moduller.html', 'fiyatlandirma.html'];
+    // 3. index.html, moduller.html, fiyatlandirma.html, gizlilik.html ve README.md statik sürüm yedeklerini güncelle
+    const seoFiles = ['index.html', 'moduller.html', 'fiyatlandirma.html', 'gizlilik.html'];
     for (const file of seoFiles) {
       const filePath = path.join(ROOT, file);
       if (!fs.existsSync(filePath)) continue;
@@ -426,7 +442,8 @@ function main() {
       const updated = html
         .replace(/"softwareVersion":\s*"4\.\d+\.\d+\.\d+"/g, `"softwareVersion": "${version}"`)
         .replace(/(data-radpys-version="v">)v4\.\d+\.\d+\.\d+(<\/span>)/g, `$1v${version}$2`)
-        .replace(/(data-radpys-version="V">)V4\.\d+\.\d+\.\d+(<\/span>)/g, `$1V${version}$2`);
+        .replace(/(data-radpys-version="V">)V4\.\d+\.\d+\.\d+(<\/span>)/g, `$1V${version}$2`)
+        .replace(/(data-radpys-version="Sürüm: \{v\}">\s*)Sürüm:\s*4\.\d+\.\d+\.\d+(\s*<\/span>)/g, `$1Sürüm: ${version}$2`);
       writeIfChanged(filePath, updated, `${file} (SEO v${version})`);
     }
 

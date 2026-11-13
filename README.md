@@ -3,7 +3,7 @@
 **RADPYS V4** (Radyoloji, Radyasyon Güvenliği ve Departman Yönetim Sistemi) resmi tanıtım, **23 entegre modül** vitrini, sürüm notları (changelog), teknik dokümantasyon, lisanslama ve demo talep portalıdır.
 
 * **Canlı Site:** [https://radpys.com.tr](https://radpys.com.tr)
-* **Güncel Sürüm:** `v4.0.5.8` (`V4.0.5` Serisi)
+* **Güncel Sürüm:** `v4.0.5.22` (`V4.0.5` Serisi)
 * **Mimari:** Merkezi Veri Katmanlı (`Single Source of Truth`) HTML5 / Tailwind CSS / Vanilla JS — GitHub & Cloudflare Pages CDN altyapısı üzerinde çalışır.
 
 ---
@@ -63,15 +63,26 @@ RADPYS_V4_WEB/
 ├── assets/
 │   ├── css/tokens.css       → Tasarım sistemi, renk paleti, tipografi ve cam efektleri
 │   └── js/
-│       ├── data.js          → Merkezi Veri & Sayfa İçeriği Katmanı (Single Source of Truth)
+│       ├── content/
+│       │   ├── site-config.js → Sürüm bilgisi (VERSION_INFO), iletişim, istatistik ve referanslar
+│       │   ├── modules.js     → 23 Entegre Modül ve gelecek modüller
+│       │   ├── pricing.js     → Lisans paketleri ve fiyatlandırma SSS
+│       │   ├── blog.js        → Mevzuat rehberleri ve teknik blog yazıları
+│       │   └── pages.js       → Ana sayfa, yol haritası ve hakkımızda metinleri
 │       └── layout.js        → Ortak üst menü, alt bilgi ve canlı sürüm/DOM bağlayıcı
 │
 ├── scripts/
-│   └── sync-release.js      → Tek komutla sürüm senkronizasyonu ve bütünlük doğrulama betiği
+│   ├── build-help.js        → help/src/*.md + _catalog.json kaynaklarını 29 statik help HTML'ine derler
+│   └── sync-release.js      → Tek komutla sürüm, dokümantasyon, arama indeksi ve bütünlük senkronizasyonu
 │
-├── help/                    → 23 modülün detaylı HTML kullanım kılavuzları ve ekran görüntüleri
+├── help/
+│   ├── src/                 → _catalog.json ve 28 modül/alt-kılavuz Markdown kaynağı (tek düzenleme noktası)
+│   ├── assets/              → app.js (Ctrl+K arama/ScrollSpy), search_index.js, tailwind.min.css ve görseller
+│   └── *.html               → Çevrimdışı (file:///) ve web uyumlu önceden derlenmiş 29 kullanım kılavuzu
 └── images/                  → Logolar, ikonlar ve kurumsal marka görselleri
 ```
+
+> **Not:** Tüm site sıfır harici runtime bağımlılıkla hem canlı web (`https://radpys.com.tr`) hem de çevrimdışı (`file:///`) modda çalışır. İçerik veya kılavuz güncellemelerinden sonra `node scripts/sync-release.js` çalıştırıp `node scripts/sync-release.js --verify` ile doğrulayabilirsiniz.
 
 ---
 

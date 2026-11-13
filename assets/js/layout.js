@@ -212,7 +212,7 @@
       applyRadpysBindings(document);
       window.dispatchEvent(new CustomEvent("radpys:version-ready", { detail: window.RADPYS.VERSION_INFO }));
     } catch (e) {
-      // Yerel file:// açılışlarında data.js içindeki varsayılan VERSION_INFO kullanılır
+      // Yerel file:// açılışlarında site-config.js içindeki varsayılan VERSION_INFO kullanılır
     }
   }
 
