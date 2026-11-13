@@ -3,6 +3,106 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.5.22] - 2026-11-13
+
+### 🔄 Birim Nöbet Çizelgesi Hızlı Değişim Butonu, 3 Modlu Değişim, 24-Saatlik Ön Süre Güvencesi, Aynı Ay İçi Takas Kısıtı, Yayınlanmış Dönem Talep Kilidi, Dinlenme Kuralı ve S2 Evrak Arşivi
+
+Bu sürüm; Birim Nöbet Çizelgesi (S12) aylık matrisinde personelin kendi nöbet slotlarına doğrudan `[⇄ Değiş]` aksiyon butonunun eklenmesini, kullanıcı çizimine uygun olarak nöbet değişim popup/modalının 3 modlu (`Havuz`, `Birebir (Takas)`, `Devir (Tek Yönlü)`) tekil ve sade bir deneyime kavuşturulmasını, nöbet saatine en az 24 saat kala talep açılabilmesi kuralını (`24-Saatlik Ön Süre Güvencesi`), karşılıklı takas taleplerinin yalnızca aynı takvim ayı içerisindeki nöbetler arasında sınırlandırılarak personelin aylık puantaj ve yasal 35/40 saatlik asli mesai hakkının korunmasını (`Aynı Ay İçi Takas Kısıtı`), çizelgesi onaylanıp yayınlanmış aylar için ön hazırlık kısıt/istek talebi açılmasının engellenmesini (`Yayınlanmış Dönem Talep Kilidi`), geçmiş tarihlere yönelik talep girişlerinin engellenmesini, `ShiftExchangeDirectFormTab` formunun `Tarih ➔ Vardiya ➔ Birim` özetiyle sıradan kullanıcı için akıcı hale getirilmesini, S13 nöbet uygunluk kontrollerinde NDK ve SKS mevzuatına dayalı ardışık 24 saatlik nöbetler için zorunlu 24 saatlik dinlenme kontrolünü (`DINLENME_IHLALI`), S2 gebelik bildirimi heyet raporlarının PostgreSQL `stored_files` evrak kasasında kriptografik ve kalıcı olarak arşivlenmesini ve backend nöbet rotalarındaki parametre formatı uyumsuzluklarının giderilmesini içerir.
+
+#### ✨ Eklendi (Added)
+
+- **1. Birim Nöbet Çizelgesi (S12) Hızlı Değişim Aksiyon Butonu (`BirimNobetCizelgesiSections.tsx`):**
+  - Aylık matris görünümünde aktif personelin kendine ait nöbet slotlarına dikkat çekici `[⇄ Değiş]` aksiyon butonu eklendi.
+  - Tıklandığında doğrudan nöbet değişim modalını ilgili nöbet bilgileriyle önceden doldurulmuş olarak açması sağlandı.
+- **2. Yayınlanmış Dönem Talep Kilidi ve Canlı Uyarı Denetimi (`personel.routes.ts`, `personel.repo.ts`, `nobet_settings_service.py`, `PersonnelRequestForm.tsx`):**
+  - Nöbet listesi onaylanıp yayınlanmış (`Yayında` veya `Onaylandı`) olan aylar için personelin ön hazırlık mahiyetinde yeni nöbet isteği, mazeret, eğitim veya fazla mesai kısıt talebi açması hem Web Portal (`/api/personel/nobet-kisit-talebi`) hem de masaüstü backend (`NobetSettingsService.save_personel_request`) seviyesinde engellendi.
+  - Web Portal arayüzünde tarih veya ay seçildiğinde `/api/personel/nobet-donem-kontrol` üzerinden anlık kontrol yapılarak sarı uyarı paneli gösterildi ("Nöbet Çizelgesi Yayında — Yeni Talep Açılamaz") ve form gönderme butonu "Dönem Yayında (Kilitli)" durumuyla devre dışı bırakıldı.
+  - Yayınlanmış dönemler için değişiklik ihtiyacı doğduğunda personelin doğrudan "Birim Nöbet Çizelgesi" veya "Nöbet Değişim / Havuz" ekranına yönlendirilmesi sağlandı.
+  - Kuralın regresyon ve doğrulama denetimi için `test_published_month_blocks_personel_nobet_istegi` birim testi eklendi.
+- **3. Kullanıcı Çizimine Uygun 3 Modlu Bütünleşik Değişim Modalı (`BirimNobetActionModal`, `BirimNobetCizelgesiSections.tsx`, `BirimNobetCizelgesiView.tsx`):**
+  - Modal üst kısmına `Tarih ➔ Vardiya ➔ Birim` özet kartı entegre edildi.
+  - 3 modlu sekme kontrolü (`Havuz`, `Birebir (Takas)`, `Devir (Tek Yönlü)`) eklendi:
+    - `Havuz`: Karşı taraf bilgisi istemeden nöbeti tek tıkla açık pazara/havuza bırakır.
+    - `Birebir (Takas)`: Gizli sekme olarak kabul eden meslektaş seçimi ile karşı tarafın iade edeceği nöbetin tarihi ve vardiyasını dinamik açar.
+    - `Devir (Tek Yönlü)`: Gizli sekme olarak yalnızca kabul eden meslektaş seçimini açar; karşı nöbet alanlarını gizler ve fazla mesai kontrolü uygular.
+  - Aynı birim ve aynı hizmet sınıfındaki meslektaş listesi `/api/nobet/meslektaslar` üzerinden çekilerek otomatik listelendi.
+- **3. Nöbete Kalan Süre Güvencesi (Lead Time $\ge 24$h) (`nobetDevir.service.ts`, `BirimNobetCizelgesiSections.tsx`, `ShiftExchangeHubSections.tsx`, `ShiftExchangeHubView.tsx`):**
+  - Nöbet başlangıcına 24 saatten daha az bir süre kalmışsa personeller arası sistem üzerinden doğrudan nöbet değişim, devir veya havuza bırakma talebi oluşturulması engellendi.
+  - Arayüzde kullanıcıya sarı bilgi paneliyle "Nöbetin başlamasına 24 saatten az süre kaldığından personeller arası doğrudan değişim talebi oluşturulamaz. Acil durumlarda lütfen birim amirinize sözlü bilgi veriniz; amir yetkili yönetim panelinden manuel düzenleme yapabilir" uyarısı gösterildi ve işlem butonları devre dışı bırakıldı.
+- **4. Puantaj ve Asli Çalışma Saati Korumalı Aynı Ay İçi Takas Kuralı (`nobetDevir.service.ts`, `nobet_devir_service.py`, `BirimNobetCizelgesiSections.tsx`, `ShiftExchangeHubSections.tsx`):**
+  - Karşılıklı takas taleplerinde `nobetTarihi` ve `alanNobetTarihi` alanlarının aynı takvim yılı ve ayında (`YYYY-MM`) olması backend ve frontend seviyesinde zorunlu kılındı.
+  - Çapraz aylar arası takasın oluşturacağı aylık puantaj açığı ve maaş kesintisi riski önlendi; onaylanmış gelecek ay nöbetlerinin de kendi ayı içinde takas edilebilmesi güvenceye alındı.
+- **5. Takas Listesinde Meslektaş Nöbetlerinin Hedef Aya ve Geleceğe Göre Filtrelenmesi (`BirimNobetActionModal`, `ShiftExchangeDirectFormTab`, `GET /api/nobet/personel-nobetleri`):**
+  - Birebir takas modunda nöbeti kabul eden meslektaş seçildiğinde, meslektaşın çizelgedeki aktif ve ilgili takvim ayındaki ileri tarihli nöbetleri otomatik filtrelenerek açılır menüde (`İade Nöbet Seçimi`) listelendi; kullanıcının listeden tek tıkla nöbet seçmesi sağlandı ve manuel tarih yazma hataları önlendi.
+  - Manuel takas tarihi seçiminde ise tarih seçicinin alt sınırı (`min`) ve üst sınırı (`max`) takvim ayının ilk ve son günleriyle sınırlandırılarak hatalı seçimler imkansız kılındı.
+- **6. Nöbet Uygunluk Denetiminde 24 Saatlik Zorunlu Dinlenme Kuralı (`nobetDevir.repo.ts`):**
+  - `checkPersonelShiftEligibility` fonksiyonuna ardışık günlerde $\ge 16$ saat veya 24 saatlik nöbet tutulmasını denetleyen sorgu eklendi.
+  - Personelin önceki gün veya sonraki gün 24 saatlik nöbeti varsa NDK ve SKS kuralları gereği nöbeti alması engellenerek `DINLENME_IHLALI` hata koduyla uyarı verilmesi sağlandı.
+- **7. S2 Gebelik Bildirimi Doktor Raporunun KVKK Evrak Kasasında Arşivlenmesi (`personel.routes.ts`, `personel.repo.ts`):**
+  - `/api/personel/gebelik-bildirimi` uç noktasında personelin yüklediği heyet/uzman hekim raporu (`belgeBase64`), Buffer formatına çözülüp SHA-256 hash'i alınarak `stored_files` ve `personel_belgeler` tablolarına atomik transaction ile kalıcı olarak işlendi.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed)
+
+- **1. Personel İstek Formunun Günlük İhtiyaçlara Göre Sadeleştirilmesi ve Akıllı Alanlar (`PersonnelRequestSections.tsx`, `PersonnelRequestForm.tsx`):**
+  - İdareye resmi evrak sunularak ana masaüstü programında idareci / RKS yetkilisince girilmesi gereken yasal muafiyetler (Engelli Muafiyeti 657 m. 101, Ağır Engelli Yakını 2010/2, Heyet Raporu 657 m. 105, NDK Doz Sınırı Aşımı, Emzirme İzni, Sendika Temsilciliği) personelin web portal istek açılır menüsünden arındırıldı.
+  - Açılır liste yalnızca personelin günlük ihtiyaçlarını karşılayan 4 temel seçeneğe (`Nöbet Yazılmasın (Mazeret)`, `Nöbet Yazılsın (İstek)`, `Eğitim Kısıtı (Ders Programı)`, `Fazla Mesai Talebi (Aylık Üst Sınır)`) sadeleştirildi; yasal ve resmi muafiyetlerin mevzuat gereği idare tarafından işlendiğini açıklayan bilgi paneli yerleştirildi.
+  - **Eğitim Kısıtı:** Cumartesi ve Pazar günleri kaldırılarak yalnızca hafta içi 5 ders gününe (`Pazartesi - Cuma`) odaklandı ve dönem tarih aralığı doğrudan açık hale getirildi.
+  - **Nöbet Yazılsın / Yazılmasın:** Tarih alanları onay kutusu arkasına gizlenmeden form açıldığında doğrudan doldurulabilir olarak getirildi; nöbet yazılmasın mazeretinde tek tıkla "Tüm Ay Boyunca Nöbet Yazılmasın" seçeneği eklendi.
+  - **Fazla Mesai Talebi:** İlgili ay seçici, iki net tercih ("Fazla Mesai İstemiyorum (0 Saat)" ve "Fazla Mesai Almak İstiyorum"), hızlı saat butonları (+16, +24, +32, +48, +60) ve 130 saatlik yasal tavan uyarısıyla mantıklı ve modern bir yapıya kavuşturuldu.
+- **2. Birebir Devir ve Takas Ekranının Sıradan Kullanıcı İçin Sadeleştirilmesi (`ShiftExchangeDirectFormTab`, `ShiftExchangeHubSections.tsx`):**
+  - Çift kolonlu ve tekrarlayan uyarı kutuları içeren eski form yapısı kaldırıldı; kullanıcı dostu `Tarih ➔ Vardiya ➔ Birim` seçim kartı, 2 modlu değişim türü (Birebir Takas vs Tek Yönlü Devir) ve gizli sekme mantığında sadeleştirilmiş bir akışa dönüştürüldü.
+- **3. Nöbet Devir Servisi Çapraz Doğrulama Mantığı (`nobetDevir.service.ts`):**
+  - `createNobetDevirRequest` use-case'inde hem talep açan hem de karşı personelin nöbet tarihleri için geçmiş tarih (`< today`) ve 24 saat kuralı denetimleri eklendi (otomasyon test ortamları için sandbox emniyeti korundu).
+- **4. Havuz API Uç Noktalarına Zod Doğrulama Kalkanı (`nobet.routes.ts`):**
+  - `/api/nobet/havuz/ilan-ver`, `/api/nobet/havuz/talip-ol`, `/api/nobet/havuz/teklif-yanitla` ve `/api/nobet/havuz/geri-cek` rotalarına Zod girdi şemaları (`havuzIlanSchema`, `havuzTalipSchema`, `havuzTeklifYanitSchema`, `havuzGeriCekSchema`) ve `validateBody` middleware'i bağlandı.
+
+#### 🐛 Düzeltildi (Fixed)
+
+- **1. Takvim Çizelgesi Sorgusunda `isAdminUser` İçe Aktarım Eksikliği (`sync.routes.ts`):**
+  - `/api/schedule` rota işleyicisinde `isAdminUser` fonksiyonunun içe aktarılmamasından kaynaklanan `ReferenceError: isAdminUser is not defined` uyarısı giderildi; `auth.middleware.ts` üzerinden import eklenerek çizelge sorgularının doğrudan PostgreSQL üzerinden yetki bazlı ve kesintisiz çalışması sağlandı.
+- **2. Aylık Mesai Özeti ve Birim İzin/Mazeretleri Rotalarında Parametre Uyumsuzluğu (`nobet.routes.ts`):**
+  - `/api/nobet/aylik-mesai-ozet` ve `/api/nobet/birim-izin-ve-mazeretler` rotalarının servis çağrısında 4 konumsal parametre yerine tek bir nesne (`{ yil, ay, personelId, filterDeptId }`) geçilerek NaN ve veritabanı sorgu hatası oluşması engellendi.
+- **3. Aylık Mesai Özetinde `hedef_saat` Kolon Yokluğu Hatası (`fetchAylikOzetHedefSaatMap`, `nobet.repo.ts`):**
+  - `nobet_aylik_ozet` tablosunda `hedef_saat` kolonu sorgulanmasından kaynaklanan 500 hatası (`column "hedef_saat" does not exist`) giderildi; yasal mesai hedef saatlerinin çalışma takvimi üzerinden dinamik ve güvenli hesaplanması sağlandı.
+- **4. Değişiklik Talepleri Onay Durumu Karakter Uyumsuzluğu ve CHECK Kısıtı Hatası (`nobet_settings_service.py`, `V20261113_1_allow_turkish_onaylandi_in_checks.py`, `schema.sql`):**
+  - Masaüstü onay kuyruğunda nöbet isteği onaylanırken `NobetSettingsService.set_personel_nobet_istegi_durum` metodunun `degisiklik_talepleri` tablosuna Türkçe noktalı `'Onaylandı'` yazması nedeniyle oluşan `degisiklik_talepleri_onay_durumu_check` kısıt ihlali hatası giderildi.
+  - Kod seviyesinde `onay_durumu` değeri `'Onaylandi'` olarak normalize edildi ve `V20261113_1_allow_turkish_onaylandi_in_checks.py` migrasyonu ile veritabanı kısıtları (`degisiklik_talepleri` ve `personel_nobet_istekleri`) her iki yazımı da destekleyecek şekilde genişletildi.
+
+## [4.0.5.21] - 2026-11-12
+
+### 🗺️ Mimari Kroki Tekilleştirmesi (PostgreSQL stored_files SSOT & Cache-Aside), Kat Planı Döndürme Motoru (90°/180°/270°), Web Portal Çoklu Oda Sınırları ve Oda Bağlama İyileştirmeleri
+
+Bu sürüm; mimari kat planı ve krokilerin PostgreSQL `stored_files` tablosunda ham (şifresiz) BLOB olarak merkezi saklanmasını ve `data/krokiler/` yerel disk önbelleği ile **Cache-Aside** örüntüsüyle tekilleştirilmesini, kat planı krokilerinde 90°/180°/270° döndürme (rotate) motorunu, Web Portal ortam dozu sekmesinde çoklu oda sınırlarının (`kroki_odalar`) masaüstü ile birebir koordinat ve kesikli çerçeveyle çizilmesini, `document_service_db.py` ve `vault.service.ts` katmanlarında ham dosya algılama altyapısını ve etkileşimli oda sınırları düzenleme geliştirmelerini içerir.
+
+#### ✨ Eklendi (Added)
+
+- **1. PostgreSQL `stored_files` Kroki Tekilleştirme & Cache-Aside Mimarisi (`V20261112_1_unify_kroki_stored_files.py`, `app/db/schema.sql`, `kroki_storage_helper.py`, `document_service_db.py`, `vault.service.ts`):**
+  - Krokilerin KVKK kapsamı dışı mimari varlıklar olması nedeniyle şifreleme yükü getirmeden PostgreSQL `stored_files` tablosunda ham BLOB olarak saklanması sağlandı (`encrypt=False` / `category='kroki'`).
+  - `krokiler` tablosuna `belge_id TEXT` (FK -> `stored_files.id`) eklendi, `idx_krokiler_belge_id` indeksi tanımlandı ve `V20261112_1_unify_kroki_stored_files.py` migration'ı uygulandı.
+  - `kroki_storage_helper.py` modülü eklenerek merkezi `ensure_kroki_cached` ve `save_kroki_to_vault_and_cache` fonksiyonlarıyla **Cache-Aside** örüntüsü kuruldu; yerel önbellekteki dosya silinse bile istemciler dosyayı veritabanından şeffaf olarak geri yükler.
+- **2. Kat Planı Krokilerinde 90° / 180° / 270° Döndürme Motoru (`KrokiYonetimService.rotate_kroki`, `KrokilerController`, `KrokiCanvas`, `OrtamDozuKrokiTab.tsx`):**
+  - Masaüstü ve Web Portal arayüzlerine mimari planları saat yönünde veya tersinde 90° adımlarla döndürme butonları eklendi.
+  - Plan döndürüldüğünde üzerindeki ölçüm noktası pinleri, cihaz konumları ve oda sınırları (w, h, pos_x, pos_y) yeni açıya göre trigonometrik olarak yeniden hesaplandı.
+- **3. Web Portal Çoklu Oda Sınırları (Multi-Room Bounding Box) Hizalaması (`ortamDozu.repo.ts`, `OrtamDozuView.tsx`, `OrtamDozuKrokiTab.tsx`, `ortamDozuTypes.ts`):**
+  - Web portal ortam dozu sekmesinde yalnızca departmana ait tekil genel koordinat yerine `kroki_odalar` tablosundaki tüm odalar (`odalar: KrokiOdaItem[]`) sorgulandı (`WHERE kroki_id = $1`).
+  - Masaüstündeki tüm odalar kesikli camgöbeği (cyan) çerçeveler, oda kodları ve odaklanma efektleriyle birlikte Web Portal haritasında eksiksiz görüntülendi.
+
+#### 🔧 Değiştirildi & İyileştirildi (Changed)
+
+- **1. Ham Dosya ve Şifreli Evrak Ayrımı (`DocumentServiceDB.read_stored_file`, `VaultService.getStoredDocument`):**
+  - Fernet AES-256 şifreli sağlık verileri ile ham mimari/resmi dosyaları ayırt etmek için PDF (`%PDF`), PNG (`\x89PNG`), JPEG (`\xff\xd8\xff`) ve WEBP (`RIFF`) sihirli bayt (magic bytes) algılaması eklendi; hatalı şifre çözme istisnaları önlendi.
+- **2. Etkileşimli Oda Bağlama ve Sınır Çizim Ergonomisi (`kroki_canvas.py`, `krokiler_controller.py`, `oda_bagla_dialog.py`):**
+  - Kroki üzerinde oda sınırlarını belirleme, köşe tutamaçlarıyla yeniden boyutlandırma, sürükleme ve departman eşleştirme akışı daha akıcı hale getirildi.
+- **3. Web Portal RKE ve Cihaz Sekmesi İyileştirmeleri (`CihazTabsAndModals.tsx`, `RkeKrokiCanvas.tsx`, `RkeModals.tsx`):**
+  - Z-index katmanları, modal etkileşimleri ve envanter filtreleri optimize edildi.
+
+#### 🐛 Düzeltildi (Fixed)
+
+- **1. Web Portal'da Yalnızca Tek Bir Genel Oda Sınırının Çizilmesi ve Diğer Odaların Görünmemesi (`ortamDozu.repo.ts`):**
+  - `fetchOrtamDozuDepartmentStatus` sorgusunun `kroki_odalar` tablosunu dikkate almaması ve eski `departmanlar.kroki_pos_x` alanına bağımlı kalması düzeltildi; ilgili kat planına bağlı tüm odaların haritaya aktarılması sağlandı.
+- **2. Yerel Kroki Dosyası Silindiğinde Web Portalda Görselin Yüklenememesi (`ortam_dozu.routes.ts`):**
+  - `GET /api/ortam-dozu/kroki-image/:id` rotasına `restoreFromStoredFiles` denetimi eklendi; yerel diskte dosya bulunamadığında veritabanından anında geri yüklenerek 404 / 500 hataları engellendi.
+
 ## [4.0.5.20] - 2026-11-11
 
 ### ☢️ Resmi NDK/TENMAK RD.F43 Doz Araştırma Formu Birebir Hizalaması, 3 Adımlı Sihirbaz İş Akışı, 5 Aşamalı Süreç Rozetleri ve Veritabanı Bağlantı Kurtarma Diyaloğu

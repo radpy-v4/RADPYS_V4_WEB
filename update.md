@@ -6,6 +6,90 @@ Bu kılavuz; **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## 🔄 RADPYS V4.0.5.22: Birim Çizelgesinde Hızlı Nöbet Değişimi, 3 Seçenekli Sadeleştirilmiş Havuz ve Takas Ekranı, 24-Saatlik Ön Süre Güvencesi, Aynı Ay İçi Takas Kuralı, Yayınlanmış Dönem Talep Koruması ve Dinlenme Standartları
+
+Bu sürümle birlikte **Birim Nöbet Çizelgesi ve Nöbet Değişim / Becayiş** modüllerinde personelin nöbet takas ve devir işlemleri sadeleştirilerek tek tıkla yürütülebilir hale getirilmiş; personeller arası değişimlerde 24 saatlik ön süre ve aynı ay takas güvenceleri devreye alınmış; nöbet listesi onaylanıp yayınlanmış aylar için ön hazırlık isteklerinin açılması engellenerek süreç disiplini sağlanmış; NDK ve SKS mevzuatı uyarınca nöbet dinlenme süreleri otomatik kontrole bağlanmış ve gebelik bildirim raporları kalıcı evrak kasasına alınmıştır:
+
+### 🌟 Öne Çıkan Yenilikler (Hızlı Bakış)
+
+* **Birim Çizelgesinde Doğrudan [⇄ Değiş] Butonu:** Personel, birim nöbet çizelgesinde kendine ait nöbet slotlarının üzerinde yer alan hızlı değişim butonuna basarak doğrudan değişim penceresine ulaşabilir.
+* **Yayınlanmış Nöbet Dönemlerinde Talep Koruması:** Birim amiri tarafından onaylanıp **Yayında** statüsüne alınmış aylar (örneğin Kasım ayı) için ön hazırlık mahiyetinde yeni mazeret, nöbet yazılsın/yazılmasın veya fazla mesai talebi açılamaz. Çizelge yayınlandıktan sonraki tüm nöbet hareketleri doğrudan **Birim Nöbet Çizelgesi** veya **Nöbet Değişim / Havuz** ekranları üzerinden yürütülür. Sistem, personelin yayınlanmış bir ayı seçmesi durumunda anında sarı bilgilendirme paneli gösterir ve formu korumaya alır.
+* **3 Seçenekli Sade Değişim Penceresi:** Nöbet değişim ekranı gereksiz alanlardan arındırıldı:
+  - **Havuz:** Meslektaş veya tarih aramadan nöbeti tek tıkla birim havuzuna açar.
+  - **Birebir (Takas):** Anlaşılan meslektaş seçildiğinde meslektaşın nöbetleri otomatik filtrelenerek açılır listede sunulur; tek tıkla iade nöbeti seçilir.
+  - **Devir (Tek Yönlü):** Karşıdan nöbet istemeden nöbeti meslektaşa devreder (Yalnızca fazla mesai nöbetleri için geçerlidir).
+* **24-Saatlik Ön Süre Güvencesi:** Nöbetin başlamasına 24 saatten az bir süre kaldığında personeller arası doğrudan sistem üzerinden talep oluşturulması engellendi. Acil ve beklenmedik durumlarda birim amirine sözlü bilgi verilerek amirin yönetim panelinden acil düzenleme yapması esası getirildi.
+* **Aynı Ay İçi Takas Kuralı (Puantaj Güvencesi):** Karşılıklı nöbet takasları yalnızca aynı takvim ayı içindeki nöbetler arasında yapılabilir. Farklı aylar arası takasın doğurabileceği aylık puantaj açığı ve yasal 35/40 saatlik çalışma saati dengesizliği önlendi.
+* **Geçmiş Tarihli Talep Engeli:** Geçmişe dönük nöbetler için devir veya takas talebi açılması hem nöbeti veren hem de devralan personel için engellendi.
+* **Takasta Meslektaş Nöbetlerini Otomatik Filtreleme:** Nöbet takas edilirken karşı meslektaşın adı seçildiği anda o personelin çizelgedeki aktif ve ilgili ayın kalan günlerine ait nöbetleri açılır menüye getirilir; personelin elle tarih araması ve yazım hatası yapması tamamen önlenir.
+* **24 Saatlik Zorunlu Dinlenme ve Çakışma Güvencesi:** NDK ve Sağlık Bakanlığı SKS standartları uyarınca, 24 saatlik ağır nöbet tutan personelin hemen ertesi gün veya önceki gün tekrar nöbet devralması otomatik olarak engellenir.
+* **Gebelik Bildirimi Doktor Raporu Güvencesi:** Personelin ilettiği hekim ve heyet raporları dijital evrak kasasında güvenle arşivlenir ve birim amirinin onayına sunulur.
+* **Personel İstek Formunun Akıllı Alanları ve Sadeleştirilmesi:** Resmi belge ve idari onay gerektiren muafiyetler personelin rutin istek formundan kaldırılarak menü 4 temel günlük ihtiyaca odaklandı:
+  - **Eğitim Kısıtı:** Hafta sonu günleri (Cumartesi-Pazar) kaldırılarak yalnızca hafta içi 5 ders gününe (`Pazartesi - Cuma`) bağlandı ve dönem tarih aralığı doğrudan açık hale getirildi.
+  - **Nöbet Yazılsın / Yazılmasın:** Tarih aralıkları gizli onay kutusundan kurtarılarak form açıldığında doğrudan doldurulabilir duruma getirildi; tek tıkla "Tüm Ay Boyunca Nöbet Yazılmasın" seçeneği eklendi.
+  - **Fazla Mesai Talebi:** İlgili ay seçici, iki net tercih ("Fazla Mesai İstemiyorum (0 Saat)" ve "Fazla Mesai Almak İstiyorum"), hızlı saat butonları (+16, +24, +32, +48, +60) ve 130 saatlik yasal tavan uyarısıyla son derece pratik ve modern bir yapıya kavuşturuldu.
+
+### 📅 Birim Çizelgesinde Hızlı Nöbet Değişimi
+
+* **Slot Üzerinden Anında Aksiyon:** Birim çizelgesini inceleyen personel, kendi nöbet kutucuğundaki **[⇄ Değiş]** butonuna tıkladığında tarih, vardiya ve birim bilgisi otomatik seçilmiş olarak değişim ekranı açılır. Böylece tarihleri yeniden yazma veya arama zahmeti ortadan kalkar.
+
+### 🔄 3 Modlu Sadeleştirilmiş Değişim Deneyimi
+
+* **Özet Nöbet Bilgi Kartı:** Değişime konu olan nöbet ekranın üst kısmında **Tarih ➔ Vardiya ➔ Birim** şeklinde net olarak özetlenir.
+* **Akıllı ve Koşullu Alanlar:**
+  * **Havuz Seçeneğinde:** Karşı personel veya iade tarihi bilgisi istenmez, tek tıkla açık değişime bırakılır.
+  * **Birebir Takas Seçeneğinde:** Yalnızca aynı birim ve aynı hizmet sınıfındaki aktif meslektaşlar listelenir; karşı tarafın iade edeceği nöbetin tarihi ve vardiyası girilir.
+  * **Tek Yönlü Devir Seçeneğinde:** Karşı taraftan nöbet talep edilmez; yalnızca devralacak meslektaş seçilir. Mevzuat gereğince asli çalışma saati devredilemeyeceği için sistem kullanıcıyı nazikçe bilgilendirir.
+* **Yenilenen Birebir Devir ve Takas Ekranı:** Bağımsız değişim sayfasındaki karmaşık formlar ve mükerrer uyarı kutuları temizlendi; süreç sadeleştirilerek hızlı bir akışa kavuşturuldu.
+
+### ⏱️ Nöbete Kalan Süre Güvencesi (En Az 24 Saat Önceden Bildirim)
+
+* **Neden Gerekli?** Nöbete birkaç saat kala yapılan son dakika değişimleri servis amirlerinin haberi olmadan birimlerde personel açığı oluşmasına veya görev devir-tesliminde aksamalara yol açabilmekteydi.
+* **Nasıl İşliyor?** Nöbet başlangıcına 24 saatten az kaldığında sistem talep butonlarını otomatik olarak korumaya alır ve kullanıcıya bilgilendirme mesajı gösterir. Bu tür acil mazeret durumlarında personel birim amirine bilgi verir ve yetkili amir yönetim panelinden doğrudan ikame personel ataması gerçekleştirebilir.
+
+### 📊 Aynı Ay İçi Takas ve Puantaj Güvencesi
+
+* **Neden Gerekli?** Bir personelin Mart ayındaki nöbetini Nisan ayındaki bir nöbetle takas etmesi durumunda, Mart ayı puantajında yasal çalışma saati açığı oluşmakta ve personel maaşında kesinti riski doğabilmekteydi.
+* **Nasıl İşliyor?** Sistem takas edilecek iki nöbetin de aynı takvim ayı içinde olmasını şart koşar. Gelecek ayların nöbet çizelgeleri amir tarafından onaylanıp yayınlandığında, personeller o ayın nöbetlerini kendi içinde serbestçe takas edebilir.
+
+### 🔒 Yayınlanmış Nöbet Dönemlerinde Talep Kilidi ve Süreç Disiplini
+
+* **Neden Gerekli?** Nöbet hazırlık formları (mazeret, nöbet istek/kısıt ve fazla mesai), henüz çizelgesi hazırlanmamış gelecek ayların adil ve dengeli planlanabilmesi için kullanılan ön hazırlık araçlarıdır. Çizelge birim amiri tarafından kesinleştirilip yayınlandıktan sonra bu formlar üzerinden yeni talep girilmesi, yayınlanmış ve mutabakatı yapılmış çizelgenin yapısını bozar ve sistemde karmaşaya yol açar.
+* **Nasıl İşliyor?** Personel istek formunda seçilen tarih aralığı veya ayın (örneğin Kasım ayı) nöbet listesi birim amiri tarafından onaylanıp yayınlanmışsa, sistem bunu anında tespit eder. Arayüzde sarı uyarı paneliyle *"Nöbet Çizelgesi Yayında — Yeni Talep Açılamaz"* uyarısı belirir ve form gönderme butonu *"Dönem Yayında (Kilitli)"* durumuna geçerek kilitlenir. Personelin bu dönem için yapacağı nöbet devir veya takas işlemleri ise doğrudan **Birim Nöbet Çizelgesi** ve **Nöbet Değişim / Havuz** ekranları üzerinden güvenle yürütülür.
+
+### 🛡️ Mevzuat ve Dinlenme Süresi Güvencesi
+
+* **Ardışık 24 Saatlik Nöbet Engeli:** Ağır radyasyon ortamında çalışan personelin yorgunluk ve dikkat kaybını önlemek amacıyla, 24 saatlik nöbetin hemen öncesi veya sonrasındaki güne denk gelen nöbet devir talepleri mevzuat dinlenme kuralı nedeniyle reddedilir.
+
+---
+
+## 🗺️ RADPYS V4.0.5.21: Mimari Kat Planı Krokilerinde Merkezi Saklama Güvencesi, 90° Yön Döndürme Motoru ve Web Portal Çoklu Oda Sınırları
+
+Bu sürümle birlikte **Ortam Radyasyon Dozu ve Mimari Kroki Haritası** modülünde kat planları doğrudan merkezi veritabanı güvencesine alınmış; mimari krokileri yönüne göre sola/sağa döndürme imkanı getirilmiş ve Web Portal üzerinde tanımlı tüm odaların sınırları eksiksiz olarak haritaya yansıtılmıştır:
+
+### 🌟 Öne Çıkan Yenilikler (Hızlı Bakış)
+
+* **Merkezi Veritabanı ile Kayıpsız Kroki Güvencesi:** Yüklenen mimari kat planları doğrudan kurumsal veritabanında saklanır ve hızlı kullanım için yerel önbelleğe alınır; bilgisayar veya kullanıcı değişse bile tüm kat planları otomatik olarak eksiksiz geri yüklenir.
+* **Kat Planı 90° Döndürme Yeteneği:** Mimari planların yönelimini sahaya tam uyumlu hale getirmek için saat yönünde veya tersinde 90° döndürme kontrolleri eklendi; plan döndürüldüğünde üzerindeki ölçüm noktaları, cihazlar ve oda sınırları hassas biçimde korunur.
+* **Web Portalda Tüm Oda Sınırlarının Canlı Görünümü:** Masaüstü uygulamasında belirlenen tüm oda alanları ve sınırları Web Portal haritası üzerinde de belirgin kesikli çerçeveler ve oda başlıklarıyla eşzamanlı olarak görüntülenir.
+
+### 🏢 Mimari Kat Planlarında Kesintisiz Veritabanı ve Önbellek Mimarisi
+
+* **Kayıpsız ve Otomatik Geri Yükleme:** Hastane veya klinik binalarına ait kat planları veritabanı güvencesine alınarak tekilleştirildi. Yerel diskte dosya taşınsa veya silinse dahi, sistem planı çağrıldığı anda saniyeler içinde otomatik olarak geri yükler ve işlem kesintisini önler.
+* **Görsel Yükleme Performansı:** Kat planları ilk çağrılışta yerel önbelleğe alınarak sonraki açılışlarda anında ekrana gelir; harita üzerinde pin yerleştirme, sürükleme ve ölçüm görüntüleme işlemleri yüksek hızda çalışır.
+
+### 🔄 Mimari Plan Yönünü Sahaya Göre Hizalama (Döndürme Motoru)
+
+* **Tek Tıkla Sola / Sağa Döndürme:** Kat planı yükleme ve inceleme ekranlarında yer alan **[Sola Döndür]** ve **[Sağa Döndür]** butonları sayesinde mimari çizimler 90°, 180° veya 270° açılarla çevrilerek odaların gerçek yönelimiyle birebir eşleştirilebilir.
+* **Pin ve Oda Sınırlarını Otomatik Dönüştürme:** Plan döndürüldüğünde, kullanıcıların haritaya daha önce yerleştirdiği ortam dozu ölçüm noktaları, cihaz konumları ve tanımlı oda sınırları bozulmadan yeni açıya göre milimetrik doğrulukla dönüştürülür.
+
+### 🌐 Web Portalda Çoklu Oda Sınırları ve Bölge Takibi
+
+* **Tüm Odaların Haritada Net Belirlenmesi:** Web Portal Ortam Dozu ve İnteraktif Harita sekmesinde daha önce yalnızca tek bir genel alan kutusu yerine, o kata ait tanımlanmış tüm odalar (**Acil Dinlenme**, **Acil BT**, **Acil Röntgen**, **Acil USG** vb.) kesikli renkli sınırları, oda kodları ve odaklanma vurgularıyla birlikte eksiksiz olarak gösterilir.
+* **Oda Seçiminde Canlı Odaklanma:** Listeden veya haritadan bir oda seçildiğinde harita ilgili odayı netleştirerek sınırlarını vurgular; böylece çalışanlar ve denetçiler hangi ölçüm noktasının hangi odaya ait olduğunu anında teşhis eder.
+
+---
+
 ## ☢️ RADPYS V4.0.5.20: Resmi NDK/TENMAK RD.F43 Doz Araştırma Formu Birebir Uyumu, 3 Adımlı Hızlı Sihirbaz, 5 Aşamalı Süreç Rozetleri ve Bağlantı Kurtarma Asistanı
 
 Bu sürümle birlikte **Kişisel Dozimetre Takibi ve Doz Araştırma (RD.F43)** süreci resmi NDK/TENMAK matbu formuyla masaüstü, Web Portal ve resmi çıktılarda birebir eşitlenmiş; araştırma sihirbazı **3 adıma** indirilerek hızlandırılmış, aksiyon kokpitine **5 aşamalı canlı süreç rozetleri** eklenmiş ve veritabanı bağlantı kesintileri için akıllı kurtarma ekranı devreye alınmıştır:

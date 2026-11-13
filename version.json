@@ -1,10 +1,10 @@
 {
-  "version": "4.0.5.20",
-  "release_version": "4.0.5.20",
-  "build_version": "4.0.5.20",
-  "latest_demo_version": "4.0.5.20",
-  "release_date": "2026-11-11",
+  "version": "4.0.5.22",
+  "release_version": "4.0.5.22",
+  "build_version": "4.0.5.22",
+  "latest_demo_version": "4.0.5.22",
+  "release_date": "2026-11-13",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.5.20: Resmi NDK/TENMAK RD.F43 Doz Araştırma Formu Birebir Hizalaması, 3 Adımlı Sihirbaz İş Akışı, 5 Aşamalı Süreç Rozetleri, Çalışan Beyanı Kilidi ve Bağlantı Kurtarma Ekranı.",
+  "changelog": "RADPYS V4.0.5.22: Birim Nöbet Çizelgesi (S12) Hızlı Değişim Butonu, Sadeleştirilmiş 3 Modlu Değişim ve Havuz Akışı, 24-Saatlik Ön Süre Güvencesi, Aynı Ay İçi Takas Kuralı (Puantaj Koruması), 24 Saatlik Zorunlu Dinlenme Denetimi ve S2 Gebelik Evrak Kasası Arşivi.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }
