@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.23</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.24</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -294,6 +294,27 @@
         <td class="py-3.5 px-4">Karşılıklı takas, yönetici devir onayı ve ikame havuzu teklif kabulleri atomik işlem kilidiyle yürütülür; aynı anda çakışan taleplerde mükerrer atama engellenir. Kayıt olmayan dönemlerde sahte/örnek veri üretilmez, dürüst boş durum gösterilir.</td>
         <td class="py-3.5 px-4">Nöbet devir/havuz işlemi onaylandığında veya yönetici kokpitleri açıldığında.</td>
         <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">Birim Sorumlusu / RKS / Yönetici</span></td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Web ve Mobilde Cihaz Bakım &amp; Kalite Kontrol (KKT/KUT) Yönetimi<br> <span class="text-xs font-normal text-slate-400 font-mono">[Cihaz Saha Asistanı &amp; Bakım / QC Sekmeleri]</span></td>
+        <td class="py-3.5 px-4">Saha ekiplerinin masaüstü bilgisayara bağımlı kalmadan periyodik bakım ve kalite kontrol kayıtlarını sahada sonuçlandırmasını sağlamak.</td>
+        <td class="py-3.5 px-4">Planlı bakım ve KKT/KUT slotları listelenir; teknisyen veya medikal fizikçi imzalı PDF/görsel servis veya test raporunu yükleyerek kaydı sahada kapatır ya da münferit kayıt oluşturur. Yüklenen belgeler masaüstü uygulamayla tam uyumlu şifreli evrak kasasına kaydedilir.</td>
+        <td class="py-3.5 px-4">Cihaz bakımı veya kalite kontrol testi sahada tamamlandığında.</td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Biyomedikal / Medikal Fizikçi / RKS</span></td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Uygulama Olarak Yükleme (PWA Ana Ekran Kurulumu)<br> <span class="text-xs font-normal text-slate-400 font-mono">[Üst Çubuk &gt; Uygulamayı Yükle Butonu]</span></td>
+        <td class="py-3.5 px-4">Web Portalını telefon, tablet ve bilgisayarlarda tarayıcı adres çubuğu olmadan tam ekran yerel uygulama gibi çalıştırmak.</td>
+        <td class="py-3.5 px-4">Destekleyen masaüstü ve Android tarayıcılarda üst çubukta beliren <strong>[Uygulamayı Yükle]</strong> butonuyla tek tıkla kurulur; iPhone/iPad cihazlarda adım adım <em>Paylaş &gt; Ana Ekrana Ekle</em> görsel kurulum rehberi açılır.</td>
+        <td class="py-3.5 px-4">Portal tarayıcı üzerinden kurulu değilken açıldığında.</td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Tüm Web Kullanıcıları</span></td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Güvenli Yerel Ağ Kamera Erişimi, Karanlık Oda Feneri &amp; Ekran Uyanık Tutma<br> <span class="text-xs font-normal text-slate-400 font-mono">[QR Barkod Okuyucu &amp; Bildirim Çekmecesi]</span></td>
+        <td class="py-3.5 px-4">Hastane yerel ağında mobil kamera ile QR etiket okutmak, karanlık röntgen/skopi odalarında aydınlatma sağlamak ve muayene boyunca ekranın kapanmasını engellemek.</td>
+        <td class="py-3.5 px-4">Güvenli yerel ağ bağlantısı aktifken kamera donanım hızlandırmalı QR/barkod okuyucu açılır; karanlık ortamlar için fener düğmesi, titreşimli okuma onayı, muayene süresince ekran kararmasını önleyen uyanık tutma desteği ve bildirim çekmecesinde tarayıcı bildirim izni sunulur.</td>
+        <td class="py-3.5 px-4">Cihaz/RKE QR kodu taranırken veya saha muayenesi yapılırken.</td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Saha Personeli / Teknisyen</span></td>
       </tr>
     </tbody>
   </table>
@@ -618,7 +639,7 @@ flowchart TD
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.23) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.24) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
     </div>
   </footer>
 

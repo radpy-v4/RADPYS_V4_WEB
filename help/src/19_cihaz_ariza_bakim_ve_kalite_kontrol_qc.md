@@ -2,7 +2,7 @@
 {
   "pageTitle": "19. Cihaz Arıza, Periyodik Bakım ve Kalite Kontrol (QA/QC) — RADPYS v4 Kullanım Kılavuzu",
   "h1": "Cihaz Arıza, Periyodik Bakım ve Kalite Kontrol (QC)",
-  "lead": "Radyoloji departmanındaki tüm tıbbi cihazların teknik arıza ve onarım süreçlerini, ihale şartnamelerine dayalı <strong>Aylık Bakım Radarı</strong> ile planlanan periyodik bakım takvimlerini ve 4 adımlı modern sihirbaz üzerinden yürütülen Kalite Kontrol (QC) / kalibrasyon testlerini yöneten entegre karar destek merkezidir.",
+  "lead": "Radyoloji departmanındaki tüm tıbbi cihazların teknik arıza ve onarım süreçlerini, ihale şartnamelerine dayalı <strong>Aylık Bakım Radarı</strong> ile planlanan periyodik bakım takvimlerini ve TİTCK kılavuzuna uyumlu resmi rapor ve ihale takvimine dayalı Kalite Kontrol (KKT / KUT) süreçlerini yöneten entegre karar destek merkezidir.",
   "overviewId": "overview",
   "badges": [
     {
@@ -61,8 +61,8 @@ Periyodik bakım ve arıza tamamen ayrı süreçlerdir. Radyoloji cihazlarının
 | Aylık Bakım Radarı Sayaçları<br> <span class="text-xs font-normal text-slate-400 font-mono">[Bu Ay / Gelecek Ay / Geciken Kartları]</span> | Radyolojinin bakım aylarını önceden bilmesini sağlayıp son dakika servis sürprizlerini engellemek. | Bu ay planlananlar, gelecek ayın yoğunluğu ve geciken bakımlar renkli rozetlerle canlı olarak hesaplanır. | Periyodik Bakım sayfası her açıldığında. | <span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Radyoloji Sorumlusu</span> |
 | İhale Bakım Takvimi Planlama<br> <span class="text-xs font-normal text-slate-400 font-mono">[İhale Bakım Takvimi Planla Butonu]</span> | İhale şartnamesine göre sözleşme sonuna kadar bakım randevu slotlarını tek tıkla üretmek. | Cihaz, ilk bakım tarihi, sözleşme bitişi ve periyot (1, 3, 6, 12 ay) seçilir; sistem tüm randevuları 'Beklemede' olarak takvime işler. | Yıllık bakım ihalesi/sözleşmesi tamamlandığında. | <span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Klinik Amiri / Biyomedikal</span> |
 | Bakımı Tamamla & Servis Formu<br> <span class="text-xs font-normal text-slate-400 font-mono">[Bakımı Tamamla Butonu]</span> | Yapılan periyodik bakımı imzalı servis raporuyla kapatmak ve KVKK kasasında saklamak. | Gerçekleşen tarih, refakat eden personel, teknisyen ve taranmış servis formu (PDF) seçilir. Belge şifrelenir ve durum 'Tamamlandı' olur. | Yetkili servis bakımı bitirip servis formunu imzalattığında. | <span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Tekniker / RKS</span> |
-| 4 Adımlı QC Sihirbazı<br> <span class="text-xs font-normal text-slate-400 font-mono">[Yeni QC Kaydı / Adımlı Stepper]</span> | Kalite kontrol ve kalibrasyon ölçümlerini karmaşadan uzak, 4 adımlı akışla hatasız girmek. | 1. Cihaz/Protokol 2. Ekipman/Ekip 3. Canlı Ölçümler 4. Değerlendirme & Onay adımlarıyla ilerlenir. | Periyodik kalite kontrol veya kalibrasyon yapıldığında. | <span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Medikal Fizik Uzmanı</span> |
-| Canlı Ölçüm Tablosu Tek Tık Girişi<br> <span class="text-xs font-normal text-slate-400 font-mono">[Canlı Ölçümler Tablo Hücresi]</span> | Ölçüm değerlerini çift tıklama veya F2 engeli olmadan akıcı girmek. | Hücreye tek tıkla dokunulduğunda doğrudan sayısal değer girilebilir; tabular font ile sütunlar hizalanır. | Ölçüm tablosu doldurulurken. | <span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Medikal Fizik Uzmanı</span> |
+| İhale Kalibrasyon / KUT Takvimi Planlama<br> <span class="text-xs font-normal text-slate-400 font-mono">[İhale Kalibrasyon / KUT Takvimi Planla Butonu]</span> | Modalite ve sözleşme dönemine göre TİTCK uyumlu kalibrasyon randevularını tek seferde üretmek. | Cihaz veya modalite/marka süzgeciyle seçilen cihazlar, periyot (3, 6, 12, 36 veya 60 ay) ve sözleşme bitişi girilerek tüm kalite kontrol slotları 'Beklemede' olarak takvime işlenir. | Yıllık KKT ihalesi yapıldığında veya yeni KUT dönemi planlandığında. | <span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Medikal Fizikçi / RKS</span> |
+| TİTCK Uyumlu Resmi KKT / KUT Rapor Kaydı<br> <span class="text-xs font-normal text-slate-400 font-mono">[Planlı Testi Tamamla / Münferit Resmi Rapor Gir]</span> | KUT (Radyoterapi 3 yıl, Diagnostik/Nükleer Tıp 5 yıl), KKT ve Kabul/Onarım Sonrası Test raporlarını KUK yetki belgesi ve PDF tutanakla arşivlemek. | Resmi rapor numarası, yapan kurum, KUK yetki belge no ve imzalı PDF raporu şifreli evrak kasasına kaydedilir. 'Sınırlı Kullanım' sonucunda azami 1 yıllık düzeltme süresi otomatik tanımlanır. | Yetkili KUK veya medikal fizikçi resmi raporu düzenlediğinde. | <span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Medikal Fizik Uzmanı</span> |
 | QC Başarısızlık Karantina Kilidi<br> <span class="text-xs font-normal text-slate-400 font-mono">[Güvenlik Uyarısı Onayı]</span> | Standart dışı radyasyon yayan veya kalibrasyonu bozuk cihazın kullanımını engellemek. | Sonuç 'Uygun Değil' kaydedildiğinde güvenlik uyarısı açılır; onaylandığında cihaz otomatik 'Arızalı' statüsüne kilitlenir. | QC sonucu olumsuz kaydedildiğinde. | <span class="px-2 py-0.5 rounded text-xs font-semibold bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300">Medikal Fizikçi / Sistem</span> |
 
  </div>
@@ -70,7 +70,7 @@ Periyodik bakım ve arıza tamamen ayrı süreçlerdir. Radyoloji cihazlarının
 ## Arıza, Bakım ve Kalite Kontrol Yaşam Döngüsü {#workflow}
 
 <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
- Aşağıdaki şema; arıza bildirimi ve parça değişimini, ihale şartnamesine dayalı periyodik bakım döngüsünü ve 4 adımlı QC ölçüm sürecini özetlemektedir.
+ Aşağıdaki şema; arıza bildirimi ve parça değişimini, ihale şartnamesine dayalı periyodik bakım döngüsünü ve TİTCK uyumlu resmi KKT/KUT kalite kontrol sürecini özetlemektedir.
  </p>
  <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-x-auto">
 
@@ -97,13 +97,14 @@ flowchart TB
  O --> P["KVKK Kasasına Şifreli Arşivlenir & 'Tamamlandı'"]
  end
 
- subgraph S3["3. 4 Adımlı QC Sihirbazı & Emniyet Kilidi"]
- Q["Periyodik QC Zamanı"] --> R["[Yeni QC Kaydı] Sihirbazı"]
- R --> S["Adım 1-2: Cihaz, Protokol & Ekipman"]
- S --> T["Adım 3: Canlı Ölçümler (Tek Tıkla Giriş)"]
- T --> U["Adım 4: Değerlendirme & Onay"]
- U --> V{"Test Sonucu Uygun mu?"}
- V -- "Uygun" --> W["Geçerlilik Takvimi Başlar (12 Ay)"]
+ subgraph S3["3. TİTCK Resmi QC Takvimi (KUT/KKT) & Emniyet Kilidi"]
+ Q["İhale / Yıllık QC Dönemi"] --> R["[İhale Kalibrasyon / KUT Takvimi Planla]"]
+ R --> S["KUT (36/60 Ay) veya KKT (3/6/12 Ay) Slotları Üretilir"]
+ S --> T["Yetkili KUK / Medikal Fizikçi Resmi Testi Yapar"]
+ T --> U["[Planlı Testi Tamamla] veya [Münferit Resmi Rapor Gir] + PDF"]
+ U --> V{"Resmi Rapor Kararı?"}
+ V -- "Uygun" --> W["Geçerlilik Takvimi Başlar ve Belge KVKK Kasasında Şifrelenir"]
+ V -- "Sınırlı Kullanım" --> W2["Azami 1 Yıllık Düzeltme Takibi Başlatılır"]
  V -- "Uygun Değil" --> X["Güvenlik Kilidi: Cihazı 'Arızalı'ya Al ve Kilitle"]
  end
 ```
@@ -154,13 +155,13 @@ flowchart TB
  <strong>[Cihaz Yönetimi]</strong> menüsünden <strong>[Periyodik Bakım Yönetimi]</strong> ekranına geçin. Üstteki <strong>[İhale Bakım Takvimi Planla]</strong> butonuna tıklayın. Cihazı, ilk bakım tarihini, sözleşme bitiş tarihini ve ihale şartnamesinde yer alan bakım periyodunu (1, 3, 6 veya 12 Ay) seçin. Sistem sözleşme sonuna kadar tüm bakım tarihlerini otomatik hesaplar ve takvime 'Beklemede' olarak işler. Bakım günü gelip servis işlemi tamamlandığında satırı seçip <strong>[Bakımı Tamamla]</strong> butonuna basın; refakat eden personeli, servis teknisyenini seçip taranmış ıslak imzalı <strong>Servis Formu (PDF)</strong> belgesini ekleyin.
  </div>
  <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
- <strong class="text-slate-900 dark:text-white text-base block mb-2">Bölüm 3: 4 Adımlı QC Sihirbazı ile Canlı Ölçüm ve Kalibrasyon Kaydı</strong>
- <strong>[Cihaz Yönetimi]</strong> menüsünden <strong>[Cihaz QC Kokpiti]</strong> ekranını açın ve <strong>[Yeni QC Kaydı]</strong> butonuna tıklayın. Karşınıza 4 adımlı modern sihirbaz gelir:
+ <strong class="text-slate-900 dark:text-white text-base block mb-2">Bölüm 3: TİTCK Uyumlu Resmi Kalite Kontrol (KKT / KUT) ve İhale Takvimi</strong>
+ <strong>[Cihaz Yönetimi]</strong> menüsünden <strong>[Cihaz QC Kokpiti]</strong> ekranını açın:
  <ul class="list-disc pl-5 mt-2 space-y-1 text-xs">
- <li><strong>1. Cihaz & Protokol:</strong> Cihazı ve uygulanacak test protokolünü (Üretici, Türkak, NDK, DIN) belirleyin.</li>
- <li><strong>2. Ekipman & Ekip:</strong> Testte kullanılan kalibratör/fantom ekipmanlarını ve ölçümü yürüten medikal fizikçiyi seçin.</li>
- <li><strong>3. Canlı Ölçümler:</strong> Doz doğruluğu, tekrarlanabilirlik ve sızıntı tablosundaki hücrelere tek tıkla dokunarak ölçülen değerleri girin.</li>
- <li><strong>4. Değerlendirme & Onay:</strong> Sistem tolerans analizini anında yapar; genel sonucu (Uygun / Şartlı / Uygun Değil) onaylayın. Sonuç uygunsuz ise sistem cihazı otomatik olarak arızalıya alıp kilitler.</li>
+ <li><strong>İhale / KUT Takvimi Planlama:</strong> <strong>[İhale Kalibrasyon / KUT Takvimi Planla]</strong> butonuna tıklayarak modalite, marka veya cihaz seçin; periyodu (KKT 3/6/12 ay, Radyoterapi KUT 36 ay, Diagnostik/Nükleer Tıp KUT 60 ay) ve sözleşme bitiş tarihini girip tüm bekleyen slotları tek tıkla oluşturun.</li>
+ <li><strong>Planlı veya Münferit Resmi Rapor Girişi:</strong> Bekleyen bir satırı seçip <strong>[Planlı Testi Tamamla]</strong> butonuna veya doğrudan <strong>[Münferit Resmi Rapor Gir]</strong> butonuna tıklayın.</li>
+ <li><strong>Resmi Kategori &amp; KUK Yetki Bilgisi:</strong> Kontrol türünü (<em>Kalite Uygunluk (KUT)</em>, <em>Periyodik Kalite Kontrol (KKT)</em> veya <em>Kabul / Onarım Sonrası Test</em>), rapor numarasını, yapan kurum/KUK yetki belge numarasını girip imzalı PDF raporu ekleyin.</li>
+ <li><strong>Yasal Sonuç &amp; Güvenlik Kilidi:</strong> Genel sonucu (<em>Kullanımı Uygun</em> / <em>Sınırlı Kullanım</em> / <em>Kullanımı Uygun Değil</em>) onaylayın. Sınırlı Kullanım kararında azami 1 yıllık takip süresi başlatılır; Uygun Değil kararında güvenlik uyarısıyla cihaz otomatik olarak arızalıya alınıp kilitlenir.</li>
  </ul>
  </div>
  </div>
@@ -176,8 +177,8 @@ flowchart TB
  <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
  <li>• Yeni arıza bildirimleri ve X-ışını tüp değişim onayı ile künye senkronizasyonu.</li>
  <li>• Aylık Bakım Radarı (Bu Ay, Gelecek Ay, Gecikenler, Tamamlananlar) canlı izleme.</li>
- <li>• İhale şartnamesine göre 1/3/6/12 aylık periyotlarla sözleşme takvimi üretme.</li>
- <li>• 4 adımlı QC sihirbazı üzerinden canlı ölçüm girişi ve negatif QC karantina kilidi.</li>
+ <li>• İhale şartnamesine göre 1/3/6/12 aylık bakım ve 3/6/12/36/60 aylık modalite bazlı KKT/KUT kalibrasyon takvimi üretme.</li>
+ <li>• TİTCK resmi rapor bazlı KUT, KKT ve Kabul/Onarım Sonrası Test kayıtları, Sınırlı Kullanım 1 yıl takibi ve negatif QC karantina kilidi.</li>
  <li>• AES-256 Fernet şifreli evrak kasasına PDF servis formu ve QC raporu bağlama.</li>
  </ul>
  </div>
@@ -190,7 +191,8 @@ flowchart TB
  <li>• Cihaz üzerindeki QR etiketi tarayarak arıza bildirim formunu sahada anında açma.</li>
  <li>• Cihazın son QC test durumunu ve geçerlilik süresini yeşil/sarı/kırmızı rozetle doğrulama.</li>
  <li>• Açık arıza listesi takibi ve mobil teknisyen servis müdahale kapatma formu.</li>
- <li>• Saha denetimlerinde cihaza ait son test tutanağını mobilde görüntüleme.</li>
+ <li>• Planlı periyodik bakım ve KKT/KUT randevularını sahada imzalı PDF raporuyla tamamlama veya münferit bakım/QC kaydı oluşturma.</li>
+ <li>• Saha denetimlerinde cihaza ait şifreli servis formunu ve son QC test tutanağını mobilde görüntüleme.</li>
  </ul>
  </div>
  </div>
@@ -217,8 +219,8 @@ RADPYS'de periyodik bakım modülü, karmaşık bir atölye veya parça stok sis
 ### İhale şartnamesine göre bakım periyotları nasıl çalışır?
 Hastanelerde cihaz bakımları 1, 3, 6 veya 12 aylık periyotlarla ihale edilir. Planlama sihirbazında cihaz, ilk bakım tarihi ve sözleşme bitiş tarihi seçildiğinde, sistem sözleşme bitimine kadar olan tüm bakım randevu tarihlerini otomatik hesaplar ve takvime tek seferde "Beklemede" olarak kaydeder.
 
-### QC ölçüm tablosunda hücreye sayısal değer nasıl girilir?
-Yeni sihirbaz yapısında ölçüm tablosu veri girişine tamamen açıktır. İlgili ölçüm hücresine (Doz, Gerilim, Sızıntı vb.) tek bir tıklama yapıldığında hücre doğrudan düzenleme moduna geçer ve klavyeden ölçüm değeri kesintisiz yazılabilir. Çift tıklama veya F2 zorunluluğu kaldırılmıştır.
+### Kalite Uygunluk (KUT) ile Periyodik Kalite Kontrol (KKT) arasındaki fark ve "Sınırlı Kullanım" kuralı nedir?
+TİTCK kılavuzu doğrultusunda sistem günlük kağıt kontroller yerine resmi imzalı raporları takip eder. <strong>Kalite Uygunluk Testi (KUT)</strong>, yetkili Kalite Uygunluk Kuruluşları (KUK) tarafından Radyoterapi cihazlarında <strong>36 ayda (3 yıl)</strong>, Diagnostik ve Nükleer Tıp cihazlarında <strong>60 ayda (5 yıl)</strong> bir gerçekleştirilir. <strong>Periyodik Kalite Kontrol (KKT)</strong> ise medikal fizikçi veya ihale hizmet alımı kapsamında <strong>3, 6 veya 12 aylık</strong> periyotlarla yapılır. Raporda <em>"Sınırlı Kullanım"</em> kararı verildiğinde cihazın eksikliklerinin giderilmesi için yasal azami <strong>1 yıllık</strong> düzeltme takibi otomatik başlatılır; <em>"Uygun Değil"</em> kararında ise cihaz güvenlik kilidiyle arızalıya çekilir.
 
 ### X-Işını tüpü değiştiğinde NDK lisansı için ne yapılmalıdır?
 X-ışını tüpü radyasyon kaynağının ana jeneratörüdür. Sistemde tüp değişimi kaydedildiğinde cihaz künyesindeki güncel tüp seri numarası otomatik yenilenir. NDK Radyasyon Güvenliği Mevzuatı uyarınca tüp değişimi lisans tadili/revizyonu gerektirebileceğinden işlem tamamlandığında RKS birimi derhal NDK sistemine resmi bildirimde bulunmalıdır.

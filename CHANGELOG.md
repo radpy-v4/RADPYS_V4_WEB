@@ -3,6 +3,45 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.5.24] - 2026-11-14
+
+### 🏥 TİTCK (TCS-KLVZ-06) Uyumlu Cihaz Kalite Kontrol & İhale Takvimi, Web Portal Cihaz Bakım/QC Saha Yönetimi, Yerel HTTPS (:3443) ile PWA Kurulumu & Kamera Deneyimi ve Tek Dil Türkçe Standardizasyonu
+
+Bu sürüm; Cihaz Kalite Kontrol (QC) modülünün 4 adımlı ham parametre tablosundan **TİTCK (`TCS-KLVZ-06`)** kılavuzuna birebir uyumlu resmi rapor bazlı takip modeline (**KUT**, **KKT**, **Kabul / Onarım Sonrası Test**) sadeleştirilmesini, modalite ve marka filtreli toplu/tekli ihale kalibrasyon takvim planlama motorunu (`CihazQcPlanlaDialogController`), Web Portal'da 4 katmanlı **Cihaz Bakım & Kalite Kontrol Saha Merkezi** rotalarını (`cihaz_bakim_qc.routes.ts`) ve `DocumentServiceDB` ile %100 çift yönlü uyumlu `vault.service.ts` Fernet şifreleme desteğini, yerel ağlar için dahili Kök CA ve paralel HTTPS (`:3443`) sunucusuyla birlikte PWA Ana Ekrana Kurulum / karanlık oda fenerli QR tarama / WakeLock / Haptic saha donanım iyileştirmelerini ve çoklu dil (`TranslationService` / `genel.dil`) altyapısının veritabanı migrasyonu dahil dikey olarak kaldırılmasını içerir.
+
+#### ✨ Eklendi (Added)
+
+- **1. Cihaz Kalite Kontrol (KKT/KUT) İhale Takvim Planlama Motoru ve Migrasyonu (`V20261114_1_simplify_cihaz_qc_and_add_tender_schedule.py`, `schema.sql`):**
+  - `cihaz_kalite_kontrolleri` tablosuna `qc_kodu`, `durum` (`BEKLEMEDE` / `TAMAMLANDI`), `planlanan_tarih`, `donem_etiketi`, `ihale_sozlesme_no`, `sozlesme_bitis_tarihi`, `sinirli_kullanim_bitis`, `yetki_belge_no` ve `guncelleme` kolonları ile `uq_cihaz_qc_kodu`, `idx_cihaz_qc_planlanan_durum` indeksleri eklendi.
+  - `CihazService.generate_qc_takvimi`, `generate_toplu_qc_takvimi` ve `complete_qc_record` metotları; masaüstünde ise `CihazQcPlanlaDialogController` (`ui/pages/cihaz/cihaz_qc_planla_dialog.ui`) üzerinden modalite/marka filtreli çoklu cihaz ihale takvimi üretimi ve `QCT-YYYY-XXXX` slot tamamlama akışı devreye alındı.
+- **2. Web Portal 4 Katmanlı Cihaz Bakım/QC Saha Merkezi ve Çift Yönlü KVKK Fernet Kasası (`web_portal/`):**
+  - Clean Architecture katmanları (`routes/cihaz_bakim_qc.routes.ts`, `repositories/cihaz/cihazBakimQc.repo.ts`, `services/cihaz/cihazSaha.service.ts`, `domain/cihaz/qcProtocols.ts`, `hooks/`, `components/cihaz/tabs/CihazBakimTab.tsx`, `CihazBakimModals.tsx`, `CihazQcTab.tsx`, `CihazQcModals.tsx`, `CihazQcHistorySection.tsx`) ile Web ve mobilde planlı bakım/QC slotlarını listeleme, imzalı PDF raporuyla kapatma ve münferit bakım/KUT/KKT kaydı oluşturma sağlandı.
+  - `web_portal/src/services/vault.service.ts` içine Python `cryptography.fernet.Fernet` ve `DocumentServiceDB` ile %100 uyumlu `encryptFernet`, `prepareVaultDocument`, `insertPreparedVaultDocumentTx` ve `storeVaultDocument` fonksiyonları eklendi; böylece Web Portal'dan yüklenen imzalı servis/QC belgeleri masaüstünde sorunsuz deşifre edilip önizlenebilir hale getirildi.
+- **3. Yerel Ağ (LAN) HTTPS (`:3443`) ve Dahili Kök CA Üreticisi (`scripts/generate_local_https_cert.py`, `web_portal/server.ts`, `portal_launcher.py`):**
+  - Makinenin yerel ağ IPv4 ve hostname DNS kimliklerini otomatik keşfederek `data/certs/` altına 10 yıllık dahili Kök CA (`radpys-root-ca.crt`) ve sunucu TLS sertifikası (`portal-cert.pem` / `portal-key.pem`) üreten CLI betiği eklendi.
+  - `web_portal/server.ts` TLS sertifikası bulunduğunda HTTP (`:3000`) yanında paralel HTTPS (`:3443`) sunucusunu ayağa kaldıracak şekilde genişletildi; `user_launcher/portal_launcher.py` durdurma/temizleme port listesine `3443` eklendi.
+- **4. PWA Ana Ekrana Kurulum ve Mobil Saha Donanım Deneyimi (`PwaInstallButton.tsx`, `pwaUtils.ts`, `useWakeLock.ts`, `QrScannerModal.tsx`):**
+  - `web_portal/src/components/layout/PwaInstallButton.tsx` ve `web_portal/src/utils/pwaUtils.ts` ile Chromium'da `beforeinstallprompt` yakalayan tek tık kurulum butonu, iOS Safari'de "Paylaş -> Ana Ekrana Ekle" görsel rehberi, `triggerHaptic` dokunsal titreşim ve `setAppBadgeCount` uygulama ikonu okunmamış sayacı eklendi.
+  - `QrScannerModal.tsx`, `RkeView.tsx` ve `OrtamDozuView.tsx` bileşenlerine donanım hızlandırmalı `BarcodeDetector` desteği, karanlık odalar için kamera feneri (`torch`), muayene/tarama boyunca ekranın kararmasını engelleyen `useWakeLock` ve `NotificationDrawer.tsx` içine HTTPS güvenli bağlam tarayıcı bildirim izni çubuğu eklendi.
+
+#### 🔧 Değiştirildi (Changed)
+
+- **TİTCK (`TCS-KLVZ-06`) Resmi Rapor Bazlı Cihaz QC Sadeleştirmesi (`qc_protokolleri.py`, `CihazService`, `CihazRepository`, `CihazDataset`, `CihazQcController`):**
+  - Eski 4 adımlı parametre tolerans sihirbazı kaldırılarak TİTCK mevzuatındaki 3 resmi rapor kategorisine (`Kalite Uygunluk (KUT)` [Radyoterapi 36 ay / Diagnostik & Nükleer Tıp 60 ay], `Periyodik Kalite Kontrol (KKT)` [3/6/12 ay], `Kabul / Onarım Sonrası Test`) ve yasal sonuç seçeneklerine (`Uygun`, `Sınırlı Kullanım` [azami 1 yıl düzeltme süresi], `Uygun Değil` [otomatik cihaz karantina kilidi], `Beklemede`) sadeleştirildi.
+  - `cihaz_qc_page.ui` ve `cihaz_qc_dialog.ui` yeni 9 kolonlu liste, ihale/planlı slot filtresi ve resmi rapor/KUK yetki belgesi formuna güncellendi.
+
+#### 🗑️ Kaldırıldı (Removed)
+
+- **Çoklu Dil (`TranslationService` / `genel.dil`) Altyapısının Dikey Arındırılması:**
+  - T.C. ulusal radyasyon ve sağlık mevzuatına %100 Türkçe tek dil standardı kapsamında `resources/langs/tr.json`, `resources/langs/en.json`, `app/services/system/integrations/translation_service.py` ve `tests/test_translation_service.py` kaldırıldı.
+  - `V20261114_2_remove_language_setting.py` migrasyonu ve `app/db/seeds.sql` güncellemesiyle tüm kurulumların `program_ayarlari` ve `program_ayarlari_gecmis` tablolarından `genel.dil` ayarı temizlendi; `ProgramSettingsController`, `ServiceRegistry`, `app/messages.py`, `main.pyw`, `ui/qt_loader.py` ve `radpys.spec` sadeleştirildi; mimari indeksler (`generate_code_index.py`) yenilendi.
+- **`cihaz_kalite_kontrolleri.olcum_detaylari` Kolonu:** Eski ham ölçüm JSONB kolonu `schema.sql` ve migrasyonla veritabanından kaldırıldı.
+
+#### 🛠️ Düzeltildi (Fixed)
+
+- **`UpdateDialog` Uzak/Test Sürüm Fark Listesi (`ui/widgets/update_dialog.py`, `3a14bf2`):** Remote veya test `version.json` içindeki `changelog` metni `update.md`'de henüz bulunmadığında dahi `diff_releases` kart listesinin en üstüne otomatik eklenmesi sağlandı.
+- **RKE, HEK ve Web Portal Dashboard Düzeltmeleri:** `RkeService.get_karar_esikleri` sorgusundaki `aktif = 1` ifadesi PostgreSQL uyumlu `aktif = TRUE` olarak düzeltildi; `HekService` cihaz geçmişi birleşiminde `COALESCE(q.kontrol_tarihi, q.planlanan_tarih)` ve `q.qc_kodu` yedeklemesi eklendi; `SaglikDashboard.tsx` ve `KisitlarDashboard.tsx` içinde `DashboardExportButton` sütun/veri prop'ları ve `DashboardPagination` için `totalPages` hesabı düzeltildi; `ortam_dozu.routes.ts` içindeki doğrudan kroki SQL sorgusu `ortamDozu.repo.ts` (`fetchStoredKrokiBlob`) içine taşınarak Route-SQL katman sınırı korundu.
+
 ## [4.0.5.23] - 2026-11-13
 
 ### 📚 Canlı Web Yardım Portalı ve 366 Sayfalık Çevrimdışı Kurumsal PDF Kılavuzu Entegrasyonu, Akıllı Hibrit Yardım Gezintisi (Web/PDF/MDI), Güncelleme Diyaloğu Çoklu Sürüm Başlık Özeti ve Otomatik 5N1K Dokümantasyon Senkronizasyonu

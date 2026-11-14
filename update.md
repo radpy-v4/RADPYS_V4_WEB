@@ -6,6 +6,19 @@ Bu kılavuz; **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## 🏥 RADPYS V4.0.5.24: TİTCK Uyumlu Cihaz Kalite Kontrol & İhale Takvimi, Mobil PWA Kurulumu ve Saha Kamera Deneyimi
+
+Bu sürümle birlikte **Cihaz Kalite Kontrol (KKT & KUT)** modülü T.C. İlaç ve Tıbbi Cihaz Kurumu (TİTCK) kılavuzuna birebir uyumlu resmi rapor ve ihale takvim modeline kavuşturulmuş; **Web Portal** üzerinden cihaz bakım ve kalite kontrol işlemlerinin sahada PDF belgeleriyle tamamlanabilmesi sağlanmış; **PWA Mobil Uygulama Kurulumu** ve karanlık oda dostu **QR Kamera** deneyimi devreye alınmış; ayrıca sistem %100 ulusal Türkçe standardında sadeleştirilmiştir:
+
+### 🌟 Öne Çıkan Yenilikler (Hızlı Bakış)
+
+* **TİTCK Kılavuzuna Tam Uyumlu Cihaz Kalite Kontrol (KKT & KUT) ve İhale Takvimi:** Karmaşık alt parametre tabloları kaldırılarak resmi rapor bazlı takip modeline geçildi: *Kalite Uygunluk Testi (KUT — Radyoterapi cihazları 3 yıl, Diagnostik ve Nükleer Tıp 5 yıl)*, *Periyodik Kalite Kontrol (KKT — 3, 6 veya 12 ay)* ve *Kabul / Onarım Sonrası Doğrulama Testi*. Modalite ve marka seçimiyle sözleşme bitimine kadar tek seferde toplu ihale kalibrasyon takvimi oluşturulabilir; *"Sınırlı Kullanım"* kararlarında azami 1 yıllık düzeltme takibi otomatik başlatılır, *"Uygun Değil"* kararında cihaz güvenlik kilidiyle kullanıma kapatılır.
+* **Web Portalda Cihaz Bakım & Kalite Kontrol Saha Yönetimi ve Şifreli Evrak Kasası:** Biyomedikal ve medikal fizik ekipleri artık web veya mobil cihazlar üzerinden de planlı bakım ve kalite kontrol randevularını görüntüleyebilir, ıslak imzalı PDF servis/test raporlarını yükleyerek kayıtları kapatabilir veya münferit saha kaydı açabilir. Yüklenen tüm evraklar masaüstü uygulamayla tam uyumlu şifreli evrak kasasında saklanır.
+* **Mobil Uygulama Olarak Yükleme (PWA) ve Karanlık Oda Dostu QR Kamera:** Üst çubuğa eklenen kurulum butonuyla Web Portalı, Android, iPhone/iPad ve masaüstü bilgisayarlara tarayıcı adres çubuğu olmadan tam ekran uygulama olarak eklenebilir. Güvenli yerel ağ sertifika desteğiyle mobil kameradan doğrudan QR/barkod okutma, karanlık röntgen/skopi odalarında kamera fenerini açma, muayene boyunca ekranın kararmasını önleme ve anlık tarayıcı bildirimleri etkinleştirildi.
+* **%100 Türkçe Ulusal Mevzuat Standardı ve Rapor İyileştirmeleri:** T.C. Sağlık Bakanlığı (SKS), NDK, TİTCK ve SGK mevzuatına tam uyumlu ulusal yapı doğrultusunda kullanılmayan yabancı dil paketleri sistemden kaldırılarak ayar ekranları sadeleştirildi; Periyodik Sağlık ve Çalışma Kısıtları gösterge panellerindeki Excel dışa aktarım ve sayfalama hesaplamaları iyileştirildi.
+
+---
+
 ## 📚 RADPYS V4.0.5.23: Canlı Web Yardım Portalı ve 366 Sayfalık Çevrimdışı Kurumsal PDF Kılavuzu Entegrasyonu, Akıllı Hibrit Yardım Gezintisi (Web/PDF/MDI) ve Çoklu Sürüm Başlık Özeti
 
 Bu sürümle birlikte **Kullanıcı Yardım & Dokümantasyon** altyapısı baştan sona modernize edilmiş; hem internete bağlı klinikler hem de dış ağa kapalı izole hastane ortamları için çift yönlü akıllı yardım motoru devreye alınmış; 23 modülün tamamını kapsayan 366 sayfalık kurumsal A4 PDF el kitabı hazırlanmış ve güncelleme bildirim penceresine tüm ara sürümleri özetleyen sade başlık kartları entegre edilmiştir:

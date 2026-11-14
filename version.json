@@ -1,10 +1,10 @@
 {
-  "version": "4.0.5.23",
-  "release_version": "4.0.5.23",
-  "build_version": "4.0.5.23",
-  "latest_demo_version": "4.0.5.23",
-  "release_date": "2026-11-13",
+  "version": "4.0.5.24",
+  "release_version": "4.0.5.24",
+  "build_version": "4.0.5.24",
+  "latest_demo_version": "4.0.5.24",
+  "release_date": "2026-11-14",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.5.23: Canlı Web Yardım Portalı ve 366 Sayfalık Çevrimdışı Kurumsal PDF Kılavuzu Entegrasyonu, Akıllı Hibrit Yardım Gezintisi (Web/PDF/MDI), Güncelleme Diyaloğu Çoklu Sürüm Başlık Özeti ve Otomatik 5N1K Dokümantasyon Senkronizasyonu.",
+  "changelog": "RADPYS V4.0.5.24: TİTCK (TCS-KLVZ-06) Uyumlu Cihaz Kalite Kontrol (KKT/KUT) ve İhale Takvimi, Web Portal Cihaz Bakım/QC Saha Yönetimi ve Çift Yönlü KVKK Kasası, Yerel HTTPS (:3443) ile PWA Kurulumu & Karanlık Oda Kamera Deneyimi ve %100 Türkçe Tek Dil Standardizasyonu.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }
