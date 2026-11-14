@@ -3,7 +3,7 @@
 **RADPYS V4** (Radyoloji, Radyasyon Güvenliği ve Departman Yönetim Sistemi) resmi tanıtım, **23 entegre modül** vitrini, sürüm notları (changelog), teknik dokümantasyon, lisanslama ve demo talep portalıdır.
 
 * **Canlı Site:** [https://radpys.com.tr](https://radpys.com.tr)
-* **Güncel Sürüm:** `v4.0.5.22` (`V4.0.5` Serisi)
+* **Güncel Sürüm:** `v4.0.5.24` (`V4.0.5` Serisi)
 * **Mimari:** Merkezi Veri Katmanlı (`Single Source of Truth`) HTML5 / Tailwind CSS / Vanilla JS — GitHub & Cloudflare Pages CDN altyapısı üzerinde çalışır.
 
 ---
@@ -48,7 +48,7 @@ RADPYS_V4_WEB/
 ├── moduller.html            → 23 Entegre Modülün detaylı incelemesi ve gelecek modüller
 ├── fiyatlandirma.html       → Lisans paketleri, özellik matrisi ve fiyatlandırma SSS
 ├── changelog.html           → Dinamik Sürüm Notları (update.md canlı ayrıştırıcı ve seri filtreleri)
-├── gelistirme-planlari.html → Ürün yol haritası (Dalga 1-3, Faz 01-08) ve teknoloji sütunları
+├── gelistirme-planlari.html → Ürün yol haritası (Dalga 1-3, Faz 01-07) ve teknoloji sütunları
 ├── dokumanlar.html          → Teknik dokümantasyon ve kullanım kılavuzu merkezi
 ├── kaynaklar.html           → Mevzuat rehberleri ve teknik blog yazıları
 ├── referanslar.html         → Referans kurumlar, istatistikler ve kullanıcı görüşleri

@@ -335,19 +335,19 @@
             {
                     "n": "19",
                     "tag": "19",
-                    "name": "Cihaz Arıza & QC Kalibrasyon",
-                    "fullTitle": "Cihaz Arıza, Bakım ve Kalite Kontrol (QC)",
-                    "desc": "Tüp değişimi senkronizasyonu, QC başarısızlık kilidi ve mobil QR arıza konsolu.",
-                    "lead": "Tüp değişimi senkronizasyonu, QC karantina kilidi ve mobil QR arıza.",
+                    "name": "Cihaz Arıza, Bakım & KKT/KUT",
+                    "fullTitle": "Cihaz Arıza, Periyodik Bakım ve Kalite Kontrol (KKT & KUT)",
+                    "desc": "TİTCK uyumlu KKT/KUT ve ihale bakım takvimi, tüp değişimi senkronizasyonu ve mobil QR saha konsolu.",
+                    "lead": "TİTCK KKT/KUT ihale takvimi, QC karantina kilidi ve mobil QR arıza.",
                     "icon": "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z",
                     "img": "help/assets/img/19_1_cihaz_ariza_bakim_ve_kalite_kontrol_qc.png",
                     "guideFile": "19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html",
                     "features": [
                             "Arıza Bildirimi: Benzersiz ARZ-YYYY-XXX takip kodu ve cihazın otomatik 'Arızalı' statüsüne geçmesi",
                             "X-Işını Tüp Değişimi Entegrasyonu: Servis müdahalesinde yeni tüp seri no'sunu cihaz künyesine otomatik işleme",
-                            "QC Test Takibi: Günlük, Aylık, Yıllık Kalibrasyon ve Zırhlama testlerinin 3 renkli geçerlilik rozetleri",
-                            "RED-UI-CIHAZ-01 Güvenlik Kilidi: Test sonucu 'Uygun Değil' girildiğinde cihazı anında karantinaya alma",
-                            "Web Portalı Saha Mobil Konsolu: 6 arıza semptom kategorisi ve QR kod okutarak hızlı servis müdahalesi"
+                            "TİTCK Uyumlu KKT & KUT ve İhale Takvimi: Sözleşme sonuna kadar toplu periyodik bakım ve kalibrasyon (3/6/12 ay KKT, 3/5 yıl KUT) planlama",
+                            "Otomatik Güvenlik Kilidi: 'Sınırlı Kullanım'da 1 yıllık düzeltme takibi, 'Uygun Değil' kararında cihazı anında kullanıma kapatma",
+                            "Web & Mobil Saha Yönetimi: QR kodla hızlı arıza kaydı ve ıslak imzalı bakım/QC PDF raporlarını şifreli evrak kasasına yükleyerek kapatma"
                     ],
                     "benefit": "Cihaz duruş süreleri en aza iner; standart dışı radyasyon yayan cihazların hasta çekiminde kullanılması engellenir."
             },
@@ -430,28 +430,28 @@
 
     const FUTURE_MODULES = [
             {
-                    "badge": "FAZ 1 — Altyapı Hazır",
+                    "badge": "FAZ 01 — Foundation AI",
                     "badgeColor": "border-teal-500/30 text-teal-400 bg-teal-500/10",
-                    "name": "Saha / Tablet QR-Barkod Muayene & Hızlı Envanter Asistanı",
-                    "highlight": "Tablet QR/Barkod, DIN 6857-1 & Çevrimdışı PWA",
-                    "desc": "Medikal Fizikçiler için sahada doğrudan tablet kamerasıyla QR/Barkod okutma, skopi altındaki kurşun önlük ve paravan kusurlarını interaktif krokide işaretleme, fotoğraf ekleme ve anlık senkronizasyon.",
-                    "tag": "RKE Muayene & Saha Asistanı"
-            },
-            {
-                    "badge": "FAZ 2 — Foundation AI",
-                    "badgeColor": "border-cyan-500/30 text-cyan-400 bg-cyan-500/10",
                     "name": "Google TimesFM ile Yapay Zekâlı Doz Trend Tahmini & Rotasyon",
                     "highlight": "1 Trilyon Verili Zero-Shot Transformer",
                     "desc": "Google Research TimesFM foundation modeliyle sıfır ek model eğitimiyle 6 ay önceden 20 mSv limit aşımı uyarısı, çok değişkenli risk analizi ve radyasyonsuz birimlere akıllı rotasyon önerisi.",
                     "tag": "Zero-Shot AI & Klinik Rotasyon"
             },
             {
-                    "badge": "FAZ 3 — Denetim Simülatörü",
-                    "badgeColor": "border-purple-500/30 text-purple-400 bg-purple-500/10",
+                    "badge": "FAZ 02 — Denetim Simülatörü",
+                    "badgeColor": "border-cyan-500/30 text-cyan-400 bg-cyan-500/10",
                     "name": "NDK & SKS 6.1 Otomatik Denetim Simülatörü & Risk Karnesi",
                     "highlight": "100 Puanlık Resmi Denetim Hazırlık Motoru",
                     "desc": "Tek tıkla tüm kurumu tarayarak süresi dolan lisans, eksik kalibrasyon, muayenesiz kurşun önlük, eksik şua izni ve kaza bildirimlerini analiz eden resmi denetim karnesi ve hazırlık raporu motoru.",
                     "tag": "NDK & SKS 6.1 Denetim Motoru"
+            },
+            {
+                    "badge": "FAZ 04 — PACS / DICOM Bridge",
+                    "badgeColor": "border-purple-500/30 text-purple-400 bg-purple-500/10",
+                    "name": "PACS / DICOM RDSR Doz Akış Köprüsü (C-STORE SCP)",
+                    "highlight": "Otomatik CTDIvol, DLP & DAP Doz Aktarımı",
+                    "desc": "Hastane PACS sunucusundan BT, Anjiyografi ve Mamografi modalitelerinin DICOM RDSR doz raporlarını otomatik dinleyip nöbet çizelgesiyle eşleştiren mikroservis.",
+                    "tag": "DICOM PS 3.16 & PACS Entegrasyonu"
             }
     ];
 

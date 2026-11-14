@@ -10,7 +10,7 @@
 (function () {
   "use strict";
 
-  let currentVersion = "4.0.5.22";
+  let currentVersion = "4.0.5.24";
 
   const MODULE_NAV_ITEMS = [
     {

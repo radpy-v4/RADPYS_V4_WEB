@@ -20,9 +20,9 @@
   function getConfig() {
     const r = window.RADPYS || {};
     const vInfo = r.VERSION_INFO || {
-      version: "4.0.5.7",
+      version: "4.0.5.24",
       series: "V4.0.5",
-      release_date: "2026-04-19",
+      release_date: "2026-11-14",
       download_url: "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
     };
     const siteCfg = r.SITE_CONFIG || {};
@@ -142,7 +142,7 @@
      ---------------------------------------------------------------------- */
   function applyRadpysBindings(root = document) {
     const cfg = getConfig();
-    const rawVer = String(cfg.versionInfo.version || "4.0.5.7").replace(/^v/i, "");
+    const rawVer = String(cfg.versionInfo.version || "4.0.5.24").replace(/^v/i, "");
     const parts = rawVer.split(".");
     const series = cfg.versionInfo.series || (parts.length >= 3 ? `V${parts[0]}.${parts[1]}.${parts[2]}` : `V${rawVer}`);
     const modCount = String(cfg.moduleCount || 23);

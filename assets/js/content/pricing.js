@@ -4,7 +4,7 @@
 
 (function () {
     window.RADPYS = window.RADPYS || {};
-    const versionStr = (window.RADPYS.VERSION_INFO && window.RADPYS.VERSION_INFO.version) || "4.0.5.22";
+    const versionStr = (window.RADPYS.VERSION_INFO && window.RADPYS.VERSION_INFO.version) || "4.0.5.24";
 
     const TIERS_DATA = [
             {
@@ -156,7 +156,7 @@
             },
             {
                     "q": "Verilerimiz nerede saklanıyor ve KVKK güvenliği nasıl sağlanıyor?",
-                    "a": "RADPYS V4 verileriniz kurumunuzun kendi bünyesinde yerel sunucu veya bilgisayarlarda AES-256 ve SQLCipher ile şifrelenerek saklanır. PostgreSQL kurumsal altyapısı ile güvenli yedekleme ve KVKK uyumluluğu sağlanır."
+                    "a": "RADPYS V4 verileriniz kurumunuzun kendi bünyesinde yerel sunucu veya bilgisayarlarda AES-256 Fernet şifreli evrak kasası ile korunarak saklanır. PostgreSQL kurumsal altyapısı ile güvenli yedekleme ve tam KVKK uyumluluğu sağlanır."
             },
             {
                     "q": "Mevcut sistemimizden ve Excel'den geçiş yapabilir miyiz?",

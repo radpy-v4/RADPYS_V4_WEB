@@ -5,14 +5,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description"
-        content="RADPYS V4 sürüm notları ve yenilikler kılavuzu (v4.0.5.22): 23 modül standardizasyonu, web portal saha bildirimleri, nöbet/izin/şua entegrasyonu, DÖF sihirbazı, NDK RSGD-KLV-014, DIN 6857-1 skopi kalite kontrolü ve PostgreSQL kurumsal mimarisi." />
-    <meta name="keywords" content="RADPYS sürüm notları, changelog, RADPYS V4.0.5.22, RADPYS güncellemeler, yeni özellikler, versiyon geçmişi, RADPYS V4 changelog, update.md" />
+        content="RADPYS V4 sürüm notları ve yenilikler kılavuzu (v4.0.5.24): 23 modül standardizasyonu, web portal saha bildirimleri, nöbet/izin/şua entegrasyonu, DÖF sihirbazı, NDK RSGD-KLV-014, DIN 6857-1 skopi kalite kontrolü ve PostgreSQL kurumsal mimarisi." />
+    <meta name="keywords" content="RADPYS sürüm notları, changelog, RADPYS V4.0.5.24, RADPYS güncellemeler, yeni özellikler, versiyon geçmişi, RADPYS V4 changelog, update.md" />
     <meta name="author" content="RADPYS Yazılım" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="theme-color" content="#0f172a" />
     <meta name="geo.region" content="TR" />
     <meta name="geo.placename" content="Türkiye" />
-    <title>Sürüm Notları ve Yenilikler (v4.0.5.22) — RADPYS V4</title>
+    <title>Sürüm Notları ve Yenilikler (v4.0.5.24) — RADPYS V4</title>
 
     <link rel="icon" type="image/x-icon" href="images/logo.ico" />
     <link rel="icon" type="image/webp" href="images/logo.webp" />
@@ -24,9 +24,9 @@
     <meta property="og:url" content="https://radpys.com.tr/changelog.html" />
     <meta property="og:site_name" content="RADPYS V4" />
     <meta property="og:locale" content="tr_TR" />
-    <meta property="og:title" content="Sürüm Notları ve Yenilikler (v4.0.5.22) — RADPYS V4" />
+    <meta property="og:title" content="Sürüm Notları ve Yenilikler (v4.0.5.24) — RADPYS V4" />
     <meta property="og:description"
-        content="RADPYS V4 sürüm notları ve yenilikler kılavuzu (v4.0.5.22): 23 modül standardizasyonu, web portal saha bildirimleri, nöbet/izin/şua entegrasyonu, DÖF sihirbazı, NDK RSGD-KLV-014, DIN 6857-1 skopi kalite kontrolü ve PostgreSQL kurumsal mimarisi." />
+        content="RADPYS V4 sürüm notları ve yenilikler kılavuzu (v4.0.5.24): 23 modül standardizasyonu, web portal saha bildirimleri, nöbet/izin/şua entegrasyonu, DÖF sihirbazı, NDK RSGD-KLV-014, DIN 6857-1 skopi kalite kontrolü ve PostgreSQL kurumsal mimarisi." />
     <meta property="og:image" content="https://radpys.com.tr/images/main_logo.webp" />
     <meta property="og:image:secure_url" content="https://radpys.com.tr/images/main_logo.webp" />
     <meta property="og:image:type" content="image/webp" />
@@ -36,9 +36,9 @@
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Sürüm Notları ve Yenilikler (v4.0.5.22) — RADPYS V4" />
+    <meta name="twitter:title" content="Sürüm Notları ve Yenilikler (v4.0.5.24) — RADPYS V4" />
     <meta name="twitter:description"
-        content="RADPYS V4 sürüm notları ve yenilikler kılavuzu (v4.0.5.22): 23 modül standardizasyonu, web portal saha bildirimleri, nöbet/izin/şua entegrasyonu, DÖF sihirbazı, NDK RSGD-KLV-014, DIN 6857-1 skopi kalite kontrolü ve PostgreSQL kurumsal mimarisi." />
+        content="RADPYS V4 sürüm notları ve yenilikler kılavuzu (v4.0.5.24): 23 modül standardizasyonu, web portal saha bildirimleri, nöbet/izin/şua entegrasyonu, DÖF sihirbazı, NDK RSGD-KLV-014, DIN 6857-1 skopi kalite kontrolü ve PostgreSQL kurumsal mimarisi." />
     <meta name="twitter:image" content="https://radpys.com.tr/images/main_logo.webp" />
     <meta name="twitter:image:alt" content="RADPYS V4 Sürüm Notları Logo" />
 
@@ -93,7 +93,7 @@
         .cl-item {
             position: relative;
             padding-left: 2.5rem;
-            margin-bottom: 3.5rem;
+            margin-bottom: 1.25rem;
             transition: all 0.3s ease;
         }
 
@@ -101,7 +101,7 @@
             content: "";
             position: absolute;
             left: 0.25rem;
-            top: 0.75rem;
+            top: 1.35rem;
             width: 0.7rem;
             height: 0.7rem;
             border-radius: 9999px;
@@ -172,7 +172,7 @@
             border: 1px solid rgba(255, 255, 255, 0.07);
             backdrop-filter: blur(12px);
             border-radius: 1rem;
-            padding: 1.5rem;
+            padding: 1.25rem 1.5rem;
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
@@ -188,6 +188,36 @@
 
         .card-panel:hover .anchor-btn {
             opacity: 1;
+        }
+
+        .cl-details summary {
+            list-style: none;
+            cursor: pointer;
+        }
+
+        .cl-details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .cl-details[open] {
+            border-color: rgba(20, 184, 166, 0.32);
+        }
+
+        .cl-chevron {
+            transition: transform 0.25s ease, color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .cl-details[open] .cl-chevron {
+            transform: rotate(180deg);
+            color: #5eead4;
+            background: rgba(20, 184, 166, 0.15);
+            border-color: rgba(20, 184, 166, 0.4);
+        }
+
+        @media (hover: none) {
+            .anchor-btn {
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -216,10 +246,10 @@
                         Canlı Kaynak: update.md
                     </span>
                     <span id="cl-hero-count" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300">
-                        81 Temel Bölüm
+                        83 Temel Bölüm
                     </span>
                     <span id="cl-hero-version" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-cyan-300">
-                        v4.0.5.22 Güncel Sürüm
+                        v4.0.5.24 Güncel Sürüm
                     </span>
                 </div>
             </div>
@@ -227,7 +257,7 @@
 
         <!-- CONTROLS & TIMELINE -->
         <section class="relative py-8">
-            <div class="max-w-4xl mx-auto px-6">
+            <div class="container-narrow">
                 <!-- Arama ve Filtre Çubuğu -->
                 <div class="mb-10 p-5 rounded-2xl border border-white/10 bg-[#0c1324]/85 backdrop-blur-xl shadow-2xl space-y-4">
                     <!-- Arama Kutusu -->
@@ -237,7 +267,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
                         </div>
-                        <input type="text" id="cl-search" placeholder="Sürüm notlarında ara (örn: V4.0.5.7, DÖF, NDK, DIN 6857, HEK, PostgreSQL, Şua, LMS, QR)..."
+                        <input type="text" id="cl-search" placeholder="Sürüm notlarında ara (örn: V4.0.5.24, DÖF, NDK, DIN 6857, HEK, PostgreSQL, Şua, LMS, QR)..."
                             class="w-full pl-10 pr-10 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-teal-400/60 focus:ring-1 focus:ring-teal-400/40 text-sm transition-all" />
                         <button id="cl-clear-search" class="hidden absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-white" aria-label="Aramayı Temizle">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -249,7 +279,7 @@
                     <!-- Kategori Filtreleri & Sıralama -->
                     <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-white/5">
                         <div class="flex flex-wrap gap-1.5" id="cl-categories">
-                            <button class="cl-filter-btn active px-3 py-1.5 rounded-lg text-xs font-medium border border-teal-400/40 bg-teal-500/20 text-teal-200" data-cat="all">Tümü (81)</button>
+                            <button class="cl-filter-btn active px-3 py-1.5 rounded-lg text-xs font-medium border border-teal-400/40 bg-teal-500/20 text-teal-200" data-cat="all">Tümü (83)</button>
                             <button class="cl-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium border border-white/10 bg-white/5 text-slate-300 hover:text-white hover:bg-white/10" data-cat="v405">V4.0.5 Serisi (8)</button>
                             <button class="cl-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium border border-white/10 bg-white/5 text-slate-300 hover:text-white hover:bg-white/10" data-cat="v404">V4.0.4 Serisi (11)</button>
                             <button class="cl-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium border border-white/10 bg-white/5 text-slate-300 hover:text-white hover:bg-white/10" data-cat="v403">V4.0.3 Serisi (22)</button>
@@ -288,7 +318,7 @@
                 <!-- DAHA FAZLA GÖSTER & TÜMÜNÜ GÖSTER -->
                 <div id="cl-load-more-wrap" class="hidden mt-8 text-center space-x-3">
                     <button id="cl-load-more-btn" class="btn btn-outline py-2.5 px-6 text-sm">
-                        Daha Fazla Göster (+10)
+                        Daha Fazla Göster (+15)
                     </button>
                     <button id="cl-show-all-btn" class="btn btn-ghost py-2.5 px-5 text-sm text-slate-400 hover:text-white">
                         Tümünü Göster
@@ -328,7 +358,7 @@
             let activeCategory = 'all';
             let searchQuery = '';
             let sortDesc = true; // Varsayılan: En yeniler (Bölüm 74 -> 1)
-            let displayLimit = 10; // Kademeli yükleme: İlk 10 kayıt
+            let displayLimit = 15; // Kademeli yükleme: İlk 15 kayıt
 
             const elList = document.getElementById('cl-list');
             const elLoading = document.getElementById('cl-loading');
@@ -773,37 +803,44 @@
 
                 // En güncel sürüm numarası (en yüksek numara)
                 const maxNum = Math.max(...allSections.map(s => s.num));
+                const activeHash = window.location.hash.replace('#', '');
 
                 elList.innerHTML = visibleItems.map((item, idx) => {
                     const isLatest = item.num === maxNum;
+                    const shouldOpen = isLatest || isSearching || activeHash === item.id;
                     return `
                     <article class="cl-item ${isLatest ? 'latest' : ''}" id="${item.id}">
-                        <div class="card-panel">
-                            <!-- Kart Üst Barı -->
-                            <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
-                                <div class="flex flex-wrap items-center gap-2">
-                                    <span class="tag tag-section">Bölüm ${item.num}</span>
-                                    <span class="tag tag-version">${item.tag}</span>
-                                    ${isLatest ? `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider font-bold bg-cyan-400 text-slate-950 shadow-sm shadow-cyan-400/50">Güncel Sürüm</span>` : ''}
+                        <details class="card-panel cl-details relative" ${shouldOpen ? 'open' : ''}>
+                            <button type="button" onclick="copyAnchorLink('${item.id}')" class="anchor-btn absolute top-5 right-14 w-7 h-7 flex items-center justify-center rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white text-xs transition-colors" title="Doğrudan bağlantıyı kopyala" aria-label="Doğrudan bağlantıyı kopyala">
+                                🔗
+                            </button>
+                            <summary class="select-none">
+                                <!-- Kart Üst Barı -->
+                                <div class="flex items-start justify-between gap-3 mb-2.5">
+                                    <div class="flex flex-wrap items-center gap-2 pr-10">
+                                        <span class="tag tag-section">Bölüm ${item.num}</span>
+                                        <span class="tag tag-version">${item.tag}</span>
+                                        ${isLatest ? `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider font-bold bg-cyan-400 text-slate-950 shadow-sm shadow-cyan-400/50">Güncel Sürüm</span>` : ''}
+                                    </div>
+                                    <span class="cl-chevron inline-flex items-center justify-center w-7 h-7 rounded-lg border border-white/10 bg-white/5 text-slate-300 shrink-0" aria-hidden="true">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </span>
                                 </div>
-                                <div class="flex items-center gap-2">
-                                    <button onclick="copyAnchorLink('${item.id}')" class="anchor-btn p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white text-xs transition-colors" title="Doğrudan bağlantıyı kopyala">
-                                        🔗
-                                    </button>
-                                </div>
-                            </div>
 
-                            <!-- Başlık -->
-                            <h3 class="font-display text-xl md:text-2xl text-white font-bold tracking-tight flex items-start gap-2.5">
-                                <span class="text-2xl shrink-0 select-none">${item.emoji}</span>
-                                <span class="leading-snug">${item.title}</span>
-                            </h3>
+                                <!-- Başlık -->
+                                <h3 class="font-display ${isLatest ? 'text-xl md:text-2xl' : 'text-lg md:text-xl'} text-white font-bold tracking-tight flex items-start gap-2.5">
+                                    <span class="text-xl md:text-2xl shrink-0">${item.emoji}</span>
+                                    <span class="leading-snug">${item.title}</span>
+                                </h3>
+                            </summary>
 
                             <!-- İçerik -->
                             <div class="mt-4 pt-4 border-t border-white/5 space-y-2 cl-body-content">
                                 ${renderMarkdown(item.bodyText)}
                             </div>
-                        </div>
+                        </details>
                     </article>`;
                 }).join('');
 
@@ -884,7 +921,7 @@
 
             if (elLoadMoreBtn) {
                 elLoadMoreBtn.addEventListener('click', () => {
-                    displayLimit += 10;
+                    displayLimit += 15;
                     render();
                 });
             }
@@ -909,6 +946,22 @@
                     window.location.hash = id;
                 });
             };
+
+            window.addEventListener('hashchange', () => {
+                const hash = window.location.hash.replace('#', '');
+                if (!hash) return;
+                let target = document.getElementById(hash);
+                if (!target && displayLimit < 1000) {
+                    displayLimit = 1000;
+                    render();
+                    target = document.getElementById(hash);
+                }
+                if (target) {
+                    const det = target.querySelector('details');
+                    if (det) det.open = true;
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
 
             // Sayfa açıldığında başlat
             loadChangelog();

@@ -92,7 +92,7 @@
               "name": "Verilerimiz nerede saklanıyor ve KVKK güvenliği nasıl sağlanıyor?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "RADPYS V4 verileriniz kurumunuzun kendi bünyesinde yerel sunucu veya bilgisayarlarda AES-256 ve SQLCipher ile şifrelenerek saklanır. PostgreSQL kurumsal altyapısı ile güvenli yedekleme ve KVKK uyumluluğu sağlanır."
+                "text": "RADPYS V4 verileriniz kurumunuzun kendi bünyesinde yerel sunucu veya bilgisayarlarda AES-256 Fernet şifreli evrak kasası ile korunarak saklanır. PostgreSQL kurumsal altyapısı ile güvenli yedekleme ve tam KVKK uyumluluğu sağlanır."
               }
             },
             {
@@ -234,7 +234,7 @@
                 });
 
                 const periodLabel = "ay";
-                const rawVer = (window.RADPYS.VERSION_INFO && window.RADPYS.VERSION_INFO.version) || "4.0.5.7";
+                const rawVer = (window.RADPYS.VERSION_INFO && window.RADPYS.VERSION_INFO.version) || "4.0.5.24";
 
                 document.getElementById("tiers").innerHTML = TIERS_DATA.map(t => {
                     let borderStyle = "border-white/10 bg-white/[0.02]";

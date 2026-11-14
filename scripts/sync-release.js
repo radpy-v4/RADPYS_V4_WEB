@@ -35,6 +35,8 @@ const CHANGELOG_HTML_PATH = path.join(ROOT, 'changelog.html');
 const SITEMAP_XML_PATH = path.join(ROOT, 'sitemap.xml');
 const HELP_APP_JS_PATH = path.join(HELP_DIR, 'assets', 'app.js');
 const HELP_SEARCH_INDEX_PATH = path.join(HELP_DIR, 'assets', 'search_index.js');
+const LLMS_TXT_PATH = path.join(ROOT, 'llms.txt');
+const LLMS_FULL_TXT_PATH = path.join(ROOT, 'llms-full.txt');
 
 function compareVersions(a, b) {
   const pa = String(a).replace(/^v/i, '').split('.').map(Number);
@@ -86,6 +88,131 @@ function getModuleCategory(fileName) {
   if (prefix >= 12 && prefix <= 17) return '4. Radyasyon Güvenliği & Eğitim';
   if (prefix >= 18 && prefix <= 20) return '5. Cihaz, Kalite (QC) & RKE';
   return '6. Dijital Dönüşüm, Onay & Rapor';
+}
+
+function htmlInlineToMd(text) {
+  return String(text || '')
+    .replace(/<svg\b[\s\S]*?<\/svg>/gi, '')
+    .replace(/<strong\b[^>]*>([\s\S]*?)<\/strong>/gi, '**$1**')
+    .replace(/<em\b[^>]*>([\s\S]*?)<\/em>/gi, '*$1*')
+    .replace(/<code\b[^>]*>([\s\S]*?)<\/code>/gi, '`$1`')
+    .replace(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi, '[$2]($1)')
+    .replace(/<\/?(?:div|span|p|ul|ol|li|u|small|sub|sup|h[1-6]|br|hr|svg|path)\b[^>]*>/gi, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"');
+}
+
+function convertGuideMdToLlms(mdRaw) {
+  const normalized = String(mdRaw || '').replace(/\r\n/g, '\n');
+  let meta = {};
+  let body = normalized;
+  const fmMatch = normalized.match(/^---json\n([\s\S]*?)\n---\n?/);
+  if (fmMatch) {
+    try {
+      meta = JSON.parse(fmMatch[1]);
+    } catch (_) {}
+    body = normalized.slice(fmMatch[0].length);
+  }
+
+  // Fenced code bloklarını koru (mermaid vb.)
+  const codeBlocks = [];
+  body = body.replace(/```[\s\S]*?```/g, block => {
+    const idx = codeBlocks.length;
+    codeBlocks.push(block);
+    return `\u0000CODEBLOCK_${idx}\u0000`;
+  });
+
+  body = body
+    .replace(/<svg\b[\s\S]*?<\/svg>/gi, '')
+    .replace(/^!\[.*?\]\(assets\/img\/.*?\).*$/gm, '')
+    .replace(/^:::.*$/gm, '')
+    .replace(/^-\s+\[metric\]\s*([^|\n]+?)\s*\|\s*([^|\n]+?)(?:\s*\|\s*[^\n]*)?$/gm, (_, k, v) => `- **${k.trim()}:** ${v.trim()}`)
+    .replace(/<h3\b[^>]*>([\s\S]*?)<\/h3>/gi, (_, inner) => `\n#### ${htmlInlineToMd(inner).replace(/\s+/g, ' ').trim()}\n`)
+    .replace(/<h4\b[^>]*>([\s\S]*?)<\/h4>/gi, (_, inner) => `\n##### ${htmlInlineToMd(inner).replace(/\s+/g, ' ').trim()}\n`)
+    .replace(/<strong\b[^>]*>([\s\S]*?)<\/strong>/gi, (_, s) => `**${s.replace(/\s+/g, ' ').trim()}**`)
+    .replace(/<em\b[^>]*>([\s\S]*?)<\/em>/gi, (_, s) => `*${s.replace(/\s+/g, ' ').trim()}*`)
+    .replace(/<code\b[^>]*>([\s\S]*?)<\/code>/gi, (_, s) => `\`${s.replace(/\s+/g, ' ').trim()}\``)
+    .replace(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi, (_, u, s) => `[${s.replace(/\s+/g, ' ').trim()}](${u})`)
+    .replace(/<\/?(?:div|span|p|ul|ol|u|small|sub|sup|hr)\b[^>]*>/gi, '');
+
+  const outLines = [];
+  for (let line of body.split('\n')) {
+    const isTable = /^\s*\|/.test(line);
+    if (isTable) {
+      line = line.replace(/<br\s*\/?>/gi, ' — ');
+      line = htmlInlineToMd(line).replace(/\s{2,}/g, ' ').trim();
+    } else {
+      line = line
+        .replace(/<br\s*\/?>/gi, '\n')
+        .replace(/<li\b[^>]*>/gi, '\n- ');
+      line = htmlInlineToMd(line);
+      line = line
+        .replace(/^(#{1,6}\s+.*?)\s*\{#[^}]+\}\s*$/, '$1')
+        .replace(/^(###\s+.*?)\s*\|\s*[a-z]+\s*$/, '$1')
+        .replace(/^###\s+/, '#### ')
+        .replace(/^##\s+/, '### ')
+        .trim();
+    }
+    outLines.push(line);
+  }
+
+  let cleanBody = outLines
+    .join('\n')
+    .replace(/\u0000CODEBLOCK_(\d+)\u0000/g, (_, idx) => codeBlocks[Number(idx)])
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+
+  return { meta, cleanBody };
+}
+
+function buildLlmsFullTxt(version) {
+  const catalogPath = path.join(HELP_SRC_DIR, '_catalog.json');
+  if (!fs.existsSync(catalogPath)) return;
+  const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
+  const guides = catalog.guides || [];
+
+  const header = [
+    `# RADPYS V4 — Kapsamlı Operasyonel Kullanım Kılavuzu (v${version})`,
+    '',
+    `> **Özet Kaynak:** [llms.txt](https://radpys.com.tr/llms.txt) | **Web Portal:** https://radpys.com.tr/ | **Yardım Portalı:** https://radpys.com.tr/help/index.html`,
+    `> Bu belge, RADPYS v${version} sürümünün ${guides.length} modül ve alt-kılavuz sayfasının tamamını kapsayan resmi Markdown referansıdır.`,
+    '',
+    '## İçindekiler',
+    ...guides.map(g => `- [${g.cardTitle || g.navTitle}](https://radpys.com.tr/help/${g.slug}.html)`),
+    ''
+  ];
+
+  const sections = [];
+  for (const g of guides) {
+    const mdPath = path.join(HELP_SRC_DIR, `${g.slug}.md`);
+    if (!fs.existsSync(mdPath)) continue;
+    const raw = fs.readFileSync(mdPath, 'utf8');
+    const { meta, cleanBody } = convertGuideMdToLlms(raw);
+    const title = meta.h1 || g.cardTitle || g.navTitle;
+    const lead = meta.lead ? htmlInlineToMd(meta.lead).replace(/\s+/g, ' ').trim() : '';
+    const legal = meta.legalNote ? htmlInlineToMd(meta.legalNote).replace(/\s+/g, ' ').trim() : '';
+
+    const part = [
+      '---',
+      '',
+      `## ${g.num}. ${title}`,
+      '',
+      `> Kaynak Rehber: https://radpys.com.tr/help/${g.slug}.html`,
+      lead ? `\n${lead}` : '',
+      legal ? `\n> ${legal}` : '',
+      '',
+      cleanBody,
+      ''
+    ].filter(line => line !== null);
+
+    sections.push(part.join('\n').replace(/\n{3,}/g, '\n\n'));
+  }
+
+  const fullContent = [...header, ...sections].join('\n').replace(/\n{3,}/g, '\n\n').trim() + '\n';
+  writeIfChanged(LLMS_FULL_TXT_PATH, fullContent, `llms-full.txt (${guides.length} rehber, v${version})`);
 }
 
 function buildHelpSearchIndex() {
@@ -332,6 +459,30 @@ function verifyIntegrity(version, sectionCount) {
     console.log(`• sitemap.xml içerisindeki ${locCount} URL doğrulandı.`);
   }
 
+  // 5. llms.txt & llms-full.txt doğrulaması
+  for (const llmsFile of [LLMS_TXT_PATH, LLMS_FULL_TXT_PATH]) {
+    if (!fs.existsSync(llmsFile)) continue;
+    const baseName = path.basename(llmsFile);
+    const txt = fs.readFileSync(llmsFile, 'utf8');
+    if (/RADPYS\s+V3/i.test(txt)) {
+      console.error(`  ✗ ${baseName} içinde eski 'RADPYS V3' ibaresi bulundu!`);
+      errors++;
+    }
+    if (/SQLCipher/i.test(txt)) {
+      console.error(`  ✗ ${baseName} içinde eski 'SQLCipher' ibaresi bulundu!`);
+      errors++;
+    }
+    const helpLinkRe = /https:\/\/radpys\.com\.tr\/help\/([a-zA-Z0-9_.-]+\.html)/g;
+    let hlm;
+    while ((hlm = helpLinkRe.exec(txt)) !== null) {
+      if (!fs.existsSync(path.join(HELP_DIR, hlm[1]))) {
+        console.error(`  ✗ Kırık yardım bağlantısı [${baseName}]: help/${hlm[1]}`);
+        errors++;
+      }
+    }
+  }
+  console.log('• llms.txt ve llms-full.txt temizlik & link doğrulaması tamamlandı.');
+
   if (errors > 0) process.exit(1);
 }
 
@@ -443,6 +594,7 @@ function main() {
         .replace(/"softwareVersion":\s*"4\.\d+\.\d+\.\d+"/g, `"softwareVersion": "${version}"`)
         .replace(/(data-radpys-version="v">)v4\.\d+\.\d+\.\d+(<\/span>)/g, `$1v${version}$2`)
         .replace(/(data-radpys-version="V">)V4\.\d+\.\d+\.\d+(<\/span>)/g, `$1V${version}$2`)
+        .replace(/(data-radpys-version="RADPYS V\{v\}[^"]*">RADPYS V)4\.\d+\.\d+\.\d+/g, `$1${version}`)
         .replace(/(data-radpys-version="Sürüm: \{v\}">\s*)Sürüm:\s*4\.\d+\.\d+\.\d+(\s*<\/span>)/g, `$1Sürüm: ${version}$2`);
       writeIfChanged(filePath, updated, `${file} (SEO v${version})`);
     }
@@ -457,9 +609,10 @@ function main() {
       writeIfChanged(readmePath, updatedReadme, `README.md (v${version})`);
     }
 
-    // 4. help/ dosyalarını ve search_index.js arama indeksini senkronize et
+    // 4. help/ dosyalarını, search_index.js ve llms-full.txt dosyalarını senkronize et
     syncHelpFiles(version);
     buildHelpSearchIndex();
+    buildLlmsFullTxt(version);
 
     // 5. sitemap.xml <lastmod> tarihlerini güncelle
     if (fs.existsSync(SITEMAP_XML_PATH)) {

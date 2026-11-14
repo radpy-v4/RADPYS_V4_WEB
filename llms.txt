@@ -7,7 +7,7 @@
 ## Genel Bakış
 RADPYS V4, radyasyon alanında görev yapan personelin (Radyoloji Teknisyenleri/Teknikerleri, Radyoloji Uzmanları, Sağlık Fizikçileri, RGS/RSO) tüm idari, tıbbi, radyasyon güvenliği ve yasal takip süreçlerini yerel ağ (Intranet/PostgreSQL 14+) ve AES-256 Fernet şifreli KVKK evrak kasası altyapısıyla yönetir. "Hastaneden dışarı tek bir bayt veri çıkmaz."
 
-## Temel Modüller ve Yetenekler (21+ Entegre Modül)
+## Temel Modüller ve Yetenekler (23 Entegre Modül)
 
 1. **Kurulum & İlk Giriş:** Çok kullanıcılı PostgreSQL veya yerel veritabanı desteği, otomatik şema migrasyonu ([Rehber](https://radpys.com.tr/help/01_kurulum_ve_ilk_giris.html)).
 2. **Kullanıcı & Rol Yönetimi:** 5 kademeli RBAC (Admin, Sorumlu, RKS/RGS, Hekim, Personel) yetki matrisi ([Rehber](https://radpys.com.tr/help/02_kullanici_ve_rol_yonetimi.html)).
@@ -16,7 +16,7 @@ RADPYS V4, radyasyon alanında görev yapan personelin (Radyoloji Teknisyenleri/
 5. **Personel Yönetimi & Toplu Aktarım:** Excel/CSV personel import, sağlık ve çalışma kısıtları ([Rehber](https://radpys.com.tr/help/05_personel_yonetimi_ve_toplu_aktarim.html)).
 6. **İzin Yönetimi & Şua Hakedişi:** 3153 sayılı kanun ve kıstelyevm esasına göre 0-30 gün yasal Şua İzni hesabı ([Rehber](https://radpys.com.tr/help/06_izin_yonetimi_ve_hakedis.html)).
 7. **Nöbet Ayarları & Kısıt Hiyerarşisi:** 5 katmanlı nöbet kural motoru, dinlenme süreleri ve adalet ağırlıkları ([Rehber](https://radpys.com.tr/help/07_nobet_ayarlari_ve_kisit_hiyerarsisi.html)).
-8. **Nöbet Solver Motoru & Hazırlık:** Kısıt-bilinçli otomatik nöbet çizelgeleme motoru ve adalet puanlaması ([Rehber](https://radpys.com.tr/help/08_nobet_hazirlik_ve_solver_motoru.html)).
+8. **Nöbet Solver Motoru & Hazırlık:** Google OR-Tools CP-SAT tabanlı kısıt-bilinçli otomatik nöbet çizelgeleme motoru ve adalet puanlaması ([Rehber](https://radpys.com.tr/help/08_nobet_hazirlik_ve_solver_motoru.html)).
 9. **Nöbet Devir, İkame & Acil Mazeret:** Çift taraflı onaylı devir, acil mazeret ve nöbet havuzu ([Rehber](https://radpys.com.tr/help/09_nobet_devir_ikame_ve_acil_mazeret.html)).
 10. **Nöbet Borç-Alacak & Fazla Mesai:** Fazla mesai dengelemesi, nöbet borç/alacak cari takibi ([Rehber](https://radpys.com.tr/help/10_nobet_borc_alacak_ve_fazla_mesai.html)).
 11. **Fiili Hizmet Süresi Zammı (FHZ):** SGK ve Sağlık Bakanlığı yıpranma payı ve radyasyonlu gün ayrıştırması ([Rehber](https://radpys.com.tr/help/11_fiili_hizmet_ve_sua_hesaplama.html)).
@@ -27,10 +27,11 @@ RADPYS V4, radyasyon alanında görev yapan personelin (Radyoloji Teknisyenleri/
 16. **RGS / RSO Görevlendirme & Sertifikalar:** Radyasyon Güvenliği Sorumlusu ve Komite (RGK) yasal atama takibi ([Rehber](https://radpys.com.tr/help/16_rgs_rso_gorevlendirme_ve_sertifika.html)).
 17. **Hizmet İçi Eğitim & Online Sınav LMS:** Soru bankası, online personel sınavları ve SKS 6.1 T.1-T.11 Kalite Dokümanları Uyum Matrisi ([Rehber](https://radpys.com.tr/help/17_hizmet_ici_egitim_ve_online_sinav.html)).
 18. **Tıbbi Cihaz, NDK Lisansı & RKP Motoru:** Röntgen, BT, MR, Skopi, Anjiyo, NDK RSGD-KLV-014 RKP Başvuru Sihirbazı ve İki Aşamalı Mühürlü HEK ([Rehber](https://radpys.com.tr/help/18_tibbi_cihaz_ve_ndk_lisans_envanteri.html)).
-19. **Cihaz Arıza, Bakım & QC Kalite Kontrol:** Günlük/haftalık periyodik QC testleri, servis çağrıları ve mobil QR arıza bildirme ([Rehber](https://radpys.com.tr/help/19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html)).
+19. **Cihaz Arıza, Bakım & Kalite Kontrol (KKT/KUT):** TİTCK uyumlu KKT/KUT ve ihale bakım takvimi, Web saha evrak kasası ve mobil QR arıza bildirme ([Rehber](https://radpys.com.tr/help/19_cihaz_ariza_bakim_ve_kalite_kontrol_qc.html)).
 20. **RKE Koruyucu Ekipman & DIN 6857-1 Standardı:** Kurşun önlük, tiroid koruyucu ve gonatların barkodlu pasaportu, skopi muayene motoru ve Muayene Karnesi ([Rehber](https://radpys.com.tr/help/20_rke_koruyucu_ekipman_ve_din6857.html)).
-21. **Merkezi Onaylar, Klinik Raporlama & Tutanak Merkezi:** 5 kategori onay kuyruğu, görsel diff view, PDF/Excel resmi belge standardı ve Tutanak Sihirbazı ([Rehber](https://radpys.com.tr/help/21_merkezi_onaylar_ve_rapor_merkezi.html)).
-22. **Mobil Web Portalı & Dashboardlar:** PWA destekli, mobil ve tablet uyumlu personel kokpiti ([Rehber](https://radpys.com.tr/help/22_web_portal_ve_dashboardlar.html)).
+21. **Merkezi Onaylar & Veri Değişiklik Denetimi:** 5 kategori onay kuyruğu, görsel diff view (eski vs yeni veri karşılaştırması) ve çok adımlı onay akışı ([Rehber](https://radpys.com.tr/help/21_merkezi_onaylar.html)).
+22. **Mobil Web Portalı & Dashboardlar:** Yüklenebilir PWA mobil uygulama kurulumu, 2FA OTP dış ağ güvenliği, karanlık oda dostu QR kamera ve personel saha kokpiti ([Rehber](https://radpys.com.tr/help/22_web_portal_ve_dashboardlar.html)).
+23. **Klinik Raporlama & Tutanak Yönetim Merkezi:** 26 resmi PDF/Excel raporu, Rapor Tasarım Stüdyosu, Evrensel Tutanak Sihirbazı ve EBYS mühürlü Resmi Tutanaklar Kasası ([Rehber](https://radpys.com.tr/help/23_rapor_tutanak_merkezi.html)).
 
 ## Paketler & Fiyatlandırma
 - **Başlangıç Paketi (STARTER):** Sınırsız Personel (Nöbet Solver, Nöbet Devir/İkame, Borç/Alacak, Personel Yönetimi, Şua/Yıllık İzin ve Evrensel Onay modülleri)

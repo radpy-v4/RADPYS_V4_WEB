@@ -10,7 +10,7 @@
                             {
                                     "tabLabel": "Nöbet Solver Motoru",
                                     "title": "Modül 08: Otomatik Nöbet Solver Motoru & Kısıt Çözücü",
-                                    "desc": "CBC / PuLP tabanlı matematiksel kısıt optimizasyonu ve adil nöbet dağıtım matrisi.",
+                                    "desc": "Google OR-Tools CP-SAT tabanlı matematiksel kısıt optimizasyonu ve adil nöbet dağıtım matrisi.",
                                     "img": "help/assets/img/08_nobet_cizelge_dialog.png",
                                     "link": "moduller.html#m-08"
                             },
@@ -37,8 +37,8 @@
                             },
                             {
                                     "tabLabel": "Cihaz & QC Yönetimi",
-                                    "title": "Modül 19: Tıbbi Cihaz Arıza, Bakım & Kalite Kontrol (QC)",
-                                    "desc": "Karekodla arıza kaydı, X-ışını tüp değişimi senkronizasyonu ve QC güvenlik karantina kilidi.",
+                                    "title": "Modül 19: Tıbbi Cihaz Arıza, Bakım & Kalite Kontrol (KKT/KUT)",
+                                    "desc": "TİTCK uyumlu KKT/KUT ve ihale bakım takvimi, QR arıza kaydı ve otomatik güvenlik karantina kilidi.",
                                     "img": "help/assets/img/19_1_cihaz_ariza_bakim_ve_kalite_kontrol_qc.png",
                                     "link": "moduller.html#m-19"
                             },
@@ -161,27 +161,12 @@
                                     "id": "wave1",
                                     "num": "01",
                                     "color": "teal",
-                                    "gridCols": "lg:grid-cols-3",
+                                    "gridCols": "lg:grid-cols-2",
                                     "kicker": "Öncelikli Dağıtım",
                                     "title": "DALGA 1: Altyapısı Hazır Hızlı Kazanımlar",
                                     "phases": [
                                             {
                                                     "code": "FAZ 01",
-                                                    "status": "Altyapı Hazır",
-                                                    "statusDot": "bg-emerald-400 animate-ping",
-                                                    "statusColor": "text-emerald-400",
-                                                    "title": "Saha / Tablet QR-Barkod Muayene & Hızlı Envanter Asistanı",
-                                                    "desc": "Medikal Fizikçiler ve RKE sorumluları için sahada doğrudan tablet kamerasıyla QR/Barkod okutma, skopi altındaki kurşun önlük ve paravan çatlaklarını interaktif krokide işaretleme ve anlık fotoğraf kaydı.",
-                                                    "bullets": [
-                                                            "DIN 6857-1 skopi kusur haritalama & interaktif grid",
-                                                            "Çevrimdışı (Offline-first) PWA & SQLite yerel önbellek",
-                                                            "Otomatik barkodlu durum etiketi & seri no eşleme"
-                                                    ],
-                                                    "footerLeft": "Odak: RKE & Saha Hızı",
-                                                    "footerRight": "Mobil / Tablet PWA"
-                                            },
-                                            {
-                                                    "code": "FAZ 02",
                                                     "status": "Foundation AI",
                                                     "statusDot": "bg-cyan-400",
                                                     "statusColor": "text-cyan-400",
@@ -191,22 +176,22 @@
                                                     "bullets": [
                                                             "Sıfır ek model eğitimi (Zero-Shot) ile yüksek doğruluk",
                                                             "Çok değişkenli (Vaka yoğunluğu, modalite, nöbet) risk tahmini",
-                                                            "Radyasyonsuz alanlara (MRG/USG) otomatik akıllı rotasyon"
+                                                            "Doz trendine göre radyasyonsuz alanlara (MRG/USG) proaktif rotasyon simülasyonu"
                                                     ],
                                                     "footerLeft": "Odak: Kestirimci Güvenlik",
                                                     "footerRight": "TimesFM 1.0 AI"
                                             },
                                             {
-                                                    "code": "FAZ 03",
+                                                    "code": "FAZ 02",
                                                     "status": "Denetim Simülatörü",
                                                     "statusDot": "bg-teal-400",
                                                     "statusColor": "text-teal-400",
                                                     "title": "NDK & SKS \"Otomatik Denetim Simülatörü\" & Uygunsuzluk Risk Karnesi",
-                                                    "desc": "Tek tıkla kurumun tüm veritabanını tarar; lisans vizeleri, eksik kalibrasyonlar, muayenesiz kurşun önlükler ve şua izinlerini 100 puanlık resmi NDK/SKS 6.1 denetim risk karnesine dönüştürür.",
+                                                    "desc": "Mevcut denetim hazırlık panosunu ileri taşıyarak tüm veritabanını resmi teftiş senaryosuyla simüle eder; açık bulguları 100 puanlık ağırlıklı NDK/SKS 6.1 risk karnesine dönüştürüp düzeltici aksiyon planı üretir.",
                                                     "bullets": [
-                                                            "Resmi NDK / SKS Sağlıkta Kalite maddeleriyle birebir eşleşme",
-                                                            "Otomatik DÖF (Düzeltici Önleyici Faaliyet) görevi atama",
-                                                            "Yönetici özet denetim hazırbulunuşluk PDF çıktısı"
+                                                            "Ağırlıklı 100 puanlık resmi NDK / SKS 6.1 teftiş simülasyon motoru",
+                                                            "Tespit edilen uygunsuzluklardan tek tıkla otomatik DÖF / CAPA görevi atama",
+                                                            "Başhekimlik & RKS için yönetici özet denetim hazırbulunuşluk PDF karnesi"
                                                     ],
                                                     "footerLeft": "Odak: Sıfır İdari Ceza",
                                                     "footerRight": "Mevzuat Uyumu"
@@ -222,23 +207,23 @@
                                     "title": "DALGA 2: Kurumsal İletişim, Etkileşimli Onay ve DICOM Entegrasyonu",
                                     "phases": [
                                             {
-                                                    "code": "FAZ 04",
-                                                    "status": "Kurumsal Tebligat",
+                                                    "code": "FAZ 03",
+                                                    "status": "SMS & Dijital Tebligat",
                                                     "statusColor": "text-cyan-400",
-                                                    "title": "E-Posta & SMS Bildirim, Tebligat, Kanal Ayrıştırmalı OTP & Magic-Link Onay Sistemi",
-                                                    "desc": "Kademeli kurumsal onay (Birim Sorumlusu → Medikal Fizik → Başhekimlik), SMS OTP doğrulaması ve kritik NDK limit aşımı/kaza bildirimlerinde zorunlu paralel SMS fail-safe mimarisi.",
+                                                    "title": "Kurumsal SMS Ağ Geçidi, Magic-Link Hızlı Onay & Takvim (.ics) Entegrasyonu",
+                                                    "desc": "Mevcut kurumsal e-posta ve 2FA OTP altyapısını SMS ağ geçidiyle tamamlar; kritik NDK limit aşımı/kaza alarmlarında paralel SMS fail-safe bildirimi, Magic-Link dış onay ve takvim aboneliği sunar.",
                                                     "bullets": [
-                                                            "Tek kullanımlık tokenlı Magic-Link onay",
-                                                            "Resmi tebligat teslim & okundu logu (HMAC-SHA256)",
-                                                            "Güvenli takvim (.ics) ve PDF indirme tokenları",
-                                                            "Kurumsal DMZ / Proxy ve SMTP/SMS gateway desteği"
+                                                            "Kritik doz aşımı ve acil olaylarda paralel SMS fail-safe uyarısı",
+                                                            "Tek kullanımlık imzalı Magic-Link ile hızlı dış onay akışı",
+                                                            "Resmi dijital tebligat teslim & okundu kanıt logu (HMAC-SHA256)",
+                                                            "Nöbet, izin ve cihaz kalibrasyon takvimi için güvenli .ics aboneliği"
                                                     ],
                                                     "twoColBullets": true,
-                                                    "footerLeft": "Protokol: OTP + Magic-Link + HMAC",
+                                                    "footerLeft": "Protokol: SMS Gateway + Magic-Link + .ics",
                                                     "footerRight": "KVKK & Güvenlik"
                                             },
                                             {
-                                                    "code": "FAZ 05",
+                                                    "code": "FAZ 04",
                                                     "status": "PACS / DICOM Bridge",
                                                     "statusColor": "text-cyan-400",
                                                     "title": "PACS / DICOM RDSR Doz Akış Köprüsü (C-STORE SCP Servisi)",
@@ -264,7 +249,7 @@
                                     "title": "DALGA 3: İleri Seviye IoT, Edge AI ve Klinik Optimizasyon",
                                     "phases": [
                                             {
-                                                    "code": "FAZ 06",
+                                                    "code": "FAZ 05",
                                                     "status": "IoT Telemetri",
                                                     "statusColor": "text-purple-400",
                                                     "title": "IoT Gerçek Zamanlı Ortam Dedektör Telemetrisi & Mimari Canlı Isı Haritası",
@@ -278,7 +263,7 @@
                                                     "footerRight": "Canlı Telemetri"
                                             },
                                             {
-                                                    "code": "FAZ 07",
+                                                    "code": "FAZ 06",
                                                     "status": "Edge Vision AI",
                                                     "statusColor": "text-pink-400",
                                                     "glow": true,
@@ -293,7 +278,7 @@
                                                     "footerRight": "Edge Güvenlik"
                                             },
                                             {
-                                                    "code": "FAZ 08",
+                                                    "code": "FAZ 07",
                                                     "status": "Klinik Optimizasyon",
                                                     "statusColor": "text-purple-400",
                                                     "title": "Hasta Kümülatif Doz Takibi, Ulusal DRL Optimizasyonu & Kestirimci Tüp Ömrü",
@@ -332,13 +317,13 @@
                                     "badge": "KVKK",
                                     "color": "pink",
                                     "title": "On-Premises & AES-256",
-                                    "desc": "PostgreSQL 16, SQLCipher ve HMAC imzalı token mimarisiyle tam yasal mevzuat uyumu."
+                                    "desc": "PostgreSQL 16, AES-256 Fernet şifreli evrak kasası ve HMAC imzalı token mimarisiyle tam yasal mevzuat uyumu."
                             }
                     ],
                     "faq": [
                             {
                                     "q": "Bu yeni modüller mevcut RADPYS V4 kullanıcılarına nasıl sunulacak?",
-                                    "a": "Dalga 1 modülleri (Saha QR Asistanı, TimesFM Doz AI ve Denetim Simülatörü) V4.2 ve V4.3 minör güncellemeleri olarak Elit ve Pro lisans sahiplerine otomatik ve ücretsiz olarak dağıtılacaktır."
+                                    "a": "Dalga 1 modülleri (TimesFM Doz AI ve Otomatik Denetim Simülatörü) planlanan ara güncellemeler kapsamında Elit ve Pro lisans sahiplerine otomatik ve ücretsiz olarak dağıtılacaktır."
                             },
                             {
                                     "q": "PACS ve DICOM RDSR köprüsü hastane ağında güvenlik açığı yaratır mı?",

@@ -5,11 +5,11 @@
 (function () {
     window.RADPYS = window.RADPYS || {};
     const VERSION_INFO = {
-            "version": "4.0.5.22",
+            "version": "4.0.5.24",
             "series": "V4.0.5",
-            "release_date": "2026-11-13",
+            "release_date": "2026-11-14",
             "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-            "changelog_sections": 81
+            "changelog_sections": 83
     };
 
     const SITE_CONFIG = {
@@ -17,11 +17,7 @@
             "siteUrl": "https://radpys.com.tr",
             "downloadUrl": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
             "contact": {
-                    "email": "radpys.iletisim@gmail.com",
-                    "phone": "+90 312 000 00 00",
-                    "address": "Cyberpark Teknoloji Geliştirme Bölgesi, Bilkent, Ankara",
-                    "cityTag": "Ankara / TR",
-                    "coords": "39.90° K · 32.85° D",
+                    "email": "iletisim@radpys.com.tr",
                     "googleScriptUrl": "https://script.google.com/macros/s/AKfycbyZqr30B2-7LR8TerL6G71biIAAUHuye333Pd5gFut56PvvxquLWg7Tq-3q6Sb0mm0H/exec"
             },
             "socials": {
