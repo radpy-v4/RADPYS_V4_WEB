@@ -1,10 +1,10 @@
 {
-  "version": "4.0.5.24",
-  "release_version": "4.0.5.24",
-  "build_version": "4.0.5.24",
-  "latest_demo_version": "4.0.5.24",
-  "release_date": "2026-11-14",
+  "version": "4.0.5.27",
+  "release_version": "4.0.5.27",
+  "build_version": "4.0.5.27",
+  "latest_demo_version": "4.0.5.27",
+  "release_date": "2026-11-15",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.5.24: TİTCK (TCS-KLVZ-06) Uyumlu Cihaz Kalite Kontrol (KKT/KUT) ve İhale Takvimi, Web Portal Cihaz Bakım/QC Saha Yönetimi ve Çift Yönlü KVKK Kasası, Yerel HTTPS (:3443) ile PWA Kurulumu & Karanlık Oda Kamera Deneyimi ve %100 Türkçe Tek Dil Standardizasyonu.",
+  "changelog": "RADPYS V4.0.5.27: Cihaz Arıza, Periyodik Bakım ve Kalite Kontrol (QC) Ekranlarında Kompakt Tablo ve Diyalog İyileştirmeleri, Birleşik Çoklu Cihaz Bakım Planlama, Şifreli Evrak Kasası Anlık Belge Önizleme, Evrensel Onay Sistemi Entegrasyonu, Esnek Raporlama Veri Setleri ve Dinamik Tema İkon Motoru.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }

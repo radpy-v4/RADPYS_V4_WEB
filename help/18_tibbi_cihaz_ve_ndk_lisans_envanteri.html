@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.24</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.27</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -154,7 +154,7 @@
     </div>
     <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-emerald-200 dark:border-emerald-800/60 text-emerald-900 dark:text-emerald-200 leading-relaxed">
       <span class="font-bold block mb-1">Gerçek Sistem Mantığı:</span>
-      <div>Cihaz Kodu ilişkisel veri bütünlüğünü korumak için <strong>sistem tarafından otomatik üretilir ve kilitlidir</strong>. Kurum içi demirbaş veya ÇKYS takibi için formdaki <strong>Demirbaş No</strong> alanı kullanılır. Ayrıca sistemde cihazlar asla kalıcı silinmez; geçmiş kalite kontrol, arıza ve dozimetri izini korumak için <strong>[Sil / HEK]</strong> butonuyla Hurda Arşivine kaldırılır.</div>
+      <div>Cihaz Kodu ve Cihaz No ilişkisel veri bütünlüğünü korumak için <strong>sistem tarafından otomatik üretilir</strong>. Düzenleme modunda Cihaz No, Kaynak Grubu ve Cihaz Türü kilitlenir; yalnızca Birim değiştirilirse Cihaz Kodu yeni birime göre otomatik güncellenir. Kurum içi demirbaş veya ÇKYS takibi için formdaki <strong>Demirbaş No</strong> alanı kullanılır. Ayrıca sistemde cihazlar asla kalıcı silinmez; geçmiş kalite kontrol, arıza ve dozimetri izini korumak için <strong>[HEK]</strong> butonuyla resmi HEK Tutanağı eşliğinde Hurda Arşivine kaldırılır.</div>
     </div>
   </div>
 </div>
@@ -188,24 +188,24 @@
     </thead>
     <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Yeni Cihaz Tanımlama<br> <span class="text-xs font-normal text-slate-400 font-mono">[Yeni Cihaz Butonu]</span></td>
-        <td class="py-3.5 px-4">Hastaneye teslim alınan cihazın teknik künyesini ve lisansını açmak.</td>
-        <td class="py-3.5 px-4">5 sekmeli sihirbaz açılır: Genel Künye, NDK Lisans, Garanti, Kat Planı ve Şifreli Evrak Kasası doldurulur.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Yeni Cihaz Tanımlama ve 7 Sütunlu Tablo<br> <span class="text-xs font-normal text-slate-400 font-mono">[Yeni Cihaz Butonu]</span></td>
+        <td class="py-3.5 px-4">Hastaneye teslim alınan cihazın teknik künyesini açmak ve sade ana listede takip etmek.</td>
+        <td class="py-3.5 px-4">5 sekmeli sihirbaz açılır: Genel Künye, NDK Lisans, Garanti, Kat Planı ve Kılavuzlar ve Belgeler doldurulur. Ana envanter tablosu Cihaz Kodu (kontrast rozetli modalite ikonuyla), Cihaz Türü, Marka/Model, Departman, NDK Lisans No, Lisans Bitiş ve Durum olmak üzere 7 sütundan oluşur; Cihaz No ve Bina/Yerleşke detayı ipucunda sunulur.</td>
         <td class="py-3.5 px-4">Yeni cihaz alımında veya devralındığında.</td>
         <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Biyomedikal / RGS</span></td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Otomatik Cihaz Kodu & Kademeli Birim Seçimi<br> <span class="text-xs font-normal text-slate-400 font-mono">[Cihaz Kodu (Kilitli) / A.B.D. & Birim]</span></td>
-        <td class="py-3.5 px-4">Mükerrer cihaz kodlarını ve A.B.D. ile Birim arasındaki hiyerarşik uyumsuzlukları önlemek.</td>
-        <td class="py-3.5 px-4">Anabilim Dalı seçildiğinde Birim listesi otomatik filtrelenir. Seçilen parametrelere göre Cihaz Kodu sistem tarafından otomatik üretilir ve kullanıcı müdahalesine karşı kalıcı salt okunur kilitlenir.</td>
-        <td class="py-3.5 px-4">Yeni cihaz tanımlanırken veya düzenlenirken.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Akıllı Cihaz No, Kilitli Alanlar ve Birim Değişiminde Kod Yenileme<br> <span class="text-xs font-normal text-slate-400 font-mono">[Cihaz No / Cihaz Kodu / A.B.D. & Birim]</span></td>
+        <td class="py-3.5 px-4">Modalite başına gerçek aktif cihaz sırasını korumak, devirlerde kodu otomatik güncellemek ve kimlik kaymasını önlemek.</td>
+        <td class="py-3.5 px-4">Anabilim Dalı seçildiğinde Birim listesi otomatik filtrelenir; sistem silinen cihazlardan kalan numaraları doldurarak modalite bazlı Cihaz No üretir. Düzenleme modunda Cihaz No, Kaynak Grubu ve Cihaz Türü değiştirilemez (kilitli); yalnızca Birim değiştirildiğinde veya Devir Tutanağı onaylandığında Cihaz Kodu yeni birime göre otomatik güncellenir.</td>
+        <td class="py-3.5 px-4">Yeni cihaz tanımlanırken, düzenlenirken veya birim devrinde.</td>
         <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Biyomedikal / RGS</span></td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">NDK Lisans ve Vize Takibi<br> <span class="text-xs font-normal text-slate-400 font-mono">[2. Sekme: Lisans Bilgileri]</span></td>
-        <td class="py-3.5 px-4">İyonlaştırıcı radyasyon yayan cihazın yasal ruhsat takvimini kurmak.</td>
-        <td class="py-3.5 px-4">Lisans No ve vize geçerlilik tarihi girilir. Sistem 6 ay, 45 gün ve 30 gün erken uyarı alarmları üretir.</td>
-        <td class="py-3.5 px-4">Cihaz kaydedilirken veya lisans yenilendiğinde.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">NDK Lisans, Vize Takibi ve Lisans Belgesi Kasası<br> <span class="text-xs font-normal text-slate-400 font-mono">[2. Sekme: Lisans Bilgileri / Belge Seç]</span></td>
+        <td class="py-3.5 px-4">İyonlaştırıcı radyasyon yayan cihazın yasal ruhsat takvimini ve resmi lisans PDF belgesini tek yerden yönetmek.</td>
+        <td class="py-3.5 px-4">Lisans No ve vize geçerlilik tarihi girilir; aynı sekmeden NDK Lisans Belgesi seçilip şifreli kasaya yüklenebilir ve Kılavuzlar ve Belgeler sekmesiyle otomatik senkronize edilir. Sistem 6 ay, 45 gün ve 30 gün erken uyarı alarmları üretir.</td>
+        <td class="py-3.5 px-4">Cihaz kaydedilirken, lisans belgesi yüklenirken veya lisans yenilendiğinde.</td>
         <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">RGS / RKS Sorumlusu</span></td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
@@ -216,25 +216,25 @@
         <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Biyomedikal / RGS</span></td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">AES-256 Şifreli Evrak Kasası<br> <span class="text-xs font-normal text-slate-400 font-mono">[5. Sekme: Kılavuzlar ve Belgeler]</span></td>
-        <td class="py-3.5 px-4">Kullanım kılavuzu, servis şeması ve CE belgelerini KVKK uyumlu şifreli saklamak.</td>
-        <td class="py-3.5 px-4">Yüklenen PDF/dosyalar AES-256 Fernet ile şifrelenir; istendiğinde şifresi çözülüp görüntülenir.</td>
-        <td class="py-3.5 px-4">Teknik evrak teslim alındığında.</td>
-        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Tüm Kullanıcılar</span></td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">AES-256 Şifreli Evrak Kasası ve İmzalı Tutanak Takibi<br> <span class="text-xs font-normal text-slate-400 font-mono">[5. Sekme: Kılavuzlar ve Belgeler]</span></td>
+        <td class="py-3.5 px-4">Kullanım kılavuzu, servis şeması, NDK lisans belgesi ve cihaza ait resmi tutanakları tek sekmede şifreli korumak ve ıslak imzalı nüshaları arşivlemek.</td>
+        <td class="py-3.5 px-4">Yüklenen PDF/dosyalar ile cihaz için düzenlenen resmi tutanaklar tek birleşik tabloda gösterilir; satır içi butonlardan belgeler görüntülenir ve imza bekleyen tutanaklara ıslak imzalı nüsha doğrudan yüklenebilir.</td>
+        <td class="py-3.5 px-4">Teknik evrak teslim alındığında veya resmi tutanak imzalandığında.</td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Tüm Kullanıcılar / RGS</span></td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Dinamik QR Etiket & Toplu Baskı Paketi (.ZIP)<br> <span class="text-xs font-normal text-slate-400 font-mono">[Toplu QR Etiket İhracı / Sağ Tık Menüsü]</span></td>
-        <td class="py-3.5 px-4">Cihaz gövdesine yapıştırılacak karekodlu kimlik etiketini tekil basmak veya matbaa üretimi için tüm cihaz etiketlerini toplu paketlemek.</td>
-        <td class="py-3.5 px-4">Tekil QR etiketi basılabilir veya üst araç çubuğundaki [Toplu QR Etiket İhracı] ve sağ tık menüsünden seçili/tüm cihazlar için 300 DPI ultra net PNG etiketleri, teknik şartname (00_Baski_ve_Uretim_Rehberi.txt) ve icmal listesi (00_Etiket_Listesi_Icmal.csv) içeren endüstriyel .ZIP paketi olarak ihraç edilir.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Cihaz No Bazlı QR Etiket & Toplu Baskı Paketi (.ZIP)<br> <span class="text-xs font-normal text-slate-400 font-mono">[QR Etiket Menüsü / Sağ Tık Menüsü]</span></td>
+        <td class="py-3.5 px-4">Cihaz gövdesine yapıştırılacak karekodlu kimlik etiketini tekil basmak veya tüm envanter etiketlerini toplu paketlemek.</td>
+        <td class="py-3.5 px-4">Araç çubuğundaki [QR Etiket] açılır menüsünden "Seçili Cihaz İçin QR Etiket..." ile tekil etiket basılabilir veya "Toplu QR Baskı Paketi Oluştur (.zip)..." ile 300 DPI PNG etiketler, teknik şartname (00_Baski_ve_Uretim_Rehberi.txt) ve icmal listesi (00_Etiket_Listesi_Icmal.csv) içeren .ZIP paketi üretilir; karekodlar kalıcı Cihaz No bağlantısı taşır.</td>
         <td class="py-3.5 px-4">Cihaz kabulünde, saha etiketlemesinde veya toplu matbaa siparişlerinde.</td>
         <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Tekniker / Biyomedikal / RGS</span></td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">HEK Hurda Arşivi ve Çıkış Tutanağı<br> <span class="text-xs font-normal text-slate-400 font-mono">[Sil / HEK &amp; Hurda Tutanağı Butonları]</span></td>
-        <td class="py-3.5 px-4">Ekonomik ömrü biten cihazı arşivleyip resmi komisyon tutanağı üretmek.</td>
-        <td class="py-3.5 px-4">Cihaz HEK arşivine kaldırılır; geçmiş denetim izi korunur. Resmi Word (.docx) Hurda Tutanağı tek tıkla üretilir.</td>
-        <td class="py-3.5 px-4">Cihaz hurdaya ayrıldığında veya devredildiğinde.</td>
-        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Sistem Yöneticisi</span></td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">HEK Hurda Arşivi, Çıkış Tutanağı ve NDK Çizelgesi<br> <span class="text-xs font-normal text-slate-400 font-mono">[HEK Butonu / Dışa Aktar Menüsü]</span></td>
+        <td class="py-3.5 px-4">Ekonomik ömrü biten cihazı resmi HEK tutanağıyla arşivlemek ve denetim çizelgesini dışa aktarmak.</td>
+        <td class="py-3.5 px-4">Araç çubuğundaki [HEK] butonu doğrudan resmi HEK Tutanağı ekranını açar ve tutanak onayında cihaz HEK arşivine kaldırılır (tutanaksız doğrudan arşivleme yapılmaz). NDK Resmi Denetim Çizelgesi (.xlsx) ise [Dışa Aktar] açılır menüsünden oluşturulur.</td>
+        <td class="py-3.5 px-4">Cihaz hurdaya ayrıldığında veya NDK denetimi öncesinde.</td>
+        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Sistem Yöneticisi / RGS</span></td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Toplu Cihaz İçe Aktar (Excel)<br> <span class="text-xs font-normal text-slate-400 font-mono">[Excel İçe Aktar Butonu]</span></td>
@@ -244,9 +244,9 @@
         <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Biyomedikal / Sistem Yöneticisi</span></td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Toplu Cihaz Komisyon / HEK Tutanağı<br> <span class="text-xs font-normal text-slate-400 font-mono">[Tutanak Oluştur Butonu / Sağ Tık Menüsü]</span></td>
-        <td class="py-3.5 px-4">Hizmet dışı kalan, devredilen veya hurdaya ayrılan birden çok cihazı tek bir resmi Word (.docx) komisyon tutanağında toplamak.</td>
-        <td class="py-3.5 px-4">Cihaz envanter tablosunda klavyeden Ctrl veya Shift tuşlarıyla birden çok cihaz seçilir. Üst araç çubuğundaki <strong>[Tutanak Oluştur]</strong> butonuna veya sağ tık menüsündeki <em>"Seçili Cihazlar İçin Toplu HEK / Komisyon Tutanağı..."</em> komutuna basılır. Tutanak Sihirbazı açılarak cihazların künye, seri no, marka, model ve servis durumlarını dinamik tablo halinde kurumsal Word (.docx) şablonuna döker.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Kompakt Resmi Tutanak Oluşturma (Devir, Hasar, Kabul, HEK)<br> <span class="text-xs font-normal text-slate-400 font-mono">[Tutanak Oluştur Butonu / Sağ Tık Menüsü]</span></td>
+        <td class="py-3.5 px-4">Bir veya birden çok cihaz için Devir-Teslim, Hasar, Muayene Kabul veya HEK komisyon tutanağını düzenleyip evrak kasasına sunmak.</td>
+        <td class="py-3.5 px-4">Tutanak Türü, Tarih ve Resmi Başlık üstte tek satırda doldurulur; yan yana açılan Cihazlar ve İmza Heyeti panellerindeki kompakt [Ekle] / [Çıkar] butonlarıyla listeler yönetilir. Onaylanan tutanaklar cihazın Belgeler sekmesine otomatik yansır ve Devir tutanaklarında birim değişimiyle Cihaz Kodu da güncellenir.</td>
         <td class="py-3.5 px-4">Toplu cihaz sayımlarında veya komisyon hurda/devir kararlarında.</td>
         <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Biyomedikal / RGS / Sistem Yöneticisi</span></td>
       </tr>
@@ -298,7 +298,7 @@ flowchart TD
  M --> U["[QR Etiket] Basımı"]
  U --> V["Mobil Web Portal Barkod Tarama & Arıza Bildirimi"]
  
- M --> W["Ekonomik Ömrü Dolan Cihaz: [Sil / HEK] Butonu"]
+ M --> W["Ekonomik Ömrü Dolan Cihaz: [HEK] Butonu"]
  W --> X["Hurda Arşivine Kaldırılır (Fiziki Silme Yok)"]
  X --> Y["[Hurda Tutanağı] Resmi Word (.docx) Çıktısı"]
   </div>
@@ -369,7 +369,7 @@ flowchart TD
  </div>
  <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
  <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 5: QR Etiket Basımı ve HEK Hurda Arşivi</strong>
- Tablodan cihazı seçip üstteki <strong>[QR Etiket]</strong> butonuyla etiket yazıcısına çıktı gönderin. Cihazın ekonomik ömrü bittiğinde ise <strong>[Sil / HEK]</strong> butonuyla arşive kaldırın; HEK Arşivi ekranından komisyonun imzalayacağı resmi Word (.docx) Hurda Tutanağını tek tıkla üretin.
+ Tablodan cihazı seçip üstteki <strong>[QR Etiket]</strong> açılır menüsünden tekil etiket yazdırın veya tüm liste için toplu QR baskı paketi (.zip) üretin. Cihazın ekonomik ömrü bittiğinde ise <strong>[HEK]</strong> butonuyla resmi HEK Tutanağını düzenleyin; tutanak onaylandığında cihaz arşive kaldırılır ve HEK Arşivi ekranından da izlenebilir.
  </div>
  <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
  <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 6: NDK RSGD-KLV-014 ve KLV-014-EK Radyasyondan Korunma Programı (RKP) Başvuru Sihirbazı</strong>
@@ -457,7 +457,7 @@ flowchart TD
   </details>
   <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
     <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>Yanlışlıkla [Sil / HEK] butonuna basılan bir cihaz nasıl kurtarılır?</span>
+      <span>Yanlışlıkla [HEK] butonuna basılan bir cihaz nasıl kurtarılır?</span>
       <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
     </summary>
     <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
@@ -497,7 +497,7 @@ flowchart TD
       <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
     </summary>
     <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Cihaz Yönetimi araç çubuğundaki <strong>[Toplu QR Etiket İhracı]</strong> butonuna tıklayın veya tabloda belirli cihazları seçip sağ tıklayarak <em>"Toplu QR Etiket Paketi (.ZIP)"</em> seçeneğini çalıştırın. Sistem arka planda çalışan dışa aktarım motoruyla seçilen cihazlar için <strong>300 DPI (800x1050 px)</strong> matbaa kalitesinde PNG etiketler, profesyonel baskı merkezine doğrudan iletilebilecek malzeme şartnamesi (<strong>00_Baski_ve_Uretim_Rehberi.txt</strong>) ve tüm cihazların seri no/kod fihristini içeren <strong>00_Etiket_Listesi_Icmal.csv</strong> dosyasını tek bir <strong>.ZIP</strong> arşivi halinde kaydeder.</p>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Cihaz Yönetimi araç çubuğundaki <strong>[QR Etiket]</strong> açılır menüsünden <em>"Toplu QR Baskı Paketi Oluştur (.zip)..."</em> seçeneğine tıklayın veya tabloda birden çok cihazı seçip sağ tıklayarak toplu QR paketi oluşturun. Sistem arka planda çalışan dışa aktarım motoruyla listedeki tüm cihazlar (veya çoklu seçtiğiniz cihazlar) için kalıcı Cihaz No bağlantısı içeren <strong>300 DPI (800x1050 px)</strong> matbaa kalitesinde PNG etiketler, profesyonel baskı merkezine doğrudan iletilebilecek malzeme şartnamesi (<strong>00_Baski_ve_Uretim_Rehberi.txt</strong>) ve tüm cihazların seri no/kod fihristini içeren <strong>00_Etiket_Listesi_Icmal.csv</strong> dosyasını tek bir <strong>.ZIP</strong> arşivi halinde kaydeder.</p>
     </div>
   </details>
   <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
@@ -545,7 +545,7 @@ flowchart TD
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.24) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.27) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
     </div>
   </footer>
 

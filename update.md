@@ -6,6 +6,53 @@ Bu kılavuz; **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## 🛠️ RADPYS V4.0.5.27: Cihaz Arıza, Periyodik Bakım ve Kalite Kontrol (QC) Ekranlarında Kompakt Görünüm, Birleşik Bakım Planlama, Şifreli Belge Önizleme ve Dinamik Tema İkonları
+
+Bu sürümle birlikte **Tıbbi Cihaz Arıza, Periyodik Bakım ve Kalite Kontrol (QC)** çalışma ekranları saha kullanım hızını artıracak şekilde kompakt ve ferah tablo düzenine kavuşturulmuş; bakım planlama penceresi doğrudan toplu/çoklu cihaz seçimiyle sadeleştirilmiş; bakım ve kalite kontrol tutanakları için tek tıkla belge önizleme, onay kuyruğu güvencesi, esnek raporlama veri desteği ve açık/koyu temaya duyarlı dinamik ikon altyapısı devreye alınmıştır:
+
+### 🌟 Öne Çıkan Yenilikler (Hızlı Bakış)
+
+* **Kompakt Arıza, Periyodik Bakım ve Kalite Kontrol (QC) Tabloları:** Periyodik Bakım (6 sütun), Kalite Kontrol (7 sütun) ve Arıza Takip (8 sütun) listeleri yatay kaydırma gerektirmeyen iki satırlı kurumsal görünüme kavuşturuldu; modalite rozetleri kontrastlı çerçevelerle belirginleştirildi ve sütun genişlikleri pencere boyutuna göre otomatik dengelenir hale getirildi.
+* **Birleşik Çoklu Cihaz Bakım Planlama:** **[İhale Bakım Takvimi Planla]** penceresindeki tekli/toplu seçim karmaşası kaldırılarak ekran doğrudan marka ve modalite filtreli çoklu cihaz seçim tablosuyla açılacak şekilde sadeleştirildi; aynı ekrandan ister tek bir cihaz ister birden fazla cihaz kolayca seçilerek bakım takvimi üretilebilir.
+* **Diyalog İçinden Anlık Şifreli Belge ve Teknik Rapor Görüntüleme:** **[Seçili Arızayı Çöz]** penceresinin içine taşınan **[Teknik Servis Raporu]** ve tüm bakım/kalite kontrol tamamlama formlarına eklenen **[Görüntüle]** butonları sayesinde şifreli evrak kasasındaki PDF servis ve kalibrasyon tutanakları ekran değiştirmeden tek tıkla açılabilir.
+* **Cihaz İşlemlerinde Kurumsal Onay Güvencesi ve Esnek Raporlama Desteği:** Yetki tanımında onay gerektiren kullanıcı rollerinin yaptığı cihaz, arıza, bakım ve kalite kontrol işlemleri doğrudan yönetici onay kuyruğuna yönlendirilir; ayrıca Periyodik Bakım ve Kalite Kontrol kayıtları Esnek Raporlama ve Excel/PDF dışa aktarım şablonlarıyla tam uyumlu hale getirildi.
+* **Açık ve Koyu Tema Uyumlu Dinamik İkonlar:** Uygulamanın tüm modüllerinde açık/koyu tema değişimlerinde ve farklı buton renklerinde ikonların görünürlüğü otomatik olarak optimize edildi; nöbet çizelgesi matris satır yüksekliği ve antet logo çözümleme tutarlılıkları güçlendirildi.
+
+### 🎯 Fayda Odaklı Açıklamalar
+
+* **Kalabalıktan Arındırılmış Operasyon Ekranları:** Bakım ve QC listelerinde yardımcı bilgiler iki satırlı kompakt hücrelere toplandığından, hem geniş monitörlerde hem dizüstü ekranlarında kritik sütunlar kesilmeden okunur; arıza çözüm formunun içine alınan teknik rapor düğmesiyle gereksiz üst menü kalabalığı azaltıldı.
+* **Hızlı Denetim ve İmzalı Evrak Kontrolü:** Bakım veya resmi KKT/KUT raporu incelerken harici klasörlerde dosya aramaya gerek kalmadan pencere içindeki **[Görüntüle]** butonuyla şifreli kasadaki belge anında doğrulanabilir; geçici görüntüleme dosyaları program kapanışında otomatik olarak temizlenir.
+
+---
+
+## 📱 RADPYS V4.0.5.26: Web Portal Saha Formları ve Gösterge Panellerinde Tam Mobil / PWA Uyumluluğu, Otomatik Taslak Koruma, Aydınlık/Karanlık Tema Uyumu ve Kesintisiz Saha Deneyimi
+
+Bu sürümle birlikte **Web Portal Saha İşlemleri ve Gösterge Panelleri** telefon, tablet ve masaüstü uygulama (PWA) görünümlerinde tek bir görsel ve operasyonel standarta kavuşturulmuş; uzun saha formlarında veri kaybını önleyen taslak koruma, karanlık/aydınlık tema bütünlüğü, yerel tarih güvencesi ve dar ekranlarda tam sekme görünürlüğü sağlanmıştır:
+
+### 🌟 Öne Çıkan Yenilikler (Hızlı Bakış)
+
+* **Dar PWA ve Mobil Pencerelerde Eksiksiz Sekme Görünürlüğü:** *Cihaz Saha Merkezi* (`Cihazlar`, `Arıza Bildir`, `Arıza Takip`, `Periyodik Bakım`, `Kalite Kontrol (QC)`), *Profilim*, *Nöbet Çizelgesi / Takas* ve *Gösterge Panelleri* ekranlarındaki sekmeler dar pencerelerde kesilmeden otomatik olarak alt satıra dizilir; ayrıca *Cihaz Saha Merkezi* üst çubuğuna doğrudan **[Kamera ile QR Tara]** düğmesi eklendi.
+* **Otomatik Taslak Koruma ve Ekran Uyanık Tutma:** *Olay Bildirimi*, *Nöbet Takas / Değişim*, *Doz Araştırma Beyanı (RD.F43)* ve *Cihaz Arıza/Bakım/QC* ekranlarında işlem sırasında sayfa kapansa bile yazılan taslak bilgiler güvenle korunur ve saha girişi boyunca ekranın kararması önlenir.
+* **Aydınlık ve Karanlık Kurumsal Tema Uyumluluğu:** Tüm saha formları ve analiz panelleri üst çubuktaki tema anahtarıyla aydınlık ve koyu modlar arasında yüksek okunabilirlikle uyumlu çalışır; modern kurumsal onay pencereleri ve bildirim bantları tüm portal genelinde standart hale getirildi.
+* **Koruyucu Ekipman Krokisinde Çoklu Dokunmatik Yakınlaştırma:** Tablet ve telefonda koruyucu donanım muayenesi sırasında kroki üzerinde parmakla yakınlaştırma (pinch-to-zoom) ve çift dokunuşla detay inceleme özelliği devreye alındı.
+* **Yerel Saat Dilimi Tarih Güvencesi:** Gece yarısı nöbet değişimi, izin veya saha ölçümü girişlerinde tarihlerin bir gün geri kaymasını engelleyen yerel tarih koruması tüm portal genelinde etkinleştirildi.
+
+---
+
+## 🔬 RADPYS V4.0.5.25: Tıbbi Cihaz Envanterinde Sadeleştirilmiş 7 Sütunlu Görünüm, Akıllı Cihaz Numaralandırma, Yan Yana Kompakt Resmi Tutanak Ekranı, Belgeler Sekmesinde İmzalı Tutanak Takibi ve Cihaz No Bazlı QR Etiketleme
+
+Bu sürümle birlikte **Tıbbi Cihaz ve NDK Lisans Envanteri** modülü saha geri bildirimleri doğrultusunda baştan sona rafine edilmiş; cihaz numaralandırma ve devir-teslim kodlama kuralları veri bütünlüğünü koruyacak şekilde güçlendirilmiş; tutanak ve lisans belgelerinin evrak kasası entegrasyonu tamamlanmış ve QR etiketleme süreçleri hatasız hale getirilmiştir:
+
+### 🌟 Öne Çıkan Yenilikler (Hızlı Bakış)
+
+* **7 Sütunlu Ferah Cihaz Tablosu ve Yüksek Kontrastlı Modalite İkonları:** Ana envanter tablosu günlük operasyona odaklanacak şekilde 7 net sütuna (`Cihaz Kodu`, `Cihaz Türü`, `Marka ve Model`, `Departman`, `NDK Lisans No`, `Lisans Bitiş`, `Durum`) sadeleştirildi. Cihaz kodu ve departman hücrelerindeki kalabalık ikinci satırlar kaldırılarak bina/yerleşke ve Cihaz No detayları üzerine gelindiğinde açılan ipucu balonlarına taşındı. Modalite simgelerinin arkasına koyu ve açık temayla uyumlu kontrast rozet eklenerek koyu temada ikonların kaybolması önlendi.
+* **Modalite Bazlı Boşluk Dolduran Cihaz No ve Birim Değişiminde Otomatik Kod Güncelleme:** Cihaz No üretimi artık silinen cihazlardan kalan numaralardaki boşlukları akıllı biçimde doldurarak modalite başına gerçek aktif cihaz sayısını yansıtır. Mevcut bir cihaz düzenlenirken kalıcı kimliği olan Cihaz No, Kaynak Grubu ve Cihaz Türü alanları korunarak salt okunur kilitlenir; buna karşılık birim değiştirildiğinde yalnızca Cihaz Kodu yeni birime göre otomatik güncellenir (aynı durum Birimler Arası Devir-Teslim Tutanağı onaylandığında da otomatik işlenir).
+* **Kompakt Yan Yana Resmi Tutanak Penceresi:** Tutanak oluşturma ekranındaki şablon türü, tarih ve resmi başlık alanları üstte tek satırda toplandı; "İşleme Konu Olan Cihazlar" ve "İmza Heyeti" panelleri yan yana yerleştirilip kompakt `Ekle` / `Çıkar` butonlarıyla ferah bir çalışma alanı sağlandı.
+* **Belgeler Sekmesinde Resmi Tutanak Görüntüleme, İmzalı Nüsha Yükleme ve NDK Lisans Belgesi Kasası:** Cihaz için oluşturulan tüm resmi tutanaklar doğrudan cihazın **Kılavuzlar ve Belgeler** sekmesinde listelenir; ıslak imzalı nüshalar doğrudan aynı satırdan evrak kasasına yüklenip görüntülenebilir. Ayrıca **NDK Lisans Bilgileri** sekmesine eklenen belge yükleme alanıyla lisans ruhsatları şifreli kasaya eklenir ve belgeler sekmesiyle otomatik senkronize edilir.
+* **Sadeleştirilmiş Araç Çubuğu ve Cihaz No Bazlı Tekil/Toplu QR Etiketler:** Hurdaya ayırma akışı tutanaksız arşivlemeden arındırılarak **[HEK]** butonu altında yalnızca resmi HEK tutanağına bağlandı; **NDK Çizelgesi Oluştur (.xlsx)** seçeneği ise **[Dışa Aktar]** menüsü altına alındı. **[QR Etiket]** butonu tekil etiket önizleme ve toplu matbaa `.zip` paketi için iki seçenekli menüye kavuştu; üretilen QR etiketler kalıcı **Cihaz No** üzerinden tekil Web Portal bağlantısı (`/?cihaz=...`) taşır ve tabloda tek satır seçili olsa dahi toplu paket üretiminde tüm listenin eksiksiz hazırlanması güvenceye alındı.
+
+---
+
 ## 🏥 RADPYS V4.0.5.24: TİTCK Uyumlu Cihaz Kalite Kontrol & İhale Takvimi, Mobil PWA Kurulumu ve Saha Kamera Deneyimi
 
 Bu sürümle birlikte **Cihaz Kalite Kontrol (KKT & KUT)** modülü T.C. İlaç ve Tıbbi Cihaz Kurumu (TİTCK) kılavuzuna birebir uyumlu resmi rapor ve ihale takvim modeline kavuşturulmuş; **Web Portal** üzerinden cihaz bakım ve kalite kontrol işlemlerinin sahada PDF belgeleriyle tamamlanabilmesi sağlanmış; **PWA Mobil Uygulama Kurulumu** ve karanlık oda dostu **QR Kamera** deneyimi devreye alınmış; ayrıca sistem %100 ulusal Türkçe standardında sadeleştirilmiştir:

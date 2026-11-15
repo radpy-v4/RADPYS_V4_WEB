@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.24</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.27</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -197,7 +197,7 @@
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Arızayı Çözümleme ve Kapatma<br> <span class="text-xs font-normal text-slate-400 font-mono">[Seçili Arızayı Çöz Butonu]</span></td>
         <td class="py-3.5 px-4">Teknik servis müdahalesini belgeleyip cihazı tekrar hizmete açmak veya test aşamasına almak.</td>
-        <td class="py-3.5 px-4">Çözüm açıklaması, dış servis firması ve kurum içi çözen personel bilgisi birlikte kaydedilir; devam eden arızalarda önceki müdahale tarihi korunur. Cihaz doğrudan 'Aktif' statüsüne döndürülebileceği gibi, klinik doğrulama süresince 'Test Aşamasında' ara durumunda tutularak hasta güvenliği garantiye alınabilir.</td>
+        <td class="py-3.5 px-4">Çözüm açıklaması, dış servis firması ve kurum içi çözen personel bilgisi birlikte kaydedilir; devam eden arızalarda önceki müdahale tarihi korunur. Pencere içindeki <strong>[Teknik Rapor]</strong> butonuyla teknik servis raporu ve işlem geçmişi, <strong>[Görüntüle]</strong> butonuyla ekli servis formu PDF'i doğrudan açılabilir. Cihaz 'Aktif' veya klinik doğrulama süresince 'Test Aşamasında' statüsünde tutulabilir.</td>
         <td class="py-3.5 px-4">Yetkili servis arızayı giderip test sürecini başlattığında veya bitirdiğinde.</td>
         <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Biyomedikal / RGS</span></td>
       </tr>
@@ -217,15 +217,15 @@
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">İhale Bakım Takvimi Planlama<br> <span class="text-xs font-normal text-slate-400 font-mono">[İhale Bakım Takvimi Planla Butonu]</span></td>
-        <td class="py-3.5 px-4">İhale şartnamesine göre sözleşme sonuna kadar bakım randevu slotlarını tek tıkla üretmek.</td>
-        <td class="py-3.5 px-4">Cihaz, ilk bakım tarihi, sözleşme bitişi ve periyot (1, 3, 6, 12 ay) seçilir; sistem tüm randevuları 'Beklemede' olarak takvime işler.</td>
+        <td class="py-3.5 px-4">İhale şartnamesine göre sözleşme sonuna kadar tekil veya çoklu cihaz bakım randevu slotlarını tek ekrandan üretmek.</td>
+        <td class="py-3.5 px-4">Pencere doğrudan marka ve modalite süzgeçli çoklu cihaz seçim tablosuyla açılır; seçilen cihaz(lar) için ilk bakım tarihi, sözleşme bitişi ve periyot (1, 3, 6, 12 ay) girilerek tüm randevular 'Beklemede' olarak takvime işlenir.</td>
         <td class="py-3.5 px-4">Yıllık bakım ihalesi/sözleşmesi tamamlandığında.</td>
         <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Klinik Amiri / Biyomedikal</span></td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Bakımı Tamamla & Servis Formu<br> <span class="text-xs font-normal text-slate-400 font-mono">[Bakımı Tamamla Butonu]</span></td>
         <td class="py-3.5 px-4">Yapılan periyodik bakımı imzalı servis raporuyla kapatmak ve KVKK kasasında saklamak.</td>
-        <td class="py-3.5 px-4">Gerçekleşen tarih, refakat eden personel, teknisyen ve taranmış servis formu (PDF) seçilir. Belge şifrelenir ve durum 'Tamamlandı' olur.</td>
+        <td class="py-3.5 px-4">Gerçekleşen tarih, refakat eden personel, teknisyen ve taranmış servis formu (PDF) seçilir; pencere içindeki <strong>[Görüntüle]</strong> butonuyla kasadaki veya seçili PDF belgesi anında doğrulanır. Belge şifrelenir ve durum 'Tamamlandı' olur.</td>
         <td class="py-3.5 px-4">Yetkili servis bakımı bitirip servis formunu imzalattığında.</td>
         <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Tekniker / RKS</span></td>
       </tr>
@@ -239,7 +239,7 @@
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">TİTCK Uyumlu Resmi KKT / KUT Rapor Kaydı<br> <span class="text-xs font-normal text-slate-400 font-mono">[Planlı Testi Tamamla / Münferit Resmi Rapor Gir]</span></td>
         <td class="py-3.5 px-4">KUT (Radyoterapi 3 yıl, Diagnostik/Nükleer Tıp 5 yıl), KKT ve Kabul/Onarım Sonrası Test raporlarını KUK yetki belgesi ve PDF tutanakla arşivlemek.</td>
-        <td class="py-3.5 px-4">Resmi rapor numarası, yapan kurum, KUK yetki belge no ve imzalı PDF raporu şifreli evrak kasasına kaydedilir. 'Sınırlı Kullanım' sonucunda azami 1 yıllık düzeltme süresi otomatik tanımlanır.</td>
+        <td class="py-3.5 px-4">Resmi rapor numarası, yapan kurum, KUK yetki belge no ve imzalı PDF raporu şifreli evrak kasasına kaydedilir; ekli rapor <strong>[Görüntüle]</strong> butonuyla anında açılabilir. 'Sınırlı Kullanım' sonucunda azami 1 yıllık düzeltme süresi otomatik tanımlanır.</td>
         <td class="py-3.5 px-4">Yetkili KUK veya medikal fizikçi resmi raporu düzenlediğinde.</td>
         <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Medikal Fizik Uzmanı</span></td>
       </tr>
@@ -437,11 +437,11 @@ flowchart TB
   <div class="space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
  <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
  <strong class="text-slate-900 dark:text-white text-base block mb-2">Bölüm 1: Cihaz Arızası Bildirme ve Onarımı Kapatma</strong>
- <strong>[Cihaz Yönetimi]</strong> menüsünden <strong>[Cihaz Arıza ve Onarım Takibi]</strong> ekranını açın. Sol üstteki <strong>[Yeni Arıza Bildir]</strong> butonuna tıklayın. Açılan formda arızalanan tıbbi cihazı seçin, aciliyet derecesini ve arıza tanımını girip <strong>[Kaydet]</strong> butonuna basın. Cihaz anında listede kırmızı 'Arızalı' olarak işaretlenir. Yetkili servis arızayı giderdiğinde ilgili satırı seçip <strong>[Seçili Arızayı Çöz]</strong> butonuyla yapılan müdahaleyi kaydedin. Parça değişimi veya onarım sonrası klinik doğrulama/fantom testleri yürütülürken cihazı <em>'Test Aşamasında'</em> ara statüsünde tutarak hasta çekimini güvenle bekletebilir, testler başarıyla bittiğinde tek tıkla arızayı tamamen kapatıp cihazı 'Aktif' kılabilirsiniz. Eğer X-ışını tüpü değişmişse onay kutusunu işaretleyip yeni tüp seri numarasını işleyin.
+ <strong>[Cihaz Yönetimi]</strong> menüsünden <strong>[Cihaz Arıza ve Onarım Takibi]</strong> ekranını açın. Sol üstteki <strong>[Yeni Arıza Bildir]</strong> butonuna tıklayın. Açılan formda arızalanan tıbbi cihazı seçin, aciliyet derecesini ve arıza tanımını girip <strong>[Kaydet]</strong> butonuna basın. Cihaz anında listede kırmızı 'Arızalı' olarak işaretlenir. Yetkili servis arızayı giderdiğinde ilgili satırı seçip <strong>[Seçili Arızayı Çöz]</strong> butonuyla yapılan müdahaleyi kaydedin; pencere içerisindeki <strong>[Teknik Rapor]</strong> butonuyla teknik servis tutanağına ve <strong>[Görüntüle]</strong> butonuyla ekli servis formu PDF'ine doğrudan erişebilirsiniz. Parça değişimi veya onarım sonrası klinik doğrulama/fantom testleri yürütülürken cihazı <em>'Test Aşamasında'</em> ara statüsünde tutarak hasta çekimini güvenle bekletebilir, testler başarıyla bittiğinde tek tıkla arızayı tamamen kapatıp cihazı 'Aktif' kılabilirsiniz. Eğer X-ışını tüpü değişmişse onay kutusunu işaretleyip yeni tüp seri numarasını işleyin.
  </div>
  <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
  <strong class="text-slate-900 dark:text-white text-base block mb-2">Bölüm 2: İhale Şartnamesine Göre Bakım Takvimi Oluşturma ve Kapatma</strong>
- <strong>[Cihaz Yönetimi]</strong> menüsünden <strong>[Periyodik Bakım Yönetimi]</strong> ekranına geçin. Üstteki <strong>[İhale Bakım Takvimi Planla]</strong> butonuna tıklayın. Cihazı, ilk bakım tarihini, sözleşme bitiş tarihini ve ihale şartnamesinde yer alan bakım periyodunu (1, 3, 6 veya 12 Ay) seçin. Sistem sözleşme sonuna kadar tüm bakım tarihlerini otomatik hesaplar ve takvime 'Beklemede' olarak işler. Bakım günü gelip servis işlemi tamamlandığında satırı seçip <strong>[Bakımı Tamamla]</strong> butonuna basın; refakat eden personeli, servis teknisyenini seçip taranmış ıslak imzalı <strong>Servis Formu (PDF)</strong> belgesini ekleyin.
+ <strong>[Cihaz Yönetimi]</strong> menüsünden <strong>[Periyodik Bakım Yönetimi]</strong> ekranına geçin. Üstteki <strong>[İhale Bakım Takvimi Planla]</strong> butonuna tıklayın. Doğrudan marka ve modalite süzgeçli çoklu cihaz seçim tablosuyla açılan pencerede bir veya birden fazla cihazı işaretleyin; ilk bakım tarihini, sözleşme bitiş tarihini ve ihale şartnamesinde yer alan bakım periyodunu (1, 3, 6 veya 12 Ay) seçip takvimi oluşturun. Sistem sözleşme sonuna kadar tüm bakım tarihlerini otomatik hesaplar ve takvime 'Beklemede' olarak işler. Bakım günü gelip servis işlemi tamamlandığında satırı seçip <strong>[Bakımı Tamamla]</strong> butonuna basın; refakat eden personeli, servis teknisyenini seçip taranmış ıslak imzalı <strong>Servis Formu (PDF)</strong> belgesini ekleyin ve gerektiğinde pencere içindeki <strong>[Görüntüle]</strong> butonuyla kasadaki belgeyi anında doğrulayın.
  </div>
  <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
  <strong class="text-slate-900 dark:text-white text-base block mb-2">Bölüm 3: TİTCK Uyumlu Resmi Kalite Kontrol (KKT / KUT) ve İhale Takvimi</strong>
@@ -449,7 +449,7 @@ flowchart TB
  <ul class="list-disc pl-5 mt-2 space-y-1 text-xs">
  <li><strong>İhale / KUT Takvimi Planlama:</strong> <strong>[İhale Kalibrasyon / KUT Takvimi Planla]</strong> butonuna tıklayarak modalite, marka veya cihaz seçin; periyodu (KKT 3/6/12 ay, Radyoterapi KUT 36 ay, Diagnostik/Nükleer Tıp KUT 60 ay) ve sözleşme bitiş tarihini girip tüm bekleyen slotları tek tıkla oluşturun.</li>
  <li><strong>Planlı veya Münferit Resmi Rapor Girişi:</strong> Bekleyen bir satırı seçip <strong>[Planlı Testi Tamamla]</strong> butonuna veya doğrudan <strong>[Münferit Resmi Rapor Gir]</strong> butonuna tıklayın.</li>
- <li><strong>Resmi Kategori &amp; KUK Yetki Bilgisi:</strong> Kontrol türünü (<em>Kalite Uygunluk (KUT)</em>, <em>Periyodik Kalite Kontrol (KKT)</em> veya <em>Kabul / Onarım Sonrası Test</em>), rapor numarasını, yapan kurum/KUK yetki belge numarasını girip imzalı PDF raporu ekleyin.</li>
+ <li><strong>Resmi Kategori &amp; KUK Yetki Bilgisi:</strong> Kontrol türünü (<em>Kalite Uygunluk (KUT)</em>, <em>Periyodik Kalite Kontrol (KKT)</em> veya <em>Kabul / Onarım Sonrası Test</em>), rapor numarasını, yapan kurum/KUK yetki belge numarasını girip imzalı PDF raporu ekleyin; kayıtlı belgeyi aynı penceredeki <strong>[Görüntüle]</strong> butonuyla şifreli kasadan anında açabilirsiniz.</li>
  <li><strong>Yasal Sonuç &amp; Güvenlik Kilidi:</strong> Genel sonucu (<em>Kullanımı Uygun</em> / <em>Sınırlı Kullanım</em> / <em>Kullanımı Uygun Değil</em>) onaylayın. Sınırlı Kullanım kararında azami 1 yıllık takip süresi başlatılır; Uygun Değil kararında güvenlik uyarısıyla cihaz otomatik olarak arızalıya alınıp kilitlenir.</li>
  </ul>
  </div>
@@ -614,7 +614,7 @@ flowchart TB
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.24) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.27) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
     </div>
   </footer>
 

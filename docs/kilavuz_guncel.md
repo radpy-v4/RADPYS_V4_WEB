@@ -284,7 +284,7 @@ RADPYS (Radyoloji ve Radyasyon Yönetim Sistemi), hastane radyoloji birimlerinin
 > Veritabanını Sıfırla işlemi; personeller, nöbet çizelgeleri, izinler, dozimetre ölçümleri ve arıza kayıtları gibi tüm hareket verilerini temizler. Ancak kurumun oluşturduğu **Departmanlar, Unvanlar, Tatil Takvimi, Sistem Ayarları, Roller, Yetki Şablonları ve `Admin` hesabı kesinlikle silinmez; korunur**.
 
 > 💡 **Pratik İpucu: Çökme Anında E-Posta ile Hızlı Destek**  
-> Sistemde beklenmeyen bir hata oluştuğunda açılan penceredeki **[E-Posta Gönder]** butonu, bilgisayarınızdaki e-posta istemcisini doğrudan `iletisim@radpys.com.tr` adresine hazır bir teknik şablonla açar. E-postayı göndermeniz durumunda teknik ekip hataya dakikalar içinde müdahale edebilir.
+> Sistemde beklenmeyen bir hata oluştuğunda açılan penceredeki **[E-Posta Gönder]** butonu, bilgisayarınızdaki e-posta istemcisini doğrudan `radpys.iletisim@gmail.com` adresine hazır bir teknik şablonla açar. E-postayı göndermeniz durumunda teknik ekip hataya dakikalar içinde müdahale edebilir.
 
 ---
 

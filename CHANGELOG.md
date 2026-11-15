@@ -3,6 +3,114 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.5.27] - 2026-11-15
+
+### 🛠️ Cihaz Arıza, Periyodik Bakım ve QC Ekranlarında Kompakt Düzen, Evrensel Onay Entegrasyonu, Esnek Raporlama Veri Setleri ve Dinamik Tema İkon Motoru
+
+Bu sürüm; Cihaz Arıza, Periyodik Bakım ve Kalite Kontrol (QC) modüllerinin masaüstü UI/UX sadeleştirmelerini, `CihazService` Evrensel Onay Sistemi (`OnayliServisTabani`) ve `ApprovalService` entegrasyonunu, `CihazBakimDataset` ve `CihazQcDataset` raporlama veri setlerini, `open_vault_or_local_document` şifreli kasa belge önizleme standardını, `ui/theme.py` dinamik SVG ikon renklendirme motorunu ve birim/UI test suite regresyon düzeltmelerini içerir.
+
+#### ✨ Eklendi (Added)
+
+- **Cihaz Evrensel Onay Sistemi Entegrasyonu (`app/services/cihaz/cihaz_service.py`, `app/services/system/workflow/approval_service.py`):**
+  - `CihazService` sınıfı `OnayliServisTabani` yapısına geçirilerek `_requires_approval_check` ve `_enqueue_approval` mekanizmaları eklendi; `onay_gerektirir=1` olan rollerin cihaz, arıza, bakım ve kalite kontrol işlemlerinin `actor_role` ve `actor_personel_id` bağlamıyla onay kuyruğuna yönlendirilmesi sağlandı.
+  - `ApprovalService` içerisine cihaz modülü tabloları için onay/red yürütme desteği eklendi.
+- **Cihaz Bakım ve QC Esnek Raporlama Veri Setleri (`app/domain/reporting/datasets/cihaz_bakim_dataset.py`, `cihaz_qc_dataset.py`, `cihaz_dataset.py`, `__init__.py`):**
+  - Esnek Raporlama Motoru (`register_default_datasets`) için `CihazBakimDataset` ve `CihazQcDataset` veri setleri oluşturuldu ve `CihazDataset` genişletildi.
+- **Merkezi Belge Önizleme, Geçici Dosya Temizliği ve Aktör Bağlamı (`ui/controllers/_ux_helpers.py`):**
+  - KVKK şifreli evrak kasasındaki (`DocumentServiceDB`) veya yerel diskteki belgeleri `run_in_background` ile çözerek sistem görüntüleyicisinde açan `open_vault_or_local_document`, uygulama kapanışında (`atexit`) geçici önizleme dosyalarını temizleyen `register_temp_file_for_cleanup` / `_cleanup_temp_preview_files` ve üst pencere hiyerarşisinden `(actor_role, actor_personel_id)` çözümleyen `resolve_actor_context` yardımcıları eklendi.
+- **Dinamik SVG Tema İkon Motoru ve Otomatik Kancalar (`ui/theme.py`, `ui/qt_loader.py`, `tests/test_theme_icons.py`):**
+  - Açık/koyu tema değişimlerinde ve buton varyantlarında (`primary`, `danger`, `success`, `warning`, `ghost` vb.) SVG ikon renklerini dinamik uyarlayan `_normalize_icon_name`, `_get_tinted_icon`, `resolve_button_icon_color`, `_install_theme_icon_hooks` ve `load_ui_widget` içindeki `_extract_svg_icon_name` yapısı devreye alındı; 20+ controller, dialog ve widget'ta statik `QIcon(...)` çağrıları `get_icon(...)` standardına geçirildi.
+- **Cihaz Bakım ve QC Diyaloglarında Anlık Belge Görüntüleme (`ui/pages/cihaz/cihaz_bakim_tamamla_dialog.ui`, `cihaz_qc_dialog.ui`):**
+  - Bakım tamamlama (`CihazBakimTamamlaDialogController._on_belge_goruntule`) ve resmi QC rapor giriş (`CihazQcDialogController._on_belge_goruntule`) pencerelerine `btnBelgeGoruntule` ("Görüntüle") butonu eklendi.
+
+#### 🔄 Değiştirildi (Changed)
+
+- **Cihaz Arıza, Periyodik Bakım ve QC Tablo/Diyalog Kompaktlaştırması (`ui/controllers/cihaz/cihaz_ariza_controller.py`, `cihaz_bakim_controller.py`, `cihaz_qc_controller.py`, `_cihaz_twoline_delegate.py`):**
+  - `cihaz_ariza_page.ui`: Araç çubuğundaki `btnTeknikRapor` butonu `cihaz_ariza_coz_dialog.ui` (`CihazArizaCozDialogController._on_teknik_rapor`) içerisine taşındı; `tblArizalar` 8 sütunlu (`Arıza Kodu`, `Cihaz Kodu`, `Birim`, `Marka ve Model`, `Arıza Tanım`, `Bildirim ve Çözüm Tarihi`, Aciliyet, `Durumu`) orantılı düzene ve `58px` satır yüksekliğine güncellendi.
+  - `cihaz_bakim_page.ui`: `tblBakimlar` 8 sütundan 6 sütunlu (`COL_BAKIM_KODU..COL_DURUM_RADAR`: `Bakım No`, `Cihaz No`, `Birim`, `Dönem`, `Tamamlama Tarihi`, `Durum`) iki satırlı kompakt düzene indirildi; varsayılan zaman filtresi `BU_YIL` yapıldı ve `btnExcelExport` birleşik `_on_export_report` akışına bağlandı.
+  - `cihaz_bakim_planla_dialog.ui`: Tekli/toplu radyo butonu ayrımı (`rbTekCihaz`, `rbTopluCihaz`, `widgetTekCihaz`, `_on_secim_modu_changed`, `_on_tek_cihaz_changed`) kaldırılarak diyalog doğrudan marka/modalite filtreli (`cmbFiltreMarka`, `cmbFiltreModalite`) çoklu cihaz tablosu (`tblCihazlar`) modunda açılacak şekilde sadeleştirildi.
+  - `cihaz_qc_page.ui`: `tblQc` 9 sütundan 7 sütunlu (`COL_QC_KODU..COL_YAPAN_KUK`) kompakt düzene indirildi; `CihazTwoLineDelegate` üzerinde `CE_ItemViewItem` QSS arka plan çizimi, `42px` modalite rozeti (`32px` ikon) ve `try/finally` painter koruması uygulandı.
+- **Zero-SQL Repository Genişletmesi ve İçe Aktarım Boşluk Doldurma (`app/db/repositories/cihaz_repository.py`, `app/services/import_engine/strategies/cihaz.py`):**
+  - Cihaz, arıza, bakım ve QC veri erişimi `CihazRepository` katmanında merkezileştirildi (+425 satır); `CihazImportStrategy` içerisine boşluk dolduran (`_extract_used_suffixes`, `_allocate_gap_seq`, `_next_batch_cihaz_kodu_seq`, `_next_batch_cihaz_no_seq`) sıralı kod/cihaz no tahsisi eklendi.
+
+#### 🐛 Düzeltildi (Fixed)
+
+- **Test Suite ve Çapraz Modül Regresyon Düzeltmeleri (`app/services/system/integrations/export_service.py`, `ui/controllers/kalite/hizmet_ici_egitim_controller.py`, `ui/controllers/_ux_helpers.py`, `ui/theme.py`, `tests/conftest.py`):**
+  - `ExportService._resolve_logo_path` ve `resolve_brand_settings` (`_fmt_logo`) içinde `"/"` veya `"\\"` ile başlayan yolların Windows'ta sürücü köküyle yeniden yazılması engellenerek `test_brand_settings_resolution_from_antet_table` düzeltildi.
+  - `HizmetIciEgitimController._setup_ui` içindeki mükerrer yerel `from ui.theme import get_icon` importu kaldırılarak `UnboundLocalError` giderildi.
+  - `configure_table` içinde `custom_row_height` özelliğinin korunması ve `NobetCizelgeTableWidget` (`variant="cizelge"`) varsayılan satır yüksekliğinin `28px` olarak uygulanması sağlandı.
+  - `tests/conftest.py` test ortamı kurulumu fixture kapsamına taşınarak CI test izolasyonu sağlandı; cihaz `.ui` dosyalarındaki kalıntı `<family>Calibri</family>` tanımları temizlendi ve geçici kök `test_rapor.pdf` dosyası kaldırıldı.
+
+---
+
+## [4.0.5.26] - 2026-11-15
+
+### 📱 Web Portal 12 Saha Formu ve Gösterge Panellerinde PWA Uyumluluğu, Ortak UI Primitif Seti, Aydınlık/Karanlık Tema Uyumu, Yerel Tarih Güvencesi ve Dar Pencere Sekme Düzeltmeleri
+
+Bu sürüm; Web Portal altındaki tüm saha formları ile yönetici gösterge panellerinin mobil ve PWA ortamlarında tekil standartta çalışmasını sağlayan ortak primitif kütüphanesini (`web_portal/src/components/shared/primitives/`), açık/koyu kurumsal RDS tema adaptasyonunu (`.saha-forms-shell`), yerel saat dilimi tarih hesaplama yardımcılarını (`getTodayLocalYmd`, `toLocalYmd`), otomatik form taslak koruma / ekran uyanık tutma (`useFormDraft`, `useWakeLock`) entegrasyonunu, `RkeKrokiCanvas` çoklu dokunmatik yakınlaştırmayı ve dar PWA pencerelerinde kaybolan/gizlenen sekme sorunlarının kalıcı çözümünü içerir.
+
+#### ✨ Eklendi (Added)
+
+- **1. Ortak Web Portal UI Primitif Seti (`web_portal/src/components/shared/primitives/`):**
+  - `ConfirmDialog.tsx`, `usePortalToast.tsx`, `useFormDraft.ts`, `ScrollableTabs.tsx`, `KpiStrip.tsx`, `FilterToolbar.tsx`, `PageShell.tsx` ve `index.ts` modülleri eklendi (`web_portal/AGENTS.md` ve kök `AGENTS.md` standartlarına işlendi).
+  - Tüm saha onay akışları tarayıcı içi `window.confirm` yerine erişilebilir `ConfirmDialog` bileşenine; `LeaveRequestForm.tsx`, `TrainingPortalView.tsx`, `CoursePlayerWorkspace.tsx`, `OrtamDozuView.tsx` ve `CihazArizaView.tsx` içindeki yinelenen yerel onay/bildirim yapıları `ConfirmDialog` ve `usePortalToast` primitiflerine taşındı.
+- **2. Yerel Saat Dilimi Tarih Yardımcıları (`web_portal/src/utils/filterUtils.ts`):**
+  - UTC gece yarısı tarih kaymalarını önlemek amacıyla `getTodayLocalYmd` ve `toLocalYmd` yardımcı fonksiyonları eklendi ve tüm saha formları ile dashboard bileşenlerindeki `.toISOString().split('T')[0]` / `.toISOString().slice(0, 10)` kullanımları bunlarla değiştirildi.
+- **3. PWA Safe-Area, Taslak Koruma, WakeLock ve Kroki Pinch-to-Zoom Desteği:**
+  - `web_portal/index.html` dosyasına `viewport-fit=cover`, `web_portal/src/index.css` dosyasına `overscroll-behavior-y: contain` ve `env(safe-area-inset-*)` güvenli alan boşlukları eklendi.
+  - `IncidentReportForm.tsx`, `ShiftExchangeHubView.tsx` ve `DozArastirmaBeyanView.tsx` uzun formlarına `useFormDraft` otomatik taslak kurtarma ve `useWakeLock` ekran uyanık tutma bağlandı.
+  - `RkeKrokiCanvas.tsx` üzerine çift dokunuş ve çoklu parmakla yakınlaştırma/kaydırma (`touch-none` işaretçi takibi) eklendi; `CihazArizaView.tsx` üst çubuğuna doğrudan `Kamera ile QR Tara` butonu ve `useWakeLock` eklendi.
+
+#### 🔧 Değiştirildi (Changed)
+
+- **Aydınlık/Karanlık RDS Tema Adaptasyonu (`web_portal/src/index.css`, `web_portal/src/App.tsx`):**
+  - `.saha-forms-shell` CSS adaptasyon katmanı oluşturuldu ve `App.tsx` içindeki hem `forms` hem `dashboard` görünümlerini saracak şekilde uygulanarak saha formları ve panellerde tema kontrastı eşitlendi.
+- **Cihaz Saha Merkezi Sekme Erişilebilirliği (`web_portal/src/components/cihaz/CihazArizaView.tsx`):**
+  - `Periyodik Bakım` ve `Kalite Kontrol (QC)` sekmeleri artık okuma yetkisi olan tüm kullanıcılara görünür hale getirildi (`loadData()` içinde `/api/cihaz-saha/lookups`, `/api/cihaz-bakimlar` ve `/api/cihaz-qc` verileri çekilir); düzenleme aksiyonları alt sekmelerdeki `canWrite` / `canUpdate` kontrolleriyle korunmaya devam eder.
+
+#### 🐛 Düzeltildi (Fixed)
+
+- **Dar PWA Pencerelerinde Kaybolan Sekmeler (`CihazArizaView.tsx`, `ScrollableTabs.tsx`, Saha Formları ve Dashboard'lar):**
+  - `overflow-x-auto whitespace-nowrap scrollbar-none` kullanımı nedeniyle dar PWA pencerelerinde sağ kenardan taşarak kaybolan sekme çubukları saha formlarında (`CihazArizaView.tsx`, `ProfileHeaderCard.tsx`, `BirimNobetCizelgesiView.tsx`, `ShiftApprovalView.tsx`, `ShiftExchangeHubView.tsx`, `DozArastirmaBeyanView.tsx`), `ScrollableTabs.tsx` primitifinde ve 11 dashboard/alt bölüm bileşeninde (`CihazDashboard`, `DenetimHazirlikDashboard`, `EgitimUyumDashboard`, `TakvimDashboard`, `IzinOperationsTableSection`, `KurumsalLisansDashboard`, `NobetDevirDashboard`, `OrtamDozuDashboard`, `PersonelView`, `RkeDashboard`, `ZimmetDashboard`) `flex-wrap` düzenine geçirilerek tüm sekmelerin görünür kalması sağlandı.
+
+## [4.0.5.25] - 2026-11-15
+
+### 🔬 Tıbbi Cihaz Envanteri 7 Sütunlu Sade Görünüm, Akıllı Cihaz No Sayacı & Birim Değişimi, Kompakt Tutanak Diyaloğu, İmzalı Tutanak/Lisans Kasası ve Cihaz No Bazlı QR Paketleme
+
+Bu sürüm; Tıbbi Cihaz ve NDK Lisans Envanteri modülünde saha kullanılabilirliğini artıran arayüz sadeleştirmelerini, modalite bazlı boşluk dolduran `cihaz_no` ve birim değişimine uyumlu `cihaz_kodu` numaralandırma kurallarını, `resmi_tutanaklar` imzalı nüsha yükleme/görüntüleme ve NDK lisans belgesi kasası entegrasyonunu, kompakt yan yana `CihazTutanakDialog` tasarımını, `QPushButton[compact="true"]` merkezi RDS seçicisini ve tekli/toplu QR etiket üretim iyileştirmelerini içerir.
+
+#### ✨ Eklendi (Added)
+
+- **1. Modalite İkonları Kontrast Rozet Arka Planı (`ui/controllers/cihaz/_cihaz_twoline_delegate.py`):**
+  - `CihazTwoLineDelegate.paint` ve `sizeHint` metotlarında modalite SVG ikonlarının arkasına koyu temada (`#dbeafe`/`#38bdf8`) ve açık temada (`#e0f2fe`/`#93c5fd`) yüksek kontrastlı `36x36` yuvarlak köşeli rozet eklendi; ikon boyutu `26x26`, satır yüksekliği `>= 54` px yapıldı.
+- **2. NDK Lisans Belgesi Evrak Kasası Entegrasyonu (`cihaz_ekle_duzenle_dialog.ui`, `CihazEkleDuzenleController`, `CihazService`, `CihazRepository`):**
+  - `tabLisans` sekmesine `btnLisansBelgeSec`, `btnLisansBelgeGoruntule` ve `btnLisansBelgeKaldir` bileşenleri eklendi; `CihazRepository.save_active_lisans` ve `CihazService.save_cihaz` minimal/muaf kayıtlarda dahi `cihaz_lisanslari.belge_id` değerini kalıcı hale getirecek ve yüklenen dosyayı `cihaz_dokumanlari` (`dokuman_turu="NDK Lisans Belgesi"`) tablosuna senkronize edecek şekilde genişletildi.
+- **3. Belgeler Sekmesinde Resmi Tutanak Birleştirme ve İmzalı Nüsha Akışı (`CihazRepository.list_dokumanlar_by_cihaz`, `CihazEkleDuzenleController`, `CihazTutanakDialog`):**
+  - `CihazTutanakDialog._on_kaydet_ve_imzaya_sun` içinde `tutanak_tarihi` ve `ek_veriler["cihaz_ids"]` kaydedilmesi sağlandı.
+  - `CihazRepository.list_dokumanlar_by_cihaz` ile `resmi_tutanaklar` (`modul = 'CIHAZ'`) kayıtları cihazın teknik belgeleriyle birleştirildi; `_render_dokumanlar_table` üzerinde görüntüle (`eye.svg`), `TutanakService.upload_imzali_nusha` ile imzalı nüsha yükle (`upload.svg`), sil (`trash.svg`) ve çift tıkla aç aksiyonları eklendi.
+- **4. Merkezi Kompakt Buton Seçicisi (`resources/dark_theme.qss`, `resources/styles.qss`, `ui/theme.py`):**
+  - Her iki tema dosyasına `QPushButton[compact="true"], QToolButton[compact="true"]` kuralı (`min-height: 18px`, `max-height: 24px`, `padding: 2px 8px`, `font-size: 11px`) ve `ui/theme.py` (`apply_global_button_icons`) içine `13x13` ikon / esnek genişlik desteği eklendi.
+
+#### 🔧 Değiştirildi (Changed)
+
+- **7 Sütunlu Sadeleştirilmiş Cihaz Listesi (`cihaz_yonetimi_page.ui`, `CihazYonetimiController._render_table`):**
+  - `tblCihazlar` 8 sütundan 7 sütuna (`Cihaz Kodu`, `Cihaz Türü`, `Marka ve Model`, `Departman`, `NDK Lisans No`, `Lisans Bitiş`, `Durum`) indirildi; `Son QC / Kalibrasyon` sütunu ile Col 0 `cihaz_no` ve Col 3 `bina_yerleske` ikinci satırları kaldırılarak tooltip'e taşındı.
+- **Cihaz Düzenleme Kısıtları ve Birim Değişiminde Kod Güncelleme (`CihazEkleDuzenleController`, `CihazService.update_cihazlar_departman`):**
+  - Düzenleme modunda `txtCihazNo`, kaynak radyoları (`rdoXray`, `rdoRadsiz`, `rdoMed`, `rdoOlcum`) ve `cmbTur` kilitlendi; yalnızca `cmbAbd`/`cmbBirim` değiştirildiğinde `txtCihazKodu` yenilenip ilk birime dönüşte eski koda dönmesi sağlandı (`txtCihazNo` sabit tutuldu).
+  - `CihazService.update_cihazlar_departman` devir tutanağında `departman_id`, `anabilim_dali_id` ve `cihaz_kodu` alanlarını atomik transaction içinde güncellerken `cihaz_no` değerini koruyacak şekilde güncellendi.
+- **Kompakt `CihazTutanakDialog` Yerleşimi (`cihaz_tutanak_dialog.ui`, `cihaz_tutanak_dialog.py`):**
+  - Üst alan (`cmbSablon`, `dtTutanakTarihi`, `txtBaslik`) tek yatay satıra (`ustRowLayout`), `grp_cihazlar` ve `grp_heyet` panelleri yan yana (`cihazHeyetSplitLayout`, `stretch="3,2"`) gizli başlıklı 2 sütunlu tablolara ve kompakt `Ekle`/`Çıkar` butonlarına alındı; şablon listesi ve tarih bugüne varsayıldı.
+- **Araç Çubuğu Sadeleştirmesi ve `Cihaz No` Bazlı Tekil/Toplu QR (`cihaz_yonetimi_controller.py`, `cihaz_qr_dialog.py`, `bulk_qr_service.py`, `web_portal/`):**
+  - `btnSil` metni `"HEK"` yapılarak tutanaksız arşivleme kaldırıldı; `btnNdkCizelge` gizlenip `"NDK Çizelgesi Oluştur (.xlsx)"` `btnExcelExport` menüsüne taşındı; RKP `.docx` menüsü kaldırıldı.
+  - `btnQrEtiket` tekli/toplu açılır menüye alındı; `CihazQrDialog` ve `BulkQrExportService` `cihaz_no` (yoksa `cihaz_kodu`) ile `<base_url>/?cihaz=<kod>` tekil URL üretecek ve `web_portal` (`cihaz.repo.ts`, `cihazTypes.ts`, `CihazArizaView.tsx`) `c.cihaz_no` ile eşleşecek şekilde güncellendi.
+
+#### 🐛 Düzeltildi (Fixed)
+
+- **Modalite Bazlı Boşluk Dolduran Cihaz No & Kod Sayacı (`CihazRepository`, `V20261114_3_renumber_cihaz_no_by_modality.py`):**
+  - `get_next_cihaz_no_sequence` (aktif cihazlar içinde `silinme_tarihi IS NULL`) ve `get_next_sequence_for_prefix` (tüm kayıtlar üzerinde `UNIQUE` kısıtı korunarak) metotları en küçük kullanılmamış pozitif tam sayıyı (`>= 1`) döndürecek şekilde düzeltildi; mevcut cihazlar modalite bazlı yeniden numaralandırıldı ve `rke_muayeneler.skopi_cihaz_kodu` eşitlendi.
+- **Toplu QR İhracında Tek Satır Seçimi Hatası (`CihazYonetimiController._on_toplu_qr_zip_aktar`, `RkeYonetimiController._on_toplu_qr_zip_aktar`):**
+  - Tabloda yalnızca 1 satır seçili iken araç çubuğundan toplu QR üretildiğinde tüm liste yerine sadece seçili satırın paketlenmesi hatası `len(secili) > 1` kontrolü ve toolbar menüsü doğrudan tam listeyi (`self._cihazlar_data`) geçecek şekilde düzeltildi.
+
 ## [4.0.5.24] - 2026-11-14
 
 ### 🏥 TİTCK (TCS-KLVZ-06) Uyumlu Cihaz Kalite Kontrol & İhale Takvimi, Web Portal Cihaz Bakım/QC Saha Yönetimi, Yerel HTTPS (:3443) ile PWA Kurulumu & Kamera Deneyimi ve Tek Dil Türkçe Standardizasyonu
