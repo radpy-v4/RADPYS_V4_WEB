@@ -4,7 +4,7 @@
     "heroBadge1": "RADPYS V4 Kurumsal Dokümantasyon",
     "heroBadge2": "Mevzuat Uyumlu",
     "heroTitle": "Radyoloji & Radyasyon Yönetim Sistemi",
-    "heroDesc": "Radyoloji kliniklerinin nöbet dağıtımından dozimetre risk takibine, DIN 6857-1 kurşun önlük muayenelerinden tıbbi cihaz kalibrasyonlarına kadar tüm iş akışlarını kapsayan 23 modüllük resmi kullanım ve karar destek kılavuzu.",
+    "heroDesc": "Radyoloji kliniklerinin nöbet dağıtımından dozimetre risk takibine, DIN 6857-1 kurşun önlük muayenelerinden tıbbi cihaz kalibrasyonlarına kadar tüm iş akışlarını kapsayan 24 modüllük resmi kullanım ve karar destek kılavuzu.",
     "metricsStandard": "NDK / SKS 6.1",
     "metricsCrypto": "AES-256 / Ed25519"
   },
@@ -350,12 +350,12 @@
       "cardTitle": "12. Dozimetre Takibi & RD.F43 Araştırma",
       "cardDesc": "TENMAK/RADAT içe aktarma, H<sub>p</sub>(10)/H<sub>p</sub>(0.07) trendleri, NDK kümülatif doz limitleri, aşımda 10 günlük RD.F43 resmi formu ve DÖF başlatma.",
       "tags": [
-        "2.0 mSv Eşiği",
-        "20 mSv Yıllık Limit",
+        "2.0 mSv İnceleme Eşiği",
+        "20 mSv Ort. / 50 mSv Tavan",
         "10 İş Günü Formu",
         "RKS Doz Hesabı"
       ],
-      "footerLabel": "NDK 20 mSv Takibi",
+      "footerLabel": "NDK 20/50 mSv Takibi",
       "searchKeywords": "12 dozimetre takibi rdf43 arastirma tenmak radat hp10 hp007 kumulatif limit 10 gun dof"
     },
     {
@@ -511,16 +511,16 @@
         "tone": "emerald"
       },
       "cardTitle": "19. Cihaz Arıza, Periyodik Bakım ve Kalite Kontrol (QC)",
-      "cardDesc": "Arıza ve onarım takibi, ihale şartnamesine dayalı Aylık Bakım Radarı, 1/3/6/12 aylık periyot takvim üretimi, tek tıkla servis formu kapatma ve 4 adımlı modern QC sihirbazı.",
+      "cardDesc": "Arıza ve onarım takibi, ihale şartnamesine dayalı Aylık Bakım Radarı, 1/3/6/12 aylık periyot takvim üretimi, teknik servis kapatma formu ve TİTCK TCS-KLVZ-06 uyumlu KUT/KKT kalite kontrol takibi.",
       "tags": [
         "Arıza & Onarım",
         "Aylık Bakım Radarı",
         "İhale Takvim Üreticisi",
-        "4 Adımlı QC Sihirbazı",
+        "KKT / KUT Takibi",
         "Evrak Kasası"
       ],
-      "footerLabel": "Bakım Radarı & QC Sihirbazı",
-      "searchKeywords": "19 cihaz ariza periyodik bakim aylik radar ihale takvim kalite kontrol qc stepper sihirbaz x-isini tup degisimi"
+      "footerLabel": "Bakım Radarı & KKT/KUT",
+      "searchKeywords": "19 cihaz ariza periyodik bakim aylik radar ihale takvim kalite kontrol qc kut kkt titck karantina x-isini tup degisimi"
     },
     {
       "slug": "20_rke_koruyucu_ekipman_ve_din6857",
@@ -558,16 +558,16 @@
         "tone": "emerald"
       },
       "cardTitle": "21. Merkezi Onay Bekleyen Görevler Paneli",
-      "cardDesc": "Personel izinleri, nöbet devirleri, aylık mazeret/istekler, idari nöbet planı yayını ve 4-göz veri değişiklikleri (Diff penceresi ve KVKK dosya kasası).",
+      "cardDesc": "7 kategori sekmesi ve 8 KPI kartı ile izin, nöbet devri, mazeret isteği, nöbet planı, RKE muayenesi, cihaz dahil evrensel veri değişikliği (eski-yeni fark karşılaştırma) ve resmi tutanak onay merkezi.",
       "tags": [
-        "4-Göz Diff",
-        "İzin Onayı",
-        "Nöbet Devir",
-        "Plan Yayını",
+        "7 Kategori Sekmesi",
+        "8 KPI Kartı",
+        "Eski-Yeni Karşılaştırma",
+        "Cihaz & RKE Onayı",
         "Zorunlu Ret"
       ],
       "footerLabel": "Merkezi Onaylar",
-      "searchKeywords": "21 merkezi onaylar capraz onay diff dialog eski yeni karsilastirma izin devir istek nobet plani veri onay"
+      "searchKeywords": "21 merkezi onaylar capraz onay eski yeni karsilastirma 4 goz izin devir istek nobet plani rke muayene cihaz veri onay resmi tutanak"
     },
     {
       "slug": "22_web_portal_ve_dashboardlar",
@@ -581,16 +581,16 @@
         "text": "Yayında & Güncel",
         "tone": "emerald"
       },
-      "cardTitle": "22. Web Portalı ve Yönetici Dashboardları",
-      "cardDesc": "20 modüler yönetici gösterge paneli (Nöbet, Dozimetre, Sağlık, RKE, Cihaz, LMS), 60 sn in-memory akıllı önbellek, bağımsız arka plan servis izleyicisi ve karar destek analitiği.",
+      "cardTitle": "22. Web Portalı ve Yönetici Gösterge Panelleri",
+      "cardDesc": "4 grupta 20 yönetici gösterge paneli ve 3 alt grupta 10 mobil/PWA uyumlu saha formu, kamera ile QR okuma, hızlı portal servis yöneticisi ve güvenli dış erişim.",
       "tags": [
-        "20 Dashboard",
-        "Port 3000 API",
-        "60s TTL Cache",
-        "Yönetici Modu"
+        "20 Gösterge Paneli",
+        "10 Saha Formu",
+        "Mobil & PWA",
+        "Güvenli Dış Erişim"
       ],
       "footerLabel": "Web Portal & Analitik",
-      "searchKeywords": "22 web portal yonetici gosterge panelleri dashboard genel bakis nobet saglik rke cihaz lms kpi grafik analitik express 3000"
+      "searchKeywords": "22 web portal yonetici gosterge panelleri dashboard saha formu mobil pwa qr tarama genel bakis nobet saglik rke cihaz lms kpi grafik analitik"
     },
     {
       "slug": "23_rapor_tutanak_merkezi",
@@ -605,10 +605,37 @@
         "tone": "rose"
       },
       "cardTitle": "23. Raporlama ve Tutanak Yönetim Merkezi",
-      "cardDesc": "Evrensel Tutanak ve Heyet Karar Sihirbazı, 2 aşamalı HEK ve SHA-256 mühürlü tasfiye PDF'i, Şablon Tasarım Stüdyosu, kurumsal çift logolu antetler ve 26 resmi mevzuat raporu.",
-      "tags": [],
-      "footerLabel": "Matbu Evrak & docxtpl",
-      "searchKeywords": "23 rapor ve tutanak rapor merkezi tutanak sihirbazi hek tutanagi iki asamali tasfiye sha256 muhrul pdf dokum docxtpl sablon tasarim studyosu matbu evrak antet"
+      "cardDesc": "11 modüllü Evrensel Tutanak ve Heyet Karar Sihirbazı, 2 aşamalı HEK ve SHA-256 mühürlü tasfiye PDF'i, Şablon Tasarım Stüdyosu, kurumsal çift logolu antetler, 27 aktif resmi rapor ve 25 veri kaynağı.",
+      "tags": [
+        "27 Aktif Rapor",
+        "11 Modül Tutanak",
+        "2 Aşamalı HEK",
+        "PDF & Excel"
+      ],
+      "footerLabel": "Matbu Evrak & Resmi Şablon",
+      "searchKeywords": "23 rapor ve tutanak rapor merkezi tutanak sihirbazi hek tutanagi iki asamali tasfiye sha256 muhrul pdf excel resmi sablon tasarim studyosu matbu evrak antet"
+    },
+    {
+      "slug": "24_kisaltmalar_ve_mevzuat_sozlugu",
+      "num": "24",
+      "chapterId": "bolum-6",
+      "indexChapterId": "bolum-6",
+      "navTitle": "Kısaltmalar & Mevzuat Sözlüğü",
+      "parentSlug": null,
+      "cardHighlight": false,
+      "statusBadge": {
+        "text": "Referans Sözlük",
+        "tone": "indigo"
+      },
+      "cardTitle": "24. Kısaltmalar ve Mevzuat Referans Sözlüğü",
+      "cardDesc": "Tüm kılavuzda geçen 37 teknik ve idari kısaltma (HEK, FM, RADAT, TENMAK, EBYS, RKS), 16 ana mevzuat dayanağı ve yasal sınır ile kurumsal parametre ayrım tablosu.",
+      "tags": [
+        "37 Kısaltma",
+        "NDK & Sağlık Mevzuatı",
+        "Parametre Ayrımı"
+      ],
+      "footerLabel": "Sözlük & Mevzuat",
+      "searchKeywords": "24 kisaltmalar mevzuat sozluk hek fm radat tenmak ebys rks ndk titck sks din6857 3153 32162 23999 657 4857 5510 6331 yasal sinir kurumsal parametre"
     }
   ]
 }

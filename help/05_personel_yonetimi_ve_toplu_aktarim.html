@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.27</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.29</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -74,16 +74,16 @@
 
 <section id="overview" class="mb-10 border-b border-slate-200 dark:border-slate-800 pb-6">
   <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
-    <div class="flex flex-wrap items-center gap-2.5"></div>
+    <div class="flex flex-wrap items-center gap-2.5"><span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">6331 İSG, KVKK 6698 & NDK 30 Yıl Arşiv</span></div>
     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Tahmini Okuma: 5 Dakika</span>
   </div>
   <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3">
     Personel Yönetimi, Lisans Kotası & Toplu İçe Aktarım
   </h1>
   <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
-    Radyasyonla çalışan personelin özlük, lisans, unvan, görev yeri, radyasyon çalışma grubu (A/B), lisans kotası, sağlık muayeneleri, zimmetli koruyucu ekipman (RKE), gebe/emzirme kalkanı ve 30 yıllık yasal KVKK arşiv yönetim rehberi.
+    Radyasyonla çalışan ve idari personelin özlük kartını yönetme, aktif lisans kotası kontrolü, otomatik kullanıcı hesabı üretimi, 5 adımlı toplu Excel veri aktarımı, gebe/emzirme koruma kalkanı ve 30 yıllık yasal KVKK/NDK arşiv paketini oluşturma rehberi.
   </p>
-  
+  <div class="mt-4 text-xs sm:text-sm text-slate-500 dark:text-slate-400"><strong>Yasal Güvence:</strong> 6331 sayılı İSG Kanunu m. 15, 32162 sayılı Yönetmelik ve NDK düzenlemeleri gereğince ayrılan radyasyon çalışanları sistemden silinmez; sağlık ve doz geçmişleri en az 30 yıl saklanır.</div>
   
   
 </section>
@@ -91,13 +91,13 @@
 <section id="quick-recipe" class="mb-12">
   <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
     <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
-    <span>Hızlı Reçete: Personel Yaşam Döngüsü ve Yasal Uyum</span>
+    <span>Kısa Reçete: Yeni Personel Kaydı ve Yasal Yaşam Döngüsü Yönetimi</span>
   </h2>
   <div class="p-6 sm:p-7 rounded-3xl bg-cyan-50/70 dark:bg-cyan-950/30 border border-cyan-200/90 dark:border-cyan-800/60 shadow-md">
   <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
     <div class="flex items-center gap-2.5 text-cyan-900 dark:text-cyan-200 font-bold text-sm sm:text-base">
       <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-      <span>Hızlı Reçete: Personel Yaşam Döngüsü ve Yasal Uyum</span>
+      <span>Kısa Reçete: Yeni Personel Kaydı ve Yasal Yaşam Döngüsü Yönetimi</span>
     </div>
     <span class="text-xs font-mono px-2.5 py-1 rounded bg-cyan-200/80 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-300 font-bold">20 SANİYELİK AKIŞ</span>
   </div>
@@ -105,130 +105,91 @@
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5 text-xs sm:text-sm">
     <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
       <span class="font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider text-[11px] block">1. İstenen Sonuç</span>
-      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Radyasyon çalışanlarını kurum lisans kotası dahilinde kaydetmek, sağlık ve dozimetrik geçmişlerini kesintisiz yönetmek.</p>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Kurum lisans kotasını aşmadan yeni radyasyon çalışanını kaydetmek, otomatik giriş hesabını açmak ve ayrılışta 30 yıllık yasal KVKK arşiv paketini güvenceye almak.</p>
     </div>
     <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
       <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider text-[11px] block">2. Yapılacak İşlem</span>
-      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed"><strong>[Yeni Personel Ekle]</strong> ile kayıt açın, gebe/emzirme durumunu bildirin, ayrılışta zimmetleri kapatıp <strong>30 Yıllık KVKK Arşiv Paketini (ZIP)</strong> oluşturun.</p>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed"><strong>[Personel Ekle]</strong> sihirbazıyla kimlik, iletişim, özlük, eğitim ve belgeleri girip <strong>[Kaydet]</strong> butonuna basın. Personel ayrılışında <strong>[Ayrıntı / Düzenle] &gt; [İşten Ayrılış]</strong> sekmesinden zimmet denetimini tamamlayıp <strong>[KVKK ve Özlük Arşiv Paketini İndir (ZIP)]</strong> butonunu kullanın.</p>
     </div>
     <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
       <span class="font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider text-[11px] block">3. Sistem Etkisi</span>
-      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Kota aşımı engellenir; gebe personelin nöbeti sıfırlanıp dozu 1 mSv'e kilitlenir; ayrılan personelin yasal kayıtları 30 yıl saklanmak üzere şifrelenir.</p>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Aktif personel kotası doğrulanır ve giriş hesabı otomatik oluşturulur; ayrılan personelin doz, sağlık ve özlük geçmişi 30 yıl saklanmak üzere korunurken lisans kontenjanı anında serbest bırakılır.</p>
     </div>
   </div>
   <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-cyan-200/60 dark:border-cyan-800/40">
     <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
       <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Yasal Saklama</span>
-      <span class="text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 font-mono">30 Yıl (NDK/İSG)</span>
+      <span class="text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 font-mono">30 Yıl (NDK / İSG)</span>
     </div>
     <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
-      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Lisans Denetimi</span>
-      <span class="text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 font-mono">Aktif Kota Kontrolü</span>
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Lisans Kalkanı</span>
+      <span class="text-sm sm:text-base font-black text-cyan-600 dark:text-cyan-400 font-mono">Aktif Personel Kotası</span>
     </div>
     <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
-      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Koruma Kalkanı</span>
-      <span class="text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 font-mono">Gebe & Emzirme</span>
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Özel Koruma</span>
+      <span class="text-sm sm:text-base font-black text-amber-600 dark:text-amber-400 font-mono">Gebe (1 mSv) & Emzirme</span>
     </div>
     <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
       <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Platform</span>
-      <span class="text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 font-mono">Hibrit: Desktop & Web</span>
+      <span class="text-sm sm:text-base font-black text-emerald-600 dark:text-emerald-400 font-mono">Masaüstü & Web Profil</span>
     </div>
   </div>
 </div>
 </section>
 
-<section id="table-5w1h" class="mb-12">
+<section id="5w1h" class="mb-12">
   <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
     <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
-    <span>5N1K Kural ve Fonksiyon Tablosu</span>
+    <span>5N1K Kural ve Arayüz Çözümleme Tablosu</span>
   </h2>
-  <div class="space-y-1">
- <p class="text-sm text-slate-500 dark:text-slate-400">
- Personel yönetimi, lisans denetimi, arama filtreleri ve toplu aktarım araçlarının işleyişi.
- </p>
- </div>
+  <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3"><em>Personel lisans kotası, sayfalama koruması, gebelik/emzirme kalkanı, ilişik kesme ve toplu aktarım kuralları.</em></p>
 
 <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 custom-scrollbar shadow-sm my-4">
   <table class="w-full text-left border-collapse text-xs sm:text-sm">
     <thead>
       <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/80 uppercase text-xs font-bold tracking-wider text-slate-500 dark:text-slate-400">
-        <th class="py-3.5 px-4">NE? (Ekran Kontrolü)</th>
-        <th class="py-3.5 px-4">NEDEN? (Kullanım Amacı)</th>
+        <th class="py-3.5 px-4">NE? (Bileşen / Kontrol)</th>
+        <th class="py-3.5 px-4">NEDEN? (Amacı)</th>
         <th class="py-3.5 px-4">NASIL? (Çalışma Mantığı)</th>
-        <th class="py-3.5 px-4">NE ZAMAN? (Hangi Durumda)</th>
-        <th class="py-3.5 px-4">KİM? (Yetkili Kitle)</th>
+        <th class="py-3.5 px-4">NE ZAMAN? (Tetiklenme)</th>
+        <th class="py-3.5 px-4">KİM? (Yetkili Rol)</th>
       </tr>
     </thead>
     <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Metin Arama Kutusu</strong><br> <span class="text-[11px] text-slate-400">Üst Filtre Çubuğu</span></td>
-        <td class="py-3.5 px-4">Yüzlerce çalışan arasından hedeflenen personele anında ulaşmak.</td>
-        <td class="py-3.5 px-4">Ad, Soyad, TC Kimlik No, Sicil No ve E-posta alanlarında harf girildikçe anlık dinamik filtreleme yapar.</td>
-        <td class="py-3.5 px-4">Personel sorgulama ve işlem öncesinde.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Lisans Kotası ve Otomatik Hesap</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Kayıt Doğrulama Motoru</span></td>
+        <td class="py-3.5 px-4">Sözleşme limitini korurken personele ayrı form açmadan oturum hesabı tanımlamak.</td>
+        <td class="py-3.5 px-4">Aktif personel kaydında kurum kotası denetlenir ve onaylandığında personele bağlı kullanıcı hesabı ile geçici şifre otomatik oluşturulur.</td>
+        <td class="py-3.5 px-4">Yeni aktif personel kaydedilirken.</td>
+        <td class="py-3.5 px-4">İK / RKS / Sistem Yöneticisi</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Durum Filtresi ve Sayfalama Koruması</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Liste Kontrol Çubuğu</span></td>
+        <td class="py-3.5 px-4">Aktif personeli ayrılanlardan ayırmak ve binlerce kayıtta ekran donmasını engellemek.</td>
+        <td class="py-3.5 px-4">Varsayılan olarak yalnızca aktif çalışanlar listelenir; 1.000 üzeri kayıtta Tümü seçildiğinde performans onayı istenir.</td>
+        <td class="py-3.5 px-4">Personel listesi süzülürken.</td>
         <td class="py-3.5 px-4">Tüm Kullanıcılar</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Çalışma Durumu Filtresi</strong><br> <span class="text-[11px] text-slate-400">Üst Filtre Çubuğu</span></td>
-        <td class="py-3.5 px-4">Aktif çalışanlar ile işten ayrılmış eski personeli ayırmak.</td>
-        <td class="py-3.5 px-4">"Tümü", "Aktif Çalışanlar" ve "Ayrılmış / Pasif" seçeneklerine göre listeyi filtreler.</td>
-        <td class="py-3.5 px-4">Rutin işlemlerde aktifleri, denetimlerde eski personelleri incelerken.</td>
-        <td class="py-3.5 px-4">Tüm Kullanıcılar</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Gebe ve Emzirme Koruma Kalkanı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[Bildirimi Kaydet ve Nöbetleri İptal Et]</span></td>
+        <td class="py-3.5 px-4">Anne, fetüs ve bebeği iyonlaştırıcı radyasyon ile bulaşma riskinden korumak.</td>
+        <td class="py-3.5 px-4">Gebelikte denetimli alan, gece nöbeti ve fazla mesai kapatılıp kalan süre fetüs ek doz sınırı 1 mSv izlenir; 1 yıllık emzirmede açık kaynak/bulaşma yasağı, süt izni ve gece muafiyeti uygulanır.</td>
+        <td class="py-3.5 px-4">Gebelik veya doğum sonrası emzirme bildirildiğinde.</td>
+        <td class="py-3.5 px-4">RKS / Hekim / Yönetici</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Yeni Personel Ekle</strong><br> <span class="text-[11px] text-slate-400">Üst Sol Buton</span></td>
-        <td class="py-3.5 px-4">Kuruma yeni başlayan personeli yasal kotalar dahilinde sisteme dahil etmek.</td>
-        <td class="py-3.5 px-4">Lisans kotası denetlenir; MERNIS algoritmasıyla TC kontrol edilir; rol izinlerine göre onay kuyruğuna yönlendirilir.</td>
-        <td class="py-3.5 px-4">İşe yeni personel alımlarında.</td>
-        <td class="py-3.5 px-4">Admin / İK / RGS</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Zimmet Denetimli Ayrılış ve 30 Yıl Arşiv</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[Ayrılış Bilgilerini Kaydet] &amp; ZIP İhracı</span></td>
+        <td class="py-3.5 px-4">Kurum RKE/dozimetre demirbaşını korumak ve yasal verileri devredilebilir pakette saklamak.</td>
+        <td class="py-3.5 px-4">Zimmetli RKE, aktif dozimetre ve RKS görevi denetlenir; ayrılış onaylandığında kota boşaltılır ve 30 yıllık KVKK/özlük paketi (ZIP) üretilir.</td>
+        <td class="py-3.5 px-4">İşten ayrılma, tayin veya emeklilikte.</td>
+        <td class="py-3.5 px-4">İK / RKS / Sistem Yöneticisi</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Personel Detay Kartı</strong><br> <span class="text-[11px] text-slate-400">Satır Çift Tık / Düzenle</span></td>
-        <td class="py-3.5 px-4">Personelin tüm özlük, sağlık, zimmet ve doz geçmişini tek ekranda incelemek.</td>
-        <td class="py-3.5 px-4">Sekmeli diyalog penceresi açılır: Özlük Bilgileri, İletişim, Sağlık & Muayeneler, Zimmetli RKE ve Dozimetreler listelenir.</td>
-        <td class="py-3.5 px-4">Bilgi güncelleme, zimmet takibi ve sağlık kontrolünde.</td>
-        <td class="py-3.5 px-4">Yetkili Kullanıcılar</td>
-      </tr>
-      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Kullanıcı Hesabı Oluşturma</strong><br> <span class="text-[11px] text-slate-400">Yeni Personel Formu</span></td>
-        <td class="py-3.5 px-4">Personelin masaüstü veya web portalına giriş yapabilmesini sağlamak.</td>
-        <td class="py-3.5 px-4">Kutucuk seçildiğinde kullanıcı adı ve rolü belirlenir; personelle eşleşen sistem giriş hesabı otomatik açılır.</td>
-        <td class="py-3.5 px-4">Personel sisteme kendi oturumuyla girecekse.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Tanımsız Değer Çözücü ve Dry-Run</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[Toplu Import] Sihirbazı</span></td>
+        <td class="py-3.5 px-4">Excel dosyalarındaki yazım farklarını ve hatalı satırları veritabanına yazmadan yakalamak.</td>
+        <td class="py-3.5 px-4">Bilinmeyen birim/unvanları mevcut tanımlarla eşleştirir veya yeni açar; kayıttan önce satırları Geçerli, Mükerrer ve Hatalı olarak simüle eder.</td>
+        <td class="py-3.5 px-4">Toplu Excel veya CSV içe aktarımında.</td>
         <td class="py-3.5 px-4">Sistem Yöneticisi</td>
-      </tr>
-      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Gebe / Emzirme Kalkanı</strong><br> <span class="text-[11px] text-purple-600 dark:text-purple-400 font-bold">Sağlık & Koruma Sekmesi</span></td>
-        <td class="py-3.5 px-4">Mevzuat gereği anne ve bebeği radyasyon riskinden tam korumaya almak.</td>
-        <td class="py-3.5 px-4">Ana birim ve alt birimin radyasyonlu alan durumu denetlenir; etkin doz eşiği 1 mSv'e kilitlenir, gece nöbetleri sıfırlanır, fazla mesai engellenir ve doğumdan sonra 1 yıl emzirme muafiyeti sürer.</td>
-        <td class="py-3.5 px-4">Gebelik bildirimi veya doğum sonrası emzirme döneminde.</td>
-        <td class="py-3.5 px-4">RGS / Hekim / Admin</td>
-      </tr>
-      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>İlişik Kes / Arşivle</strong><br> <span class="text-[11px] text-rose-500 font-bold">Personel İşlem Menüsü</span></td>
-        <td class="py-3.5 px-4">Ayrılan personelin zimmetlerini kapatıp lisans kotasını serbest bırakmak.</td>
-        <td class="py-3.5 px-4">Zimmetli RKE ve aktif dozimetreler denetlenir (tek onayla otomatik zimmet iadesi yapılabilir); ilişik kesilir ve 30 yıllık KVKK arşiv paketi (ZIP) oluşturulup personel pasife alınır.</td>
-        <td class="py-3.5 px-4">İşten ayrılma, tayin veya emeklilik durumunda.</td>
-        <td class="py-3.5 px-4">Admin / RGS</td>
-      </tr>
-      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Dışa Aktar (Rapor &amp; Excel / PDF / Word)</strong><br> <span class="text-[11px] text-slate-400">Tablo Araçları</span></td>
-        <td class="py-3.5 px-4">Personel listesini denetim, raporlama veya yedek amacıyla filtrelenmiş resmi döküm olarak bilgisayara almak.</td>
-        <td class="py-3.5 px-4">Ekrandaki aktif filtreleri (Aktif/Pasif, Birim, Arama) devralarak doğrudan şablonun varsayılan formatında tek tıkla kaydeder veya Rapor Merkezini açar. Tüm onay pencereleri standart Türkçe [Tamam / İptal] butonlarıyla çalışır.</td>
-        <td class="py-3.5 px-4">Resmi raporlama, denetim ve yönetim sunumlarında.</td>
-        <td class="py-3.5 px-4">Tüm Kullanıcılar</td>
-      </tr>
-      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>5 Adımlı Evrensel Toplu İçe Aktarım Sihirbazı</strong><br> <span class="text-[11px] text-slate-400">[Toplu İşlemler] Menüsü &amp; [Excel İçe Aktar]</span></td>
-        <td class="py-3.5 px-4">Onlarca veya yüzlerce personeli, izin hakedişlerini, cihaz ve RKE envanterini tek tek girmek yerine Excel/CSV dosyalarından akıllı doğrulama ile sisteme yüklemek.</td>
-        <td class="py-3.5 px-4">5 aşamalı akış işletilir: 1. Dosya Seçimi &amp; Çift Sayfalı Şablon İndirme, 2. Otomatik Sütun Eşleştirme, 3. Dinamik Değer Sözlüğü (Lookup) Çözümleme, 4. Önizleme &amp; Kapsamlı Dry-Run Doğrulama (Geçerli/Uyarı/Hata sekmeleri), 5. Asenkron Arka Plan Aktarımı (Ekran donmaz, şifre dökümü ve hatalı satırların Excel raporu sunulur).</td>
-        <td class="py-3.5 px-4">İlk sistem kurulumunda, toplu alımlarda veya dönem başı veri yüklemelerinde.</td>
-        <td class="py-3.5 px-4">Sistem Yöneticisi</td>
-      </tr>
-      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Pencereyi Kapat</strong><br> <span class="text-[11px] text-slate-400">Başlık Çubuğu &amp; [Kapat] Butonu</span></td>
-        <td class="py-3.5 px-4">Personel listesi modülünden çıkıp ana ekrana dönmek.</td>
-        <td class="py-3.5 px-4">Açık alt pencereler güvenle kapatılır ve sistem kaynakları serbest bırakılır.</td>
-        <td class="py-3.5 px-4">İşlem tamamlandığında.</td>
-        <td class="py-3.5 px-4">Tüm Kullanıcılar</td>
       </tr>
     </tbody>
   </table>
@@ -240,87 +201,62 @@
     <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
     <span>Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)</span>
   </h2>
-  <div class="flex items-center gap-3">
- <div class="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-lg shadow-sm">
- </div>
- <div>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">
- Saha Mit Avcısı: "İşten Ayrılan Personeli Silersek Doz ve Sağlık Kayıtları Yok Olur mu?"
- </h3>
- <span class="text-xs text-amber-700 dark:text-amber-300 font-semibold">En Sık Karşılaşılan Yasal Yanılgı</span>
- </div>
- </div>
-
- <div class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
- <div class="flex items-start gap-2.5">
- <span class="text-rose-500 font-bold shrink-0 text-base leading-none"></span>
- <p>
- <strong>Yanlış İnanış:</strong> <em>"İşten çıkan personeli silersek veritabanından tamamen uçar, geçmiş doz kayıtları ve sağlık raporları kaybolur; lisans kotasından düşsün diye kaydı silmemiz şarttır."</em>
- </p>
- </div>
- <div class="flex items-start gap-2.5">
- <span class="text-emerald-500 font-bold shrink-0 text-base leading-none"></span>
- <p>
- <strong>Doğru Gerçek:</strong> <strong>KESİNLİKLE HAYIR.</strong> NDK Radyasyon Güvenliği Yönetmeliği, 6331 sayılı İSG Kanunu ve EURATOM direktifleri uyarınca radyasyon çalışanlarının tüm periyodik sağlık raporları ve dozimetrik geçmişi <strong>30 yıl boyunca</strong> saklanmak zorundadır. RADPYS'de ayrılan personel veritabanından kalıcı olarak <strong>silinmez</strong>; durumu <em>"Ayrıldı / Arşivlendi"</em> statüsüne alınarak lisans kotasından düşürülür. Ayrılış anında personelin tüm 30 yıllık geçmişini içeren şifreli <strong>`kvkk_arsiv_{tc}.zip`</strong> yasal paketi oluşturularak arşiv kasasında güvence altına alınır.
- </p>
- </div>
- </div>
+  <div class="p-6 rounded-3xl bg-amber-50/70 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/50 shadow-sm">
+  <div class="flex items-center gap-2.5 text-amber-800 dark:text-amber-300 font-bold text-sm sm:text-base mb-3">
+    <svg class="w-5 h-5 text-amber-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+    <span>İşten Ayrılan Personeli Silersek Doz ve Sağlık Kayıtları Yok Olur mu?</span>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-3 text-sm">
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-rose-200 dark:border-rose-900/50 text-rose-900 dark:text-rose-200 leading-relaxed">
+      <span class="font-bold block mb-1">Yanlış Algı</span>
+      <div><em>"İşten çıkan personeli lisans kotasından yer açılsın diye sistemden silmeliyiz; silersek geçmiş doz ve sağlık kayıtları da kaybolur."</em></div>
+    </div>
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-emerald-200 dark:border-emerald-800/60 text-emerald-900 dark:text-emerald-200 leading-relaxed">
+      <span class="font-bold block mb-1">Gerçek Sistem Mantığı</span>
+      <div><strong>Personel kaydı asla kalıcı silinmez.</strong> 6331 sayılı İSG Kanunu m. 15, 32162 sayılı Yönetmelik ve NDK kuralları uyarınca sağlık ve doz kayıtları işten ayrılış sonrası en az <strong>30 yıl</strong> saklanmalıdır. Ayrılış statüsüne alınan personel lisans kotasından otomatik düşülür ve tüm geçmişi şifreli özlük arşiv paketiyle korunur.</div>
+    </div>
+  </div>
+</div>
 </section>
 
 <section id="workflow" class="mb-12">
   <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
     <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
-    <span>Personel Yaşam Döngüsü ve Mevzuat Akış Şeması</span>
+    <span>Süreç Akış Şeması</span>
   </h2>
-  <div class="space-y-1">
- <p class="text-sm text-slate-500 dark:text-slate-400">
- Personel kaydı, lisans kotası denetimi, gebe koruma kalkanı ve ilişik kesme adımları.
- </p>
- </div>
+  <div class="p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-x-auto my-4">
+  <div class="mermaid text-sm">
+flowchart TB
+ subgraph S1 ["1. AŞAMA: LİSANS KOTASI VE KAYIT"]
+  direction LR
+  A(["Yeni Personel Başlatılır"]) --> B{"Aktif Lisans Kotası<br/>Uygun mu?"}
+  B -->|Kota Dolu| C["Kota Uyarısı: Kayıt Engellenir"]
+  B -->|Uygun| D["MERNİS TC Kontrolü & Otomatik Hesap"]
+ end
 
- <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex justify-center">
+ subgraph S2 ["2. AŞAMA: GEBE VE EMZİRME KORUMASI"]
+  direction LR
+  E{"Gebelik / Emzirme<br/>Bildirildi mi?"} -->|Gebelik| F["Denetimli Alan & Gece/FM Kapanır (1 mSv)"]
+  E -->|Emzirme - 1 Yıl| G["Kontaminasyon Yasağı & Süt İzni Muafiyeti"]
+  E -->|Yok| H["Standart A/B Çalışma Koşulu"]
+ end
 
-<div class="mermaid text-sm">
-graph TD
- A(["Yeni Personel Kaydı Başlatılır"]) --> B{"Kuruluş Lisans Kotası Uygun mu?"}
+ subgraph S3 ["3. AŞAMA: AYRILIŞ VE 30 YIL ARŞİV"]
+  direction LR
+  I["Zimmet & Dozimetre İade Kontrolü"] --> J["Ayrılış Kaydedilir & Kota Boşaltılır"]
+  J --> K(["30 Yıllık KVKK / Özlük ZIP Arşivi"])
+ end
 
- %% Kota ve Kayıt Akışı
- B -->|"Kota Dolu"| C["Kota Aşımı Uyarısı: İşlem Engellenir"]
- B -->|"Kota Uygun"| D["MERNIS Algoritması ile TC Doğrulanır"]
- D --> E{"Kullanıcı Rolü Onay Gerektiriyor mu?"}
- E -->|Evet| F["RGS Onay Kuyruğuna Yönlendirilir"]
- E -->|Hayır| G["Veritabanına Aktif Olarak Eklenir"]
- F -->|Onaylandı| G
- G --> H{"Sistem Giriş Hesabı Açılsın mı?"}
- H -->|Evet| I["Otomatik Kullanıcı Hesabı & Şifre Eşlenir"]
- H -->|Hayır| J["Yalnızca Özlük & Doz Takibi Yapılır"]
-
- %% Gebe Koruma Akışı
- G --> K{"Gebelik / Emzirme Bildirildi mi?"}
- K -->|Evet| L["Gebe Koruma Kalkanı Devreye Girer"]
- L --> M["Yıllık Doz Eşiği 1 mSv Olarak Kilitlenir"]
- M --> N["Gece Nöbeti ve Fazla Mesai Sıfırlanır"]
- N --> O["Doğum Sonrası 1 Yıl Emzirme Muafiyeti Uygulanır"]
-
- %% Ayrılış ve Arşivleme Akışı
- G --> P(["İlişik Kesme / Arşivleme İsteği"])
- P --> Q{"Zimmetli RKE / Dozimetre Var mı?"}
- Q -->|Var| R["İade Formu Oluşturulur & Teslim Alınır"]
- Q -->|"Yok / İade Edildi"| S["Personel Statüsü: Ayrıldı Olarak Güncellenir"]
- R --> S
- S --> T["Lisans Kotası Otomatik Serbest Bırakılır"]
- T --> U["30 Yıllık kvkk_arsiv_tc.zip Paketi Üretilir"]
- U --> V(["Yasal Arşiv Kasasına Aktarıldı"])
-
- style A fill:#06b6d4,stroke:#0891b2,stroke-width:2px,color:#fff
- style B fill:#f8fafc,stroke:#94a3b8,stroke-width:1.5px,color:#0f172a
- style C fill:#ef4444,stroke:#dc2626,stroke-width:2px,color:#fff
- style G fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff
- style L fill:#8b5cf6,stroke:#7c3aed,stroke-width:2px,color:#fff
- style V fill:#0891b2,stroke:#0e7490,stroke-width:2px,color:#fff
+ D ==> E
+ F & G & H ==> I
+  </div>
 </div>
 
- </div>
+<ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
+  <li><strong>Lisans Kotası ve Kayıt:</strong> Aktif personel eklenirken sözleşme kotası ile 11 haneli TC Kimlik numarası doğrulanır ve giriş hesabı otomatik açılır.</li>
+  <li><strong>Gebe ve Emzirme Koruması:</strong> Gebe çalışanlarda denetimli alan ve gece nöbeti kapatılarak 1 mSv fetüs eşiği izlenir; emziren çalışanlarda 1 yıl süreyle bulaşma riskli açık kaynak alanı yasağı ve gece muafiyeti uygulanır.</li>
+  <li><strong>Ayrılış ve 30 Yıl Arşiv:</strong> Zimmetli koruyucu ekipman ve aktif dozimetre iadeleri doğrulandıktan sonra personel ayrılışa geçirilir, kota serbest bırakılır ve 30 yıl saklanacak arşiv paketi oluşturulur.</li>
+</ol>
 </section>
 
 <section id="screenshots" class="mb-12">
@@ -328,13 +264,7 @@ graph TD
     <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
     <span>Arayüz Ekran Görünümleri</span>
   </h2>
-  <div class="space-y-1">
- <p class="text-sm text-slate-500 dark:text-slate-400">
- Personel Listesi, dinamik arama paneli ve detaylı personel kartı görünümleri.
- </p>
- </div>
-
-<figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+  <figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
     <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
       <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
         <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Sol Menü > Personel Yönetimi > Personel Listesi</strong>
@@ -342,27 +272,43 @@ graph TD
       <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">Arama, Filtreler &amp; Sayaç Kartları</span>
     </div>
   <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
-    <img src="assets/img/05_personel_list.png" alt="Personel Listesi Ekranı" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+    <img src="assets/img/05_personel_list.png" alt="Personel Listesi ve KPI Kokpiti" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
   </div>
     <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
       <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      <span><span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki personel isimleri, TC kimlik numaraları, unvanlar ve iletişim bilgileri tamamen test ortamında üretilmiş sentetik veridir.</span></span>
+      <span><span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki personel adları, TC kimlik numaraları, unvanlar ve iletişim bilgileri tamamen test amaçlı sentetik veridir.</span></span>
     </figcaption>
 </figure>
 
 <figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
     <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
       <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
-        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Personel Satırına Çift Tıkla > Personel Detay Kartı</strong>
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Personel Listesi > Ayrıntı / Düzenle</strong>
       </span>
-      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">Özlük, Radyasyon Grubu, Zimmet &amp; Sağlık</span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">10 Kategorili Özlük &amp; Takip Kartı</span>
     </div>
   <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
-    <img src="assets/img/05_personel_preview.png" alt="Personel Detay Kartı Ekranı" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+    <img src="assets/img/05_personel_preview.png" alt="Personel Ayrıntı Kartı" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
   </div>
     <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
       <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      <span><span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki özlük verileri ve zimmet atamaları simülasyon amacıyla üretilmiş sentetik test kayıtlarıdır.</span></span>
+      <span><span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki özlük bilgileri, eğitim kayıtları ve zimmet detayları test amaçlı sentetik veridir.</span></span>
+    </figcaption>
+</figure>
+
+<figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+    <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
+      <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Personel Listesi > Toplu Import > Önizleme ve Doğrulama</strong>
+      </span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">Dry-Run Simülasyonu</span>
+    </div>
+  <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+    <img src="assets/img/05_page_preview.png" alt="Toplu İçe Aktarım Önizleme" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+  </div>
+    <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+      <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span><span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki aktarım satırları ve doğrulama rozetleri test ortamı simülasyonudur.</span></span>
     </figcaption>
 </figure>
 </section>
@@ -372,141 +318,36 @@ graph TD
     <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
     <span>Adım Adım İşlem Rehberi</span>
   </h2>
-  <div class="space-y-1">
- <p class="text-sm text-slate-500 dark:text-slate-400">
- Saha operasyonlarında en sık kullanılan 5 ana işlemin uygulama adımları.
- </p>
- </div>
+  <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-5 mb-2">1. Yeni Personel Ekleme ve 10 Kategorili Ayrıntı Kartını Yönetme</h3>
 
- <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
- <div class="flex items-center gap-3">
- <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 flex items-center justify-center font-bold text-sm">
- 1
- </span>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">
- Yeni Personel Kaydı Açma ve Lisans Kotası Doğrulama
- </h3>
- </div>
- <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
- <li>Personel Listesi ekranının sol üst köşesindeki <strong>[Yeni Personel Ekle]</strong> butonuna tıklayın.</li>
- <li>Sistem arka planda kurum lisansının aktif personel kotasını sorgular. Kota dolu ise ekranda bilgilendirme modalı açılır.</li>
- <li>Formdaki zorunlu alanları doldurun:
- <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-0.5">
- <li><strong>TC Kimlik No:</strong> 11 haneli geçerli MERNIS algoritmasına uygun numara.</li>
- <li><strong>Ad, Soyad ve Sicil No.</strong></li>
- <li><strong>Birim ve Görev / Unvan:</strong> Radyoloji, Nükleer Tıp veya Radyasyon Onkolojisi seçimi.</li>
- <li><strong>Radyasyon Çalışma Grubu:</strong> Grup A (Aylık Dozimetre) veya Grup B (3 Aylık Dozimetre).</li>
- </ul>
- </li>
- <li>Personelin programa kendi şifresiyle girmesi gerekiyorsa <strong>[Sistem Kullanıcı Hesabı Oluştur]</strong> kutusunu işaretleyip rolünü seçin.</li>
- <li><strong>[Kaydet]</strong> butonuna basarak işlemi tamamlayın. Onay gerektiren bir roldeyseniz kayıt RGS onay kuyruğuna iletilecektir.</li>
- </ol>
- </div>
+<ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
+  <li><strong>[Personel Listesi]</strong> ekranında <strong>[Personel Ekle]</strong> butonuna tıklayın; 5 adımlı formda <strong>Kimlik Bilgileri</strong>, <strong>İletişim</strong>, <strong>Özlük İşleri</strong> (departman, unvan ve Koşul A/B radyasyon grubu), <strong>Eğitim Kayıtları</strong> ve <strong>Personel Belgeler</strong> alanlarını doldurup <strong>[Kaydet]</strong> butonuna basın (sistem giriş hesabı arka planda otomatik açılır).</li>
+  <li>Kayıtlı bir personeli güncellemek için satıra çift tıklayın veya <strong>[Ayrıntı / Düzenle]</strong> butonunu seçin; sol listedeki 10 kategoriden (<em>Genel ve İletişim</em>, <em>Kurumsal Bilgiler</em>, <em>Eğitim Kayıtları</em>, <em>İzin Bilgileri</em>, <em>Sağlık Muayenesi</em>, <em>Dozimetre Takip</em>, <em>Personel Belgeleri</em>, <em>Nöbet Geçmişi</em>, <em>Personel Geçmişi</em>, <em>İşten Ayrılış</em>) ilgili sekmeye geçin.</li>
+  <li>Bilgi değişikliği yaparken sağ üstteki <strong>[Düzenle]</strong> butonunu açıp güncelleme sonrası <strong>[Kaydet]</strong> butonuna tıklayın.</li>
+</ol>
 
- <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
- <div class="flex items-center gap-3">
- <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 flex items-center justify-center font-bold text-sm">
- 2
- </span>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">
- Personel Detaylarını Güncelleme ve Doz / Sağlık Takibi
- </h3>
- </div>
- <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
- <li>Tabloda aradığınız personelin satırına çift tıklayın veya satır sonundaki <strong>[Düzenle]</strong> butonuna basın.</li>
- <li>Açılan <strong>Personel Detay Kartı</strong> penceresinde ilgili sekmeye geçin:
- <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-0.5">
- <li><strong>Özlük Bilgileri:</strong> İletişim, adres, kan grubu, acil durum irtibatı.</li>
- <li><strong>Radyasyon Bilgileri:</strong> Grup A/B tercihi, TENMAK/NDK servis sağlayıcı kodu.</li>
- <li><strong>Zimmetler:</strong> Üzerine kayıtlı kurşun önlük, tiroid koruyucu ve aktif dozimetreler.</li>
- <li><strong>Sağlık Muayeneleri:</strong> İşe giriş ve periyodik hemogram/dermatoloji kontrol tarihleri.</li>
- </ul>
- </li>
- <li>Güncellemeleri tamamladıktan sonra <strong>[Değişiklikleri Kaydet]</strong> butonuna basarak formu kapatın.</li>
- </ol>
- </div>
+<h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-5 mb-2">2. Gebelik / Emzirme Bildirimi ve İşten Ayrılış / 30 Yıllık Arşiv Paketi</h3>
 
- <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
- <div class="flex items-center gap-3">
- <span class="w-7 h-7 rounded-xl bg-purple-100 text-purple-800 dark:bg-purple-900/60 dark:text-purple-300 flex items-center justify-center font-bold text-sm">
- 3
- </span>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">
- Gebe ve Emziren Personel Koruma Protokolünün Devreye Alınması
- </h3>
- </div>
- <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
- <li>İlgili kadın personelin detay kartını açarak <strong>[Sağlık & Koruma]</strong> sekmesine gelin.</li>
- <li><strong>[Gebelik Durumu Bildirimi]</strong> kutusunu işaretleyin; hekim raporundaki gebelik başlangıç tarihini ve tahmini doğum tarihini girin.</li>
- <li><strong>[Kaydet]</strong> butonuna bastığınız anda RADPYS güvenlik motoru:
- <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-0.5">
- <li>Personelin yıllık etkin doz eşiğini mevzuat uyarınca <strong>1 mSv</strong> değerine sabitler.</li>
- <li>Nöbet planlama modülünde personelin gece vardiyası ve fazla mesai almasını otomatik olarak engeller.</li>
- <li>Radyasyon Güvenlik Sorumlusu (RGS) paneline anlık uyarı bildirimi gönderir.</li>
- </ul>
- </li>
- <li>Doğum gerçekleştiğinde aynı sekmeden <strong>[Emzirme Durumu]</strong> seçilerek koruma süreci 1 yıl daha uzatılabilir.</li>
- </ol>
- </div>
+<ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
+  <li>Kadın personelde gebelik veya doğum bildirmek için detay kartında gebelik bildirimi butonuna basın, tarihleri girip <strong>[Bildirimi Kaydet ve Nöbetleri İptal Et]</strong> butonuna tıklayın; gebelikte gece nöbetleri otomatik iptal edilir, emzirmede 1 yıl süt izni ve bulaşma koruması başlar.</li>
+  <li>İşten ayrılan personelde <strong>[İşten Ayrılış]</strong> kategorisini açıp ayrılış tarihi ile sebebini seçin ve <strong>[Ayrılış Bilgilerini Kaydet]</strong> butonuna basın; sistem zimmetli koruyucu ekipman ve aktif dozimetre varsa iade onayı ister, aktif RKS görevi varsa sonlandırır.</li>
+  <li>Tüm sağlık, dozimetre, izin, eğitim ve özlük belgelerini tek dosyada dışa aktarmak için <strong>[KVKK ve Özlük Arşiv Paketini İndir (ZIP)]</strong> butonunu kullanın.</li>
+</ol>
 
- <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
- <div class="flex items-center gap-3">
- <span class="w-7 h-7 rounded-xl bg-rose-100 text-rose-800 dark:bg-rose-900/60 dark:text-rose-300 flex items-center justify-center font-bold text-sm">
- 4
- </span>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">
- İşten Ayrılış, Zimmet İadesi ve 30 Yıllık KVKK Arşiv Paketi
- </h3>
- </div>
- <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
- <li>İşten ayrılan personelin satır işlem menüsünden <strong>[İlişik Kes / Arşivle]</strong> butonuna basın.</li>
- <li>Sistem personelin zimmet dökümünü kontrol eder:
- <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-0.5">
- <li>Üzerinde zimmetli kurşun önlük, koruyucu gözlük vb. varsa sistem <strong>"İade Edilmemiş RKE Bulunmaktadır"</strong> uyarısı verir.</li>
- <li>Aktif periyot dozimetresi teslim edilmemişse uyarı çıkar.</li>
- </ul>
- </li>
- <li>Zimmetler depoya iade edildikten sonra ayrılış tarihini ve nedenini girerek onay verin.</li>
- <li>Sistem personeli <em>"Ayrıldı"</em> statüsüne alıp lisans kotasını serbest bırakır.</li>
- <li>Otomatik olarak NDK mevzuatı gereği 30 yıl saklanacak olan <strong>`kvkk_arsiv_{tc}.zip`</strong> kriptolu arşiv dosyasını bilgisayarınıza indirmeniz için dosya kaydetme penceresi sunar.</li>
- </ol>
- </div>
+<h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-5 mb-2">3. 5 Adımlı Evrensel Toplu Veri İçe Aktarım Sihirbazı</h3>
 
- <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
- <div class="flex items-center gap-3">
- <span class="w-7 h-7 rounded-xl bg-blue-100 text-blue-800 dark:bg-blue-900/60 dark:text-blue-300 flex items-center justify-center font-bold text-sm">
- 5
- </span>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">
- 5 Adımlı Evrensel İçe Aktarım Sihirbazı ile Toplu Veri Yükleme
- </h3>
- </div>
- <ol class="list-decimal list-inside space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2 leading-relaxed">
- <li><strong>1. Adım (Veri Kaynağı ve 2 Sayfalı Şablon):</strong> <strong>[Toplu İşlemler]</strong> menüsünden <strong>[Örnek Excel Şablonu İndir]</strong> butonuna tıklayın. İndirilen dosya 2 sayfadan oluşur:
- <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-1">
- <li><strong>Veri Listesi Sekmesi:</strong> Personellerin TC Kimlik No, Ad, Soyad, Sicil No, Departman ve Görev bilgilerinin girileceği alandır. Sayısal veri kayıplarını ve baştaki sıfırların silinmesini önlemek için hücreler kurumsal metin biçiminde kilitlenmiştir.</li>
- <li><strong>Geçerli Değerler Kılavuzu Sekmesi:</strong> Sisteminizde halihazırda tanımlı olan aktif departmanlar, unvanlar ve izin türleri bu sayfada referans liste olarak sunulur; hatalı yazımların önüne geçilir.</li>
- </ul>
- Dosyanızı hazırladıktan sonra <strong>[Dosya Seç]</strong> ile sihirbaza yükleyin ve <strong>[İleri]</strong> butonuna basın.
- </li>
- <li><strong>2. Adım (Akıllı Sütun Eşleştirme):</strong> Sistem dosyanızdaki sütun başlıklarını otomatik olarak algılar ("T.C.", "TC Kimlik No", "Adı Soyadı" gibi eşanlamlılar doğrudan eşleşir). Eşleşmeyen opsiyonel sütunları açılır kutulardan seçebilir veya eşlemeyi özelleştirebilirsiniz.</li>
- <li><strong>3. Adım (Dinamik Değer Sözlüğü Çözümleme):</strong> Excel dosyanızdaki bir departman veya unvan sistemde birebir bulunamadığında sihirbaz duraksamaz; her bilinmeyen değer için 3 esnek seçenek sunar:
- <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-0.5">
- <li><em>Var Olanla Eşleştir:</em> Sistemdeki mevcut bir departman veya unvana bağlayın.</li>
- <li><em>Yeni Tanım Olarak Ekle:</em> Sisteme yetkiniz dahilinde yeni bir tanım olarak kaydedilmesini sağlayın.</li>
- <li><em>Satırı Atla:</em> Bu değeri içeren satırları içe aktarımdan hariç tutun.</li>
- </ul>
- </li>
- <li><strong>4. Adım (Önizleme &amp; Kapsamlı Doğrulama - Dry Run):</strong> Veritabanına hiçbir kayıt yazılmadan önce simülasyon çalıştırılır:
- <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-0.5">
- <li><strong>Geçerli Kayıtlar:</strong> Yeşil rozetle gösterilir; doğrudan aktarıma hazırdır.</li>
- <li><strong>Uyarılar:</strong> Sarı rozetle vurgulanır; mükerrer isim veya eksik opsiyonel alanları gösterir.</li>
- <li><strong>Hatalı Kayıtlar:</strong> Kırmızı rozetle işaretlenir; geçersiz TC Kimlik, aktif kota aşımı veya eksik zorunlu alanlar gerekçesiyle listelenir. Tablo üzerindeki filtreleme sekmeleriyle hataları anında ayıklayabilirsiniz.</li>
- </ul>
- </li>
- <li><strong>5. Adım (Asenkron Arka Plan Aktarımı &amp; Hata Raporu):</strong> <strong>[Aktarımı Başlat]</strong> butonuna bastığınızda aktarım arka planda yürütülür; binlerce satırlık listelerde dahi program donmaz veya kilitlenmez. İşlem tamamlandığında otomatik oluşturulan kullanıcı hesaplarının şifre dökümü sunulur; aktarılamayan hatalı satırlar varsa <strong>[Hataları Excel Olarak İndir]</strong> butonu ile hata gerekçeleriyle birlikte raporlanır.</li>
- </ol>
- </div>
+<ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
+  <li><strong>[Toplu Import]</strong> butonuna basıp <strong>[Şablonlar Klasörü]</strong> üzerinden 2 sayfalı Excel şablonunu (<em>Veri Listesi</em> ve <em>Geçerli Değerler Kılavuzu</em>) hazırlayın ve <strong>[Dosya Seç...]</strong> ile yükleyin.</li>
+  <li>Sütun eşleştirme adımını doğrulayın; dosyada sistemde bulunmayan birim veya unvan varsa açılan <strong>3. Tanımsız Değerleri Eşleştir</strong> adımında <strong>[Hepsini Eşle]</strong> ya da <strong>[Hepsini Yeni Yap]</strong> ile çözüp <strong>[Eşleştirmeleri Uygula ve İlerle]</strong> butonuna basın.</li>
+  <li><strong>Önizleme ve Doğrulama</strong> adımında <strong>[Sadece Hatalılar]</strong> / <strong>[Sadece Mükerrerler]</strong> filtrelerini kontrol ettikten sonra <strong>[Aktarımı Başlat]</strong> butonuna tıklayın; işlem bitince otomatik oluşturulan şifreleri <strong>[Kullanıcı Hesap Bilgilerini İndir (.txt)]</strong> ile alın ve varsa <strong>[Hata Raporunu Aç]</strong> ile hatalı satırları inceleyin.</li>
+</ol>
+
+<h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-5 mb-2">4. Web Portalı Hesabım & Profilim Görünümü</h3>
+
+<ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
+  <li>Saha personeli tarayıcı veya mobilden <strong>Web Portalı</strong>'na giriş yaptığında <strong>Hesabım & Profilim</strong> ekranından kendi iletişim, dozimetre, periyodik sağlık/EK-1, eğitim ve izin/nöbet kayıtlarını görüntüler.</li>
+  <li>Personele bağlı gebelik veya rotasyon bildirimi gönderildiğinde talep doğrudan masaüstü yetkili onay kuyruğuna iletilir; yöneticiler ise Web Portaldaki personel gösterge panelinden kadro özetini salt okunur izler.</li>
+</ol>
 </section>
 
 <section id="faq" class="mb-12">
@@ -517,56 +358,38 @@ graph TD
   <div class="space-y-3" id="faqAccordion">
   <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
     <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>Kuruluş lisans kotamız dolduğunda yeni personel ekleyebilir miyiz? ▾</span>
+      <span>Kuruluş lisans kotamız dolduğunda yeni personel ekleyebilir miyiz?</span>
       <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
     </summary>
     <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Hayır. RADPYS lisans sözleşmenizdeki aktif personel kotası aşıldığında sistem yeni personel kaydını engeller ve kota artırımı için yöneticinize bildirim yapmanızı önerir. Ancak işten ayrılan eski personellerin ilişiği kesilip arşivlendiğinde, boşalan kontenjan kadar yeni personel kaydı anında açılabilir.</p>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Hayır. Lisans sözleşmesindeki aktif personel kotası dolduğunda sistem yeni aktif personel kaydını durdurur. Ancak işten ayrılan personellerin ayrılış işlemi kaydedilip pasife alındığında boşalan kontenjan kadar yeni kayıt hemen açılabilir.</p>
     </div>
   </details>
   <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
     <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>Personel TC Kimlik Numarası girildiğinde sistem neden hata veriyor? ▾</span>
+      <span>TC Kimlik Numarası girildiğinde sistem neden doğrulama uyarısı veriyor?</span>
       <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
     </summary>
     <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">RADPYS, NDK ve Sağlık Bakanlığı resmi bildirimlerinde mükerrer veya sahte kayıt oluşmasını önlemek amacıyla MERNIS 11 haneli matematiksel algoritma kontrolü uygular. İlk hanesi 0 olan veya sağlama toplamı tutmayan TC kimlik numaraları sistem tarafından reddedilir. Ayrıca aynı TC numarası ile sistemde zaten aktif bir kayıt varsa mükerrer kayıt uyarısı verilir.</p>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Mükerrer ve hatalı resmi bildirimi önlemek için 11 haneli MERNİS algoritma kontrolü ve sistem içi tekillik denetimi uygulanır. İlk hanesi sıfır olan, sağlama toplamı tutmayan veya başka bir personelde kayıtlı olan TC numaraları kabul edilmez.</p>
     </div>
   </details>
   <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
     <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>Gebe personel doğum yaptıktan sonra koruma kalkanı devam eder mi? ▾</span>
+      <span>Emzirme döneminde radyasyon çalışanı için sayısal mSv dozu sınırı var mıdır?</span>
       <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
     </summary>
     <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Evet. İlgili mevzuat uyarınca doğum sonrası emzirme döneminde de personelin radyoaktif kontaminasyon riski bulunan sahalarda çalışması ve gece nöbeti tutması kısıtlıdır. Personel detay kartındaki [Emzirme Durumu] seçeneği işaretlendiğinde koruma kalkanı doğum tarihinden itibaren tam 1 yıl boyunca otomatik olarak devrede kalmaya devam eder.</p>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">13.04.2023 tarihli ve 32162 sayılı Yönetmelik, 657 sayılı Kanun m. 101 ve ilgili çalışma şartları yönetmeliği gereğince emzirme döneminde sayısal bir mSv sınırı yerine radyoaktif bulaşma (kontaminasyon) riski taşıyan açık kaynak alanlarında çalıştırılmama kuralı uygulanır; buna ek olarak 1 yıl boyunca süt izni saat azaltımı ve gece nöbeti muafiyeti devrede tutulur.</p>
     </div>
   </details>
   <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
     <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>İşten ayrılan personelin üzerinde zimmetli kurşun önlük kalırsa ne yapılmalıdır? ▾</span>
+      <span>Toplu personel dosyası yüklerken Excel'deki bir birim veya unvan sistemde yoksa dosya tamamen iptal edilir mi?</span>
       <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
     </summary>
     <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Sistem, kurum demirbaşlarının kaybolmasını ve sahipsiz radyasyon koruyucu ekipman kalmasını önlemek için ilişik kesme anında zimmet denetimi yapar. Personel Detay Kartı > Zimmetler sekmesinden veya RKE Modülü üzerinden ilgili ekipman "Depoya İade Edildi" olarak işaretlenmeli, ardından personelin ilişik kesme ve arşivleme işlemi onaylanmalıdır.</p>
-    </div>
-  </details>
-  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
-    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>Web portalından eklenen personel masaüstü uygulamasında hemen görünür mü? ▾</span>
-      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-    </summary>
-    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Evet. Web portalı ile masaüstü uygulaması aynı merkezi PostgreSQL veritabanını paylaşır. Web portalından veya mobil arayüzden yapılan tüm personel ekleme, güncelleme ve ayrılış işlemleri masaüstü ekranındaki [Yenile] butonuna basıldığında veya tablo açıldığında anında eşzamanlı olarak yansır.</p>
-    </div>
-  </details>
-  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
-    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>Toplu personel Excel'i yüklerken dosyadaki departman veya unvan sistemde yoksa ne olur? ▾</span>
-      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-    </summary>
-    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">RADPYS Evrensel İçe Aktarım Sihirbazı işlemi durdurmaz veya tüm dosyayı reddetmez. 3. Adımda (Dinamik Değer Çözümleme) sistemde eşleşmeyen her bir tanımsız değer için size seçenek sunar: İlgili değeri sistemdeki mevcut bir departman/unvanla eşleyebilir, yetkiniz dahilinde sisteme otomatik yeni tanım olarak ekleyebilir ya da yalnızca o satırları atlayarak diğer personellerin aktarımını başarıyla tamamlayabilirsiniz. Ayrıca indirilen şablonun ikinci sayfasındaki [Geçerli Değerler Kılavuzu] sekmesine bakarak sisteminizdeki tam isimleri önceden inceleyebilirsiniz.</p>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Hayır. Sihirbaz tanımsız değerler için otomatik olarak eşleştirme adımını açar. Her bilinmeyen birim veya unvanı sistemdeki mevcut bir tanımla eşleştirebilir, yeni tanım olarak ekleyebilir ya da o satırı atlayarak kalan geçerli personelleri sorunsuz aktarabilirsiniz.</p>
     </div>
   </details>
 </div>
@@ -590,10 +413,10 @@ graph TD
       <div class="sticky top-24 space-y-4">
         <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-3">Bu Sayfada</span>
         <nav class="space-y-2.5 text-sm" id="onPageToc">
-          <a href="#quick-recipe" data-toc-link="quick-recipe" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Hızlı Reçete: Personel Yaşam Döngüsü ve Yasal Uyum</a>
-          <a href="#table-5w1h" data-toc-link="table-5w1h" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">5N1K Kural ve Fonksiyon Tablosu</a>
+          <a href="#quick-recipe" data-toc-link="quick-recipe" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Kısa Reçete: Yeni Personel Kaydı ve Yasal Yaşam Döngüsü Yönetimi</a>
+          <a href="#5w1h" data-toc-link="5w1h" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">5N1K Kural ve Arayüz Çözümleme Tablosu</a>
           <a href="#myth-buster" data-toc-link="myth-buster" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)</a>
-          <a href="#workflow" data-toc-link="workflow" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Personel Yaşam Döngüsü ve Mevzuat Akış Şeması</a>
+          <a href="#workflow" data-toc-link="workflow" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Süreç Akış Şeması</a>
           <a href="#screenshots" data-toc-link="screenshots" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Arayüz Ekran Görünümleri</a>
           <a href="#step-by-step" data-toc-link="step-by-step" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Adım Adım İşlem Rehberi</a>
           <a href="#faq" data-toc-link="faq" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Sıkça Sorulan Sorular (SSS)</a>
@@ -604,7 +427,7 @@ graph TD
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.27) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.29) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
     </div>
   </footer>
 

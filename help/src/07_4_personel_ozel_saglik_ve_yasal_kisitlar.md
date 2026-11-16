@@ -1,117 +1,77 @@
 ---json
 {
-  "pageTitle": "07. 07 4 Personel Ozel Saglik Ve Yasal Kisitlar — RADPYS v4 Kullanım Kılavuzu",
+  "pageTitle": "07.4. Personel Özel Sağlık ve Yasal Kısıtları — RADPYS v4 Kullanım Kılavuzu",
   "h1": "Personel Özel Sağlık Kısıtları, Yasal Haklar ve Fazla Mesai Engelleri",
-  "lead": "Gebe personelin radyasyondan korunması ve gece nöbeti yasağı, yasal süt/emzirme izinleri saat indirimleri, sendika yöneticisi mesai azaltımları ve bireysel fazla mesai yasaklama (FM Off) kuralları bu ekrandan yönetilir.",
+  "lead": "Gebe personelin 5 fazlı radyasyon koruma döngüsünü, yasal süt/emzirme saat indirimlerini, sendika yöneticisi mesai azaltımlarını, sağlık kurulu/analık raporlarını, doz aşımı korumalarını ve bireysel fazla mesai engellerini yönetmenizi sağlar.",
   "overviewId": "overview",
-  "badges": []
+  "badges": [
+    {
+      "text": "07.4 Özel Sağlık Kısıtları",
+      "tone": "emerald"
+    }
+  ],
+  "readingTime": "4 Dakika",
+  "legalNote": "<strong>Yasal Koruma:</strong> Gebelik, analık, emzirme, sağlık kurulu raporu ve NDK doz aşımı korumaları 657 DMK, 4857 İş Kanunu, 3153 SK ve 32162 sayılı Yönetmelik uyarınca mutlak kanuni sınırlardır."
 }
 ---
 
-## Hızlı Reçete: Bireysel Yasal Sağlık Kısıtı Tanımlama {#quick-recipe}
+## Kısa Reçete: Bireysel Yasal Sağlık Kısıtı Tanımlama {#quick-recipe}
 
-<div class="flex items-center gap-3">
- <div class="w-9 h-9 rounded-2xl bg-cyan-600 text-white flex items-center justify-center font-bold text-base shadow-md"> </div>
- <div>
- <p class="text-xs text-slate-500 dark:text-slate-400">
- Gebelik, süt izni, sendika azaltımı ve FM yasağı yönetimi
- </p>
- </div>
- </div>
- <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 text-xs sm:text-sm">
- <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
- <span class="font-bold text-slate-400 uppercase text-[10px] tracking-wider block">1. İstenen Sonuç</span>
- <p class="font-semibold text-slate-800 dark:text-slate-100">
- Yasal koruma altındaki personelin mevzuata uygun biçimde nöbetten veya fazla mesaiden otomatik muaf tutulması.
- </p>
- </div>
- <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
- <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase text-[10px] tracking-wider block">2. Yapılacak İşlem</span>
- <p class="font-semibold text-slate-800 dark:text-slate-100">
- Personeli seçin, Kısıt Tipini (Gebelik, Süt İzni vb.) belirleyin, başlangıç-bitiş tarihlerini girip <strong>[Kısıt Ekle]</strong> butonuna basın.
- </p>
- </div>
- <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
- <span class="font-bold text-emerald-600 dark:text-emerald-400 uppercase text-[10px] tracking-wider block">3. Sistem Etkisi</span>
- <p class="font-semibold text-slate-800 dark:text-slate-100">
- Gebelik ve doz aşımında radyasyonlu alan nöbetleri kapatılır (radyasyonsuz alanda gündüz vardiyası ve yasal devir korunur); sağlık kurulu ve analık raporlarında rapor günleri aylık hedeften otomatik düşülür.
- </p>
- </div>
- </div>
- <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2 border-t border-cyan-100 dark:border-cyan-900/40">
- <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
- <span class="text-base"></span>
- <div>
- <span class="text-[10px] uppercase font-bold text-slate-400 block">Gebelik Kilidi</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Gece & FM Yasak (1 mSv)</span>
- </div>
- </div>
- <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
- <span class="text-base"></span>
- <div>
- <span class="text-[10px] uppercase font-bold text-slate-400 block">Süt İzni</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">İlk 6 Ay: 3s | Sonra: 1.5s</span>
- </div>
- </div>
- <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
- <span class="text-base"> </span>
- <div>
- <span class="text-[10px] uppercase font-bold text-slate-400 block">Sendika İzni</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Memur: 4s/hf | İşçi: 2s/hf</span>
- </div>
- </div>
- <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
- <span class="text-base"></span>
- <div>
- <span class="text-[10px] uppercase font-bold text-slate-400 block">FM Kilidi</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Personel FM Off</span>
- </div>
- </div>
- </div>
+:::recipe Kısa Reçete: Bireysel Yasal Sağlık Kısıtı Tanımlama | 20 SANİYELİK AKIŞ
+### 1. İstenen Sonuç | slate
+Yasal koruma altındaki çalışanın gece nöbetinden, radyasyon riskinden veya fazla mesaiden otomatik ve mevzuata tam uyumlu biçimde korunması.
 
-## 07.4 Personel Özel Kısıtları 5N1K Bileşen Çözümleme Tablosu {#5w1h}
+### 2. Yapılacak İşlem | cyan
+<strong>[Personel Özel Kısıtları]</strong> sekmesinde personeli ve kısıt türünü (örneğin <em>Gebelik / Hamilelik Muafiyeti</em> veya <em>Yasal Emzirme İzni</em>) seçin; tarih aralığı ile saat azaltımını doğrulayıp <strong>[Kısıt Ekle]</strong> butonuna basın.
 
-| NE? (Bileşen Adı) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? | KİM? |
+### 3. Sistem Etkisi | emerald
+Gebelik ve doz aşımında gece nöbeti ile fazla mesai sıfırlanır; emzirme ve sendika izinlerinde mesai hedefi otomatik düşülür; doğum sonrası kesin tarih değiştiğinde tek tıkla 5 faz güncellenir.
+
+- [metric] Gebelik Kilidi | Gece/FM Yasak (Fetüs ≤ 1 mSv) | rose
+- [metric] Süt İzni | İlk 6 Ay: 3s / Sonra: 1.5s | cyan
+- [metric] Sendika İzni | Memur: 4s/hf / İşçi: 2s/hf | emerald
+- [metric] FM Engeli | Fazla Mesai İstemiyorum | amber
+:::
+
+## 5N1K Kural ve Arayüz Çözümleme Tablosu {#5w1h}
+
+*Personel Özel Kısıtları sekmesindeki 9 yasal kısıt türü, saat azaltım rejimi ve gebelik yaşam döngüsü kontrolleri.*
+
+| NE? (Bileşen / Kontrol) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Tetiklenme) | KİM? (Yetkili Rol) |
 | --- | --- | --- | --- | --- |
-| Personel Seçimi (Açılır Kutu) | Kısıtın uygulanacağı çalışanı belirlemek. | Departmandaki aktif personelleri listeler. İsim veya TC Kimlik ile filtrelenebilir. | Kısıt oluştururken. | İK / Nöbet Sorumlusu |
-| [Kısıt Tipi] (Açılır Kutu) | Yasal muafiyet veya sağlık kısıtının gerekçesini seçmek. | Yasal Emzirme İzni, Gebelik Muafiyeti (5 Fazlı Yaşam Döngüsü), Analık İzni, Sendika Muafiyeti, Engelli / Engelli Yakını, Sağlık Kurulu Raporu, Doz Sınırı Aşımı ve Diğer Özel Durumlar seçeneklerini içerir. | Rapor geldiğinde. | Yetkili Kullanıcı |
-| [Saat Azaltım] &amp; [Azaltım Türü] | Personelin günlük, haftalık veya aylık mesaisinden düşülecek süreyi belirlemek. | Süt izninde ilk 6 ay 3 saat, ikinci 6 ay 1.5 saat; sendika izninde haftalık saat; sağlık kurulu ve analık raporunda ise rapor tarih aralığındaki iş günleri aylık zorunlu çalışma hedefinden otomatik eksiltilir. | Kısıt süresince. | İK Uzmanı |
-| [Fazla Mesai Yazılamaz (FM Off)] &amp; [Personel Max FM] | Personelin ayda yapabileceği azami fazla mesai tavanını kişiye özel sınırlamak. | Gebelik, süt izni, analık, engelli/engelli yakını ve doz aşımında fazla mesai otomatik 0 saate kilitlenir (doz aşımında koruma kalıcıdır). Sağlık raporunda özel istek yoksa rapor tarihleri dışında mesai yazılabilir. | Bireysel sınırlamada. | Klinik Amiri |
-| Başlangıç / Bitiş Tarihi | Kısıtın geçerlilik dönemini takvimle sınırlamak. | Tarih aralığı dışında kalan aylarda kısıt otomatik hükümsüz kalır; personel normal çalışma düzenine döner. | Rapor geçerliliğinde. | Sorumlu |
-| Gerekçe (Metin Kutusu) | Kısıtın dayandığı resmi rapor veya evrak numarasını kaydetmek. | Örn: "Sağlık Kurulu Rapor No: 2026/412", "Sendika Yetki Belgesi". Denetim izinde saklanır. | Kayıt esnasında. | Kullanıcı |
-| Kısıt Ekle Butonu | Bireysel kısıt kaydını sisteme işlemek. | Tıklandığında kısıt tablosuna eklenir ve nöbet dağıtım motorunun çalışma matrisine dahil edilir. | Kayıt tamamlarken. | Yetkili Kullanıcı |
-| Kısıt Güncelle / Sil Butonları | Süresi biten veya revize edilen raporları düzenlemek veya kaldırmak. | Seçilen kısıtın tarihini uzatır veya kısıtı sonlandırarak personeli tam kapasiteye geçirir. | Durum değişiminde. | Yönetici |
+| <strong>9 Yasal Kısıt Türü</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Kısıt Seçim Listesi</span> | Mevzuattaki farklı koruma ve muafiyet hallerini ayrı kurallarla işletmek. | Yasal Emzirme İzni, Gebelik/Hamilelik, Analık İzni, Engelli, Ağır Engelli Yakını, Sağlık Kurulu Raporu, Doz Sınırı Aşımı, Sendika Temsilciliği ve Diğer seçeneklerini sunar. | Rapor veya bildirim geldiğinde. | İK / Nöbet Sorumlusu |
+| <strong>Saat Azaltım &amp; Azaltım Türü</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Günlük / Haftalık / Aylık</span> | Yasal izinlerin çalışanın zorunlu mesai hedefinden doğru düşülmesini sağlamak. | Emzirme türünde ilk 6 ay günlük 3 saat, ikinci 6 ay 1.5 saat otomatik önerilir; sendikada haftalık saat (memur 4s, işçi 2s), raporlarda ise iş günü düşülür. | Kısıt türü seçildiğinde. | İK Uzmanı / Sorumlu |
+| <strong>[Fazla Mesai İstemiyorum] &amp; Max FM</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Kişisel Mesai Tavanı</span> | Korunan personellerin aylık fazla mesaisini otomatik sıfıra veya özel sınıra çekmek. | Gebelik, emzirme, analık, engelli/yakını ve doz aşımında fazla mesai otomatik sıfıra kilitlenir; kutu işaretlenerek isteğe bağlı kısıtta da mesai kapatılır. | Kısıt aktifleştiğinde. | Birim Amiri |
+| <strong>[Tarih Sınırı Uygula] &amp; Gerekçe</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Geçerlilik Aralığı</span> | Rapor süresi dolduğunda kısıtı otomatik hükümsüz kılıp resmi dayanağı saklamak. | Başlangıç–bitiş tarihleri dışında kalan dönemlerde kısıt pasif sayılır; girilen rapor veya yazı numarası denetim izinde saklanır. | Kayıt oluşturulurken. | Yetkili Kullanıcı |
+| <strong>[Doğum Tarihi Güncelle] &amp; [Gebelik Sonlandı]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">5 Fazlı Gebelik Döngüsü</span> | Bebek doğum tarihindeki kaymalarda veya tıbbi sonlanmada tüm fazları tutarlı güncellemek. | Kesin doğum tarihi girildiğinde doğum öncesi, analık izni ve ilk/ikinci 6 ay emzirme fazları zincirleme güncellenir; erken sonlanmada doğuma bağlı kısıtlar kapatılır. | Doğum gerçekleştiğinde veya sonlandığında. | İK / Yönetici |
 
-## Personel Özel Kısıtları Ekranı {#screenshot}
+## Arayüz Ekran Görünümleri {#screenshots}
 
-![Personel Özel Kısıtları Ekranı | Ekran: Nöbet Ayarları > [Personel Kısıtları] Sekmesi | Personel Kısıtları Sekmesi](assets/img/nobet_person_kisit.png "<span><strong>Simülasyon Notu:</strong> Personel adları, kısıt türleri ve tarih aralıkları mevzuata uygun test verileriyle örneklendirilmiştir.</span>")
+![Personel Özel Kısıtları Ekranı | Nöbet Ayarları > Personel Özel Kısıtları | Yasal Muafiyetler, Gebelik & Süt İzni Kuralları | emerald](assets/img/nobet_person_kisit.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki personel adları, kısıt türleri ve tarih aralıkları KVKK gereği tamamen sentetik verilerdir.</span>")
 
-## Adım Adım Süt İzni ve Gebelik Kısıtı Tanımlama {#step-by-step}
+## Adım Adım İşlem Rehberi {#step-by-step}
 
-<div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
- <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
- <li><strong>[Personel Kısıtları]</strong> sekmesine geçin.</li>
- <li>Sağdaki <strong>Kayıt Düzenleyici</strong> alanında:
- <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-0.5">
- <li><strong>Personel:</strong> İlgili çalışanı açılır kutudan seçin.</li>
- <li><strong>Kısıt Tipi:</strong> Yasal emzirme için <strong>"süt_emzirme"</strong> veya gebelik için <strong>"gebelik"</strong> seçin.</li>
- <li><strong>Saat Azaltım:</strong> Süt izninin ilk 6 ayı için <strong>3 saat</strong>, ikinci 6 ayı için <strong>1.5 saat</strong> yazın.</li>
- <li><strong>Personel Max FM:</strong> Gebe personelde mutlaka <strong>0 saat</strong> olarak bırakın.</li>
- <li><strong>Başlangıç / Bitiş Tarihi:</strong> Resmi raporun geçerlilik tarihlerini girin.</li>
- <li><strong>Gerekçe:</strong> "Doğum Sonrası Süt İzni Raporu" yazın.</li>
- </ul>
- </li>
- <li><strong>[Kısıt Ekle]</strong> butonuna tıklayın.</li>
- <li>Artık nöbet dağıtım motoru bu personeli kesinlikle gece nöbetlerine ve fazla mesaiye yazmayacak; zorunlu mesai hedefini azaltılan saatler üzerinden hesaplayacaktır.</li>
- </ol>
- </div>
+### 1. Süt İzni, Sendika veya Gebelik Kısıtı Kaydetme
 
-## Sıkça Sorulan Sorular (Sağlık Kısıtları) {#faq}
+1. **[Personel Özel Kısıtları]** sekmesine geçin ve yeni kayıt için **[Yeni Kayıt]** butonuna basın.
+2. **Kayıt Duzenleyici** panelinde Departman/Personel seçimini yapın ve Kısıt Tipinden ilgili kategoriyi (örneğin *Yasal Emzirme İzni* veya *Gebelik / Hamilelik Muafiyeti*) seçin.
+3. Sistemin otomatik önerdiği Saat Azaltımı (ilk 6 ay 3 saat, ikinci 6 ay 1.5 saat) ile **[Fazla Mesai İstemiyorum]** ve **[Tarih Sınırı Uygula]** aralıklarını doğrulayın; resmi rapor referansını gerekçeye yazıp **[Kısıt Ekle]** butonuna tıklayın.
+
+### 2. Gebelik Zincirinde Doğum Tarihi Güncelleme veya Sonlandırma
+
+1. Tablodan gebelik yaşam döngüsüne bağlı personel satırını seçin.
+2. Bebek beklenenden farklı tarihte doğduysa **[Doğum Tarihi Güncelle]** butonuna tıklayıp kesin tarihi girin (tüm doğum sonrası analık ve emzirme fazları otomatik kaydırılır); gebelik tıbbi zorunlulukla erken sonlandıysa **[Gebelik Sonlandı]** butonunu kullanın.
+3. Tarih veya süre revizyonu için **[Kısıtı Güncelle]**, hatalı kaydı kaldırmak için **[Kaydi Sil]** butonunu kullanın.
+
+## Sıkça Sorulan Sorular (SSS) {#faq}
 
 :::faq
-### Gebe personele acil durumda dahi gece nöbeti yazılabilir mi? ▾
-<strong>KESİNLİKLE HAYIR.</strong> Gebelik durumu, 50 yaş muafiyeti gibi esnetilebilir bir kurum tercihi değildir; NDK mevzuatı ve İş Kanunu gereği mutlak kanuni yasaktır. Sistem gebe personelin gece nöbetine ve fazla mesaiye atanmasını tamamen kilitler; ayrıca fetüs koruması için yıllık doz limitini 1 mSv'e düşürür.
+### Gebe personele acil durumda dahi gece nöbeti veya denetimli alan görevi yazılabilir mi?
+<strong>Kesinlikle hayır.</strong> Gebelik kısıtı esnetilebilir bir tercih değil, 657 DMK m. 101, 4857 İş Kanunu m. 74 ve 32162 sayılı Yönetmelik uyarınca mutlak kanuni yasaktır. Motor gece nöbetini, denetimli radyasyon alanını ve fazla mesaiyi kapatır; kalan gebelik süresince fetüs eşdeğer doz sınırı <strong>1 mSv</strong> olarak izlenir.
 
-### Sendika yöneticisi mesai indirimi ne kadardır? ▾
-Mevzuat gereği sendika şube yöneticisi olan 657 memurlar için haftalık 4 saat, 4857 işçiler için haftalık 2 saat mesai indirimi tanımlanır. Nöbet dağıtım motoru bu saatleri personelin haftalık hedefinden otomatik olarak düşer.
+### Doğum sonrası emzirme (süt izni) ve sendika indirimi hesapları nasıldır?
+Yasal emzirme izninde ilk 6 ay günde <strong>3 saat</strong>, ikinci 6 ay günde <strong>1,5 saat</strong> azaltım uygulanır ve emzirme süresince radyoaktif kontaminasyon riskli açık kaynak işlerine atanmaz. Sendika yöneticisi muafiyetinde ise 657'li memurlarda haftalık <strong>4 saat</strong>, 4857'li işçilerde haftalık <strong>2 saat</strong> indirim hedeften düşülür.
+
+### Bitiş tarihi geçmiş bir sağlık kısıtı personelin gelecek planlarını etkilemeye devam eder mi?
+Hayır. <strong>[Tarih Sınırı Uygula]</strong> kutusu aktifse belirtilen bitiş tarihinden sonraki aylarda dağıtım motoru kısıtı dikkate almaz ve personel standart nöbet düzenine otomatik döner.
 :::

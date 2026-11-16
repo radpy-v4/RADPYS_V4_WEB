@@ -1,302 +1,135 @@
 ---json
 {
   "pageTitle": "21. Merkezi Onay Bekleyen Görevler Paneli — RADPYS v4 Kullanım Kılavuzu",
-  "h1": "21. Merkezi Onay Bekleyen Görevler Paneli",
-  "lead": "Tüm klinik ve idari birimlerden gelen personel izinlerini, nöbet takas/devirlerini, aylık nöbet tercihlerini, resmi nöbet çizelgesi yayınlarını ve 4-göz veri değişiklik taleplerini tek merkezden denetleyip karara bağlayın.",
+  "h1": "Merkezi Onay Bekleyen Görevler Paneli",
+  "lead": "Tüm klinik ve idari birimlerden gelen personel izinlerini, karşılıklı nöbet devirlerini, aylık nöbet istek ve mazeretlerini, birim onaylı nöbet planlarını, RKE muayene onaylarını, 4-göz veri değişiklik taleplerini ve imza bekleyen resmi tutanakları 7 kategorili tek merkezden denetleyip karara bağlamanızı sağlar.",
   "overviewId": "overview",
-  "badges": [],
-  "readingTime": "5 Dakika"
+  "badges": [
+    {
+      "text": "7 Kategori & 4-Göz Denetimi",
+      "tone": "indigo"
+    }
+  ],
+  "readingTime": "5 Dakika",
+  "legalNote": "<strong>Yasal Güvence:</strong> Tüm onay ve zorunlu ret kararları aktör rolüyle birlikte değiştirilemez denetim izine işlenir; sağlık muayenelerinde hekim incelemesi yapılmadan hızlı onay verilmesi güvenlik gereği engellenmiştir."
 }
 ---
 
-## Vizyonder Hızlı Karar Reçetesi & Önemli Metrikler {#hizli-recete}
+## Kısa Reçete: Bekleyen Talepleri İnceleme ve Karara Bağlama {#quick-recipe}
 
-:::recipe Vizyonder Hızlı Karar Reçetesi & Önemli Metrikler | 20 SANİYELİK AKIŞ
-### İstenen Sonuç: | cyan
-Klinik birimlerden ve personelden gelen izin, nöbet devir, istek, taslak plan ve veri değişikliklerini tek merkezden güvenle denetleyip karara bağlamak.
+:::recipe Kısa Reçete: Bekleyen Talepleri İnceleme ve Karara Bağlama | 20 SANİYELİK AKIŞ
+### 1. İstenen Sonuç | slate
+İzin, nöbet devri/isteği, nöbet planı, RKE muayenesi, veri değişikliği ve imza bekleyen tutanakların yetkili yönetici veya RKS tarafından tek merkezden sonuçlandırılması.
 
-### Yapılacak İşlem: | emerald
-Sol paneldeki 5 sekmeden ilgili kategoriyi seçin; satırları veya Diff penceresini inceleyip <strong>[Onayla]</strong> veya zorunlu gerekçe girerek <strong>[Reddet]</strong> butonuna basın.
+### 2. Yapılacak İşlem | cyan
+Üstteki tıklanabilir özet kartlarından ya da soldaki 7 kategori sekmesinden bekleyen grubu açın; gerekirse <strong>[İncele ve Karar Ver]</strong> ile ayrıntıları gözden geçirip <strong>[Onayla]</strong> / <strong>[Yayınla]</strong> veya zorunlu ret gerekçesiyle <strong>[Reddet]</strong> butonuna basın.
 
-### Sistem Etkisi: | blue
-İzin bakiyeleri anında düşer, nöbet devirlerinde çizelge otomatik güncellenir, veri değişikliklerinde yeni kayıtlar işlenir ve fiziksel evraklar AES-256 ile şifreli KVKK kasasına aktarılır.
+### 3. Sistem Etkisi | emerald
+İzin bakiyeleri anında düşer, devirlerde nöbet çizelgesi güncellenir, veri değişikliklerinde eski-yeni fark onaylanıp ek belgeler AES-256 Evrak Kasasına taşınır ve karar çalışan bildirimine yansır.
+
+- [metric] Onay Kategorisi | 7 Sekme / 8 Özet Kartı | indigo
+- [metric] Kuyruk Çekim Sınırı | Kategori Başına 500 Kayıt | slate
+- [metric] Sağlık Güvenlik Kilidi | Hızlı Onay Engelli | rose
+- [metric] Platform | Masaüstü Karar + Web Bildirim | cyan
 :::
 
-## 5N1K Kural ve Ayar Çözümleme Tablosu {#5n1k-tablosu}
+## 5N1K Kural ve Arayüz Çözümleme Tablosu {#5w1h}
 
-<div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
- <span class="text-xs font-mono text-slate-400">RADPYS-M21-RULE-MATRIX</span>
- </div>
+*7 kategorili onay kuyruğu, 3 aşamalı nöbet devri, 4-göz veri fark karşılaştırması, hekim doğrulama kilidi, RKE RKS onayı ve resmi tutanak kapatma kuralları.*
 
-| NE (İşlem / Alan) | NEDEN (Gerekçe) | NEREDE (Arayüz Yolu) | NASIL (Yöntem) | NE ZAMAN (Zamanlama) | KİM (Rol / Yetki) | DURUM (Sistem Tepkisi) |
-| --- | --- | --- | --- | --- | --- | --- |
-| İzin Onayı / Reddi | Yıllık, şua ve mazeret iznini resmiyete bağlamak | Onay Paneli → İzin Talepleri | Onayla Butonu / Reddet Butonu (Zorunlu Gerekçe) | İzin başlangıcından önce | <span class="px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 font-semibold text-[11px]">Birim Amiri / Yönetici</span> | Bakiye anında düşer, portalda bildirim kutusuna düşer |
-| Nöbet Devir İnceleme & Onay | Personeller arası nöbet takasını resmi çizelgeye yansıtmak | Onay Paneli → Nöbet Devirleri | İncele / Detay Butonu → Karar Formu | Devralan personelin portal rızasından sonra | <span class="px-2 py-0.5 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 font-semibold text-[11px]">Birim / Hizmet Sorumlusu</span> | Çizelgedeki personel adı otomatik güncellenir |
-| Nöbet İstek & Mazeret | Personelin aylık tercih ve muafiyetlerini kısıt olarak bağlamak | Onay Paneli → Nöbet İstekleri | Onayla / Reddet Butonu | Solver motoru çalıştırılmadan önce | <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-[11px]">Başteknisyen / Yönetici</span> | Otomatik çizelge motoruna bağlayıcı kural olarak girer |
-| Nöbet Planı Yayınlama | Birim onaylı aylık taslak çizelgeyi resmi yürürlüğe sokmak | Onay Paneli → Nöbet Planları | Yayınla Butonu / Taslağa Geri Gönder Butonu | Ay bitmeden ve nöbet başlamadan önce | <span class="px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300 font-semibold text-[11px]">İdare / Başhekimlik / Admin</span> | Plan "Yayında" olur, portalda tüm personele açılır |
-| Veri Değişiklik Kıyaslama (Diff) | 4-göz ilkesiyle hatalı veya yetkisiz veri girişlerini engellemek | Onay Paneli → Veri Değişiklikleri | İncele ve Karar Ver Butonu (Diff Penceresi) | Kritik profil/evrak/kart kaydedildiğinde | <span class="px-2 py-0.5 rounded bg-rose-100 dark:bg-rose-950 text-rose-800 dark:text-rose-300 font-semibold text-[11px]">Modül Sorumlusu / Yönetici</span> | Eski-yeni farkı onaylanır, evrak KVKK kasasına aktarılır |
-| Sağlık Muayene Teyidi | İşe giriş ve periyodik muayene bulgularını hekimce doğrulamak | Onay Paneli → Veri Değişiklikleri | İncele Butonu → Hekim Doğrulama Formu | Sağlık muayenesi talep kuyruğuna düştüğünde | <span class="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 font-semibold text-[11px]">RKS / İşyeri Hekimi</span> | Hızlı onay engellenir; Dahiliye/Göz/Derm bulguları zorunludur |
-| Gelişmiş Çok Kriterli Filtreleme | Kuyruktaki yüzlerce onay talebini tür, öncelik ve tarihe göre süzmek | Onay Paneli Üst Filtre Çubuğu | Talep Türü, Öncelik (Normal/Acil) ve Tarih Aralığı seçimi | Talepler incelenirken | <span class="px-2 py-0.5 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 font-semibold text-[11px]">Tüm Onay Yetkilileri</span> | Tablo anlık süzülür, acil talepler turuncu rozetle vurgulanır |
-| Split-Layout Detay Paneli | Talebin tüm ayrıntılarını, diff farklarını ve personel bilgilerini tek ekranda izlemek | Onay Paneli Sağ Bölmesi | Tablodan satır seçildiğinde otomatik yüklenir | Kayıt tıklandığında | <span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950 text-indigo-800 dark:text-indigo-300 font-semibold text-[11px]">Tüm Onay Yetkilileri</span> | Pencere değiştirmeden hızlı önizleme ve doğrudan onay/red imkanı sunar |
-| Resmi Tutanak Takibi & İmzalı Yükleme | Tüm sistemden gelen heyet tutanaklarının ıslak imzalı kopyalarını ve EBYS numaralarını denetlemek | Onay Paneli → Resmi Tutanaklar | Taslak İncele → İmzalı Nüsha ve EBYS No Yükle → Onayla / İptal Et | Heyet imzaları veya EBYS üst yazısı çıktığında | <span class="px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300 font-semibold text-[11px]">Birim Amiri / RKS / İdare</span> | Tutanak 'Tamamlandı' olur, KVKK kasasına şifrelenir ve onay rozeti güncellenir |
+| NE? (Bileşen / Kontrol) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Tetiklenme) | KİM? (Yetkili Rol) |
+| --- | --- | --- | --- | --- |
+| <strong>8 Özet Kartı ve 7 Kategori Rozeti</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Tıklanabilir Sayaç ve Hızlı Arama</span> | Yüzlerce onay arasında kaybolmadan bekleyen kategorilere tek tıkla geçmek. | Her kategoride bekleyen kayıt sayısı kart ve sekme rozetinde gösterilir (0 olunca gizlenir); Toplam Bekleyen kartı bekleyen talebi bulunan ilk sekmeyi açar. | Panel açıldığında veya talep geldiğinde. | Birim Amiri / RKS / İdare |
+| <strong>İzinler, Nöbet İstekleri ve İdari Plan Yayını</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400"><strong>[Onayla]</strong>, <strong>[Yayınla]</strong>, <strong>[Taslağa Geri Gönder]</strong></span> | İzin bakiyelerini düşmek, nöbet kısıtlarını bağlamak ve birim planını yayımlamak. | İzin onayında kalan bakiye anında güncellenir; nöbet istekleri çizelge motoruna kısıt olarak aktarılır; planlarda <strong>[Yayınla]</strong> çizelgeyi portala açarken <strong>[Taslağa Geri Gönder]</strong> planı birime iade eder. | İzin/istek geldiğinde veya aylık plan sunulduğunda. | Birim Amiri / Başhekimlik / İdare |
+| <strong>3 Aşamalı Nöbet Devri Onay Zinciri</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Devralan Rızası + <strong>[İncele ve Karar Ver]</strong></span> | Personeller arası nöbet takasının karşılıklı onay olmadan çizelgeyi değiştirmesini önlemek. | Devralan çalışan Web Portalından kabul verene dek talep devralan onayı aşamasında bekler; amir inceleyip onayladığında çizelgedeki nöbetçi değişimi gerçekleşir. | Nöbet takası devralan tarafından onaylandığında. | Nöbetçi Personel / Birim Amiri |
+| <strong>RKE Muayeneleri RKS Onay Sekmesi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400"><strong>[İncele ve Muayene Detayı]</strong> &amp; <strong>[RKS Olarak Onayla]</strong></span> | Sahada veya toplu olarak yapılan DIN 6857-1 kurşun ekipman kontrollerini RKS imzasıyla kesinleştirmek. | Muayene raporu ve kusur krokisi incelenerek <strong>[RKS Olarak Onayla]</strong> ile tescil edilir ya da <strong>[Reddet / İade Et]</strong> ile gerekçeli şekilde düzeltmeye gönderilir. | RKS onayı bekleyen RKE muayenesi varken. | RKS Sorumlusu |
+| <strong>4-Göz Veri Değişiklikleri ve Fark İnceleme</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Personel, Sağlık, Eğitim, RGS, Olay/DÖF, Cihaz</span> | Onay zorunluluğu tanımlı rollerin tüm ekleme, güncelleme ve silme işlemlerini denetlemek. | <strong>[İncele ve Karar Ver]</strong> penceresi eski değerleri kırmızı, yeni talep edilen değerleri yeşil satırlarla karşılaştırır; <strong>[Talebi Onayla]</strong> ile kayıt işlenir ve geçici ek belgeler AES-256 Evrak Kasasına taşınır. | Onaya tabi rol kayıt değişikliği yaptığında. | Modül Sorumlusu / Yönetici |
+| <strong>Sağlık Muayenesi Hızlı Onay Engeli</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Zorunlu Hekim İnceleme Formu</span> | İşe giriş veya periyodik muayene bulgularının incelenmeden tek tıkla onaylanmasını önlemek. | Sağlık muayenesi ekleme taleplerinde hızlı onay çalıştırılmaz ve sistem doğrudan Göz, Dahiliye, Dermatoloji bulgularını içeren hekim doğrulama formunu açar. | Sağlık muayenesi onaylanmak istendiğinde. | İşyeri Hekimi / RKS |
+| <strong>Resmi Tutanaklar ve Zorunlu Ret Kuralı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400"><strong>[Taslak Görüntüle]</strong> &amp; <strong>[İmzalı Belge Yükle / Onayla]</strong></span> | Heyet tutanaklarının ıslak imzalı nüshalarını tamamlamak ve ret işlemlerinde iz bırakmak. | Taslak tutanak incelenip EBYS imzalı PDF yüklendiğinde tutanak kasası güncellenir; tüm 7 sekmede ret işleminde metin gerekçesi zorunludur ve ret sonrası talep arşivlenerek kilitlenir. | Tutanak imzalandığında veya talep reddedildiğinde. | Birim Amiri / RKS / İdare |
 
-## Mit Avcısı: Merkezi Onaylarda Yanlış Bilinen Doğrular {#mit-avcilari}
+## Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı) {#myth-buster}
 
-<div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
- <span class="text-xs font-mono text-slate-400">ONAY-MYTH-BUSTER</span>
- </div>
- <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
- <div class="p-4 rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/40 dark:bg-rose-950/20">
- <div class="flex items-center gap-2 text-rose-700 dark:text-rose-400 font-bold text-sm mb-1.5">
- <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
- YANLIŞ (Mit):
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
- "Veri Değişiklikleri tablosunda 'Hızlı Onayla' butonuna basarak tüm talepleri, hekim muayeneleri dahil tek tıkla onaylayabilirim."
- </p>
- <div class="mt-3 pt-3 border-t border-rose-200/60 dark:border-rose-900/40 flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm">
- <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
- DOĞRU (Mevzuat Standardı):
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-1">
- Sağlık muayenesi kayıtlarında sistem "Hızlı Onayla"yı güvenlik gereği bloklar ve zorunlu olarak uzman hekim inceleme formunu açar. Dahiliye, göz ve dermatoloji bulguları doğrulanmadan sağlık onayı verilemez.
- </p>
- </div>
- <div class="p-4 rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/40 dark:bg-rose-950/20">
- <div class="flex items-center gap-2 text-rose-700 dark:text-rose-400 font-bold text-sm mb-1.5">
- <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
- YANLIŞ (Mit):
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
- "İzin veya nöbet devrini reddederken gerekçe yazmak isteğe bağlıdır; boş bırakıp geçebilirim."
- </p>
- <div class="mt-3 pt-3 border-t border-rose-200/60 dark:border-rose-900/40 flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm">
- <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
- DOĞRU (Mevzuat Standardı):
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-1">
- Sistem tüm ret eylemlerinde zorunlu olarak metin girişi ister. Ret gerekçesi girilmeden ret işlemi tamamlanamaz ve bu gerekçe personelin web portalındaki bildirim paneline anında iletilir.
- </p>
- </div>
- <div class="p-4 rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/40 dark:bg-rose-950/20">
- <div class="flex items-center gap-2 text-rose-700 dark:text-rose-400 font-bold text-sm mb-1.5">
- <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
- YANLIŞ (Mit):
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
- "Reddedilen bir talebi onay paneli üzerinden tekrar bulup onaylayabilirim."
- </p>
- <div class="mt-3 pt-3 border-t border-rose-200/60 dark:border-rose-900/40 flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm">
- <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
- DOĞRU (Mevzuat Standardı):
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-1">
- Güvenlik ve denetim izi bütünlüğü gereğince bir talep reddedildiğinde işlem kalıcı olarak sonuçlanır ve arşivlenir. Gerekçe düzeltilerek personelin yeni bir başvuru yapması gerekir.
- </p>
- </div>
- <div class="p-4 rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/40 dark:bg-rose-950/20">
- <div class="flex items-center gap-2 text-rose-700 dark:text-rose-400 font-bold text-sm mb-1.5">
- <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
- YANLIŞ (Mit):
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
- "Bir personelin başlattığı nöbet takası doğrudan amirin onay kuyruğuna düşer."
- </p>
- <div class="mt-3 pt-3 border-t border-rose-200/60 dark:border-rose-900/40 flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm">
- <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
- DOĞRU (Mevzuat Standardı):
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-1">
- Nöbet takası karşılıklı rıza gerektirir. Devralacak personel kendi Web Portalı üzerinden "Kabul Ediyorum" onayını vermeden talep yöneticinin onay kuyruğuna düşmez.
- </p>
- </div>
- </div>
+:::myth Sağlık Muayeneleri Hızlı Onayla Geçilebilir mi veya Reddedilen Talep Geri Açılabilir mi?
+### Yanlış Algı
+<em>"Veri Değişiklikleri sekmesinde Hızlı Onayla diyerek sağlık muayenesi dahil her talebi tek tıkla onaylayabilirim; yanlışlıkla reddettiğim bir talebi de sonradan listeden bulup yeniden onaylarım."</em>
 
-## Merkezi Onay Mekanizması Süreç Akışı {#surec-akisi}
+### Gerçek Sistem Mantığı
+<strong>İkisi de engellenmiştir.</strong> Sağlık muayenesi kayıtlarında hızlı onay güvenlik kilidiyle bloklanır ve uzman hekim/RKS bulgularının görüntülendiği inceleme formu zorunlu açılır. Ayrıca tüm sekmelerde reddedilen talepler zorunlu ret gerekçesiyle kalıcı sonlandırılır ve kuyruktan düşer; düzeltme sonrası çalışanın yeni talep açması gerekir.
+:::
 
-<div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
- <span class="text-xs font-mono text-slate-400">ONAY-WORKFLOW-DIAGRAM</span>
- </div>
- <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm overflow-x-auto">
+## Süreç Akış Şeması {#workflow}
 
 ```mermaid
-graph TD
- classDef portal fill:#f0fdf4,stroke:#16a34a,stroke-width:1.5px,color:#15803d;
- classDef desktop fill:#eff6ff,stroke:#2563eb,stroke-width:1.5px,color:#1e40af;
- classDef decision fill:#fffbeb,stroke:#d97706,stroke-width:1.5px,color:#b45309;
- classDef vault fill:#fdf4ff,stroke:#a855f7,stroke-width:1.5px,color:#7e22ce;
+flowchart TB
+ subgraph S1 ["1. AŞAMA: TALEP VE KUYRUK TOPLAMA"]
+  direction LR
+  A(["Web Portal veya Onaya Tabi Masaüstü İşlemi"]) --> B["7 Kategorili Merkezi Onay Kuyruğu"]
+  B --> C["8 Özet Kartı &amp; Canlı Rozet Sayacı"]
+ end
 
- A["Web Portal / Mobil Talep<br/>(İzin, Devir, İstek, Profil)"]:::portal --> B["Merkezi Onay Kuyruğu<br/>(Canlı Kategori Rozetleri)"]:::desktop
- B --> C{"Talep Türü Nedir?"}:::decision
- 
- C -- "İzin Talebi" --> D["Birim Amiri Teyidi<br/>(Onayla / Zorunlu Ret)"]:::desktop
- C -- "Nöbet Devri" --> E["Devralan Rızası (Portal)<br/>→ Amir Onay Formu"]:::desktop
- C -- "Veri Değişikliği (Diff)" --> F["Diff Karşılaştırma<br/>(Kırmızı Eski / Yeşil Yeni)"]:::desktop
- C -- "Nöbet Planı" --> G["Birim Onaylı Çizelge<br/>→ İdare Yayın Onayı"]:::desktop
+ subgraph S2 ["2. AŞAMA: KATEGORİ BAZLI İNCELEME"]
+  direction LR
+  D{"Hangi Kategori?"} -->|İzin / İstek / Plan| E["Bakiye, Kısıt &amp; Plan Kontrolü"]
+  D -->|Nöbet Devri| F["Devralan Rızası + Devir Ayrıntısı"]
+  D -->|RKE / Tutanak| G["Muayene Detayı / İmzalı Tutanak"]
+  D -->|Veri Değişikliği| H{"Sağlık Muayenesi mi?"}
+  H -->|Evet| I["Zorunlu Hekim Doğrulama Formu"]
+  H -->|Hayır| J["3 Sütunlu Fark Penceresi veya Hızlı Onay"]
+ end
 
- F --> H{"Sağlık Muayenesi mi?"}:::decision
- H -- "Evet" --> I["Uzman Hekim Doğrulama Formu<br/>(Göz/Dahiliye/Derm)"]:::desktop
- H -- "Hayır" --> J["Hızlı Onayla veya Diff Kararı"]:::desktop
+ subgraph S3 ["3. AŞAMA: KARAR, KASA VE BİLDİRİM"]
+  direction LR
+  K{"Karar?"} -->|Onayla / Yayınla| L["Canlı Kayıt + AES-256 Evrak Kasası"]
+  K -->|Reddet / İade| M["Zorunlu Gerekçe &amp; Kalıcı Kilit"]
+  L & M --> N(["Denetim İzi &amp; Portal Bildirimi"])
+ end
 
- D --> K["Hedef Tablo Güncellemesi"]:::desktop
- E --> K
- G --> K
- J --> K
- I --> K
-
- K --> L["KVKK Evrak Kasasına Aktarım<br/>(AES-256 Şifreli Arşiv)"]:::vault
- L --> M["Portal İçi Anlık Bildirim<br/>(Kullanıcı Bilgilendirme)"]:::portal
+ C ==> D
+ E & F & G & I & J ==> K
 ```
 
- </div>
+1. **Talep ve Kuyruk Toplama:** Web Portalından ve onaya tabi masaüstü rollerinden (Personel, Sağlık, Eğitim, RGS, Olay/DÖF, Ortam Dozu, Cihaz dahil) gelen talepler 7 kategori sekmesinde toplanır.
+2. **Kategori Bazlı İnceleme:** Nöbet devrinde devralan rızası, sağlık muayenesinde hekim formu, veri değişikliklerinde eski-yeni 3 sütunlu fark penceresi, RKE ve tutanakta belge/kroki detayları kontrol edilir.
+3. **Karar ve Bildirim:** Onaylanan kayıtlar canlı tablolara işlenir ve varsa belgeler AES-256 Evrak Kasasına aktarılır; ret işlemlerinde zorunlu gerekçe alınarak sonuç portal bildirimine gönderilir.
 
-## Merkezi Onay Paneli: 6 Kategori Sekmesi & Rozet Yönetimi {#onay-paneli}
+## Arayüz Ekran Görünümleri {#screenshots}
 
-<div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
- <span class="text-xs font-mono text-slate-400">ONAY-PANEL-SECTIONS</span>
- </div>
- <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
- <div class="space-y-4">
- <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
- <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
- <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
- 1. İzin Talepleri Sekmesi
- </h3>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
- Personelin başvurduğu yıllık, şua, sağlık ve mazeret izinleri listelenir. Tabloda personelin adı, birimi, izin türü, tarih aralığı, gün süresi ve talep tarihi görüntülenir.
- </p>
- <ul class="mt-3 text-xs space-y-1 text-slate-500 dark:text-slate-400">
- <li>• <strong>Onayla Butonu:</strong> Onay teyidiyle izin onaylanır; personelin kalan yıllık veya şua izni bakiyesinden gün sayısı otomatik düşülür.</li>
- <li>• <strong>Reddet Butonu:</strong> Açılan pencereden zorunlu ret gerekçesi alınır; başvuru iptal edilir ve gerekçe portala iletilir.</li>
- </ul>
- </div>
- <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
- <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
- <span class="w-2 h-2 rounded-full bg-blue-500"></span>
- 2. Nöbet Devirleri Sekmesi
- </h3>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
- Nöbet değişim ve becayiş başvuruları 3 aşamalı denetimden geçer. Devralan personelin web portalından onay vermediği talepler tabloda <span class="font-semibold text-amber-600">"Devralan Onayı Bekliyor (Portal)"</span> olarak listelenir.
- </p>
- <ul class="mt-3 text-xs space-y-1 text-slate-500 dark:text-slate-400">
- <li>• <strong>İncele / Detay Butonu:</strong> Ayrıntılı devir diyaloğunu açarak devreden, devralan, nöbet tarihi, vardiya saatleri ve devir gerekçesini gösterir.</li>
- <li>• <strong>Onaylama:</strong> Birim veya hizmet amiri onayladığında aktif nöbet çizelgesinde personellerin yer değişimi anında gerçekleşir.</li>
- </ul>
- </div>
- <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
- <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
- <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
- 3. Nöbet İstekleri Sekmesi
- </h3>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
- Personelin ay başlamadan önceki nöbet yazılmasın (mazeret), nöbet yazılsın, lisansüstü ders/eğitim günleri ve muafiyet tercihleri 1 ila 5 arası öncelik puanıyla listelenir. Onaylanan talepler Nöbet Hazırlık (Solver) motoruna doğrudan kısıt olarak beslenir.
- </p>
- </div>
- </div>
- <div class="space-y-4">
- <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
- <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
- <span class="w-2 h-2 rounded-full bg-purple-500"></span>
- 4. Nöbet Planları Sekmesi (İdari Yayın)
- </h3>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
- Birim amiri tarafından hazırlanıp "Birim Onaylı" statüsüne getirilmiş aylık nöbet planları yer alır.
- </p>
- <ul class="mt-3 text-xs space-y-1 text-slate-500 dark:text-slate-400">
- <li>• <strong>Yayınla Butonu:</strong> Planı "Yayında" statüsüne çevirir; Web Portalda tüm klinik personeline görünür hale gelir.</li>
- <li>• <strong>Taslağa Geri Gönder:</strong> İdare eksiklik veya kural ihlali gördüğünde zorunlu revizyon gerekçesi girerek planı tekrar "Taslak" moduna döndürür.</li>
- </ul>
- </div>
- <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
- <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
- <span class="w-2 h-2 rounded-full bg-rose-500"></span>
- 5. Veri Değişiklikleri Sekmesi (4-Göz Mekanizması)
- </h3>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
- Rol ayarlarında değişiklik onayı zorunlu kılınan kullanıcıların personel profili, yeni eklenen belgeler, eğitim/sertifikalar, önceki hizmet dökümleri, sağlık muayeneleri ve çalışma kısıtları başvuruları bu sekmede toplanır.
- </p>
- <ul class="mt-3 text-xs space-y-1 text-slate-500 dark:text-slate-400">
- <li>• <strong>İncele ve Karar Ver:</strong> Değişiklik İnceleme (Diff) penceresini açar.</li>
- <li>• <strong>Hızlı Onayla:</strong> Rutin veri girişlerini doğrudan veritabanına uygular (Sağlık muayeneleri hariç).</li>
- <li>• <strong>Reddet:</strong> Zorunlu ret gerekçesi alınarak değişiklik iptal edilir.</li>
- </ul>
- </div>
- <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
- <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
- <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
- 6. Resmi Tutanaklar Sekmesi (Islak İmza & EBYS Takibi)
- </h3>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
- Cihaz, RKE, Nöbet ve Kalite gibi tüm modüllerden üretilen ve heyet imzası bekleyen resmi tutanaklar (TUT-YYYY-XXXX) bu sekmede listelenir.
- </p>
- <ul class="mt-3 text-xs space-y-1 text-slate-500 dark:text-slate-400">
- <li>• <strong>Taslak Gör:</strong> Tutanak oluşturulurken şifreli kasaya kaydedilen orijinal taslağı anında açar.</li>
- <li>• <strong>İmzalı Yükle:</strong> Heyetçe ıslak imzalanmış taranmış PDF nüshasını ve EBYS evrak numarasını yükleyerek tutanağı 'Tamamlandı' durumuna getirir.</li>
- <li>• <strong>Tutanak Modülüne Git:</strong> Bağımsız Resmi Tutanaklar yönetim kokpitine doğrudan geçiş sağlar.</li>
- </ul>
- </div>
- <div class="p-4 rounded-xl bg-cyan-50/50 dark:bg-cyan-950/20 border border-cyan-200/80 dark:border-cyan-800/60 text-xs">
- <span class="font-bold text-cyan-800 dark:text-cyan-300 block mb-1">Otomatik Canlı Rozet (Badge) Mantığı:</span>
- Her sekmenin sağında bekleyen onay sayısını gösteren sayısal rozetler yer alır. İlgili kategorideki tüm talepler onaylandığında veya reddedildiğinde sayaç sıfırlanır ve rozet kullanıcıyı gereksiz meşgul etmemek adına otomatik gizlenir.
- </div>
- </div>
- </div>
+![Merkezi Onay Bekleyen Görevler Paneli ve Nöbet Değişimi İnceleme Penceresi | Yönetim > Onay Bekleyen Görevler | 7 Kategori Sekmesi ve Devir İnceleme | indigo](assets/img/modul21_onay_merkezi.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki personel adları, tarihler ve vardiya bilgileri test ortamına ait sentetik verilerdir.</span>")
 
-## Değişiklik İnceleme (Diff Dialog): 4-Göz Kıyaslama Standardı {#diff-dialog}
+![Veri Değişiklikleri 4-Göz Fark Karşılaştırma Penceresi | Onay Bekleyen Görevler > Veri Değişiklikleri > İncele | Eski Değer ve Yeni Değer Denetimi | cyan](assets/img/21_2_veri_degisiklikleri_fark_karsilastirma.png "<span><strong>Yasal Bilgilendirme:</strong> Karşılaştırma penceresindeki eski ve yeni alan değerleri test ortamına ait sentetik verilerdir.</span>")
 
-<div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
- <span class="text-xs font-mono text-slate-400">DIFF-VISUAL-STANDARD</span>
- </div>
- <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
- Kullanıcıların veya personelin yaptığı kayıt güncellemelerinde veri güvenliğini sağlamak için sistem otomatik olarak eski veriyi ve yeni talep edilen veriyi çözümler. İnceleme penceresinde teknik alan kodları gizlenerek alanlar Türkçe etiketlerle 3 sütunlu bir tabloda sunulur:
- </p>
- <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
- <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs font-mono">
- <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
- <span class="font-bold text-slate-700 dark:text-slate-300 block mb-1">Sütun 1: Alan Adı (Türkçe)</span>
- Örn: Telefon, E-Posta, İkamet Adresi, Kadro Tipi, Mezuniyet Tarihi, Çalışma Kısıtı
- </div>
- <div class="p-3 rounded-lg bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-rose-800 dark:text-rose-300">
- <span class="font-bold block mb-1">Sütun 2: Eski Değer (Kırmızı Vurgulu)</span>
- Veritabanında kayıtlı mevcut değer. Değişen satırlarda açık kırmızı arka planla gösterilir.
- </div>
- <div class="p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900 text-emerald-800 dark:text-emerald-300">
- <span class="font-bold block mb-1">Sütun 3: Yeni Değer (Yeşil Vurgulu)</span>
- Personel veya amir tarafından talep edilen yeni değer. Kalın yazı tipi ve yeşil renkle vurgulanır.
- </div>
- </div>
- <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm">
- <span class="font-bold text-slate-900 dark:text-white block mb-1">KVKK Şifreli Dosya Kasasına Otomatik Aktarım:</span>
- Eğer değişiklik talebi personel belgesi, diploma, sertifika veya sağlık raporu gibi fiziksel bir dosya yüklemesi içeriyorsa, yönetici "Talebi Onayla" butonuna bastığı anda sistem dosyayı geçici yükleme dizininden alır, AES-256 Fernet algoritmasıyla şifreleyerek güvenli evrak kasasına aktarır. Veritabanı işlemi başarıyla tamamlandıktan sonra diskteki geçici dosya güvenli bir şekilde silinir.
- </div>
- </div>
+## Adım Adım İşlem Rehberi {#step-by-step}
 
-## Arayüz Rehberi & Ekran Görünümleri {#ekran-goruntuleri}
+### 1. Kuyruk Gezinme, Hızlı Arama ve İzin / Nöbet Onayları
 
-<div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
- <span class="text-xs font-mono text-slate-400">UI-SCREENSHOTS</span>
- </div>
- <div class="space-y-8">
+1. Ana menüden **Onay Bekleyen Görevler** ekranını açın; üstteki **Toplam Bekleyen** veya ilgili kategori özet kartına tıklayarak doğrudan bekleyen sekmeye geçin (sağ üst arama kutusundan personel veya ekipman adı süzebilirsiniz).
+2. **İzin Talepleri** veya **Nöbet İstekleri** sekmesinde satırı seçip **[Onayla]** ile bakiyeyi/kısıtı uygulayın ya da **[Reddet]** ile zorunlu gerekçe yazın.
+3. **Nöbet Devirleri** sekmesinde yalnızca devralan personel portal üzerinden onay verdikten sonra amir onayı aktifleşir; **[İncele ve Karar Ver]** ile eski/yeni vardiyaları doğrulayıp onaylayın.
+4. **Nöbet Planları** sekmesinde birim sorumlusunun gönderdiği aylık taslağı **[Yayınla]** ile tüm personele açın veya eksiklik varsa **[Taslağa Geri Gönder]** ile birime iade edin.
 
-![Merkezi Onay Bekleyen Görevler Paneli Ekranı | Yönetim > Onay Bekleyen Görevler | Canlı Kategori Rozetleri & 4-Göz Diff | indigo](assets/img/modul21_onay_merkezi.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki isimler, TCKN'ler ve kayıtlar tamamen test amaçlı sentetik veridir. Gerçek kişi ve kayıtlarla benzerlikler tesadüfidir.</span>")
+### 2. RKE Muayeneleri ve 4-Göz Veri Değişikliği (Fark) İncelemesi
 
- </div>
+1. **RKE Muayeneleri** sekmesinde satırı seçip **[İncele ve Muayene Detayı]** ile DIN 6857-1 kusur krokisini kontrol edin; ardından **[RKS Olarak Onayla]** veya gerekçeli **[Reddet / İade Et]** butonuna basın.
+2. **Veri Değişiklikleri** sekmesinde Personel, Sağlık, Kısıt, Eğitim, RGS, Olay/DÖF, Ortam Dozu veya Cihaz modüllerinden düşen talebi seçip **[İncele ve Karar Ver]** butonuna tıklayın.
+3. Açılan karşılaştırma tablosunda eski değerleri (kırmızı) ve yeni talep edilen değerleri (yeşil) kontrol edip **[Talebi Onayla]** veya **[Talebi Reddet]** butonuna basın (sağlık muayenesi eklemelerinde sistem doğrudan hekim inceleme formunu açar; rutinde değişiklik yoksa diğer kayıtlar için **[Hızlı Onayla]** kullanılabilir).
 
-## Sıkça Sorulan Sorular (SSS) {#sss}
+### 3. Resmi Tutanaklar ve Web Portalı Bildirim Döngüsü
+
+1. **Resmi Tutanaklar** sekmesinde imza bekleyen tutanak satırını seçerek **[Taslak Görüntüle]** ile orijinal metni inceleyin; ıslak imzalı belge ve EBYS numarası geldiğinde **[İmzalı Belge Yükle / Onayla]** ile tutanağı tamamlayın (geniş liste için **[Tüm Tutanaklar...]** butonunu kullanabilirsiniz).
+2. **Web Portalı Çift Yönlü Süreç:** Personel ve saha görevlileri başvurularını (izin, devir rızası, mazeret, profil talebi) tarayıcıdan başlatır; yöneticinin burada verdiği onay veya zorunlu ret gerekçesi çalışanın Web Portal bildirim çekmecesine iletilir.
+
+## Sıkça Sorulan Sorular (SSS) {#faq}
 
 :::faq
-### 1. Bir personelin nöbet devir talebi onay panelinde neden görünmüyor?
-Nöbet takası karşılıklı rıza gerektirir. Devralacak personelin kendi Web Portalı üzerinden "Devir Almayı Kabul Ediyorum" onayını vermesi zorunludur. Devralan personel onay vermediği sürece talep yöneticinin onay kuyruğuna düşmez.
+### Personelin başlattığı nöbet takası neden onay panelinde görünmüyor?
+Karşılıklı nöbet devri önce devralacak personelin kendi Web Portalı üzerinden rıza onayını gerektirir. Devralan çalışan kabul onayı verene dek talep yönetici onayına aktarılmaz.
 
-### 2. İzin onaylandığında nöbet çizelgesinde personelin nöbeti varsa ne olur?
-İzin onaylandığı anda sistem nöbet çizelgesindeki çakışmayı tespit eder; amir isterse Yönetici Aksiyon Sihirbazı üzerinden izne denk gelen nöbet için anında ikame personel atayabilir veya ilgili nöbeti düşürebilir.
+### Cihaz envanteri veya kalite kontrol değişiklikleri de buraya düşer mi?
+Evet. Kullanıcının rol ayarında işlem onayı zorunlu kılınmışsa cihaz ekleme, güncelleme, HEK arşivleme, arıza, bakım ve QC kayıtları da 4-göz denetimi kapsamında <strong>Veri Değişiklikleri</strong> sekmesine düşer.
 
-### 3. Reddedilen bir izin veya nöbet talebini geri alıp tekrar onaylayabilir miyim?
-Hayır. Güvenlik ve denetim izi (Audit Log) bütünlüğü gereğince bir talep "Reddedildi" statüsüne geçtiğinde arşivlenir ve kilitlenir. Personelin web portalı üzerinden gerekçeyi düzelterek yeni bir talep oluşturması gerekir.
+### İzin onaylandığında personelin aynı günde nöbeti varsa çakışma nasıl çözülür?
+İzin onaylandığında sistem çizelgedeki nöbet çakışmasını otomatik denetler; birim sorumlusu Yönetici Aksiyon Sihirbazı veya İkame havuzu üzerinden ilgili nöbete yedek personel atayabilir.
 
-### 4. Sağlık muayenelerinde Hızlı Onay butonu neden çalışmıyor?
-6331 sayılı İSG Kanunu ve NDK Radyasyon Güvenliği Mevzuatı uyarınca, sağlık muayene bulguları (göz, dahiliye, hemogram, dermatoloji) bir uzman hekim veya RKS tarafından incelenmeden onaylanamaz. Bu sebeple Hızlı Onay güvenlik amacıyla kilitlenmiştir.
-
-### 5. Onay kuyruğunda çok fazla bekleyen talep birikirse sistem performansı etkilenir mi?
-Onay paneli her kategori için en son 500 beklemedeki talebi optimize edilmiş sorgularla çeker. Ancak personelin operasyonel mağduriyet yaşamaması adına geçmiş tarihe ait taleplerin amirler tarafından zamanında sonuçlandırılması kurumsal bir zorunluluktur.
+### Kuyrukta çok fazla bekleyen talep varsa sistem yavaşlar mı?
+Performansı korumak adına her kategori sekmesi bekleyen en güncel 500 kaydı optimize edilmiş sorgularla listeler. Süreçlerin aksamaması için amirlerin bekleyen talepleri düzenli olarak sonuçlandırması önerilir.
 :::

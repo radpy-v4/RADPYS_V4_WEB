@@ -1,265 +1,134 @@
 ---json
 {
   "pageTitle": "15. Radyasyon Olay Bildirimi ve DÖF / CAPA (Kök Neden Analizi) — RADPYS v4 Kullanım Kılavuzu",
-  "h1": "15. Olay Bildirimi ve DÖF (CAPA)",
-  "lead": "Radyasyon alanlarında meydana gelen kazaları, ramak kala olayları ve uygunsuzlukları SKS 6.1 uyumlu 3 adımlı sihirbazla kayıt altına alan, ana listeden doğrudan veya bağımsız Düzeltici Önleyici Faaliyet (DÖF) başlatan, 72 saatlik NDK yasal bildirim geri sayımını yürüten, 4 adımlı doğal inceleme akışıyla sorumlu atayan, açık aksiyonlar tamamlanmadan olayın kapatılmasını engelleyen ve resmi tek sayfalık SKS/NDK tutanağı üreten kurumsal kalite modülüdür.",
-  "overviewId": "genel-bakis",
+  "h1": "Olay Bildirimi ve DÖF (CAPA)",
+  "lead": "Radyasyon alanlarında oluşan kazaları, ramak kala olayları ve uygunsuzlukları SKS 6.1 uyumlu 3 adımlı bildirim sihirbazıyla (anonim seçenekli) kayıt altına alır; 1 ve 3 iş günlük NDK yasal süre takibini, olaya bağlı veya bağımsız DÖF yönetimini, açık DÖF kapatma emniyet kilidini ve tek sayfalık antetli resmi PDF tutanak çıktısını yönetmenizi sağlar.",
+  "overviewId": "overview",
   "badges": [
     {
-      "text": "MODÜL 15",
-      "tone": "cyan"
-    },
-    {
-      "text": "Sağlık Bakanlığı SKS 6.1",
-      "tone": "emerald"
-    },
-    {
-      "text": "NDK RSGD-KLV-005",
-      "tone": "indigo"
+      "text": "SKS 6.1 & NDK RSGD-KLV-005",
+      "tone": "rose"
     }
-  ]
+  ],
+  "readingTime": "6 Dakika",
+  "legalNote": "<strong>Yasal Güvence:</strong> Anonim ramak kala ve olay bildirimleri SKS 6.1 güvenlik kültürü gereği resmi olarak geçerlidir; tamamlanmamış açık DÖF faaliyeti bulunan hiçbir olay dosyası kapatılamaz."
 }
 ---
 
-## Vizyonder Hızlı Karar Reçetesi (Olay & DÖF Özeti) {#hizli-recete}
+## Kısa Reçete: Olay Bildirimi, DÖF Takibi ve Resmi Tutanak {#quick-recipe}
 
-<div class="p-6 rounded-2xl bg-gradient-to-br from-cyan-900/10 via-slate-900/5 to-blue-900/10 dark:from-cyan-950/40 dark:via-slate-900/40 dark:to-blue-950/40 border border-cyan-200 dark:border-cyan-800/50 shadow-sm">
- <div class="flex items-center gap-3 mb-4">
- <div class="w-8 h-8 rounded-lg bg-cyan-600 text-white flex items-center justify-center font-bold text-sm">
- 20s
- </div>
- </div>
- <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs sm:text-sm">
- <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
- <span class="font-bold text-cyan-600 dark:text-cyan-400 block mb-1">1. Olay Bildirimi veya Hızlı DÖF</span>
- SKS 6.1 sihirbazıyla kaza/ramak kala kaydı açın veya ana listedeki <strong>[Yeni DÖF Ekle]</strong> butonuyla olaya bağlı veya bağımsız genel kalite faaliyeti başlatın.
- </div>
- <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
- <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-1">2. 72s NDK & Sorumlu Atama</span>
- Yasal bildirim süresini (24s / 72s) izleyin. 2. Adımda sorumlu uzmanı zengin listeden seçin; sonraki adıma geçildiğinde sistem atamayı otomatik kaydeder.
- </div>
- <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
- <span class="font-bold text-blue-600 dark:text-blue-400 block mb-1">3. DÖF & Açık Emniyet Kilidi</span>
- Gerekli düzeltici faaliyetleri yürütün. Tamamlanmamış açık DÖF varken sistem olayın kapatılmasını güvenle kilitler (CAPA Lock).
- </div>
- <div class="p-4 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800">
- <span class="font-bold text-purple-600 dark:text-purple-400 block mb-1">4. Kapatma & Resmi Tutanak</span>
- Tüm DÖF'ler bitince nihai karar notu girip <strong>[Olayı Kapat ve Tamamla]</strong> ile dosyayı mühürleyin; <strong>[Resmi Tutanağı Yazdır / PDF]</strong> ile tek tıkla resmi belge alın.
- </div>
- </div>
- </div>
+:::recipe Kısa Reçete: Olay Bildirimi, DÖF Takibi ve Resmi Tutanak | 20 SANİYELİK AKIŞ
+### 1. İstenen Sonuç | slate
+İstenmeyen radyolojik olayların ve ramak kala durumların yasal NDK süreleri kaçırılmadan incelenmesi, düzeltici önlemlerin tamamlanması ve tek sayfa resmi tutanakla mühürlenmesi.
 
-## 7 DÖF (CAPA) Faaliyetleri: Olaya Bağlı ve Bağımsız Kalite Yönetimi {#dof-yonetimi}
+### 2. Yapılacak İşlem | cyan
+<strong>Yeni Olay Bildirimi</strong> sekmesinden olayı kaydedin (veya doğrudan <strong>[Yeni DÖF Ekle]</strong> açın); <strong>[İncele ve DÖF Yönet]</strong> üzerinden 4 adımlı inceleme penceresinde sorumlu atayın, NDK bildirimini işleyin ve tüm DÖF'ler bitince <strong>[Olayı Kapat ve Tamamla]</strong> ile <strong>[Resmi Tutanağı Yazdır / PDF]</strong> adımlarını çalıştırın.
 
-<div class="prose prose-slate dark:prose-invert max-w-none text-sm space-y-3">
- <p>
- Düzeltici ve Önleyici Faaliyetler (DÖF), hem inceleme sihirbazının 3. Adımından hem de ana listenin araç çubuğundaki <strong>[Yeni DÖF Ekle]</strong> butonundan başlatılabilir:
- </p>
- <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 not-prose">
- <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
- <span class="text-xs font-bold text-cyan-600 dark:text-cyan-400 font-mono">BAĞIMSIZ VEYA OLAYA BAĞLI FAALİYET</span>
- <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
- DÖF penceresinde yer alan <strong>"İlişkili Olay Bildirimi"</strong> açılır kutusu sayesinde faaliyet açık bir olaya bağlanabilir veya <em>(Bağımsız / Genel Kalite Faaliyeti — Olay Bildirimi Yok)</em> seçeneğiyle kurum genelindeki önleyici iyileştirmeler için serbestçe işletilebilir.
- </p>
- </div>
- <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
- <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 font-mono">ZENGİN PERSONEL VE ŞEFFAF TAKİP</span>
- <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
- Görevlendirilecek personel unvan ve birim bilgisiyle seçilir, faaliyet tipi (<code class="font-mono">Düzeltici</code>, <code class="font-mono">Önleyici</code>, <code class="font-mono">İyileştirici</code>) ve termin tarihi atanır. DÖF takip tablosuna eklenen "İlişkili Olay" sütunuyla tüm aksiyonlar şeffafça izlenir.
- </p>
- </div>
- </div>
- </div>
+### 3. Sistem Etkisi | emerald
+Hafta sonu ve resmi tatiller hariç tutularak 1 veya 3 iş günlük NDK süresi geri sayılır; cihaz kaynaklı olaylarda kurum içi arıza istatistik kaydı açılır; açık DÖF varken dosya kapatma engellenir.
 
-## 8 Açık DÖF Kapatma Emniyet Kilidi ve Zorunlu Kapanış Notu {#kapatma-kilidi}
+- [metric] NDK Bildirim Süresi | Acil 1 İş Günü / Diğer 3 İş Günü | rose
+- [metric] Bildirim Sihirbazı | 3 Adım (Anonim Destekli) | cyan
+- [metric] İnceleme Akışı | 4 Adımlı Doğal Süreç | amber
+- [metric] Kalite Kilidi | Açık DÖF Varken Kapanmaz | emerald
+:::
 
-<div class="prose prose-slate dark:prose-invert max-w-none text-sm space-y-3">
- <p>
- SKS 6.1 ve kalite denetim standartları gereğince uygunsuzluklar önlemleri tamamlanmadan kağıt üzerinde kapatılamaz:
- </p>
- <div class="p-5 rounded-2xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800/60 space-y-2">
- <h4 class="font-bold text-rose-900 dark:text-rose-200 text-sm flex items-center gap-2">
- <svg class="w-4 h-4 text-rose-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
- <span>Açık DÖF Emniyet Kilidi (CAPA Closure Guard)</span>
- </h4>
- <p class="text-xs text-rose-800 dark:text-rose-300 leading-relaxed">
- İnceleme sihirbazının 4. Adımı açıldığında sistem bağlı DÖF faaliyetlerini sorgular. Eğer tamamlanmamış en az 1 DÖF varsa kapatma butonu kilitlenir ve kullanıcı DÖF sekmesine yönlendirilir. Tüm DÖF faaliyetleri başarıyla sonuçlandırıldığında ekran yeşil onay verir; zorunlu nihai kalite ve kapanış notu girilerek <strong>[Olayı Kapat ve Tamamla]</strong> butonuyla olay güvenle resmi "Kapalı" statüsüne alınır. Kapanış tarihi ana listeye anında yansıtılır.
- </p>
- </div>
- </div>
+## 5N1K Kural ve Arayüz Çözümleme Tablosu {#5w1h}
 
-## 9 Cihaz Arıza & Kurum İçi İstatistik Takibi {#cihaz-surec}
+*Anonim bildirim, NDK yasal iş günü sayacı, bağımsız DÖF, açık DÖF kapatma kilidi ve resmi PDF tutanağı kuralları.*
 
-<div class="prose prose-slate dark:prose-invert max-w-none text-sm space-y-3">
- <p>
- Olay bildirimi tıbbi bir cihazın teknik arızasından kaynaklanmışsa (<code class="font-mono">ilgili_cihaz_id</code>):
- </p>
- <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm">
- <li><strong>Süreç ve İstatistik Amacı:</strong> Sistem olay üzerinden teknik arıza izleme kaydı oluşturur. Bu kayıt, harici bir teknik servise veya bakım firmasına resmi çağrı göndermez; kurum içinde Radyasyon Güvenliği Komitesinin arıza-kaza korelasyonunu ve birim istatistiklerini takip etmesi içindir.</li>
- <li><strong>DÖF Referansı:</strong> Olay DÖF tablosuna otomatik olarak <em class="font-semibold">"Cihaz arıza kaydı açıldı (#Arıza ID)"</em> referansı eklenerek şeffaf takip sağlanır.</li>
- </ul>
- </div>
+| NE? (Bileşen / Kontrol) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Tetiklenme) | KİM? (Yetkili Rol) |
+| --- | --- | --- | --- | --- |
+| <strong>3 Adımlı Bildirim &amp; [Anonim Bildirim Yap]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Yeni Olay Bildirimi Sihirbazı</span> | Kaza ve ramak kala olaylarını çalışanı çekindirmeden kök nedenleriyle kayıt altına almak. | Tarih, birim, şiddet, kategori, alt detay ve kök nedenleri toplar; anonim işaretlenirse bildiren kimliği gizlenerek kaydedilir. | Olay veya ramak kala anında. | Tüm Personel |
+| <strong>NDK Süre Sayacı ve [NDK Bildir]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">1 İş Günü / 3 İş Günü Takibi</span> | Radyolojik kazalarda NDK'ya yasal sürede bildirim yapılmasını garanti altına almak. | Olay tarihinden itibaren hafta sonu ve resmi tatilleri dışarıda bırakarak acil kazada 1 iş günü, diğer olaylarda 3 iş günü geri sayar. | Radyolojik olay kaydında. | RKS / Birim Sorumlusu |
+| <strong>Yetkili Sorumlu Havuzu ve Otomatik Atama</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">2. Adım: İnceleme ve Atama</span> | İncelemeyi olayın yaşandığı birimin sorumlusuna veya RKS'ye eksiksiz devretmek. | Birim sorumlusunu öncelikli önerir ve RKS/birim sorumlusu seçimini sonraki adıma geçerken otomatik kaydeder. | İnceleme süreci başlatıldığında. | Yönetici / RKS |
+| <strong>[Yeni DÖF Ekle] (Bağlı / Bağımsız Faaliyet)</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Araç Çubuğu &amp; İnceleme 3. Adım</span> | Olaya bağlı önlemlerin yanında kurum geneli önleyici kalite iyileştirmeleri de açabilmek. | Açık bir olaya bağlanabilir veya bağımsız seçilir; cihaz arızası içeren olayda kurum içi arıza istatistik kaydı oluşturur. | DÖF planlanırken. | RKS / Kalite Sorumlusu |
+| <strong>Açık DÖF Kapatma Emniyet Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[Olayı Kapat ve Tamamla]</span> | Önleyici/düzeltici aksiyonlar bitmeden olay dosyasının kağıt üstünde kapatılmasını engellemek. | Tamamlanmamış en az bir DÖF varsa kapatmayı kilitler; tüm DÖF'ler bitince zorunlu kapanış notuyla olayı kapatır. | Dosya kapatma anında. | Sistem Kilidi / Yönetici |
+| <strong>[Resmi Tutanağı Yazdır / PDF]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Tek Sayfa A4 SKS/NDK Tutanağı</span> | Denetimlere kurum antetli, imzalı ve sayfa düzeni bozulmayan resmi kanıt belgesi sunmak. | Kurum anteti, doküman takip kartı, şiddet ve NDK rozetleri ile 3'lü imza kutusunu tek A4 PDF olarak üretir. | İnceleme sırasında ve kapanışta. | RKS / Kalite Birimi |
 
-## 10 Resmi SKS / NDK Olay ve DÖF Tutanağı (Kurumsal Antetli PDF) {#resmi-tutanak}
+## Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı) {#myth-buster}
 
-<div class="prose prose-slate dark:prose-invert max-w-none text-sm space-y-3">
- <p>
- Herhangi bir olayın resmi kalite dosyasını üretmek veya inceleme tamamlandığında resmi tutanak almak için <strong>[Resmi Tutanağı Yazdır / PDF]</strong> butonuna tıklayın:
- </p>
- <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm">
- <li><strong>SKS 6.1 ve NDK Uyumlu Kurumsal Antet:</strong> Formun en üstünde kurum logosu, kurum adı, kalite birimi başlığı ve resmi doküman takip kartı (Doküman No, Revizyon Tarihi ve Sayfa No) yer alır.</li>
- <li><strong>Renkli Klinik Rozetler ve NDK Uyarı Şeridi:</strong> Olayın sonucu (Ramak Kala, Hafif/Ciddi Zarar) ve yasal NDK 72 saatlik bildirim durumu resmi denetimlerde ilk bakışta fark edilebilecek şık rozetlerle vurgulanır.</li>
- <li><strong>Tek Sayfaya Tam Oturan Düzen:</strong> Tüm olay künyesi, acil müdahale, DÖF planı ve yetkili imza kutuları (Bildiren, İnceleyen Uzman ve RKS/RSO) sayfa taşması ve imza parçalanması olmadan tek bir A4 sayfasına estetik ve eksiksiz olarak sığdırılmıştır.</li>
- <li><strong>Doğru İşe Tek Format Standardı:</strong> Resmi evrak niteliği taşıdığı için doğrudan antetli, mühürlü ve değiştirilemez <strong>PDF</strong> formatında üretilir.</li>
- </ul>
- </div>
+:::myth Açık DÖF Varken Olay Kapatılabilir mi ve Olaydaki Cihaz Arızası Harici Servise Çağrı Açar mı?
+### Yanlış Algı
+<em>"Olayı acilen kapatmak için açık duran DÖF faaliyeti olsa bile dosyayı Kapalı yapabiliriz; ayrıca olayda cihaz arızası seçtiğimizde yetkili teknik servise otomatik iş emri gider."</em>
 
-## 11 Hibrit Saha Mobil Formu ve Web Portalı {#hibrit-portal}
+### Gerçek Sistem Mantığı
+<strong>İkisi de doğru değildir.</strong> Açık ve tamamlanmamış bir DÖF faaliyeti varken sistem olay kapatma işlemini kesinlikle kilitler; her faaliyet tamamlanmalı veya gerekçeli iptal edilmelidir. Cihaz kaynaklı olaylarda açılan kayıt ise yalnızca kurum içi Radyasyon Güvenliği Komitesi arıza-kaza istatistiğini izlemek içindir; harici bakım firmasına resmi servis çağrısı göndermez (harici servis Modül 19'dan yönetilir).
+:::
 
-<div class="prose prose-slate dark:prose-invert max-w-none text-sm space-y-3">
- <p>
- RADPYS Olay Bildirimi ve DÖF modülü, masaüstü kurumsal yönetim ile saha mobil web portalının tam entegrasyonuyla çalışır:
- </p>
- <div class="grid grid-cols-1 md:grid-cols-2 gap-4 not-prose">
- <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
- <span class="text-xs font-bold text-cyan-600 dark:text-cyan-400 font-mono">SAHA MOBİL FORMU (IncidentReportForm)</span>
- <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
- Klinikteki teknisyen, hemşire veya fizikçi cep telefonu veya tabletinden 3 adımlı formu açarak kazayı veya ramak kala durumunu anında bildirir. Kayıt sunucuya iletildiği anda yönetici ekranında bildirim düşer.
- </p>
- </div>
- <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
- <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 font-mono">WEB ANALİTİK DASHBOARD (OlayBildirimiDashboard)</span>
- <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
- Kalite direktörleri ve hastane yönetimi web portalı üzerinden toplam olay, bekleyen DÖF'ler, çözülen vakalar, NDK bekleyenler sayaçlarını ve aylık olay trend çizgi grafiklerini canlı takip eder.
- </p>
- </div>
- </div>
- </div>
-
-## Ekran Konumları ve Görsel Rehber {#ekran-goruntuleri}
-
-![Olay Bildirimi ve DÖF Yönetimi Ana Ekranı | Radyasyon Güvenliği > Olay Bildirimi ve DÖF (CAPA) Yönetimi | Ana Yönetim Kokpiti & NDK Süre Sayacı](assets/img/15_1_olay_bildirim_ve_dof_yonetimi_ana_ekran.png "<span><strong>Simülasyon Notu:</strong> Kurum içi SKS 6.1 ve NDK radyolojik olay bildirimlerinin, açık DÖF sayaçlarının ve yasal bildirim sürelerinin izlendiği ana ekran.</span>")
-
-![Olay İnceleme ve DÖF Sihirbazı 1. Adım | Olay Bildirimi ve DÖF > [İncele / DÖF Yönet] > 1. Adım | Adım 1: Olay Künyesi & Sınıflandırma](assets/img/15_2_1_olay_inceleme_ve_dof_dialog.png "<span><strong>Simülasyon Notu:</strong> Olayın şiddeti, kategorisi, kök neden analizi ve NDK bildirim gereksiniminin belirlendiği birinci adım.</span>")
-![Olay İnceleme ve DÖF Sihirbazı 2. Adım | Olay Bildirimi ve DÖF > [İncele / DÖF Yönet] > 2. Adım | Adım 2: DÖF (CAPA) Faaliyet Planlama](assets/img/15_2_2_olay_inceleme_ve_dof_dialog.png "<span><strong>Simülasyon Notu:</strong> Düzeltici, önleyici ve iyileştirici faaliyetlerin (CAPA) sorumlu personel ve termin tarihiyle tanımlanması.</span>")
-![Olay İnceleme ve DÖF Sihirbazı 3. Adım | Olay Bildirimi ve DÖF > [İncele / DÖF Yönet] > 3. Adım | Adım 3: CAPA Kapatma Kilidi & Resmi Tutanak](assets/img/15_2_3_olay_inceleme_ve_dof_dialog.png "<span><strong>Simülasyon Notu:</strong> Açık DÖF emniyet kilidi kontrolü, zorunlu kapanış notu ve SKS/NDK antetli resmi PDF tutanak üretimi.</span>")
-
-## 12 Karar ve İş Akış Şeması (Mermaid) {#akis-diyagrami}
-
-<p class="text-sm text-slate-600 dark:text-slate-300">
- Olay bildiriminin açılışından NDK yasal süre takibine, DÖF atamasından açık DÖF kapatma kilidine kadar olan operasyonel yaşam döngüsü:
- </p>
- <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm overflow-x-auto">
+## Süreç Akış Şeması {#workflow}
 
 ```mermaid
-flowchart TD
- A["Olay Bildirimi Başlatma (Masaüstü / Saha Web)"] --> B["1. Adım: Temel Bilgiler (Tarih, Birim, Şiddet, Anonim/Seçimli)"]
- B --> C["2. Adım: Sınıflandırma (Kategori, Detaylar, Kök Nedenler)"]
- C --> D["3. Adım: Açıklamalar (Olay Tanımı, Acil Müdahale, DÖF Önerisi)"]
- D --> E["Bildirim Kaydı (OB-YYYY-XXXXX) & Yöneticiye Bildirim"]
- E --> F{"Radyolojik Olay mı / NDK Bildirimi Gerekli mi?"}
- F -- "Evet" --> G["NDK Yasal Süreç Takibi (1 Gün / 3 İş Günü Geri Sayım)"]
- F -- "Hayır" --> H["Kurum İçi SKS Takibi"]
- G --> I["İncelemeye Alma & Sorumlu Atama (Birim Sorumlusu / RGS)"]
- H --> I
- I --> J["DÖF (CAPA) Faaliyetleri Planlama (Düzeltici/Önleyici/İyileştirici)"]
- J --> K{"İlişkili Cihaz Var mı?"}
- K -- "Evet" --> L["Kurum İçi Cihaz Süreç / Arıza Kaydı ve İstatistik Takibi"]
- K -- "Hayır" --> M["DÖF Aksiyonlarının Yürütülmesi"]
- L --> M
- M --> N["DÖF Tamamlama / İptal"]
- N --> O{"Tüm DÖF'ler Tamamlandı mı?"}
- O -- "Hayır (Açık DÖF Var)" --> P["Kapatma Engellenir (Kapatma Kilidi Uyarısı)"]
- P --> M
- O -- "Evet" --> Q["Kapanış Notu Girişi & Olayı Kapatma"]
- Q --> R["Resmi SKS / NDK Tutanağı Yazdırma & Arşivleme"]
+flowchart TB
+ subgraph S1 ["1. AŞAMA: BİLDİRİM VE NDK SÜRE TAKİBİ"]
+  direction LR
+  A(["Masaüstü veya Mobil Web Bildirimi"]) --> B["3 Adımlı Form: Künye, Kök Neden, Tanım"]
+  B --> C{"NDK Bildirimi<br/>Gerekli mi?"}
+  C -->|Evet| D["1 veya 3 İş Günü Sayacı Başlar"]
+  C -->|Hayır| E["Kurum İçi SKS İncelemesi"]
+ end
+
+ subgraph S2 ["2. AŞAMA: 4 ADIMLI İNCELEME VE DÖF"]
+  direction LR
+  F["1: Künye → 2: İnceleme ve Sorumlu Atama"] --> G["3: Bağlı / Bağımsız DÖF Faaliyetleri"]
+  G --> H{"Tüm DÖF'ler<br/>Tamamlandı mı?"}
+  H -->|Açık DÖF Var| I["ENGEL: Kapatma Kilitlenir"]
+ end
+
+ subgraph S3 ["3. AŞAMA: KAPANIŞ VE RESMİ TUTANAK"]
+  direction LR
+  J["Zorunlu Kapanış Notu &amp; Olayı Kapat"] --> K(["Tek Sayfa Antetli Resmi A4 PDF Tutanak"])
+ end
+
+ D & E ==> F
+ H -->|Tamamlandı| J
 ```
 
- </div>
+1. **Bildirim ve NDK Süresi:** Masaüstü veya sahadan anonim seçenekli 3 adımlı olay bildirimi açılır; radyolojik olaylarda hafta sonu hariç 1 veya 3 iş günlük NDK geri sayımı işler.
+2. **4 Adımlı İnceleme ve DÖF:** Birim sorumlusu veya RKS atanıp düzeltici/önleyici faaliyetler yürütülür; açık DÖF kaldığı sürece dosya kapanışı sistem tarafından engellenir.
+3. **Kapanış ve Resmi Tutanak:** Tüm DÖF faaliyetleri bittiğinde zorunlu kapanış notuyla dosya kapatılır ve tek sayfalık antetli resmi SKS/NDK PDF tutanağı alınır.
 
-## Olay Bildirimi, DÖF & Mit Avcısı (Kritik Kurallar) {#mit-avcilari}
+## Arayüz Ekran Görünümleri {#screenshots}
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-5">
- <div class="rounded-2xl border border-red-200 dark:border-red-900/40 bg-gradient-to-br from-red-50/50 via-white to-slate-50 dark:from-red-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
- <div class="flex items-center gap-2 text-red-600 dark:text-red-400 font-bold text-xs uppercase tracking-wider mb-2">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
- </svg>
- <span>Yaygın Yanılgı (Mit 1)</span>
- </div>
- <p class="text-xs font-semibold text-slate-800 dark:text-slate-100 mb-3 italic">
- "Açık bir DÖF faaliyeti varken de olayın dosyası acilen 'Kapatıldı' statüsüne geçirilebilir."
- </p>
- <div class="border-t border-red-200/60 dark:border-red-900/40 pt-3">
- <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 mb-1">
- <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
- </svg>
- Doğru Yasal Kural:
- </span>
- <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
- CAPA Lock emniyet kilidi gereğince üzerinde tamamlanmamış açık DÖF aksiyonu bulunan hiçbir olay kapatılamaz. Faaliyetlerin resmi olarak tamamlanması veya gerekçeli iptali zorunludur.
- </p>
- </div>
- </div>
- <div class="rounded-2xl border border-amber-200 dark:border-amber-900/40 bg-gradient-to-br from-amber-50/50 via-white to-slate-50 dark:from-amber-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
- <div class="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wider mb-2">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
- </svg>
- <span>Yaygın Yanılgı (Mit 2)</span>
- </div>
- <p class="text-xs font-semibold text-slate-800 dark:text-slate-100 mb-3 italic">
- "Personelin ismini gizleyerek yaptığı anonim ramak kala bildirimleri SKS denetimlerinde geçersizdir."
- </p>
- <div class="border-t border-amber-200/60 dark:border-amber-900/40 pt-3">
- <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 mb-1">
- <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
- </svg>
- Doğru Yasal Kural:
- </span>
- <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
- Sağlık Bakanlığı SKS 6.1 ve güvenlik kültürü ilkeleri gereğince anonim bildirimler resmi ve yasal olarak geçerlidir; aynı ciddiyetle incelenip düzeltici işlem başlatılır.
- </p>
- </div>
- </div>
- <div class="rounded-2xl border border-blue-200 dark:border-blue-900/40 bg-gradient-to-br from-blue-50/50 via-white to-slate-50 dark:from-blue-950/20 dark:via-slate-900 dark:to-slate-900 p-5 shadow-sm">
- <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold text-xs uppercase tracking-wider mb-2">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
- </svg>
- <span>Yaygın Yanılgı (Mit 3)</span>
- </div>
- <p class="text-xs font-semibold text-slate-800 dark:text-slate-100 mb-3 italic">
- "Olay formunda cihaz arızası kaydedildiğinde sistem yetkili teknik servise otomatik iş emri açar."
- </p>
- <div class="border-t border-blue-200/60 dark:border-blue-900/40 pt-3">
- <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 mb-1">
- <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
- <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
- </svg>
- Doğru Yasal Kural:
- </span>
- <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
- Bu kayıt kurum içinde olay-arıza korelasyonunu takip etmek içindir; harici servise çağrı göndermez. Cihaz bakım ve servis yönetimi Modül 19 üzerinden yürütülür.
- </p>
- </div>
- </div>
- </div>
+![Olay Bildirimi ve DÖF Yönetimi Ana Ekranı | Kalite > Olay Bildirimi ve DÖF (CAPA) Yönetimi | Ana Liste, NDK Sayacı & Hızlı DÖF | rose](assets/img/15_1_olay_bildirim_ve_dof_yonetimi_ana_ekran.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki olay numaraları, personel adları ve DÖF durumları test ortamına ait sentetik verilerdir.</span>")
 
-## 13 Sıkça Sorulan Sorular (SSS) {#sss}
+![Olay İnceleme Sihirbazı 1. Adım Olay Künyesi | Olay Bildirimi > İncele ve DÖF Yönet | 1. Adım: Olay Künyesi | cyan](assets/img/15_2_1_olay_inceleme_ve_dof_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> İnceleme penceresindeki olay bilgileri eğitim ve doğrulama amaçlı sentetik verilerdir.</span>")
+
+![Olay İnceleme Sihirbazı 2. Adım İnceleme ve Atama | Olay Bildirimi > İncele ve DÖF Yönet | 2. Adım: İnceleme, NDK & Sorumlu Atama | amber](assets/img/15_2_2_olay_inceleme_ve_dof_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> Atanan sorumlu ve inceleme notları örnek kurgu üzerinden hazırlanmıştır.</span>")
+
+![Olay İnceleme Sihirbazı 3. Adım DÖF ve Kapanış | Olay Bildirimi > İncele ve DÖF Yönet | 3. Adım: DÖF Planlama & Kapanış Kilidi | emerald](assets/img/15_2_3_olay_inceleme_ve_dof_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> DÖF aksiyonları ve kapanış kilidi simülasyon verileriyle örneklendirilmiştir.</span>")
+
+## Adım Adım İşlem Rehberi {#step-by-step}
+
+### 1. Yeni Olay Bildirimi Oluşturma ve Anonim Seçenek
+
+1. **[Olay Bildirimi ve DÖF (CAPA) Yönetimi]** ekranında **Yeni Olay Bildirimi** sekmesine geçin.
+2. **1. Adım: Olay Temel Bilgileri** bölümünde tarih, birim (gerekirse **[Diğer (Serbest Yaz)]**), olay sonucu ve bildireni seçin (kimliğinizi gizlemek için **[Anonim Bildirim Yap]** veya e-posta dönüşü için **[Geri Bildirim İstiyorum]** işaretleyebilirsiniz).
+3. **[İleri]** butonlarıyla **2. Adım: Olay Sınıflandırması** (kategori, alt detaylar, olası kök nedenler) ve **3. Adım: Açıklamalar ve Öneriler** alanlarını doldurup **[Gönder / Olayı Bildir]** butonuna basın.
+
+### 2. 4 Adımlı İnceleme Sihirbazı, Sorumlu Atama ve DÖF Yönetimi
+
+1. Ana listeden bir satır seçip **[İncele ve DÖF Yönet]** butonuna tıklayın; 1. adımda olay künyesini inceleyip 2. adıma geçin, **[İncelemeye Al]** veya **[NDK Bildir]** işlemlerini yapın ve listeden yetkili sorumluyu seçin (**[Sonraki Adım]**'a geçerken atama otomatik kaydedilir).
+2. 3. adımda **[Faaliyet Başlat]** ile Düzeltici, Önleyici veya İyileştirici DÖF tanımlayın; tamamlanan aksiyonlarda **[Seçili DÖF'ü Tamamlandı Yap]** butonunu kullanın (olaydan bağımsız genel kalite iyileştirmeleri için ana araç çubuğundaki **[Yeni DÖF Ekle]** butonu kullanılabilir).
+3. 4. adımda tüm DÖF'lerin kapandığı doğrulandıktan sonra kapanış notunu yazıp **[Olayı Kapat ve Tamamla]** butonuna basın; **[Resmi Tutanağı Yazdır / PDF]** ile antetli resmi tutanağı, ana çubuktaki **[Excel]** ve **[Trend Raporu]** ile toplu analizleri alın.
+
+### 3. Saha Web Portalından Olay Bildirimi ve Yönetici Analizi
+
+1. Klinik personeli cep telefonu veya tabletten Web Portalındaki 3 adımlı bildirim formunu doldurarak anında kaza veya ramak kala kaydı açabilir; kayıt açıldığı anda masaüstü yönetici ekranında görünür.
+2. Kalite ve hastane yönetimi Web Portalındaki **Olay Bildirimi** yönetim panelinden bekleyen DÖF sayılarını, NDK bildirim sürelerini ve aylık olay trendini canlı olarak takip eder.
+
+## Sıkça Sorulan Sorular (SSS) {#faq}
 
 :::faq
 ### Anonim yapılan bildirimler resmi SKS denetimlerinde geçerli sayılır mı?
-<strong>Evet.</strong> Sağlık Bakanlığı SKS 6.1 ve kurum kalite politikaları uyarınca güvenli bildirim kültürünü teşvik etmek amacıyla personelin kimliğini gizleyerek yaptığı bildirimler resmi olarak geçerlidir ve aynı titizlikle incelenip DÖF açılır.
+<strong>Evet.</strong> Sağlık Bakanlığı SKS 6.1 ve kurumsal güvenlik kültürü ilkeleri uyarınca personelin kimliğini gizleyerek yaptığı ramak kala ve olay bildirimleri tamamen geçerlidir ve normal bildirimlerle aynı inceleme ve DÖF sürecine alınır.
 
 ### Açık DÖF varken bir olayı acilen kapatmam gerekirse ne yapmalıyım?
-Sistem açık DÖF varken olayın kapatılmasını emniyet kilidiyle kesinlikle engeller. Eğer bir faaliyet artık uygulanamaz durumdaysa veya mükerrer açılmışsa, faaliyet durumu gerekçesi belirtilerek <code class="font-mono">İptal</code> veya <code class="font-mono">Tamamlandı</code> yapılmalı, ardından kapanış notu girilerek olay kapatılmalıdır.
+Açık DÖF faaliyeti varken olayın kapatılması emniyet kilidiyle engellenir. Bir faaliyet artık uygulanamayacak veya mükerrer durumdaysa ilgili DÖF satırı gerekçesiyle iptal edilmeli ya da tamamlandı olarak kapatılmalı, ardından olay dosyası kapatılmalıdır.
 
-### Olaydan oluşturulan cihaz arıza kaydı teknik servise otomatik iş emri gönderir mi?
-<strong>Hayır.</strong> Bu kayıt program içinde yalnızca süreci takip etmek, olay-arıza korelasyonunu izlemek ve birim hakkında istatistiki bilgi derlemek amaçlıdır; harici teknik servise veya bakım birimine resmi çağrı/iş emri göndermez.
+### Olaydan açılan cihaz arıza kaydı teknik servise resmi iş emri gönderir mi?
+Hayır. Bu bağlantı yalnızca kurum içinde olay-arıza ilişkisini ve istatistiklerini izlemek içindir; harici bakım veya teknik servis firmasına resmi çağrı göndermez. Teknik servis ve arıza takibi Cihaz Arıza, Bakım ve QC modülünden yürütülür.
 
-### NDK bildirim süresi ne zaman başlar ve hafta sonları hesaba katılır mı?
-Yasal süre olay tarihinden itibaren başlar. Acil kazalarda 1 iş günü (24 saat), diğer radyolojik uygunsuzluklarda 3 iş günüdür. Hesaplamada Cumartesi ve Pazar günleri ile resmi tatiller süreye dahil edilmez (<code class="font-mono">_add_business_days</code>).
+### NDK yasal bildirim süresi nasıl hesaplanır?
+Süre olay tarihinden itibaren başlar; acil kazalarda 1 iş günü, diğer radyolojik olaylarda 3 iş günü olarak hesaplanır. Hafta sonu günleri ve resmi tatiller iş günü hesabına dahil edilmez.
 :::

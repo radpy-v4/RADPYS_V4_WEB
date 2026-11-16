@@ -1,219 +1,146 @@
 ---json
 {
-  "pageTitle": "18. Tıbbi Cihaz ve NDK Lisans / Uygunluk Envanteri — RADPYS v4 Kullanım Kılavuzu",
+  "pageTitle": "18. Tıbbi Cihaz ve NDK Lisans Envanteri — RADPYS v4 Kullanım Kılavuzu",
   "h1": "Tıbbi Cihaz ve NDK Lisans Envanteri",
-  "lead": "Hastaneler ve radyoloji merkezlerindeki iyonlaştırıcı radyasyon yayan (X-Ray, Tomografi, Anjiyografi, Skopi, Mamografi) ve radyasyonsuz medikal (MR, USG) tüm cihazların teknik künyelerinin yönetildiği, Nükleer Düzenleme Kurumu (NDK) lisans ve vize sürelerinin 6 ay - 45 gün - 30 gün kademeli erken uyarı sistemiyle takip edildiği, cihazların mimari kat planları (kroki) üzerine koordinatla sabitlendiği, teknik kılavuzların AES-256 şifreli Evrak Kasasında korunduğu ve hurdaya ayrılan cihazların resmi HEK tutanağıyla arşivlendiği entegre donanım yönetim merkezidir.",
+  "lead": "Hastaneler ve radyoloji merkezlerindeki iyonlaştırıcı radyasyon yayan (X-Ray, Tomografi, Anjiyografi, Skopi, Mamografi), radyasyonsuz medikal (MR, USG) ve ölçüm cihazlarının teknik künyelerini, Nükleer Düzenleme Kurumu (NDK) lisans ve vize takvimini, mimari kat planı sabitlemesini, AES-256 şifreli teknik evrak kasasını, 2 aşamalı HEK tasfiye arşivini ve 8 adımlı NDK KLV-014 Radyasyondan Korunma Programı (RKP) başvuru dosyasını tek merkezden yönetmenizi sağlar.",
   "overviewId": "overview",
   "badges": [
     {
-      "text": "NDK & SKS 6.1 Uyumlu",
+      "text": "NDK KLV-014 & SKS 6.1 Uyumlu",
       "tone": "emerald"
     }
   ],
-  "readingTime": "4 Dakika",
-  "legalNote": "<strong>Yasal Güvence:</strong> Sağlık Bakanlığı Sağlıkta Kalite Standartları (SKS 6.1) ve NDK Radyasyon Güvenliği Mevzuatı uyarınca ruhsatsız veya vizesi dolmuş cihazlar karantina uyarısına alınır."
+  "readingTime": "5 Dakika",
+  "legalNote": "<strong>Yasal Güvence:</strong> NDK Radyasyon Güvenliği Mevzuatı, Sağlık Bakanlığı Sağlıkta Kalite Standartları (SKS 6.1) ve Taşınır Mal Yönetmeliği uyarınca ruhsatsız veya vizesi dolmuş radyasyon kaynakları erken uyarı takibine alınır; hurdaya ayrılan cihazlar komisyon tutanağı ve EBYS mührü olmadan sistemden silinmez."
 }
 ---
 
-## Kısa Reçete (20 Saniye Kuralı) {#quick-recipe}
+## Kısa Reçete: Yeni Cihaz Kaydı ve NDK Lisansı Bağlama {#quick-recipe}
 
-:::recipe Kısa Reçete: Yeni Cihaz Tanımlama ve NDK Lisansı Bağlama | 20 SANİYELİK AKIŞ
-### 1. İstenen Sonuç | cyan
-Cihazın resmi NDK lisansıyla envantere kaydedilmesi, erken uyarı alarmına bağlanması ve QR künyesinin üretilmesi.
+:::recipe Kısa Reçete: Yeni Cihaz Kaydı ve NDK Lisansı Bağlama | 20 SANİYELİK AKIŞ
+### 1. İstenen Sonuç | slate
+Tıbbi cihazın resmi NDK lisans bilgileriyle envantere alınması, vize erken uyarı motoruna bağlanması ve saha karekod (QR) etiketinin kullanıma hazır hale getirilmesi.
 
 ### 2. Yapılacak İşlem | cyan
-<strong>[Yeni Cihaz]</strong> butonuna tıklayın. 1. Sekmede Anabilim Dalı ve Birimi seçin (alt birimler otomatik filtrelenir, Cihaz Kodu kilitli olarak otomatik üretilir); Seri No ve Demirbaş No girin. 2. Sekmede NDK Lisans No ve Vize Tarihini yazıp <strong>[Cihazı Kaydet]</strong> butonuna basın.
+Araç çubuğundaki <strong>[Yeni Cihaz]</strong> butonuna tıklayın; 1. sekmede kaynak grubu, Anabilim Dalı, Birim, Cihaz Türü ve Seri No alanlarını doldurun; 2. sekmede NDK Lisans No ve vize bitiş tarihini girip <strong>[Cihazı Kaydet]</strong> butonuna basın.
 
-### 3. Sistem Etkisi & Güvence | cyan
-Cihaz Kodu otomatik üretilir ve kilitlenir. Vize bitimine 6 ay kala erken uyarı başlar; 45 gün ve 30 gün eşiklerinde alarm rengi değişir. Hiçbir eski veri ezilmez.
+### 3. Sistem Etkisi | emerald
+Modalite sırasına göre Cihaz No ve kilitli Cihaz Kodu otomatik üretilir; vize bitimine 180, 45 ve 30 gün kala kademeli erken uyarı devreye girer ve cihazın karekod pasaportu oluşturulur.
 
-- [metric] Vize Takip Alarmı | 6 Ay / 45G / 30G | cyan
-- [metric] Yetkili Rol | Biyomedikal / RGS / RKS | slate
-- [metric] Cihaz Kodu Kuralı | Sistem Üretir (Kilitli) | emerald
+- [metric] Vize Uyarı Eşikleri | 180 / 45 / 30 Gün | cyan
+- [metric] Tablo ve Sekme Yapısı | 7 Sütun / 5 Sekme | slate
+- [metric] Cihaz Kodu Kuralı | Otomatik ve Kilitli | emerald
 - [metric] Platform | Masaüstü + Web / QR | purple
 :::
 
+## 5N1K Kural ve Arayüz Çözümleme Tablosu {#5w1h}
+
+*Cihaz kodlama otomasyonu, NDK lisans vize eşikleri, mimari kroki pinleme, Evrak Kasası, tutanaklar, 2 aşamalı HEK arşivi, toplu QR baskı ve RKP sihirbazı kuralları.*
+
+| NE? (Bileşen / Kontrol) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Tetiklenme) | KİM? (Yetkili Rol) |
+| --- | --- | --- | --- | --- |
+| <strong>Kademeli Birim, Cihaz No ve Cihaz Kodu</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">1. Sekme: Genel Bilgiler</span> | Modalite başına gerçek cihaz sırasını korumak ve devirlerde kimlik kaymasını önlemek. | Anabilim Dalı seçildiğinde Birim listesi filtrelenir ve sistem boşluk doldurmalı Cihaz No ile salt okunur Cihaz Kodu üretir; düzenlemede yalnızca Birim veya Devir Tutanağı değişince kod yenilenir. | Yeni cihaz tanımlandığında veya birim devri yapıldığında. | Biyomedikal / RKS |
+| <strong>NDK Lisans Vize Takibi ve RKS Ataması</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">2. Sekme: NDK Lisans ve RKS</span> | İyonlaştırıcı radyasyon yayan cihazların ruhsat yenileme takvimini yasal süre dolmadan yönetmek. | Radyasyonsuz ve Medikal gruplar otomatik Muaf işaretlenirken radyasyonlu cihazlarda vize bitimine 180, 45 ve 30 gün kala uyarı rozeti ve gün sayacı çalışır; lisans belgesi doğrudan kasaya yüklenir. | Cihaz kaydedildiğinde veya vize tarihi yaklaştığında. | RKS / Yönetici |
+| <strong>Kat Planına Sabitleme ve <strong>[Pin Kilitli]</strong></strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">4. Sekme: Kat Planı</span> | Sabit cihazların oda içi mimari konumunu sabitlemek ve Ortam Dozu haritasıyla eşleştirmek. | Mimari plan üzerinde cihaz konumu tıklandığında yüzdesel koordinat ve oda kodu otomatik bağlanır; kilitleme butonu pinin yanlışlıkla sürüklenmesini engeller. | Sabit X-Ray, BT veya Anjiyo kurulumunda. | Biyomedikal / RKS |
+| <strong>Şifreli Evrak Kasası ve Birleşik Tutanak Tablosu</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">5. Sekme: Kılavuzlar ve Belgeler</span> | Kullanım kılavuzlarını, NDK ruhsat belgelerini ve cihaz tutanaklarını tek listede şifreli korumak. | Yüklenen kılavuzlar, lisans PDF belgeleri ve cihazla ilişkili resmi tutanaklar AES-256 Evrak Kasası üzerinden tek tabloda izlenir ve imzalı tutanak nüshası doğrudan satırdan eklenir. | Teknik belge teslim alındığında veya tutanak imzalandığında. | Yetkili Kullanıcı / RKS |
+| <strong><strong>[Tutanak Oluştur]</strong>, <strong>[HEK]</strong> ve 2 Aşamalı Tasfiye Arşivi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Devir / Hasar / Kabul / HEK Süreç Yönetimi</span> | Çoklu cihaz tutanaklarını standart Word/PDF olarak üretmek ve hurdaya ayrılan cihazları EBYS ile mühürlemek. | Araç çubuğundaki <strong>[HEK]</strong> veya <strong>[Tutanak Oluştur]</strong> sihirbazı cihazı imzada bekleyen HEK dosyasına bağlar; Ayniyat kapatmada <strong>[EBYS Gir / Dosyayı Kapat]</strong> ile dosya kalıcı mühürlenir. | Birim devri, hasar tespiti veya hurdaya ayırma kararında. | Komisyon / Ayniyat / RKS |
+| <strong><strong>[QR Etiket]</strong> ve 300 DPI Toplu Baskı Paketi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Tekil Kart ve ZIP Matbaa İhracı</span> | Cihaz gövdesine yapıştırılacak saha karekodunu tekil yazdırmak veya topluca matbaa baskısına hazırlamak. | Açılır menüden seçili cihaz için tekil etiket yazdırılır veya seçili/tüm liste için 300 DPI etiket görselleri, matbaa baskı rehberi ve icmal listesi tek ZIP arşivinde üretilir. | Cihaz kabulünde veya toplu etiket yenilemede. | Tekniker / Biyomedikal / RKS |
+| <strong>8 Adımlı NDK RKP Sihirbazı ve Merkezi Onay</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">RSGD-KLV-014 Başvuru Dosyası</span> | Resmi NDK başvuru dosyasını canlı envanter verilerinden hatasız derlemek ve rol bazlı onayları korumak. | Kurum, RKS, personel, cihaz, ölçüm/aktif dozimetre ve RKE matrislerini (KB.1–KB.8) ve 11 talimatı canlı çekip Word/PDF üretir; onay gerektiren rollerin cihaz değişikliklerini Merkezi Onay kuyruğuna sunar. | NDK lisans başvurusunda veya yetki onaylı kayıtta. | RKS / Kurum Amiri |
+
 ## Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı) {#myth-buster}
 
-:::myth Kritik Sahada Yanlış Bilinen Kural (Mit Avcısı)
-### Yanlış Algı:
-<em>"Cihaz kodunu kendi istediğim gibi değiştirebilirim; artık kullanılmayan eski bir cihazı da sistemden kalıcı olarak silebilir veya yok edebilirim."</em>
+:::myth Cihaz Kodu Elle Değiştirilebilir veya HEK'e Ayrılan Cihaz Tamamen Silinebilir mi?
+### Yanlış Algı
+<em>"Cihaz kodunu kendi kurum numaramıza göre elle yazabilirim; ayrıca hurdaya ayrılan veya yanlış eklenen bir cihazı HEK ekranından silebilir veya dilediğim zaman tek tuşla geri açabilirim."</em>
 
-### Gerçek Sistem Mantığı:
-Cihaz Kodu ve Cihaz No ilişkisel veri bütünlüğünü korumak için <strong>sistem tarafından otomatik üretilir</strong>. Düzenleme modunda Cihaz No, Kaynak Grubu ve Cihaz Türü kilitlenir; yalnızca Birim değiştirilirse Cihaz Kodu yeni birime göre otomatik güncellenir. Kurum içi demirbaş veya ÇKYS takibi için formdaki <strong>Demirbaş No</strong> alanı kullanılır. Ayrıca sistemde cihazlar asla kalıcı silinmez; geçmiş kalite kontrol, arıza ve dozimetri izini korumak için <strong>[HEK]</strong> butonuyla resmi HEK Tutanağı eşliğinde Hurda Arşivine kaldırılır.
+### Gerçek Sistem Mantığı
+<strong>İkisi de sistem güvencesiyle kısıtlıdır.</strong> Cihaz No ve Cihaz Kodu ilişkisel arıza, kalite kontrol ve kroki bağlantılarını korumak için otomatik üretilir; kurum içi demirbaş takibi için formdaki <strong>Demirbaş No</strong> alanı kullanılır ve kod yalnızca birim değiştiğinde güncellenir. Ayrıca hurdaya ayrılan cihazlar geçmiş denetim izini korumak adına asla fiziksel silinmez; komisyon tutanağı ve EBYS sayısıyla mühürlenen HEK tasfiye dosyaları geri döndürülemez.
 :::
 
-## 5N1K Kural ve Ayar Çözümleme Tablosu {#matrix-5n1k}
-
-<div class="flex items-center justify-between mb-4">
- <div>
- <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
- Tıbbi cihaz envanteri, NDK lisanslama, kat planı sabitleme ve HEK hurda arşivi operasyonel kontrolleri.
- </p>
- </div>
- </div>
- <div class="rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm bg-white dark:bg-slate-900">
-
-| NE? (Ekran Kontrolü) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? | KİM? |
-| --- | --- | --- | --- | --- |
-| Yeni Cihaz Tanımlama ve 7 Sütunlu Tablo<br> <span class="text-xs font-normal text-slate-400 font-mono">[Yeni Cihaz Butonu]</span> | Hastaneye teslim alınan cihazın teknik künyesini açmak ve sade ana listede takip etmek. | 5 sekmeli sihirbaz açılır: Genel Künye, NDK Lisans, Garanti, Kat Planı ve Kılavuzlar ve Belgeler doldurulur. Ana envanter tablosu Cihaz Kodu (kontrast rozetli modalite ikonuyla), Cihaz Türü, Marka/Model, Departman, NDK Lisans No, Lisans Bitiş ve Durum olmak üzere 7 sütundan oluşur; Cihaz No ve Bina/Yerleşke detayı ipucunda sunulur. | Yeni cihaz alımında veya devralındığında. | <span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Biyomedikal / RGS</span> |
-| Akıllı Cihaz No, Kilitli Alanlar ve Birim Değişiminde Kod Yenileme<br> <span class="text-xs font-normal text-slate-400 font-mono">[Cihaz No / Cihaz Kodu / A.B.D. & Birim]</span> | Modalite başına gerçek aktif cihaz sırasını korumak, devirlerde kodu otomatik güncellemek ve kimlik kaymasını önlemek. | Anabilim Dalı seçildiğinde Birim listesi otomatik filtrelenir; sistem silinen cihazlardan kalan numaraları doldurarak modalite bazlı Cihaz No üretir. Düzenleme modunda Cihaz No, Kaynak Grubu ve Cihaz Türü değiştirilemez (kilitli); yalnızca Birim değiştirildiğinde veya Devir Tutanağı onaylandığında Cihaz Kodu yeni birime göre otomatik güncellenir. | Yeni cihaz tanımlanırken, düzenlenirken veya birim devrinde. | <span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Biyomedikal / RGS</span> |
-| NDK Lisans, Vize Takibi ve Lisans Belgesi Kasası<br> <span class="text-xs font-normal text-slate-400 font-mono">[2. Sekme: Lisans Bilgileri / Belge Seç]</span> | İyonlaştırıcı radyasyon yayan cihazın yasal ruhsat takvimini ve resmi lisans PDF belgesini tek yerden yönetmek. | Lisans No ve vize geçerlilik tarihi girilir; aynı sekmeden NDK Lisans Belgesi seçilip şifreli kasaya yüklenebilir ve Kılavuzlar ve Belgeler sekmesiyle otomatik senkronize edilir. Sistem 6 ay, 45 gün ve 30 gün erken uyarı alarmları üretir. | Cihaz kaydedilirken, lisans belgesi yüklenirken veya lisans yenilendiğinde. | <span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">RGS / RKS Sorumlusu</span> |
-| Kat Planına Sabitleme<br> <span class="text-xs font-normal text-slate-400 font-mono">[4. Sekme: Kat Planı & Pin Kilitli]</span> | Cihazın oda içindeki mimari koordinatını sabitlemek ve kroki haritasında göstermek. | Birim krokisi açılır, fareyle pini yerleştirilip [Pin Kilitli] butonuyla kilitlenir. | Sabit X-Ray, BT veya Anjiyo kurulumunda. | <span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Biyomedikal / RGS</span> |
-| AES-256 Şifreli Evrak Kasası ve İmzalı Tutanak Takibi<br> <span class="text-xs font-normal text-slate-400 font-mono">[5. Sekme: Kılavuzlar ve Belgeler]</span> | Kullanım kılavuzu, servis şeması, NDK lisans belgesi ve cihaza ait resmi tutanakları tek sekmede şifreli korumak ve ıslak imzalı nüshaları arşivlemek. | Yüklenen PDF/dosyalar ile cihaz için düzenlenen resmi tutanaklar tek birleşik tabloda gösterilir; satır içi butonlardan belgeler görüntülenir ve imza bekleyen tutanaklara ıslak imzalı nüsha doğrudan yüklenebilir. | Teknik evrak teslim alındığında veya resmi tutanak imzalandığında. | <span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Tüm Kullanıcılar / RGS</span> |
-| Cihaz No Bazlı QR Etiket & Toplu Baskı Paketi (.ZIP)<br> <span class="text-xs font-normal text-slate-400 font-mono">[QR Etiket Menüsü / Sağ Tık Menüsü]</span> | Cihaz gövdesine yapıştırılacak karekodlu kimlik etiketini tekil basmak veya tüm envanter etiketlerini toplu paketlemek. | Araç çubuğundaki [QR Etiket] açılır menüsünden "Seçili Cihaz İçin QR Etiket..." ile tekil etiket basılabilir veya "Toplu QR Baskı Paketi Oluştur (.zip)..." ile 300 DPI PNG etiketler, teknik şartname (00_Baski_ve_Uretim_Rehberi.txt) ve icmal listesi (00_Etiket_Listesi_Icmal.csv) içeren .ZIP paketi üretilir; karekodlar kalıcı Cihaz No bağlantısı taşır. | Cihaz kabulünde, saha etiketlemesinde veya toplu matbaa siparişlerinde. | <span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Tekniker / Biyomedikal / RGS</span> |
-| HEK Hurda Arşivi, Çıkış Tutanağı ve NDK Çizelgesi<br> <span class="text-xs font-normal text-slate-400 font-mono">[HEK Butonu / Dışa Aktar Menüsü]</span> | Ekonomik ömrü biten cihazı resmi HEK tutanağıyla arşivlemek ve denetim çizelgesini dışa aktarmak. | Araç çubuğundaki [HEK] butonu doğrudan resmi HEK Tutanağı ekranını açar ve tutanak onayında cihaz HEK arşivine kaldırılır (tutanaksız doğrudan arşivleme yapılmaz). NDK Resmi Denetim Çizelgesi (.xlsx) ise [Dışa Aktar] açılır menüsünden oluşturulur. | Cihaz hurdaya ayrıldığında veya NDK denetimi öncesinde. | <span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Sistem Yöneticisi / RGS</span> |
-| Toplu Cihaz İçe Aktar (Excel)<br> <span class="text-xs font-normal text-slate-400 font-mono">[Excel İçe Aktar Butonu]</span> | Onlarca cihazı tek tek girmek yerine 2 sayfalı kurumsal Excel şablonuyla topluca sisteme aktarmak. | Evrensel İçe Aktarım Sihirbazı devreye girer. Şablondaki veriler doğrulanır; sistemde bulunmayan yeni departman veya türler dinamik sözlükte eşlenir; Dry-Run doğrulamasının ardından asenkron olarak güvenle kaydedilir. | İlk sistem kurulumunda veya toplu cihaz alımlarında. | <span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Biyomedikal / Sistem Yöneticisi</span> |
-| Kompakt Resmi Tutanak Oluşturma (Devir, Hasar, Kabul, HEK)<br> <span class="text-xs font-normal text-slate-400 font-mono">[Tutanak Oluştur Butonu / Sağ Tık Menüsü]</span> | Bir veya birden çok cihaz için Devir-Teslim, Hasar, Muayene Kabul veya HEK komisyon tutanağını düzenleyip evrak kasasına sunmak. | Tutanak Türü, Tarih ve Resmi Başlık üstte tek satırda doldurulur; yan yana açılan Cihazlar ve İmza Heyeti panellerindeki kompakt [Ekle] / [Çıkar] butonlarıyla listeler yönetilir. Onaylanan tutanaklar cihazın Belgeler sekmesine otomatik yansır ve Devir tutanaklarında birim değişimiyle Cihaz Kodu da güncellenir. | Toplu cihaz sayımlarında veya komisyon hurda/devir kararlarında. | <span class="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200">Biyomedikal / RGS / Sistem Yöneticisi</span> |
-
- </div>
-
-## Cihaz Yaşam Döngüsü ve İş Akış Şeması (Mermaid) {#workflow}
-
-<p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
- Aşağıdaki şema, tıbbi cihazın sisteme ilk kaydından otomatik kodlamaya, NDK vize erken uyarı alarmlarından HEK hurda arşivine kadar tüm yaşam döngüsünü göstermektedir.
- </p>
- <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-x-auto">
+## Süreç Akış Şeması {#workflow}
 
 ```mermaid
-flowchart TD
- A["Tıbbi Cihaz Envanter Ekranı"] --> B["[Yeni Cihaz] Butonu"]
- B --> C["1. Genel Künye: Kaynak Grubu + Birim + Tür Seçimi"]
- C --> D["Akıllı Cihaz Kodu Otomatik Üretilir (Kilitli)"]
- D --> E["Seri No, Demirbaş No ve Tüp No Girişi"]
- 
- E --> F["2. NDK Lisans ve RKS Sorumluları"]
- F --> G{"Kaynak Radyasyonlu mu?"}
- G -- "Evet" --> H["NDK Lisans No / Başvuru Aşamasında"]
- G -- "Hayır (MR/USG)" --> I["Lisans Muaf"]
- 
- H --> J["3. Garanti ve Bakım Sözleşmesi Süreleri"]
- I --> J
- 
- J --> K["4. Kat Planı: Mimari Krokiye Cihaz Pini Yerleştirme & Kilitleme"]
- K --> L["5. Kılavuzlar ve Belgeler: AES-256 Şifreli Evrak Kasasına Yükleme"]
- L --> M["[Cihazı Kaydet] Butonu"]
- 
- M --> N["NDK Lisans Vize Takip Motoru"]
- N --> O{"Kalan Lisans Süresi"}
- O -- "> 60 Gün" --> P["Yeşil Rozet: Vize Güvende"]
- O -- "180 - 46 Gün" --> Q["Erken Uyarı Süreci Devrede"]
- O -- "45 - 31 Gün" --> R["Sarı Rozet: Süresi Yaklaşıyor Alarmı"]
- O -- "30 - 0 Gün" --> S["Turuncu Rozet: Kritik Eşik Alarmı"]
- O -- "< 0 Gün" --> T["Kırmızı Rozet: Yasal İhlal Uyarısı"]
- 
- M --> U["[QR Etiket] Basımı"]
- U --> V["Mobil Web Portal Barkod Tarama & Arıza Bildirimi"]
- 
- M --> W["Ekonomik Ömrü Dolan Cihaz: [HEK] Butonu"]
- W --> X["Hurda Arşivine Kaldırılır (Fiziki Silme Yok)"]
- X --> Y["[Hurda Tutanağı] Resmi Word (.docx) Çıktısı"]
+flowchart TB
+ subgraph S1 ["1. AŞAMA: KÜNYE, KODLAMA VE LİSANS"]
+  direction LR
+  A(["Yeni Cihaz Formu"]) --> B["Kaynak Grubu + A.B.D. + Birim + Tür"]
+  B --> C["Otomatik Cihaz No &amp; Kilitli Kod"]
+  C --> D{"Radyasyonlu Kaynak mı?"}
+  D -->|Evet| E["NDK Lisans No &amp; Vize Takibi"]
+  D -->|Hayır MR/USG| F["Otomatik Muaf Statüsü"]
+ end
+
+ subgraph S2 ["2. AŞAMA: KROKİ, EVRAK VE VİZE İZLEME"]
+  direction LR
+  G["Kat Planı Pini &amp; Evrak Kasası"] --> H{"Kalan Vize Süresi"}
+  H -->|"&gt; 180 Gün"| I["Sade Geçerli Görünüm"]
+  H -->|"180 - 46 Gün"| J["Yenileme Dönemi Sayacı"]
+  H -->|"45 - 0 / &lt; 0 Gün"| K["Yaklaşan / Kritik / Günü Geçti Alarmı"]
+ end
+
+ subgraph S3 ["3. AŞAMA: RKP BAŞVURUSU, QR VE HEK"]
+  direction LR
+  L["300 DPI QR &amp; Web Saha Okuma"]
+  M["8 Adımlı NDK RKP Sihirbazı"]
+  N["HEK Tutanağı &amp; EBYS Mühürleme"]
+ end
+
+ E & F ==> G
+ K ==> M
+ I & J ==> L
+ I & J ==> N
 ```
 
- </div>
+1. **Künye ve Lisanslama:** Kaynak grubu, Anabilim Dalı, Birim ve Cihaz Türü seçilince sistem otomatik Cihaz No/Kodu üretir; radyasyonlu cihazlar NDK vize motoruna bağlanırken MR/USG ve genel medikal cihazlar Muaf işaretlenir.
+2. **Kroki, Evrak ve Vize İzleme:** Cihaz mimari krokiye pinlenip teknik belgeleri şifreli kasaya eklenir; kalan lisans süresi 180 günün üstündeyken sade görünüm korunur, 180/45/30 gün eşiklerinde kademeli alarm devreye girer.
+3. **RKP, Saha QR ve HEK Tasfiyesi:** Aktif cihazlar 300 DPI QR etiketle Web Portal saha süreçlerine bağlanır, canlı envanter verileri NDK RKP Sihirbazına aktarılır; ömrünü tamamlayan cihazlar tutanak ve EBYS sayısıyla mühürlenerek tasfiye arşivine kaldırılır.
 
-## Ekran Konumları ve Görsel Rehber {#screenshots}
+## Arayüz Ekran Görünümleri {#screenshots}
 
-![Tıbbi Cihaz ve NDK Lisans Envanteri Ana Ekranı | Cihaz Yönetimi > Tıbbi Cihaz ve Lisans Envanteri | Canlı Envanter & NDK Vize Kokpiti](assets/img/18_1_cihaz_envanteri_yonetimi.png "<span><strong>Simülasyon Notu:</strong> Bu görseldeki seri numaraları, NDK lisans kodları ve kurum bilgileri test amaçlı sentetik veridir.</span>")
+![Tıbbi Cihaz ve NDK Lisans Envanteri Ana Ekranı | Cihaz Yönetimi > Tıbbi Cihaz ve Lisans Envanteri | 7 Sütunlu Envanter ve Lisans Takibi | cyan](assets/img/18_1_cihaz_envanteri_yonetimi.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki cihaz kodları, seri numaraları ve NDK lisans bilgileri test amaçlı sentetik verilerdir.</span>")
 
-![Tıbbi Cihaz Tanımlama ve Kroki Konumlandırma Formu | Tıbbi Cihaz Envanteri > [Yeni Cihaz / Düzenle] & Kroki Konumlandırma | Cihaz Künyesi & Kat Planı Pinleme](assets/img/18_2_cihaz_tanimlama_ve_kroki_formu.png "<span><strong>Simülasyon Notu:</strong> Akıllı cihaz kodlama (XRAY-ACL-ANJ-01), NDK lisans/vize bilgileri ve kat planı krokisi üzerinde pin sabitleme ekranı.</span>")
+![Cihaz Düzenleme ve Kat Planı Sabitleme Ekranı | Tıbbi Cihaz Envanteri > Düzenle > 4. Kat Planı | Mimari Kroki Üzerinde Pin Konumlandırma | emerald](assets/img/18_2_cihaz_tanimlama_ve_kroki_formu.png "<span><strong>Yasal Bilgilendirme:</strong> Mimari kroki ve oda yerleşim koordinatları eğitim amacıyla örneklendirilmiştir.</span>")
 
-## Adım Adım Operasyonel Eylem Akışı {#step-by-step}
+![Cihaz Karekod Kimlik Etiketi Önizleme Diyaloğu | Tıbbi Cihaz Envanteri > QR Etiket | PNG Kaydetme ve Doğrudan Yazdırma | slate](assets/img/18_1_1_cihaz_envanteri_yonetimi.png "<span><strong>Yasal Bilgilendirme:</strong> Etiketteki cihaz künyesi ve QR bağlantısı test ortamına aittir.</span>")
 
-<div class="space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
- <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
- <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 1: Yeni Cihaz Künyesi, Hiyerarşik Birim ve Kilitli Akıllı Kodlama</strong>
- Sol ana menüden <strong>[Tıbbi Cihaz ve Lisans Envanteri]</strong> ekranını açın. Araç çubuğundaki <strong>[Yeni Cihaz]</strong> butonuna tıklayın. 1. Sekmede Kaynak Grubu (X-Ray, Radyasyonsuz, Medikal, Ölçüm), Anabilim Dalı ve bağlı Birim ile Cihaz Türünü seçin. Anabilim Dalı seçildiğinde alt birimler kademeli filtrelenir; sistem sıradaki akıllı Cihaz Kodunu (örn: <code>XRAY-ACL-ANJ-01</code>) otomatik üretir ve yetkisiz müdahaleye karşı salt okunur olarak kilitler. Seri No ve kurum Demirbaş No alanlarını doldurun.
- </div>
- <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
- <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 2: NDK Lisans Bilgileri ve Sorumluları Belirleme</strong>
- 2. Sekmeye geçin. Radyasyonlu cihazlar için NDK Lisans Numarası ve lisans geçerlilik bitiş tarihini girin. Henüz resmi ruhsat çıkmamışsa durumu <em>"Lisans Başvuru Aşamasında"</em> olarak işaretleyin. Kurumdaki sertifikalı uzmanlar arasından <strong>RKS Sorumlusu</strong> ve klinik <strong>Birim Sorumlusu</strong>'nu seçin.
- </div>
- <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
- <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 3: Kat Planına Pini Yerleştirme ve Kilitleme</strong>
- 4. Sekmeye (Kat Planı) geçin. Birime ait mimari kroki üzerinde fareyle cihazın bulunduğu odaya tıklayarak veya pini sürükleyerek tam konumunu işaretleyin. Pinin kaymasını önlemek için <strong>[Pin Kilitli]</strong> butonuna basın.
- </div>
- <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
- <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 4: Kılavuzları Şifreli Kasaya Yükleme ve Kaydetme</strong>
- 5. Sekmede cihazın kullanım kılavuzu veya teknik servis şeması dosyasını <strong>[Dosya Seç]</strong> ile bağlayıp formun altındaki <strong>[Cihazı Kaydet]</strong> butonuna tıklayın. Cihaz anında canlı envantere işlenir ve erken uyarı motoru devreye girer.
- </div>
- <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
- <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 5: QR Etiket Basımı ve HEK Hurda Arşivi</strong>
- Tablodan cihazı seçip üstteki <strong>[QR Etiket]</strong> açılır menüsünden tekil etiket yazdırın veya tüm liste için toplu QR baskı paketi (.zip) üretin. Cihazın ekonomik ömrü bittiğinde ise <strong>[HEK]</strong> butonuyla resmi HEK Tutanağını düzenleyin; tutanak onaylandığında cihaz arşive kaldırılır ve HEK Arşivi ekranından da izlenebilir.
- </div>
- <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
- <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 6: NDK RSGD-KLV-014 ve KLV-014-EK Radyasyondan Korunma Programı (RKP) Başvuru Sihirbazı</strong>
- Sol ana menüden veya araç çubuğundaki <strong>[NDK RKP Sihirbazı]</strong> butonuna tıklayın. Açılan 8 adımlı resmi sihirbaz üzerinden:
- <ul class="mt-2 space-y-1.5 pl-4 text-xs sm:text-sm list-disc">
- <li><strong>1. Kuruluş Bilgileri (KB.1) & Yasal Dayanaklar (KB.2):</strong> Kurum unvanı, adres, NDK lisans/başvuru numarası ve mevzuat dayanaklarını sistem ayarlarından tek tıkla yükleyin veya düzenleyin.</li>
- <li><strong>2. RKS ve Birim Sorumluları (KB.3):</strong> Kurumda görevli resmi Radyasyondan Korunma Sorumlusu (RKS) ve klinik birim sorumlularının iletişim ve görev bilgilerini listeleyin.</li>
- <li><strong>3. Radyasyon Görevlileri ve Sağlık/Dozimetre Durumu (KB.4):</strong> Canlı personel veritabanından radyasyon görevlileri, çalışma koşulları (Koşul A/B), aktif dozimetre türleri ve periyodik sağlık muayene onaylarını inceleyin.</li>
- <li><strong>4. Tıbbi Radyoloji Cihaz Envanteri (KB.5):</strong> Aktif iyonlaştırıcı radyasyon kaynaklarının cinsi, kullanım şekli, marka/model, seri no, NDK no ve maksimum jeneratör teknik değerlerini (kV/mA) doğrulayın.</li>
- <li><strong>5. Radyasyon Ölçüm Cihazları ve Kalibrasyon Belgeleri (KB.6):</strong> İyon odaları, alan ve kontaminasyon monitörlerinin kalibrasyon geçerlilik sürelerini kontrol edin.</li>
- <li><strong>6. RKE Koruyucu Ekipman Matrisi (KB.7):</strong> DIN 6857-1 standartlarına uygun kurşun önlük, tiroid, gözlük, gonat ve paravanların oda/birim bazlı donanım matrisini canlı verilerle görüntüleyin.</li>
- <li><strong>7. Kalite Dokümanları ve Hizmet İçi Eğitim Talimatları (T.1 - T.11):</strong> SKS 6.1 ve NDK RSGD-KLV-014 uyumlu 11 resmi talimatı (TL.RAD.01 - TL.RAD.11) inceleyin; Hizmet İçi Eğitim Modülü (LMS) ile senkronize edin.</li>
- <li><strong>8. Resmi Başvuru Dosyası Üretimi ve Arşivleme:</strong> <strong>[Resmi Word (.docx) İndir]</strong> ve <strong>[Resmi PDF (.pdf) Üret]</strong> butonlarıyla NDK standartlarında yatay (Landscape) resmi RKP başvuru dosyasını üretin; <strong>[KVKK Evrak Kasasına Arşivle]</strong> butonuyla dosyayı AES-256 ile şifreleyerek güvenli arşive kaydedin. İşi bitirdiğinizde <strong>[Kapat]</strong> butonuyla ana ekrana güvenle dönün.</li>
- </ul>
- </div>
- </div>
+## Adım Adım İşlem Rehberi {#step-by-step}
 
-## Hibrit Platform Matrisi (Masaüstü vs Web Portal) {#hybrid-platform}
+### 1. Yeni Cihaz Tanımlama, Kroki Pinleme ve Evrak Kasası
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
- <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-3">
- <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span class="w-2.5 h-2.5 rounded-full bg-cyan-500"></span>
- Masaüstü Uygulaması (Yetkili Yönetim Merkezi)
- </h3>
- <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
- <li>• Yeni cihaz kaydı, teknik künye ve kilitli akıllı kod üretimi.</li>
- <li>• NDK lisanslama, vize süresi ve RKS/Birim sorumlusu atamaları.</li>
- <li>• Mimari kat planı krokisi üzerinde pin sabitleme ve kilitleme.</li>
- <li>• AES-256 şifreli evrak kasasına teknik kılavuz yükleme ve indirme.</li>
- <li>• Excel toplu içe/dışa aktarım ve resmi Word (.docx) HEK Hurda Tutanağı.</li>
- </ul>
- </div>
- <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-3">
- <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
- Web Portalı & Mobil Barkod (Saha Personeli Görünümü)
- </h3>
- <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
- <li>• Kamera ile cihaz QR barkodunu tarayarak cihaz künyesini sahada açma.</li>
- <li>• Cihazın son Kalite Kontrol (QC) onay ve geçerlilik durumunu teyit etme.</li>
- <li>• Sahadan arıza bildirimi oluşturma ve arıza sayısını izleme.</li>
- <li>• Ortam Dozu Kroki Haritasında sabit cihazların oda yerleşimini izleme.</li>
- </ul>
- </div>
- </div>
+1. **Tıbbi Cihaz ve Lisans Envanteri** ekranında **[Yeni Cihaz]** butonuna tıklayın; 1. sekmede kaynak grubunu (**Radyasyonlu (XRAY)**, **Radyasyonsuz (RADSIZ/MR/USG)**, **Medikal Cihaz** veya **Ölçüm Cihazı**), **Anabilim Dalı** ve bağlı **Birim** ile **Cihaz Türü** seçimini yapın (Cihaz Kodu ve Cihaz No otomatik oluşur). Seri No ve varsa Demirbaş No bilgilerini girin.
+2. 2. sekmede radyasyonlu veya ölçüm cihazları için NDK Lisans No ve bitiş tarihini yazın; resmi lisans PDF belgenizi **[Belge Seç...]** ile doğrudan bağlayın (gerekirse **[Görüntüle]** ile açabilirsiniz) ve **RKS Sorumlusu** ile birim sorumlusunu seçin.
+3. 3. sekmede varsa üretici garantisi onay kutusunu ve servis anlaşması tarihlerini işleyin; 4. sekmede mimari kat planını seçip oda içine tıklayarak pini yerleştirin ve **[Pin Kilitli]** butonuyla sabitleyin.
+4. 5. sekmede cihazın kullanım kılavuzu ve teknik belgelerini **[Dosya Seç...]** → **[Yükle]** ile AES-256 Evrak Kasasına ekleyip **[Cihazı Kaydet]** butonuna basın (rolünüz onay gerektiriyorsa kayıt Merkezi Onay kuyruğuna iletilir).
 
-## Sıkça Sorulan Sorular ve Saha Çözümleri {#faq}
+### 2. Toplu İçe/Dışa Aktarım, NDK Çizelgesi ve 300 DPI QR Paketi
+
+1. Çoklu cihaz aktarımı için **[Excel İçe Aktar]** butonuna tıklayarak Evrensel İçe Aktarım Sihirbazı üzerinden iki sayfalı şablonla önizlemeli aktarım yapın.
+2. Filtrelenmiş listeyi dışa aktarmak için araç çubuğundaki **[Dışa Aktar]** menüsünden Excel, PDF, Word veya **NDK Çizelgesi Oluştur (.xlsx)** seçeneğini çalıştırın.
+3. Cihaz gövdesine etiket basmak için araç çubuğundaki **[QR Etiket]** menüsünden tekil cihaz için **[Seçili Cihaz İçin QR Etiket...]** (**[PNG Olarak Kaydet]** / **[Etiketi Yazdır]**) veya çoklu/toplu matbaa basımı için **[Toplu QR Baskı Paketi Oluştur (.zip)...]** seçeneğini kullanın.
+
+### 3. Devir Tutanağı ve 2 Aşamalı HEK Tasfiye Süreci
+
+1. Bir veya birden fazla cihazı tablodan seçerek araç çubuğundan ya da sağ tık menüsünden **[Tutanak Oluştur]** (Devir, Hasar, Kabul, Genel) veya **[HEK]** komutunu çalıştırın; **Tutanak Oluştur** penceresinde sol/sağ listelerdeki **[Ekle]** / **[Çıkar]** butonlarıyla cihazları ve imza heyetini düzenleyip **[Evrak Kasasına Kaydet ve İmzaya Sun]** butonuna basın (Devir tutanağında birim güncelleme kutusu işaretliyse yeni birime göre Cihaz Kodu da otomatik güncellenir).
+2. HEK tutanağı oluşturulduğunda dosya **HEK Süreç Yönetimi ve Ayniyat Tasfiye Arşivi** ekranına düşer; Ayniyat evrakı geldiğinde satırı seçip **[EBYS Gir / Dosyayı Kapat]** → **[Resmi Olarak Kapat ve Mühürle]** adımıyla sayıyı/eki işleyin; mühürlenen birleşik dosya **[Mühürlü Dosyayı Aç (PDF)]** ve **[Excel İcmal]** üzerinden denetime sunulur.
+
+### 4. 8 Adımlı NDK KLV-014 RKP Sihirbazı ve Web Portalı Saha Erişimi
+
+1. Sol menüden **NDK RKP Sihirbazı** ekranını açın; **1. Kuruluş (KB.1-2)** adımında kurum ayarlarından verileri yükleyip **2. RKS (KB.3)**, **3. Çalışanlar (KB.4)**, **4. Cihazlar (KB.5)**, **5. Ölçüm (KB.6-7)** (ölçüm cihazları ve aktif dozimetreler) ve **6. RKE Matrisi (KB.8)** tablolarını canlı verilerden doğrulayın.
+2. **7. Talimatlar (T.1-11)** adımında talimatları gözden geçirip gerekirse **[Hizmet İçi Eğitim Modülüne Güncelle]** ile LMS modülünü güncelleyin; **8. Belge Üret ve Onay** adımında **[Word (.docx) Resmi Başvuru Dosyası Oluştur ve Aç]**, **[PDF (.pdf) Resmi Dosya Oluştur ve Aç]** veya **[KVKK Evrak Kasasına Arşivle]** ile başvuruyu tamamlayın.
+3. **Web Portalı ve Mobil QR Saha Akışı:** Saha personeli telefon veya tablet kamerasıyla cihaz etiketindeki QR kodu tarattığında ilgili cihazın künyesi, NDK lisans ve son kalite kontrol durumu anında açılır ve tek dokunuşla arıza bildirimi başlatılabilir.
+
+## Sıkça Sorulan Sorular (SSS) {#faq}
 
 :::faq
-### NDK lisans vize sürelerinde erken uyarı alarmları ne zaman devreye girer?
-NDK resmi yenileme bürokrasisinin ortalama 2-3 ay sürmesi nedeniyle erken uyarı süreci lisans bitimine <strong>6 ay (180 gün)</strong> kala başlar. Arayüzde gereksiz bilgi kalabalığını önlemek amacıyla, lisans bitimine 180 günden fazla süre bulunan cihazlarda gün sayacı gizlenerek yalnızca sade <strong>Geçerli</strong> rozeti sunulur; kalan süre 180 gün ve altına indiğinde gün sayacı otomatik olarak görünür hale gelir. Vize süresine <strong>45 gün</strong> kala sistem "Süresi Yaklaşıyor" sarı alarmı verir. Kalan gün <strong>30 gün ve altına</strong> indiğinde ise acil başvuru gerektiren "Kritik Eşik" turuncu alarmı devreye girer. Süresi dolan cihazlar ise kırmızı renkle işaretlenerek yöneticiye raporlanır.
+### NDK lisans sürelerinde 180 gün üstü ile altı neden farklı gösteriliyor?
+Tabloda gereksiz kalabalığı önlemek için vize bitimine 180 günden fazla süresi kalan cihazlarda yenileme sayacı gizlenir ve yalnızca bitiş tarihi sunulur (üzerine gelindiğinde kalan gün sayısı ipucunda görünür). Kalan süre <strong>180 gün ve altına</strong> indiğinde cihaz Yenileme Dönemine alınır; 45 gün ve 30 gün eşiklerinde alarm rengi sertleşir, süresi dolanlar ise <strong>Günü Geçti</strong> rozetiyle işaretlenir.
 
-### Cihaz kodunu neden kendimiz serbestçe belirleyemiyoruz?
-RADPYS V4, cihazları arıza, kalite kontrol, dozimetre maruziyeti ve kroki sistemlerine bağlarken benzersiz ve standart bir format (<code>XRAY-ACL-ANJ-01</code> gibi) kullanır. Kodun elle düzenlenmesi mükerrer kayıtlara ve ilişkisel veri kopmalarına yol açabileceğinden kilitlenmiştir. Kurum içi demirbaş veya Sağlık Bakanlığı ÇKYS takibi için formdaki <strong>Demirbaş No</strong> alanı kullanılır.
+### Düzenleme ekranında neden Cihaz No, Kaynak Grubu ve Cihaz Türü kilitleniyor?
+Bu üç bilgi cihazın modalite kimliğini ve ilişkisel geçmiş kayıtlarını (arıza, kalite kontrol, kroki pini, RKP tablosu) belirlediği için kayıt sonrasında değiştirilmesine izin verilmez. Yalnızca cihaz başka bir birime devredildiğinde Birim seçimi veya onaylı Devir Tutanağı üzerinden Cihaz Kodu yeni birime uyarlanır.
 
-### Yeni bir X-Ray cihazı tanımlarken NDK Lisans Numarası girmek şart mıdır?
-<strong>Evet.</strong> Mevzuat gereği iyonlaştırıcı radyasyon yayan cihazların sisteme ruhsatsız kaydedilmesine izin verilmez. Ancak cihaz yeni kurulmuş ve ruhsat süreci devam ediyorsa Lisans Durumu kutusundan <em>"Lisans Başvuru Aşamasında"</em> seçeneği işaretlenerek yasal süreç kayıt altına alınabilir. MR ve USG gibi radyasyonsuz cihazlarda ise lisans şartı aranmaz.
+### Yanlışlıkla HEK sürecine alınan bir cihaz HEK ekranından geri döndürülebilir mi?
+Resmi HEK komisyon tutanağıyla dosyaya bağlanmış ve EBYS numarasıyla mühürlenmiş cihazlar mevzuat gereği asla geri açılmaz. Hatalı bir HEK girişi henüz EBYS ile mühürlenmemişse veya tutanak aşamasındaysa durumu yetkili sistem yöneticisi tarafından incelenmelidir.
 
-### Yanlışlıkla [HEK] butonuna basılan bir cihaz nasıl kurtarılır?
-Sistem cihazları fiziksel olarak silmediği için hiçbir veri kaybolmaz. Üst menüden <strong>HEK ve Hizmet Dışı Cihaz Arşivi</strong> ekranını açın. Listeden ilgili cihazı seçip <strong>[Tekrar Aktif Statüsüne Al]</strong> butonuna tıklayın. Cihaz anında tüm geçmiş kayıtlarıyla birlikte ana aktif envanter tablosuna geri döner.
-
-### Cihaz Türü veya Cihaz Amacı tanımı sistemden kaldırıldığında mevcut cihazlar bozulur mu?
-<strong>Hayır, hiçbir cihaz kaydı bozulmaz.</strong> Sistemde tanımlı bir Cihaz Türü, Amacı veya Kaynak Türü silinmek istendiğinde; eğer o tanıma bağlı tek bir cihaz dahi varsa sistem ilişkisel veri bütünlüğünü korumak adına tanımı fiziksel olarak silmez, güvenle <strong>Pasife</strong> alır. Böylece o kategoriye bağlı geçmiş tüm cihaz kayıtları, lisanslar, kalite kontroller ve servis geçmişi eksiksiz korunur; tanım yalnızca yeni cihaz ekleme sihirbazındaki açılır kutularda görünmez.
-
-### Mobil ve seyyar röntgen cihazlarına kroki pini koymak zorunlu mudur?
-<strong>Hayır.</strong> Mobil/seyyar cihazlar acil, ameliyathane veya yoğun bakım gibi farklı birimlerde sürekli yer değiştirdiği için kat planına sabit pin yerleştirilmesi opsiyoneldir. Sabit X-Ray, BT ve Anjiyo cihazlarında ise mimari zırhlama ve ortam dozu ölçüm doğruluğu için kroki pini konulması önerilir.
-
-### Birden fazla tıbbi cihaz için tek bir resmi HEK veya Komisyon Tutanağı nasıl düzenlenir?
-Cihaz envanter tablosunda tutanağa dahil edilecek cihazları klavyeden Ctrl veya Shift tuşuna basılı tutarak çoklu seçimle işaretleyin. Ardından araç çubuğundaki <strong>[Tutanak Oluştur]</strong> butonuna veya sağ tık menüsündeki <em>"Seçili Cihazlar İçin Toplu HEK / Komisyon Tutanağı..."</em> seçeneğine tıklayın. Açılan <strong>Tutanak ve Matbu Evrak Sihirbazı</strong> üzerinden dilediğiniz şablonu (Teknik Muayene, Hurda/HEK veya Kurulum Tutanağı) seçerek tüm cihazların künye ve teknik detaylarının tek bir resmi Word (.docx) dosyasında otomatik birleştirilmesini sağlayabilirsiniz.
-
-### Hastanemizdeki tüm tıbbi cihazların QR etiketlerini matbaada veya profesyonel etiket makinesinde topluca nasıl bastırabiliriz?
-Cihaz Yönetimi araç çubuğundaki <strong>[QR Etiket]</strong> açılır menüsünden <em>"Toplu QR Baskı Paketi Oluştur (.zip)..."</em> seçeneğine tıklayın veya tabloda birden çok cihazı seçip sağ tıklayarak toplu QR paketi oluşturun. Sistem arka planda çalışan dışa aktarım motoruyla listedeki tüm cihazlar (veya çoklu seçtiğiniz cihazlar) için kalıcı Cihaz No bağlantısı içeren <strong>300 DPI (800x1050 px)</strong> matbaa kalitesinde PNG etiketler, profesyonel baskı merkezine doğrudan iletilebilecek malzeme şartnamesi (<strong>00_Baski_ve_Uretim_Rehberi.txt</strong>) ve tüm cihazların seri no/kod fihristini içeren <strong>00_Etiket_Listesi_Icmal.csv</strong> dosyasını tek bir <strong>.ZIP</strong> arşivi halinde kaydeder.
-
-### NDK RSGD-KLV-014 Radyasyondan Korunma Programı (RKP) başvuru dosyası sistemden nasıl hazırlanır ve çıktısı nasıl alınır?
-Sol ana menüden <strong>NDK RKP Sihirbazı</strong> ekranını açın. Sistem kurum ayarlarını, aktif RKS sorumlularını, radyasyon görevlisi personelleri (dozimetre ve sağlık muayene durumlarıyla birlikte), tescilli tıbbi cihazları, kalibrasyonlu radyasyon ölçüm donanımlarını ve DIN 6857-1 uyumlu RKE donanım matrisini 8 adımlı başvuru akışında canlı veritabanından otomatik bir araya getirir. 7. Adımda yer alan T.1 - T.11 talimatları SKS 6.1 'Kalite Dokümanları' kategorisi ile çift yönlü senkronizedir. Son adımda <strong>[Resmi Word (.docx) İndir]</strong> veya <strong>[Resmi PDF (.pdf) Üret]</strong> butonlarına basarak NDK resmi başvuru kılavuzuyla birebir uyumlu yatay belgeyi indirebilir; <strong>[KVKK Evrak Kasasına Arşivle]</strong> ile dosyayı şifreli kasaya kaydedebilirsiniz.
+### NDK RKP Sihirbazındaki 8 adım tüm kurum verilerini otomatik mi çeker?
+Evet. RKS görevlendirmeleri, radyasyon çalışanlarının dozimetre/sağlık durumları, tescilli X-Ray cihazları, kalibrasyonlu ölçüm cihazları, aktif dozimetreler ve RKE koruyucu matrisi canlı veritabanından derlenir; yalnızca kuruluş kimlik ve yasal dayanak alanları ilk seferde kontrol edilerek kaydedilir.
 :::

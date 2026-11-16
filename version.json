@@ -1,10 +1,10 @@
 {
-  "version": "4.0.5.27",
-  "release_version": "4.0.5.27",
-  "build_version": "4.0.5.27",
-  "latest_demo_version": "4.0.5.27",
-  "release_date": "2026-11-15",
+  "version": "4.0.5.29",
+  "release_version": "4.0.5.29",
+  "build_version": "4.0.5.29",
+  "latest_demo_version": "4.0.5.29",
+  "release_date": "2026-11-16",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.5.27: Cihaz Arıza, Periyodik Bakım ve Kalite Kontrol (QC) Ekranlarında Kompakt Tablo ve Diyalog İyileştirmeleri, Birleşik Çoklu Cihaz Bakım Planlama, Şifreli Evrak Kasası Anlık Belge Önizleme, Evrensel Onay Sistemi Entegrasyonu, Esnek Raporlama Veri Setleri ve Dinamik Tema İkon Motoru.",
+  "changelog": "RADPYS V4.0.5.29: Tüm 24 Ana Modül ve 5 Nöbet Alt Kılavuzu canlı sistem davranışlarıyla birebir doğrulanarak yenilendi; tekrar eden açıklamalar ve 5N1K tabloları sadeleştirildi, eksik ekran görüntüsü alanları hazırlandı ve Kurumsal A4 PDF El Kitabı ile Web Yardım Portalı eşitlendi.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }

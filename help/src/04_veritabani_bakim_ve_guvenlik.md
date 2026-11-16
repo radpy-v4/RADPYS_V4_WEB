@@ -1,232 +1,138 @@
 ---json
 {
-  "pageTitle": "04. Veritabanı Bakım, KVKK Evrak Kasası ve Güvenlik — RADPYS v4 Kullanım Kılavuzu",
-  "h1": "Veritabanı Bakım, Kriptografik Yedekleme & Sistem Güvenliği",
-  "lead": "PostgreSQL motor optimizasyonu (VACUUM ve REINDEX), 256-bit PBKDF2/AES şifreli yedekleme ve felaket kurtarma (Disaster Recovery), 3 kademeli korumayla fabrika ayarlarına sıfırlama, SHA-256 kriptografik denetim izi ve global çökme yakalama rehberi.",
+  "pageTitle": "04. Veritabanı Bakım, Yedekleme ve Sistem Güvenliği — RADPYS v4 Kullanım Kılavuzu",
+  "h1": "Veritabanı Bakım, Yedekleme & Güvenlik",
+  "lead": "256-bit şifreli veritabanı ve belge yedekleme, donanım ve kurtarma kartı destekli felaket kurtarma, motor optimizasyonu (VACUUM ve REINDEX), sistem tanısı ve otomatik onarım, 3 kademeli sıfırlama, SHA-256 kriptografik denetim izi ve beklenmeyen hata yakalama işlemlerini yönetmenizi sağlar.",
   "overviewId": "overview",
-  "badges": [],
-  "readingTime": "4 Dakika"
+  "badges": [
+    {
+      "text": "256-bit AES & SHA-256 Zinciri",
+      "tone": "emerald"
+    }
+  ],
+  "readingTime": "4 Dakika",
+  "legalNote": "<strong>Yasal Güvence:</strong> Veritabanı sıfırlama ve felaket kurtarma işlemleri yalnızca Sistem Yöneticisi (Admin) yetkisi ve Sudo şifre doğrulaması ile yürütülür; kurumsal tanımlar ve roller sıfırlamada korunur."
 }
 ---
 
-## Hızlı Reçete: Şifreli Yedekleme ve Motor Optimizasyonu {#quick-recipe}
+## Kısa Reçete: Şifreli Yedekleme ve Kurtarma Anahtarı Güvencesi {#quick-recipe}
 
-:::recipe Hızlı Reçete: Şifreli Yedekleme ve Motor Optimizasyonu | 20 SANİYELİK AKIŞ
+:::recipe Kısa Reçete: Şifreli Yedekleme ve Kurtarma Anahtarı Güvencesi | 20 SANİYELİK AKIŞ
+
 ### 1. İstenen Sonuç | slate
-Verilerin tam dökümünü güvenli şifrelemeyle arşivlemek ve veritabanı ölü satırlarını temizlemek.
+
+Kurumdaki tüm klinik, nöbet, dozimetre ve şifreli evrak verilerinin format veya arıza riskine karşı harici ortamda kurtarılabilir şekilde yedeklenmesi.
 
 ### 2. Yapılacak İşlem | cyan
-<strong>[Veritabanı Bakım]</strong> ekranında <strong>[Veritabanı Yedekle]</strong> ve <strong>[Dosyaları Yedekle]</strong> butonlarına basın; olası format/sunucu değişimi için <strong>[Güvenlik Anahtarı]</strong> kartını harici ortama aktarın; ardından <strong>[Boyut Optimize Et (VACUUM)]</strong> aracını çalıştırın.
+
+<strong>[Veritabanı Bakım]</strong> ekranında <strong>[Veritabanı Yedekle]</strong> ve <strong>[Dosyaları Yedekle]</strong> butonlarına basın; ardından <strong>[Güvenlik ve Kurtarma Anahtarı]</strong> butonundan kurtarma dosyanızı kaydedip yedeklerle birlikte harici diske kopyalayın.
 
 ### 3. Sistem Etkisi | emerald
-Veritabanı 256-bit AES ile şifrelenip zaman damgasıyla saklanır; PostgreSQL motoru ölü satırları temizleyip disk alanını geri kazandırır.
 
-- [metric] Kriptografi | 256-bit AES/PBKDF2 | slate
-- [metric] Yetkili Rol | Yalnızca Admin | slate
-- [metric] Emniyet Kilidi | Sudo Şifre Onayı | slate
-- [metric] Platform | Yalnızca Masaüstü | slate
+Veriler ve yüklenen belgeler 256-bit şifrelemeyle zaman damgalı arşivlenir; donanım değişse dahi kurtarma anahtarı veya Cihaz Kimliği desteğiyle sistem eksiksiz geri yüklenebilir.
+
+- [metric] Şifreleme | 256-bit AES / PBKDF2 | cyan
+- [metric] Denetim Bütünlüğü | SHA-256 Zinciri | emerald
+- [metric] Emniyet Kilidi | Sudo Yönetici Onayı | amber
+- [metric] Platform | Masaüstü Kokpit | slate
 :::
 
-## 5N1K Kural ve Fonksiyon Tablosu {#table-5w1h}
+## 5N1K Kural ve Arayüz Çözümleme Tablosu {#5w1h}
 
-<div class="space-y-1">
- <p class="text-sm text-slate-500 dark:text-slate-400">
- Veritabanı yedekleme, geri yükleme, motor optimizasyonu ve denetim araçlarının çalışma mantığı.
- </p>
- </div>
+*Kurtarma anahtarı, motor bakımı, sıfırlama kalkanı, log sekmeleri ve global hata koruma kuralları.*
 
-| NE? (Ekran Kontrolü) | NEDEN? (Kullanım Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Hangi Durumda) | KİM? (Yetkili Kitle) |
+| NE? (Bileşen / Kontrol) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Tetiklenme) | KİM? (Yetkili Rol) |
 | --- | --- | --- | --- | --- |
-| <strong>Veritabanı Yedekle</strong><br> <span class="text-[11px] text-slate-400">Sol Üst Buton</span> | Tüm klinik, nöbet, izin ve dozimetre kayıtlarının anlık tam yedeğini almak. | PostgreSQL dökümü alınır; 256-bit PBKDF2/AES ile şifrelenip zaman damgasıyla <code>.dump</code> dosyası üretilir. | Düzenli periyotlarla veya büyük veri girişi/güncelleme öncesinde. | Sistem Yöneticisi |
-| <strong>Dosyaları Yedekle</strong><br> <span class="text-[11px] text-slate-400">Sol Üst Buton</span> | Yüklenen personel evrakları, sertifikalar ve cihaz dokümanlarını arşivlemek. | Yüklü dosyalar klasörü zip paketi haline getirilir ve 256-bit anahtarla şifrelenerek <code>.zip</code> olarak saklanır. | Belge kasası arşivlenmek istendiğinde. | Sistem Yöneticisi |
-| <strong>Güvenlik Anahtarı (Kurtarma Kartı & Cihaz Donanım Anahtarı)</strong><br> <span class="text-[11px] text-slate-400">Sol Üst Buton</span> | Format veya yeni sunucu kurulumu sonrasında şifreli yedeklerin açılabilmesi için afet kurtarma anahtarını güvenli harici ortama aktarmak ve donanımsal kurtarma anahtarını denetlemek. | Sudo şifresi doğrulanır. 32 karakterlik AES-256 güvenlik anahtarı ve sunucunun Cihaz Kimliği (Machine ID) görüntülenir. Anahtar panoya kopyalanabilir, <strong>[Kurtarma Dosyası Kaydet (.txt)]</strong> butonuyla harici ortama yazılabilir veya tek tıkla donanım kimliğiyle eşitlenebilir. | İlk sistem kurulumunda, felaket kurtarma tatbikatında ve harici diske yedek kopyalanırken. | Süper Yönetici (Sudo) |
-| <strong>Yedeği Geri Yükle (Yükle)</strong><br> <span class="text-[11px] text-slate-400">Tablo Aksiyon Butonu</span> | Veri kaybı, sistem çökmesi veya arıza anında sistemi geçmiş bir tarihe döndürmek. | Kritik uyarı onaylanır ve Sudo şifresi girilir. Sistem anahtarı yerel kasadan, harici diskten (<code>radpys_yedek_kurtarma_anahtari.txt</code>) veya geçmiş anahtar arşivinden otomatik tarar; bulunamazsa Güvenlik Anahtarı modalı açılır. Anahtar elle girilebilir, dosyadan seçilebilir veya <strong>[Cihaz Kimliğiyle Çözmeyi Dene]</strong> ile donanım afet anahtarı tek tıkla test edilir. Dosya çözülüp veritabanına basılır; sayaçlar eşitlenir. | Felaket kurtarma, format sonrası geri yükleme veya hatalı toplu işlem sonrası. | Süper Yönetici (Sudo) |
-| <strong>Yedeği Dışa Aktar</strong><br> <span class="text-[11px] text-slate-400">Tablo Aksiyon Butonu</span> | Yedek dosyasını harici diske veya USB belleğe aktarmak. | Kullanıcının seçtiği konuma dosya yöneticisiyle güvenli kopya çıkarır. | Harici lokasyonda çevrimdışı arşivleme yapılırken. | Sistem Yöneticisi |
-| <strong>Yedeği Kalıcı Olarak Silme</strong><br> <span class="text-[11px] text-slate-400">Tablo Aksiyon Butonu</span> | Eski ve gereksiz yedekleri diskten temizleyerek alan açmak. | Silme onayı + Sudo doğrulaması sonrasında dosya diskten geri dönüşsüz silinir. | Disk alanı yönetimi gerektiğinde. | Süper Yönetici (Sudo) |
-| <strong>Boyut Optimize Et (VACUUM)</strong><br> <span class="text-[11px] text-slate-400">Bakım Araçları Butonu</span> | Silinmiş kayıtların bıraktığı ölü satırları temizleyip dosya boyutunu küçültmek. | PostgreSQL <code>VACUUM ANALYZE</code> komutunu koşturur; önceki ve sonraki boyut farkını ekranda özetler. | Ayda bir veya yoğun veri silme/güncelleme işlemlerinin ardından. | Sistem Yöneticisi |
-| <strong>İndeksleri Yenile (REINDEX)</strong><br> <span class="text-[11px] text-slate-400">Bakım Araçları Butonu</span> | Bozulan veya şişen arama indekslerini baştan inşa ederek hızı artırmak. | <code>REINDEX SCHEMA public</code> komutuyla tüm indeksler kilitlenmeden yeniden oluşturulur. | Arama ve sorgularda yavaşlama hissedildiğinde. | Sistem Yöneticisi |
-| <strong>Sistem Tanısı & Otomatik Onarım</strong><br> <span class="text-[11px] text-slate-400">Bakım Araçları Butonu</span> | Şema tutarsızlıklarını, yetim kayıtları ve form hatalarını tespit edip düzeltmek. | Sihirbaz 5 anomaliyi tarar; <strong>[Otomatik Düzelt]</strong> ile yetim nöbet kayıtları ve ad boşlukları tek tıkla onarılır. | Dönem sonlarında veya veri tutarsızlığı şüphesinde. | Süper Yönetici (Sudo) |
-| <strong>Veritabanını Sıfırla</strong><br> <span class="text-[11px] text-rose-500 font-bold">Tehlikeli Bölge</span> | İşlem kayıtlarını temizleyip sistemi fabrika ayarlarına döndürmek. | Kutuya büyük harflerle <strong>"SIFIRLA"</strong> yazılır + Sudo şifresi girilir. 48 hareket tablosu silinir; tanımlar, ayarlar ve admin korunur. | Kurum devrinde, test sonu veya sıfır yıl başlangıcında. | Yalnızca Root/Admin (Sudo) |
-| <strong>Tarihsel Sistem Günlükleri</strong><br> <span class="text-[11px] text-slate-400">Log Merkezi (1. Sekme)</span> | Uygulama, senkronizasyon ve hata loglarını canlı okuyup incelemek. | Dosya seçilir; arama, seviye (INFO/WARNING/ERROR) ve tarih filtresi uygulanarak renklendirilmiş kayıtlar izlenir. | Teknik arıza incelemelerinde veya denetim kontrollerinde. | Sistem Yöneticisi |
-| <strong>Kullanıcı Etkileşim Günlüğü</strong><br> <span class="text-[11px] text-slate-400">Log Merkezi (2. Sekme)</span> | Kullanıcıların ekranda tıkladığı butonları, girdiği metinleri ve sonuçları görmek. | Oturum ve işlem türü bazlı filtrelenir; çift tıkla ham veri modalı açılır. Son oturum hariç temizlenebilir. | Kullanıcı takılmalarında ve kök neden analizinde. | Sistem Yöneticisi |
-| <strong>KVKK Kriptografik Denetim İzi</strong><br> <span class="text-[11px] text-slate-400">Log Merkezi (3. Sekme)</span> | Yasal denetim kayıtlarının dışarıdan değiştirilmediğini ispatlamak ve işlem izlerini filtrelemek. | Her kaydın SHA-256 hash zinciri doğrulanır; tahrifat varsa kırmızı ikaz, sağlamsa yeşil <strong>[SHA-256 BÜTÜNLÜK DOĞRULANDI]</strong> rozeti verir. Sıra, UTC zaman damgası, kategori, eylem, sonuç ve aktör sütunları merkezi kurumsal tablo düzeniyle listelenir; satıra çift tıklandığında önceki/mevcut hash imzaları görüntülenir. | Resmi KVKK, NDK ve Sağlık Bakanlığı denetimlerinde. | Sistem Yöneticisi / Denetçi |
-| <strong>Beklenmeyen Hata (Crash Dialog)</strong><br> <span class="text-[11px] text-slate-400">Global Hata Yakalama</span> | Sistem çökmesini önleyip teknik detayları anında destek ekibine iletmek. | Yakalanmamış hata anında açılır. Tek tıkla traceback kopyalatır veya geliştiriciye e-posta açar. | Uygulama beklenmeyen bir hatayla karşılaştığında. | Tüm Kullanıcılar |
+| <strong>[Güvenlik ve Kurtarma Anahtarı]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Kurtarma Kartı & Donanım Anahtarı</span> | Format veya yeni sunucu kurulumu sonrası şifreli yedeklerin açılabilmesini garanti altına almak. | Sudo onayıyla 32 karakterlik anahtarı ve Cihaz Kimliğini gösterir; kurtarma dosyası indirilir ve geri yüklemede <strong>[Cihaz Kimliğiyle Çözmeyi Dene]</strong> sunulur. | İlk kurulumda veya felaket kurtarma sırasında. | Sistem Yöneticisi (Sudo) |
+| <strong>[Boyut Optimize Et (VACUUM)] & [İndeksleri Yenile (REINDEX)]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Sistem Bakım Araçları</span> | Silinen verilerin bıraktığı boş alanı geri kazanmak ve sorgu/arama performansını artırmak. | Ölü kayıtları temizleyip önceki-sonraki boyut kazancını raporlar ve tüm veritabanı arama indekslerini yeniden kurar. | Aylık bakımda veya aramalarda yavaşlama hissedildiğinde. | Sistem Yöneticisi |
+| <strong>[Sistem Tanısı ve Bütünlük Kontrolü]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Bütünlük & Otomatik Onarım Sihirbazı</span> | Denetim izi, yetim kayıtlar ve tarih/metin tutarsızlıklarını tespit edip onarmak. | 5 kritik anomaliyi tarar; sorun tespit edilirse <strong>[Otomatik Düzelt ve Onar]</strong> butonu Sudo onayıyla kayıtları tek tıkla düzeltir. | Dönem sonlarında veya veri tutarsızlığı şüphesinde. | Sistem Yöneticisi (Sudo) |
+| <strong>[Veritabanını Sıfırla (Verileri Temizle)]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Tehlikeli Bölge (3 Kademeli Kilit)</span> | Kurum tanımlarını ve rolleri silmeden yalnızca test veya işlem verilerini temizlemek. | Admin rolü, kutuya büyük harfle <strong>SIFIRLA</strong> yazımı ve Sudo şifresiyle 48 işlem tablosunu sıfırlar; tanımlar, tatiller ve Admin korunur. | Kurum devrinde veya test sonrası sıfır başlangıçta. | Sistem Yöneticisi (Admin / Sudo) |
+| <strong>3 Sekmeli Log Merkezi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[Tarihsel Sistem] / [Etkileşim] / [KVKK Denetim İzi]</span> | Teknik hataları, kullanıcı adımlarını ve resmi KVKK/NDK işlem izlerini denetlemek. | Denetim İzi sekmesi her kaydın SHA-256 hash zincirini doğrular; dış müdahale şüphesinde kırmızı uyarı verir ve gölge kasadan onarım sunar. | Arıza incelemelerinde veya resmi denetimlerde. | Sistem Yöneticisi / Denetçi |
+| <strong>Beklenmeyen Hata Penceresi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Global Çökme Koruması</span> | Beklenmedik bir çalışma hatasında programın aniden kapanmasını önleyip destek kaydı almak. | Hata ayrıntısını panoya kopyalamaya veya hazır teknik destek e-postası oluşturmaya izin verir; açık bağlantıyı korur. | Beklenmeyen bir yazılım istisnası oluştuğunda. | Tüm Kullanıcılar |
 
 ## Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı) {#myth-buster}
 
-<div class="flex items-center gap-3">
- <div class="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-lg shadow-sm">
- </div>
- <div>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">
- Saha Mit Avcısı: "Veritabanını Sıfırlarsam Her Şey Silinir mi?"
- </h3>
- <span class="text-xs text-amber-700 dark:text-amber-300 font-semibold">En Sık Yapılan Yönetici Yanılgısı</span>
- </div>
- </div>
- <div class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
- <div class="flex items-start gap-2.5">
- <span class="text-rose-500 font-bold shrink-0 text-base leading-none"></span>
- <p>
- <strong>Yanlış İnanış:</strong> <em>"Veritabanını Sıfırla butonuna basarsam hastane departmanlarım, unvanlarım, tatil takvimim ve admin şifrem de silinir; programı ilk günkü gibi baştan kurup ayarları yeniden girmem gerekir."</em>
- </p>
- </div>
- <div class="flex items-start gap-2.5">
- <span class="text-emerald-500 font-bold shrink-0 text-base leading-none"></span>
- <p>
- <strong>Doğru Gerçek:</strong> <strong>HAYIR.</strong> RADPYS mimarisi referans tanımları ile operasyonel hareketleri birbirinden kesin olarak ayırmıştır. Sıfırlama işlemi yalnızca <strong>hareket tablolarını</strong> (personeller, nöbet çizelgeleri, izinler, dozimetre ölçümleri, arızalar) temizler. <strong>Departmanlar, Unvanlar, Resmi Tatiller, Program Ayarları, Sistem Rolleri, Yetki Şablonları ve `Admin` hesabı mutlak koruma altındadır</strong>; sistem sıfır işlem verisiyle ancak eksiksiz kurumsal yapısıyla anında kullanıma hazır kalır.
- </p>
- </div>
- </div>
+:::myth Veritabanını Sıfırlarsam Departmanlarım ve Ayarlarım da Silinir mi?
 
-## Güvenli Bakım ve Felaket Kurtarma Akış Şeması {#workflow}
+### Yanlış Algı
 
-<div class="space-y-1">
- <p class="text-sm text-slate-500 dark:text-slate-400">
- Yedekleme, geri yükleme ve fabrika ayarlarına sıfırlama işlemlerinin güvenlik aşamaları.
- </p>
- </div>
- <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex justify-center">
+<em>"Veritabanını Sıfırla butonuna basarsam hastane departmanlarım, unvanlarım, tatil takvimim, rollerim ve admin şifrem de silinir; sistemi baştan kurmam gerekir."</em>
+
+### Gerçek Sistem Mantığı
+
+<strong>Kurumsal altyapınız korunur.</strong> Sıfırlama işlemi yalnızca personel, nöbet, izin, dozimetre ve arıza gibi operasyonel hareket kayıtlarını temizler. Departmanlar, unvanlar, resmi tatiller, program ayarları, roller, yetkiler ve Admin hesabı korunarak sistem anında kullanıma hazır kalır.
+:::
+
+## Süreç Akış Şeması {#workflow}
 
 ```mermaid
-graph TD
- A(["Yönetici İşlem Başlatır"]) --> B{"Hangi İşlem Seçildi?"}
+flowchart TB
+ subgraph S1 ["1. AŞAMA: ŞİFRELİ YEDEKLEME VE ANAHTAR"]
+  direction LR
+  A(["Yönetici İşlem Seçer"]) --> B["Veritabanı / Dosyalar Arka Planda Paketlenir"]
+  B --> C["256-bit AES Şifreleme & Yedek Tablosu Güncellenir"]
+  C --> D["Kurtarma Kartı Harici Ortama Alınır"]
+ end
 
- %% Yedekleme Akışı
- B -->|"Veritabanı / Dosya Yedekle"| C["Arka Plan İş Parçacığı Başlatılır"]
- C --> D["pg_dump / uploads Klasörü Paketlenir"]
- D --> E["256-bit PBKDF2 + AES Şifreleme Uygulanır"]
- E --> F[("data/backups/ Dizini")]
- F --> G["Tablo Güncellenir & Başarı Bildirimi"]
+ subgraph S2 ["2. AŞAMA: FELAKET KURTARMA (GERİ YÜKLEME)"]
+  direction LR
+  E["[Yükle] + Çift Onay + Sudo Doğrulaması"] --> F{"Otomatik Anahtar<br/>Eşleşti mi?"}
+  F -->|Hayır| G["Kurtarma Dosyası / Elle Giriş<br/>veya Cihaz Kimliği Testi"]
+  F -->|Evet| H["Veri Çözülür ve Geri Yüklenir"]
+  G -->|Doğrulandı| H
+  H --> I(["Sayaçlar Eşitlenir: Yeniden Başlatma"])
+ end
 
- %% Geri Yükleme Akışı
- B -->|"Yedeği Geri Yükle"| H["Kritik Veri Kaybı Uyarısı Verilir"]
- H --> I{"Kullanıcı Onayladı mı?"}
- I -->|Hayır| J["İşlem İptal Edilir"]
- I -->|Evet| K["Sudo Modu: Yönetici Şifresi Doğrulanır"]
- K --> L1{"Anahtar Sistemde / Harici Medyada Var mı?"}
- L1 -->|Evet / Otomatik Eşleşti| L2["Yedek Dosyası 256-bit Anahtarla Çözülür"]
- L1 -->|Hayır / Format Sonrası| L3["Güvenlik Anahtarı Giriş Modalı Açılır"]
- L3 --> L4{"Anahtar Doğrulandı mı?"}
- L4 -->|İptal / Hatalı| J
- L4 -->|Başarılı| L2
- L2 --> M["pg_restore / uploads Klasörüne Basılır"]
- M --> N["Sequence Sayaçları Senkronize Edilir"]
- N --> O(["Programı Kapatıp Açınız Uyarısı"])
-
- %% Motor Bakım Akışı
- B -->|"VACUUM / REINDEX"| P["PostgreSQL Motoruna Bakım Emri Gönderilir"]
- P --> Q["Ölü Satırlar Temizlenir / İndeksler Baştan Kurulur"]
- Q --> R["Boyut Kazanımı ve Başarı Raporlanır"]
-
- %% Sıfırlama Akışı
- B -->|"Veritabanını Sıfırla"| S["Admin Rolü Kontrolü Yapılır"]
- S --> T["Kutuya BÜYÜK HARFLERLE 'SIFIRLA' Yazılır"]
- T --> U["Sudo Modu: Yönetici Şifresi İstenir"]
- U --> V["48 İşlem Tablosuna TRUNCATE CASCADE Uygulanır"]
- V --> W["Tanımlar, Roller, Ayarlar ve Admin Hesabı Korunur"]
- W --> X(["Sıfır Kurulum Durumuna Dönüldü"])
-
- style A fill:#06b6d4,stroke:#0891b2,stroke-width:2px,color:#fff
- style B fill:#f8fafc,stroke:#94a3b8,stroke-width:1.5px,color:#0f172a
- style G fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff
- style O fill:#3b82f6,stroke:#2563eb,stroke-width:2px,color:#fff
- style X fill:#ef4444,stroke:#dc2626,stroke-width:2px,color:#fff
+ subgraph S3 ["3. AŞAMA: BAKIM, TANI VE 3 KADEMELİ SIFIRLAMA"]
+  direction LR
+  J["VACUUM / REINDEX / Sistem Tanısı"] --> K["Bütünlük & Performans Sağlanır"]
+  L["Sıfırlama: Admin + 'SIFIRLA' + Sudo"] --> M["Hareketler Temizlenir, Tanımlar Korunur"]
+ end
 ```
 
- </div>
+1. **Şifreli Yedekleme ve Anahtar:** Veritabanı ve yüklenen evrak kasası 256-bit şifrelemeyle paketlenir; kurtarma kartının harici ortamda saklanması önerilir.
+2. **Felaket Kurtarma (Geri Yükleme):** Yedek geri yüklenirken çift onay ve Sudo doğrulaması istenir; anahtar yerel kasadan bulunamazsa kurtarma dosyası veya donanım anahtarı seçeneği açılır.
+3. **Bakım, Tanı ve 3 Kademeli Sıfırlama:** Motor bakımı ve tanı sihirbazıyla veri sağlığı korunur; sıfırlama ise yalnızca 3 güvenlik kilidi geçildiğinde hareket verilerini temizler.
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-<div class="space-y-1">
- <p class="text-sm text-slate-500 dark:text-slate-400">
- Masaüstü Veritabanı Bakım ve Birleşik Log Merkezi pencerelerinin kontrol panelleri.
- </p>
- </div>
+![Veritabanı Bakım ve Güvenlik Ekranı | Sol Menü > Veritabanı Bakım | Yedekleme & Bakım Araçları | cyan](assets/img/04_veritabani_bakim_ve_guvenlik.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki yedek dosya isimleri, boyutlar ve tarihler tamamen test ortamında üretilmiş sentetik veridir.</span>")
 
-![Veritabanı Bakım Ekranı | Sol Menü > Veritabanı Bakım | Yedekler & Motor Bakım Araçları](assets/img/04_veritabani_bakim_ve_guvenlik.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki yedek dosya isimleri, boyutlar ve tarihler tamamen test ortamında üretilmiş sentetik veridir.</span>")
+![Log Kayıtları ve Denetim İzleri | Sol Menü > Log Kayıtları | Tarihsel Günlük & SHA-256 Denetim İzi | emerald](assets/img/04_veritabani_bakim_ve_guvenlik_01.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki log satırları ve oturum detayları simülasyon amacıyla üretilmiş sentetik test kayıtlarıdır.</span>")
 
-![Log Kayıtları Ekranı | Sol Menü > Log Kayıtları | Tarihsel Sistem Günlükleri & Denetim İzi](assets/img/04_veritabani_bakim_ve_guvenlik_01.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki log satırları ve oturum detayları simülasyon amacıyla üretilmiş sentetik test kayıtlarıdır.</span>")
+## Adım Adım İşlem Rehberi {#step-by-step}
 
-## Adım Adım Operasyon Rehberi {#step-by-step}
+### 1. Şifreli Yedek Alma, Dışa Aktarma ve Yedekten Geri Yükleme
 
-<div class="space-y-1">
- <p class="text-sm text-slate-500 dark:text-slate-400">
- Yedekleme, geri yükleme, motor bakımı ve sıfırlama işlemlerinin eksiksiz adımları.
- </p>
- </div>
- <div class="space-y-4">
- <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
- <div class="flex items-center gap-2.5">
- <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300 font-bold text-xs flex items-center justify-center">1</span>
- <h3 class="font-bold text-slate-900 dark:text-white text-base">Şifreli Veritabanı ve Evrak Yedeği Alma</h3>
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-9">
- Sol menüden <strong>[Veritabanı Bakım]</strong> ekranına girin. Pencerenin sol üstündeki <strong>[Veritabanı Yedekle]</strong> butonuna basın. Arka planda PostgreSQL dökümü alınıp 256-bit AES ile şifrelenecek ve <code>data/backups/</code> klasörüne <code>.dump</code> dosyası olarak kaydedilecektir. Yüklü personel evraklarını ve taranmış belgeleri de arşivlemek için yanındaki <strong>[Dosyaları Yedekle]</strong> butonuna tıklayın. Olası format veya sunucu değişikliğinde yedeği açabilmek için <strong>[Güvenlik Anahtarı]</strong> butonuna basıp Sudo doğrulamasıyla kurtarma anahtarınızı harici diskinize mutlaka kaydedin.
- </p>
- </div>
- <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
- <div class="flex items-center gap-2.5">
- <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300 font-bold text-xs flex items-center justify-center">2</span>
- <h3 class="font-bold text-slate-900 dark:text-white text-base">Eski Bir Yedeği Geri Yükleme (Felaket Kurtarma)</h3>
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-9">
- Tablodan dönmek istediğiniz tarihli yedeği bulun ve en sağdaki <strong>[Yükle]</strong> butonuna basın. Ekrana gelen kritik uyarı penceresinde <strong>[Evet]</strong>'e tıklayın ve Sistem Yöneticisi şifrenizi (<strong>Sudo Doğrulaması</strong>) girin. Sistem yedek anahtarını yerel kasadan, harici diskten veya geçmiş anahtar arşivinden otomatik arar. Bilgisayarınıza format atılmış veya sistem yeni kurulmuşsa ekrana gelen <strong>Yedek Şifreleme Anahtarı Gerekli</strong> modalına 32 karakterlik anahtarınızı girin, <strong>[Dosyadan Seç]</strong> ile harici diskinizdeki kurtarma kartını (<code>radpys_yedek_kurtarma_anahtari.txt</code>) seçin ya da <strong>[Cihaz Kimliğiyle Çözmeyi Dene]</strong> butonuna tıklayarak donanım afet kurtarma anahtarını anında test edin. Geri yükleme tamamlandıktan sonra <strong>uygulamayı kapatıp yeniden başlatın</strong>.
- </p>
- </div>
- <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
- <div class="flex items-center gap-2.5">
- <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300 font-bold text-xs flex items-center justify-center">3</span>
- <h3 class="font-bold text-slate-900 dark:text-white text-base">PostgreSQL VACUUM ve REINDEX Motor Bakımı</h3>
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-9">
- Sağ taraftaki <strong>[Sistem Bakım Araçları]</strong> kartına gidin. Silinen satırların bıraktığı boş alanları motora geri kazandırmak için <strong>[Boyut Optimize Et (VACUUM)]</strong> butonuna basın. İşlem bitince önceki ve yeni boyut farkını gösteren bilgi kutusunu onaylayın. Arama indekslerini hızlandırmak için <strong>[İndeksleri Yenile (REINDEX)]</strong> butonuna tıklayarak indekslerin baştan kurulmasını sağlayın.
- </p>
- </div>
- <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
- <div class="flex items-center gap-2.5">
- <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300 font-bold text-xs flex items-center justify-center">4</span>
- <h3 class="font-bold text-slate-900 dark:text-white text-base">Sistem Tanısı ve Otomatik Onarım Sihirbazı</h3>
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-9">
- Bakım panelindeki <strong>[Sistem Tanısı ve Bütünlük Kontrolü]</strong> butonuna tıklayın. Açılan sihirbaz şemadaki yetim nöbet kayıtlarını, hatalı izin tarihlerini ve trim edilmemiş isim boşluklarını tarar. Sarı anomali ikazı varsa üstteki <strong>[Otomatik Düzelt & Onar]</strong> butonuna basıp Sudo şifrenizi girin. Sistem hataları saniyeler içinde şema düzeyinde onaracaktır.
- </p>
- </div>
- <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
- <div class="flex items-center gap-2.5">
- <span class="w-7 h-7 rounded-xl bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-300 font-bold text-xs flex items-center justify-center">5</span>
- <h3 class="font-bold text-slate-900 dark:text-white text-base">Tehlikeli Bölge — 3 Kademeli Fabrika Ayarlarına Sıfırlama</h3>
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-9">
- Sağ alttaki kırmızı <strong>[Tehlikeli Bölge]</strong> alanında bulunan <strong>[Veritabanını Sıfırla (Verileri Temizle)]</strong> butonuna basın. Açılan kutuya tam olarak büyük harflerle <strong>SIFIRLA</strong> yazıp butona tıklayın. Ardından yönetici şifrenizi girin. Sistem tüm personelleri, nöbetleri ve izinleri sıfırlayacak; ancak tanımlarınız, departmanlarınız ve admin hesabınız kesinlikle korunacaktır.
- </p>
- </div>
- <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
- <div class="flex items-center gap-2.5">
- <span class="w-7 h-7 rounded-xl bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 font-bold text-xs flex items-center justify-center">6</span>
- <h3 class="font-bold text-slate-900 dark:text-white text-base">Beklenmeyen Hata (Crash Dialog) Anında Teknik Destek Bildirimi</h3>
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-9">
- Uygulama beklenmedik bir hatayla karşılaştığında kapanmaz; ekrana koyu temalı <strong>Beklenmeyen Hata</strong> penceresi gelir. <strong>[Hata Detayını Kopyala]</strong> butonuyla traceback dökümünü panoya alabilir veya <strong>[E-Posta Gönder]</strong> butonuna tıklayarak doğrudan <code>radpys.iletisim@gmail.com</code> adresine hazır formatta teknik hata raporu iletebilirsiniz.
- </p>
- </div>
- </div>
+1. **[Veritabanı Bakım]** sayfasında **[Veritabanı Yedekle]** ve **[Dosyaları Yedekle]** butonlarına tıklayarak anlık şifreli yedekleri oluşturun; tabloda oluşan satırdan **[Dışa Aktar]** ile harici diske kopyalayın.
+2. İlk kurulumda **[Güvenlik ve Kurtarma Anahtarı]** butonuna basıp Sudo doğrulamasının ardından **[Kurtarma Dosyası Kaydet (.txt)]** ile anahtar kartını yedeklerinizin yanına kaydedin.
+3. Eski bir yedeğe dönmek için ilgili satırdaki **[Yükle]** butonuna basın, kritik uyarıyı ve Sudo şifresini onaylayın; sistem yeni kurulmuşsa anahtarı girerek, kurtarma dosyasını seçerek veya **[Cihaz Kimliğiyle Çözmeyi Dene]** butonuna basarak geri yüklemeyi tamamlayın ve uygulamayı yeniden başlatın.
+
+### 2. Motor Bakımı, Sistem Tanısı ve Veritabanı Sıfırlama
+
+1. Disk alanı kazanmak için **[Boyut Optimize Et (VACUUM)]**, arama hızını artırmak için **[İndeksleri Yenile (REINDEX)]** butonunu çalıştırın.
+2. Veri tutarsızlıklarını taramak için **[Sistem Tanısı ve Bütünlük Kontrolü]** penceresini açın; anomali listelenirse **[Otomatik Düzelt ve Onar]** butonuna basıp Sudo onayıyla düzeltin.
+3. Yalnızca yetkili devir veya sıfırlama gerektiğinde kırmızı alandaki **[Veritabanını Sıfırla (Verileri Temizle)]** butonuna tıklayıp doğrulama kutusuna büyük harflerle **SIFIRLA** yazın ve Sudo şifrenizle onaylayın.
+
+### 3. Log Kayıtları ve SHA-256 Denetim İzini İnceleme
+
+1. **[Log Kayıtları ve Denetim İzleri]** penceresinden ihtiyacınıza göre **[Tarihsel Sistem Günlükleri]**, **[Kullanıcı Etkileşim Günlüğü]** veya **[KVKK / NDK Denetim İzi]** sekmesini açın.
+2. Arama, kategori, seviye veya sonuç filtrelerini uygulayın; denetim izinde zincir bütünlüğünü doğrulayın ve herhangi bir satıra çift tıklayarak ham kayıt ile dijital özet detaylarını inceleyin.
+3. Beklenmeyen bir hata penceresi açıldığında **[Hata Detayını Kopyala]** veya **[E-Posta Gönder]** butonlarıyla teknik ekibe ayrıntıları iletip **[Kapat]** ile çalışmaya devam edin.
 
 ## Sıkça Sorulan Sorular (SSS) {#faq}
 
 :::faq
-### Alınan bir yedeği başka bir sunucuya veya yeni bilgisayara taşıyıp yükleyebilir miyim?
-Evet. Yedek dosyası 256-bit AES ile şifrelendiğinden geri yükleme sırasında güvenlik anahtarı doğrulanır. Yedekle birlikte harici diske aldığınız kurtarma kartını (<code>radpys_yedek_kurtarma_anahtari.txt</code>) seçebilir, anahtarınızı elle girebilir veya sistemin donanım bazlı afet kurtarma güvencesi sayesinde Cihaz Kimliği (Machine ID) üzerinden kurtarma gerçekleştirebilirsiniz. Anahtar doğrulandıktan sonra veritabanı anında geri yüklenir.
 
-### VACUUM ve REINDEX işlemlerini ne sıklıkla çalıştırmalıyım?
-Hastanelerdeki yoğun veri trafiğine bağlı olarak, <strong>[Boyut Optimize Et (VACUUM)]</strong> işleminin ayda bir kez veya toplu personel içe aktarımı/silme sonrasında çalıştırılması önerilir. <strong>[İndeksleri Yenile (REINDEX)]</strong> ise arama ve rapor filtrelerinde gözle görülür bir yavaşlama hissedildiğinde veya her 3-6 ayda bir rutin bakım olarak yapılmalıdır. Her iki işlem de arka planda güvenle yürütülür.
+### Yedek geri yüklendikten sonra neden programı kapatıp yeniden açmam gerekiyor?
 
-### Yedek geri yüklendikten sonra neden programı kapatıp açmam gerekiyor?
-PostgreSQL geri yükleme işlemi veritabanı tablolarını ve otomatik artan ID sayaçlarını (sequence) eski duruma döndürür. Ancak masaüstü uygulamasının belleğinde (RAM) halihazırda açık olan sekmeler ve oturum önbellekleri eski verileri tutmaya devam edebilir. Arayüzün yeni veritabanı durumuyla %100 senkronize çalışabilmesi için programın yeniden başlatılması zorunludur.
+Veritabanı geri yükleme işlemi tabloları ve kayıt sayaçlarını geçmişteki yedeğe döndürür; ancak açık masaüstü sekmeleri bellekte önceki verileri tutabilir. Tüm ekranların yeni veritabanıyla tam senkronize çalışması için uygulamanın yeniden başlatılması önerilir.
 
-### Yanlışlıkla 'Veritabanını Sıfırla' butonuna basarsam geri dönüşü var mıdır?
-Yanlışlıkla basılması 3 kademeli emniyet kilidiyle engellenmiştir (Yalnızca Admin yetkisi, büyük harfle "SIFIRLA" yazma şartı ve yönetici şifre doğrulaması). Ancak bu 3 adımı da tamamlayıp veritabanını sıfırladıysanız, tek geri dönüş yolu sıfırlamadan hemen önce aldığınız bir yedeği <strong>[Yükle]</strong> butonuyla geri yüklemektir. Bu nedenle her sıfırlama öncesinde otomatik veya manuel yedek alınması şarttır.
+### Boyut Optimize Et (VACUUM) ve İndeksleri Yenile (REINDEX) ne sıklıkla kullanılmalıdır?
 
-### Beklenmeyen hata (Crash) penceresi çıktığında üzerinde çalıştığım veriler kaybolur mu?
-RADPYS'nin global istisna yakalayıcısı (CrashDialog), işletim sisteminin programı zorla kapatmasını (Crash/Terminate) engeller. Hata penceresi çıktığında veritabanı bağlantısı açık kalır ve o ana kadar veritabanına kaydedilmiş tüm verileriniz güvendedir. Yalnızca form üzerinde yazıp henüz [Kaydet] butonuna basmadığınız alanlar etkilenebilir. Hata dökümünü e-posta ile iletip pencereyi kapattıktan sonra güvenle çalışmaya devam edebilirsiniz.
+Yoğun veri girişi veya toplu silme/aktarım işlemlerinin ardından ayda bir kez <strong>[Boyut Optimize Et (VACUUM)]</strong> çalıştırılması önerilir. Liste ve aramalarda yavaşlama hissedildiğinde veya 3–6 aylık rutin bakımda <strong>[İndeksleri Yenile (REINDEX)]</strong> çalıştırılabilir.
+
+### Beklenmeyen Hata penceresi çıktığında veritabanına kaydedilmiş verilerim silinir mi?
+
+Hayır. Global hata yakalayıcı uygulamanın aniden kapanmasını engeller ve o ana kadar kaydedilmiş tüm verileriniz korunur. Yalnızca o form üzerinde yazıp henüz kaydetmediğiniz taslak alanları tekrar girmeniz gerekebilir.
 :::

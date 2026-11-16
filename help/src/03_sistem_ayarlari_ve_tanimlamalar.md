@@ -1,188 +1,149 @@
 ---json
 {
-  "pageTitle": "03. Sistem Ayarları, Dinamik Tanımlamalar ve Lookup Yönetimi — RADPYS v4 Kullanım Kılavuzu",
-  "h1": "Sistem Ayarları, Şablon Merkezi & Tanımlamalar",
-  "lead": "Kurum çift başlık ve çift logo antet yapılandırması, Word ve Excel rapor şablonlarının yönetimi, hastane departman hiyerarşisi, kadro unvanları ve resmi tatil takviminin merkezi operasyonel yönetim rehberi.",
+  "pageTitle": "03. Sistem Ayarları, E-Posta/2FA ve Tanımlamalar — RADPYS v4 Kullanım Kılavuzu",
+  "h1": "Sistem Ayarları, E-Posta & Tanımlamalar",
+  "lead": "Kurum antet başlıkları ve çift logo parametreleri, otomatik algılamalı e-posta (SMTP) ve dış ağ 2FA doğrulaması, hastane departman hiyerarşisi, mimari kroki eşlemesi, unvan mirası, tatil takvimi otomasyonu ve veri bütünlüğü odaklı hibrit silme kurallarını yönetmenizi sağlar.",
   "overviewId": "overview",
-  "badges": [],
-  "readingTime": "4 Dakika"
+  "badges": [
+    {
+      "text": "Veri Bütünlüğü & Hibrit Silme",
+      "tone": "emerald"
+    }
+  ],
+  "readingTime": "4 Dakika",
+  "legalNote": "<strong>Yasal Güvence:</strong> Tanım kayıtları silinirken geçmiş envanter, cihaz, muayene veya personel ilişkisi varsa sistem kaydı kalıcı silmez; güvenle pasife çekerek 30 yıllık denetim izini korur."
 }
 ---
 
-## Hızlı Reçete: Kurumsal Antet ve Çift Logo Tanımlama {#quick-recipe}
+## Kısa Reçete: Kurum Antet ve Çıktı Parametrelerini Ayarlama {#quick-recipe}
 
-:::recipe Hızlı Reçete: Kurumsal Antet ve Çift Logo Tanımlama | 20 SANİYELİK AKIŞ
+:::recipe Kısa Reçete: Kurum Antet ve Çıktı Parametrelerini Ayarlama | 20 SANİYELİK AKIŞ
+
 ### 1. İstenen Sonuç | slate
-Tüm Word ve Excel raporlarında resmi kurum başlıkları ve logolarının otomatik basılması.
+
+Tüm resmi raporlarda, tutanaklarda ve PDF çıktılarında kurumun resmi üst başlıklarının ve çift logosunun doğru basılması.
 
 ### 2. Yapılacak İşlem | cyan
-<strong>[Rapor Şablonları]</strong> ekranında <strong>[Kurum Başlık 1]</strong> ve <strong>[Kurum Başlık 2]</strong> metinlerini girip, <strong>[Gözat...]</strong> butonlarıyla sol/sağ logoları seçin.
+
+<strong>[Sistem Yönetimi] > [Genel Ayarlar] > [Rapor ve Çıktı Ayarları]</strong> ekranından başlık ve logo satırını seçin; sağ panelde metni veya <strong>[Gözat...]</strong> butonuyla logoyu seçip <strong>[Aktif]</strong> kutusunu işaretleyin ve <strong>[Değişiklikleri Kaydet]</strong> butonuna basın.
 
 ### 3. Sistem Etkisi | emerald
-Logolar güvenli kaynak kasasına kopyalanır; canlı önizleme güncellenir ve şablonlardaki yer tutuculara otomatik işlenir.
 
-- [metric] Kod Standardı | 2-20 Karakter (_) | slate
-- [metric] Yetkili Rol | Yalnızca Admin | slate
-- [metric] Tatil Eşiği | 0.5 Gün Adımlı | slate
-- [metric] Platform | Yalnızca Masaüstü | slate
+Seçilen logolar güvenli kaynak alanına kopyalanır ve tüm rapor motorları kurum antetini bu ayarlardan okur; kurum adı boşsa sistem sahte kurum adı üretmez, varsayılan RADPYS başlığını kullanır.
+
+- [metric] Birim Kod Formatı | 2-20 Büyük Harf/Rakam | slate
+- [metric] Yetkili Rol | Sistem Yöneticisi | cyan
+- [metric] Tatil Hassasiyeti | 0.5 Gün Adımlı | amber
+- [metric] Platform | Masaüstü Kokpit | emerald
 :::
+
+## 5N1K Kural ve Arayüz Çözümleme Tablosu {#5w1h}
+
+*Sistem parametreleri, e-posta güvenliği, hiyerarşik tanımlamalar ve veri bütünlüğü koruma kuralları.*
+
+| NE? (Bileşen / Kontrol) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Tetiklenme) | KİM? (Yetkili Rol) |
+| --- | --- | --- | --- | --- |
+| <strong>Çekirdek Program Parametreleri</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Genel, Güvenlik, Dozimetre, İzin, FHZ</span> | Uygulamanın iş kurallarını kod değiştirmeden merkezi olarak uyarlamak. | Yalnızca mevcut sistem anahtarlarının değeri değiştirilir; karşılığı olmayan yeni parametre eklenmesine izin verilmez. | Kurum politikası güncellendiğinde. | Sistem Yöneticisi |
+| <strong>Otomatik Algılamalı E-Posta (SMTP)</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[E-Posta ve Bildirim Ayarları]</span> | Sunucu ve port bilgisi aramadan bildirim e-postasını kurmak ve parolayı gizlemek. | Adres yazıldığında sağlayıcı ve port otomatik algılanır; kaydedilen parola ekran tekrar açıldığında güvenlik gereği kutuya geri doldurulmaz. | E-posta altyapısı yapılandırılırken. | Sistem Yöneticisi |
+| <strong>Dış Ağ 2FA ve Otomatik Bildirimler</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Güvenlik ve Bildirim Tercihleri</span> | Dış ağ Web Portal girişlerini 6 haneli kodla korumak ve kritik alarmları iletmek. | Onay kutuları kaydedildiğinde açık Web Portal sunucusunu yeniden başlatmadan devreye girer (dış ağ 2FA kodu gönderilemezse oturum açılmaz). | Siber güvenlik veya uyarı politikası açıldığında. | Sistem Yöneticisi |
+| <strong>Departman Hiyerarşi Döngü Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[Üst Departman] Açılır Kutusu</span> | Organizasyon ağacında sonsuz döngü oluşmasını engellemek. | Bir departman kendisini veya kendi altındaki bir birimi üst departman olarak seçerse kayıt işlemi reddedilir. | Departman kaydedilirken veya güncellenirken. | Sistem Yöneticisi |
+| <strong>Veri Bütünlüğü Odaklı Hibrit Silme</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[Sil] Butonu (Tüm Tanımlar)</span> | Kullanımdaki bir tanım silinince geçmiş cihaz, personel veya muayene kayıtlarını bozmamak. | Departman, Unvan, İzin, Cihaz veya RKE tanımına bağlı kayıt varsa silinmez, <strong>Pasif</strong> duruma çekilir; hiç kullanılmamışsa kalıcı silinir. | Tanımlama listesinde <strong>[Sil]</strong> onaylandığında. | Sistem Yöneticisi |
+| <strong>Unvan Radyasyon ve Nöbet Mirası</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[Radyasyon Görevlisi mi?] & [Nöbet]</span> | Yeni personel eklenirken mesleki varsayılanları tek tek işaretleme zahmetini önlemek. | Unvan kartındaki radyasyon görevlisi ve nöbet tutabilme bayrakları o unvanla açılan yeni personele otomatik devredilir. | Unvan tanımlanırken veya personel açılırken. | Sistem Yöneticisi |
+| <strong>Tatil Otomasyonu ve 0.5 Gün Kuralı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[Resmi Tatilleri Ekle] & [Gün Sayısı]</span> | Sabit resmi tatilleri ve Arife yarım günlerini eksiksiz puantaja yansıtmak. | Resmi tatil aracı 8 sabit günü tek seferde ekler; Arife günleri 0.5 gün adımıyla işlenerek dini bayramlar (Ramazan 4, Kurban 5 kayıt) toplu oluşturulur. | Yıllık tatil takvimi hazırlanırken. | Sistem Yöneticisi |
 
 ## Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı) {#myth-buster}
 
-<div class="flex items-center gap-2.5 text-amber-700 dark:text-amber-400 font-bold text-sm">
- <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
- <span>MİT AVCISI: Departman Silme ve Veri Bütünlüğü Efsanesi</span>
- </div>
- <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm pt-1">
- <div class="p-3.5 rounded-xl bg-white/90 dark:bg-slate-900/90 border border-red-200 dark:border-red-900/40 text-red-900 dark:text-red-300">
- <strong class="block text-red-700 dark:text-red-400 font-bold mb-1"> YANLIŞ ALGI:</strong>
- "Kapanan veya adı değişen bir departmanı tablodan silebiliriz; silersek geçmiş nöbet ve izin kayıtları da sistemden yok olur."
- </div>
- <div class="p-3.5 rounded-xl bg-white/90 dark:bg-slate-900/90 border border-emerald-200 dark:border-emerald-900/40 text-emerald-900 dark:text-emerald-300">
- <strong class="block text-emerald-700 dark:text-emerald-400 font-bold mb-1"> SAHA GERÇEĞİ:</strong>
- "RADPYS'de departmanlar asla fiziksel olarak silinemez; yalnızca <strong>[Pasif]</strong> yapılabilir. Üstelik o birimde kayıtlı aktif personel veya alt departman varsa sistem pasife almayı da kilitler (önce personellerin transferi zorunludur). Bu sayede kurumun son 30 yıllık geçmiş nöbet ve dozimetre kayıtları asla kaybolmaz."
- </div>
- </div>
+:::myth Kullanımda Olan Bir Tanımı Silersem Geçmiş Kayıtlar Bozulur mu?
 
-## 5N1K Kural ve Ayar Çözümleme Tablosu {#matrix-5n1k}
+### Yanlış Algı
 
-<div class="flex items-center justify-between">
- <span class="text-xs text-slate-500 dark:text-slate-400">Tüm kontroller test edilmiştir</span>
- </div>
+<em>"Eski bir departmanı, unvanı, cihaz türünü veya RKE tanımını [Sil] butonuyla kaldırırsam geçmişte ona bağlı cihaz, nöbet ve muayene kayıtları da silinir."</em>
 
-| NE? (Ayar & Ekran Kontrolü) | NEDEN? (Kullanım Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Tetiklenme Anı) | KİM? (Yetkili Kitle) |
-| --- | --- | --- | --- | --- |
-| <strong>Kurum Çift Başlık Ayarı</strong><br> <small class="text-slate-500 dark:text-slate-400">[Kurum Başlık 1 & 2] Metin Alanları</small> | Resmi rapor ve evrakların üst antetine bakanlık ve hastane hiyerarşisini basmak. | Başlık 1 ve 2 metinleri girilir. Başlıkların solundaki onay kutuları işaretlenerek aktif edilir. | Kurum anteti ilk kurulurken veya değiştiğinde. | <span class="px-2 py-0.5 rounded font-mono text-xs bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">Sistem Yöneticisi</span> |
-| <strong>Kurum Çift Logo Seçimi</strong><br> <small class="text-slate-500 dark:text-slate-400">[Gözat...] Butonu & Dosya Seçici</small> | Rapor antetinin sol ve sağ köşelerine resmi kurum logolarını yerleştirmek. | Bilgisayardan seçilen resim programın güvenli kaynak kasasına kopyalanır ve bağıl dosya adı olarak saklanır. | Logo dosyası seçildiğinde. | <span class="px-2 py-0.5 rounded font-mono text-xs bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">Sistem Yöneticisi</span> |
-| <strong>Canlı Antet Önizlemesi</strong><br> <small class="text-slate-500 dark:text-slate-400">[Önizleme Çerçevesi]</small> | Raporu üretmeden önce antetin ekranda nasıl görüneceğini anında denetlemek. | Başlık yazıldıkça veya onay kutusu işaretlendikçe 100x100 logolar ve ortalanmış 14pt başlıklar anında yeniden çizilir. | Formda herhangi bir harfe veya kutuya dokunulduğunda. | <span class="px-2 py-0.5 rounded font-mono text-xs bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">Sistem Yöneticisi</span> |
-| <strong>Şablonu Uygulamada Açma</strong><br> <small class="text-slate-500 dark:text-slate-400">[Aç] Butonu</small> | Word veya Excel şablonu üzerinde doğrudan masaüstü ofis araçlarıyla çalışabilmek. | Seçili şablon dosyası işletim sisteminin varsayılan MS Word veya MS Excel uygulamasında açılır. | Şablon aç butonuna basıldığında. | <span class="px-2 py-0.5 rounded font-mono text-xs bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">Sistem Yöneticisi</span> |
-| <strong>Şablonu Fabrika Ayarına Sıfırlama</strong><br> <small class="text-slate-500 dark:text-slate-400">[Yeniden Oluştur] Butonu</small> | Hatalı düzenlenen veya bozulan rapor şablonlarını orijinal haline döndürmek. | Sistem, fabrika tanımını okuyarak ilgili Word/Excel şablon dosyasını sıfırdan kurumsal standartta yeniden üretir. | Yeniden oluştur butonuna tıklandığında. | <span class="px-2 py-0.5 rounded font-mono text-xs bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">Sistem Yöneticisi</span> |
-| <strong>Departman Hiyerarşi Kilidi</strong><br> <small class="text-slate-500 dark:text-slate-400">[Üst Departman] Açılır Kutusu</small> | Sonsuz döngü ve organizasyon ağacı çökmesini engellemek. | Bir departman kendisini veya kendi alt ağacındaki birimleri üst departman olarak seçemez. | Departman kaydedilirken / güncellenirken. | <span class="px-2 py-0.5 rounded font-mono text-xs bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">Sistem Yöneticisi</span> |
-| <strong>Departman Pasife Alma Kalkanı</strong><br> <small class="text-slate-500 dark:text-slate-400">[Aktif] Onay Kutusu</small> | Personeli veya alt birimi bulunan aktif departmanın pasife alınarak yetim kalmasını önlemek. | Departmana bağlı en az 1 personel veya 1 aktif alt birim varsa pasife alma kesinlikle engellenir; önce transfer istenir. | Pasife alma girişiminde. | <span class="px-2 py-0.5 rounded font-mono text-xs bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">Sistem Yöneticisi</span> |
-| <strong>Kat Planı / Kroki Eşleme</strong><br> <small class="text-slate-500 dark:text-slate-400">[Yeni Yükle...] & [Oda Kodu]</small> | Departmanı mimari kat planına ve oda mahalle koduna bağlamak. | PDF veya görsel kroki seçilir, krokiler havuzuna kaydedilir ve departmana atanır. | Departman tanımlanırken. | <span class="px-2 py-0.5 rounded font-mono text-xs bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">Sistem Yöneticisi</span> |
-| <strong>Unvan Nöbet ve Radyasyon Mirası</strong><br> <small class="text-slate-500 dark:text-slate-400">[Radyasyon Görevlisi] & [Nöbet]</small> | Yeni personel özlük kartı açılırken meslek standartlarının otomatik gelmesini sağlamak. | Unvan kartında işaretlenen radyasyon görevlisi ve nöbet tutabilme bayrakları, bu unvanı alan personele otomatik devredilir. | Unvan tanımlanırken. | <span class="px-2 py-0.5 rounded font-mono text-xs bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">Sistem Yöneticisi</span> |
-| <strong>Tatil Takvimi 0.5 Gün Kuralı</strong><br> <small class="text-slate-500 dark:text-slate-400">[Gün Sayısı] Sayı Alanı</small> | Arefe günleri ve yarım günlük idari izinlerin puantaja tam yansımasını sağlamak. | Tatil gün sayısı 0.5 adımlarla girilir (0.5, 1.0, 1.5). Nöbet dağıtım motoru arefe günlerini yarım gün tatil kabul eder. | Tatil takvimi kaydedilirken. | <span class="px-2 py-0.5 rounded font-mono text-xs bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">Sistem Yöneticisi</span> |
-| <strong>Tanımlama Tablosu Rozetleri</strong><br> <small class="text-slate-500 dark:text-slate-400">[Görsel Rozet Göstergeleri]</small> | Birimlerin radyasyon riskini, nöbet durumunu ve aktiflik statüsünü tek bakışta denetlemek. | Departman, unvan, izin, tatil, eğitim ve cihaz tablolarında [Aktif]/[Pasif] durumları, radyasyon simgesiyle [Radyasyonlu Alan] ve [Nöbet] durumları kurumsal renkli rozetlerle görselleştirilir. | Tanımlama tabloları incelenirken. | <span class="px-2 py-0.5 rounded font-mono text-xs bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">Sistem Yöneticisi</span> |
-| <strong>Serbest Sütun Boyutlandırma</strong><br> <small class="text-slate-500 dark:text-slate-400">[Tablo Başlığı Boyutlandırma & Yatay Kaydırma]</small> | Uzun departman ve unvan adlarının ekranda kesilmeden tam olarak okunmasını sağlamak. | Tablo sütun başlıkları fareyle sağa sola sürüklenerek serbestçe genişletilebilir; uzun metinlerde yatay kaydırma çubuğu belirir ve hiçbir veri üç nokta (...) ile gizlenmez. | Tablo verileri okunurken veya incelenirken. | <span class="px-2 py-0.5 rounded font-mono text-xs bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">Sistem Yöneticisi</span> |
-| <strong>Tanımlama Silme Kalkanı (Hibrit Silme)</strong><br> <small class="text-slate-500 dark:text-slate-400">[Sil] Butonu (Cihaz Türü, Amacı, Kaynak Türü ve Sistem Lookupları)</small> | Kullanımda olan bir tanım silindiğinde geçmiş cihaz, muayene veya envanter kayıtlarının ilişkisinin bozulmasını (yetim kalmasını) önlemek. | Seçili tanıma bağlı en az 1 cihaz veya envanter kaydı varsa sistem kaydı kalıcı silmez; geçmiş verileri koruyarak güvenle <strong>[Pasif]</strong> statüye çeker ve yeni kayıt açılır kutularından gizler. Hiçbir bağlı kaydı olmayan tanımlar ise doğrudan sistemden temizlenir. | Tanımlama tablosunda bir satır seçilip [Sil] butonuna basıldığında. | <span class="px-2 py-0.5 rounded font-mono text-xs bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">Sistem Yöneticisi</span> |
-| <strong>Kurumsal Antet & Sıfır Sentetik Kurum Standardı</strong><br> <small class="text-slate-500 dark:text-slate-400">[Kurum Adı] & Rapor Antetleri</small> | Tüm rapor, etiket ve resmi dökümlerde kurum kimliğini doğru yansıtmak; tanımlı olmayan yerlerde sahte/tahmini kamu kurumu adı yazılmasını engellemek. | Sistem ayarlarında Kurum Adı tanımlandığında tüm resmi tutanak ve rapor şablonlarında bu başlık kullanılır. Değer girilmemişse sistem kesinlikle farazi/sentetik kurum adı uydurmaz; kurumsal sistem varsayılanı olan <strong>RADPYS</strong> antetini kullanır. | Rapor, tutanak veya QR etiket üretilirken. | <span class="px-2 py-0.5 rounded font-mono text-xs bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">Sistem Yöneticisi</span> |
-| <strong>Akıllı Otomatik Algılamalı E-Posta (SMTP) Ayarları</strong><br> <small class="text-slate-500 dark:text-slate-400">[E-Posta ve Bildirim Ayarları] & [Test E-Postası Gönder]</small> | Kurumun bildirim ve doğrulama e-postalarını teknik sunucu/port ayarlarıyla uğraşmadan kolayca yapılandırmak. | E-posta adresi yazıldığı anda sistem Gmail, Outlook/Office 365, Yandex, Yahoo, iCloud veya Kurumsal/Sağlık Bakanlığı (<code>saglik.gov.tr</code>, <code>edu.tr</code>) sunucu ve port ayarlarını otomatik tanır. Parola Windows güvenli anahtar kasasında saklanır, ekran tekrar açıldığında parola kutuya geri doldurulmaz (<em>"Kayıtlı parola mevcut"</em> uyarısıyla gizlenir) ve <strong>[Test E-Postası Gönder]</strong> butonuyla canlı bağlantı doğrulanır. | E-posta bildirimleri ve 2FA doğrulama kurulurken. | <span class="px-2 py-0.5 rounded font-mono text-xs bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">Sistem Yöneticisi</span> |
-| <strong>Web Portal İki Aşamalı Doğrulama (2FA OTP) Anahtarı</strong><br> <small class="text-slate-500 dark:text-slate-400">[Web Portal Girişinde E-Posta Doğrulama Kodu İste]</small> | Web Portalına dış ağdan yapılan girişlerde parola güvenliğini 6 haneli tek kullanımlık e-posta kodu ile güçlendirmek. | Onay kutusu işaretlenip kaydedildiğinde, açık olan Web Portal sunucusunu yeniden başlatmaya gerek kalmadan ayar anında devreye girer. Dış ağdan giriş yapan personele 6 haneli doğrulama kodu gönderilir; e-posta gönderilemezse dış ağ oturumu güvenlik gereği açılmaz (Güvenli Kapanma). | Kurumsal siber güvenlik politikası etkinleştirildiğinde. | <span class="px-2 py-0.5 rounded font-mono text-xs bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300">Sistem Yöneticisi</span> |
+### Gerçek Sistem Mantığı
 
-## Departman Yönetimi & Güvenlik Kalkanı Süreci {#workflow}
+<strong>Geçmiş kayıtlarınız güvendedir.</strong> RADPYS'de tüm tanım ekranlarında <strong>Veri Bütünlüğü Odaklı Hibrit Silme</strong> çalışır. Silmek istediğiniz tanıma bağlı personel, alt birim, cihaz, RKE veya muayene kaydı varsa sistem tanımı kalıcı silmez, güvenle <strong>Pasif</strong> duruma alır; yalnızca hiç kullanılmamış tanımlar sistemden kalıcı temizlenir.
+:::
 
-<div class="flex items-center justify-between">
- <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">Döngü & Transfer Kontrolü</span>
- </div>
- <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+## Süreç Akış Şeması {#workflow}
 
 ```mermaid
-graph TD
- A["Departman Formu Açılır"] --> B{"Yeni mi Düzenleme mi?"}
- B -->|"Yeni Kayıt"| C["Ad, Kod ve Üst Departman Girilir"]
- B -->|"Düzenleme"| D["Mevcut Bilgiler Yüklenir"]
- 
- C --> E{"Döngüsel Hiyerarşi Var mı?"}
- D --> E
- E -->|"Evet: Kendisi veya Alt Dalı Seçili"| F["HATA: Hiyerarşide Döngü Engeli"]
- E -->|Hayır| G{"Pasife Alma Talebi mi?"}
+flowchart TB
+ subgraph S1 ["1. AŞAMA: TANIMLAMA VE FORMAT KONTROLÜ"]
+  direction LR
+  A(["Yönetici Tanım veya Ayar Seçer"]) --> B{"Format ve Hiyerarşi<br/>Geçerli mi?"}
+  B -->|Döngü / Geçersiz Kod| C["Hata Uyarısı: İşlem Durdurulur"]
+  B -->|Geçerli| D["Bağımlılık Kontrolüne Geçilir"]
+ end
 
- G -->|"Hayır: Aktif Kayıt"| H["Departman Başarıyla Kaydedilir"]
- G -->|"Evet: Pasif Yapılmak İsteniyor"| I{"Bağlı Personel veya Alt Birim Var mı?"}
+ subgraph S2 ["2. AŞAMA: BAĞIMLILIK VE HİBRİT SİLME DENETİMİ"]
+  direction LR
+  E{"Silme veya Pasife Alma<br/>Talebi mi?"} -->|Düzenlemeden Pasif| F{"Aktif Personel / Alt Birim<br/>Var mı?"}
+  F -->|Evet| G["ENGEL: Önce Transfer İsteyin"]
+  E -->|Sil Butonu| H{"Bağlı Geçmiş Kayıt<br/>Var mı?"}
+  H -->|Evet| I["Otomatik Pasife Alınır"]
+  H -->|Hayır| J["Kalıcı Olarak Temizlenir"]
+ end
 
- I -->|"Evet: Bağlı Personel veya Alt Birim Mevcut"| J["ENGEL: Önce Personelleri Başka Birime Transfer Edin!"]
- I -->|"Hayır: Tamamen Boş Birim"| K["Departman Güvenle Pasife Alınır"]
+ subgraph S3 ["3. AŞAMA: SİSTEM SENKRONİZASYONU"]
+  direction LR
+  K["Ayar / Tanım Veritabanına İşlenir"] --> L(["İlgili Modüller ve Web API Güncellenir"])
+ end
+
+ D ==> E
+ E -->|Aktif Kayıt| K
+ I & J ==> K
 ```
 
- </div>
+1. **Tanımlama ve Format Kontrolü:** Departman ve unvan kodları standart formata göre, üst departman seçimleri ise hiyerarşi döngüsüne karşı doğrulanır.
+2. **Bağımlılık ve Hibrit Silme Denetimi:** Düzenleme formundan aktif personelli birim kapatılmak istenirse transfer uyarısı verilir; **[Sil]** butonunda ise bağlı kaydı bulunan tanımlar pasife alınır, boş olanlar silinir.
+3. **Sistem Senkronizasyonu:** Kaydedilen kurum ayarları, SMTP/2FA tercihleri ve tanımlar tüm masaüstü formlarına ve Web Portalına anlık yansır.
 
-## Ekran Rehberi ve Kritik Arayüzler {#screenshots}
+## Arayüz Ekran Görünümleri {#screenshots}
 
-![Kurum Başlıkları, Çift Logo ve Canlı Antet Önizleme | Sistem Yönetimi > Rapor Şablonları & Kurum Anteti | templates_page](assets/img/03_templates_page.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki kurum isimleri, logolar ve şablon örnekleri tamamen test amaçlı sentetik veridir.</span>")
+![Sistem Yönetimi Gezinim Ağacı | Sistem Yönetimi > Genel Program Ayarları | Parametre Kokpiti | cyan](assets/img/03_system_management_page.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki parametre değerleri ve kurum bilgileri tamamen test amaçlı sentetik veridir. Gerçek kişi ve kurum kayıtlarıyla benzerlikler tesadüfidir.</span>")
 
-![Sistem Yönetimi Gezinim Ağacı ve Parametre Düzenleme | Sistem Yönetimi > Genel Program Ayarları | system_management_page](assets/img/03_system_management_page.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki parametre değerleri ve açıklamalar test ortamı verisidir.</span>")
+![Departman Tanımları Ekranı | Sistem Yönetimi > Sistem Tanımları > Departman Tanımları | Hiyerarşi & Kroki Eşleme | cyan](assets/img/03_lookup_departman.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki departman adları, kodları ve birim bilgileri test amaçlı sentetik veridir.</span>")
 
-![Departman Hiyerarşisi, Birim Sorumlusu ve Kat Planı Eşleme | Sistem Yönetimi > Sistem Tanımları > Departman Tanımları | lookup_departman](assets/img/03_lookup_departman.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki departman adları ve kodları test amaçlıdır.</span>")
+![Tatil Takvimi ve Resmi Bayram Otomasyonu Ekranı | Sistem Yönetimi > Sistem Tanımları > Tatil Takvimi | Resmi Tatiller ve Bayram Paketi | amber](assets/img/03_lookup_tatil_takvimi.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki resmi ve dini bayram tarihleri örnek takvim yılı üzerinden gösterilmiştir.</span>")
 
-## Adım Adım Operasyonel Eylem Akışı {#step-by-step}
+## Adım Adım İşlem Rehberi {#step-by-step}
 
-<div class="space-y-4">
- <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
- <h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span class="w-6 h-6 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300 text-xs flex items-center justify-center font-bold">1</span>
- <span>Kurum Başlıklarını ve Resmi Çift Logoyu Yapılandırma</span>
- </h3>
- <ol class="list-decimal list-inside text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
- <li>Sol gezinim menüsünden <strong>[Sistem Ayarları] > [Rapor Şablonları & Kurum Anteti]</strong> sekmesini açın.</li>
- <li><strong>[Kurum Başlık 1]</strong> alanına üst idari kurum adını (Örn: <em>T.C. SAĞLIK BAKANLIĞI</em>), <strong>[Kurum Başlık 2]</strong> alanına hastane/fakülte adınızı yazın.</li>
- <li>Başlıkların raporda görünmesi için sollarındaki <strong>[Kurum Başlık 1]</strong> ve <strong>[Kurum Başlık 2]</strong> kutularını işaretleyin.</li>
- <li><strong>[Kurum Logo 1]</strong> ve <strong>[Kurum Logo 2]</strong> yanındaki <strong>[Gözat...]</strong> butonlarına tıklayarak bilgisayarınızdaki logo dosyalarını seçin.</li>
- <li>Sağ paneldeki <strong>Canlı Önizleme</strong> alanında logoların ve başlıkların tam konumunu denetleyin.</li>
- <li>Alt kısımdaki <strong>[Kaydet]</strong> butonuna basın. Başarı bildiriminden sonra üretilen tüm resmi raporlar bu anteti kullanır.</li>
- </ol>
- </div>
- <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
- <h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span class="w-6 h-6 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300 text-xs flex items-center justify-center font-bold">2</span>
- <span>Yeni Departman Tanımlama ve Mimari Kat Planı Eşleme</span>
- </h3>
- <ol class="list-decimal list-inside text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
- <li>Sistem Yönetimi ağacından <strong>[Sistem Tanımları] > [Departman Tanımları]</strong> sayfasına geçin.</li>
- <li>Araç çubuğundaki <strong>[Yeni]</strong> butonuna tıklayın.</li>
- <li><strong>[Departman Adı]</strong> alanını doldurun ve <strong>[Kod]</strong> kutusuna standart formatta (2-20 karakter, büyük harf) bir kod belirleyin (Örn: <em>RAD_MR</em>).</li>
- <li>Eğer bir alt ünite ise <strong>[Üst Departman]</strong> açılır kutusundan bağlı olduğu ana anabilim dalını seçin.</li>
- <li><strong>[Birim Sorumlusu]</strong> kutusundan ilgili yetkili hekimi veya amiri atayın.</li>
- <li>Birim radyasyon içeriyorsa <strong>[Radyasyonlu alan]</strong> kutusunu, vardiyalı çalışıyorsa <strong>[Nöbet usulü mesai]</strong> kutusunu işaretleyin.</li>
- <li><strong>[Kat Planı / Kroki]</strong> açılır kutusundan ilgili katı seçin veya <strong>[Yeni Yükle...]</strong> butonuyla doğrudan PDF/PNG kat planı yükleyin.</li>
- <li><strong>[Ekle]</strong> butonuna basarak işlemi tamamlayın.</li>
- </ol>
- </div>
- <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
- <h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span class="w-6 h-6 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300 text-xs flex items-center justify-center font-bold">3</span>
- <span>Resmi/Dini Tatil Takvimini Otomatik Oluşturma ve Düzenleme</span>
- </h3>
- <ol class="list-decimal list-inside text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
- <li>Ağaç menüsünden <strong>[Tanımlamalar] > [Tatil Takvimi]</strong> sayfasına tıklayın.</li>
- <li><strong>Sabit Resmi Tatilleri Topluca Eklemek İçin:</strong> Araç çubuğundaki <strong>[Resmi Tatilleri Ekle]</strong> butonuna tıklayın, ilgili yılı girin; 1 Ocak, 23 Nisan, 1 Mayıs, 19 Mayıs, 15 Temmuz, 30 Ağustos ve 28-29 Ekim (8 resmi tatil) tek tıkla takvime işlenir.</li>
- <li><strong>Dini Bayramları Tek Tıkla Eklemek İçin:</strong> <strong>[Yeni]</strong> butonuna basın, Tatil Adı alanından <em>Ramazan Bayramı</em> veya <em>Kurban Bayramı</em> seçin. Sistem otomatik olarak <em>Dini Tatil</em> türünü ve <em>Tüm bayram günlerini otomatik oluştur</em> seçeneğini aktif eder.</li>
- <li>Tarih alanına bayramın <strong>Arife Günü</strong> tarihini girin ve <strong>[Kaydet]</strong> butonuna basın. Sistem Arife (0.5 gün) ile birlikte bayramın tüm günlerini (Ramazan için 4 gün, Kurban için 5 gün) tek seferde takvime kaydeder.</li>
- <li><strong>İdari İzin veya Özel Tatil İçin:</strong> <strong>[Yeni]</strong> butonuna basarak tekil tarih, tatil adı, tür ve gün sayısı (0.5 veya 1.0) belirleyip kaydedebilirsiniz.</li>
- </ol>
- </div>
- <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-2">
- <h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span class="w-6 h-6 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300 text-xs flex items-center justify-center font-bold">4</span>
- <span>Kurumsal E-Posta (SMTP) ve Web Portal 2FA Doğrulama Ayarlarını Yapılandırma</span>
- </h3>
- <ol class="list-decimal list-inside text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-1.5 pl-2">
- <li>Sol gezinim ağacından <strong>[Sistem Ayarları] > [E-Posta ve Bildirim Ayarları]</strong> sekmesini açın.</li>
- <li><strong>[Gönderici E-Posta Adresi]</strong> kutusuna kurumunuzun veya biriminizin e-posta adresini yazın; sistem sağlayıcıyı (Gmail, Outlook/Office 365, Yandex, Kurumsal/Sağlık Bakanlığı) otomatik olarak algılar ve sunucu/port ayarlarını kendisi doldurur.</li>
- <li>Gmail veya Outlook kullanıyorsanız <strong>[Uygulama Şifresi Nasıl Alınır?]</strong> butonuna tıklayarak 3 adımlı görsel rehber eşliğinde oluşturduğunuz 16 haneli uygulama şifresini, kurumsal posta kullanıyorsanız e-posta parolanızı girin.</li>
- <li>Web Portal girişlerinde personele 6 haneli tek kullanımlık doğrulama kodu gönderilmesini istiyorsanız <strong>[Web Portal girişinde E-Posta ile 6 Haneli Doğrulama Kodu (2FA OTP) iste]</strong> kutusunu işaretleyin.</li>
- <li><strong>[Test E-Postası Gönder]</strong> butonuna basarak bağlantıyı canlı olarak doğrulayın ve ardından <strong>[Ayarları Kaydet]</strong> butonuna tıklayın.</li>
- </ol>
- </div>
- </div>
+### 1. Kurum Anteti, Çift Logo ve Program Ayarlarını Güncelleme
+
+1. Sol gezinim ağacından **[Genel Ayarlar]** altındaki ilgili kategoriyi (örneğin **[Rapor ve Çıktı Ayarları]** veya **[Güvenlik Ayarları]**) açın.
+2. Tablodan düzenlemek istediğiniz ayara tıklayın; sağdaki **[Ayar Detayı]** panelinde yeni değeri yazın veya logo seçimleri için **[Gözat...]** butonunu kullanın.
+3. Başlık ve logoların raporlarda görünmesi için **[Aktif]** kutusunun işaretli olduğunu doğrulayıp **[Değişiklikleri Kaydet]** butonuna tıklayın.
+
+### 2. Departman, Mimari Kroki ve Kardeş Sistem Tanımlarını Yönetme
+
+1. **[Sistem Tanımları] > [Departman Tanımları]** ekranında **[Yeni]** butonuna basın; ad, 2–20 karakterli büyük harf kod, varsa **[Üst Departman]** ve gerekiyorsa **[Radyasyonlu alan]** / **[Nöbet usulü mesai]** seçeneklerini işaretleyin.
+2. Birime mimari kat planı bağlamak için **[Kat Planı / Kroki]** yanındaki **[Yeni Yükle...]** butonunu ve oda/mahalle kodunu girip **[Kaydet]** butonuna tıklayın.
+3. Unvan, Cihaz Türü, Cihaz Kullanım Amacı, Cihaz Kaynak Türü, RKE Ekipman Türü, RKE Klinik Bulguları, İzin Türleri, Eğitim veya Muayene Türleri ekranlarında da aynı **[Yeni]**, **[Düzenle]**, **[Sil]** (hibrit silme) ve **[Excel Aktar]** yapısını kullanın.
+
+### 3. Resmi ve Dini Tatil Takvimini Otomatik Oluşturma
+
+1. **[Sistem Tanımları] > [Resmi/Dini Tatiller]** ekranını açın; araç çubuğundaki **[Resmi Tatilleri Ekle]** butonuna tıklayıp yılı girerek 8 sabit resmi tatili (1 Ocak, 23 Nisan, 1 Mayıs, 19 Mayıs, 15 Temmuz, 30 Ağustos ve 28–29 Ekim dahil) tek seferde ekleyin.
+2. Ramazan veya Kurban Bayramı eklemek için **[Yeni]** butonuna basıp bayram türünü seçin, **[Tüm bayram günlerini otomatik oluştur (Arife + Bayram)]** kutusu aktifken yalnızca **Arife** gününün tarihini girip **[Kaydet]** butonuna tıklayın.
+
+### 4. E-Posta (SMTP), Otomatik Bildirimler ve Web Portal 2FA Kurulumu
+
+1. **[Genel Ayarlar] > [E-Posta ve Bildirim Ayarları]** sayfasında gönderici e-posta adresinizi yazın; sistem sağlayıcı ve port bilgisini otomatik tanır.
+2. Gmail/Outlook gibi sağlayıcılarda **[Google Uygulama Şifresi Al]** yardımıyla aldığınız uygulama şifresini (veya kurumsal SMTP parolanızı) girin; ihtiyaç duyduğunuz 2FA OTP ve otomatik e-posta bildirim onay kutularını işaretleyin.
+3. **[Bağlantıyı Test Et (Test E-Postası Gönder)]** butonuyla e-posta gönderimini doğruladıktan sonra **[Ayarları Kaydet ve Etkinleştir]** butonuna basın.
 
 ## Sıkça Sorulan Sorular (SSS) {#faq}
 
 :::faq
+
 ### Fiili hizmet (FHZ) hesaplama yöntemini yıl ortasında değiştirebilir miyiz?
-Fiili hizmet hesaplama yöntemi (<em>Hibrit</em>, <em>Manuel</em> veya <em>Nöbet</em>) değiştirildiğinde geçmiş dönemlerde kapatılmış ve SGK'ya bildirilmiş olan yıpranma payı puantajlarının tutarlılığı etkilenebilir. Sistem bu sebeple değişiklik anında ekrana <strong>Kritik Ayar Değişikliği</strong> ikazı getirir. Bu ayarın takvim yılı veya mali dönem başında planlı olarak değiştirilmesi önemle tavsiye edilir.
 
-### Kapatılmak istenen bir departmanı pasife alırken sistem neden hata veriyor?
-RADPYS veri bütünlüğü kuralı gereğince; içerisinde en az 1 aktif personel kaydı veya kendisine bağlı aktif alt departman bulunan birimler pasife alınamaz. Bu durumda sistem <code>"Bu departman pasife alinamaz: X personel kaydi... Once bagimliliklari kaldirin."</code> uyarısı verir. İşlemi yapabilmek için öncelikle o departmandaki personelleri <strong>[Personel Listesi]</strong> ekranından başka bir aktif birime transfer etmeniz gerekir.
+Hesaplama yöntemi değiştirildiğinde geçmiş dönem puantajlarının tutarlılığı etkilenebileceği için sistem <strong>Kritik Ayar Değişikliği</strong> onayı ister. Mevcut verilerin bütünlüğü açısından bu değişikliğin yıl veya dönem başında yapılması önerilir.
 
-### Cihaz Türü, Cihaz Amacı veya Kaynak Türü gibi bir tanımı sildiğimde geçmiş cihazlar ve envanterler bozulur mu?
-<strong>Kesinlikle hayır, geçmiş kayıtlar korunur.</strong> RADPYS <em>"Veri Bütünlüğü Odaklı Hibrit Silme"</em> altyapısına sahiptir. Sildiğiniz bir tanıma (örneğin bir cihaz türüne, amacına veya kaynak grubuna) bağlı mevcut ya da arşivlenmiş cihaz/envanter kayıtları varsa; sistem bu tanımı veritabanından kalıcı olarak silmez, güvenle <strong>Pasife</strong> alır. Böylece geçmiş kalite kontrol, bakım, dozimetre ve envanter raporlarınız asla bozulmaz; yalnızca yeni cihaz ekleme formlarında o tanım listeden kaldırılır. Sadece hiçbir kayıtta kullanılmamış tertemiz tanımlar sistemden kalıcı olarak temizlenir.
+### Departman düzenleme penceresinde [Aktif] kutusunu kaldırdığımda sistem neden uyarı veriyor?
 
-### Dini bayramları her yıl tek tek gün gün girmek zorunda mıyız, arefe günü neden 0.5 gündür?
-<strong>Hayır, gün gün girmenize gerek yoktur.</strong> Yeni tatil eklerken <em>Ramazan Bayramı</em> veya <em>Kurban Bayramı</em> seçtiğinizde form otomatik olarak toplu oluşturma moduna geçer; yalnızca Arife gününün tarihini seçip kaydettiğinizde Arife günü dahil tüm bayram günleri (Ramazan için 4 gün, Kurban için 5 gün) tek seferde takvime eklenir.<br><br> Mevzuata göre dini bayram arefeleri saat 13:00 itibarıyla resmi tatil sayılmaktadır. Nöbet dağıtım motoru ve fazla mesai hesaplayıcısı, personelin sabah çalıştığı mesaiyi normal, öğleden sonrasını ise resmi tatil nöbet katsayısıyla hesaplar. Arife günü için gün sayısı otomatik olarak <code>0.5</code> gün girilerek bu yarım günlük ayrım kusursuz şekilde puantaja yansıtılır.
+Departman düzenleme ekranından doğrudan pasife alma işleminde o birime kayıtlı personel veya aktif alt departman varsa sistem yetim kayıt oluşmaması için işlemi durdurur. Önce personelleri <strong>[Personel Listesi]</strong> üzerinden başka bir aktif birime aktarmanız gerekir.
 
-### "Yeniden Oluştur" butonuna bastığımda Word veya Excel'deki özel tasarımlarım kaybolur mu?
-Evet. <strong>[Yeniden Oluştur]</strong> butonu, ilgili Word veya Excel şablonunu doğrudan kurulum anındaki fabrika standartlarına döndürür. Şablon üzerinde daha önce yapmış olduğunuz tablo ve sütun düzenlemelerini kaybetmemek için butona basmadan önce <strong>[Klasörü Aç]</strong> butonuyla <code>data/templates/</code> klasörünün bir yedeğini almanızı önemle öneririz.
+### Genel Program Ayarları tablosuna neden yeni satır veya özel anahtar ekleyemiyoruz?
 
-### Tanımlama tablolarındaki uzun birim veya unvan adları ekranda dar göründüğünde ne yapmalıyım?
-Tablonun sütun başlıkları arasındaki ayırıcı çizgiyi fareyle tutup sağa sola dilediğiniz genişliğe çekebilirsiniz. Tablo otomatik olarak yatay kaydırma çubuğu sunar ve hiçbir veri üç nokta (...) şeklinde kesilmeden tam olarak okunabilir.
+Program ayarları uygulamanın çekirdek kurallarını yöneten sabit parametrelerdir. Sistem, arka planda karşılığı olmayan rastgele anahtarların eklenmesini güvenlik ve kararlılık amacıyla engeller; yalnızca mevcut parametrelerin değerleri güncellenebilir.
 :::

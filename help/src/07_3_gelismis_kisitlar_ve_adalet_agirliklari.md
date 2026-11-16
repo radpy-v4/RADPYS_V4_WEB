@@ -1,118 +1,72 @@
 ---json
 {
-  "pageTitle": "07. 07 3 Gelismis Kisitlar Ve Adalet Agirliklari — RADPYS v4 Kullanım Kılavuzu",
-  "h1": "Gelişmiş Kısıtlar, Hizmet Sınıfı Kuralları ve Nöbet Dağıtım Adalet Ağırlıkları",
-  "lead": "RADPYS nöbet dağıtım motorunun çizelge üretirken baz aldığı adalet ceza katsayıları, hafta sonu dengeleme çarpanları ve hizmet sınıfı (Tabip, Radyoloji Teknisyeni) bazlı kurallar bu ekrandan yönetilir.",
+  "pageTitle": "07.3. Yasal & Kurumsal Kısıtlar ve Adalet Ağırlıkları — RADPYS v4 Kullanım Kılavuzu",
+  "h1": "Yasal & Kurumsal Kısıtlar, Hizmet Sınıfı Kuralları ve Adalet Ağırlıkları",
+  "lead": "Kural piramidinin üst kademelerini oluşturan hizmet sınıfı (Tabip, Radyoloji Teknisyeni vb.) ve birim bazlı kısıtları, Sert (Yasal) ile Yumusak (Kurumsal) ayrımını ve nöbet dağıtım adalet sınırlarını yönetmenizi sağlar.",
   "overviewId": "overview",
-  "badges": []
+  "badges": [
+    {
+      "text": "07.3 Yasal & Kurumsal Kısıtlar",
+      "tone": "emerald"
+    }
+  ],
+  "readingTime": "4 Dakika",
+  "legalNote": "<strong>Kural Sırası:</strong> Bu sekmede hem Birim hem Hizmet Sınıfı birlikte seçildiğinde oluşturulan kural piramidin en tepesinde yer alır ve genel temel ayarları otomatik ezer."
 }
 ---
 
-## Hızlı Reçete: Hizmet Sınıfı Kuralı Tanımlama ve Adalet Dengesi {#quick-recipe}
+## Kısa Reçete: Hizmet Sınıfı ve Birim Bazlı Kısıt Tanımlama {#quick-recipe}
 
-<div class="flex items-center gap-3">
- <div class="w-9 h-9 rounded-2xl bg-cyan-600 text-white flex items-center justify-center font-bold text-base shadow-md"> </div>
- <div>
- <p class="text-xs text-slate-500 dark:text-slate-400">
- Unvan bazlı sınırlar ve ceza puanı minimizasyonu
- </p>
- </div>
- </div>
- <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 text-xs sm:text-sm">
- <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
- <span class="font-bold text-slate-400 uppercase text-[10px] tracking-wider block">1. İstenen Sonuç</span>
- <p class="font-semibold text-slate-800 dark:text-slate-100">
- Tabipler ile teknisyenlerin çalışma sınırlarını ayırmak ve nöbetlerin ekip arasında adil dağılmasını sağlamak.
- </p>
- </div>
- <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
- <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase text-[10px] tracking-wider block">2. Yapılacak İşlem</span>
- <p class="font-semibold text-slate-800 dark:text-slate-100">
- Kural Tipini seçin (aylık max, dinlenme vb.), Hizmet Sınıfını belirleyin, sınır Değerini girip <strong>[Kural Ekle]</strong> butonuna basın.
- </p>
- </div>
- <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
- <span class="font-bold text-emerald-600 dark:text-emerald-400 uppercase text-[10px] tracking-wider block">3. Sistem Etkisi</span>
- <p class="font-semibold text-slate-800 dark:text-slate-100">
- Kural Piramidi uyarınca bu kural genel ayarı ezer; nöbet dağıtım motoru çizelgeyi hesaplarken bu sınıra öncelikli olarak uyar.
- </p>
- </div>
- </div>
- <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2 border-t border-cyan-100 dark:border-cyan-900/40">
- <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
- <span class="text-base"></span>
- <div>
- <span class="text-[10px] uppercase font-bold text-slate-400 block">Hizmet Sınıfı</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Tabip / Teknisyen</span>
- </div>
- </div>
- <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
- <span class="text-base"></span>
- <div>
- <span class="text-[10px] uppercase font-bold text-slate-400 block">Kural Sınıfı</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Yasal / Kurumsal</span>
- </div>
- </div>
- <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
- <span class="text-base"></span>
- <div>
- <span class="text-[10px] uppercase font-bold text-slate-400 block">Adalet Katsayısı</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Ceza Minimizasyonu</span>
- </div>
- </div>
- <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
- <span class="text-base"></span>
- <div>
- <span class="text-[10px] uppercase font-bold text-slate-400 block">Kısıt Tipi</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Sert & Esnek Sınır</span>
- </div>
- </div>
- </div>
+:::recipe Kısa Reçete: Hizmet Sınıfı ve Birim Bazlı Kısıt Tanımlama | 20 SANİYELİK AKIŞ
+### 1. İstenen Sonuç | slate
+Farklı meslek gruplarının ve klinik birimlerin çalışma sınırlarının ayrıştırılması ve dağıtım motorunun sert/esnek kısıt dengesiyle çalıştırılması.
 
-## 07.3 Gelişmiş Kısıtlar 5N1K Bileşen Çözümleme Tablosu {#5w1h}
+### 2. Yapılacak İşlem | cyan
+<strong>[Yasal &amp; Kurumsal Kısıtlar]</strong> sekmesinde Kural Tipini, <strong>Sert</strong> veya <strong>Yumusak</strong> sınıfını, Hizmet Sınıfını, Birimi ve sayısal sınırı seçerek <strong>[Kısıt Ekle]</strong> butonuna basın.
 
-| NE? (Bileşen Adı) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? | KİM? |
+### 3. Sistem Etkisi | emerald
+Eklenen kural piramit önceliğine göre genel ayarın yerine geçer; Sert kurallar kesinlikle çiğnenmez, Yumusak kurallar ceza katsayısıyla adil biçimde dengelenir.
+
+- [metric] Kural Sınıfı | Sert &amp; Yumusak | emerald
+- [metric] Kapsam | Birim + Hizmet Sınıfı | cyan
+- [metric] Kural Çeşidi | 13 Standart Parametre | slate
+- [metric] Öncelik Etkisi | Genel Ayarı Ezer | amber
+:::
+
+## 5N1K Kural ve Arayüz Çözümleme Tablosu {#5w1h}
+
+*Yasal ve Kurumsal Kısıtlar sekmesindeki kural tipleri, sertlik derecesi ve kapsam filtrelerinin çalışma mantığı.*
+
+| NE? (Bileşen / Kontrol) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Tetiklenme) | KİM? (Yetkili Rol) |
 | --- | --- | --- | --- | --- |
-| Kural Adı (Giriş Kutusu) | Kısıt kuralına anlaşılır bir tanım vermek. | Örn: "Teknisyen Hafta Sonu Limiti", "Uzman Tabip Aylık Max Nöbet". Rapor ve uyarılarda bu ad görünür. | Kural oluştururken. | Nöbet Yöneticisi |
-| Kural Tipi (Açılır Kutu) | Kuralın hangi çalışma parametresini denetleyeceğini belirlemek. | "aylik_max", "art_arda_max", "nöbet_sonrasi_dinlenme", "hafta_sonu_limit", "bayram_limit" seçeneklerinden biri seçilir. | Kural oluştururken. | Yönetici |
-| Kural Sınıfı (Açılır Kutu) | Kuralın yasal zorunluluk mu kurumsal tercih mi olduğunu belirlemek. | "Yasal" seçilirse asla delinemez sert kısıt (hard constraint) olur; "Kurumsal/Tercih" seçilirse ceza puanlı esnek kural olur. | Kural eklerken. | Başhekimlik |
-| Hizmet Sınıfı (Açılır Kutu) | Kuralın hangi meslek grubuna uygulanacağını seçmek. | Örn: "Radyoloji Teknisyeni" veya "Uzman Tabip". Boş bırakılırsa tüm personele uygulanır. | Grup ayrımında. | Nöbet Sorumlusu |
-| Birim (Açılır Kutu) | Kuralın belirli bir kliniğe özgülenmesini sağlamak. | Departman seçilirse Kural Piramidi Öncelik 1 (Birim+Sınıf) kademesinde değerlendirilir. | Birim kuralı yazarken. | Departman Sorumlusu |
-| Değer (Sayısal Giriş) | Kuralın sayısal sınırını belirlemek. | Aylık nöbet adedi, saat veya gün limiti girilir (örn: 3 nöbet veya 24 saat). | Eşik belirlerken. | Yönetici |
-| Kural Ekle Butonu | Hazırlanan kısıt parametresini listeye ve veritabanına eklemek. | Tıklandığında kural tablosuna yeni satır olarak düşer ve nöbet dağıtım motoru aktif kuralları arasına alır. | Kural kaydında. | Yönetici |
-| Kural Güncelle Butonu | Mevcut bir kuralın değerini veya hizmet sınıfını revize etmek. | Tablodan satır seçildiğinde aktifleşir; düzenleme sonrası değişiklikleri kaydeder. | Değer revizyonunda. | Yetkili Kullanıcı |
-| Kuralı Sil Butonu | Artık geçerli olmayan bir kuralı sistemden kaldırmak. | Kuralı nöbet dağıtım motorundan tamamen çıkarır. | Kural iptalinde. | Yönetici |
+| <strong>Kural Tipi Seçimi (13 Parametre)</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Standart Kural Havuzu</span> | Kuralın hangi dinlenme, mesai veya adalet ölçütünü denetleyeceğini belirlemek. | Ardışık nöbet günü, nöbet sonrası dinlenme, hafta sonu/bayram dengesi, gece boşluğu, haftalık 35s/40s mesai, emzirme, gebelik, sendika ve 130s yasal FM tavanından biri seçilir. | Kural oluşturulurken. | Nöbet Yöneticisi |
+| <strong>Kural Sınıfı (Sert / Yumusak)</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Delinemez vs Esnek Kısıt</span> | Yasal zorunlulukları esnetilebilir kurumsal tercihlerden ayırmak. | <em>Sert</em> sınıfı motor için mutlak engel oluşturur; <em>Yumusak</em> sınıfı ise çözümsüzlük riskinde ceza puanı karşılığı esnetilebilir. | Kural eklenirken. | Başhekimlik / Yönetici |
+| <strong>Hizmet Sınıfı Kapsamı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[Tum Hizmet Siniflari] veya Özel Grup</span> | Tabip, Radyoloji Teknisyeni gibi meslek gruplarına farklı limitler uygulamak. | Seçilen meslek grubuna özel değer uygulanır; <em>Tum Hizmet Siniflari</em> seçiliyse ayrım yapılmaksızın kapsamdaki herkese geçerlidir. | Meslek grubu ayrımında. | Birim Sorumlusu |
+| <strong>Birim Kapsamı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[Tum Birimler] veya Klinik</span> | Kuralı yalnızca belirli bir servise özgüleyip piramit önceliğini yükseltmek. | Hem Birim hem Hizmet Sınıfı seçildiğinde Piramit Öncelik 1 oluşur ve alt kademedeki tüm genel kuralları geçersiz kılar. | Birim kuralı tanımlanırken. | Departman Sorumlusu |
+| <strong>Sayısal Değer &amp; [Aktif] Anahtarı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Dinamik Eşik Kontrolü</span> | Kuralı silmeden geçici olarak devreye almak veya sınırını revize etmek. | Girilen nöbet adedi veya saat sınırı yalnızca <strong>[Aktif]</strong> kutusu işaretliyken dağıtım motoru ve uyarılarda dikkate alınır. | Kural güncellenirken. | Yetkili Yönetici |
 
-## Gelişmiş Kısıtlar ve Kural Tablosu Ekranı {#screenshot}
+## Arayüz Ekran Görünümleri {#screenshots}
 
-![Gelişmiş Kısıtlar ve Kural Tablosu Ekranı | Ekran: Nöbet Ayarları > [Gelişmiş Kısıtlar] Sekmesi | Gelişmiş Kısıtlar Sekmesi](assets/img/nobet_gelismis.png "<span><strong>Simülasyon Notu:</strong> Kural adları, hizmet sınıfı eşleştirmeleri ve ceza değerleri test ortamı standartlarına göre örneklenmiştir.</span>")
+![Yasal ve Kurumsal Kısıtlar Ekranı | Nöbet Ayarları > Yasal & Kurumsal Kısıtlar | Hizmet Sınıfı, Sert/Yumuşak Kısıtlar & Öncelikler | emerald](assets/img/nobet_gelismis.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki kural adları, hizmet sınıfı eşleştirmeleri ve sınır değerleri test ortamına ait sentetik verilerdir.</span>")
 
-## Adım Adım Hizmet Sınıfı Kuralı Ekleme {#step-by-step}
+## Adım Adım İşlem Rehberi {#step-by-step}
 
-<div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
- <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
- <li><strong>[Gelişmiş Kısıtlar]</strong> sekmesini açın.</li>
- <li>Sağdaki <strong>Kısıt Düzenleyici</strong> alanında:
- <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-0.5">
- <li><strong>Kural Adı:</strong> "Teknisyen Hafta Sonu Tavanı" yazın.</li>
- <li><strong>Kural Tipi:</strong> "hafta_sonu_limit" seçin.</li>
- <li><strong>Kural Sınıfı:</strong> "Kurumsal" olarak belirleyin.</li>
- <li><strong>Hizmet Sınıfı:</strong> "Radyoloji Teknisyeni" seçin.</li>
- <li><strong>Değer:</strong> "3" girin.</li>
- <li><strong>Açıklama:</strong> "Teknisyenler ayda en fazla 3 hafta sonu nöbeti tutabilir."</li>
- </ul>
- </li>
- <li><strong>[Kural Ekle]</strong> butonuna basın. Kural üstteki tabloda listelenir.</li>
- <li>Artık nöbet dağıtım motoru teknisyenler için bu kuralı 3 olarak uygularken, diğer hizmet sınıfları için genel ayarı (4) uygulamaya devam eder.</li>
- </ol>
- </div>
+### 1. Hizmet Sınıfı veya Birime Özel Kural Ekleme ve Güncelleme
 
-## Sıkça Sorulan Sorular (Gelişmiş Kısıtlar) {#faq}
+1. Sol menüden **[Nöbet Yönetimi] &gt; [Nöbet Ayarları ve Kurallar]** ekranına girip **[Yasal &amp; Kurumsal Kısıtlar]** sekmesini açın ve **[Yeni Kisit]** butonuna tıklayın.
+2. **Kisit Duzenleyici** panelinde Kural Adını yazın; Kural Tipini (örneğin *Hafta Sonu Nöbet Dengesi / Limiti*), Kural Sınıfını (**Sert** veya **Yumusak**), Hizmet Sınıfını (örneğin *Radyoloji Teknisyeni*), varsa Birimi ve sayısal Değeri girin.
+3. **[Aktif]** kutusunun işaretli olduğunu doğrulayıp **[Kısıt Ekle]** butonuna basın.
+4. Mevcut bir kuralın sınırını değiştirmek için tablodan satırı seçip **[Kısıtı Güncelle]**, yürürlükten kaldırmak için **[Kisiti Sil]** butonunu kullanın.
+
+## Sıkça Sorulan Sorular (SSS) {#faq}
 
 :::faq
-### Hizmet sınıfı kuralı genel temel ayardan farklı olursa ne olur? ▾
-RADPYS Kural Piramidi uyarınca Hizmet Sınıfı kuralı Genel Temel Ayardan daha önceliklidir (Öncelik 3 > Öncelik 4). Dolayısıyla o hizmet sınıfındaki personele özel kural uygulanır, genel ayar ezilir.
+### Hizmet sınıfı kuralı genel temel ayardan farklı olursa sistem hangisini uygular?
+Kural Piramidi uyarınca Birim + Hizmet Sınıfı ve tek başına Hizmet Sınıfı kuralları Genel Temel Ayarlardan daha yüksek önceliklidir. Bu nedenle ilgili gruptaki personele bu sekmedeki özel sınır uygulanır.
 
-### Kural sınıfında "Yasal" ile "Kurumsal" arasındaki fark nedir? ▾
-"Yasal" kurallar sert kısıttır (hard constraint); çözümsüzlük çıksa dahi nöbet dağıtım motoru bu kuralı kesinlikle delemez. "Kurumsal" kurallar ise yüksek ceza puanlı esnek kısıtlardır; çözümsüzlük anında sistem ceza puanını göze alarak kuralı asgari ölçüde esnetebilir.
+### "Sert" ve "Yumusak" kural sınıfları arasındaki fark nedir?
+<strong>Sert</strong> kurallar çözümsüzlük çıksa bile dağıtım motoru tarafından çiğnenemeyen katı kurallardır. <strong>Yumusak</strong> kurallar ise adalet dengesini hedefler; zorunlu personel yetersizliği halinde motor ceza puanını göze alarak bu sınırı asgari düzeyde esnetebilir.
+
+### Mevcut bir kuralı silmeden geçici olarak nasıl devre dışı bırakabilirim?
+Tablodan ilgili kuralı seçip <strong>[Aktif]</strong> kutusundaki işareti kaldırarak <strong>[Kısıtı Güncelle]</strong> butonuna basmanız yeterlidir; kural tanımı korunur ancak planlamada uygulanmaz.
 :::

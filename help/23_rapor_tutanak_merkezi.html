@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>23. Merkezi Rapor ve Matbu Tutanak Çıktı Merkezi — RADPYS v4 Kullanım Kılavuzu</title>
+  <title>23. Raporlama ve Tutanak Yönetim Merkezi — RADPYS v4 Kullanım Kılavuzu</title>
   <link rel="stylesheet" href="assets/tailwind.min.css">
   <script src="assets/mermaid.min.js"></script>
   <style>
@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.27</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.29</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -74,540 +74,310 @@
 
 <section id="overview" class="mb-10 border-b border-slate-200 dark:border-slate-800 pb-6">
   <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
-    <div class="flex flex-wrap items-center gap-2.5"></div>
+    <div class="flex flex-wrap items-center gap-2.5"><span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60">Kilitli PDF & EBYS Mühürlü Arşiv</span></div>
     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Tahmini Okuma: 6 Dakika</span>
   </div>
   <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3">
-    23. Raporlama ve Tutanak Yönetim Merkezi
+    Raporlama ve Tutanak Yönetim Merkezi
   </h1>
   <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
-    Çoklu koruyucu ekipman ve cihazlar için tek resmi tutanakta heyet kararı oluşturun; iki aşamalı yasal tasfiye döngüsüyle EBYS kapatması yapıp SHA-256 ile mühürleyin. Kurumsal 26 resmi mevzuat raporunu "Doğru İşe Tek Format" standardıyla (tablolar için Excel, resmi tutanaklar için kilitli PDF, yönetmelik taslakları için Word) tek tıkla üretin.
+    SKS 6.1 ve NDK denetimleri için 27 aktif resmi mevzuat raporunu ve 25 hazır veri kaynağını tek merkezde toplar; dinamik dikey/yatay A4 PDF ve Excel (.xlsx) çıktıları üretir, Şablon Tasarım Stüdyosu ve kurumsal çift logo ayarlarını yönetir, 11 modül kapsamlı Evrensel Tutanak Sihirbazı ile kilitli PDF tutanaklar oluşturup Resmi Tutanaklar Kasası (v1 taslak → v2 imzalı) ile 2 aşamalı SHA-256 mühürlü HEK tasfiyesini güvence altına alır.
   </p>
-  
+  <div class="mt-4 text-xs sm:text-sm text-slate-500 dark:text-slate-400"><strong>Yasal Güvence:</strong> Tutanak Sihirbazı tahrifatı önlemek için yalnızca değiştirilemez kilitli PDF çıktı verir; kurum adı veya logo tanımlanmamışsa sahte kurum adı yazılmaz, dürüst kurumsal varsayılan olarak RADPYS anteti kullanılır.</div>
   
   
 </section>
 
-<section id="hizli-recete" class="mb-12">
+<section id="quick-recipe" class="mb-12">
   <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
     <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
-    <span>Vizyonder Hızlı Karar Reçetesi & Önemli Metrikler</span>
+    <span>Kısa Reçete: Resmi Rapor Çıktısı veya Çoklu Tutanak Üretme</span>
   </h2>
   <div class="p-6 sm:p-7 rounded-3xl bg-cyan-50/70 dark:bg-cyan-950/30 border border-cyan-200/90 dark:border-cyan-800/60 shadow-md">
   <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
     <div class="flex items-center gap-2.5 text-cyan-900 dark:text-cyan-200 font-bold text-sm sm:text-base">
       <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-      <span>Vizyonder Hızlı Karar Reçetesi & Önemli Metrikler</span>
+      <span>Kısa Reçete: Resmi Rapor Çıktısı veya Çoklu Tutanak Üretme</span>
     </div>
     <span class="text-xs font-mono px-2.5 py-1 rounded bg-cyan-200/80 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-300 font-bold">20 SANİYELİK AKIŞ</span>
   </div>
   
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5 text-xs sm:text-sm">
     <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
-      <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider text-[11px] block">İstenen Sonuç:</span>
-      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Birden fazla ekipman veya cihaz için tek resmi tutanak almak, iki aşamalı mühürleme ile yasal HEK tasfiye sürecini tamamlamak ve kurumsal 26 resmi sistem raporunu antetli üretmek.</p>
+      <span class="font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider text-[11px] block">1. İstenen Sonuç</span>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Seçili dönem/birim kriterlerine göre denetime hazır A4 PDF veya Excel (.xlsx) raporu almak ya da birden çok cihaz/RKE için tek resmi PDF heyet tutanağı üretmek.</p>
     </div>
     <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
-      <span class="font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider text-[11px] block">Yapılacak İşlem:</span>
-      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Envanter tablosunda kayıtları seçip <strong>[HEK Tutanağı]</strong> butonuna basın; gerekçeleri düzenleyip <strong>[Tutanak Oluştur / Yazdır]</strong> ile tek resmi PDF üretin; imzalar sonrası EBYS kapatma formundan üst yazıyı ekleyin.</p>
+      <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider text-[11px] block">2. Yapılacak İşlem</span>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Rapor Merkezinde listeden şablonu seçip varsa filtreleri belirleyerek <strong>[PDF İndir]</strong> veya <strong>[Excel (.xlsx)]</strong> butonuna basın; çoklu varlık tutanağı için <strong>[Tutanak Sihirbazı]</strong> üzerinden <strong>[Sistemden Kayıt Ekle...]</strong> ve <strong>[Tutanak Oluştur / Yazdır]</strong> adımlarını uygulayın.</p>
     </div>
     <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
-      <span class="font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider text-[11px] block">Sistem Etkisi:</span>
-      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">İlk aşamada ekipmanlar silinmez, "Heyet İmzasında" durumuna alınır; EBYS kapatması yapıldığında SHA-256 dijital mührüyle nihai birleşik tasfiye PDF'i üretilir ve kayıtlar kalıcı kilitlenir.</p>
+      <span class="font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider text-[11px] block">3. Sistem Etkisi</span>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">6 sütundan geniş tablolarda PDF otomatik Yatay A4 döner; HEK başlığı taşıyan tutanaklarda önce ön inceleme dosyası açılır, EBYS kapatması yapılınca SHA-256 dijital mührüyle kalıcı arşivlenir.</p>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-cyan-200/60 dark:border-cyan-800/40">
+    <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Rapor &amp; Veri Kataloğu</span>
+      <span class="text-sm sm:text-base font-black text-indigo-600 dark:text-indigo-400 font-mono">27 Aktif Rapor / 25 Kaynak</span>
+    </div>
+    <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Çıktı Standardı</span>
+      <span class="text-sm sm:text-base font-black text-rose-600 dark:text-rose-400 font-mono">Excel + Kilitli PDF (RKP: Word)</span>
+    </div>
+    <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Geniş Tablo Uyumu</span>
+      <span class="text-sm sm:text-base font-black text-cyan-600 dark:text-cyan-400 font-mono">> 6 Sütunda Yatay A4</span>
+    </div>
+    <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Belge Yaşam Döngüsü</span>
+      <span class="text-sm sm:text-base font-black text-emerald-600 dark:text-emerald-400 font-mono">v1 Taslak → v2 İmzalı & SHA-256</span>
     </div>
   </div>
 </div>
 </section>
 
-<section id="5n1k-tablosu" class="mb-12">
+<section id="5w1h" class="mb-12">
   <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
     <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
-    <span>5N1K Kural ve Ayar Çözümleme Tablosu</span>
+    <span>5N1K Kural ve Arayüz Çözümleme Tablosu</span>
   </h2>
-  <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
- <span class="text-xs font-mono text-slate-400">RAPOR-TUTANAK-RULE-MATRIX</span>
- </div>
+  <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3"><em>Katalog kapsamı, format disiplini, otomatik sayfa yönlendirme, Tasarım Stüdyosu, Evrensel Tutanak Sihirbazı, 2 aşamalı HEK ve Resmi Tutanaklar Kasası kuralları.</em></p>
 
 <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 custom-scrollbar shadow-sm my-4">
   <table class="w-full text-left border-collapse text-xs sm:text-sm">
     <thead>
       <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/80 uppercase text-xs font-bold tracking-wider text-slate-500 dark:text-slate-400">
-        <th class="py-3.5 px-4">NE (İşlem / Alan)</th>
-        <th class="py-3.5 px-4">NEDEN (Gerekçe)</th>
-        <th class="py-3.5 px-4">NEREDE (Arayüz Yolu)</th>
-        <th class="py-3.5 px-4">NASIL (Yöntem)</th>
-        <th class="py-3.5 px-4">NE ZAMAN (Zamanlama)</th>
-        <th class="py-3.5 px-4">KİM (Rol / Yetki)</th>
-        <th class="py-3.5 px-4">DURUM (Sistem Tepkisi)</th>
+        <th class="py-3.5 px-4">NE? (Bileşen / Kontrol)</th>
+        <th class="py-3.5 px-4">NEDEN? (Amacı)</th>
+        <th class="py-3.5 px-4">NASIL? (Çalışma Mantığı)</th>
+        <th class="py-3.5 px-4">NE ZAMAN? (Tetiklenme)</th>
+        <th class="py-3.5 px-4">KİM? (Yetkili Rol)</th>
       </tr>
     </thead>
     <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Resmi Rapor Üretimi</td>
-        <td class="py-3.5 px-4">SKS 6.1 ve NDK denetimleri veya kurum içi analizler için resmi belge almak</td>
-        <td class="py-3.5 px-4">Rapor Merkezi → Raporlar Sekmesi</td>
-        <td class="py-3.5 px-4">Rapor Seç → Filtrele → "Rapor Oluştur ve Aç"</td>
-        <td class="py-3.5 px-4">Periyodik denetim veya yönetim taleplerinde</td>
-        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 font-semibold text-[11px]">Raporlar Okuma Yetkilisi</span></td>
-        <td class="py-3.5 px-4">Resmi PDF veya analitik Excel formatında diskte üretilir ve sistemde açılır</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Rapor Kataloğu ve Akıllı Kriter Gizleme</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Tümü / Raporlar / Tutanaklar Süzgeci</span></td>
+        <td class="py-3.5 px-4">27 aktif mevzuat raporunu ve kurum şablonlarını kriter karmaşası olmadan sunmak.</td>
+        <td class="py-3.5 px-4">Seçilen raporun parametresi yoksa filtre kutusu otomatik gizlenir; sağ panelde ilk satırlarla canlı sütun önizlemesi ve sayfa yönü önerisi gösterilir.</td>
+        <td class="py-3.5 px-4">Rapor seçildiğinde veya kategori değiştirildiğinde.</td>
+        <td class="py-3.5 px-4">Yetkili Kullanıcı / RKS</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Şablon ve Marka Ayarı</td>
-        <td class="py-3.5 px-4">Kurum başlıklarını ve resmi çift logoyu antetli belgelere giydirmek</td>
-        <td class="py-3.5 px-4">Rapor Merkezi → Şablon Ayarları</td>
-        <td class="py-3.5 px-4">Logo Seç → Başlık Gir → Antetli Şablonu Güncelle</td>
-        <td class="py-3.5 px-4">Kurum logosu veya başlığı değiştiğinde</td>
-        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300 font-semibold text-[11px]">Sistem Yöneticisi / Admin</span></td>
-        <td class="py-3.5 px-4">Tüm kurumsal antetli raporlara otomatik yansır</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Format Disiplini ve Dinamik Sayfa Yönlendirme</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400"><strong>[PDF İndir]</strong> &amp; <strong>[Excel (.xlsx)]</strong></span></td>
+        <td class="py-3.5 px-4">Doğru işe tek format uygulamak ve geniş tabloların sayfa dışına taşmasını önlemek.</td>
+        <td class="py-3.5 px-4">Rapor Merkezinde yalnızca PDF ve Excel aktiftir (Word yalnızca kurumca düzenlenen NDK RKP taslağında korunur); PDF dökümünde 7 ve üstü sütunda otomatik Yatay A4 seçilir.</td>
+        <td class="py-3.5 px-4">Dışa aktarma butonuna basıldığında.</td>
+        <td class="py-3.5 px-4">Yetkili Kullanıcı / Yönetici</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Tutanak ve Heyet Kararı Oluşturma</td>
-        <td class="py-3.5 px-4">Çoklu kayıt (örn: 20 RKE veya cihaz) için tek bir resmi evrakta gerekçe, döküm tablosu, karar ve imza heyeti oluşturmak</td>
-        <td class="py-3.5 px-4">Sol Menü → [Tutanak Sihirbazı] VEYA Modül Araç Çubuğu → [HEK Tutanağı] / [Tutanak Oluştur]</td>
-        <td class="py-3.5 px-4">Kayıtları Seç → Sihirbazı Aç → Giriş/Sonuç Metinlerini Düzenle → [Tutanak Oluştur / Yazdır] (Resmi PDF)</td>
-        <td class="py-3.5 px-4">HEK, devir, imha veya komisyon kararı alınacağı an</td>
-        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950 text-indigo-800 dark:text-indigo-300 font-semibold text-[11px]">Komisyon Başkanı / Birim Yetkilisi</span></td>
-        <td class="py-3.5 px-4">Tek resmi kilitli PDF üretilir; keyfi değişiklikleri önlemek için Word çıktısı tamamen kaldırılmıştır</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Rapor Tasarım Stüdyosu ve Çift Antet/Logo</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400"><strong>[Yeni Tasarla]</strong> &amp; <strong>[Özelleştir]</strong></span></td>
+        <td class="py-3.5 px-4">25 hazır veri kaynağından kuruma özel rapor veya tutanak şablonu üretmek.</td>
+        <td class="py-3.5 px-4">5 sekmeli stüdyoda sütun sırası, metin gövdesi, filtre ve imza blokları düzenlenir; özel/genel kurum başlıkları ve çift veya tek logo antete otomatik uygulanır.</td>
+        <td class="py-3.5 px-4">Yeni kurumsal rapor veya antet gerektiğinde.</td>
+        <td class="py-3.5 px-4">Sistem Yöneticisi (Admin)</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">İki Aşamalı HEK & Kalıcı Mühürleme</td>
-        <td class="py-3.5 px-4">Heyet ıslak imzası ve resmi Ayniyat EBYS yazısı olmadan kayıtların erken kayıttan düşmesini engellemek</td>
-        <td class="py-3.5 px-4">Cihaz / RKE Yönetimi → [HEK Tutanağı] ve HEK Yönetimi → [EBYS ile Kapat]</td>
-        <td class="py-3.5 px-4">1. Aşamada Heyet Ön İnceleme Tutanağı üretilir; 2. Aşamada imzalı taranmış üst yazı eklenip SHA-256 ile mühürlenir</td>
-        <td class="py-3.5 px-4">Ekipman heyete sevk edildiğinde ve Ayniyat devri bittiğinde</td>
-        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-rose-100 dark:bg-rose-950 text-rose-800 dark:text-rose-300 font-semibold text-[11px]">Muayene Heyeti / Birim Amiri / Taşınır Yetkilisi</span></td>
-        <td class="py-3.5 px-4">Ekipmanlar önce 'Heyet İmzasında' kalır; kapatılınca birleşik mühürlü PDF oluşur ve kalıcı kilitlenir</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>11 Modüllü Evrensel Tutanak Sihirbazı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400"><strong>[Sistemden Kayıt Ekle...]</strong> &amp; Akıllı Heyet</span></td>
+        <td class="py-3.5 px-4">Tekil veya 20+ cihaz/RKE kaydını tek komisyon tutanağında birleştirmek.</td>
+        <td class="py-3.5 px-4">Modül kapsamına göre otomatik yer tutucu etiket butonları ve unvan öncelikli heyet önerilir; Salt Metin düzeninde tablo gizlenir ve kilitli PDF üretilir.</td>
+        <td class="py-3.5 px-4">Devir, hasar, nöbet veya HEK kararı yazılırken.</td>
+        <td class="py-3.5 px-4">Komisyon Başkanı / Birim Yetkilisi</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Şablon Tasarım ve Klonlama Stüdyosu</td>
-        <td class="py-3.5 px-4">Kurumun kendine özgü rapor, çizelge veya tutanak formatlarını sıfırdan tasarlamak veya mevcutları uyarlamak</td>
-        <td class="py-3.5 px-4">Rapor Merkezi → [Yeni Tasarla] VEYA [Özelleştir]</td>
-        <td class="py-3.5 px-4">Veri Kaynağı Seç → Kolonları ve Başlıkları Belirle → Sayfa Yönü / Format Ata → Kaydet</td>
-        <td class="py-3.5 px-4">Yeni bir resmi form veya denetim şablonu gerektiğinde</td>
-        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300 font-semibold text-[11px]">Sistem Yöneticisi / Admin</span></td>
-        <td class="py-3.5 px-4">Şablon kataloğuna anında eklenir; ilgili modül dışa aktar menülerinde canlı görünür</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>2 Aşamalı HEK Tasfiye ve SHA-256 Mühürleme</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Ön İnceleme Dosyası → EBYS Kapatma</span></td>
+        <td class="py-3.5 px-4">Heyet ıslak imzası ve Taşınır EBYS üst yazısı olmadan kayıttan düşmeyi önlemek.</td>
+        <td class="py-3.5 px-4">İlk PDF alımında ekipmanlar kilitli ön inceleme dosyasına alınır; ikinci aşamada Ayniyat EBYS sayısı ve taranmış üst yazı yüklenerek SHA-256 mühürlü birleşik PDF ile dondurulur.</td>
+        <td class="py-3.5 px-4">HEK tutanağı kesildiğinde ve EBYS gelince.</td>
+        <td class="py-3.5 px-4">Komisyon / Taşınır Yetkilisi</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Tıklanabilir Değişken Butonları</td>
-        <td class="py-3.5 px-4">Tutanak metinlerine tarih, kurum adı, departman veya kayıt sayısını tek tıkla hatasız eklemek</td>
-        <td class="py-3.5 px-4">Tutanak Sihirbazı / Şablon Tasarım → Metin Kutuları Altındaki [+ {{ ... }}] Butonları</td>
-        <td class="py-3.5 px-4">Metin kutusunda imleci yerleştir → İlgili değişken butonuna tıkla</td>
-        <td class="py-3.5 px-4">Tutanak gerekçesi veya karar metni yazılırken</td>
-        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 font-semibold text-[11px]">Tüm Kullanıcılar</span></td>
-        <td class="py-3.5 px-4">İmlecin bulunduğu yere etiket eklenir; tutanak çıktısında gerçek değerlerle çözümlenir</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Resmi Tutanaklar Kasası (v1 Taslak → v2 İmzalı)</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400"><strong>[İmzalı Nüshayı Yükle]</strong> &amp; <strong>[Resmi Belgeyi Aç]</strong></span></td>
+        <td class="py-3.5 px-4">Tüm modüllerin tutanaklarını numaralı takip etmek ve taslağı ezmeden arşivlemek.</td>
+        <td class="py-3.5 px-4">Üretilen her tutanağa ardışık numara verilir; imzalı tarama yüklendiğinde taslak belge sessizce arşive alınır ve v2 imzalı nüsha AES-256 kasada resmi belge olur.</td>
+        <td class="py-3.5 px-4">Islak imzalı tutanak taranıp sisteme girilince.</td>
+        <td class="py-3.5 px-4">Birim Amiri / RKS / İdare</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Akıllı Kriter Çerçevesi Yönetimi</td>
-        <td class="py-3.5 px-4">Parametresi veya filtre kriteri bulunmayan raporlarda ekranda içi boş bir kutu kalmasını önlemek</td>
-        <td class="py-3.5 px-4">Rapor Merkezi Kokpiti → [Rapor Kriterleri ve Filtreleri] Kutusu</td>
-        <td class="py-3.5 px-4">Sistem tarafından otomatik yönetilir (Kriter varsa açılır, yoksa gizlenir)</td>
-        <td class="py-3.5 px-4">Listeden bir rapor veya tutanak seçildiği an</td>
-        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-[11px]">Sistem Otomasyonu</span></td>
-        <td class="py-3.5 px-4">Gereksiz boş kutu ekrandan kaybolur; tablo ve butonlar ferah bir şekilde yukarı kayar</td>
-      </tr>
-      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">Çoklu Sütun Sayfa Yönlendirme Adaptasyonu</td>
-        <td class="py-3.5 px-4">Çok sütunlu geniş tablolarda metinlerin sıkışmasını veya sayfa kenarından taşmasını önlemek</td>
-        <td class="py-3.5 px-4">PDF Çıktı Motoru (Otomatik Sistem Kuralı)</td>
-        <td class="py-3.5 px-4">Sütun sayısı ≤ 6 ise Dikey A4, > 6 ise otomatik Yatay A4 olarak dökülür</td>
-        <td class="py-3.5 px-4">Herhangi bir tablonun veya raporun PDF dökümü alındığında</td>
-        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-[11px]">Sistem Otomasyonu</span></td>
-        <td class="py-3.5 px-4">Geniş tablolarda yatay yönlendirme sayesinde tüm sütunlar kusursuz okunur</td>
-      </tr>
-      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white">NDK RKP Başvuru Dosyası</td>
-        <td class="py-3.5 px-4">NDK RSGD-KLV-014 ve KLV-014-EK mevzuatına uygun resmi başvuru dosyasını üretmek</td>
-        <td class="py-3.5 px-4">Kalite / Cihaz Modülü → NDK RKP Sihirbazı</td>
-        <td class="py-3.5 px-4">8 Adımlı Sihirbaz → Verileri Doğrula → "Resmi Word / PDF İndir"</td>
-        <td class="py-3.5 px-4">İlk lisans başvurusu, lisans vize yenileme veya denetim süreçlerinde</td>
-        <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-semibold text-[11px]">RKS / Kurum Amiri</span></td>
-        <td class="py-3.5 px-4">Resmi yatay mizanpajlı Word ve PDF üretilir; KVKK Evrak Kasasına tek tıkla şifrelenir</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Modül Bazlı Klasörleme ve Standart Dosya Adı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400"><strong>[Klasörü Aç]</strong> &amp; Otomatik Adlandırma</span></td>
+        <td class="py-3.5 px-4">Üretilen PDF ve Excel dosyalarının tek klasöre yığılıp kaybolmasını engellemek.</td>
+        <td class="py-3.5 px-4">Çıktılar ilgili modül alt klasörüne Türkçe karakter arındırmalı tarih-saat damgasıyla kaydedilir ve işlem sonunda varsayılan görüntüleyicide otomatik açılır.</td>
+        <td class="py-3.5 px-4">Rapor veya tutanak çıktısı kaydedildiğinde.</td>
+        <td class="py-3.5 px-4">Sistem Otomasyonu / Kullanıcı</td>
       </tr>
     </tbody>
   </table>
 </div>
 </section>
 
-<section id="mit-avcilari" class="mb-12">
+<section id="myth-buster" class="mb-12">
   <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
     <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
-    <span>Mit Avcısı: Rapor ve Tutanaklarda Yanlış Bilinen Doğrular</span>
+    <span>Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)</span>
   </h2>
-  <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
- <span class="text-xs font-mono text-slate-400">RAPOR-MYTH-BUSTER</span>
- </div>
-
- <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
- <div class="p-4 rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/40 dark:bg-rose-950/20">
- <div class="flex items-center gap-2 text-rose-700 dark:text-rose-400 font-bold text-sm mb-1.5">
- <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
- YANLIŞ (Mit):
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
- "Tutanak Sihirbazı'nda oluşturduğum resmi tutanağı Word (.docx) olarak indirip üzerinde istediğim değişiklikleri yapabilirim."
- </p>
- <div class="mt-3 pt-3 border-t border-rose-200/60 dark:border-rose-900/40 flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm">
- <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
- DOĞRU (Mevzuat Standardı):
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-1">
- Tutanaklar hukuki bağlayıcılığı olan heyet kararlarıdır. Keyfi tahrifat ve yetkisiz değişiklikleri önlemek amacıyla Word indirme seçeneği sistemden tamamen silinmiş olup tek resmi standart kilitli PDF çıktısıdır.
- </p>
- </div>
- <div class="p-4 rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/40 dark:bg-rose-950/20">
- <div class="flex items-center gap-2 text-rose-700 dark:text-rose-400 font-bold text-sm mb-1.5">
- <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
- YANLIŞ (Mit):
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
- "HEK tutanağı aldığım an ekipmanlar doğrudan envanterden silinir ve hurdaya ayrılmış olur."
- </p>
- <div class="mt-3 pt-3 border-t border-rose-200/60 dark:border-rose-900/40 flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm">
- <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
- DOĞRU (Mevzuat Standardı):
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-1">
- İki Aşamalı Yasal Tasfiye Kuralı gereğince ilk aşamada ekipmanlar silinmez, "Heyet İmzasında" durumuna alınır. Heyetin ıslak imzalı tutanağı ve Taşınır/EBYS resmi yazısı taranıp yüklenmeden hiçbir ekipman kayıttan düşülmez.
- </p>
- </div>
- <div class="p-4 rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/40 dark:bg-rose-950/20">
- <div class="flex items-center gap-2 text-rose-700 dark:text-rose-400 font-bold text-sm mb-1.5">
- <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
- YANLIŞ (Mit):
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
- "Kurum ayarlarında çift logo tanımlı değilse Word ve PDF raporları hata verip kilitlenir."
- </p>
- <div class="mt-3 pt-3 border-t border-rose-200/60 dark:border-rose-900/40 flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm">
- <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
- DOĞRU (Mevzuat Standardı):
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-1">
- Rapor motoru kurumda tek logo yüklüyse sadece mevcut logoyu basar; hiç logo tanımlanmamışsa şablon logoları atlayarak dürüst kurumsal varsayılan olan RADPYS antetini kullanır ve hatasız döküm üretir.
- </p>
- </div>
- <div class="p-4 rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/40 dark:bg-rose-950/20">
- <div class="flex items-center gap-2 text-rose-700 dark:text-rose-400 font-bold text-sm mb-1.5">
- <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
- YANLIŞ (Mit):
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
- "Resmi antetli Word ve PDF raporlarını Web Portal üzerinden de oluşturabilirim."
- </p>
- <div class="mt-3 pt-3 border-t border-rose-200/60 dark:border-rose-900/40 flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm">
- <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
- DOĞRU (Mevzuat Standardı):
- </div>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-1">
- Antetli matbu Word (.docx), PDF ve Excel rapor merkezi yalnızca Masaüstü İstemcisi üzerinde çalışır. Web portalda ise personelin bireysel başvuru ekranları ve etkileşimli canlı analiz panoları yer alır.
- </p>
- </div>
- </div>
+  <div class="p-6 rounded-3xl bg-amber-50/70 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/50 shadow-sm">
+  <div class="flex items-center gap-2.5 text-amber-800 dark:text-amber-300 font-bold text-sm sm:text-base mb-3">
+    <svg class="w-5 h-5 text-amber-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+    <span>Tutanaklar Word Olarak Değiştirilebilir mi ve HEK Tutanağı Ekipmanı Anında Siler mi?</span>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-3 text-sm">
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-rose-200 dark:border-rose-900/50 text-rose-900 dark:text-rose-200 leading-relaxed">
+      <span class="font-bold block mb-1">Yanlış Algı</span>
+      <div><em>"Tutanak Sihirbazında resmi komisyon tutanağını Word formatında indirip sonradan metnini düzeltebilirim; ayrıca HEK tutanağı oluşturduğum an cihaz veya önlük hemen envanterden silinir."</em></div>
+    </div>
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-emerald-200 dark:border-emerald-800/60 text-emerald-900 dark:text-emerald-200 leading-relaxed">
+      <span class="font-bold block mb-1">Gerçek Sistem Mantığı</span>
+      <div><strong>İkisi de doğru değildir.</strong> Hukuki bağlayıcılığı olan heyet kararlarında tahrifatı önlemek için Rapor Merkezinde ve Tutanak Sihirbazında Word çıktısı tamamen kaldırılmış olup tek resmi çıktı kilitli PDF belgesidir (Word çıktısı yalnızca kurum içi düzenleme gerektiren NDK RKP kılavuz taslağında bulunur). Ayrıca HEK tutanağı üretildiğinde ilk aşamada varlık silinmez, yalnızca imza koruma kilidine alınır; Taşınır EBYS evrakıyla kapatılıp SHA-256 mührü basılmadan kalıcı tasfiye tamamlanmaz.</div>
+    </div>
+  </div>
+</div>
 </section>
 
-<section id="surec-akisi" class="mb-12">
+<section id="workflow" class="mb-12">
   <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
     <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
-    <span>Raporlama ve Tutanak Yaşam Döngüsü Süreç Akışı</span>
+    <span>Süreç Akış Şeması</span>
   </h2>
-  <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
- <span class="text-xs font-mono text-slate-400">RAPOR-TUTANAK-WORKFLOW</span>
- </div>
+  <div class="p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-x-auto my-4">
+  <div class="mermaid text-sm">
+flowchart TB
+ subgraph S1 ["1. AŞAMA: RAPOR VE TASARIM SEÇİMİ"]
+  direction LR
+  A(["Rapor Merkezi veya Tasarım Stüdyosu"]) --> B["27 Aktif Rapor / 25 Veri Kaynağı"]
+  B --> C{"Kriter Gerekiyor mu?"}
+  C -->|Evet| D["Dinamik Filtre &amp; Canlı Önizleme"]
+  C -->|Hayır| E["Filtre Kutusu Gizlenir"]
+ end
 
- <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm overflow-x-auto">
+ subgraph S2 ["2. AŞAMA: TUTANAK VE FORMAT ÜRETİMİ"]
+  direction LR
+  F(["Tutanak Sihirbazı: 11 Modül"]) --> G["Değişken Butonları + Kayıt/Heyet"]
+  G --> H{"Çıktı Türü?"}
+  H -->|Tablo Cetveli| I["Excel Çalışma Kitabı (.xlsx)"]
+  H -->|Resmi Belge / >6 Sütun| J["Dikey / Yatay Kilitli PDF"]
+ end
 
-<div class="mermaid text-sm">
-graph TD
- classDef desktop fill:#eff6ff,stroke:#2563eb,stroke-width:1.5px,color:#1e40af;
- classDef decision fill:#fffbeb,stroke:#d97706,stroke-width:1.5px,color:#b45309;
- classDef vault fill:#fdf4ff,stroke:#a855f7,stroke-width:1.5px,color:#7e22ce;
- classDef hek fill:#fff1f2,stroke:#e11d48,stroke-width:1.5px,color:#9f1239;
+ subgraph S3 ["3. AŞAMA: KASADA SÜRÜMLEME VE HEK MÜHRÜ"]
+  direction LR
+  K["v1 Taslak → İmzalı Tarama → v2 Arşiv"]
+  L["HEK Aşama 2: EBYS + SHA-256 Tasfiye PDF"]
+  M(["Modül Alt Klasörüne Kayıt &amp; Açma"])
+ end
 
- A["Çoklu Ekipman / Cihaz Seçimi<br/>(RKE veya Cihaz Tablosu)"]:::desktop --> B["Tutanak Sihirbazı<br/>(Otomatik Akıllı Heyet Atama)"]:::desktop
- B --> C["Gerekçe & Karar Metinleri<br/>(Dinamik Değişken Butonları)"]:::desktop
- C --> D["1. Aşama: Heyet Ön İnceleme Tutanağı<br/>(Tek Resmi Antetli PDF Üretimi)"]:::hek
- D --> E["Kayıtların Kilitlenmesi<br/>('Heyet İmzasında' Durumu)"]:::hek
- E --> F["Komisyon Islak / E-İmza Süreci<br/>& Taşınır / Ayniyat Sevk Yazısı"]:::hek
- F --> G["2. Aşama: EBYS Kapatma Formu<br/>(Taranmış İmzalı Üst Yazı Ekleme)"]:::hek
- G --> H["SHA-256 Dijital Mührü<br/>& Birleşik Nihai Tasfiye PDF'i"]:::vault
- H --> I["Kayıtların Kalıcı Arşivlenmesi<br/>& Evrak Kasasına Bağlantı"]:::vault
-
- J["Rapor Merkezi Kokpiti<br/>(26 Resmi Mevzuat Raporu)"]:::desktop --> K["Dinamik Filtre Formu<br/>(Departman, Dönem, Tarih)"]:::desktop
- K --> L{"Çıktı Formatı Seçimi"}:::decision
- L -- "PDF" --> M["Akıllı Sayfa Yönlendirme<br/>(6 ve Altı Sütun: Dikey / 7 ve Üstü: Yatay)"]:::desktop
- L -- "Excel" --> N["Veri Cetveli (.xlsx)<br/>(Filtrelenebilir Tablo)"]:::desktop
- L -- "Word" --> O["Antetli Resmi Yazı (.docx)<br/>(docxtpl Şablon Motoru)"]:::desktop
+ D & E ==> H
+ J ==> K & L
+ I & K & L ==> M
+  </div>
 </div>
 
- </div>
+<ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
+  <li><strong>Seçim ve Tasarım:</strong> Yetkili kullanıcı 27 aktif sistem raporu veya Admin tarafından Tasarım Stüdyosunda türetilen özel şablonlardan birini seçer; kriter yoksa form alanı gizlenir.</li>
+  <li><strong>Format ve Tutanak Üretimi:</strong> Tablo verileri Excel, resmi formlar ve 11 modül kapsamlı tutanaklar kilitli PDF olarak (7 ve üstü sütunda otomatik Yatay A4) oluşturulur.</li>
+  <li><strong>Kasa ve HEK Mühürleme:</strong> Tutanaklar önce taslak (v1) sürümüyle kasaya girip ıslak imzalı nüshayla v2 olur; HEK dosyaları ise EBYS üst yazısıyla SHA-256 mühürlü nihai tasfiye PDF olarak kilitlenir.</li>
+</ol>
 </section>
 
-<section id="rapor-merkezi" class="mb-12">
+<section id="screenshots" class="mb-12">
   <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
     <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
-    <span>Kurumsal Rapor Merkezi: Resmi Mevzuat Kataloğu & Üretim Motoru</span>
+    <span>Arayüz Ekran Görünümleri</span>
   </h2>
-  <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
- <span class="text-xs font-mono text-slate-400">REPORT-CATALOG-SSOT</span>
- </div>
-
- <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
- Rapor Merkezi, sistem genelindeki tüm klinik, dozimetre, nöbet, personel ve kalite verilerini Sağlık Bakanlığı SKS 6.1 ve NDK standartlarında resmi antetli dökümlere dönüştürür.
- </p>
- <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
- <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
- <span class="font-bold text-cyan-600 dark:text-cyan-400 text-sm block mb-1">Dozimetre & Sağlık Takip Raporları</span>
- <ul class="space-y-1.5 text-slate-600 dark:text-slate-300">
- <li>• <strong>SKS SRG11.02 Kümülatif Doz Raporu:</strong> Yıllık doz sınırları, %80 eşik yaklaşım uyarıları ve denetim dökümü.</li>
- <li>• <strong>SKS SRG11.04 Gebe Personel Doz Raporu:</strong> Hamilelik süresince kümülatif doz ve çalışma alanı uyum cetveli.</li>
- <li>• <strong>DOZ-06 Resmi NDK Doz Aşımı Formu:</strong> İnceleme düzeyini aşan vakalarda NDK'ya sunulan resmi araştırma raporu.</li>
- <li>• <strong>Periyodik Sağlık Muayenesi Uyum Raporu:</strong> 6331 sayılı İSG Kanunu'na göre geciken ve yaklaşan muayeneler.</li>
- </ul>
- </div>
- <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
- <span class="font-bold text-blue-600 dark:text-blue-400 text-sm block mb-1">Nöbet, İzin & SGK Fiili Hizmet Raporları</span>
- <ul class="space-y-1.5 text-slate-600 dark:text-slate-300">
- <li>• <strong>Fiili Hizmet ve Şua Hakediş Raporu (FHZ):</strong> SGK yıpranma payı ve radyasyonlu alanda net çalışma cetveli.</li>
- <li>• <strong>Nöbet Fazla Mesai Bildirim Cetveli:</strong> Mutemetlik birimine iletilen resmi normal ve bayram fazla mesai icmali.</li>
- <li>• <strong>Personel İzin Bakiye Cetveli:</strong> Yıllık izin, şua izni ve mazeret izinlerinin güncel devir ve hakediş özeti.</li>
- <li>• <strong>Nöbet Hakediş ve Çalışma Raporu:</strong> Gece/hafta sonu çarpanları ile nöbet saatleri icmali.</li>
- </ul>
- </div>
- <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
- <span class="font-bold text-emerald-600 dark:text-emerald-400 text-sm block mb-1">Cihaz, RKE & Kalite Güvence Raporları</span>
- <ul class="space-y-1.5 text-slate-600 dark:text-slate-300">
- <li>• <strong>Cihaz Lisans & Kalibrasyon Raporu:</strong> NDK lisans bitiş süreleri ve periyodik kalite kontrol (QC) durumları.</li>
- <li>• <strong>SKS SRG12.01 RKE Muayene Çizelgesi:</strong> Kurşun önlük, tiroid ve gözlüklerin DIN 6857 skopi muayene sonuçları.</li>
- <li>• <strong>SKS Ortam Dozu İzleme Raporu:</strong> Denetimli/gözetimli alan radyasyon arka plan ölçümleri ve sınır aşımları.</li>
- <li>• <strong>SKS SRG13.02 Olay Bildirim Trend Analizi:</strong> İstenmeyen güvenlik olayları, kazalar ve DÖF takibi.</li>
- </ul>
- </div>
- <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
- <span class="font-bold text-purple-600 dark:text-purple-400 text-sm block mb-1">Özlük, Eğitim & Lokasyon Dağılım Raporları</span>
- <ul class="space-y-1.5 text-slate-600 dark:text-slate-300">
- <li>• <strong>Personel Listesi & Künye Raporu:</strong> Departman, unvan ve hizmet sınıfına göre filtrelenmiş aktif personel dökümü.</li>
- <li>• <strong>Eğitim & Sınav Tamamlama Raporu:</strong> Zorunlu radyasyon güvenliği eğitim ve online sınav başarı tablosu.</li>
- <li>• <strong>Personel Kimlik ve Acil İletişim Rehberi:</strong> Kurum içi iletişim ve acil durum irtibat listesi.</li>
- <li>• <strong>Fiziksel Konum Dağılım Raporu:</strong> Bina, kat ve oda bazında kurulu cihaz ve personel yerleşimi.</li>
- </ul>
- </div>
- </div>
-</section>
-
-<section id="sablon-ve-marka" class="mb-12">
-  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
-    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
-    <span>Çıktı Formatları ve "Doğru İşe Tek Format" Standardı</span>
-  </h2>
-  <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
- <span class="text-xs font-mono text-slate-400">DOCXTPL-BRANDING</span>
- </div>
-
- <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
- Sistem genelindeki çoklu ve mükerrer dışa aktarma karmaşasını önlemek amacıyla RADPYS V4.0.5.0 sürümüyle <strong>"Doğru İşe Tek Format"</strong> standardı hayata geçirilmiştir. Kullanıcının gereksiz dosya biçimi seçimiyle vakit kaybetmesi engellenmiş, her iş türü için en uygun ve resmi standart format belirlenmiştir:
- </p>
- <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
- <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
- <div class="flex items-center gap-2 font-bold text-emerald-600 mb-1">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
- 1. Operasyonel Tablolar: Excel (.xlsx)
- </div>
- <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
- Cihaz Envanteri, RKE Donanım Listesi, Dozimetre Takip Dökümleri, İzin Bakiyeleri, Nöbet Çizelgeleri, FHZ Cetvelleri ve Olay Listeleri doğrudan filtrelenebilir kurumsal Excel formatında dökülür.
- </p>
- </div>
- <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
- <div class="flex items-center gap-2 font-bold text-rose-600 mb-1">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
- 2. Kanuni Tutanaklar: Kilitli PDF (.pdf)
- </div>
- <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
- RD.F43 Doz Araştırma Formu, EK-1 Sağlık Muayene Belgesi, SKS Olay Bildirim Tutanağı, DIN 6857 RKE Muayene Tutanağı ve HEK Heyet Kararları değiştirilemez, antetli ve mühürlü PDF formatında üretilir.
- </p>
- </div>
- <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
- <div class="flex items-center gap-2 font-bold text-blue-600 mb-1">
- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
- 3. Mevzuat Kılavuz Taslağı: Word (.docx)
- </div>
- <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
- Yalnızca NDK KLV-014 Radyasyondan Korunma Programı (RKP) gibi kurumların kendi özel maddelerini ve klinik prosedürlerini serbestçe eklemesi gereken mevzuat kılavuz taslakları Word formatında sunulmaktadır.
- </p>
- </div>
- </div>
- <div class="p-5 rounded-2xl bg-slate-100/70 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm space-y-3">
- <h3 class="font-bold text-slate-900 dark:text-white">Şablon Tasarım ve Marka Ayarları:</h3>
- <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
- Rapor Merkezi'nin <span class="font-semibold text-cyan-600">Şablon Ayarları</span> sekmesi ve Şablon Tasarım pencereleri üzerinden kurum kimliği kolayca yönetilir:
- </p>
- <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
- <div class="p-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
- <strong>{{BASLIK_1}} / {{BASLIK_2}}:</strong> Kurum üst ve alt antet metinleri (Örn: T.C. Sağlık Bakanlığı / İl Sağlık Müdürlüğü).
- </div>
- <div class="p-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
- <strong>{{LOGO_1}} / {{LOGO_2}}:</strong> Resmi kurum amblemi ve hastane logosu resim dosyaları.
- </div>
- </div>
- <p class="text-slate-500 dark:text-slate-400 text-xs">
- * <strong>Sıfır Sentetik Kurum Standardı:</strong> Sistem ayarlarında henüz bir kurum adı tanımlanmamışsa şablonlarda veya PDF dökümlerinde asla sahte kamu/özel kurum adı yazılmaz; dürüst kurumsal varsayılan olarak <strong>RADPYS</strong> anteti otomatik çözümlenir.
- </p>
- </div>
-</section>
-
-<section id="tutanak-ve-tasarim-studyosu" class="mb-12">
-  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
-    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
-    <span>Evrensel Tutanak ve Komisyon Karar Sihirbazı & Şablon Tasarım Stüdyosu</span>
-  </h2>
-  <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
- <span class="text-xs font-mono text-slate-400">V4.2-TUTANAK-STUDIO</span>
- </div>
-
- <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
- RADPYS v4.2 ile birlikte sistemde yalnızca klasik satır-sütun tabloları değil; <strong>resmi metin içerikli tutanaklar (Nöbet Tutanağı, Cihaz Hasar/Arıza, Devir-Teslim, Zimmet, HEK/Hurda, Komisyon Kararı vb.)</strong> oluşturabilme altyapısı devreye alınmıştır. Örneğin 20 adet radyasyon koruyucu ekipman veya tıbbi cihaz için tek tek 20 sayfa evrak basıp kağıt ve zaman israfı yapmak yerine; <strong>Giriş Paragrafı (Toplanma Gerekçesi) + Döküm Tablosu (20 Kayıt) + Sonuç / Karar Paragrafı + Komisyon İmza Heyeti</strong> yapısı tek bir resmi belgede <strong>kilitli ve değiştirilemez tek resmi PDF standardında</strong> üretilir. Resmi heyet kararlarında sonradan tahrifat veya yetkisiz metin değişikliğini önlemek amacıyla Word çıktısı tamamen kaldırılmıştır.
- </p>
- <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
- <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
- <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
- İkili Belge Düzeni: Salt Metin veya Sandviç Tablo
- </h3>
- <ul class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2">
- <li>• <strong>Salt Metin Tutanağı (Tablosuz / Hızlı):</strong> Nöbete gelmeme, idari uyarı veya genel komisyon kararları gibi döküm tablosu gerektirmeyen durumlarda kullanılır. Tablo alanı tamamen gizlenir; PDF çıktısında içi boş tablo veya gereksiz kutular kesinlikle basılmaz. Sadece Başlık + Gerekçe + Karar + Heyet İmzaları tertemiz dökülür.</li>
- <li>• <strong>Metin + Liste + Karar (Sandviç Düzen):</strong> HEK, toplu devir-teslim veya çoklu donanım muayenelerinde kullanılır. Giriş paragrafı, seçilen varlıkların döküm tablosu ve sonuç/karar metni kusursuz bir hiyerarşiyle birleşir.</li>
- <li>• <strong>Sistemden Kayıt Ekle:</strong> [Kayıt Ekle] menüsüyle sistem veritabanından doğrudan <em>Personel</em> veya <em>Cihaz / RKE Varlığı</em> seçilerek tabloya aktarılabilir.</li>
- <li>• <strong>Manuel Satır Ekle / Sil:</strong> Tabloya dilediğiniz sayıda serbest metinli manuel satır ekleyebilir, çift tıklayarak hücreleri anında düzenleyebilirsiniz.</li>
- <li>• <strong>Özel Şablon Olarak Kaydet:</strong> Hazırladığınız metin ve heyet yapısını [Şablon Olarak Kaydet] butonuyla kurum kataloğuna ekleyebilir, ileride tek tıkla yeniden kullanabilirsiniz.</li>
- </ul>
- </div>
- <div class="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
- <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
- İlgili Modül / Kapsam ve Dinamik Değişken Motoru
- </h3>
- <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
- Kullanıcıya zorla sabit metin kalıpları dayatılmaz. Kullanıcı yalnızca tutanağın ait olduğu <strong>İlgili Modül / Kapsam</strong>ı (Nöbet, Cihaz, RKE, Dozimetre, Sağlık vb.) seçer. Sistem seçilen modüle özel mantıklı değişken butonlarını anında metin kutularının altına dizer. Tıklanan değişken imlecin durduğu yere anında eklenir ve dökümde gerçek verilerle doldurulur:
- </p>
- <div class="space-y-1.5 text-xs font-mono">
- <div class="p-2 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
- <span class="font-bold text-indigo-600 dark:text-indigo-400 font-sans block text-[11px] mb-0.5">Nöbet Seçildiğinde:</span>
- + &#123;&#123; nobet_tarihi &#125;&#125; / + &#123;&#123; vardiya &#125;&#125; / + &#123;&#123; saat &#125;&#125; / + &#123;&#123; personel_adi &#125;&#125; / + &#123;&#123; departman &#125;&#125;
- </div>
- <div class="p-2 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
- <span class="font-bold text-cyan-600 dark:text-cyan-400 font-sans block text-[11px] mb-0.5">Cihaz Seçildiğinde:</span>
- + &#123;&#123; cihaz_kodu &#125;&#125; / + &#123;&#123; cihaz_adi &#125;&#125; / + &#123;&#123; marka &#125;&#125; / + &#123;&#123; model &#125;&#125; / + &#123;&#123; seri_no &#125;&#125; / + &#123;&#123; servis_firmasi &#125;&#125;
- </div>
- <div class="p-2 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
- <span class="font-bold text-emerald-600 dark:text-emerald-400 font-sans block text-[11px] mb-0.5">RKE Seçildiğinde:</span>
- + &#123;&#123; ekipman_kodu &#125;&#125; / + &#123;&#123; tur_adi &#125;&#125; / + &#123;&#123; kursun_esdegeri &#125;&#125; / + &#123;&#123; muayene_tarihi &#125;&#125; / + &#123;&#123; adet &#125;&#125;
- </div>
- <div class="p-2 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
- <span class="font-bold text-amber-600 dark:text-amber-400 font-sans block text-[11px] mb-0.5">Dozimetre Seçildiğinde:</span>
- + &#123;&#123; personel_adi &#125;&#125; / + &#123;&#123; tc_kimlik &#125;&#125; / + &#123;&#123; dozimetre_no &#125;&#125; / + &#123;&#123; donem &#125;&#125; / + &#123;&#123; olcum_degeri &#125;&#125;
- </div>
- </div>
- </div>
- </div>
- <div class="p-5 rounded-2xl bg-slate-100/80 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm space-y-3 mb-6">
- <div class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
- <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
- Modül Bazlı Dinamik Çıktı Klasörleme ve Standart Dosya Adlandırma Motoru:
- </div>
- <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
- Sistemdeki tüm Excel, Word ve PDF dökümleri Masaüstünde tek bir klasöre yığılmaz. Bunun yerine <strong>RADPYS Raporları / [İlgili Modül] /</strong> (Örn: <em>RADPYS Raporları/Dozimetre/</em>, <em>RADPYS Raporları/Tutanaklar ve Kalite/</em>) hiyerarşisinde güvenle gruplanır. Üretilen tüm dosyalar <code>[Modul]_[Islem_Adi]_[Kisi/Cihaz]_[YYYYMMDD_HHMMSS].[uzanti]</code> kurumsal standardına bağlanmıştır. Dosya adlarındaki Türkçe karakterler otomatik olarak güvenli ASCII formatına dönüştürülür.
- </p>
- </div>
- <div class="p-5 rounded-2xl bg-rose-50/70 dark:bg-rose-950/30 border border-rose-200/80 dark:border-rose-900/50 text-xs sm:text-sm space-y-3 mb-6">
- <div class="font-bold text-rose-900 dark:text-rose-200 flex items-center gap-2">
- <svg class="w-4 h-4 text-rose-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
- Yasal Güvenlik Standardı: İki Aşamalı HEK & Tasfiye Yaşam Döngüsü:
- </div>
- <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
- <div class="p-3.5 rounded-xl bg-white/90 dark:bg-slate-900/90 border border-rose-200/60 dark:border-rose-900/40 space-y-1.5">
- <span class="font-bold text-rose-700 dark:text-rose-400 block">1. Aşama: Heyet Ön İnceleme Tutanağı (Tutanak Sihirbazı)</span>
- <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
- Tutanak Sihirbazı'nda ekipmanlar seçilip PDF alındığında işlem sıradan bir döküm olarak kalmaz; arka planda otomatik olarak <strong class="text-rose-600">HEK-YYYY-XXXX</strong> süreç dosyası açılır. Üretilen PDF'te sarı <span class="px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 text-[10px] font-semibold">HEYET İMZASINDA & ÖN İNCELEME DOSYASI</span> rozeti yer alır ve ekipmanlar koruma amaçlı kilitlenir. Bu aşamada henüz hiçbir ekipman kayıttan düşülmez.
- </p>
- </div>
- <div class="p-3.5 rounded-xl bg-white/90 dark:bg-slate-900/90 border border-rose-200/60 dark:border-rose-900/40 space-y-1.5">
- <span class="font-bold text-emerald-700 dark:text-emerald-400 block">2. Aşama: EBYS Kapatma & SHA-256 Dijital Mühür</span>
- <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
- Heyet üyeleri tutanağı ıslak imzaladıktan ve Taşınır/Ayniyat biriminden resmi EBYS üst yazısı alındıktan sonra, HEK yönetiminden <strong>[EBYS ile Kapat]</strong> butonuna tıklanır. İmzalı evrak taranıp sisteme yüklenir; sistem tüm muayene geçmişini, hasar krokilerini ve taranmış ekleri tek bir birleşik PDF'te dondurarak <strong>SHA-256 dijital mührüyle</strong> süreci kalıcı olarak tamamlar.
- </p>
- </div>
- </div>
- </div>
- <div class="p-5 rounded-2xl bg-cyan-50/60 dark:bg-cyan-950/30 border border-cyan-200/80 dark:border-cyan-800/60 text-xs sm:text-sm space-y-3">
- <div class="font-bold text-cyan-900 dark:text-cyan-200 flex items-center gap-2">
- <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
- Tutanak Sihirbazına Hızlı Erişim Yolları & Akıllı Kriter Yönetimi:
- </div>
- <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
- <div class="p-3 rounded-lg bg-white/90 dark:bg-slate-900/90 border border-cyan-200/60 dark:border-cyan-800/40">
- <strong class="block text-slate-900 dark:text-white mb-0.5">1. Sol Menü (Sidebar)</strong>
- Sistem & Yönetim menüsü altında [Tutanak Sihirbazı] veya [Resmi Tutanaklar] butonuna tıklayarak doğrudan genel sihirbazı başlatabilirsiniz.
- </div>
- <div class="p-3 rounded-lg bg-white/90 dark:bg-slate-900/90 border border-cyan-200/60 dark:border-cyan-800/40">
- <strong class="block text-slate-900 dark:text-white mb-0.5">2. RKE Yönetimi Araç Çubuğu</strong>
- Tabloda birden fazla kurşun önlüğü seçip üstteki [HEK Tutanağı] butonuna bastığınızda seçili kayıtlar otomatik aktarılır.
- </div>
- <div class="p-3 rounded-lg bg-white/90 dark:bg-slate-900/90 border border-cyan-200/60 dark:border-cyan-800/40">
- <strong class="block text-slate-900 dark:text-white mb-0.5">3. Cihaz Yönetimi Araç Çubuğu</strong>
- Envanter tablosunda cihazları seçip [Tutanak Oluştur] butonuna bastığınızda künye bilgileriyle resmi tutanak açılır.
- </div>
- </div>
- <p class="text-cyan-800 dark:text-cyan-300 text-xs">
- <strong>Akıllı Filtre Gizleme:</strong> Rapor Merkezi'nde seçilen raporun filtre/kriter parametresi bulunmuyorsa veya tutanak şablonu seçildiyse [Rapor Kriterleri ve Filtreleri] kutusu otomatik olarak gizlenir; gereksiz boşluklar ortadan kalkarak canlı önizleme doğrudan öne çıkar.
- </p>
- </div>
-</section>
-
-<section id="ekran-goruntuleri" class="mb-12">
-  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
-    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
-    <span>Arayüz Rehberi & Ekran Görünümleri</span>
-  </h2>
-  <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200 dark:border-slate-800">
- <span class="text-xs font-mono text-slate-400">UI-SCREENSHOTS</span>
- </div>
-
- <div class="space-y-8">
-<figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+  <figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
     <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
       <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
-        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Koruyucu Ekipman (RKE) / Cihazlar > [HEK Tutanağı]</strong>
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Yönetim > Rapor ve Tutanak Merkezi</strong>
       </span>
-      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60">Tek Resmi PDF Standardı</span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 dark:bg-indigo-950 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">4 KPI Kartı, Katalog ve Canlı Önizleme</span>
     </div>
   <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
-    <img src="assets/img/21_tutanak_sihirbazi.png" alt="Evrensel Tutanak ve Komisyon Karar Sihirbazı Ekran Görünümü" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+    <img src="assets/img/21_rapor_merkezi_kokpit.png" alt="Rapor ve Tutanak Merkezi Kokpiti" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
   </div>
     <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
       <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      <span><span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki isimler, TCKN'ler ve kayıtlar tamamen test amaçlı sentetik veridir. Gerçek kişi ve kayıtlarla benzerlikler tesadüfidir.</span></span>
+      <span><span><strong>Yasal Bilgilendirme:</strong> Görseldeki rapor sayıları, şablon önizleme satırları ve cihaz kodları eğitim amaçlı örnek verilerdir.</span></span>
     </figcaption>
 </figure>
 
 <figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
     <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
       <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
-        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Yönetim & Karar Destek > Rapor Merkezi</strong>
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Rapor Merkezi > Şablon ve Marka Ayarlarını Yapılandır</strong>
       </span>
-      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">Katalog &amp; Dinamik Parametre Formu</span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">Kurum Çift Başlık ve Logo Yönetimi</span>
     </div>
   <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
-    <img src="assets/img/21_rapor_merkezi_kokpit.png" alt="Kurumsal Rapor Merkezi Kokpiti Ekran Görünümü" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+    <img src="assets/img/03_templates_page_01.png" alt="Şablon ve Marka Ayarları Ekranı" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
   </div>
     <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
       <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      <span><span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki isimler, TCKN'ler ve kayıtlar tamamen test amaçlı sentetik veridir. Gerçek kişi ve kayıtlarla benzerlikler tesadüfidir.</span></span>
+      <span><span><strong>Yasal Bilgilendirme:</strong> Kurum başlık metinleri ve amblem önizlemesi test ortamı verileri üzerinden gösterilmiştir.</span></span>
     </figcaption>
 </figure>
 
- </div>
+<figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+    <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
+      <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Rapor ve Tutanak Merkezi > Tutanak Sihirbazı</strong>
+      </span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200 dark:border-amber-800">11 Modül Kapsamlı Resmi Tutanak Üretimi</span>
+    </div>
+  <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+    <img src="assets/img/23_2_tutanak_sihirbazi_dialog.png" alt="Evrensel Tutanak ve Heyet Karar Sihirbazı Penceresi" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+  </div>
+    <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+      <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span><span><strong>Yasal Bilgilendirme:</strong> Tutanak metni, döküm tablosu ve komisyon üye isimleri eğitim amaçlı sentetik verilerdir.</span></span>
+    </figcaption>
+</figure>
+
+<figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+    <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
+      <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Yönetim > Resmi Tutanaklar</strong>
+      </span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">Sürümleme, EBYS Kaydı ve Kalıcı Arşiv</span>
+    </div>
+  <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+    <img src="assets/img/23_3_resmi_tutanaklar_kasasi.png" alt="Resmi Tutanaklar Kasası ve İmzalı Evrak Yükleme Ekranı" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+  </div>
+    <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+      <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span><span><strong>Yasal Bilgilendirme:</strong> Kasadaki tutanak numaraları, sürüm etiketleri ve onay durumları test veritabanı örneğidir.</span></span>
+    </figcaption>
+</figure>
 </section>
 
-<section id="sss" class="mb-12">
+<section id="step-by-step" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Adım Adım İşlem Rehberi</span>
+  </h2>
+  <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-5 mb-2">1. Mevzuat Raporu Üretme ve Klasöre Erişme</h3>
+
+<ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
+  <li>Sol menüden <strong>Rapor ve Tutanak Merkezi</strong> ekranını açın; üstteki <strong>Tümü</strong>, <strong>Raporlar</strong>, <strong>Tutanaklar</strong> seçicileri ve kategori/arama kutusuyla istediğiniz raporu bulun.</li>
+  <li>Sağ üstteki kriter alanından dönem, departman veya durum filtresini belirleyin; alttaki önizleme tablosundan sütun yapısını kontrol edin.</li>
+  <li><strong>[PDF İndir]</strong> veya <strong>[Excel (.xlsx)]</strong> butonuna tıklayarak antetli çıktıyı modüle özel çıktı klasörüne üretin ve gerekirse <strong>[Klasörü Aç]</strong> ile doğrudan klasöre gidin.</li>
+</ol>
+
+<h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-5 mb-2">2. Tasarım Stüdyosu ve Kurumsal Antet/Logo Yapılandırması</h3>
+
+<ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
+  <li>Sistem Yöneticisi olarak mevcut bir raporu uyarlamak için <strong>[Özelleştir]</strong> (tutanak seçiliyse <strong>[Tutanağı Düzenle]</strong>) veya sıfırdan oluşturmak için <strong>[Yeni Tasarla]</strong> butonuna tıklayın.</li>
+  <li>5 sekmeli stüdyoda sütun görünürlüğünü (<strong>[Yukarı Taşı]</strong> / <strong>[Aşağı Taşı]</strong>), filtre sorularını, özel antet ayarını ve imza bloklarını (<strong>[Personel Listesinden Ekle]</strong>) belirleyip <strong>[Raporu Kaydet]</strong> butonuna basın.</li>
+  <li>Kurum geneli üst başlık ve çift logo tanımlamak için sağ alttaki <strong>Şablon ve Marka Ayarlarını Yapılandır</strong> bağlantısından başlık ve logo alanlarını güncelleyip kaydedin.</li>
+</ol>
+
+<h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-5 mb-2">3. Evrensel Tutanak Sihirbazı ve Resmi Tutanaklar Kasası (v1 → v2)</h3>
+
+<ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
+  <li>Doğrudan <strong>[Tutanak Sihirbazı]</strong> butonundan ya da Cihaz/RKE tablolarında çoklu satır seçerek tutanak penceresini açın; ilgili modülü seçip imleci metin kutusuna getirerek alttaki hazır bilgi etiketi butonlarıyla tarih/kurum/kayıt bilgilerini ekleyin.</li>
+  <li>Çoklu döküm gerekiyorsa <strong>[Sistemden Kayıt Ekle...]</strong> veya <strong>[Manuel Satır Ekle]</strong> ile listeyi doldurun (tablosuz resmi yazı için Salt Metin düzenini seçin), <strong>[Üye Ekle]</strong> ile komisyon heyetini belirleyip <strong>[Tutanak Oluştur / Yazdır]</strong> butonuna basın (HEK tutanağı ise otomatik tasfiye süreci başlar).</li>
+  <li>İmzaya çıkan tutanağı yönetmek için <strong>Resmi Tutanaklar Kasası</strong> ekranını açın; <strong>[Taslak Belgeyi Aç]</strong> ile metni görün, heyet ıslak imzaladığında <strong>[İmzalı Nüshayı Yükle]</strong> (veya HEK için EBYS kapatma) ile taramayı ekleyerek kaydı mühürleyin (tüm masaüstü raporlama süreci kurumsal güven gereği Masaüstü Uygulamasında yürütülür; Web Portalda anlık özet tablo Excel/PDF dökümleri sunulur).</li>
+</ol>
+</section>
+
+<section id="faq" class="mb-12">
   <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
     <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
     <span>Sıkça Sorulan Sorular (SSS)</span>
@@ -615,74 +385,38 @@ graph TD
   <div class="space-y-3" id="faqAccordion">
   <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
     <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>1. 20 adet koruyucu ekipmanı tek bir resmi HEK tutanağında nasıl toplayabilirim?</span>
+      <span>Kurum ayarlarında yalnızca tek logo veya hiç logo tanımlı değilse raporlar hata verir mi?</span>
       <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
     </summary>
     <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">RKE Yönetimi ekranında klavyeden Ctrl veya Shift tuşuna basılı tutarak tablodaki 20 ekipmanı seçin ve üst araç çubuğundaki [HEK Tutanağı] butonuna tıklayın. Açılan sihirbazda 20 ekipman doğrudan döküm tablosuna yerleştirilir; giriş ve karar gerekçelerini düzenleyip tek tıkla resmi, antetli ve imza çizgili tek PDF belgesi alabilirsiniz.</p>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Hayır. Kurumda tek logo varsa sistem yalnızca mevcut logoyu yerleştirir; hiç başlık veya logo tanımlanmamışsa sahte kurum adı uydurmadan temiz <strong>RADPYS</strong> antetiyle raporu sorunsuz üretir.</p>
     </div>
   </details>
   <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
     <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>2. Tutanak Sihirbazı'nda neden Word (.docx) indirme seçeneği bulunmuyor?</span>
+      <span>20 adet RKE veya cihaz için her birine ayrı ayrı HEK tutanağı mı basmam gerekir?</span>
       <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
     </summary>
     <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Tutanaklar; komisyon üyelerinin ıslak/e-imzasıyla resmiyet kazanan hukuki vesikalardır. Word gibi üzerinde sonradan tahrifat veya yetkisiz değişiklik yapılabilen formatlar denetim güvenliğini ihlal eder. Bu sebeple Tutanak Sihirbazı'nda tek yasal çıktı standardı olarak değiştirilemez kilitli PDF dökümü uygulanmaktadır.</p>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Hayır. Envanter listesinde Ctrl veya Shift tuşlarıyla çoklu seçim yapıp <strong>[HEK Tutanağı]</strong> ya da <strong>[Tutanak Oluştur]</strong> dediğinizde tüm kayıtlar tek resmi tutanağın döküm tablosunda ve tek komisyon imzasında toplanır.</p>
     </div>
   </details>
   <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
     <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>3. HEK tutanağı oluşturulan bir cihaz veya RKE neden doğrudan envanterden silinmez?</span>
+      <span>Tutanak şablonu seçtiğimde alttaki butonlardan neden sadece Özelleştir veya Tutanağı Düzenle değişiyor?</span>
       <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
     </summary>
     <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">İki Aşamalı Yasal Tasfiye Kuralı gereğince: Tutanak ilk alındığında (1. Aşama) ekipmanlar "Heyet İmzasında" durumuna alınarak kilitlenir. Heyetin ıslak imzalı tutanağı ve Taşınır/EBYS resmi yazısı sisteme taranıp yüklenmeden (2. Aşama) hiçbir ekipman kayıttan düşülmez. EBYS kapatması yapıldığında ise SHA-256 dijital mührüyle tüm süreç kalıcı olarak dondurulur.</p>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Rapor Merkezinde seçili öğe bir tutanak şablonuysa sistem kolaylık amacıyla düzenleme butonunu otomatik olarak <strong>[Tutanağı Düzenle]</strong> moduna geçirir ve tıklamada doğrudan Tutanak Sihirbazını o şablonla açar.</p>
     </div>
   </details>
   <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
     <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>4. Tutanak metinlerindeki değişken etiketleri (+ &#123;&#123; tarih &#125;&#125;, + &#123;&#123; kurum_adi &#125;&#125;) nasıl çalışır?</span>
+      <span>İmzalı belge yüklediğimde ilk oluşturduğum taslak PDF silinir mi?</span>
       <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
     </summary>
     <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Metin kutusunda imlecinizi eklemek istediğiniz yere getirin ve alttaki ilgili değişkene tıklayın. Sistem imlecin tam bulunduğu yere etiketi ekler. Belge üretilirken bu etiketler sistemdeki güncel kurum adı, o günün tarihi veya seçili toplam ekipman sayısı ile otomatik olarak doldurulur.</p>
-    </div>
-  </details>
-  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
-    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>5. Heyet üyeleri nasıl belirlenir ve komisyona yeni üye nasıl eklenir?</span>
-      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-    </summary>
-    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Sistem unvan önceliğine göre aktif hekim, medikal fizikçi ve sorumlu teknisyeni otomatik olarak Komisyon Başkanı, RKS ve Raportör olarak atar. Farklı bir personel eklemek için [Üye Ekle] butonuna basarak personel seçimi yapabilir; komisyondan çıkarmak istediğiniz satırı seçip [Üye Sil] ile silebilirsiniz.</p>
-    </div>
-  </details>
-  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
-    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>6. Üretilen rapor ve tutanak dosyaları bilgisayarda nerede saklanır?</span>
-      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-    </summary>
-    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Üretilen tüm resmi dökümler çalışma dizinindeki güvenli rapor klasörüne benzersiz bir dosya adı ile kaydedilir ve işlem bittiğinde sistemin varsayılan PDF, Word veya Excel görüntüleyicisi ile otomatik açılır. Ayrıca HEK dosyaları sistem evrak kasasında kalıcı olarak arşivlenir.</p>
-    </div>
-  </details>
-  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
-    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>7. Çok sütunlu tablolarda PDF çıktısı dikey mi yoksa yatay mı dökülür?</span>
-      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-    </summary>
-    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Sistem otomatik sayfa adaptasyonuna sahiptir: Tablodaki sütun sayısı 6 ve daha az ise Dikey A4 (Portrait); 6'dan fazla sütun varsa sütunların sıkışmasını ve taşmasını önlemek amacıyla otomatik olarak Yatay A4 (Landscape) formatında çıktı üretilir.</p>
-    </div>
-  </details>
-  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
-    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>8. Rapor kriterleri ve filtreleri kutusu neden bazı raporlarda görünmüyor?</span>
-      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-    </summary>
-    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Seçilen rapor veya tutanak herhangi bir filtreleme parametresi (örneğin sadece genel kurum dökümü) gerektirmiyorsa, arayüzde gereksiz boş kutu oluşmasını önlemek amacıyla [Rapor Kriterleri ve Filtreleri] çerçevesi otomatik gizlenir ve butonlar ferah bir biçimde öne çıkarılır.</p>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Hayır. Sessiz sürümleme ve denetim izi kuralı gereğince eski taslak belge Evrak Kasasında arşiv statüsüne alınarak korunur; yeni yüklediğiniz ıslak imzalı nüsha v2 resmi sürüm olarak kayda bağlanır.</p>
     </div>
   </details>
 </div>
@@ -694,9 +428,9 @@ graph TD
             <span class="text-xs font-mono uppercase text-slate-400 block mb-1">← Önceki Doküman</span>
             <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">22. Web Portal &amp; Dashboard</span>
           </a>
-          <a href="index.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition text-right group">
+          <a href="24_kisaltmalar_ve_mevzuat_sozlugu.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition text-right group">
             <span class="text-xs font-mono uppercase text-slate-400 block mb-1">Sonraki Doküman →</span>
-            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">Tüm 23 Modül Portalı</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">24. Kısaltmalar &amp; Mevzuat Sözlüğü</span>
           </a>
         </div>
       </footer>
@@ -706,15 +440,13 @@ graph TD
       <div class="sticky top-24 space-y-4">
         <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-3">Bu Sayfada</span>
         <nav class="space-y-2.5 text-sm" id="onPageToc">
-          <a href="#hizli-recete" data-toc-link="hizli-recete" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Vizyonder Hızlı Karar Reçetesi &amp; Önemli Metrikler</a>
-          <a href="#5n1k-tablosu" data-toc-link="5n1k-tablosu" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">5N1K Kural ve Ayar Çözümleme Tablosu</a>
-          <a href="#mit-avcilari" data-toc-link="mit-avcilari" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Mit Avcısı: Rapor ve Tutanaklarda Yanlış Bilinen Doğrular</a>
-          <a href="#surec-akisi" data-toc-link="surec-akisi" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Raporlama ve Tutanak Yaşam Döngüsü Süreç Akışı</a>
-          <a href="#rapor-merkezi" data-toc-link="rapor-merkezi" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Kurumsal Rapor Merkezi: Resmi Mevzuat Kataloğu &amp; Üretim Motoru</a>
-          <a href="#sablon-ve-marka" data-toc-link="sablon-ve-marka" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Çıktı Formatları ve &quot;Doğru İşe Tek Format&quot; Standardı</a>
-          <a href="#tutanak-ve-tasarim-studyosu" data-toc-link="tutanak-ve-tasarim-studyosu" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Evrensel Tutanak ve Komisyon Karar Sihirbazı &amp; Şablon Tasarım Stüdyosu</a>
-          <a href="#ekran-goruntuleri" data-toc-link="ekran-goruntuleri" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Arayüz Rehberi &amp; Ekran Görünümleri</a>
-          <a href="#sss" data-toc-link="sss" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Sıkça Sorulan Sorular (SSS)</a>
+          <a href="#quick-recipe" data-toc-link="quick-recipe" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Kısa Reçete: Resmi Rapor Çıktısı veya Çoklu Tutanak Üretme</a>
+          <a href="#5w1h" data-toc-link="5w1h" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">5N1K Kural ve Arayüz Çözümleme Tablosu</a>
+          <a href="#myth-buster" data-toc-link="myth-buster" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)</a>
+          <a href="#workflow" data-toc-link="workflow" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Süreç Akış Şeması</a>
+          <a href="#screenshots" data-toc-link="screenshots" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Arayüz Ekran Görünümleri</a>
+          <a href="#step-by-step" data-toc-link="step-by-step" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Adım Adım İşlem Rehberi</a>
+          <a href="#faq" data-toc-link="faq" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Sıkça Sorulan Sorular (SSS)</a>
         </nav>
       </div>
     </aside>
@@ -722,7 +454,7 @@ graph TD
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.27) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.29) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
     </div>
   </footer>
 

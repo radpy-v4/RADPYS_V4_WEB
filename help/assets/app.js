@@ -154,6 +154,11 @@
       "num": "23",
       "title": "Rapor & Tutanak Merkezi",
       "url": "23_rapor_tutanak_merkezi.html"
+    },
+    {
+      "num": "24",
+      "title": "Kısaltmalar & Mevzuat Sözlüğü",
+      "url": "24_kisaltmalar_ve_mevzuat_sozlugu.html"
     }
   ];
 

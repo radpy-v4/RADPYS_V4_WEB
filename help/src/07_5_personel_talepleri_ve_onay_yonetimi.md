@@ -1,164 +1,76 @@
 ---json
 {
-  "pageTitle": "07. 07 5 Personel Talepleri Ve Onay Yonetimi — RADPYS v4 Kullanım Kılavuzu",
+  "pageTitle": "07.5. Personel Nöbet Talepleri, Mazeretler ve Onay Yönetimi — RADPYS v4 Kullanım Kılavuzu",
   "h1": "Personel Talepleri, Mazeretler & Onay Yönetimi",
-  "lead": "Personelin nöbet istemediği mazeret günleri, özel nöbet yazılma istekleri, lisansüstü eğitim ders kısıtları ve isteğe bağlı fazla mesai tavan taleplerinin birim amirince incelenmesi, onaylanması veya reddedilmesi sürecini kapsar.",
-  "overviewId": "hero",
-  "badges": [],
-  "readingTime": "4 Dakika"
+  "lead": "Planlanacak aya yönelik nöbet istememe (mazeret), nöbet isteme, hafta içi lisansüstü eğitim ders programı ve isteğe bağlı fazla mesai taleplerinin kaydedilmesini, ders programı revizyonunu ve birim amiri onay/red akışını yönetmenizi sağlar.",
+  "overviewId": "overview",
+  "badges": [
+    {
+      "text": "07.5 Personel Talepleri",
+      "tone": "cyan"
+    }
+  ],
+  "readingTime": "4 Dakika",
+  "legalNote": "<strong>Yayın Kalkanı:</strong> Çizelgesi resmen Yayınlandı statüsüne geçmiş bir aya yeni talep veya mazeret eklenemez; kesinleşen aydaki zorunlu değişiklikler Modül 09 (Nöbet Devir ve Acil Mazeret) üzerinden yürütülür."
 }
 ---
 
-## Hızlı Reçete: Personel Taleplerinin Yönetimi ve Onay Akışı {#recipe}
+## Kısa Reçete: Personel Taleplerinin Yönetimi ve Onay Akışı {#quick-recipe}
 
-:::recipe Hızlı Reçete: Personel Taleplerinin Yönetimi ve Onay Akışı | 20 SANİYELİK AKIŞ
+:::recipe Kısa Reçete: Personel Taleplerinin Yönetimi ve Onay Akışı | 20 SANİYELİK AKIŞ
 ### 1. İstenen Sonuç | slate
-Personelin haklı mazeret ve tercihlerinin kurumsal adalet zedelenmeden nöbet dağıtım algoritmasına iletilmesi.
+Personelin haklı mazeret ve ders programlarının klinik adalet bozulmadan dağıtım motoruna eksiksiz iletilmesi.
 
 ### 2. Yapılacak İşlem | cyan
-Dönem ayını seçin, mazeretleri inceleyin, uygun olanları <strong>[İsteği Onayla]</strong>, sakıncalı olanları gerekçe belirterek <strong>[İsteği Reddet]</strong> ile sonuçlandırın.
+<strong>[Personel Talepleri]</strong> sekmesinde yıl, ay ve birimi süzüp <strong>[Filtrele]</strong> butonuna basın; talebi inceleyip uygun olanları <strong>[Onayla]</strong>, sakıncalı olanları <strong>[Reddet]</strong> ile sonuçlandırın.
 
 ### 3. Sistem Etkisi | emerald
-Sadece amir onayından geçen talepler Nöbet Dağıtım Motoruna kısıt olarak aktarılır; reddedilen veya askıdaki talepler dikkate alınmaz.
+Yalnızca onaylı talepler dağıtım motoru kısıt havuzuna girer; aynı güne birden fazla talep çakışırsa en koruyucu kural öncelik sırasıyla işletilir.
 
-- [metric] Dönem Seçimi | Yıl / Ay Ayrımı | slate
-- [metric] 4 Temel Talep Türü | Mazeret, İstek, Ders, FM | slate
-- [metric] Onay Yetkisi | Birim Sorumlusu / Amir | slate
-- [metric] Dağıtım Motoru Etkisi | Otomatik Kısıt Besleme | slate
+- [metric] Talep Türü | Mazeret, İstek, Ders, FM | cyan
+- [metric] Öncelik Sırası | Muafiyet &gt; Ders &gt; Mazeret &gt; İstek | amber
+- [metric] Onay Yetkisi | Birim Sorumlusu / Amir | emerald
+- [metric] Yayın Koruması | Yayındaki Aya Talep Kapalı | slate
 :::
 
-## 5N1K: Personel Talepleri Arayüz Bileşenleri ve Saha Kuralları {#5w1h}
+## 5N1K Kural ve Arayüz Çözümleme Tablosu {#5w1h}
 
-<div class="space-y-1">
- <p class="text-sm text-slate-500 dark:text-slate-400">
- Ekranda gördüğünüz butonlar, kutular ve listelerin görevleri, kullanım kuralları ve sistemdeki etkileri.
- </p>
- </div>
+*Personel Talepleri sekmesindeki koruma kilitleri, talep öncelik sıralaması ve ders revizyon mekanizmaları.*
 
-| NE? (Arayüzdeki İsim) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? | KİM? |
+| NE? (Bileşen / Kontrol) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Tetiklenme) | KİM? (Yetkili Rol) |
 | --- | --- | --- | --- | --- |
-| Dönem Yılı & Dönem Ayı Seçimi | Talepleri sadece planlanacak olan nöbet ayına filtrelemek ve geçmiş aylarla karışmasını önlemek. | Açılır kutudan ay ve yıl değiştirildiğinde liste anında filtrelenir; sadece ilgili ayın talepleri ekrana gelir. | İncelemeye başlarken. | Birim Amiri, Planlayıcı |
-| Yayınlanmış Ay Güvenlik Kilidi | Kesinleşmiş ve ilan edilmiş nöbet çizelgelerinin sonradan açılan taleplerle bozulmasını engellemek. | İlgili ayın nöbet listesi daha önce 'Yayınlandı' durumuna geçtiyse sistem o ay için yeni talep açılmasını engeller; uyarı verir. Yayınlanmış ay için değişiklikler sadece Nöbet Devir/Takas (Modül 09) ile yapılabilir. | Çizelgesi yayınlanmış bir aya talep açılmak istendiğinde. | Tüm Personel / Sistem |
-| Birim / Departman Filtresi | Çok birimli hastanelerde sadece sorumlu olunan servisin mazeretlerine odaklanmak. | Birim seçildiğinde personel listesi ve mazeret tablosu seçilen birimin kadrosuna göre sınırlandırılır. | Departman incelemelerinde. | Birim Sorumlusu |
-| Talep Türü Açılır Kutusu | Personelin talebini kategorize ederek algoritmanın doğru kısıtı kurmasını sağlamak. | 4 seçenek sunar: Nöbet Yazılmasın (Mazeret), Nöbet Yazılsın (İstek), Eğitim Kısıtı (Hafta İçi Ders Programı) ve Fazla Mesai Talebi. Eğitim kısıtı seçildiğinde hafta sonu günleri otomatik gizlenir; sadece hafta içi ders günleri seçilir. Aynı güne birden fazla talep denk gelirse sistem en koruyucu kuralı (Muafiyet > Eğitim > Nöbet Yazılmasın > Nöbet Yazılsın) uygular. | Talep girerken / incelerken. | Personel / Birim Amiri |
-| Başlangıç Tarihi & Bitiş Tarihi | Mazeretin veya nöbet talebinin geçerli olacağı takvim aralığını kesinleştirmek. | Tek günlük taleplerde iki kutu aynı güne ayarlanır; çok günlük kongre/ders durumlarında aralık seçilir. | Tarih tanımlarken. | Talep Eden / Onaylayan |
-| Tercih Edilen / İstenmeyen Nöbet Türü | Personelin gün bazında belirli bir vardiyayı (Örn: Gece nöbeti istememe veya sadece Gündüz 8-16 isteme) belirtmesi. | Birimde tanımlı slotlar açılır listede gelir; "Tüm Slotlar" seçilirse personelin o gün hiçbir nöbete atanmaması sağlanır. | Belirli vardiya mazeretlerinde. | Personel |
-| Gerekçe / Talep Açıklaması Kutusu | Amirin kararı verirken talebin meşruiyetini ve dayanağını görebilmesini temin etmek. | Serbest metin alanıdır; kongre katılımı, sınav belgesi veya ailevi mazeret gibi detaylar yazılır. | Talep oluşturulurken. | Personel |
-| İsteği Onayla Butonu (Yeşil) | Seçili personelin talebini resmen geçerli kılarak nöbet dağıtım motoruna yetkilendirmek. | Talebin durumu "Onaylandı" haline gelir; satır yeşil renkle vurgulanır ve nöbet dağıtım kısıt tablosuna anında yansır. | Talep uygun görüldüğünde. | Birim Amiri / Süpervizör |
-| İsteği Reddet Butonu (Kırmızı) | Hizmeti aksatacak, aynı güne aşırı yığılma yaratan veya haksız talepleri iptal etmek. | Talebin durumu "Reddedildi" olarak güncellenir; gerekirse açıklama notu düşülür; nöbet dağıtım motoru bu talebi tamamen yok sayar. | Talep reddedildiğinde. | Birim Amiri |
-| Personel İstek ve Mazeret Listesi Tablosu | İlgili ay için toplanan tüm istekleri, personelleri, tarihleri, durumları ve gerekçeleri toplu sergilemek. | Tabloda tek bir satıra tıklandığında üst form otomatik dolar ve [İsteği Onayla] / [İsteği Reddet] butonları aktifleşir. | Tüm inceleme sürecinde. | Yönetici, Planlayıcı |
+| <strong>Yayınlanmış Ay Güvenlik Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Plan Bütünlük Koruması</span> | İlan edilmiş nöbet çizelgesinin sonradan açılan taleplerle bozulmasını engellemek. | İlgili dönemin nöbet planı yayınlanmış durumdaysa o aya yeni talep kaydı engellenir; değişiklik için devir/mazeret akışı gerekir. | Talep kaydedilirken. | Sistem Kilidi |
+| <strong>4 Talep Türü ve Sertlik Önceliği</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Çakışma Çözüm Sırası</span> | Aynı personelin aynı güne birden fazla talebi denk geldiğinde belirsizliği gidermek. | <em>Mazeret</em> (sert), <em>İstek</em> (yumuşak), <em>Eğitim Kısıtı</em> ve <em>Fazla Mesai</em> sunulur; çakışmada sıra Muafiyet &gt; Eğitim &gt; Nöbet Yazılmasın &gt; Nöbet Yazılsın şeklindedir. | Dağıtım motoru çalışırken. | Planlayıcı / Motor |
+| <strong>Hafta İçi Ders Seçimi &amp; [Ders Programını Revize Et]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Dönem İçi Güncelleme</span> | Lisansüstü dersi olan personelin sadece hafta içi ders günlerini korumak ve dönem içi değişikliği izlemek. | Eğitim türünde yalnızca <em>Pazartesi–Cuma</em> günleri aktifleşir; dönem ortasında gün değişirse eski talep dondurulup revizyon tarihinden yeni kısıt açılır. | Eğitim talebinde ve revizyonda. | Personel / Birim Amiri |
+| <strong>Vardiya Slotu Hedefleme</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Tüm Slotlar vs Tekil Vardiya</span> | Personelin tüm gün yerine yalnızca belirli bir vardiyadan (örneğin Gece) muaf kalmasını sağlamak. | Tekil vardiya seçilirse yalnızca o slotta kısıt uygulanır; tüm slotlar seçilirse personel o gün hiçbir nöbete atanmaz. | Mazeret/istek tanımlanırken. | Talep Eden / Amir |
+| <strong>[Onayla] &amp; [Reddet] Karar Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Amir Onay Süzgeci</span> | Beklemede kalan veya hizmeti aksatan taleplerin çizelgeyi etkilemesini önlemek. | Yalnızca <strong>[Onayla]</strong> verilen kayıtlar motor kısıtı olur; <strong>[Reddet]</strong> edilen talepler motor tarafından tamamen yok sayılır. | Ay öncesi incelemede. | Birim Sorumlusu / Yönetici |
 
-## Personel Nöbet Talebi ve Onay Süreç Şeması {#workflow}
+## Arayüz Ekran Görünümleri {#screenshots}
 
-<div class="space-y-1">
- <p class="text-sm text-slate-500 dark:text-slate-400">
- Personelin talep girişinden birim amirinin değerlendirmesine ve Nöbet Dağıtım Motoruna aktarımına kadar uçtan uca akış.
- </p>
- </div>
- <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col items-center">
+![Personel Nöbet İstekleri ve Mazeret Yönetimi Ekranı | Nöbet Ayarları > Personel Talepleri | Dönem Süzgeci, Talep Formu & Onay İşlemleri | cyan](assets/img/nobet_ayarlar_main.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki personel isimleri, talep tarihleri ve mazeret açıklamaları test ortamında oluşturulmuş sentetik verilerdir.</span>")
 
-```mermaid
-flowchart TD
- A["Personel Talep Girişi<br/>(Mazeret, Nöbet İsteme, Eğitim, FM)"] --> B["Talep Havuzuna Kayıt<br/>(Durum: Beklemede / Sarı)"]
- B --> C{"Birim Amiri İncelemesi<br/>(Servis İhtiyacı & Çakışma Kontrolü)"}
- C -->|"Hizmete Engel Yok"| D["[İsteği Onayla]<br/>(Durum: Onaylandı / Yeşil)"]
- C -->|"Aynı Güne Aşırı Yığılma / Yetersiz Kadro"| E["[İsteği Reddet]<br/>(Durum: Reddedildi / Kırmızı)"]
- D --> F["Nöbet Dağıtım Motoru<br/>(Kısıt Olarak Entegre Edilir)"]
- E --> G["Dağıtım Motoru Tarafından Yok Sayılır<br/>(Personele Normal Nöbet Yazılabilir)"]
- F --> H["Nihai Aylık Nöbet Çizelgesi"]
-```
+## Adım Adım İşlem Rehberi {#step-by-step}
 
- </div>
+### 1. Yeni Talep Ekleme veya Personelin Taleplerini Süzme
 
-## Arayüz Yerleşimi ve Saha Kullanım Görünümü {#ui-layout}
+1. **[Personel Talepleri]** sekmesinde Dönem Yılı, Ay ve Departman seçip **[Filtrele]** butonuna tıklayın.
+2. Yönetici olarak doğrudan talep tanımlamak için **[Yeni İstek]** butonuna basın; Personel, Talep Türü, Tarih Aralığı (ve eğitim ise **[Pazartesi]–[Cuma]** günleri), varsa ilgili vardiya ve gerekçeyi doldurup **[İstek Ekle]** butonuna tıklayın (düzeltmelerde **[İsteği Güncelle]**, kaldırmada **[İsteği Sil]** kullanılır).
 
-<div class="space-y-1">
- <p class="text-sm text-slate-500 dark:text-slate-400">
- RADPYS masaüstü arayüzünde "Personel İstekleri" sekmesinin yerleşimi ve onay kontrolleri.
- </p>
- </div>
- <div class="p-4 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+### 2. Talep Onaylama, Reddetme ve Eğitim Programı Revizyonu
 
-![Personel Nöbet İstekleri ve Mazeret Yönetim Ekranı](assets/img/nobet_ayarlar_main.png)
-
- <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
- <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-1">
- <span class="font-bold text-slate-900 dark:text-white block"> Satır Seçimi ve Buton Aktivasyonu</span>
- <p>Tabloda herhangi bir talebe tıklandığında alttaki <strong>[İsteği Onayla]</strong> ve <strong>[İsteği Reddet]</strong> butonları otomatik olarak aktif hale gelir. Seçim yapılmadığında butonlar tıklanamaz.</p>
- </div>
- <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-1">
- <span class="font-bold text-slate-900 dark:text-white block"> Dağıtım Motoru Etkileşimi</span>
- <p>Mazeret onaylandığında nöbet dağıtım motoru bu personeli seçili gün ve saat aralığında <strong>kesinlikle nöbete yazmaz</strong>. Özel nöbet isteği onaylandığında ise personeli o slota <strong>yüksek öncelikle</strong> yerleştirir.</p>
- </div>
- </div>
- </div>
-
-## Adım Adım Personel Talebi Onay / Red Kılavuzu {#step-by-step}
-
-<div class="space-y-1">
- <p class="text-sm text-slate-500 dark:text-slate-400">
- Nöbet çizelgesi çözülmeden önce amirlerin takip etmesi gereken 4 standart adım.
- </p>
- </div>
- <div class="space-y-3 text-xs sm:text-sm">
- <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-start gap-4">
- <div class="w-8 h-8 rounded-xl bg-cyan-100 dark:bg-cyan-900/60 text-cyan-800 dark:text-cyan-300 flex items-center justify-center font-bold shrink-0">
- 1
- </div>
- <div class="space-y-1">
- <h3 class="font-bold text-slate-900 dark:text-white">Dönem Yılı ve Ayını Belirleyin</h3>
- <p class="text-slate-600 dark:text-slate-300">
- Pencerenin üstündeki <strong>Dönem Yılı</strong> ve <strong>Dönem Ayı</strong> kutularından nöbeti hazırlanacak olan ayı seçin. Sorumlu olduğunuz departmanı seçerek listeyi daraltın.
- </p>
- </div>
- </div>
- <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-start gap-4">
- <div class="w-8 h-8 rounded-xl bg-cyan-100 dark:bg-cyan-900/60 text-cyan-800 dark:text-cyan-300 flex items-center justify-center font-bold shrink-0">
- 2
- </div>
- <div class="space-y-1">
- <h3 class="font-bold text-slate-900 dark:text-white">Mazeretleri ve Çakışmaları Değerlendirin</h3>
- <p class="text-slate-600 dark:text-slate-300">
- Tablodaki talepleri gözden geçirin. Özellikle aynı gün ve vardiyaya birden fazla personelin mazeret yazıp yazmadığını (serviste personel açığı oluşup oluşmayacağını) kontrol edin.
- </p>
- </div>
- </div>
- <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-start gap-4">
- <div class="w-8 h-8 rounded-xl bg-cyan-100 dark:bg-cyan-900/60 text-cyan-800 dark:text-cyan-300 flex items-center justify-center font-bold shrink-0">
- 3
- </div>
- <div class="space-y-1">
- <h3 class="font-bold text-slate-900 dark:text-white">Talebi Onaylayın veya Reddedin</h3>
- <p class="text-slate-600 dark:text-slate-300">
- Satırı seçin; uygunsa <strong>[İsteği Onayla]</strong> butonuna basın (durum yeşile döner). Hizmet aksaması yaratacaksa <strong>[İsteği Reddet]</strong> butonuna basarak reddedin.
- </p>
- </div>
- </div>
- <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-start gap-4">
- <div class="w-8 h-8 rounded-xl bg-cyan-100 dark:bg-cyan-900/60 text-cyan-800 dark:text-cyan-300 flex items-center justify-center font-bold shrink-0">
- 4
- </div>
- <div class="space-y-1">
- <h3 class="font-bold text-slate-900 dark:text-white">Nöbet Dağıtımına Geçiş Yapın</h3>
- <p class="text-slate-600 dark:text-slate-300">
- Tüm mazeretler sonuçlandırıldıktan sonra Modül 08 (Nöbet Hazırlık & Nöbet Dağıtım Motoru) ekranına geçerek otomatik çizelge dağıtımını başlatabilirsiniz. Onaylanan talepler otomatik olarak hesaba katılacaktır.
- </p>
- </div>
- </div>
- </div>
+1. Tablodan incelenecek talebe tıklayın ve aynı gündeki klinik personel yoğunluğunu değerlendirin.
+2. Uygun mazereti **[Onayla]** ile kısıt havuzuna aktarın; hizmet aksaması yaratacak talebi **[Reddet]** butonuna basarak onaylayın.
+3. Mevcut bir eğitim kısıtının ders günleri dönem ortasında değiştiyse satırı seçip **[Ders Programını Revize Et]** butonuna basın; revizyon başlangıç tarihini ve yeni hafta içi günlerini seçip kaydedin.
 
 ## Sıkça Sorulan Sorular (SSS) {#faq}
 
 :::faq
-### Personel talep giriş süresini kaçırırsa ne yapılır?
-Birim amiri veya sistem yöneticisi, bu ekran üzerinden personel adına manuel olarak doğrudan yeni talep ekleyebilir ve anında onaylayabilir.
+### Personel talep giriş tarihini kaçırırsa birim amiri adına kayıt açabilir mi?
+Evet. Birim sorumlusu veya yetkili yönetici bu ekrandan <strong>[Yeni İstek]</strong> ile personel adına doğrudan talep oluşturabilir ve onaylayabilir.
 
-### Onaylanan bir "Nöbet Yazılsın (İstek)" talebi nöbet dağıtım motoru tarafından kesinlikle karşılanır mı?
-"Nöbet Yazılsın" istekleri yüksek öncelikli yumuşak kısıt (Soft Constraint) olarak ele alınır. Personelin 24 saat dinlenme kuralı veya fazla mesai tavanı ihlal edilmiyorsa nöbet dağıtım motoru bu isteği %100'e yakın oranla karşılar. Ancak sert bir dinlenme kuralıyla çakışırsa dinlenme kuralı üstün gelir.
+### "Nöbet Yazılmasın (Mazeret)" ile "Nöbet Yazılsın (İstek)" arasında motor önceliği farkı nedir?
+Amir tarafından onaylanan mazeret talebi motor için sert kısıttır; uygun aday bulunamasa dahi personel o güne yazılmaz. "Nöbet Yazılsın" talebi ise yüksek öncelikli tercihtir; 24 saat dinlenme veya fazla mesai gibi sert kurallarla çakışmadığı sürece karşılanır.
 
-### "Nöbet Yazılmasın (Mazeret)" talebi onaylandığında nöbet dağıtım motoru bunu esnetebilir mi?
-Hayır. Amir tarafından onaylanmış bir mazeret, nöbet dağıtım motoru için <strong>sert kısıt (Hard Constraint)</strong> niteliğindedir. O personelin o gün nöbete yazılması kesinlikle engellenir. Eğer hiçbir personel bulunamazsa dağıtım motoru o slotu boş bırakıp kullanıcıyı uyarır ama onaylı mazereti çiğnemez.
-
-### İsteği onaylanan personele sonradan acil durum nedeniyle nöbet yazılabilir mi?
-Evet. Çizelge yayınlandıktan sonra ortaya çıkan ani hekim/teknisyen yetersizliklerinde, Modül 09 (Nöbet Devir & Mazeret) üzerinden personelin rızasıyla ikame ataması yapılabilir.
+### Eğitim kısıtı seçtiğimde neden hafta sonu günleri görünmüyor?
+Eğitim kısıtı hafta içi örgün ders programlarını korumak üzere tasarlanmıştır; hafta sonu için mazeret verilmesi gerekiyorsa talep türü olarak <strong>Nöbet Yazılmasın (Mazeret)</strong> seçilmelidir.
 :::

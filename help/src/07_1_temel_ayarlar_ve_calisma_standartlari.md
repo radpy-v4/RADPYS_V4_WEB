@@ -1,115 +1,74 @@
 ---json
 {
-  "pageTitle": "07. 07 1 Temel Ayarlar Ve Calisma Standartlari — RADPYS v4 Kullanım Kılavuzu",
+  "pageTitle": "07.1. Temel Nöbet Ayarları ve Çalışma Standartları — RADPYS v4 Kullanım Kılavuzu",
   "h1": "Temel Nöbet Ayarları, Dinlenme Süreleri ve Fazla Mesai Standartları",
-  "lead": "RADPYS'nin hastane genelinde uyguladığı temel çalışma limitleri, 24 saat çalışma ve kesintisiz dinlenme kuralları, esnek fazla mesai tavanı ve kıdemli personel koruma eşikleri bu ekrandan yönetilir.",
+  "lead": "Hastane genelinde geçerli temel çalışma limitlerini, ardışık nöbet ve dinlenme sürelerini, 35 saat / 40 saat haftalık mesai standartlarını, kıdemli personel muafiyet seçeneklerini ve devir/geri alma emniyet kilitlerini yönetmenizi sağlar.",
   "overviewId": "overview",
-  "badges": []
+  "badges": [
+    {
+      "text": "07.1 Temel Ayarlar",
+      "tone": "cyan"
+    }
+  ],
+  "readingTime": "4 Dakika",
+  "legalNote": "<strong>Parametre Notu:</strong> Bu sekmedeki değerler Kural Piramidinin en altındaki genel kurum standardıdır; birim veya hizmet sınıfına özel bir kural tanımlandığında daha özel kural bu sekmedeki değeri ezer."
 }
 ---
 
-## Hızlı Reçete: Temel Nöbet Parametrelerini Yapılandırma {#quick-recipe}
+## Kısa Reçete: Temel Nöbet Parametrelerini Yapılandırma {#quick-recipe}
 
-<div class="flex items-center gap-3">
- <div class="w-9 h-9 rounded-2xl bg-cyan-600 text-white flex items-center justify-center font-bold text-base shadow-md">
- </div>
- <div>
- <p class="text-xs text-slate-500 dark:text-slate-400">
- Klinik çalışma sınırları, dinlenme kısıtları ve esnek fazla mesai
- </p>
- </div>
- </div>
- <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 text-xs sm:text-sm">
- <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
- <span class="font-bold text-slate-400 uppercase text-[10px] tracking-wider block">1. İstenen Sonuç</span>
- <p class="font-semibold text-slate-800 dark:text-slate-100">
- Klinikte personelin aşırı yorulmasını önleyen, dinlenme hakkını koruyan ve yasal sınırlara uyan genel düzen.
- </p>
- </div>
- <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
- <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase text-[10px] tracking-wider block">2. Yapılacak İşlem</span>
- <p class="font-semibold text-slate-800 dark:text-slate-100">
- Dinlenme saatini (24s), ardışık nöbet sınırını (2 gün) ve temel FM tavanını (60s) girip <strong>[Temel Ayarları Kaydet]</strong> butonuna basın.
- </p>
- </div>
- <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
- <span class="font-bold text-emerald-600 dark:text-emerald-400 uppercase text-[10px] tracking-wider block">3. Sistem Etkisi</span>
- <p class="font-semibold text-slate-800 dark:text-slate-100">
- Nöbet dağıtım motoru bu sınırları sert kural (hard constraint) olarak uygular; acil durumda yönetici onayıyla FM tavanı 130 saate kadar esnetilebilir.
- </p>
- </div>
- </div>
- <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2 border-t border-cyan-100 dark:border-cyan-900/40">
- <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
- <span class="text-base">⏱️</span>
- <div>
- <span class="text-[10px] uppercase font-bold text-slate-400 block">Günlük Sınır</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Max 24 Saat</span>
- </div>
- </div>
- <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
- <span class="text-base"></span>
- <div>
- <span class="text-[10px] uppercase font-bold text-slate-400 block">Dinlenme Aralığı</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Min 24 Saat</span>
- </div>
- </div>
- <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
- <span class="text-base"></span>
- <div>
- <span class="text-[10px] uppercase font-bold text-slate-400 block">Temel FM Sınırı</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">60s (Esnek Tavan)</span>
- </div>
- </div>
- <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
- <span class="text-base"> </span>
- <div>
- <span class="text-[10px] uppercase font-bold text-slate-400 block">Kıdem Kalkanı</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">50 Yaş / 25 Yıl</span>
- </div>
- </div>
- </div>
+:::recipe Kısa Reçete: Temel Nöbet Parametrelerini Yapılandırma | 20 SANİYELİK AKIŞ
+### 1. İstenen Sonuç | slate
+Personelin aşırı yorulmasını önleyen, yasal çalışma rejimine uyumlu ve adalet öncelikleri belirlenmiş genel nöbet standardı.
 
-## 07.1 Temel Ayarlar 5N1K Bileşen Çözümleme Tablosu {#5w1h}
+### 2. Yapılacak İşlem | cyan
+<strong>[Temel Ayarlar]</strong> sekmesinde ardışık gün, dinlenme saati, haftalık 35s/40s mesai, fazla mesai kotası ve muafiyet kriterlerini belirleyip <strong>[Temel Ayarlari Kaydet]</strong> butonuna basın.
 
-| NE? (Bileşen Adı) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? | KİM? |
+### 3. Sistem Etkisi | emerald
+Dağıtım motoru özel bir istisna olmadıkça bu sınırları varsayılan kısıt olarak uygular; haftalık 40s ve 35s oranı otomatik güncellenerek karma mesai denkliği korunur.
+
+- [metric] Dinlenme Aralığı | Min 24 Saat | cyan
+- [metric] Kurumsal Kota | 60s (Yasal Tavan 130s) | amber
+- [metric] Haftalık Rejim | 35s Radyasyon / 40s Genel | slate
+- [metric] Kıdem Kalkanı | 50 Yaş / 25 Yıl | emerald
+:::
+
+## 5N1K Kural ve Arayüz Çözümleme Tablosu {#5w1h}
+
+*Temel Ayarlar sekmesindeki klinik sınırların ve emniyet anahtarlarının çalışma mantığı (kayıt adımları aşağıdadır).*
+
+| NE? (Bileşen / Kontrol) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Tetiklenme) | KİM? (Yetkili Rol) |
 | --- | --- | --- | --- | --- |
-| Ayda max bayram nöbeti | Bayram günlerinde tutulabilecek azami nöbet sayısını sınırlamak. | Varsayılan 2'dir. Bir personelin ay içerisindeki dini ve resmi bayram nöbetlerini adil sınırlar. | Bayram dönemlerinde. | Sistem Yöneticisi |
-| Ayda max hafta sonu nöbeti | Hafta sonu nöbet yükünün tek bir personele yığılmasını engellemek. | Varsayılan 4'tür. Personelin ayda en fazla kaç hafta sonu günü görev yapabileceğini belirler. | Aylık planlamada. | Klinik Sorumlusu |
-| Maksimum fazla mesai süresi | Kurum içi aylık fazla mesaiyi adil sınırda tutmak; acil durumda yöneticiyle esnetmek. | Kurumsal temel tavan 60 saattir. Acil personel eksikliğinde yönetici onayıyla aşılabilir; ancak yasal tavan 130 saati geçemez. | Aylık kota hesabında. | Klinik Amiri Onaylı |
-| Bayram nöbeti adalet önceliği | Geçmiş dönemlerde bayram nöbeti tutanları yeni bayramlarda korumak. | Önemsiz, Normal, Önemli veya Çok Önemli ağırlık çarpanı seçilir. Dağıtım motoru adalet havuzunu dengeler. | Nöbet dağıtımında. | Nöbet Dağıtım Motoru |
-| Gece nöbeti dengeleme katsayısı | Gece nöbeti sayısını ekip üyeleri arasında eşit paylaştırmak. | Öncelik derecesine göre nöbet dağıtım motoru gece nöbetlerini personel arasında homojen dağıtmaya zorlanır. | Gece planlarında. | Nöbet Dağıtım Motoru |
-| Muafiyet yaş sınırı | 50 yaşını aşmış personeli gece nöbeti yükünden korumak. | Öncelikli olarak gündüz nöbeti atanır. Ancak serviste boş slot veya eksik mesai kalması durumunda otomatik esnetilir. | Vardiya dağıtımında. | 50+ Yaş Personel |
-| Muafiyet hizmet yılı | 25 hizmet yılını dolduran personeli ödüllendirmek ve korumak. | 25 yıl ve üzeri memuriyete sahip personele koruyucu öncelik uygulanır; zorunlu hallerde esnetilebilir. | Planlama esnasında. | 25+ Yıl Kıdemli Personel |
-| Yaş/Kıdem Muafiyeti Gece Nöbetini Kapsasın | Muafiyetin doğrudan gece nöbetlerini hariç tutmasını sağlamak. | İşaretlendiğinde muafiyet eşiğine ulaşan personellere gece nöbeti yazılmaması öncelikli kural haline gelir. | Kural kaydında. | Yönetici |
-| Devredilen nöbet değiştirilemez kısıtı | Devir işlemiyle kesinleşmiş nöbetlerin yeniden dağıtılmasını önlemek. | Onay kutusu işaretli olduğunda devredilmiş nöbetler dağıtım motoru tarafından kilitli kabul edilir. | Devir sonrasında. | Sistem Yöneticisi |
-| Temel Ayarları Kaydet Butonu | Tüm bu parametreleri kalıcı olarak veritabanına işlemek. | Yeşil renktedir. Tıklandığında tüm limitler güncellenir ve nöbet dağıtım motorunun aktif yapılandırması olur. | Ayar değişiminde. | Yönetici |
+| <strong>Hafta Sonu, Bayram ve Ardışık Nöbet Tavanları</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Aylık ve Günlük Sınırlar</span> | Bir personelin ay içinde üst üste veya yoğun tatil günlerinde yıpranmasını önlemek. | Ayda azami hafta sonu (varsayılan 4), bayram (varsayılan 2) ve ardışık nöbet sınırı (varsayılan 2 gün) dağıtım motoru için sert eşik olarak değerlendirilir. | Plan dağıtımında. | Sistem Yöneticisi |
+| <strong>Bayram ve Gece Adalet Önceliği</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Onemsiz – Cok Onemli</span> | Geçmiş dönemlerde bayram ve gece nöbeti tutan personeli sonraki aylarda korumak. | Seçilen önem derecesi (<em>Onemsiz</em>, <em>Normal</em>, <em>Onemli</em>, <em>Cok Onemli</em>) dağıtım motorunun adalet ceza ağırlığını artırır veya azaltır. | Otomatik dağıtımda. | Birim Sorumlusu |
+| <strong>Yaş ve Kıdem Muafiyeti Kapsam Kutuları</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Gece &amp; Hafta Sonu Kapsamı</span> | 50 yaş veya 25 yıl kıdemli personelin hangi vardiya türlerinden öncelikle korunacağını seçmek. | <strong>[Yaş/Kıdem Muafiyeti Gece Nöbetini Kapsasın]</strong> ve <strong>[Yaş/Kıdem Muafiyeti Hafta Sonu Nöbetini Kapsasın]</strong> kutularına göre öncelikli muafiyet alanı belirlenir. | Planlama sırasında. | Yönetici |
+| <strong>[Devredilen nöbet değiştirilemez kısıtı]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Devir Kilidi</span> | Personeller arası devir veya takasla kesinleşmiş nöbetlerin yeniden dağıtılmasını engellemek. | İşaretlendiğinde daha önce devredilmiş nöbet slotları kilitli kabul edilir ve otomatik düzenlemelerde değiştirilmez. | Çizelge güncellenirken. | Sistem Yöneticisi |
+| <strong>Çapraz Atama &amp; Devir Nedeni Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Operasyon Güvenliği</span> | Departmanlar arası geçici atamayı yönetmek ve devir taleplerinde yazılı gerekçe toplamak. | <strong>[Departmanlar arasi gecici atama acik]</strong> çapraz görevlendirmeye izin verir; <strong>[Devir nedeni zorunlu]</strong> ise gerekçesiz devir talebini engeller. | Geçici atama ve devirde. | Sistem Yöneticisi |
+| <strong>[Yayindan taslaga donus (Admin onayıi)]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Geri Alma Emniyeti</span> | İlan edilmiş nöbet çizelgesinin kontrolsüzce taslağa çekilmesini önlemek. | Yalnızca onay kutusu açıkken ve yönetici şifresi doğrulandığında yayınlanmış planlar taslağa geri döndürülebilir. | Plan geri çekilirken. | Sistem Yöneticisi |
 
-## Temel Ayarlar Ekranı Arayüzü {#screenshot}
+## Arayüz Ekran Görünümleri {#screenshots}
 
-![Nöbet Temel Ayarlar Ekranı | Ekran: Nöbet Yönetimi > Nöbet Ayarları ve Kurallar > [Temel Ayarlar] | Temel Ayarlar Sekmesi](assets/img/nobet_temel.ui.png "<span><strong>Simülasyon Notu:</strong> Bu görseldeki eşik değerler kurum içi test ortamında yapılandırılmış simülasyon parametreleridir.</span>")
+![Nöbet Temel Ayarlar Ekranı | Nöbet Yönetimi > Nöbet Ayarları ve Kurallar > Temel Ayarlar | Genel Parametreler & Muafiyetler | cyan](assets/img/nobet_temel_ayarlar.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki eşik değerler test ortamında yapılandırılmış sentetik parametrelerdir.</span>")
 
-## Adım Adım Temel Parametre Yapılandırma {#step-by-step}
+## Adım Adım İşlem Rehberi {#step-by-step}
 
-<div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
- <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
- <li>Sol ana menüden <strong>[Nöbet Yönetimi] > [Nöbet Ayarları ve Kurallar]</strong> ekranını açın.</li>
- <li>İlk sekme olan <strong>[Temel Ayarlar]</strong>'a tıklayın.</li>
- <li><strong>Maksimum Ardışık Nöbet Günü</strong> kutusuna en fazla <strong>2</strong> girin.</li>
- <li><strong>Nöbet Sonrası Dinlenme Süresi</strong> alanını hekim/teknisyen sağlığı için <strong>24 saat</strong> olarak belirleyin.</li>
- <li><strong>Gece Nöbeti Dinlenme Süresi</strong> alanına <strong>48 saat</strong> yazın.</li>
- <li><strong>Aylık Maksimum Fazla Mesai</strong> alanına temel tavan olan <strong>60</strong> değerini kaydedin.</li>
- <li><strong>Yaş Muafiyeti</strong> kutusuna <strong>50</strong>, <strong>Hizmet Yılı Muafiyeti</strong> kutusuna <strong>25</strong> yazın.</li>
- <li>Sağ altta yer alan yeşil <strong>[Temel Ayarları Kaydet]</strong> butonuna tıklayın. Değişiklikler anında veritabanına işlenir.</li>
- </ol>
- </div>
+### 1. Temel Çalışma ve Muafiyet Standartlarını Kaydetme
 
-## Sıkça Sorulan Sorular (Temel Ayarlar) {#faq}
+1. Sol menüden **[Nöbet Yönetimi] &gt; [Nöbet Ayarları ve Kurallar]** ekranını açın ve ilk sekme olan **[Temel Ayarlar]** bölümüne girin.
+2. **Temel Parametreler** alanında ardışık nöbet sınırını, nöbet sonrası minimum dinlenme süresini (24 saat), haftalık mesai standartlarını (35 saat / 40 saat), aylık fazla mesai kotasını (60 saat) ve adalet önceliklerini belirleyin.
+3. Gerekli ise **[Gelismis Secenekleri Goster]** butonuna tıklayarak hafta içi önceliği (**[Önce hafta içi/normal günleri doldur (Hafta sonları en son planlanır)]**) ve devir/geri alma emniyet seçeneklerini düzenleyin.
+4. **Muafiyet Kriterleri** bölümünde yaş sınırını (50), hizmet yılını (25) ve korumanın kapsayacağı nöbet türlerini işaretleyin.
+5. Sağ alttaki **[Temel Ayarlari Kaydet]** butonuna basarak onaylayın.
+
+## Sıkça Sorulan Sorular (SSS) {#faq}
 
 :::faq
-### 60 saat fazla mesai sınırı acil durumlarda aşılabilir mi? ▾
-Evet. 60 saat kurumsal bir temel tavandır; ancak salgın, grev veya acil personel eksikliğinde <strong>Yönetici Onayı ile aşılabilir</strong>. Aşılması mümkün olmayan mutlak tavan ise kanuni sınır olan 130 saattir.
+### 60 saatlik fazla mesai sınırı acil personel eksikliğinde aşılabilir mi?
+Evet. 60 saat çalışan sağlığını korumaya yönelik kurumsal kotadır; olağanüstü servis ihtiyacında yönetici onayıyla esnetilebilir. Ancak 657 sayılı Kanun Ek Madde 33 kapsamındaki aylık nöbet ücreti ödeme tavanı <strong>130 saattir</strong>.
 
-### 50 yaşını geçen personele sistem neden gece nöbeti yazabiliyor? ▾
-Çünkü 50 yaş kriteri mutlak bir kanuni yasaklama değil, <strong>kurum içi koruyucu öncelik politikasıdır</strong>. Algoritma önce gündüz nöbeti atar; ancak serviste açık nöbet slotu kalırsa veya personelin zorunlu mesaisi eksik kalırsa kısıt otomatik esnetilerek gece nöbeti atanabilir.
+### 50 yaşını geçen personele neden bazen gece nöbeti atanabiliyor?
+50 yaş ve 25 hizmet yılı kriterleri mutlak kanuni yasak değil, koruyucu kurum önceliğidir. Motor önce gündüz vardiyası atar; ancak serviste boş slot kalırsa veya personelin aylık çalışma saati eksik kalırsa bu kriteri otomatik esneterek gece nöbeti yazabilir.
+
+### Haftalık 35 saat ve 40 saat standartları değiştiğinde eski oranı elle güncellemem gerekir mi?
+Hayır. Normal ve radyasyon haftalık çalışma saatleri değiştirilip kaydedildiğinde aradaki denklik oranı sistem tarafından otomatik yeniden hesaplanır.
 :::

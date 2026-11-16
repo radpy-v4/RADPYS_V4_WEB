@@ -1,135 +1,78 @@
 ---json
 {
-  "pageTitle": "07. 07 2 Birim Kurallari Ve Slot Yonetimi — RADPYS v4 Kullanım Kılavuzu",
+  "pageTitle": "07.2. Birim Kuralları, Vardiya Slotları ve Kural Kopyalama — RADPYS v4 Kullanım Kılavuzu",
   "h1": "Departman Nöbet Slotları, Akıllı Saat Hesabı & Kural Kopyalama",
-  "lead": "Departmanların (Acil, USG, BT, MR) çalışma vardiyalarını, nöbetçi sayılarını, otomatik hesaplanan akıllı bitiş saatlerini ve birimler arası vardiya aktarımını bu ekrandan yönetebilirsiniz.",
+  "lead": "Her kliniğin günlük, hafta içi ve hafta sonu/tatil vardiya slotlarını, aynı anda görev yapacak nöbetçi sayılarını, otomatik bitiş saati hesabını, 24 saat veya çapraz görev uygunluğunu ve birimler arası şablon aktarımını yönetmenizi sağlar.",
   "overviewId": "overview",
-  "badges": []
+  "badges": [
+    {
+      "text": "07.2 Birim Kuralları",
+      "tone": "cyan"
+    }
+  ],
+  "readingTime": "4 Dakika",
+  "legalNote": "<strong>Önemli Uyarı:</strong> [Birim Kuralını Kopyala] işlemi çalıştırıldığında hedef birimdeki mevcut tüm nöbet slotları tamamen silinir ve kaynak birimdeki slotlar sıfırdan oluşturulur; kopyalama öncesi hedef birimi mutlaka doğrulayın."
 }
 ---
 
-## Hızlı Reçete: Departman Vardiya Slotlarını Tanımlama ve Çoğaltma {#quick-recipe}
+## Kısa Reçete: Departman Vardiya Slotlarını Tanımlama ve Çoğaltma {#quick-recipe}
 
-<div class="flex items-center gap-3">
- <div class="w-9 h-9 rounded-2xl bg-cyan-600 text-white flex items-center justify-center font-bold text-base shadow-md">
- </div>
- <div>
- <p class="text-xs text-slate-500 dark:text-slate-400">
- Vardiya slot açma, otomatik saat tamamlama ve birim kuralı kopyalama
- </p>
- </div>
- </div>
- <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 text-xs sm:text-sm">
- <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
- <span class="font-bold text-slate-400 uppercase text-[10px] tracking-wider block">1. İstenen Sonuç</span>
- <p class="font-semibold text-slate-800 dark:text-slate-100">
- Departmanın gece, gündüz ve hafta sonu ihtiyaç duyduğu nöbetçi pozisyonlarının eksiksiz sisteme tanıtılması.
- </p>
- </div>
- <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
- <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase text-[10px] tracking-wider block">2. Yapılacak İşlem</span>
- <p class="font-semibold text-slate-800 dark:text-slate-100">
- Birim seçin, başlangıç saatini ve süreyi girin (bitiş saati otomatik dolar), nöbetçi sayısını belirleyip <strong>[Birim Kuralı Ekle]</strong>'ye basın.
- </p>
- </div>
- <div class="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 space-y-1">
- <span class="font-bold text-emerald-600 dark:text-emerald-400 uppercase text-[10px] tracking-wider block">3. Sistem Etkisi</span>
- <p class="font-semibold text-slate-800 dark:text-slate-100">
- Nöbet dağıtım motoru bu slotları doldurmak için personel atar. <strong>[+ Birim Kuralını Kopyala]</strong> butonu ile aynı şablon diğer birimlere saniyeler içinde kopyalanabilir.
- </p>
- </div>
- </div>
- <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2 border-t border-cyan-100 dark:border-cyan-900/40">
- <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
- <span class="text-base"></span>
- <div>
- <span class="text-[10px] uppercase font-bold text-slate-400 block">Departman Bazlı</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Özel Slot Havuzu</span>
- </div>
- </div>
- <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
- <span class="text-base"></span>
- <div>
- <span class="text-[10px] uppercase font-bold text-slate-400 block">Akıllı Saat</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Başlangıç + Süre</span>
- </div>
- </div>
- <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
- <span class="text-base"></span>
- <div>
- <span class="text-[10px] uppercase font-bold text-slate-400 block">Nöbetçi Sayısı</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Dinamik Kontenjan</span>
- </div>
- </div>
- <div class="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/50 flex items-center gap-2">
- <span class="text-base"></span>
- <div>
- <span class="text-[10px] uppercase font-bold text-slate-400 block">Kural Kopyalama</span>
- <span class="text-xs font-bold text-slate-800 dark:text-slate-100">Tek Tıkla Aktarım</span>
- </div>
- </div>
- </div>
+:::recipe Kısa Reçete: Departman Vardiya Slotlarını Tanımlama ve Çoğaltma | 20 SANİYELİK AKIŞ
+### 1. İstenen Sonuç | slate
+Klinik birimlerin gece, gündüz ve hafta sonu ihtiyaç duyduğu nöbetçi pozisyonlarının eksiksiz tanımlanması.
 
-## no-id {#no-id}
+### 2. Yapılacak İşlem | cyan
+İlgili birimi seçip vardiya adı, kodu, başlangıç saati, süresi ve nöbetçi sayısını girerek <strong>[Birim Kuralı Ekle]</strong> butonuna basın; benzer birimler için <strong>[Birim Kuralını Kopyala]</strong> ile şablonu aktarın.
 
-<span class="text-2xl shrink-0"> </span>
- <div class="space-y-1 text-xs sm:text-sm">
- <strong class="font-bold block text-sm text-amber-800 dark:text-amber-300">Önemli Kurumsal Uyarı: Birim Kuralı Kopyalama Davranışı</strong>
- <p class="leading-relaxed">
- <strong>[+ Birim Kuralını Kopyala]</strong> butonunu kullandığınızda, <strong>Hedef Birimde daha önce tanımlanmış olan mevcut tüm nöbet slotları tamamen silinir</strong> ve kaynak birimdeki slotlar sıfırdan oluşturulur. Yanlışlıkla birimin var olan slotlarını kaybetmemek için kopyalama öncesinde hedef birimi mutlaka kontrol ediniz.
- </p>
- </div>
+### 3. Sistem Etkisi | emerald
+Bitiş saati gece yarısı devri dahil otomatik hesaplanır; dağıtım motoru bu aktif slotları günlük kontenjan ve gün kısıtına göre doldurur.
 
-## 07.2 Birim Kuralları ve Slotlar 5N1K Bileşen Çözümleme Tablosu {#5w1h}
+- [metric] Departman Bazlı | Özel Slot Havuzu | slate
+- [metric] Akıllı Saat | Başlangıç + Süre | cyan
+- [metric] Gün Kapsamı | Hafta İçi / Tatil / Her Gün | emerald
+- [metric] Şablon Aktarımı | Kural Kopyalama | amber
+:::
 
-| NE? (Bileşen Adı) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? | KİM? |
+## 5N1K Kural ve Arayüz Çözümleme Tablosu {#5w1h}
+
+*Birim Kuralları sekmesindeki vardiya hesaplama, kapsama ve aktarım mekanizmaları (buton adımları aşağıdadır).*
+
+| NE? (Bileşen / Kontrol) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Tetiklenme) | KİM? (Yetkili Rol) |
 | --- | --- | --- | --- | --- |
-| Birim Seçimi (Açılır Kutu) | Hangi birimin nöbet kurallarının yönetileceğini seçmek. | Departman tablosundaki aktif servisleri listeler. Seçim değiştiğinde slot tablosu anında yenilenir. | Birim ayarlarını açarken. | Departman Sorumlusu |
-| Nöbet Adı / Nöbet Kodu | Vardiyayı çizelgede ve raporlarda tekil olarak tanımlamak. | Örn: Nöbet Adı: "Acil Gece", Nöbet Kodu: "ACL_GECE". Dağıtım motorunda ve PDF çıktılarda bu isim ve kod görünür. | Slot oluştururken. | Nöbet Amiri |
-| Başlangıç Saati & Süre (Saat) | Vardiyanın başlangıç saatini ve çalışma süresini belirlemek. | Başlangıç saati girildiğinde süre (saat) ile toplanarak bitiş saati matematiksel olarak hesaplanır. | Vardiya tanımlarken. | Yetkili Kullanıcı |
-| Bitiş Saati (Otomatik Hesaplanan) | Kullanıcının yanlış bitiş saati girmesini önlemek (Akıllı Saat). | (Başlangıç + Süre) % 24 formülü ile çalışır. Gece yarısı devirlerinde (örn: 20:00 + 12s = 08:00) otomatik hesaplar. | Süre değiştikçe. | Sistem Otomatik |
-| Nöbetçi Sayısı (Slot) | Bu nöbet slotunda aynı anda kaç teknisyenin görev alacağını belirlemek. | Örn: 2 seçilirse nöbet dağıtım motoru her gün bu slota iki farklı uygun personel atamak zorundadır. | Vardiya açarken. | Başhekimlik / Sorumlu |
-| Hizmet Tipi (Açılır Kutu) | Vardiyanın belirli bir hizmet grubuna (örn: teknisyen, hemşire) özgülenmesini sağlamak. | Boş bırakılırsa (Genel) birimdeki tüm hizmet sınıflarına açık olur; seçilirse sadece o gruba yazılır. | Vardiya tanımlarken. | Nöbet Sorumlusu |
-| Birim Kuralı Ekle Butonu | Girilen slot parametrelerini birim kuralı olarak kaydetmek. | Tıklandığında yeni vardiya slot tablosuna eklenir ve nöbet dağıtım havuzuna dahil edilir. | Slot oluştururken. | Departman Sorumlusu |
-| Birim Kuralını Kopyala Butonu (Mor Buton) | Bir birimin tüm slotlarını başka bir birime anında çoğaltmak. | Açılan diyalogda kaynak ve hedef birim seçilir. Onay verildiğinde hedef birim slotları sıfırlanıp kopyalanır. | Yeni birim kurulumunda. | Sistem Yöneticisi |
-| Birim Kuralını Sil Butonu | Kullanılmayan veya kaldırılan bir vardiya slotunu iptal etmek. | Tablodan seçilen slot onay sonrası sistemden kaldırılır; gelecek planlarda bu slota atama yapılmaz. | Slot iptalinde. | Departman Sorumlusu |
+| <strong>Akıllı Saat Hesaplayıcı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Başlangıç + Süre = Otomatik Bitiş</span> | Gece yarısını geçen vardiyalarda hatalı bitiş saati girilmesini önlemek. | Başlangıç saati ile süre toplandığında gece yarısı devri dahil 24 saatlik döngü üzerinden salt-okunur bitiş saati otomatik üretilir. | Slot saati veya süre değiştiğinde. | Birim Sorumlusu |
+| <strong>Nöbetçi Sayısı ve Hizmet Tipi Kapsamı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Kontenjan ve Meslek Grubu</span> | Slotta aynı anda kaç kişinin ve hangi meslek grubunun nöbet tutacağını belirlemek. | Nöbetçi sayısı günlük zorunlu kişi adedini belirler; hizmet tipi boş bırakılırsa birimdeki tüm gruplara, seçilirse yalnızca ilgili gruba atanır. | Slot tanımlanırken. | Birim Sorumlusu / Başhekimlik |
+| <strong>Gün Kapsamı, Tatil ve 24 Saat Seçenekleri</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[24 Saat Tutulabilir] &amp; Tatil Kutuları</span> | Vardiya türünün hangi günlerde açılacağını ve 24 saat birleştirme uygunluğunu yönetmek. | <em>Her Gün</em>, <em>Sadece Hafta İçi</em> veya <em>Sadece Hafta Sonu ve Tatil</em> seçilir; <strong>[Hafta sonlarında nöbet yazılsın]</strong>, <strong>[Resmi ve dini bayramlarda nöbet yazılsın]</strong> ve <strong>[24 Saat Tutulabilir]</strong> işaretleriyle kapsam kesinleşir. | Slot oluşturulurken. | Birim Amiri |
+| <strong>[Capraz Gorevlendirme] Anahtarı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Seyyar Slot Uygunluğu</span> | Birim içi kadro yetersizliğinde diğer birimlerden takviye alabilecek slotları işaretlemek. | İşaretlenen slotlar çizelge ekranındaki çapraz birim tamamlama motoru tarafından hedef slot olarak algılanır. | Çapraz destek açılırken. | Birim Sorumlusu |
+| <strong>[Birim Kuralını Kopyala]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Birimler Arası Şablon Aktarımı</span> | Benzer çalışma düzenine sahip servislere aynı vardiya slotlarını hızlıca kurmak. | Kaynak birimin tüm slotlarını hedef birime kopyalar; çakışma olmaması için hedef birimin önceki tüm slotlarını silerek sıfırdan yazar. | Yeni birim yapılandırılırken. | Sistem Yöneticisi / Amir |
 
-## Birim Kuralları ve Nöbet Slotları Ekranı {#screenshot}
+## Arayüz Ekran Görünümleri {#screenshots}
 
-![Birim Kuralları ve Nöbet Slotları Ekranı | Ekran: Nöbet Ayarları > [Birim Kuralları] Sekmesi | Birim Kuralları Sekmesi](assets/img/nobet_birim_kurallari.png "<span><strong>Simülasyon Notu:</strong> Departman slotları ve çalışma saatleri hastane test ortamına göre yapılandırılmıştır.</span>")
+![Birim Kuralları ve Nöbet Slotları Ekranı | Nöbet Ayarları > Birim Kuralları | Vardiya Slotları, Akıllı Saat & Kural Kopyalama | cyan](assets/img/nobet_birim_kurallari.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki departman slotları ve vardiya süreleri örnek hastane kurgusuna göre üretilmiş sentetik verilerdir.</span>")
 
-## Adım Adım Yeni Birim Slotu Açma ve Kopyalama {#step-by-step}
+![Birim Personel Havuzu ve Nöbet Uygunluk Ekranı | Nöbet Ayarları > Birim Personel Havuzu | Birim Bazlı Nöbetçi Havuzu | emerald](assets/img/07_2_birim_personel_havuzu.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki personel isimleri ve birim eşleşmeleri test ortamına ait sentetik verilerdir.</span>")
 
-<div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
- <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
- <li><strong>[Birim Kuralları]</strong> sekmesinde sol üstten ilgili departmanı (örn: Acil Radyoloji) seçin.</li>
- <li>Alt kısımdaki <strong>Vardiya Tanımlama</strong> kutularına gidin:
- <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-0.5">
- <li><strong>Nöbet Adı:</strong> "Acil Gece 12s"</li>
- <li><strong>Nöbet Kodu:</strong> "ACL_12"</li>
- <li><strong>Başlangıç Saati:</strong> 20:00</li>
- <li><strong>Süre (Saat):</strong> 12 <em>(Bitiş saati akıllı motor ile otomatik 08:00 olacaktır.)</em></li>
- <li><strong>Nöbetçi Sayısı:</strong> 2</li>
- <li><strong>Geçerli Günler:</strong> "Her Gün"</li>
- </ul>
- </li>
- <li><strong>[Birim Kuralı Ekle]</strong> butonuna basın. Yeni slot üstteki tabloda listelenir.</li>
- <li>Aynı kuralları BT servisine de aktarmak isterseniz:
- <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-0.5">
- <li>Üstteki mor <strong>[+ Birim Kuralını Kopyala]</strong> butonuna basın.</li>
- <li>Kaynak olarak <strong>Acil Radyoloji</strong>, hedef olarak <strong>Bilgisayarlı Tomografi (BT)</strong> seçin.</li>
- <li>Onay kutusunda "Evet" diyerek aktarımı tamamlayın.</li>
- </ul>
- </li>
- </ol>
- </div>
+## Adım Adım İşlem Rehberi {#step-by-step}
 
-## Sıkça Sorulan Sorular (Birim Slotları) {#faq}
+### 1. Yeni Birim Nöbet Slotu Oluşturma ve Güncelleme
+
+1. **[Birim Kuralları]** sekmesinde filtre veya birim alanından ilgili servisi seçin; yeni bir kayıt için **[Yeni Birim Kuralı]** butonuna tıklayın.
+2. **Vardiya Tanımlama** bölümünde Nöbet Adı, Nöbet Kodu, Başlangıç Saati, Süre (örneğin 20:00 ve 12 saat; bitiş otomatik 08:00 olur), Nöbetçi Sayısı ve geçerli gün kapsamını belirleyin; gerekirse **[Aktif]**, **[24 Saat Tutulabilir]** ve **[Capraz Gorevlendirme]** kutularını işaretleyin.
+3. Slotu kaydetmek için **[Birim Kuralı Ekle]** butonuna basın; mevcut bir satırı değiştirirken **[Birim Kuralı Güncelle]**, kullanılmayan bir slotu kaldırmak için **[Birim Kuralını Sil]** butonunu kullanın.
+
+### 2. Birim Kuralını Başka Bir Birime Kopyalama
+
+1. Araç çubuğundaki **[Birim Kuralını Kopyala]** butonuna tıklayın.
+2. Kaynak birim ile hedef birimi seçin, hedef birimin mevcut slotlarının silineceğini bildiren onay mesajını teyit ederek aktarımı tamamlayın.
+
+## Sıkça Sorulan Sorular (SSS) {#faq}
 
 :::faq
-### Bitiş saatini manuel olarak değiştirebilir miyim? ▾
-Hayır, bitiş saati kutusu bilerek salt-okunurdur. Hatalı süre veya çakışan vardiya girişlerini engellemek için sistem, başlangıç saati ile süreyi toplayarak bitiş saatini otomatik üretir.
+### Bitiş saatini neden doğrudan değiştiremiyorum?
+Vardiya süreleri ile bitiş saati arasındaki tutarsızlığı önlemek için bitiş saati başlangıç ve süre üzerinden otomatik hesaplanır. Bitiş saatini değiştirmek için süreyi veya başlangıç saatini güncellemeniz yeterlidir.
 
-### Kural kopyalarken hedef birimdeki eski slotları koruyamaz mıyım? ▾
-Kural kopyalama işlevi, hedef birimin şablonunu kaynak birimle tam olarak eşitlemek üzere tasarlanmıştır. Bu sebeple hedef birimin eski slotları silinir. Eğer eski slotları korumak istiyorsanız yeni slotları tek tek eklemeniz önerilir.
+### Kural kopyalarken hedef birimdeki eski slotlar neden siliniyor?
+Aynı birimde mükerrer vardiya kodu ve saat çakışması oluşmasını engellemek için kopyalama işlemi hedef birimin şablonunu kaynak birimle birebir eşitler. Mevcut slotları korumak istiyorsanız yeni slotları kopyalamak yerine <strong>[Birim Kuralı Ekle]</strong> ile tek tek eklemelisiniz.
+
+### Birden fazla personelin aynı nöbete yazılması nasıl sağlanır?
+İlgili vardiya tanımında <strong>Nöbetçi Sayısı</strong> değerini gereken kişi adedine çıkarıp <strong>[Birim Kuralı Güncelle]</strong> butonuna basmanız yeterlidir.
 :::

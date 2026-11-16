@@ -6,6 +6,42 @@ Bu kılavuz; **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## RADPYS V4.0.5.29: Tüm 29 Modülde Yenilenmiş Kullanım Kılavuzu, Sadeleştirilmiş 5N1K Rehberleri ve Kurumsal Baskı / Web Yardım Bütünlüğü
+
+Bu sürümle birlikte **RADPYS V4 Kullanım Kılavuzu** kapsamındaki tüm 24 ana modül ve 5 nöbet alt kılavuzu uygulamanın güncel ekranlarıyla baştan sona doğrulandı; tekrar eden anlatımlar ayıklanarak yöneticilerin ve saha personelinin aradığı kurala saniyeler içinde ulaşmasını sağlayan sadeleştirilmiş yeni nesil rehber yapısı kullanıma sunuldu:
+
+### Öne Çıkan Yenilikler (Hızlı Bakış)
+
+* **29 Modülün Tamamında Güncel Ekran ve Kural Uyumu:** Giriş, Kullanıcı Yönetimi, Personel, İzin/Şua, Nöbet Kuralları ve Solver Motoru, Dozimetre, Sağlık Muayeneleri, Ortam Dozu, Olay Bildirimi, RKS Görevlendirme, Hizmet İçi Eğitim, Tıbbi Cihaz/Bakım/KKT/KUT, Koruyucu Ekipman (RKE), Merkezi Onaylar, Web Portalı, Rapor & Tutanak Merkezi ve Kısaltmalar Sözlüğü sayfaları mevcut ekran düğmeleri ve güncel kurallarla birebir hizalandı.
+* **Sadeleştirilmiş 5N1K Tabloları ve Kısa Reçeteler:** Aynı kuralın hem özet kutusunda hem tabloda hem de işlem adımlarında tekrar edilmesi engellendi; her modülde tek bakışta karar aldıran 5N1K tabloları, sahada yanlış bilinen kuralları düzelten açıklamalar ve adım adım kullanım senaryoları netleştirildi.
+* **Merkezi Onaylar, Web Portalı ve Rapor Merkezi Güncellemesi:** Merkezi Onaylar ekranındaki 7 kategori sekmesi (RKE Muayeneleri ve Resmi Tutanaklar dahil) ve 8 özet sayaç kartı, Web Portalındaki 4 grupta toplanan 20 yönetici gösterge paneli ile 10 mobil saha formu ve Rapor/Tutanak Merkezindeki 27 aktif resmi rapor ile 11 modülü kapsayan Evrensel Tutanak Sihirbazı eksiksiz belgelendi.
+* **Kurumsal A4 PDF El Kitabı ve Web Yardım Portalı Senkronizasyonu:** Çevrimdışı PDF el kitabı mizanpajı, arama dizini ve Web Yardım Portalı içerikleri sıfırdan derlenerek tüm yardımların tek kaynaktan eşitlenmesi sağlandı.
+
+### Fayda Odaklı Açıklamalar
+
+* **Yeni Kullanıcılar ve Denetim Hazırlığı İçin Hızlı Başvuru:** Birim sorumluları, radyasyondan korunma sorumluları ve denetim ekipleri hem masaüstü hem web ortamında aynı güncel yönergelere ulaşabilir; sadeleştirilen tablolar sayesinde mevzuat sınırları ve kurumsal iş kuralları karmaşa yaşanmadan uygulanır.
+* **Tamamlayıcı Ekran Görüntüsü Hazırlığı:** Kılavuz genelinde eksiksiz görsel rehberlik sunmak üzere belirlenen yeni ekran görüntüsü alanları hazır hale getirildi; bu sayede kullanıcı eğitimleri ve saha oryantasyonları tek bir güncel el kitabı üzerinden yürütülebilir.
+
+---
+
+## ⚖️ RADPYS V4.0.5.28: Mevzuat Uyumluluğu İyileştirmeleri (EK-2 Şua Hesabı, 20/50 mSv Doz Takibi, Gebe/Emzirme Ayrımı), Yasal Sınır–Kurumsal Parametre Ayrımı ve Kısaltmalar Sözlüğü
+
+Bu sürümle birlikte **Fiili Hizmet / Şua Hesaplama**, **Dozimetre Takibi** ve tüm **Kullanım Kılavuzu (24 Modül)** modülleri güncel Türkiye Radyasyon Sağlığı ve İş Mevzuatı ile birebir uyumlu hale getirilmiş; yasal bağlayıcı tavanlar ile kurum içi yapılandırılabilir kalite parametreleri netleştirilmiş ve kılavuza kapsamlı **Kısaltmalar ve Mevzuat Referans Sözlüğü (Modül 24)** eklenmiştir:
+
+### 🌟 Öne Çıkan Yenilikler (Hızlı Bakış)
+
+* **32162 Sayılı Yönetmelik EK-2 Kademeli Şua İzni Hesabı:** Yıllık fiili radyasyon çalışma saatlerinden hak edilen Şua (Sağlık) İzni hesabı *13.04.2023 tarihli ve 32162 sayılı Yönetmelik EK-2 Sağlık İzni Tablosu* ile tam uyumlu kademeli aralıklara (örneğin `1–50 saat` 1 gün, `101–150 saat` 3 gün, `1.451–1.500 saat` azami 30 gün) getirildi; aylık puantaj satırlarında gereksiz gün şişmesini önleyen aylık tam dilim koruması korundu.
+* **20 mSv Beş Yıllık Ortalama ile 50 mSv Tek Yıllık Yasal Doz Tavanının Ayrılması:** Kişisel dozimetre takibinde Radyasyon Güvenliği Yönetmeliği Madde 10 uyarınca **ardışık 5 yıl ortalaması 20 mSv/yıl** ile **herhangi bir tek yıldaki mutlak 50 mSv tavanı** ayrı ayrı denetlenir hale getirildi; aylık kalite inceleme seviyeleri ise tüm kılavuz ve analiz ekranlarında **2.0 mSv (Sarı İnceleme Eşiği)** ve **5.0 mSv (Kırmızı Aksiyon Eşiği)** olarak standartlaştırıldı.
+* **Gebe ve Emziren Çalışan Kurallarının Mevzuata Göre Ayrıştırılması:** Gebe çalışanlarda **1 mSv** kuralının *yıllık limit* değil **kalan gebelik süresi boyunca karın yüzeyi ilave eşdeğer doz sınırı** olduğu netleştirildi; emziren çalışanlar için ise sayısal bir doz sınırı yerine yönetmelik gereği **radyoaktif kontaminasyon ve açık kaynak riski taşıyan işlerde çalıştırılmama** ve gece nöbeti muafiyeti kuralları açık biçimde belgelendi.
+* **Yeni Modül 24 — Kısaltmalar Sözlüğü ve Mevzuat Referans Matrisi:** Kullanım kılavuzuna eklenen yeni referans modülünde `HEK`, `FM`, `RADAT`, `TENMAK`, `EBYS`, `RKS`, `KKT`, `KUT`, `KUK`, `TİTCK` dahil **37 kurumsal ve teknik kısaltmanın** açık karşılıkları, **16 ana kanun/yönetmelik dayanağı** ve **Yasal Sınır vs. Kurumsal Parametre** ayrım tablosu sunuldu.
+
+### 🎯 Fayda Odaklı Açıklamalar
+
+* **Kurumsal Parametrelerle Bağlayıcı Kanunların Karışmasının Önlenmesi:** Yıllık izin devrindeki varsayılan **5 gün** sınırı ile aylık **60 saat** fazla mesai dengesinin kurum yöneticisince ayarlanabilen operasyonel parametreler olduğu; buna karşın **657 sayılı DMK Madde 103 / Ek Madde 33 (130 saat)**, **4857 sayılı İş Kanunu** kapsamındaki işçilik statüsü farkları (*şua izin alacağı* dahil) ve **6331 sayılı İSG Kanunu (30 yıl saklama)** kurallarının yasal dayanak olduğu şeffaf biçimde açıklandı.
+* **Güncel NDK Terminolojisine Tam Uyum:** Nükleer Düzenleme Kurumu'nun 06.03.2025 tarihli Usul ve Esasları doğrultusunda tüm kılavuz ve görev tanımlarında güncel **Radyasyondan Korunma Sorumlusu (RKS)** unvanı esas alındı ve mevzuat atıfları somut kanun/yönetmelik numaralarıyla güçlendirildi.
+
+---
+
 ## 🛠️ RADPYS V4.0.5.27: Cihaz Arıza, Periyodik Bakım ve Kalite Kontrol (QC) Ekranlarında Kompakt Görünüm, Birleşik Bakım Planlama, Şifreli Belge Önizleme ve Dinamik Tema İkonları
 
 Bu sürümle birlikte **Tıbbi Cihaz Arıza, Periyodik Bakım ve Kalite Kontrol (QC)** çalışma ekranları saha kullanım hızını artıracak şekilde kompakt ve ferah tablo düzenine kavuşturulmuş; bakım planlama penceresi doğrudan toplu/çoklu cihaz seçimiyle sadeleştirilmiş; bakım ve kalite kontrol tutanakları için tek tıkla belge önizleme, onay kuyruğu güvencesi, esnek raporlama veri desteği ve açık/koyu temaya duyarlı dinamik ikon altyapısı devreye alınmıştır:

@@ -3,6 +3,37 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.5.29] - 2026-11-16
+
+### Eklendi
+- **Tam Kılavuz Keşif Arşivi (`docs/kesif/*.md`, 22 dosya):** Modül `01`–`23` arası tüm ana modüller ve Faz 6'da `21_merkezi_onaylar_ve_rapor_merkezi_kesif.md`, `21_merkezi_onaylar_kesif.md`, `22_web_portal_ve_dashboardlar_kesif.md`, `23_rapor_tutanak_merkezi_kesif.md` için canlı PySide6 UI/Controller, `app/services/`, `app/domain/`, `user_launcher/` ve `web_portal/` kod doğrulamalı keşif raporları arşivlendi.
+- **Ekran Görüntüleri Envanteri ve Çekim Rehberi (`docs/ekran_goruntuleri_envanter_ve_eksik_listesi.md`):** `docs/manual/assets/img/` altındaki mevcut 87 görsel (69 aktif kullanılan, 18 atıl/bozuk), yenilenmesi önerilen 3 eski görsel ve 10 SSOT modülüne yeni bağlanan 13 eksik ekran görüntüsü tam dosya adlarıyla belgelendi.
+
+### Değiştirildi
+- **29 SSOT Kullanım Kılavuzu (`docs/manual/src/*.md`, Faz 1–7):** 24 Ana Modül + 5 Nöbet Alt Kılavuzu (`07_1`–`07_5`) `09_prompt_sablonlari.md` ve `kilavuz_modul_sablonu.md` standardında baştan yazıldı; modül içi reçete/5N1K/adım tekrarları giderilerek 5N1K tabloları 5–7 satıra sadeleştirildi, Modül 21–24 gerçek kod sayılarıyla (7 onay sekmesi + 8 KPI kartı, `Cihaz` evrensel onay kapsamı, 20 aktif dashboard + 10 saha formu, 27 aktif rapor + 25 veri seti + 11 modüllü Tutanak Sihirbazı) hizalandı.
+- **Katalog, Birleşik Özeti ve Sürüm Eşitlemesi (`docs/manual/src/_catalog.json`, `docs/kilavuz_guncel.md`, `docs/kilavuz_denetim_izi.md`):** `_catalog.json` içindeki `Port 3000 API`, `60s TTL Cache`, `Diff dialog` ve `4 adımlı QC sihirbazı` gibi stale/teknik sızıntılar temizlendi; `docs/kilavuz_guncel.md` 29 SSOT dosyasından sıfır emoji/HTML/Mermaid/Jinja2 sızıntısıyla yeniden üretildi.
+
+### Düzeltildi
+- **A4 PDF & Web Yardım Derleyici Hattı (`docs/manual/build_manual_pdf.py`, `scripts/sync_release_and_web.py`):**
+  - `MarkdownModuleParser._parse_body` içinde `:::subguides`, `Süreç Akış Şeması`, tablo içi Tailwind köşeli parantez koruması (`_inline_md`), `###` alt başlıkları, `**...**` vurguları, `#step-by-step` regex sonu (`(?=\n##\s|\Z)`) ve eksik görseller için kırık `<img>` yerine `.img-placeholder` yer tutucu bloğu düzeltildi.
+  - `scripts/sync_release_and_web.py` içinde Web Yardım Portalı görsel eşitleme kaynağı eski `docs/assets/img` yerine SSOT `docs/manual/assets/img` dizinine yönlendirildi.
+
+## [4.0.5.28] - 2026-11-16
+
+### Eklendi
+- **Şua İzni EK-2 Kademeli Hesap ve Aylık Tam Dilim Ayrımı (`app/domain/fiili_hizmet/policies.py`):** 13.04.2023 tarihli ve 32162 sayılı Yönetmelik EK-2 Sağlık İzni Tablosu uyarınca kümülatif yıllık Şua hakkı (`sua_hak_edis_hesapla`) `ceil(saat / 50.0)` (azami 30 gün) olarak güncellendi; tekil aylık satır gösteriminde şişmeyi önlemek için `aylik_sua_tam_dilim_hesapla` (`// 50`) fonksiyonu eklenerek `app/domain/fiili_hizmet/__init__.py` üzerinden dışa aktarıldı.
+- **Tek Yıllık Mutlak 50 mSv Doz Tavanı Denetimi (`app/domain/dozimetre/doz_limit_checker.py`):** `DozDurumRaporu` veri sınıfına `tek_yil_azami_asildi_mi: bool = False` alanı eklendi; `DozLimitChecker.denetle` ve `compute_limit_state` akışlarında ardışık 5 yıl ortalaması / operasyonel tavan (`20.0 mSv`) ile tek yıllık mutlak yasal tavan (`50.0 mSv`) ayrıştırıldı.
+- **Modül 24 — Kısaltmalar Sözlüğü ve Mevzuat Referans Matrisi (`docs/manual/src/24_kisaltmalar_ve_mevzuat_sozlugu.md`):** 37 teknik/idari kısaltma (`HEK`, `FM`, `RADAT`, `TENMAK`, `EBYS`, `RKS`, `KKT`, `KUT`, `KUK`, `TİTCK` vb.), 16 ana mevzuat dayanağı ve "Yasal Mevzuat Sınırı vs Kurumsal Parametre" karşılaştırma tablosu oluşturulup `_catalog.json` ve `modules.json` manifesto kayıtlarına eklendi.
+- **Birim Test Güncellemeleri (`tests/test_domain_rules.py`, `tests/test_izin_service.py`):** `test_tek_yil_mutlak_50_msv_tavani_asimi` (52.5 mSv) ve `test_aktar_ve_kesinlestir_sua_ek2_1460_saat_30_gun` (1460 saat → 30 gün) doğrulama testleri eklendi.
+
+### Değiştirildi
+- **Şua Hesaplama Katman Hizalaması (`app/domain/izin/izin_kural_motoru.py`, `app/domain/fiili_hizmet/fhz_calculator.py`, `app/services/personel/fiili_hizmet/fhz_hesaplama_service.py`, `app/services/personel/fiili_hizmet/fhz_kilit_service.py`, `app/services/personel/izin/izin_service.py`):** Yıllık kümülatif özet senkronizasyonu (`_refresh_ozet`, `get_puantaj_raporu`, `aktar_ve_kesinlestir_sua_hakedisleri`) EK-2 `sua_hak_edis_hesapla` kuralına bağlandı; aylık puantaj satır kayıtları ise `aylik_sua_tam_dilim_hesapla` ile ayrıştırıldı.
+- **Kılavuz Mevzuat Atıfları ve Terminoloji Standardizasyonu (`docs/manual/src/*.md`):** Modül `05`, `06`, `07`, `07_1`, `07_4`, `07_5`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `22`, `23` kılavuzları güncellenerek somut kanun/yönetmelik atıfları (`3153`, `657`, `4857`, `5510`, `6331`, `6698`, `4688/6356`, `32162`, `23999`, `32818`, `26407`, `NDK 06.03.2025 RKS Usul ve Esasları`) eklendi; eski `RGS`/`RGU` metinleri `RKS` terminolojisine hizalandı (Modül 16 ekran etiketi hariç).
+
+### Düzeltildi
+- **Mevzuat İçerik Çelişkileri ve Kod Sızıntısı Temizliği (`docs/manual/src/*.md`):** Gebelik (kalan gebelik süresince karın yüzeyi 1 mSv) ile emzirme (sayısal mSv sınırı yok; kontaminasyon/açık kaynak yasağı) kuralı ayrıştırıldı; Modül 12 aylık renk skalası (`< 2.0 mSv` Yeşil, `2.0–4.99 mSv` Sarı, `>= 5.0 mSv` veya kümülatif aşım Kırmızı) tutarlı hale getirildi; yıllık izin devri (5 gün kurum parametresi vs 657 m. 103 / 4857) ve şua izin alacağı (657 vs 4857 Yargıtay 9. HD) ifadeleri düzeltildi; `RED-*`, `docxtpl`, `ilgili_cihaz_id`, `_add_business_days`, `HEK_Hurda`, `Kullanim_Disi` ve dahili PDF dosya yolu sızıntıları temizlendi.
+- **Test Beklentileri (`tests/test_fiili_hizmet_service.py`):** `test_sua_hak_edis_hesapla_kademeli_ve_tavan`, `test_kaydet_donem_hesaplama_syncs_to_izin_haklari` ve ilgili EK-2 kademeli Şua beklentileri (`120 saat -> 3.0 gün`, `280 saat -> 6.0 gün`, `320 saat -> 7.0 gün`) güncellendi.
+
 ## [4.0.5.27] - 2026-11-15
 
 ### 🛠️ Cihaz Arıza, Periyodik Bakım ve QC Ekranlarında Kompakt Düzen, Evrensel Onay Entegrasyonu, Esnek Raporlama Veri Setleri ve Dinamik Tema İkon Motoru

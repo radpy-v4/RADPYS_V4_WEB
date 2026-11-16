@@ -2,141 +2,142 @@
 {
   "pageTitle": "01. Kurulum, Başlatma ve İlk Giriş — RADPYS v4 Kullanım Kılavuzu",
   "h1": "Kurulum, Başlatma ve İlk Giriş",
-  "lead": "RADPYS masaüstü uygulamasını güvenli tekil kilit altında başlatma, veritabanı motoru kontrolleri, ilk girişte zorunlu geçici şifre değişimi, Evrensel Arama Komut Paleti (Ctrl+K), Bildirim Merkezi ve lisans aktivasyon sürecini yönetmenizi sağlar.",
+  "lead": "RADPYS masaüstü ve Web Portalı oturumlarını güvenli tekil kilit altında başlatma, veritabanı servisi kontrolleri, ilk girişte zorunlu şifre yenileme, Evrensel Arama Komut Paleti (Ctrl+K), Bildirim Merkezi ve lisans aktivasyonunu yönetmenizi sağlar.",
   "overviewId": "overview",
   "badges": [
     {
-      "text": "KVKK & Bilgi Güvenliği Uyumlu",
+      "text": "KVKK 6698 & SKS 6.1 Uyumlu",
       "tone": "emerald"
     }
   ],
   "readingTime": "3 Dakika",
-  "legalNote": "<strong>Yasal Güvence:</strong> Sağlık Bakanlığı Sağlıkta Kalite Standartları (SKS 6.1) ve KVKK 6698 Sayılı Kanun Madde 12 uyarınca yetkisiz erişimler kilitlenir."
+  "legalNote": "<strong>Yasal Güvence:</strong> Sağlık Bakanlığı Sağlıkta Kalite Standartları (SKS 6.1) ve 6698 sayılı KVKK Madde 12 uyarınca yetkisiz erişimler ve zayıf parolalar otomatik olarak engellenir."
 }
 ---
 
-## Kısa Reçete (20 Saniye Kuralı) {#quick-recipe}
+## Kısa Reçete: İlk Giriş ve Zorunlu Şifre Güncelleme {#quick-recipe}
 
-:::recipe Kısa Reçete: İlk Giriş ve Şifre Güvenliği Tamamlama | 20 SANİYELİK AKIŞ
-<strong>Yapılacak İşlem:</strong> Birim sorumlusundan aldığınız kullanıcı adı ve geçici şifre ile giriş yapın. Açılan zorunlu şifre penceresinde en az <strong>8 karakterli</strong> (büyük harf, küçük harf, rakam ve özel karakter içeren) yeni şifrenizi belirleyip <strong>[Kaydet]</strong> butonuna basın.
+:::recipe Kısa Reçete: İlk Giriş ve Zorunlu Şifre Güncelleme | 20 SANİYELİK AKIŞ
 
-<strong>Sistem Güvencesi:</strong> Geçici şifre kalıcı olarak geçersiz kılınır; yetkili personel harici hiç kimse eski şifreyle hesabınıza erişemez ve tüm modüller yetkiniz dahilinde kullanıma açılır.
+### 1. İstenen Sonuç | slate
+
+Birim sorumlunuzdan veya yöneticiden aldığınız geçici şifreyi kalıcı ve güvenli kişisel parolanızla değiştirerek yetkili olduğunuz modülleri açmak.
+
+### 2. Yapılacak İşlem | cyan
+
+Kullanıcı adınız ve geçici parolanızla <strong>[Giriş Yap]</strong> butonuna basın. Açılan zorunlu şifre penceresinde en az <strong>8 karakter</strong> (büyük harf, küçük harf ve rakam) içeren yeni şifrenizi iki kez yazıp <strong>[Kaydet]</strong> butonuna tıklayın.
+
+### 3. Sistem Etkisi | emerald
+
+Geçici şifre kalıcı olarak iptal edilir; yeni şifre yalnızca size özel şifrelenerek kaydedilir ve yetkiniz dahilindeki tüm ekranlar kullanıma açılır.
 
 - [metric] Parola Politikası | Min. 8 Karakter | cyan
-- [metric] Deneme Süresi | 30 Gün (Trial) | slate
+- [metric] Deneme Süresi | 30 Gün | slate
 - [metric] Erken Uyarı Eşiği | 15 Gün & 3 Gün | amber
-- [metric] Platform | Masaüstü & Web | emerald
+- [metric] Platform | Masaüstü & Web Portal | emerald
 :::
+
+## 5N1K Kural ve Arayüz Çözümleme Tablosu {#5w1h}
+
+*Giriş ekranı güvenlik kalkanları, şifre sıfırlama sınırları ve bildirim kontrolleri.*
+
+| NE? (Bileşen / Kontrol) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Tetiklenme) | KİM? (Yetkili Rol) |
+| --- | --- | --- | --- | --- |
+| <strong>[Beni hatırla]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Onay Kutusu</span> | Kullanıcı adını her oturumda tekrar yazma zahmetini kaldırmak. | Yalnızca kullanıcı adını yerel bilgisayarda saklar; parolayı asla diske kaydetmez. | Kişisel çalışma bilgisayarından giriş yapıldığında. | Tüm Personel |
+| <strong>[Şifreyi göster]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Onay Kutusu</span> | Yazım sırasında büyük/küçük harf ve rakam hatasını anlık görmek. | İşaretlendiğinde noktalı maskeli parola kutusunu açık metne çevirir. | Giriş veya yeni şifre belirleme sırasında. | Tüm Personel |
+| <strong>Hatalı Giriş Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Otomatik Güvenlik Kalkanı</span> | Deneme-yanılma yoluyla yetkisiz hesap ele geçirmelerini önlemek. | Varsayılan olarak art arda 5 hatalı parola girişinde hesabı 15 dakika süreyle kilitler (yönetici kilidi anında açabilir). | Parola üst üste hatalı girildiğinde. | Tüm Kullanıcılar |
+| <strong>[Şifremi Unuttum?]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">3 Aşamalı Sıfırlama Sihirbazı</span> | E-posta doğrulamasıyla unutulan parolayı self-servis yenilemek. | Kayıtlı e-postaya 15 dakika geçerli 6 haneli kod gönderir (5 hatalı kod denemesinde kod iptal edilir; Web Portalda yalnızca yerel ağda çalışır). | Parola unutulduğunda. | E-postası Kayıtlı Personel |
+| <strong>Bildirim Merkezi & Rozet</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Sağ Üst Zil Simgesi</span> | Nöbet devri, onay kuyruğu ve dozimetre uyarılarını anlık yakalamak. | Okunmamış uyarı varken zil simgesi rozet gösterir; nöbet devri bildiriminden doğrudan onay penceresi açılır. | Yeni görev veya uyarı geldiğinde. | Hedef Personel / Yönetici |
 
 ## Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı) {#myth-buster}
 
-:::myth Kritik Sahada Yanlış Bilinen Kural (Mit Avcısı)
-### Yanlış Algı:
+:::myth Masaüstü Simgesine Tıkladım Ama İkinci Pencere Açılmadı
+
+### Yanlış Algı
+
 <em>"Masaüstü simgesine tıkladım ama program açılmadı, sistem dondu veya hata verdi."</em>
 
-### Gerçek Sistem Mantığı:
-RADPYS veritabanı bütünlüğünü korumak için <strong>Tekil Örnek (Single Instance)</strong> kilidiyle çalışır. Program zaten simge durumunda veya arka planda açıksa ikinci bir kopya açılmaz; mevcut açık pencere doğrudan ekranın en önüne getirilir.
+### Gerçek Sistem Mantığı
+
+<strong>Tekil Uygulama Kilidi aktiftir.</strong> RADPYS veritabanı bütünlüğünü korumak için aynı bilgisayarda yalnızca tek bir örnek altında çalışır. Program zaten açık veya simge durumundaysa ikinci bir kopya başlatılmaz; mevcut açık pencere doğrudan ekranın en önüne getirilir.
 :::
 
-## 5N1K Kural ve Ayar Çözümleme Tablosu {#matrix-5n1k}
-
-<div class="flex items-center justify-between mb-4">
- <div>
- <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Giriş ve başlangıç kontrollerinin amacı, çalışma mantığı ve kullanıcı etkileri</p>
- </div>
- </div>
-
-| NE? (Ekran Kontrolü) | NEDEN? (Amaç) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Tetiklenme) | KİM? (Kullanıcı Kitlesi) |
-| --- | --- | --- | --- | --- |
-| Kullanıcı Girişi <br><span class="text-xs text-slate-400 font-normal">Kullanıcı Adı & Şifre</span> | Sisteme yetkili kimlik doğrulamasıyla güvenli erişmek. | Bilgiler girilip <strong>[Giriş Yap]</strong> tıklanır. Enter tuşu otomatik olarak bu butonu tetikler. | Programa her girişte. | Tüm Personel |
-| Beni Hatırla <br><span class="text-xs text-slate-400 font-normal">Onay Kutusu</span> | Kullanıcı adını tekrar tekrar yazma zahmetini ortadan kaldırmak. | Kullanıcı adını yerel bilgisayara kaydeder. Parola <u>asla</u> kaydedilmez; açılışta imleç doğrudan şifre kutusuna odaklanır. | Kişisel çalışma bilgisayarında. | Tüm Personel |
-| Şifreyi Göster <br><span class="text-xs text-slate-400 font-normal">Göz / Onay Kutusu</span> | Şifre yazarken harf ve rakam hatalarını anında görmek. | Noktalı maskeli şifre görünümünü açık metne dönüştürür. | Şifre yazımında hata şüphesinde. | Tüm Personel |
-| Zorunlu Şifre Değişimi <br><span class="text-xs text-slate-400 font-normal">Açılır Güvenlik Formu</span> | Geçici veya varsayılan şifreyle sistemde kalınmasını engellemek. | Yeni şifre iki kez girilir; kullanıcının sistemde kayıtlı kurumsal e-posta ve rol bilgileri korunarak şifresi güncellenir. İptal edilirse oturum açılmaz. | İlk girişte veya şifre süresi dolduğunda. | Yeni Tanımlanan Personel |
-| Şifremi Unuttum? <br><span class="text-xs text-slate-400 font-normal">Sıfırlama Bağlantısı</span> | Kullanıcının e-posta doğrulamasıyla şifresini güvenle sıfırlaması. | Kullanıcı adı ve kayıtlı e-posta eşleştiğinde 6 haneli doğrulama kodu arka planda gönderilir (en fazla 5 deneme hakkı vardır). | Şifre unutulduğunda. | E-postası Kayıtlı Personel |
-| Evrensel Arama (Ctrl+K) <br><span class="text-xs text-slate-400 font-normal">Hızlı Komut Paleti</span> | Menülerde aramadan istenen sayfaya veya personele 2 saniyede ulaşmak. | Klavyeden <strong>Ctrl+K</strong> tuşlarına basılır. En az 2 harf yazıldığında yetki ve lisans paketine uygun sayfalar, hızlı işlemler ve personel kartları listelenir (lisans kilit modunda devre dışıdır). | Hızlı işlem veya kayıt ararken. | Tüm Kullanıcılar |
-| Bildirim Merkezi & Rozet <br><span class="text-xs text-slate-400 font-normal">Sağ Üst Zil Simgesi</span> | Nöbet devri, olay bildirimi ve dozimetre alarmlarını anında görmek. | Okunmamış bildirim varsa zil açık maviye boyanır ve sayı gösterir. Nöbet devir bildirimi doğrudan Kabul/Red onayını açar. | Yeni görev veya alarm geldiğinde. | Hedef Personel / Amir |
-| Cihaz Kimliği & Lisans <br><span class="text-xs text-slate-400 font-normal">Hakkında Penceresi</span> | Kurum lisansını doğrulamak ve teknik destek paketi üretmek. | Cihaz Kimliği (Machine ID) kopyalanarak lisans alınır. Anahtar girilip aktifleştirilir. Log paketi tek tıkla masaüstüne ZIP'lenir. | Lisans kurulumunda veya destek talebinde. | Sistem Yöneticisi (Admin) |
-
-## Başlatma ve Güvenli Giriş Süreç Akışı {#workflow}
-
-<div class="p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-x-auto">
+## Süreç Akış Şeması {#workflow}
 
 ```mermaid
-flowchart TD
- A["Masaüstü RADPYS Simgesi Çift Tıklanır"] --> B{"Tekil Uygulama Kilidi?"}
- B -->|Açık Kopya Var| C["Mevcut Pencere Öne Getirilir"]
- B -->|İlk Açılış| D{"PostgreSQL Veritabanı Bağlantısı?"}
- 
- D -->|Bağlantı Yok| E["Hata Diyaloğu: UAC Servis Başlat / services.msc"]
- E --> D
- 
- D -->|Bağlantı Başarılı| F["Giriş Ekranı Açılır"]
- F --> G["Kullanıcı Adı ve Şifre Girilir"]
- G --> H{"Kimlik Doğrulama Başarılı mı?"}
- 
- H -->|Hatalı Bilgi| I["Giriş Başarısız Uyarısı"]
- I --> G
- H -->|Başarılı| J{"Kurum Lisansı Geçerli mi?"}
- 
- J -->|Süresi Dolmuş - Normal Personel| K["Erişim Engellenir: Sistem Yöneticisine Başvurun"]
- J -->|Süresi Dolmuş - Yönetici| L["Kısıtlı Yönetici Modu: Lisans Aktivasyon Ekranı Açılır"]
- 
- J -->|Lisans Aktif| M{"İlk Giriş mi veya Şifre Süresi Doldu mu?"}
- M -->|Evet| N["Zorunlu Şifre Değiştirme Formu"]
- N -->|Şifre Belirlendi| O["Ana Uygulama Ekranı Yüklenir"]
- N -->|İptal Edildi| F
- M -->|Hayır| O
+flowchart TB
+ subgraph S1 ["1. AŞAMA: BAŞLATMA VE VERİTABANI KONTROLÜ"]
+  direction LR
+  A(["RADPYS Simgesi Çalıştırılır"]) --> B{"Açık Kopya<br/>Var mı?"}
+  B -->|Evet| C["Mevcut Pencere Öne Getirilir"]
+  B -->|Hayır| D{"Veritabanı Bağlantısı<br/>Hazır mı?"}
+  D -->|Hayır| E["Yönetici İzniyle Servis Başlatma<br/>veya Yeniden Dene"]
+  E --> D
+ end
+
+ subgraph S2 ["2. AŞAMA: KİMLİK, KİLİT VE LİSANS DENETİMİ"]
+  direction LR
+  F["Kullanıcı Adı & Parola Girilir"] --> G{"Doğrulama Başarılı<br/>ve Kilit Yok mu?"}
+  G -->|5 Hatalı Deneme| H["15 Dakika Geçici Hesap Kilidi"]
+  G -->|Doğru| I{"Kurum Lisansı<br/>Geçerli mi?"}
+  I -->|Dolmuş - Personel| J["Erişim Engellenir"]
+  I -->|Dolmuş - Admin| K["Kısıtlı Lisans Aktivasyon Modu"]
+ end
+
+ subgraph S3 ["3. AŞAMA: ŞİFRE GÜVENLİĞİ VE OTURUM"]
+  direction LR
+  L{"İlk Giriş veya<br/>Süreli Değişim mi?"} -->|Evet| M["Zorunlu Şifre Değiştirme Formu"]
+  M -->|İptal| F
+  M -->|Kaydedildi| N(["Yetkili Ana Ekran Açılır"])
+  L -->|Hayır| N
+ end
+
+ D -->|Evet| F
+ I -->|Geçerli| L
 ```
 
- </div>
+1. **Başlatma ve Veritabanı Kontrolü:** Program tekil kilit altında açılır; veritabanı motoru durmuşsa kullanıcıya tek tıkla yönetici yetkisiyle servisi başlatma seçeneği sunulur.
+2. **Kimlik, Kilit ve Lisans Denetimi:** 5 hatalı girişte hesap 15 dakika kilitlenir; lisansı dolan kurumda normal kullanıcı girişi engellenirken Sistem Yöneticisi için yalnızca lisans yükleme ekranı açılır.
+3. **Şifre Güvenliği ve Oturum Açılışı:** İlk girişte zorunlu şifre değişimi tamamlanmadan ana ekrana geçilmez; onaylandığında yetki ve kapsam matrisine uygun modüller yüklenir.
 
-## Kritik Ekran Görünümleri ve Kullanım Noktaları {#screenshots}
+## Arayüz Ekran Görünümleri {#screenshots}
 
-![Giriş Ekranı | Giriş Ekranı | Giriş Formu](assets/img/01_login_page.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki kullanıcı adları ve arayüz bilgileri tamamen test amaçlı sentetik veridir.</span>")
+![Giriş Ekranı | Masaüstü Başlangıç > Giriş Penceresi | Kimlik Doğrulama | cyan](assets/img/01_login_page.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki kullanıcı adları ve arayüz bilgileri tamamen test amaçlı sentetik veridir. Gerçek kişi ve kayıtlarla benzerlikler tesadüfidir.</span>")
 
-![Şifre Değiştirme Formu | Şifre Değiştirme Formu | Zorunlu Şifre Formu | amber](assets/img/01_auth_password_change_dialog.png "<span><strong>Güvenlik Notu:</strong> Yeni şifreniz en az 8 karakter olmalı; büyük/küçük harf, rakam ve özel karakter içermelidir.</span>")
+![Zorunlu Şifre Değiştirme Formu | İlk Giriş Güvenlik Penceresi | Parola Güncelleme | amber](assets/img/01_auth_password_change_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki kullanıcı adları ve arayüz bilgileri tamamen test amaçlı sentetik veridir. Gerçek kişi ve kayıtlarla benzerlikler tesadüfidir.</span>")
 
-![Lisans ve Hakkında Penceresi | Lisans ve Hakkında Penceresi | Lisans ve Sistem Künyesi | emerald](assets/img/01_about_dialog.png "<span><strong>İşlem Notu:</strong> Cihaz Kimliği (Machine ID) [Kopyala] butonuyla kopyalanıp lisans anahtarı üretimi için sağlanır.</span>")
+![Hakkında ve Lisans Penceresi | Üst Menü > Hakkında > Lisans ve Aktivasyon | Kurum Lisansı & Destek | emerald](assets/img/01_about_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki lisans kodu, cihaz kimliği ve kurum bilgileri test amaçlı sentetik veridir.</span>")
 
-![Komut Paleti ve Bildirim Paneli | Komut Paleti ve Bildirim Paneli | Hızlı Navigasyon & Bildirim](assets/img/01_komut_paleti_ve_bildirim.png "<span><strong>Kısayol Bilgisi:</strong> Programın her yerinde Ctrl+K ile arama paletini açabilir, bildirimlerden nöbet devirlerini onaylayabilirsiniz.</span>")
+![Komut Paleti ve Bildirim Merkezi | Ana Ekran > Ctrl+K & Sağ Üst Zil Simgesi | Hızlı Arama & Bildirim | cyan](assets/img/01_komut_paleti_ve_bildirim.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki personel adları ve bildirim kayıtları test amaçlı sentetik veridir.</span>")
 
-## Adım Adım Operasyonel Eylem Akışı {#step-by-step}
+## Adım Adım İşlem Rehberi {#step-by-step}
 
-<div class="space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
- <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
- <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 1: Uygulamayı Başlatma & Giriş</strong>
- Masaüstünüzdeki <strong>RADPYS</strong> simgesine çift tıklayın. Kullanıcı adınızı ve şifrenizi girin. Kendi bilgisayarınızda çalışıyorsanız <strong>[Beni Hatırla]</strong> kutusunu işaretleyin ve <strong>[Giriş Yap]</strong> butonuna tıklayın.
- </div>
- <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
- <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 2: İlk Şifrenizi Tanımlama</strong>
- Eğer ilk girişiniz ise ekrana gelen şifre değiştirme penceresinde en az 8 karakterli yeni şifrenizi belirleyin. Her iki kutuya aynı şifreyi yazdıktan sonra <strong>[Kaydet]</strong> butonuna basın. Oturumunuz ana ekranla açılacaktır.
- </div>
- <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
- <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 3: Sayfalara ve Personele Hızlı Ulaşım (Ctrl+K)</strong>
- Herhangi bir ekrandayken klavyenizden <strong>Ctrl+K</strong> tuşlarına basın. Açılan kutuya personelin adını veya gitmek istediğiniz menüyü (Örn: *Nöbet*, *İzin*, *Dozimetre*) yazıp Enter'a basarak doğrudan o ekrana geçin.
- </div>
- <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
- <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 4: Kurum Lisansını Aktifleştirme (Yalnızca Admin)</strong>
- Sağ üstteki menüden <strong>[Hakkında]</strong> penceresini açın. <strong>[Cihaz Kimliği]</strong> kodunuzu kopyalayıp lisans sağlayıcısına iletin. Size verilen anahtarı kutuya yapıştırıp <strong>[Lisansı Aktifleştir]</strong> butonuna basın.
- </div>
- <div class="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
- <strong class="text-slate-900 dark:text-white text-base block mb-2">Adım 5: Teknik Destek Paketi Oluşturma</strong>
- Sistemde beklenmeyen bir durumla karşılaşırsanız <strong>[Hakkında]</strong> penceresindeki <strong>[Destek Paketi (Log) Oluştur]</strong> butonuna tıklayın. Masaüstünüze kaydedilen <code>radpys_destek_log.zip</code> dosyasını teknik ekibe e-posta eki olarak gönderin.
- </div>
- </div>
+### 1. Masaüstü Uygulamasında Hızlı Arama (Ctrl+K), Lisans Aktivasyonu ve Destek Paketi
 
-## Sıkça Sorulan Sorular ve Takılma Yönetimi {#faq}
+1. Oturum açtıktan sonra herhangi bir ekrandayken klavyeden **Ctrl+K** tuşlarına basın; en az 2 harf yazarak yetkili olduğunuz modüllere veya personel kayıtlarına doğrudan geçiş yapın.
+2. Kurum lisansını etkinleştirmek için yöneticinizle **[Hakkında]** penceresindeki **[Lisans ve Aktivasyon]** sekmesini açın ve **[Cihaz Kimliği (Machine ID)]** yanındaki **[Kopyala]** butonuna basın.
+3. Size iletilen lisans dosyasını **[Lisans Dosyası Seç (.lic)]** butonuyla yükleyin veya anahtar kodunu yapıştırıp **[Lisansı Aktifleştir]** butonuna tıklayın (aktif lisansta yenileme için **[Lisansı Güncelle / Yeni Dosya Seç (.lic)]** butonunu kullanın).
+4. Teknik destek gerektiğinde **[Hakkında]** penceresindeki **[Destek Paketi (ZIP)]** butonuna basarak Masaüstünüze oluşturulan destek arşivini teknik ekibe iletin.
+
+### 2. Web Portalı Girişi ve Dış Ağ İki Aşamalı Doğrulaması
+
+1. Kurum içi veya dış ağ tarayıcınızdan **Web Portalı** giriş ekranını açıp kullanıcı adınız ve parolanızla giriş yapın.
+2. İlk kez giriş yapıyorsanız açılan zorunlu şifre belirleme formunda yeni parolanızı tanımlayın.
+3. Hastane dış ağından bağlanıyorsanız ekrandaki güvenlik doğrulamasını tamamlayın; kurumsal 2FA açıksa e-posta adresinize gelen 6 haneli tek kullanımlık doğrulama kodunu girerek oturumu açın.
+
+## Sıkça Sorulan Sorular (SSS) {#faq}
 
 :::faq
-### Şifremi unuttum, sisteme nasıl giriş yapabilirim?
-Giriş ekranında yer alan <strong>[Şifremi Unuttum?]</strong> butonuna tıklayın. Kullanıcı adınızı ve sistemde kayıtlı e-posta adresinizi girerek yeni şifrenizi belirleyin. Sistemde tanımlı bir e-posta adresiniz yoksa birim sorumlunuza veya sistem yöneticinize başvurunuz; yönetici Kullanıcı Yönetimi ekranından tek tıkla geçici şifre atayabilir.
 
-### Lisans süresi dolduğunda verilerimiz silinir mi?
-<strong>Kesinlikle hayır.</strong> Lisans süresinin dolması yalnızca ekran erişimlerini kilitler; veritabanındaki nöbetler, personeller, dozimetre ve RKE kayıtları hiçbir şekilde silinmez veya bozulmaz. Sistem Yöneticisi yeni lisans anahtarını girdiği anda tüm sistem kaldığı yerden eksiksiz çalışmaya devam eder.
+### Veritabanı bağlantı hatası aldığımda ne yapmalıyım?
 
-### Beni Hatırla seçeneğini işaretlediğimde şifrem bilgisayarda açık kalır mı?
-Hayır. Güvenlik ve KVKK gereği <strong>[Beni Hatırla]</strong> seçeneği yalnızca kullanıcı adınızı depolar; parolanızı <u>kesinlikle</u> diske veya yerel ayarlara yazmaz. Her oturumda şifrenin elle yazılması zorunludur.
+Açılışta ekrana gelen uyarı penceresinde yönetici izniyle servisi başlatma seçeneğine tıklayıp Windows izin onayını verin. Servis otomatik başlatılamazsa Windows Hizmetler ekranından PostgreSQL hizmetinin çalışır durumda olduğunu kontrol edin.
 
-### PostgreSQL veritabanı bağlantı hatası alıyorum, ne yapmalıyım?
-Uygulama açılışında gelen hata kutusundaki <strong>[Servisi Yönetici Olarak Başlat (UAC)]</strong> butonuna tıklayın ve Windows izin penceresine "Evet" deyin. Servis otomatik olarak başlatılacaktır. Sorun devam ederse Windows Hizmetler (<code>services.msc</code>) ekranından PostgreSQL servisinin durumunu kontrol ediniz.
+### Lisans süresi dolduğunda kayıtlı verilerimiz silinir mi?
+
+<strong>Kesinlikle hayır.</strong> Lisans süresinin dolması yalnızca modül ekranlarını kilitler; nöbet çizelgeleri, personel özlük kartları, dozimetre ve cihaz kayıtları veritabanında eksiksiz korunur. Yönetici yeni lisansı yüklediği anda tüm sistem kaldığı yerden açılır.
+
+### Sistemde kayıtlı e-postam yoksa veya dış ağdaysam şifremi nasıl sıfırlarım?
+
+Güvenlik gereği Web Portalındaki <strong>[Şifremi Unuttum?]</strong> sihirbazı yalnızca hastane yerel ağında aktiftir ve sistemde e-posta adresi tanımlı kullanıcılar için çalışır. E-postanız kayıtlı değilse veya dış ağdaysanız Sistem Yöneticinize başvurarak yeni geçici şifre talep ediniz.
 :::

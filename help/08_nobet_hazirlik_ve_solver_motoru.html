@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>08. Nöbet Hazırlık ve Google OR-Tools Solver Motoru — RADPYS v4 Kullanım Kılavuzu</title>
+  <title>08. Nöbet Hazırlık, Çizelge Matrisi ve Dağıtım Motoru — RADPYS v4 Kullanım Kılavuzu</title>
   <link rel="stylesheet" href="assets/tailwind.min.css">
   <script src="assets/mermaid.min.js"></script>
   <style>
@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.27</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.29</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -74,16 +74,16 @@
 
 <section id="overview" class="mb-10 border-b border-slate-200 dark:border-slate-800 pb-6">
   <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
-    <div class="flex flex-wrap items-center gap-2.5"></div>
-    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Tahmini Okuma: 7 Dakika</span>
+    <div class="flex flex-wrap items-center gap-2.5"><span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200 dark:border-amber-800">Otomatik Taslak Yedeği & Kısmi İptal</span></div>
+    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Tahmini Okuma: 6 Dakika</span>
   </div>
   <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3">
-    Nöbet Hazırlık, Çizelge Matrisi & Solver Motoru
+    Nöbet Hazırlık, Çizelge Matrisi & Dağıtım Motoru
   </h1>
   <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
-    Aylık fiili çalışma parametrelerinin hazırlanması, arka plan iş parçacığında çalışan kural tabanlı optimizasyon motoru, interaktif çizelge matrisi, kural ihlal onay mekanizması, otomatik anlık görüntü (snapshot) koruması ve kesim tarihli kısmi plan iptal rehberi.
+    Aylık 35 saat ve 40 saat çalışma parametrelerinin hazırlandığı 3 adımlı sihirbazı, otomatik taslak yedekli arka plan dağıtım motorunu, çapraz birimden slot tamamlamayı, manuel kural ihlali onayını, yıllık adalet sayacını ve 3 gün sınırlı kısmi plan iptalini yönetmenizi sağlar.
   </p>
-  
+  <div class="mt-4 text-xs sm:text-sm text-slate-500 dark:text-slate-400"><strong>Denetim Güvencesi:</strong> Kural ihlali onay kutusu işaretlenerek yapılan her manuel atama onaylayan yöneticinin kimliği, tarihi ve gerekçesiyle denetim izine işlenir; yayınlanmış bir planda ay ortası kısmi iptal ise geriye dönük en fazla 3 gün ile sınırlandırılmıştır.</div>
   
   
 </section>
@@ -91,13 +91,13 @@
 <section id="quick-recipe" class="mb-12">
   <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
     <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
-    <span>Hızlı Reçete: Otomatik Nöbet Dağıtımı, Matris Yönetimi ve Kısmi İptal</span>
+    <span>Kısa Reçete: Otomatik Nöbet Dağıtımı, Matris Yönetimi ve Kısmi İptal</span>
   </h2>
   <div class="p-6 sm:p-7 rounded-3xl bg-cyan-50/70 dark:bg-cyan-950/30 border border-cyan-200/90 dark:border-cyan-800/60 shadow-md">
   <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
     <div class="flex items-center gap-2.5 text-cyan-900 dark:text-cyan-200 font-bold text-sm sm:text-base">
       <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-      <span>Hızlı Reçete: Otomatik Nöbet Dağıtımı, Matris Yönetimi ve Kısmi İptal</span>
+      <span>Kısa Reçete: Otomatik Nöbet Dağıtımı, Matris Yönetimi ve Kısmi İptal</span>
     </div>
     <span class="text-xs font-mono px-2.5 py-1 rounded bg-cyan-200/80 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-300 font-bold">20 SANİYELİK AKIŞ</span>
   </div>
@@ -105,33 +105,33 @@
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5 text-xs sm:text-sm">
     <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
       <span class="font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider text-[11px] block">1. İstenen Sonuç</span>
-      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Radyasyon maruziyet sınırlarına (35s/40s) ve klinik ihtiyaçlara tam uyumlu, adil ve çakışmasız aylık nöbet çizelgesinin saniyeler içinde üretilmesi.</p>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Radyasyon maruziyet sınırlarına (35s/40s) ve klinik kurallara uyumlu, çakışmasız aylık nöbet çizelgesinin saniyeler içinde üretilmesi.</p>
     </div>
     <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
       <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider text-[11px] block">2. Yapılacak İşlem</span>
-      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed"><strong>[Yeni Plan]</strong> ile ayı ve birimi seçip <strong>[Hazırlık Sihirbazı]</strong> parametrelerini onaylayın; <strong>[Otomatik Olustur]</strong> ile motoru çalıştırın; kalan boş günleri <strong>[Çapraz Birimden Doldur]</strong> ile tamamlayın veya <strong>[Çizelgeyi Düzenle]</strong> ile matrisi yönetin.</p>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed"><strong>[Yeni Plan]</strong> ile dönemi ve birimi oluşturun; 3 adımlı hazırlık sihirbazında parametreleri doğrulayıp <strong>[Plan Taslağını Kaydet]</strong>'e basın. Matris ekranında <strong>[Otomatik Oluştur]</strong> ile çizelgeyi üretin; eksik günleri <strong>[Çapraz Birimden Doldur]</strong> ile tamamlayıp <strong>[Planı Onayla]</strong> ile yayına alın.</p>
     </div>
     <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
       <span class="font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider text-[11px] block">3. Sistem Etkisi</span>
-      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Mevcut taslak JSON olarak otomatik yedeklenir; solver arka planda koşturulurken UI donmaz; manuel ihlaller denetim izine kaydedilir; kısmi iptalde kesim tarihine kadar geçmiş korunur.</p>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Dağıtım başlamadan önce mevcut taslak otomatik yedeklenir; hesaplama arayüzü dondurmadan arka planda çalışır; manuel ihlaller denetim izine mühürlenir ve ay ortası kısmi iptalde kesim tarihine kadar tutulan nöbetler korunur.</p>
     </div>
   </div>
   <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-cyan-200/60 dark:border-cyan-800/40">
     <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
-      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Radyasyon Oranı</span>
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Mesai Rejimi</span>
       <span class="text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 font-mono">35s / 40s Standartı</span>
     </div>
     <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
-      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Solver Motoru</span>
-      <span class="text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 font-mono">Arka Plan İş Parçacığı</span>
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Dağıtım Motoru</span>
+      <span class="text-sm sm:text-base font-black text-cyan-600 dark:text-cyan-400 font-mono">Arka Plan İş Parçacığı</span>
     </div>
     <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
-      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Dinlenme Kuralı</span>
-      <span class="text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 font-mono">24s / 48s Asgari Boşluk</span>
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Taslak Güvenliği</span>
+      <span class="text-sm sm:text-base font-black text-emerald-600 dark:text-emerald-400 font-mono">Otomatik Yedek &amp; Geri Yükleme</span>
     </div>
     <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
-      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Güvenlik Kalkanı</span>
-      <span class="text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 font-mono">Otomatik JSON Snapshot</span>
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Kısmi İptal Sınırı</span>
+      <span class="text-sm sm:text-base font-black text-rose-600 dark:text-rose-400 font-mono">En Fazla 3 Gün Geri</span>
     </div>
   </div>
 </div>
@@ -142,86 +142,68 @@
     <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
     <span>5N1K Kural ve Arayüz Çözümleme Tablosu</span>
   </h2>
-  <div class="space-y-1">
- <p class="text-sm text-slate-500 dark:text-slate-400">
- Nöbet hazırlık, çizelge düzenleme ve solver motorunda yer alan bileşenlerin işlevleri, çalışma mantıkları ve klinik etki düzeyleri.
- </p>
- </div>
+  <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3"><em>Nöbet hazırlık sihirbazı, dağıtım motoru, matris kontrolleri, adalet sayacı ve kısmi iptal kuralları.</em></p>
 
 <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 custom-scrollbar shadow-sm my-4">
   <table class="w-full text-left border-collapse text-xs sm:text-sm">
     <thead>
       <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/80 uppercase text-xs font-bold tracking-wider text-slate-500 dark:text-slate-400">
-        <th class="py-3.5 px-4">NE? (Bileşen / İşlem)</th>
+        <th class="py-3.5 px-4">NE? (Bileşen / Kontrol)</th>
         <th class="py-3.5 px-4">NEDEN? (Amacı)</th>
         <th class="py-3.5 px-4">NASIL? (Çalışma Mantığı)</th>
-        <th class="py-3.5 px-4">NE ZAMAN?</th>
-        <th class="py-3.5 px-4">KİM?</th>
+        <th class="py-3.5 px-4">NE ZAMAN? (Tetiklenme)</th>
+        <th class="py-3.5 px-4">KİM? (Yetkili Rol)</th>
       </tr>
     </thead>
     <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">[Yeni Plan] & Hazırlık Sihirbazı</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">Yıl / Ay / Birim Seçimi & Ön Parametre Ekranı</span></td>
-        <td class="py-3.5 px-4">İlgili ay için klinik takvim günlerini, resmi tatilleri ve birim kadrosunu hazırlamak.</td>
-        <td class="py-3.5 px-4">Ayın iş günü sayısını hesaplar; personelin radyasyon çalışma türüne göre (35 saat veya 40 saat) aylık zorunlu mesai hedefini otomatik çıkarır.</td>
-        <td class="py-3.5 px-4">Her ayın son haftasında.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>3 Adımlı Hazırlık Sihirbazı ve Simülatör</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Önizleme, Talepler &amp; Kapasite</span></td>
+        <td class="py-3.5 px-4">Ayın iş günlerini, tatilleri, onaylı talepleri ve kadro yeterliliğini dağıtımdan önce doğrulamak.</td>
+        <td class="py-3.5 px-4">Çalışma parametrelerini (35s/40s), gerekirse <strong>[Çapraz Görevlendirme]</strong> ve <strong>[Hızlı Talep Ekle]</strong> kayıtlarını derleyip kişi başı ortalama nöbet yükünü simüle eder.</td>
+        <td class="py-3.5 px-4">Yeni plan açıldığında veya taslakta.</td>
         <td class="py-3.5 px-4">Nöbet Planlama Sorumlusu</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">[Otomatik Olustur] (Solver Motoru)</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">Arka Plan İş Parçacığı ile Otomatik Dağıtım</span></td>
-        <td class="py-3.5 px-4">Yüzlerce kısıtı saniyeler içinde matematiksel olarak çözüp sıfır çakışmalı çizelge üretmek.</td>
-        <td class="py-3.5 px-4">İşlemi arka plan iş parçacığında çalıştırır; ana ekranı kilitlemez. Önce mevcut taslağın otomatik JSON anlık görüntüsünü alır, ardından kural piramidine göre slotları doldurur.</td>
-        <td class="py-3.5 px-4">Taslak oluşturma aşamasında.</td>
-        <td class="py-3.5 px-4">Sistem Algoritması</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Otomatik Oluştur] ve Mutabakat Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Akıllı Dağıtım Motoru</span></td>
+        <td class="py-3.5 px-4">İki ay önceki fazla mesai bakiyesi eksik kalmadan çakışmasız çizelge üretmek.</td>
+        <td class="py-3.5 px-4">Planlanan aydan iki ay önceki dönemin mutabakatını denetler; eksik varsa işlemi durdurur, hazırsa taslağı yedekleyip dağıtımı arka planda çalıştırır.</td>
+        <td class="py-3.5 px-4">Taslak matrisinde başlatıldığında.</td>
+        <td class="py-3.5 px-4">Birim Sorumlusu / Motor</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">Otomatik Snapshot Güvenlik Kalkanı</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">JSON Yedekleme & [Yedekten Taslak Yükle]</span></td>
-        <td class="py-3.5 px-4">Kullanıcının manuel yaptığı veya önceki dağıtımlardaki çizelgelerin kaybolmasını önlemek.</td>
-        <td class="py-3.5 px-4">Otomatik dağıtım başlamadan hemen önce mevcut plan durumunu güvenli dizine zaman damgasıyla kaydeder. İstenildiğinde [Yedekten Taslak Yükle] ile tek tıkla eski haline döndürülür.</td>
-        <td class="py-3.5 px-4">Her otomatik oluşturma öncesinde.</td>
-        <td class="py-3.5 px-4">Otomatik Koruma</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Otomatik Taslak Yedeği ve [Yedek Yükle]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Tek Tıkla Taslak Kurtarma</span></td>
+        <td class="py-3.5 px-4">Otomatik oluşturma sonucunda önceki manuel düzenlemelerin kaybolmasını engellemek.</td>
+        <td class="py-3.5 px-4">Her otomatik oluşturma öncesinde taslak otomatik yedeklenir ve istenildiğinde <strong>[Yedek Yükle]</strong> ile önceki duruma tek tıkla geri dönülür.</td>
+        <td class="py-3.5 px-4">Her otomatik dağıtım öncesi.</td>
+        <td class="py-3.5 px-4">Sistem Otomatik / Sorumlu</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">Çizelge Matrisi & Renk Kodları</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">Gündüz, Gece, İzin, Çakışma ve İhlal Göstergeleri</span></td>
-        <td class="py-3.5 px-4">Vardiyaların, izinlerin ve kural ihlallerinin bir bakışta görsel olarak ayrıştırılmasını sağlamak.</td>
-        <td class="py-3.5 px-4">Gündüz mavi, Gece lacivert, İzin açık yeşil, Mazeret mor, İhlal kırmızı arka planla boyanır. Başka birimle çakışma varsa hücre sarı/amber vurgulanır.</td>
-        <td class="py-3.5 px-4">Çizelge inceleme ve düzenlemede.</td>
-        <td class="py-3.5 px-4">Kullanıcı & Amiri</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Çapraz Birimden Doldur] &amp; [Uygun İkame Öner]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Destek Birimi Tamamlama</span></td>
+        <td class="py-3.5 px-4">Birimin dolduramadığı boş günleri uygun diğer birim personelleriyle çakışmasız tamamlamak.</td>
+        <td class="py-3.5 px-4">Dolu nöbetlere dokunmadan yalnız boş slotları tarar; adayların kendi birim nöbeti, izni ve dinlenme süresini doğrulayarak yerleştirir.</td>
+        <td class="py-3.5 px-4">Boş slot veya ikame ihtiyacında.</td>
+        <td class="py-3.5 px-4">Birim Sorumlusu / Yönetici</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">Manuel Hücre Düzenleme & İhlal Onayı</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">Açılır Kutu Seçimi & [Kural ihlallerini onaylıyorum]</span></td>
-        <td class="py-3.5 px-4">Zorunlu klinik hallerde yöneticinin kural dışı personel nöbet ataması yapabilmesini sağlamak.</td>
-        <td class="py-3.5 px-4">Hücre çift tıklandığında açılır listeden personel seçilir. Seçilen personel dinlenme veya izin kuralını ihlal ediyorsa sistem uyarı verir; yönetici onay kutusunu işaretlemedikçe kayda izin vermez. İşlem denetim izine loglanır.</td>
-        <td class="py-3.5 px-4">Manuel müdahale anında.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Manuel Hücre Müdahalesi ve Kural İhlali Onayı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Denetim İzli İstisna</span></td>
+        <td class="py-3.5 px-4">Zorunlu klinik hallerde yönetici sorumluluğunda kural dışı atama yapabilmek.</td>
+        <td class="py-3.5 px-4">İhlalli veya başka birimde çakışmalı personelde onay kutusu işaretlenmeden kayıt engellenir; onaylanan gerekçe plan notlarına mühürlenir.</td>
+        <td class="py-3.5 px-4">Hücre çift tıklandığında.</td>
         <td class="py-3.5 px-4">Yetkili Yönetici</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">[Geçici Personel Ekle]</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">Farklı Birimden Ay / Plan Bazlı Görevlendirme</span></td>
-        <td class="py-3.5 px-4">Birim içi personel açığını başka departmandan ödünç personelle kapatmak.</td>
-        <td class="py-3.5 px-4">Kalıcı kadro yapısını bozmadan, personeli sadece o aya ve o plana mahsus geçici nöbetçi olarak matris tablosuna satır olarak ekler.</td>
-        <td class="py-3.5 px-4">Kadro eksikliği durumunda.</td>
-        <td class="py-3.5 px-4">Birim Sorumlusu</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Ay Ortası Plan İptali] ve 3 Gün Kuralı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Kesim Tarihi &amp; Şifre Doğrulama</span></td>
+        <td class="py-3.5 px-4">Yayındaki planda olağanüstü kriz anında gerçekleşen nöbetleri silmeden gelecek günleri iptal etmek.</td>
+        <td class="py-3.5 px-4">Kesim tarihi bugünden en fazla 3 gün geriye seçilir; en az 20 karakter gerekçe ve yönetici şifresiyle gelecek slotlar iptal edilip plan taslağa alınır.</td>
+        <td class="py-3.5 px-4">Acil revizyon gerektiğinde.</td>
+        <td class="py-3.5 px-4">Yönetici (Şifre Onaylı)</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">[Çapraz Birimden Doldur] &amp; [Uygun İkame Öner]</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">Destek Biriminden Otomatik Boş Slot Tamamlama &amp; Ana Birim Çakışma Kalkanı</span></td>
-        <td class="py-3.5 px-4">Birim kadrosunun dolduramadığı boş günleri seçilen destek biriminden çakışmasız tamamlamak ve tekil hücrelerde çapraz ikame bulmak.</td>
-        <td class="py-3.5 px-4">Mevcut dolu nöbetlere dokunmadan yalnızca boş kalan günleri tarar; seçilen destek birimindeki personellerin kendi ana birimlerindeki nöbetlerini, izinlerini, 24s/48s dinlenme ve ardışık gün sınırlarını kontrol ederek uygun adayları adil sırayla yerleştirir. Zorunlu hallerde yönetici onay kutusu ile manuel atama yapılabilir.</td>
-        <td class="py-3.5 px-4">Çapraz görevlendirme ve boş slot tamamlamada.</td>
-        <td class="py-3.5 px-4">Birim Sorumlusu &amp; Yönetici</td>
-      </tr>
-      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">[Ay Ortası Plan İptali] & 3 Gün Kuralı</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">Kesim Tarihi, 20 Karakter Gerekçe & Yönetici Şifresi</span></td>
-        <td class="py-3.5 px-4">Yayınlanmış planda ay ortası krizlerinde geçmiş gerçekleşen nöbetleri koruyarak geleceği iptal etmek.</td>
-        <td class="py-3.5 px-4">Kesim tarihi seçilir. Kesim tarihinden önceki fiili nöbetler korunur; sonraki nöbetler iptal edilir. Kesim tarihi bugünden en fazla 3 gün geriye seçilebilir. 20+ karakter gerekçe ve yönetici şifresi zorunludur.</td>
-        <td class="py-3.5 px-4">Olağanüstü acil iptal hallerinde.</td>
-        <td class="py-3.5 px-4">Yönetici (Sudo Doğrulama)</td>
-      </tr>
-      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong class="text-slate-900 dark:text-white">[Adalet Sayacı] (Yıllık Dağılım)</strong><br> <span class="text-[11px] text-slate-500 dark:text-slate-400">Buçuklu (0.5 / 1.0 / 2.0) Nöbet, Saat Karşılığı ve Çapraz Görev Dengesi</span></td>
-        <td class="py-3.5 px-4">Seçilen yıl boyunca birimdeki personeller arasındaki kümülatif hafta sonu, bayram, fazla mesai ve çapraz görev adaletini hem nöbet adedi hem de saat bazında denetlemek.</td>
-        <td class="py-3.5 px-4">10 saatin altındaki kısa vardiyaları 0.5 nöbet, 12 saatlik vardiyaları 1.0 nöbet ve 24 saatlik nöbetleri 2.0 nöbet olarak ağırlıklandırır; Hafta Sonu, Bayram ve Çapraz Nöbet sayaçlarını parantez içinde toplam saat karşılığıyla (örn. 33.5 Nöbet (405 sa)) ve birim kısa kodlarıyla listeler.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Nöbet Adalet Sayacı]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">0,5 / 1,0 / 2,0 Ağırlıklı İzleme</span></td>
+        <td class="py-3.5 px-4">Yıl içindeki hafta sonu, bayram, fazla mesai ve çapraz nöbet dağılımını şeffaf izlemek.</td>
+        <td class="py-3.5 px-4">10 saatten kısa vardiyaları 0,5, 12 saatlik vardiyaları 1,0 ve 24 saatlikleri 2,0 nöbet olarak ağırlıklandırıp saat karşılığıyla listeler.</td>
         <td class="py-3.5 px-4">Yıllık adalet kontrolünde.</td>
-        <td class="py-3.5 px-4">Birim Sorumlusu &amp; Yönetici</td>
+        <td class="py-3.5 px-4">Birim Sorumlusu / Yönetici</td>
       </tr>
     </tbody>
   </table>
@@ -233,98 +215,66 @@
     <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
     <span>Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)</span>
   </h2>
-  <div class="flex items-center gap-3">
- <div class="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-lg shadow-sm">
- </div>
- <div>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">
- Saha Mit Avcısı: "Otomatik Dağıtım Motoru Çalıştırıldığında Mevcut Taslağım Kalıcı Olarak Silinir mi?"
- </h3>
- <span class="text-xs text-amber-700 dark:text-amber-300 font-semibold">En Sık Karşılaşılan Solver ve Çizelge Yanılgısı</span>
- </div>
- </div>
-
- <div class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-200">
- <div class="flex items-start gap-2.5">
- <span class="text-rose-500 font-bold shrink-0 text-base leading-none"></span>
- <p>
- <strong>Yanlış İnanış:</strong> <em>"Üzerinde günlerce elle düzenleme yaptığım taslak planda yanlışlıkla [Otomatik Olustur] butonuna basarsam tüm manuel çalışmalarım üzerine yazılır, silinir ve eski halini asla geri getiremem."</em>
- </p>
- </div>
- <div class="flex items-start gap-2.5">
- <span class="text-emerald-500 font-bold shrink-0 text-base leading-none"></span>
- <p>
- <strong>Doğru Gerçek:</strong> <strong>HAYIR, ASLA KAYBOLMAZ.</strong> RADPYS Güvenlik Kalkanı uyarınca, <strong>[Otomatik Olustur]</strong> butonuna tıklandığı milisaniyede sistem mevcut çizelgenin eksiksiz bir JSON anlık görüntüsünü (snapshot) otomatik olarak arşiv dizinine depolar. Dağıtım motorunun ürettiği yeni sonucu beğenmezseniz veya önceki taslağınıza dönmek isterseniz, çizelge ekranındaki <strong>[Yedekten Taslak Yükle]</strong> butonuna tıklayarak saniyeler içinde çalışmanızı kurtarabilirsiniz.
- </p>
- </div>
- </div>
+  <div class="p-6 rounded-3xl bg-amber-50/70 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/50 shadow-sm">
+  <div class="flex items-center gap-2.5 text-amber-800 dark:text-amber-300 font-bold text-sm sm:text-base mb-3">
+    <svg class="w-5 h-5 text-amber-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+    <span>Otomatik Dağıtım Çalıştırıldığında Mevcut Manuel Taslağım Kalıcı Olarak Silinir mi?</span>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-3 text-sm">
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-rose-200 dark:border-rose-900/50 text-rose-900 dark:text-rose-200 leading-relaxed">
+      <span class="font-bold block mb-1">Yanlış Algı</span>
+      <div><em>"Günlerce üzerinde uğraştığım taslak çizelgede yanlışlıkla [Otomatik Oluştur] butonuna basarsam tüm manuel düzenlemelerim sonsuza kadar kaybolur."</em></div>
+    </div>
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-emerald-200 dark:border-emerald-800/60 text-emerald-900 dark:text-emerald-200 leading-relaxed">
+      <span class="font-bold block mb-1">Gerçek Sistem Mantığı</span>
+      <div><strong>Kesinlikle kaybolmaz.</strong> Dağıtım motoru çalışmaya başlamadan hemen önce sistem mevcut çizelgenin tam bir taslak anlık görüntüsünü otomatik olarak arşivler. Üretilen yeni dağıtımdan memnun kalmazsanız çizelge araç çubuğundaki <strong>[Yedek Yükle]</strong> butonuna tıklayarak saniyeler içinde bir önceki taslağınıza dönebilirsiniz.</div>
+    </div>
+  </div>
+</div>
 </section>
 
 <section id="workflow" class="mb-12">
   <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
     <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
-    <span>Nöbet Hazırlık, Çözümleme ve Yayın Döngüsü Şeması</span>
+    <span>Süreç Akış Şeması</span>
   </h2>
-  <div class="space-y-1">
- <p class="text-sm text-slate-500 dark:text-slate-400">
- Yeni plan oluşturmadan solver motoru optimizasyonuna, matris denetiminden ay ortası kısmi iptal yönetimine kadar tüm yaşam döngüsü.
- </p>
- </div>
+  <div class="p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-x-auto my-4">
+  <div class="mermaid text-sm">
+flowchart TB
+ subgraph S1 ["1. AŞAMA: HAZIRLIK SİHİRBAZI VE ÖN DENETİM"]
+  direction LR
+  A(["Yeni Plan Başlatılır"]) --> B["Hazırlık Sihirbazı: İş Günü &amp; 35s/40s Hedef"]
+  B --> C{"İki Ay Önceki Devir<br/>Mutabakatı Hazır mı?"}
+  C -->|Eksik| D["ENGEL: Önce Mutabakat Kaydedilir"]
+  C -->|Hazır| E["Taslak Otomatik Yedeklenir"]
+ end
 
- <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex justify-center">
+ subgraph S2 ["2. AŞAMA: DAĞITIM MOTORU VE MATRİS DÜZENLEME"]
+  direction LR
+  F["Arka Plan Dağıtım Motoru &amp; Çapraz Doldurma"] --> G{"Kural İhlali veya<br/>Çapraz Çakışma Var mı?"}
+  G -->|Temiz| H["Özet &amp; Adalet Kontrolü"]
+  G -->|Var| I["Yönetici Onay Kutusu İşaretlenir"]
+  I --> J["Gerekçe Denetim İzine Mühürlenir"]
+ end
 
-<div class="mermaid text-sm">
-graph TD
- A(["Planlama Dönemi Başlar"]) --> B["Yeni Plan Dialogu Açılır"]
- B --> C["Yıl, Ay ve Klinik Birim Seçilir"]
- C --> D["Hazırlık Sihirbazı: İş Günü & Hedef Mesai 35s/40s Hesaplanır"]
- 
- %% Otomatik Dağıtım Döngüsü
- D --> E{"Dağıtım Yöntemi Seçimi"}
- E -->|"Otomatik Dağıtım"| F["Otomatik Oluştur Tıklanır"]
- F --> G["GÜVENLİK KALKANI: Mevcut Durumun JSON Snapshot Yedeği Alınır"]
- G --> H["Solver Motoru Arka Plan İş Parçacığında Çalışır - QThread"]
- H --> I["Kural Piramidi & Dinlenme Kontrolleri Uygulanır"]
- 
- E -->|"Manuel Giriş / Boş Taslak"| J["Boş Çizelge Matrisi Açılır"]
- I --> J
- 
- %% Çizelge Matrisi & Düzenleme
- J --> K["Çizelge Matrisinde Renk Kodlu İnceleme"]
- K --> L{"Kural İhlali veya Çakışma Var mı?"}
- 
- L -->|"Evet: Kırmızı/Amber Alarm"| M["Hücreye Çift Tıklanır - Değişiklik Yapılır"]
- M --> N{"Yönetici İhlali Onaylıyor mu?"}
- N -->|Evet| O["Kural İhlallerini Onaylıyorum İşaretlenir"]
- O --> P["Yönetici ID, Tarih ve İhlal Nedeni Denetim İzine Kaydedilir"]
- N -->|Hayır| M
- 
- L -->|"Hayır: Temiz Çizelge"| Q["Çizelge Önizleme & İstatistik Kontrolü"]
- P --> Q
- 
- %% Yayınlama ve Kısmi İptal
- Q --> R["Onaya Sun / Yayınla Butonu"]
- R --> S(["Nöbet Çizelgesi Yayında - Mobil Portala Düşer"])
- 
- S --> T{"Ay Ortasında Kriz / Revizyon İhtiyacı?"}
- T -->|"Hayır: Ay Tamamlanır"| U(["Dönem Kapanışı ve Bordroya Aktarım"])
- T -->|"Evet: Acil Müdahale"| V["Ay Ortası Plan İptali Dialogu Açılır"]
- V --> W["Kesim Tarihi Seçilir - En Fazla 3 Gün Geriye Limitli"]
- W --> X["20+ Karakter Gerekçe & Yönetici Şifresi Girilir"]
- X --> Y["Geçmiş Nöbetler Korunur, Kalan Gelecek Slotlar İptal Edilir"]
- Y --> Z(["Kısmi İptal Tamamlandı - Revizyon Taslağı Açılabilir"])
+ subgraph S3 ["3. AŞAMA: YAYINLAMA VE AY ORTASI KISMİ İPTAL"]
+  direction LR
+  K["Planı Onayla"] --> L(["Çizelge Yayında &amp; Web Portalında"])
+  L --> M{"Ay Ortası Revizyon<br/>Gerekli mi?"}
+  M -->|Evet| N["Kesim Tarihi (Maks 3 Gün) &amp; 20+ Krk Gerekçe"]
+  N --> O(["Geçmiş Korunur, Gelecek Slotlar İptal"])
+ end
 
- style A fill:#06b6d4,stroke:#0891b2,stroke-width:2px,color:#fff
- style F fill:#3b82f6,stroke:#2563eb,stroke-width:2px,color:#fff
- style G fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff
- style H fill:#8b5cf6,stroke:#7c3aed,stroke-width:2px,color:#fff
- style O fill:#f59e0b,stroke:#d97706,stroke-width:2px,color:#fff
- style R fill:#059669,stroke:#047857,stroke-width:2px,color:#fff
- style V fill:#ef4444,stroke:#dc2626,stroke-width:2px,color:#fff
- style Y fill:#e11d48,stroke:#be123c,stroke-width:2px,color:#fff
+ E ==> F
+ H & J ==> K
+  </div>
 </div>
 
- </div>
+<ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
+  <li><strong>Hazırlık ve Ön Denetim:</strong> Dönem iş günleri ile 35s/40s hedefleri hesaplanır; iki ay önceki dönemin fazla mesai mutabakatı tamamlanmamışsa otomatik dağıtım başlatılmaz, hazırsa taslak otomatik yedeklenir.</li>
+  <li><strong>Dağıtım ve Matris Düzenleme:</strong> Arka planda çalışan dağıtım motoru ve çapraz tamamlama aracı slotları doldurur; zorunlu hallerde yönetici onay kutusuyla yapılan istisnalar denetim izine yazılır.</li>
+  <li><strong>Yayınlama ve Kısmi İptal:</strong> Onaylanan plan Web Portalına yansır; ay ortası krizinde kesim tarihine (en fazla 3 gün geri) kadarki gerçekleşmiş nöbetler korunarak yalnızca gelecek günler iptal edilir.</li>
+</ol>
 </section>
 
 <section id="screenshots" class="mb-12">
@@ -332,16 +282,10 @@ graph TD
     <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
     <span>Arayüz Ekran Görünümleri</span>
   </h2>
-  <div class="space-y-1">
- <p class="text-sm text-slate-500 dark:text-slate-400">
- Nöbet plan listesi, çizelge düzenleme matrisi, istatistiki önizleme ve kısmi iptal diyalogları.
- </p>
- </div>
-
-<figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+  <figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
     <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
       <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
-        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Nöbet Yönetimi > Nöbet Planları Ana Ekranı</strong>
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Nöbet Yönetimi > Nöbet Planları</strong>
       </span>
       <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">Aylık Planlar, Durum Rozetleri &amp; Eylemler</span>
     </div>
@@ -350,46 +294,46 @@ graph TD
   </div>
     <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
       <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      <span><span><strong>Yasal Bilgilendirme:</strong> Görseldeki birim adları, personel sayıları ve plan durumları test ortamında yapılandırılmış simülasyon verileridir.</span></span>
+      <span><span><strong>Yasal Bilgilendirme:</strong> Görseldeki birim adları, personel sayıları ve plan durumları test ortamında yapılandırılmış sentetik verilerdir.</span></span>
     </figcaption>
 </figure>
 
 <figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
     <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
       <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
-        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Nöbet Planı > [Çizelgeyi Düzenle] Ekranı</strong>
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Nöbet Planları > Hazırlığa Devam Et</strong>
       </span>
-      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">İnteraktif Çizelge Matrisi, Renk Kodları &amp; Solver Kontrolü</span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200 dark:border-amber-800">Çalışma Parametreleri, Talepler &amp; Kapasite Simülatörü</span>
+    </div>
+  <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+    <img src="assets/img/08_nobet_plan_onizleme.png" alt="Nöbet Planı Hazırlık ve Simülatör Ekranı" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+  </div>
+    <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
+      <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span><span><strong>Yasal Bilgilendirme:</strong> Önizleme panelindeki çalışma saatleri ve simülasyon göstergeleri örnek verilerle hazırlanmıştır.</span></span>
+    </figcaption>
+</figure>
+
+<figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+    <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
+      <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Nöbet Planı > Çizelgeyi Düzenle</strong>
+      </span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">İnteraktif Çizelge Matrisi, İkame Öner &amp; İhlal Onayı</span>
     </div>
   <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
     <img src="assets/img/08_nobet_cizelge_dialog.png" alt="Çizelge Matrisi ve Hücre Düzenleme Ekranı" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
   </div>
     <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
       <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      <span><span><strong>Yasal Bilgilendirme:</strong> Matris hücrelerindeki vardiya atamaları ve renk göstergeleri mevzuat kısıtlarının doğrulanması amacıyla örneklendirilmiştir.</span></span>
+      <span><span><strong>Yasal Bilgilendirme:</strong> Matris hücrelerindeki nöbet atamaları ve renk kodları kural doğrulama örneği olarak sunulmuştur.</span></span>
     </figcaption>
 </figure>
 
 <figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
     <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
       <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
-        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Nöbet Planı > [Önizleme] Ekranı</strong>
-      </span>
-      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">Personel Saat Dağılımı, Hafta Sonu &amp; Fazla Mesai Analizi</span>
-    </div>
-  <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
-    <img src="assets/img/08_nobet_plan_onizleme.png" alt="Nöbet Planı Önizleme ve İstatistik Ekranı" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
-  </div>
-    <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
-      <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      <span><span><strong>Yasal Bilgilendirme:</strong> Önizleme panelindeki adalet puanları ve çalışma saatleri analitik dengeleme motorunun sonuçlarını yansıtır.</span></span>
-    </figcaption>
-</figure>
-
-<figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
-    <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
-      <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
-        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Nöbet Planı > [Ay Ortası Plan İptali] Ekranı</strong>
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Yayınlanmış Plan > Ay Ortası Plan İptali</strong>
       </span>
       <span class="text-xs font-semibold px-3 py-1 rounded-full bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60">Kesim Tarihi, 3 Gün Sınırı &amp; Yönetici Şifre Doğrulaması</span>
     </div>
@@ -398,7 +342,7 @@ graph TD
   </div>
     <figcaption class="p-4 bg-slate-50 dark:bg-slate-900 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5">
       <svg class="w-4 h-4 text-cyan-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      <span><span><strong>Yasal Bilgilendirme:</strong> Kısmi plan iptali işlemi geçmiş nöbetlerin hak ediş ve fiili hizmet puanlarını kesinlikle silmez; yalnızca gelecek günleri iptal eder.</span></span>
+      <span><span><strong>Yasal Bilgilendirme:</strong> Kısmi iptal geçmiş gerçekleşmiş nöbetlerin saat ve hak edişlerini kesinlikle silmez.</span></span>
     </figcaption>
 </figure>
 </section>
@@ -408,120 +352,34 @@ graph TD
     <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
     <span>Adım Adım İşlem Rehberi</span>
   </h2>
-  <div class="space-y-1">
- <p class="text-sm text-slate-500 dark:text-slate-400">
- Saha operasyonlarında nöbet hazırlık ve solver motorunun en sık kullanılan 5 ana senaryosu.
- </p>
- </div>
+  <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-5 mb-2">1. Yeni Nöbet Planı Açma ve 3 Adımlı Hazırlık Sihirbazı</h3>
 
- <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
- <div class="flex items-center gap-3">
- <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 flex items-center justify-center font-bold text-sm">
- 1
- </span>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">
- Yeni Bir Nöbet Planı Başlatma ve Hazırlık Parametrelerini Onaylama
- </h3>
- </div>
- <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
- <li>Sol menüden <strong>[Nöbet Yönetimi] > [Nöbet Planları]</strong> ekranına gidin.</li>
- <li>Araç çubuğundaki yeşil <strong>[+ Yeni Plan]</strong> butonuna tıklayın.</li>
- <li>Açılan pencerede planlanacak <strong>Yıl</strong>, <strong>Ay</strong> ve <strong>Klinik Birim</strong> (Örn: Girişimsel Radyoloji) seçimini yapın.</li>
- <li>Sistem takvim analizini otomatik olarak tamamlar:
- <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-0.5">
- <li>Ayın gün sayısı ve resmi tatil günleri listelenir.</li>
- <li>Radyasyon personeli için haftalık 35 saat (aylık iş günü × 7 saat) kuralı otomatik hesaplanır.</li>
- <li>Radyasyon dışı personel için haftalık 40 saat (iş günü × 8 saat) standardı ayrıştırılır.</li>
- </ul>
- </li>
- <li><strong>[Planı Oluştur]</strong> butonuna basarak taslak plan kaydını oluşturun.</li>
- </ol>
- </div>
+<ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
+  <li>Sol menüden <strong>[Nöbet Yönetimi] &gt; [Nöbet Planları]</strong> sayfasında <strong>[Yeni Plan]</strong> butonuna tıklayın; Yıl, Ay, Birim ve Hizmet Sınıfını seçip <strong>[Kaydet]</strong>'e basın.</li>
+  <li>Açılan <strong>Nöbet Planlama Hazırlığı</strong> sihirbazında sırasıyla resmi tatiller ile 35s/40s hedeflerini gözden geçirin (gerekirse <strong>[Çapraz Görevlendirme]</strong> üzerinden <strong>[Adalet Sırasına Göre Seç]</strong> ile destek personel ekleyin), <strong>[İleri]</strong> ile talepler ekranında varsa <strong>[Hızlı Talep Ekle]</strong> girişlerini yapın ve 3. adımda kapasite simülasyonunu doğrulayarak <strong>[Plan Taslağını Kaydet]</strong> butonuna tıklayın.</li>
+</ol>
 
- <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
- <div class="flex items-center gap-3">
- <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 flex items-center justify-center font-bold text-sm">
- 2
- </span>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">
- Solver Dağıtım Motorunu Çalıştırma ve Otomatik Çizelgeleme
- </h3>
- </div>
- <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
- <li>Oluşturulan taslak planın satırına tıklayıp <strong>[Çizelgeyi Düzenle]</strong> butonuna basın.</li>
- <li>Üst araç çubuğundaki mavi <strong>[Otomatik Olustur]</strong> butonuna tıklayın.</li>
- <li>Planlama başlamadan önce sistem, fazla mesai devrinin kaynağı olan dönemin (planlanan aydan iki ay önceki dönem) mutabakatını denetler. Bu dönemde nöbeti olup <strong>[Fazla Mesai Borç / Alacak Devri]</strong> ekranında kaydedilmemiş personel varsa otomatik oluşturma durdurulur ve eksik personel listelenir; önce ilgili dönemin mutabakatını hesaplayıp kaydedin. Sistemin ilk kullanımında veya o dönemde hiç nöbet yoksa devir 0 kabul edilir.</li>
- <li>Sistem arka planda aşağıdaki güvenlik ve hesaplama adımlarını işletir:
- <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-0.5">
- <li>Mevcut çizelgenin zaman damgalı JSON anlık görüntüsü (snapshot) otomatik arşivlenir.</li>
- <li>Dağıtım motoru ayrı bir arka plan iş parçacığında çalıştırılarak ana ekranın donması önlenir.</li>
- <li>Önceden onaylanmış personel talepleri ve sağlık kısıtları (gebelik, emzirme, 50 yaş) kilitlenir.</li>
- <li>Birim slotları kural hiyerarşisine göre en uygun personel kombinasyonlarıyla doldurulur.</li>
- </ul>
- </li>
- <li>Optimizasyon tamamlandığında çizelge matrisi otomatik olarak güncellenir ve renk kodlarıyla ekrana gelir.</li>
- </ol>
- </div>
+<h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-5 mb-2">2. Otomatik Dağıtım, Çapraz Doldurma ve Yedekten Geri Yükleme</h3>
 
- <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
- <div class="flex items-center gap-3">
- <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 flex items-center justify-center font-bold text-sm">
- 3
- </span>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">
- Çizelge Matrisinde Manuel Değişiklik ve Kural İhlal Onayı Verme
- </h3>
- </div>
- <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
- <li>Matris tablosunda değiştirmek istediğiniz hücreye çift tıklayın.</li>
- <li>Açılan personel listesinden yeni görevliyi seçin.</li>
- <li>Eğer seçilen personel o gün izinliyse, 24 saatlik dinlenme süresini doldurmamışsa veya fazla mesai tavanını aşıyorsa sistem kırmızı renkli <strong>Kural İhlali Uyarısı</strong> görüntüler.</li>
- <li>Aynı gün içinde çakışmayan gündüz ve gece vardiyaları (örneğin 08:00-20:00 ve 20:00-08:00) birimin günlük izin verilen süresini (örneğin 24 saat) aşmıyorsa, sistem "aynı tarihte nöbeti var" veya "24 saat dinlenme" uyarısı vermez. Bayram ve hafta sonu nöbet sayacında bu iki vardiya ise iki ayrı nöbet sayılır; böylece 24 saat tutan personel ile 12 saat tutan personel arasında bayram adaleti korunur. Limit uyarıları "Aylık maksimum bayram/tatil nöbeti üst limiti" ve "Aylık maksimum hafta sonu nöbeti üst limiti" olarak ayrı ayrı gösterilir.</li>
- <li>Acil klinik zorunluluk nedeniyle bu atamayı yapmak zorundaysanız:
- <ul class="list-disc list-inside pl-5 mt-1 text-slate-500 dark:text-slate-400 space-y-0.5">
- <li>Diyalogdaki <strong>[Kural ihlallerini onaylıyorum]</strong> onay kutusunu işaretleyin.</li>
- <li><strong>[Kaydet]</strong> butonuna basın.</li>
- </ul>
- </li>
- <li>Bu işlem sistem tarafından otomatik olarak denetim izine (Audit Trail) yönetici kullanıcı adı, işlem zamanı ve ihlal gerekçesiyle kalıcı olarak kaydedilir.</li>
- </ol>
- </div>
+<ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
+  <li>Plan listesinde satırı seçip <strong>[Çizelgeyi Düzenle]</strong> butonuna tıklayın ve çizelge matrisine girin.</li>
+  <li>Üst araç çubuğunda <strong>[Otomatik Oluştur]</strong> butonuna basın; sistem iki ay önceki mutabakat kontrolünü geçtikten sonra mevcut taslağı otomatik yedekler ve arka planda nöbetleri yerleştirir (beğenmezseniz <strong>[Yedek Yükle]</strong> ile önceki taslağa dönebilirsiniz).</li>
+  <li>Hâlâ boş kalan slotlar varsa <strong>[Çapraz Birimden Doldur]</strong> penceresinden destek birimi ve gün kapsamını seçip <strong>[Otomatik Doldur]</strong> butonunu çalıştırın; ardından <strong>[Planı Onayla]</strong> ile çizelgeyi yayınlayın.</li>
+</ol>
 
- <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
- <div class="flex items-center gap-3">
- <span class="w-7 h-7 rounded-xl bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 flex items-center justify-center font-bold text-sm">
- 4
- </span>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">
- Farklı Birimden Geçici Personel Görevlendirme
- </h3>
- </div>
- <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
- <li>Çizelge matrisi ekranında araç çubuğundaki <strong>[Geçici Personel Ekle]</strong> butonuna tıklayın.</li>
- <li>Kurum genel personel listesinden ilgili teknisyen veya hekimi aratarak seçin.</li>
- <li>Personelin dahil edileceği plan dönemi onaylandığında, personelin kadrosu kendi ana biriminde kalır; ancak bu ayki çizelge matrisine yeni bir satır olarak eklenir.</li>
- <li>Personel aynı ay içerisinde kendi ana biriminde de nöbete yazılmışsa, matristeki hücreleri sarı/amber vurgulanarak çakışma riski yöneticiye bildirilir.</li>
- </ol>
- </div>
+<h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-5 mb-2">3. Hücreye Manuel Müdahale, İkame Önerisi ve Kural İhlali Onayı</h3>
 
- <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
- <div class="flex items-center gap-3">
- <span class="w-7 h-7 rounded-xl bg-rose-100 text-rose-800 dark:bg-rose-900/60 dark:text-rose-300 flex items-center justify-center font-bold text-sm">
- 5
- </span>
- <h3 class="text-base font-bold text-slate-900 dark:text-white">
- Ay Ortasında Kısmi Plan İptali Uygulama (3 Gün Sınırı & Sudo Doğrulama)
- </h3>
- </div>
- <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pl-2">
- <li>Yayınlanmış nöbet planında ay ortası krizleri (istifa, salgın, acil tadilat) meydana geldiğinde ilgili planı seçip <strong>[Ay Ortası Plan İptali]</strong> butonuna tıklayın.</li>
- <li><strong>Kesim Tarihi</strong> alanından iptalin başlayacağı günü seçin. <em>(Yasal kısıt: Kesim tarihi bugünden en fazla 3 gün geriye seçilebilir; geçmiş aylara veya haftalara dönük tahrifat engellenmiştir.)</em></li>
- <li><strong>İptal Gerekçesi</strong> alanına en az 20 karakterlik kurumsal gerekçe girin.</li>
- <li>Yetkisiz veya sehven iptalleri önlemek için <strong>Yönetici Şifrenizi</strong> yazın.</li>
- <li><strong>[Kısmi İptali Onayla]</strong> butonuna basın.</li>
- <li>Sistem kesim tarihinden önceki fiili nöbetleri, saatleri ve şua hak edişlerini kesinlikle korur; kesim tarihinden ay sonuna kadar olan tüm nöbet atamalarını iptal eder.</li>
- </ol>
- </div>
+<ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
+  <li>Matriste değiştirmek istediğiniz hücreye çift tıklayın veya araç çubuğundan <strong>[Yeni Kayıt]</strong> / <strong>[Kaydı Düzenle]</strong> butonunu kullanın; diğer birimlerden seçim için <strong>[Diğer Birimlerden Atama Yap]</strong> kutusunu veya uygun aday listesi için <strong>[Uygun İkame Öner]</strong> butonunu kullanın.</li>
+  <li>Seçilen personelde izin, 24 saat dinlenme veya tavan ihlali varsa kırmızı uyarı bloğu açılır; acil zorunluluk halinde yalnızca yetkili yönetici <strong>[Kural ihlallerini onaylıyorum (Denetim izi notlara kaydedilecektir)]</strong> kutusunu işaretleyip <strong>[Kaydet]</strong>'e basabilir.</li>
+</ol>
+
+<h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-5 mb-2">4. Ay Ortasında Kısmi Plan İptali Uygulama ve Adalet Sayacını İzleme</h3>
+
+<ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
+  <li>Yayındaki planda acil değişiklik gerektiğinde planı açıp <strong>[Ay Ortası Plan İptali]</strong> butonuna tıklayın; bugünden en fazla 3 gün geriye kadar kesim tarihini, en az 20 karakter gerekçeyi ve yönetici şifrenizi girip <strong>[İptal Et ve Taslağa Çek]</strong> butonuna basın.</li>
+  <li>Yıllık dağılım adaletini ve çapraz görev yüklerini incelemek için sol menüden <strong>[Nöbet Adalet Sayacı]</strong> sayfasını açıp gerektiğinde <strong>[Excel'e Aktar]</strong> ile dışa aktarın.</li>
+</ol>
 </section>
 
 <section id="faq" class="mb-12">
@@ -532,47 +390,38 @@ graph TD
   <div class="space-y-3" id="faqAccordion">
   <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
     <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>Ay ortasında personel işten ayrılırsa tüm ayın çizelgesini iptal etmek zorunda mıyım?</span>
+      <span>Otomatik Oluştur butonuna bastığımda iki ay önceki mutabakat uyarısı neden çıkıyor?</span>
       <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
     </summary>
     <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <strong>Kesinlikle hayır.</strong> RADPYS'nin <strong>[Ay Ortası Plan İptali]</strong> özelliği tam olarak bu senaryolar için geliştirilmiştir. Seçtiğiniz kesim tarihine kadar tutulmuş olan tüm fiili nöbetler, fazla mesai saatleri ve şua puanları sistemde kalıcı olarak korunur. Yalnızca kesim tarihinden ay sonuna kadar olan gelecek nöbet slotları iptal edilerek yeni revizyon planına imkan tanınır.
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Planlanan aya önceki aylardan devredecek doğru fazla mesai saatlerini yansıtabilmek için sistem iki ay önceki dönemin mutabakatını denetler. O dönemde nöbeti olup <strong>[Fazla Mesai Borç / Alacak Devri]</strong> ekranında kaydedilmemiş personel varsa dağıtım durdurulur; ilgili dönemi kaydedip tekrar deneyin.</p>
     </div>
   </details>
   <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
     <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>Geçmişe dönük en fazla kaç gün öncesine iptal kesim tarihi seçebilirim?</span>
+      <span>Aynı gün içinde gündüz ve gece vardiyası atandığında sistem neden ihlal vermeyebilir?</span>
       <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
     </summary>
     <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Sistem güvenlik protokolü gereğince kesim tarihi bugünün tarihinden <strong>en fazla 3 gün geriye</strong> seçilebilir. Bu kural, geçmişe dönük bordro, fiili hizmet zammı ve nöbet ücreti tahrifatını engellemek amacıyla konulmuş bir yasal denetim kilididir.</p>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Çakışmayan gündüz ve gece vardiyaları birimin günlük izin verilen azami çalışma süresini (örneğin 24 saat) aşmıyorsa dinlenme ihlali oluşmaz. Ancak bayram ve hafta sonu adalet sayacında bu iki vardiya ayrı iki nöbet olarak sayılır ve eşitlik korunur.</p>
     </div>
   </details>
   <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
     <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>Kural ihlali içeren bir nöbet atamasını zorunlu olarak onaylarsam hukuki sorumluluk kime aittir?</span>
+      <span>Ay ortasında personel ayrılırsa tüm ayın çizelgesini silmek zorunda mıyım?</span>
       <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
     </summary>
     <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Kural ihlali uyarısına rağmen <strong>[Kural ihlallerini onaylıyorum]</strong> kutucuğu işaretlendiğinde işlem, onaylayan yöneticinin kullanıcı kimliği (ID), tam tarih/saat damgası ve ihlal edilen kural parametreleriyle birlikte <strong>Denetim İzi (Audit Trail)</strong> veri tabanına kalıcı olarak mühürlenir. İdari teftişlerde bu kayıtlar resmi kanıt niteliğindedir.</p>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Hayır. <strong>[Ay Ortası Plan İptali]</strong> kesim tarihine kadar fiilen tutulmuş tüm nöbetleri ve hak edişleri korur; yalnızca kesim tarihinden ay sonuna kadar olan gelecek slotları iptal ederek revizyon taslağı açar.</p>
     </div>
   </details>
   <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
     <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>Bir personel aynı ay içerisinde başka bir birimde de nöbet tutuyorsa sistem beni uyarır mı?</span>
+      <span>Başka bir birimde aynı ay nöbeti olan personel matriste nasıl fark edilir?</span>
       <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
     </summary>
     <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Evet. Çizelge matrisi, personelin diğer departmanlardaki nöbetlerini dinamik olarak sorgular. Personelin başka bir birimde aynı güne nöbeti varsa veya aradaki dinlenme süresi ihlal ediliyorsa ilgili hücre <strong>sarı/amber (#FEF3C7) arka plan</strong> ile renklendirilir ve hücre ipucunda diğer birimin nöbet detayı gösterilir.</p>
-    </div>
-  </details>
-  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
-    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>Solver dağıtım motoru binlerce permutasyonu çözerken uygulama donar veya kilitlenir mi?</span>
-      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-    </summary>
-    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Hayır. Solver algoritması ana kullanıcı arayüzü iş parçacığından (Main GUI Thread) bağımsız olarak özel bir <strong>arka plan iş parçacığında (QThread)</strong> koşturulur. Bu esnada ekranda ilerleme animasyonu akar, arayüz akıcı kalır ve kullanıcı dilerse işlemi güvenle iptal edebilir.</p>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Personelin diğer departmanlarda da nöbeti veya yakın tarihli çakışma riski bulunuyorsa sağ özet tablosunda ve ilgili matris hücresinde sarı/kehribar uyarı vurgusu ile diğer birimin detay ipucu görüntülenir.</p>
     </div>
   </details>
 </div>
@@ -596,10 +445,10 @@ graph TD
       <div class="sticky top-24 space-y-4">
         <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-3">Bu Sayfada</span>
         <nav class="space-y-2.5 text-sm" id="onPageToc">
-          <a href="#quick-recipe" data-toc-link="quick-recipe" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Hızlı Reçete: Otomatik Nöbet Dağıtımı, Matris Yönetimi ve Kısmi İptal</a>
+          <a href="#quick-recipe" data-toc-link="quick-recipe" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Kısa Reçete: Otomatik Nöbet Dağıtımı, Matris Yönetimi ve Kısmi İptal</a>
           <a href="#5w1h" data-toc-link="5w1h" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">5N1K Kural ve Arayüz Çözümleme Tablosu</a>
           <a href="#myth-buster" data-toc-link="myth-buster" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)</a>
-          <a href="#workflow" data-toc-link="workflow" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Nöbet Hazırlık, Çözümleme ve Yayın Döngüsü Şeması</a>
+          <a href="#workflow" data-toc-link="workflow" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Süreç Akış Şeması</a>
           <a href="#screenshots" data-toc-link="screenshots" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Arayüz Ekran Görünümleri</a>
           <a href="#step-by-step" data-toc-link="step-by-step" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Adım Adım İşlem Rehberi</a>
           <a href="#faq" data-toc-link="faq" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Sıkça Sorulan Sorular (SSS)</a>
@@ -610,7 +459,7 @@ graph TD
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.27) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.29) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
     </div>
   </footer>
 
