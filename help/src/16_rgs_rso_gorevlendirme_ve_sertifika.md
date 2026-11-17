@@ -91,9 +91,9 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![RGS ve RSO Görevlendirme Ana Liste Ekranı | Radyasyon Güvenliği > RGS / RSO Görevlendirme ve Sertifika | 4 KPI Kartı, Vize Rozetleri & Belge İşlemleri | indigo](assets/img/16_1_rgs_gorevlendirme_ana_liste.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki personel adları, sertifika numaraları ve geçerlilik tarihleri test ortamına ait sentetik verilerdir.</span>")
+![RGS ve RSO Görevlendirme Ana Liste Ekranı | Radyasyon Güvenliği > RGS / RSO Görevlendirme ve Sertifika | 4 KPI Kartı, Vize Rozetleri & Belge İşlemleri | indigo](assets/img/16_1_rgs_gorevlendirme_ana_liste.png)
 
-![Yeni RGS RSO Görevlendirme Diyalogu | RGS / RSO Görevlendirme > Yeni Görevlendirme | Rol Seçimi, Süreler & Şifreli Evrak Yükleme | cyan](assets/img/16_2_rgs_gorevlendirme_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> Atama formu ve belge alanları eğitim amaçlı örnek verilerle doldurulmuştur.</span>")
+![Yeni RGS RSO Görevlendirme Diyalogu | RGS / RSO Görevlendirme > Yeni Görevlendirme | Rol Seçimi, Süreler & Şifreli Evrak Yükleme | cyan](assets/img/16_2_rgs_gorevlendirme_dialog.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

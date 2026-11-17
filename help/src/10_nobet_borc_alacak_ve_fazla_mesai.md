@@ -93,9 +93,9 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Nöbet Borç Alacak ve Fazla Mesai Ana Tablosu | Nöbet Yönetimi > Fazla Mesai Borç / Alacak Devri | Bakiye Tablosu, Toplu İşlem & Kilit Rozeti | emerald](assets/img/10_nobet_borc_alacak_ana_tablo.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki personel isimleri, hedef saatler ve fazla mesai bakiyeleri test ortamına ait sentetik verilerdir.</span>")
+![Nöbet Borç Alacak ve Fazla Mesai Ana Tablosu | Nöbet Yönetimi > Fazla Mesai Borç / Alacak Devri | Bakiye Tablosu, Toplu İşlem & Kilit Rozeti | emerald](assets/img/10_nobet_borc_alacak_ana_tablo.png)
 
-![Fazla Mesai Ödeme Dağıtımı Penceresi | Borç / Alacak Devri > FM Öde | 60s Kurumsal Kota, 130s Yasal Tavan & Canlı Devir | cyan](assets/img/10_fm_odeme_secim_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> Ödeme dağıtımı penceresindeki saat tutarları simülasyon örneği olarak hazırlanmıştır.</span>")
+![Fazla Mesai Ödeme Dağıtımı Penceresi | Borç / Alacak Devri > FM Öde | 60s Kurumsal Kota, 130s Yasal Tavan & Canlı Devir | cyan](assets/img/10_fm_odeme_secim_dialog.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

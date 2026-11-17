@@ -95,13 +95,13 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Rapor ve Tutanak Merkezi Kokpiti | Yönetim > Rapor ve Tutanak Merkezi | 4 KPI Kartı, Katalog ve Canlı Önizleme | indigo](assets/img/21_rapor_merkezi_kokpit.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki rapor sayıları, şablon önizleme satırları ve cihaz kodları eğitim amaçlı örnek verilerdir.</span>")
+![Rapor ve Tutanak Merkezi Kokpiti | Yönetim > Rapor ve Tutanak Merkezi | 4 KPI Kartı, Katalog ve Canlı Önizleme | indigo](assets/img/21_rapor_merkezi_kokpit.png)
 
-![Şablon ve Marka Ayarları Ekranı | Rapor Merkezi > Şablon ve Marka Ayarlarını Yapılandır | Kurum Çift Başlık ve Logo Yönetimi | cyan](assets/img/03_templates_page_01.png "<span><strong>Yasal Bilgilendirme:</strong> Kurum başlık metinleri ve amblem önizlemesi test ortamı verileri üzerinden gösterilmiştir.</span>")
+![Şablon ve Marka Ayarları Ekranı | Rapor Merkezi > Şablon ve Marka Ayarlarını Yapılandır | Kurum Çift Başlık ve Logo Yönetimi | cyan](assets/img/03_templates_page_01.png)
 
-![Evrensel Tutanak ve Heyet Karar Sihirbazı Penceresi | Rapor ve Tutanak Merkezi > Tutanak Sihirbazı | 11 Modül Kapsamlı Resmi Tutanak Üretimi | amber](assets/img/23_2_tutanak_sihirbazi_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> Tutanak metni, döküm tablosu ve komisyon üye isimleri eğitim amaçlı sentetik verilerdir.</span>")
+![Evrensel Tutanak ve Heyet Karar Sihirbazı Penceresi | Rapor ve Tutanak Merkezi > Tutanak Sihirbazı | 11 Modül Kapsamlı Resmi Tutanak Üretimi | amber](assets/img/23_2_tutanak_sihirbazi_dialog.png)
 
-![Resmi Tutanaklar Kasası ve İmzalı Evrak Yükleme Ekranı | Yönetim > Resmi Tutanaklar | Sürümleme, EBYS Kaydı ve Kalıcı Arşiv | emerald](assets/img/23_3_resmi_tutanaklar_kasasi.png "<span><strong>Yasal Bilgilendirme:</strong> Kasadaki tutanak numaraları, sürüm etiketleri ve onay durumları test veritabanı örneğidir.</span>")
+![Resmi Tutanaklar Kasası ve İmzalı Evrak Yükleme Ekranı | Yönetim > Resmi Tutanaklar | Sürümleme, EBYS Kaydı ve Kalıcı Arşiv | emerald](assets/img/23_3_resmi_tutanaklar_kasasi.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

@@ -11,57 +11,81 @@
                                     "tabLabel": "Nöbet Solver Motoru",
                                     "title": "Modül 08: Otomatik Nöbet Solver Motoru & Kısıt Çözücü",
                                     "desc": "Google OR-Tools CP-SAT tabanlı matematiksel kısıt optimizasyonu ve adil nöbet dağıtım matrisi.",
-                                    "img": "help/assets/img/08_nobet_cizelge_dialog.png",
-                                    "link": "moduller.html#m-08"
+                                    "img": "help/assets/img/08_nobet_cizelge_dialog.webp",
+                                    "w": 582,
+                                    "h": 678,
+                                    "link": "moduller.html#m-08",
+                                    "ctaLabel": "Nöbet Solver Modülünü İncele →"
                             },
                             {
                                     "tabLabel": "İnteraktif Doz Krokisi",
                                     "title": "Modül 14: Ortam Dozu & İnteraktif Mimari Plan Krokisi",
                                     "desc": "CAD/PDF kat planında canlı radyasyon pinleri, QR pasaportları ve SKS 6.1 SRG11.02 Excel raporu.",
-                                    "img": "help/assets/img/14_1_ortam_dozu_kroki_haritasi_ana_ekran.png",
-                                    "link": "moduller.html#m-14"
+                                    "img": "help/assets/img/14_1_ortam_dozu_kroki_haritasi_ana_ekran.webp",
+                                    "w": 1612,
+                                    "h": 921,
+                                    "link": "moduller.html#m-14",
+                                    "ctaLabel": "Ortam Dozu Krokisi Modülünü İncele →"
                             },
                             {
                                     "tabLabel": "DIN 6857 RKE Muayene",
                                     "title": "Modül 20: RKE Kurşun Koruyucu Ekipman & DIN 6857 Skopi",
                                     "desc": "İnteraktif silüet üzerinde mm² delik/çatlak tespiti, otomatik HEK kararı ve SKS muayene cetveli.",
-                                    "img": "help/assets/img/20_rke_muayene_kokpiti.png",
-                                    "link": "moduller.html#m-20"
+                                    "img": "help/assets/img/20_rke_muayene_kokpiti.webp",
+                                    "w": 1371,
+                                    "h": 792,
+                                    "link": "moduller.html#m-20",
+                                    "ctaLabel": "RKE DIN 6857-1 Modülünü İncele →"
                             },
                             {
                                     "tabLabel": "Dozimetre & NDK Takibi",
                                     "title": "Modül 12: Dozimetre Takibi & NDK 72 Saatlik Resmi Bildirim",
                                     "desc": "20 mSv limit aşımında otomatik RD.F43 araştırma formu, 10 iş günü sayacı ve NDK Form A-1 üretimi.",
-                                    "img": "help/assets/img/12_1_dozimetre_list.png",
-                                    "link": "moduller.html#m-12"
+                                    "img": "help/assets/img/12_1_dozimetre_list.webp",
+                                    "w": 1616,
+                                    "h": 908,
+                                    "link": "moduller.html#m-12",
+                                    "ctaLabel": "Dozimetre Takip Modülünü İncele →"
                             },
                             {
                                     "tabLabel": "Cihaz & QC Yönetimi",
                                     "title": "Modül 19: Tıbbi Cihaz Arıza, Bakım & Kalite Kontrol (KKT/KUT)",
                                     "desc": "TİTCK uyumlu KKT/KUT ve ihale bakım takvimi, QR arıza kaydı ve otomatik güvenlik karantina kilidi.",
-                                    "img": "help/assets/img/19_1_cihaz_ariza_bakim_ve_kalite_kontrol_qc.png",
-                                    "link": "moduller.html#m-19"
+                                    "img": "help/assets/img/19_1_cihaz_ariza_bakim_ve_kalite_kontrol_qc.webp",
+                                    "w": 1623,
+                                    "h": 904,
+                                    "link": "moduller.html#m-19",
+                                    "ctaLabel": "Cihaz & KKT/KUT Modülünü İncele →"
                             },
                             {
                                     "tabLabel": "Merkezi Onay & Diff",
                                     "title": "Modül 21: Merkezi Onay Bekleyen Görevler Paneli & Görsel Diff",
                                     "desc": "5 sekmeli onay paneli, 4-göz görsel Diff View karşılaştırması ve kademeli onay zinciri.",
-                                    "img": "help/assets/img/modul21_onay_merkezi.png",
-                                    "link": "moduller.html#m-21"
+                                    "img": "help/assets/img/modul21_onay_merkezi.webp",
+                                    "w": 1630,
+                                    "h": 916,
+                                    "link": "moduller.html#m-21",
+                                    "ctaLabel": "Merkezi Onay Modülünü İncele →"
                             },
                             {
                                     "tabLabel": "Web Dashboardlar",
                                     "title": "Modül 22: Web Portalı & 20 Yönetici Gösterge Paneli",
                                     "desc": "Express/React tabanlı 20 analitik dashboard, 60s bellek önbelleği ve anlık karar destek grafikleri.",
-                                    "img": "help/assets/img/web_portal_genel_dashboard.png",
-                                    "link": "moduller.html#m-22"
+                                    "img": "help/assets/img/web_portal_genel_dashboard.webp",
+                                    "w": 1907,
+                                    "h": 907,
+                                    "link": "moduller.html#m-22",
+                                    "ctaLabel": "Web Dashboard Modülünü İncele →"
                             },
                             {
                                     "tabLabel": "Rapor & Tutanak Merkezi",
                                     "title": "Modül 23: Raporlama ve Tutanak Yönetim Merkezi",
                                     "desc": "26 resmi mevzuat raporu, Evrensel Tutanak Sihirbazı ve 2 aşamalı SHA-256 HEK mühürleme.",
-                                    "img": "help/assets/img/21_rapor_merkezi_kokpit.png",
-                                    "link": "moduller.html#m-23"
+                                    "img": "help/assets/img/21_rapor_merkezi_kokpit.webp",
+                                    "w": 1100,
+                                    "h": 720,
+                                    "link": "moduller.html#m-23",
+                                    "ctaLabel": "Rapor & Tutanak Modülünü İncele →"
                             }
                     ],
                     "marquee": [

@@ -48,7 +48,7 @@ Dağıtım motoru özel bir istisna olmadıkça bu sınırları varsayılan kıs
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Nöbet Temel Ayarlar Ekranı | Nöbet Yönetimi > Nöbet Ayarları ve Kurallar > Temel Ayarlar | Genel Parametreler & Muafiyetler | cyan](assets/img/nobet_temel_ayarlar.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki eşik değerler test ortamında yapılandırılmış sentetik parametrelerdir.</span>")
+![Nöbet Temel Ayarlar Ekranı | Nöbet Yönetimi > Nöbet Ayarları ve Kurallar > Temel Ayarlar | Genel Parametreler & Muafiyetler | cyan](assets/img/nobet_temel_ayarlar.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

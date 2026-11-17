@@ -47,7 +47,7 @@ Eklenen kural piramit önceliğine göre genel ayarın yerine geçer; Sert kural
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Yasal ve Kurumsal Kısıtlar Ekranı | Nöbet Ayarları > Yasal & Kurumsal Kısıtlar | Hizmet Sınıfı, Sert/Yumuşak Kısıtlar & Öncelikler | emerald](assets/img/nobet_gelismis.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki kural adları, hizmet sınıfı eşleştirmeleri ve sınır değerleri test ortamına ait sentetik verilerdir.</span>")
+![Yasal ve Kurumsal Kısıtlar Ekranı | Nöbet Ayarları > Yasal & Kurumsal Kısıtlar | Hizmet Sınıfı, Sert/Yumuşak Kısıtlar & Öncelikler | emerald](assets/img/nobet_gelismis.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

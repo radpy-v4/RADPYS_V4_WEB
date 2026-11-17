@@ -96,9 +96,9 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Veritabanı Bakım ve Güvenlik Ekranı | Sol Menü > Veritabanı Bakım | Yedekleme & Bakım Araçları | cyan](assets/img/04_veritabani_bakim_ve_guvenlik.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki yedek dosya isimleri, boyutlar ve tarihler tamamen test ortamında üretilmiş sentetik veridir.</span>")
+![Veritabanı Bakım ve Güvenlik Ekranı | Sol Menü > Veritabanı Bakım | Yedekleme & Bakım Araçları | cyan](assets/img/04_veritabani_bakim_ve_guvenlik.png)
 
-![Log Kayıtları ve Denetim İzleri | Sol Menü > Log Kayıtları | Tarihsel Günlük & SHA-256 Denetim İzi | emerald](assets/img/04_veritabani_bakim_ve_guvenlik_01.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki log satırları ve oturum detayları simülasyon amacıyla üretilmiş sentetik test kayıtlarıdır.</span>")
+![Log Kayıtları ve Denetim İzleri | Sol Menü > Log Kayıtları | Tarihsel Günlük & SHA-256 Denetim İzi | emerald](assets/img/04_veritabani_bakim_ve_guvenlik_01.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

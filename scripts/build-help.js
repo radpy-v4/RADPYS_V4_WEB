@@ -1008,6 +1008,7 @@ function buildPortalIndex(catalog, version) {
     <div class="max-w-[1720px] mx-auto px-6 space-y-2">
       <p class="font-semibold text-slate-700 dark:text-slate-300">RADPYS V4 (v${escHtml(version)}) — Radyoloji Bilgi &amp; Radyasyon Güvenliği Yönetim Sistemi</p>
       <p>Sağlık Bakanlığı SKS 6.1, NDK Mevzuatı, DIN 6857-1 ve KVKK Standartları ile Uyumlu Olarak Korunmaktadır.</p>
+      <p class="text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>`;
 
@@ -1122,6 +1123,7 @@ function buildGuideHtml(catalog, guide, version) {
   const footerHtml = `<footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
       <p>© 2024–2026 RADPYS Geliştirme Ekibi (v${escHtml(version)}) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>`;
 

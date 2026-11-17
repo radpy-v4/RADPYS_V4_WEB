@@ -90,13 +90,13 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Fiili Hizmet 1. Sekme Görev Yerlerini Onayla Ekranı | Fiili Hizmet ve Şua > Görev Yerlerini Onayla | 15-14 SGK Dönemi & Rotasyon Düzenleme | amber](assets/img/11_1_fiili_hizmet_hesaplama_ana_ekran.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki dönem tarihleri ve personel görev yerleri test ortamına ait sentetik verilerdir.</span>")
+![Fiili Hizmet 1. Sekme Görev Yerlerini Onayla Ekranı | Fiili Hizmet ve Şua > Görev Yerlerini Onayla | 15-14 SGK Dönemi & Rotasyon Düzenleme | amber](assets/img/11_1_fiili_hizmet_hesaplama_ana_ekran.png)
 
-![Fiili Hizmet 2. Sekme Hesaplama Ekranı | Fiili Hizmet ve Şua > Fiili Hizmeti Hesapla | Koşul A/B, İzin Düşümü & EK-2 Şua Tablosu | emerald](assets/img/11_2_fiili_hizmet_hesaplama_ana_ekran.png "<span><strong>Yasal Bilgilendirme:</strong> Tablodaki saatler ve hak edilen Şua günleri mevzuat hesabını örneklendiren sentetik verilerdir.</span>")
+![Fiili Hizmet 2. Sekme Hesaplama Ekranı | Fiili Hizmet ve Şua > Fiili Hizmeti Hesapla | Koşul A/B, İzin Düşümü & EK-2 Şua Tablosu | emerald](assets/img/11_2_fiili_hizmet_hesaplama_ana_ekran.png)
 
-![Fiili Hizmet 3. Sekme Rapor Çıktısı Ekranı | Fiili Hizmet ve Şua > Rapor Çıktısı Al | SGK Puantaj İcmali & Excel/PDF Aktarım | cyan](assets/img/11_3_fiili_hizmet_hesaplama_ana_ekran.png "<span><strong>Yasal Bilgilendirme:</strong> Puantaj raporu çıktısı kurumsal anonim test verileriyle oluşturulmuştur.</span>")
+![Fiili Hizmet 3. Sekme Rapor Çıktısı Ekranı | Fiili Hizmet ve Şua > Rapor Çıktısı Al | SGK Puantaj İcmali & Excel/PDF Aktarım | cyan](assets/img/11_3_fiili_hizmet_hesaplama_ana_ekran.png)
 
-![Onaysız İzin Güvenlik Uyarısı Diyalogu | Fiili Hizmet Hesaplama > Onaysız İzin Uyarısı | Eksik İzin Onayı Bariyeri | rose](assets/img/11_fhz_onaysiz_izin_uyari_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> Hatalı SGK bildirimini önlemek amacıyla onaysız izinler tamamlanmadan dönem hesaplanmaz.</span>")
+![Onaysız İzin Güvenlik Uyarısı Diyalogu | Fiili Hizmet Hesaplama > Onaysız İzin Uyarısı | Eksik İzin Onayı Bariyeri | rose](assets/img/11_fhz_onaysiz_izin_uyari_dialog.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

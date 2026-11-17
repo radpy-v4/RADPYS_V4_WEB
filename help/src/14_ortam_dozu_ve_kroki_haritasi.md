@@ -91,9 +91,9 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Ortam Dozu ve İnteraktif Kroki Haritası Ana Ekranı | Kalite ve Radyasyon Güvenliği > Ortam Dozu ve Kroki Haritası | Kat Planı, Oda Sınırları & Renkli Pinler | cyan](assets/img/14_1_ortam_dozu_kroki_haritasi_ana_ekran.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki kat planı, ölçüm noktası kodları ve doz hızı değerleri test ortamına ait sentetik verilerdir.</span>")
+![Ortam Dozu ve İnteraktif Kroki Haritası Ana Ekranı | Kalite ve Radyasyon Güvenliği > Ortam Dozu ve Kroki Haritası | Kat Planı, Oda Sınırları & Renkli Pinler | cyan](assets/img/14_1_ortam_dozu_kroki_haritasi_ana_ekran.png)
 
-![Ortam Dozu QR Pasaport Etiketi Penceresi | Ortam Dozu > Karekod / Etiket Bas | Kapı QR Pasaportu & Termal Baskı | indigo](assets/img/14_2_ortam_dozu_qr_pasaport_etiketi_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> QR pasaport etiketindeki oda ve nokta bilgileri simülasyon örneği olarak hazırlanmıştır.</span>")
+![Ortam Dozu QR Pasaport Etiketi Penceresi | Ortam Dozu > Karekod / Etiket Bas | Kapı QR Pasaportu & Termal Baskı | indigo](assets/img/14_2_ortam_dozu_qr_pasaport_etiketi_dialog.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

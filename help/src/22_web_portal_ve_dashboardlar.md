@@ -92,13 +92,13 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Portal ve Servis Yöneticisi Aktif Çalışma Ekranı | Başlatıcı Penceresi > Başlat / Web Portalı Aç | Veritabanı ve Portal Canlı Durumu | emerald](assets/img/dashboard_masaustu_portal_erisim.png "<span><strong>Yasal Bilgilendirme:</strong> Başlatıcı günlük penceresi yerel servis sağlık kontrollerini temsil amacıyla örneklendirilmiştir.</span>")
+![Portal ve Servis Yöneticisi Aktif Çalışma Ekranı | Başlatıcı Penceresi > Başlat / Web Portalı Aç | Veritabanı ve Portal Canlı Durumu | emerald](assets/img/dashboard_masaustu_portal_erisim.png)
 
-![Portal ve Servis Yöneticisi Kapalı Bekleme Ekranı | Sistem Tepsisi / Başlatıcı | Servis Başlatma ve Tepsiye Küçültme | slate](assets/img/02_portal_launcher_paneli_off.png "<span><strong>Yasal Bilgilendirme:</strong> Servis durdurulduğunda tüm durum rozetleri kırmızıya dönerek başlatılmayı bekler.</span>")
+![Portal ve Servis Yöneticisi Kapalı Bekleme Ekranı | Sistem Tepsisi / Başlatıcı | Servis Başlatma ve Tepsiye Küçültme | slate](assets/img/02_portal_launcher_paneli_off.png)
 
-![Web Portal Genel Bakış Yönetici Özet Paneli | Web Portal > Genel ve Analiz > Genel Bakış | 8 Özet KPI Kartı ve Alt Birim Trendleri | cyan](assets/img/web_portal_genel_dashboard.png "<span><strong>Yasal Bilgilendirme:</strong> Gösterge panelindeki personel, doz aşımı ve cihaz sayıları test veritabanı üzerinden örneklenmiştir.</span>")
+![Web Portal Genel Bakış Yönetici Özet Paneli | Web Portal > Genel ve Analiz > Genel Bakış | 8 Özet KPI Kartı ve Alt Birim Trendleri | cyan](assets/img/web_portal_genel_dashboard.png)
 
-![Web Portal Mobil Saha Formları ve Kamera ile QR Tarama Ekranı | Web Portal > Saha İşlemleri | Mobil Uyumlu Formlar ve Canlı QR Okuyucu | indigo](assets/img/22_2_web_portal_saha_formlari_mobil.png "<span><strong>Yasal Bilgilendirme:</strong> Mobil saha formundaki cihaz ve bildirim alanları gösterim amaçlı örnek verilerdir.</span>")
+![Web Portal Mobil Saha Formları ve Kamera ile QR Tarama Ekranı | Web Portal > Saha İşlemleri | Mobil Uyumlu Formlar ve Canlı QR Okuyucu | indigo](assets/img/22_2_web_portal_saha_formlari_mobil.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

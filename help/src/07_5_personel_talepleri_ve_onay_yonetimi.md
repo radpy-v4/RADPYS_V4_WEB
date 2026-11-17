@@ -47,7 +47,7 @@ Yalnızca onaylı talepler dağıtım motoru kısıt havuzuna girer; aynı güne
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Personel Nöbet İstekleri ve Mazeret Yönetimi Ekranı | Nöbet Ayarları > Personel Talepleri | Dönem Süzgeci, Talep Formu & Onay İşlemleri | cyan](assets/img/nobet_ayarlar_main.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki personel isimleri, talep tarihleri ve mazeret açıklamaları test ortamında oluşturulmuş sentetik verilerdir.</span>")
+![Personel Nöbet İstekleri ve Mazeret Yönetimi Ekranı | Nöbet Ayarları > Personel Talepleri | Dönem Süzgeci, Talep Formu & Onay İşlemleri | cyan](assets/img/nobet_ayarlar_main.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

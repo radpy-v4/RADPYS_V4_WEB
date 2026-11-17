@@ -99,9 +99,9 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Nöbet Temel Ayarlar Ekranı | Nöbet Ayarları ve Kurallar > Temel Ayarlar | Kısıtlar, FM Sınırı & Muafiyetler | amber](assets/img/nobet_temel_ayarlar.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki sayısal katsayılar ve muafiyet eşikleri test ortamında yapılandırılmış sentetik parametrelerdir.</span>")
+![Nöbet Temel Ayarlar Ekranı | Nöbet Ayarları ve Kurallar > Temel Ayarlar | Kısıtlar, FM Sınırı & Muafiyetler | amber](assets/img/nobet_temel_ayarlar.png)
 
-![Birim Kuralları ve Nöbet Slotları Ekranı | Nöbet Ayarları > Birim Kuralları | Vardiya Slotları, Akıllı Saat & Kopyalama | cyan](assets/img/nobet_birim_kurallari.png "<span><strong>Yasal Bilgilendirme:</strong> Departman vardiya slotları ve çalışma saatleri örnek organizasyon verisi olarak hazırlanmıştır.</span>")
+![Birim Kuralları ve Nöbet Slotları Ekranı | Nöbet Ayarları > Birim Kuralları | Vardiya Slotları, Akıllı Saat & Kopyalama | cyan](assets/img/nobet_birim_kurallari.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

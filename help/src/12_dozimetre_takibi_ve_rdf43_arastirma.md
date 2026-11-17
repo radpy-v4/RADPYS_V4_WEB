@@ -92,19 +92,19 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Dozimetre Takip Kokpiti ve Ölçümler Ekranı | Radyasyon Güvenliği > Kişisel Dozimetre Takibi | Ölçümler, Geçmiş Birim Rotasyonu & Kümülatif Göstergeler | cyan](assets/img/12_1_dozimetre_list.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki personel adları, birimler ve dozimetre ölçüm değerleri KVKK gereği sentetik verilerdir.</span>")
+![Dozimetre Takip Kokpiti ve Ölçümler Ekranı | Radyasyon Güvenliği > Kişisel Dozimetre Takibi | Ölçümler, Geçmiş Birim Rotasyonu & Kümülatif Göstergeler | cyan](assets/img/12_1_dozimetre_list.png)
 
-![Manuel Dozimetre Ölçümü Ekleme Diyalogu | Dozimetre Takibi > Ölçüm Ekle | Tekil & EPD Ara Ölçüm Girişi | emerald](assets/img/12_2_dozimetre_olcum.png "<span><strong>Yasal Bilgilendirme:</strong> Ölçüm giriş formundaki personel ve mSv tutarları test ortamına ait örnek verilerdir.</span>")
+![Manuel Dozimetre Ölçümü Ekleme Diyalogu | Dozimetre Takibi > Ölçüm Ekle | Tekil & EPD Ara Ölçüm Girişi | emerald](assets/img/12_2_dozimetre_olcum.png)
 
-![RD.F43 Sihirbazı 1. Adım Çalışan Beyanı | Aksiyonlar > Doz Araştırma Formu (RD.F43) | Çalışan Beyanı (Sayfa 1) | cyan](assets/img/12_1_doz_arastirma_form_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> RD.F43 formundaki vaka bilgileri ve soru yanıtları simülasyon amacıyla örneklendirilmiştir.</span>")
+![RD.F43 Sihirbazı 1. Adım Çalışan Beyanı | Aksiyonlar > Doz Araştırma Formu (RD.F43) | Çalışan Beyanı (Sayfa 1) | cyan](assets/img/12_1_doz_arastirma_form_dialog.png)
 
-![RD.F43 Sihirbazı 2. Adım RKS Saha İncelemesi | Aksiyonlar > Doz Araştırma Formu (RD.F43) | RKS Saha İncelemesi (Sayfa 2) | amber](assets/img/12_2_doz_arastirma_form_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> Saha incelemesi ve ortam kontrol verileri eğitim amaçlı örnek verilerdir.</span>")
+![RD.F43 Sihirbazı 2. Adım RKS Saha İncelemesi | Aksiyonlar > Doz Araştırma Formu (RD.F43) | RKS Saha İncelemesi (Sayfa 2) | amber](assets/img/12_2_doz_arastirma_form_dialog.png)
 
-![RD.F43 Sihirbazı 3. Adım Karar, DÖF ve Evrak | Aksiyonlar > Doz Araştırma Formu (RD.F43) | Karar Motoru, DÖF & Resmi Evrak | emerald](assets/img/12_3_doz_arastirma_form_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> Akıllı teşhis sonuçları ve DÖF bağlantısı test ortamı verileri üzerinden gösterilmiştir.</span>")
+![RD.F43 Sihirbazı 3. Adım Karar, DÖF ve Evrak | Aksiyonlar > Doz Araştırma Formu (RD.F43) | Karar Motoru, DÖF & Resmi Evrak | emerald](assets/img/12_3_doz_arastirma_form_dialog.png)
 
-![Dozimetre İçe Aktarım Önizleme ve Eşleşme Hafızası Ekranı | Dozimetre Takibi > Laboratuvardan İçe Aktar | TENMAK / RADAT Önizleme ve Personel Eşleme | indigo](assets/img/12_3_dozimetre_import_eslesme.png "<span><strong>Yasal Bilgilendirme:</strong> İçe aktarım önizleme satırlarındaki adlar, kurum bilgileri ve doz değerleri sentetik test verisidir.</span>")
+![Dozimetre İçe Aktarım Önizleme ve Eşleşme Hafızası Ekranı | Dozimetre Takibi > Laboratuvardan İçe Aktar | TENMAK / RADAT Önizleme ve Personel Eşleme | indigo](assets/img/12_3_dozimetre_import_eslesme.png)
 
-![Dozimetre 2 Panelli Aksiyonlar ve Erken Uyarı Sekmesi | Kişisel Dozimetre Takibi > Aksiyonlar | Erken Uyarı ve Açık İnceleme Takibi | rose](assets/img/12_4_dozimetre_aksiyonlar_sekmesi.png "<span><strong>Yasal Bilgilendirme:</strong> Erken uyarı ve aksiyon listelerindeki personel kayıtları simülasyon amacıyla oluşturulmuştur.</span>")
+![Dozimetre 2 Panelli Aksiyonlar ve Erken Uyarı Sekmesi | Kişisel Dozimetre Takibi > Aksiyonlar | Erken Uyarı ve Açık İnceleme Takibi | rose](assets/img/12_4_dozimetre_aksiyonlar_sekmesi.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

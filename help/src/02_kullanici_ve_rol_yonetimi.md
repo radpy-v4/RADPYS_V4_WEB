@@ -99,9 +99,9 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Kullanıcı İşlemleri ve Kişiye Özel Yetkiler | Yönetici Paneli > Kullanıcı ve Rol Yönetimi > Kullanıcı İşlemleri | Kullanıcı & İstisna Yönetimi | cyan](assets/img/02_kullanici_yonetim_page.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki kullanıcı adları, unvanlar ve e-posta adresleri tamamen test amaçlı sentetik veridir. Gerçek kişi veya kurum kayıtlarıyla benzerlikler tesadüfidir.</span>")
+![Kullanıcı İşlemleri ve Kişiye Özel Yetkiler | Yönetici Paneli > Kullanıcı ve Rol Yönetimi > Kullanıcı İşlemleri | Kullanıcı & İstisna Yönetimi | cyan](assets/img/02_kullanici_yonetim_page.png)
 
-![Roller ve Modül Yetkileri Matrisi | Yönetici Paneli > Kullanıcı ve Rol Yönetimi > Roller ve Yetkiler | Modül Yetki & Kapsam Matrisi | cyan](assets/img/02_modul_yetkileri_page.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki yetki şablonları, modül izinleri ve kapsam yapılandırmaları test ortamı simülasyonudur.</span>")
+![Roller ve Modül Yetkileri Matrisi | Yönetici Paneli > Kullanıcı ve Rol Yönetimi > Roller ve Yetkiler | Modül Yetki & Kapsam Matrisi | cyan](assets/img/02_modul_yetkileri_page.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

@@ -94,9 +94,9 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Merkezi Onay Bekleyen Görevler Paneli ve Nöbet Değişimi İnceleme Penceresi | Yönetim > Onay Bekleyen Görevler | 7 Kategori Sekmesi ve Devir İnceleme | indigo](assets/img/modul21_onay_merkezi.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki personel adları, tarihler ve vardiya bilgileri test ortamına ait sentetik verilerdir.</span>")
+![Merkezi Onay Bekleyen Görevler Paneli ve Nöbet Değişimi İnceleme Penceresi | Yönetim > Onay Bekleyen Görevler | 7 Kategori Sekmesi ve Devir İnceleme | indigo](assets/img/modul21_onay_merkezi.png)
 
-![Veri Değişiklikleri 4-Göz Fark Karşılaştırma Penceresi | Onay Bekleyen Görevler > Veri Değişiklikleri > İncele | Eski Değer ve Yeni Değer Denetimi | cyan](assets/img/21_2_veri_degisiklikleri_fark_karsilastirma.png "<span><strong>Yasal Bilgilendirme:</strong> Karşılaştırma penceresindeki eski ve yeni alan değerleri test ortamına ait sentetik verilerdir.</span>")
+![Veri Değişiklikleri 4-Göz Fark Karşılaştırma Penceresi | Onay Bekleyen Görevler > Veri Değişiklikleri > İncele | Eski Değer ve Yeni Değer Denetimi | cyan](assets/img/21_2_veri_degisiklikleri_fark_karsilastirma.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

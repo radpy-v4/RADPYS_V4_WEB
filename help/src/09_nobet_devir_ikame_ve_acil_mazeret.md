@@ -88,13 +88,13 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Tüm Nöbet Devir İşlemleri Listesi | Nöbet Yönetimi > Tüm Devir İşlemleri | 7 Sütunlu İzleme & Doğal Dil Paneli | purple](assets/img/09_nobet_devir_listesi.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki personel adları, birimler ve onay durumları test ortamına ait sentetik verilerdir.</span>")
+![Tüm Nöbet Devir İşlemleri Listesi | Nöbet Yönetimi > Tüm Devir İşlemleri | 7 Sütunlu İzleme & Doğal Dil Paneli | purple](assets/img/09_nobet_devir_listesi.png)
 
-![Nöbet Devir Talebi Diyalogu | Nöbet Çizelgesi > Devir Talebi | Kısıt Doğrulaması & Zorunlu Gerekçe | cyan](assets/img/09_nobet_devir_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> Alan personel seçildiğinde yasal kısıtlar ve hizmet sınıfı uygunluğu otomatik denetlenir.</span>")
+![Nöbet Devir Talebi Diyalogu | Nöbet Çizelgesi > Devir Talebi | Kısıt Doğrulaması & Zorunlu Gerekçe | cyan](assets/img/09_nobet_devir_dialog.png)
 
-![Web Portal Nöbet Değişim Havuzu Ekranı | Web Portalı > Nöbet Değişim Merkezi | Açık Havuz, Teklifler & 36s Sınırı | purple](assets/img/09_nobet_havuz.png "<span><strong>Yasal Bilgilendirme:</strong> Havuz ekranında aylık 48 saat kota ve son 36 saat geri sayımı gösterilir.</span>")
+![Web Portal Nöbet Değişim Havuzu Ekranı | Web Portalı > Nöbet Değişim Merkezi | Açık Havuz, Teklifler & 36s Sınırı | purple](assets/img/09_nobet_havuz.png)
 
-![Merkezi Yönetici Aksiyon ve Onay Sihirbazı | Personel Kartı > Gebelik Bildirimi | 3 Adımlı Nakil, İkame & Gündüz Dengeleme | emerald](assets/img/09_yonetici_aksiyon_merkezi.png "<span><strong>Yasal Bilgilendirme:</strong> Sihirbaz adımları gebe personelin korunması ve klinik vardiya dengesi için örneklendirilmiştir.</span>")
+![Merkezi Yönetici Aksiyon ve Onay Sihirbazı | Personel Kartı > Gebelik Bildirimi | 3 Adımlı Nakil, İkame & Gündüz Dengeleme | emerald](assets/img/09_yonetici_aksiyon_merkezi.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

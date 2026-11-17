@@ -100,11 +100,11 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Sistem Yönetimi Gezinim Ağacı | Sistem Yönetimi > Genel Program Ayarları | Parametre Kokpiti | cyan](assets/img/03_system_management_page.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki parametre değerleri ve kurum bilgileri tamamen test amaçlı sentetik veridir. Gerçek kişi ve kurum kayıtlarıyla benzerlikler tesadüfidir.</span>")
+![Sistem Yönetimi Gezinim Ağacı | Sistem Yönetimi > Genel Program Ayarları | Parametre Kokpiti | cyan](assets/img/03_system_management_page.png)
 
-![Departman Tanımları Ekranı | Sistem Yönetimi > Sistem Tanımları > Departman Tanımları | Hiyerarşi & Kroki Eşleme | cyan](assets/img/03_lookup_departman.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki departman adları, kodları ve birim bilgileri test amaçlı sentetik veridir.</span>")
+![Departman Tanımları Ekranı | Sistem Yönetimi > Sistem Tanımları > Departman Tanımları | Hiyerarşi & Kroki Eşleme | cyan](assets/img/03_lookup_departman.png)
 
-![Tatil Takvimi ve Resmi Bayram Otomasyonu Ekranı | Sistem Yönetimi > Sistem Tanımları > Tatil Takvimi | Resmi Tatiller ve Bayram Paketi | amber](assets/img/03_lookup_tatil_takvimi.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki resmi ve dini bayram tarihleri örnek takvim yılı üzerinden gösterilmiştir.</span>")
+![Tatil Takvimi ve Resmi Bayram Otomasyonu Ekranı | Sistem Yönetimi > Sistem Tanımları > Tatil Takvimi | Resmi Tatiller ve Bayram Paketi | amber](assets/img/03_lookup_tatil_takvimi.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

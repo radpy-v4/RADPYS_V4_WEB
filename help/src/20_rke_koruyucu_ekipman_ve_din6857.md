@@ -95,13 +95,13 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![RKE Envanter Ana Ekranı | Cihaz ve Koruyucu Ekipman > RKE Envanter | 5 KPI Kartı ve 9 Sütunlu Envanter | cyan](assets/img/20_rke_ana_yonetim.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki ekipman kodları, askılık konumları ve muayene tarihleri test ortamına ait sentetik verilerdir.</span>")
+![RKE Envanter Ana Ekranı | Cihaz ve Koruyucu Ekipman > RKE Envanter | 5 KPI Kartı ve 9 Sütunlu Envanter | cyan](assets/img/20_rke_ana_yonetim.png)
 
-![RKE Kalite Kontrol ve Görsel Muayene Kokpiti | RKE Envanter > Muayene ve QC | 5 Rutin Fiziki Kriter ve Standart Bulgular | emerald](assets/img/20_rke_muayene_kokpiti.png "<span><strong>Yasal Bilgilendirme:</strong> Fiziki kriterler ve karar rozeti örnek bir önlük kaydı üzerinden gösterilmiştir.</span>")
+![RKE Kalite Kontrol ve Görsel Muayene Kokpiti | RKE Envanter > Muayene ve QC | 5 Rutin Fiziki Kriter ve Standart Bulgular | emerald](assets/img/20_rke_muayene_kokpiti.png)
 
-![RKE Skopi Anatomi Krokisi ve Hasar Hesaplama Kokpiti | RKE Muayene Kokpiti > Skopi / X-Işını | Ön/Arka Yüz SVG Silüeti ve Şartlı Karar | amber](assets/img/20_1_rke_muayene_kokpiti.png "<span><strong>Yasal Bilgilendirme:</strong> SVG silüet üzerindeki delik pini ve mm² hesabı karar motorunu örneklendirmek amacıyla oluşturulmuştur.</span>")
+![RKE Skopi Anatomi Krokisi ve Hasar Hesaplama Kokpiti | RKE Muayene Kokpiti > Skopi / X-Işını | Ön/Arka Yüz SVG Silüeti ve Şartlı Karar | amber](assets/img/20_1_rke_muayene_kokpiti.png)
 
-![RKE Muayene ve Kontrol Geçmişi Toplu Liste Ekranı | Cihaz ve Koruyucu Ekipman > Muayene ve Kontrol Geçmişi | Toplu Muayene İzleme ve SKS Çıktısı | indigo](assets/img/20_2_rke_muayene_kontrol_gecmisi.png "<span><strong>Yasal Bilgilendirme:</strong> Muayene geçmişi satırlarındaki ekipman kodları ve karar sonuçları sentetik test verisidir.</span>")
+![RKE Muayene ve Kontrol Geçmişi Toplu Liste Ekranı | Cihaz ve Koruyucu Ekipman > Muayene ve Kontrol Geçmişi | Toplu Muayene İzleme ve SKS Çıktısı | indigo](assets/img/20_2_rke_muayene_kontrol_gecmisi.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

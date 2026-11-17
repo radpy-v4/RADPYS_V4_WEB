@@ -102,13 +102,13 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Giriş Ekranı | Masaüstü Başlangıç > Giriş Penceresi | Kimlik Doğrulama | cyan](assets/img/01_login_page.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki kullanıcı adları ve arayüz bilgileri tamamen test amaçlı sentetik veridir. Gerçek kişi ve kayıtlarla benzerlikler tesadüfidir.</span>")
+![Giriş Ekranı | Masaüstü Başlangıç > Giriş Penceresi | Kimlik Doğrulama | cyan](assets/img/01_login_page.png)
 
-![Zorunlu Şifre Değiştirme Formu | İlk Giriş Güvenlik Penceresi | Parola Güncelleme | amber](assets/img/01_auth_password_change_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki kullanıcı adları ve arayüz bilgileri tamamen test amaçlı sentetik veridir. Gerçek kişi ve kayıtlarla benzerlikler tesadüfidir.</span>")
+![Zorunlu Şifre Değiştirme Formu | İlk Giriş Güvenlik Penceresi | Parola Güncelleme | amber](assets/img/01_auth_password_change_dialog.png)
 
-![Hakkında ve Lisans Penceresi | Üst Menü > Hakkında > Lisans ve Aktivasyon | Kurum Lisansı & Destek | emerald](assets/img/01_about_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki lisans kodu, cihaz kimliği ve kurum bilgileri test amaçlı sentetik veridir.</span>")
+![Hakkında ve Lisans Penceresi | Üst Menü > Hakkında > Lisans ve Aktivasyon | Kurum Lisansı & Destek | emerald](assets/img/01_about_dialog.png)
 
-![Komut Paleti ve Bildirim Merkezi | Ana Ekran > Ctrl+K & Sağ Üst Zil Simgesi | Hızlı Arama & Bildirim | cyan](assets/img/01_komut_paleti_ve_bildirim.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki personel adları ve bildirim kayıtları test amaçlı sentetik veridir.</span>")
+![Komut Paleti ve Bildirim Merkezi | Ana Ekran > Ctrl+K & Sağ Üst Zil Simgesi | Hızlı Arama & Bildirim | cyan](assets/img/01_komut_paleti_ve_bildirim.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

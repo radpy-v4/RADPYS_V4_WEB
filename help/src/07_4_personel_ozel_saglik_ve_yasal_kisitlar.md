@@ -47,7 +47,7 @@ Gebelik ve doz aşımında gece nöbeti ile fazla mesai sıfırlanır; emzirme v
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Personel Özel Kısıtları Ekranı | Nöbet Ayarları > Personel Özel Kısıtları | Yasal Muafiyetler, Gebelik & Süt İzni Kuralları | emerald](assets/img/nobet_person_kisit.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki personel adları, kısıt türleri ve tarih aralıkları KVKK gereği tamamen sentetik verilerdir.</span>")
+![Personel Özel Kısıtları Ekranı | Nöbet Ayarları > Personel Özel Kısıtları | Yasal Muafiyetler, Gebelik & Süt İzni Kuralları | emerald](assets/img/nobet_person_kisit.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

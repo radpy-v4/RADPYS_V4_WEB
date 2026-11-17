@@ -1,6 +1,7 @@
 # RADPYS V4 — Güncel Kullanım Kılavuzu
 
-> **Yazılım ve Kılavuz Sürümü:** v4.0.5.29
+> **Yazılım ve Kılavuz Sürümü:** v4.0.5.29  
+> **Veri Gizliliği Notu:** Kılavuzda geçen tüm örnek kayıtlar ve görseller KVKK 6698 kapsamında test amaçlı sentetik veridir.
 
 RADPYS (Radyoloji ve Radyasyon Yönetim Sistemi); hastane radyoloji ve radyasyon onkolojisi birimlerinin personel nöbetlerini, izin ve şua hakedişlerini, kişisel dozimetre takibini, sağlık muayenelerini, ortam radyasyon ölçümlerini, koruyucu ekipman (RKE) muayenelerini, tıbbi cihaz envanterini, kalite kontrol süreçlerini ve resmi mevzuat raporlamasını (NDK, Sağlık Bakanlığı SKS 6.1, DIN 6857-1, TİTCK TCS-KLVZ-06 ve KVKK 6698) tek çatı altında yöneten entegre karar destek platformudur.
 

@@ -96,11 +96,11 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Personel Listesi ve KPI Kokpiti | Sol Menü > Personel Yönetimi > Personel Listesi | Arama, Filtreler & Sayaç Kartları | cyan](assets/img/05_personel_list.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki personel adları, TC kimlik numaraları, unvanlar ve iletişim bilgileri tamamen test amaçlı sentetik veridir.</span>")
+![Personel Listesi ve KPI Kokpiti | Sol Menü > Personel Yönetimi > Personel Listesi | Arama, Filtreler & Sayaç Kartları | cyan](assets/img/05_personel_list.png)
 
-![Personel Ayrıntı Kartı | Personel Listesi > Ayrıntı / Düzenle | 10 Kategorili Özlük & Takip Kartı | cyan](assets/img/05_personel_preview.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki özlük bilgileri, eğitim kayıtları ve zimmet detayları test amaçlı sentetik veridir.</span>")
+![Personel Ayrıntı Kartı | Personel Listesi > Ayrıntı / Düzenle | 10 Kategorili Özlük & Takip Kartı | cyan](assets/img/05_personel_preview.png)
 
-![Toplu İçe Aktarım Önizleme | Personel Listesi > Toplu Import > Önizleme ve Doğrulama | Dry-Run Simülasyonu | emerald](assets/img/05_page_preview.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki aktarım satırları ve doğrulama rozetleri test ortamı simülasyonudur.</span>")
+![Toplu İçe Aktarım Önizleme | Personel Listesi > Toplu Import > Önizleme ve Doğrulama | Dry-Run Simülasyonu | emerald](assets/img/05_page_preview.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

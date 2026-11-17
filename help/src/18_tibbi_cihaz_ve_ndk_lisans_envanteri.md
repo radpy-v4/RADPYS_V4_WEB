@@ -97,11 +97,11 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Tıbbi Cihaz ve NDK Lisans Envanteri Ana Ekranı | Cihaz Yönetimi > Tıbbi Cihaz ve Lisans Envanteri | 7 Sütunlu Envanter ve Lisans Takibi | cyan](assets/img/18_1_cihaz_envanteri_yonetimi.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki cihaz kodları, seri numaraları ve NDK lisans bilgileri test amaçlı sentetik verilerdir.</span>")
+![Tıbbi Cihaz ve NDK Lisans Envanteri Ana Ekranı | Cihaz Yönetimi > Tıbbi Cihaz ve Lisans Envanteri | 7 Sütunlu Envanter ve Lisans Takibi | cyan](assets/img/18_1_cihaz_envanteri_yonetimi.png)
 
-![Cihaz Düzenleme ve Kat Planı Sabitleme Ekranı | Tıbbi Cihaz Envanteri > Düzenle > 4. Kat Planı | Mimari Kroki Üzerinde Pin Konumlandırma | emerald](assets/img/18_2_cihaz_tanimlama_ve_kroki_formu.png "<span><strong>Yasal Bilgilendirme:</strong> Mimari kroki ve oda yerleşim koordinatları eğitim amacıyla örneklendirilmiştir.</span>")
+![Cihaz Düzenleme ve Kat Planı Sabitleme Ekranı | Tıbbi Cihaz Envanteri > Düzenle > 4. Kat Planı | Mimari Kroki Üzerinde Pin Konumlandırma | emerald](assets/img/18_2_cihaz_tanimlama_ve_kroki_formu.png)
 
-![Cihaz Karekod Kimlik Etiketi Önizleme Diyaloğu | Tıbbi Cihaz Envanteri > QR Etiket | PNG Kaydetme ve Doğrudan Yazdırma | slate](assets/img/18_1_1_cihaz_envanteri_yonetimi.png "<span><strong>Yasal Bilgilendirme:</strong> Etiketteki cihaz künyesi ve QR bağlantısı test ortamına aittir.</span>")
+![Cihaz Karekod Kimlik Etiketi Önizleme Diyaloğu | Tıbbi Cihaz Envanteri > QR Etiket | PNG Kaydetme ve Doğrudan Yazdırma | slate](assets/img/18_1_1_cihaz_envanteri_yonetimi.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

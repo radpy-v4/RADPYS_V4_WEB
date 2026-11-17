@@ -90,13 +90,13 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Olay Bildirimi ve DÖF Yönetimi Ana Ekranı | Kalite > Olay Bildirimi ve DÖF (CAPA) Yönetimi | Ana Liste, NDK Sayacı & Hızlı DÖF | rose](assets/img/15_1_olay_bildirim_ve_dof_yonetimi_ana_ekran.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki olay numaraları, personel adları ve DÖF durumları test ortamına ait sentetik verilerdir.</span>")
+![Olay Bildirimi ve DÖF Yönetimi Ana Ekranı | Kalite > Olay Bildirimi ve DÖF (CAPA) Yönetimi | Ana Liste, NDK Sayacı & Hızlı DÖF | rose](assets/img/15_1_olay_bildirim_ve_dof_yonetimi_ana_ekran.png)
 
-![Olay İnceleme Sihirbazı 1. Adım Olay Künyesi | Olay Bildirimi > İncele ve DÖF Yönet | 1. Adım: Olay Künyesi | cyan](assets/img/15_2_1_olay_inceleme_ve_dof_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> İnceleme penceresindeki olay bilgileri eğitim ve doğrulama amaçlı sentetik verilerdir.</span>")
+![Olay İnceleme Sihirbazı 1. Adım Olay Künyesi | Olay Bildirimi > İncele ve DÖF Yönet | 1. Adım: Olay Künyesi | cyan](assets/img/15_2_1_olay_inceleme_ve_dof_dialog.png)
 
-![Olay İnceleme Sihirbazı 2. Adım İnceleme ve Atama | Olay Bildirimi > İncele ve DÖF Yönet | 2. Adım: İnceleme, NDK & Sorumlu Atama | amber](assets/img/15_2_2_olay_inceleme_ve_dof_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> Atanan sorumlu ve inceleme notları örnek kurgu üzerinden hazırlanmıştır.</span>")
+![Olay İnceleme Sihirbazı 2. Adım İnceleme ve Atama | Olay Bildirimi > İncele ve DÖF Yönet | 2. Adım: İnceleme, NDK & Sorumlu Atama | amber](assets/img/15_2_2_olay_inceleme_ve_dof_dialog.png)
 
-![Olay İnceleme Sihirbazı 3. Adım DÖF ve Kapanış | Olay Bildirimi > İncele ve DÖF Yönet | 3. Adım: DÖF Planlama & Kapanış Kilidi | emerald](assets/img/15_2_3_olay_inceleme_ve_dof_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> DÖF aksiyonları ve kapanış kilidi simülasyon verileriyle örneklendirilmiştir.</span>")
+![Olay İnceleme Sihirbazı 3. Adım DÖF ve Kapanış | Olay Bildirimi > İncele ve DÖF Yönet | 3. Adım: DÖF Planlama & Kapanış Kilidi | emerald](assets/img/15_2_3_olay_inceleme_ve_dof_dialog.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

@@ -92,9 +92,9 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Sağlık Muayeneleri Takip Listesi Ekranı | Sağlık Gözetimi > Sağlık Muayeneleri | Branş Rozetleri, Durum Filtreleri & EK-1 Araçları | emerald](assets/img/muayene_list.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki personel isimleri, muayene tarihleri ve klinik durum rozetleri test ortamına ait sentetik verilerdir.</span>")
+![Sağlık Muayeneleri Takip Listesi Ekranı | Sağlık Gözetimi > Sağlık Muayeneleri | Branş Rozetleri, Durum Filtreleri & EK-1 Araçları | emerald](assets/img/muayene_list.png)
 
-![EK-1 Kişisel Anamnez ve 3 Branş Hekim Kararı Penceresi | Sağlık Muayeneleri > Ekle / Detay | 2 Aşamalı Klinik Gözetim ve Karar | cyan](assets/img/13_2_saglik_muayene_ek1_ve_hekim_karari.png "<span><strong>Yasal Bilgilendirme:</strong> Formdaki anamnez beyanları, uzmanlık imzaları ve hekim kanaati eğitim amaçlı sentetik verilerdir.</span>")
+![EK-1 Kişisel Anamnez ve 3 Branş Hekim Kararı Penceresi | Sağlık Muayeneleri > Ekle / Detay | 2 Aşamalı Klinik Gözetim ve Karar | cyan](assets/img/13_2_saglik_muayene_ek1_ve_hekim_karari.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

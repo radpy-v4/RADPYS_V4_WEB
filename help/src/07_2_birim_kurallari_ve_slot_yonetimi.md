@@ -47,9 +47,9 @@ Bitiş saati gece yarısı devri dahil otomatik hesaplanır; dağıtım motoru b
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Birim Kuralları ve Nöbet Slotları Ekranı | Nöbet Ayarları > Birim Kuralları | Vardiya Slotları, Akıllı Saat & Kural Kopyalama | cyan](assets/img/nobet_birim_kurallari.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki departman slotları ve vardiya süreleri örnek hastane kurgusuna göre üretilmiş sentetik verilerdir.</span>")
+![Birim Kuralları ve Nöbet Slotları Ekranı | Nöbet Ayarları > Birim Kuralları | Vardiya Slotları, Akıllı Saat & Kural Kopyalama | cyan](assets/img/nobet_birim_kurallari.png)
 
-![Birim Personel Havuzu ve Nöbet Uygunluk Ekranı | Nöbet Ayarları > Birim Personel Havuzu | Birim Bazlı Nöbetçi Havuzu | emerald](assets/img/07_2_birim_personel_havuzu.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki personel isimleri ve birim eşleşmeleri test ortamına ait sentetik verilerdir.</span>")
+![Birim Personel Havuzu ve Nöbet Uygunluk Ekranı | Nöbet Ayarları > Birim Personel Havuzu | Birim Bazlı Nöbetçi Havuzu | emerald](assets/img/07_2_birim_personel_havuzu.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

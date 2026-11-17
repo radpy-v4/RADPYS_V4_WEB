@@ -95,13 +95,13 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Nöbet Planları Listesi Ekranı | Nöbet Yönetimi > Nöbet Planları | Aylık Planlar, Durum Rozetleri & Eylemler | cyan](assets/img/08_nobet_plan_listesi.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki birim adları, personel sayıları ve plan durumları test ortamında yapılandırılmış sentetik verilerdir.</span>")
+![Nöbet Planları Listesi Ekranı | Nöbet Yönetimi > Nöbet Planları | Aylık Planlar, Durum Rozetleri & Eylemler | cyan](assets/img/08_nobet_plan_listesi.png)
 
-![Nöbet Planı Hazırlık ve Simülatör Ekranı | Nöbet Planları > Hazırlığa Devam Et | Çalışma Parametreleri, Talepler & Kapasite Simülatörü | amber](assets/img/08_nobet_plan_onizleme.png "<span><strong>Yasal Bilgilendirme:</strong> Önizleme panelindeki çalışma saatleri ve simülasyon göstergeleri örnek verilerle hazırlanmıştır.</span>")
+![Nöbet Planı Hazırlık ve Simülatör Ekranı | Nöbet Planları > Hazırlığa Devam Et | Çalışma Parametreleri, Talepler & Kapasite Simülatörü | amber](assets/img/08_nobet_plan_onizleme.png)
 
-![Çizelge Matrisi ve Hücre Düzenleme Ekranı | Nöbet Planı > Çizelgeyi Düzenle | İnteraktif Çizelge Matrisi, İkame Öner & İhlal Onayı | cyan](assets/img/08_nobet_cizelge_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> Matris hücrelerindeki nöbet atamaları ve renk kodları kural doğrulama örneği olarak sunulmuştur.</span>")
+![Çizelge Matrisi ve Hücre Düzenleme Ekranı | Nöbet Planı > Çizelgeyi Düzenle | İnteraktif Çizelge Matrisi, İkame Öner & İhlal Onayı | cyan](assets/img/08_nobet_cizelge_dialog.png)
 
-![Ay Ortası Plan İptali Diyalogu | Yayınlanmış Plan > Ay Ortası Plan İptali | Kesim Tarihi, 3 Gün Sınırı & Yönetici Şifre Doğrulaması | rose](assets/img/08_nobet_plan_iptal_dialog.png "<span><strong>Yasal Bilgilendirme:</strong> Kısmi iptal geçmiş gerçekleşmiş nöbetlerin saat ve hak edişlerini kesinlikle silmez.</span>")
+![Ay Ortası Plan İptali Diyalogu | Yayınlanmış Plan > Ay Ortası Plan İptali | Kesim Tarihi, 3 Gün Sınırı & Yönetici Şifre Doğrulaması | rose](assets/img/08_nobet_plan_iptal_dialog.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

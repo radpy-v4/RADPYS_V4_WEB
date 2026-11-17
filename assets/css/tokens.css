@@ -195,6 +195,17 @@ a {
     transform: translateY(0);
 }
 
+@media (scripting: none) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+    .reveal-mask>span {
+        transform: none;
+        animation: none;
+    }
+}
+
 /* Chapter numbers */
 .chapter-number {
     font-family: "Clash Display", sans-serif;

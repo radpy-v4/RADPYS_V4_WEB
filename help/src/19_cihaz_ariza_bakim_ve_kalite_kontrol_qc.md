@@ -94,19 +94,19 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Cihaz Arıza ve Onarım Takibi Ana Ekranı | Cihaz Yönetimi > Cihaz Arıza ve Onarım Takibi | 4 KPI Kartı ve 8 Sütunlu Arıza Listesi | cyan](assets/img/19_1_cihaz_ariza_bakim_ve_kalite_kontrol_qc.png "<span><strong>Yasal Bilgilendirme:</strong> Arıza kodları, cihaz modelleri ve bildirim tarihleri test amacıyla örneklendirilmiştir.</span>")
+![Cihaz Arıza ve Onarım Takibi Ana Ekranı | Cihaz Yönetimi > Cihaz Arıza ve Onarım Takibi | 4 KPI Kartı ve 8 Sütunlu Arıza Listesi | cyan](assets/img/19_1_cihaz_ariza_bakim_ve_kalite_kontrol_qc.png)
 
-![Yeni Cihaz Arıza Bildirimi Formu | Cihaz Arıza Takibi > Yeni Arıza Bildir | Aciliyet ve Belirti Kaydı | rose](assets/img/19_2_cihaz_ariza_bakim_ve_kalite_kontrol_qc.png "<span><strong>Yasal Bilgilendirme:</strong> Bildirim formundaki cihaz ve arıza verileri simülasyon amaçlıdır.</span>")
+![Yeni Cihaz Arıza Bildirimi Formu | Cihaz Arıza Takibi > Yeni Arıza Bildir | Aciliyet ve Belirti Kaydı | rose](assets/img/19_2_cihaz_ariza_bakim_ve_kalite_kontrol_qc.png)
 
-![Cihaz Arıza Çözüm ve Teknik Servis Kapatma Formu | Cihaz Arıza Takibi > Seçili Arızayı Çöz | Tüp Değişimi ve Servis Kapatma | amber](assets/img/19_3_cihaz_ariza_bakim_ve_kalite_kontrol_qc.png "<span><strong>Yasal Bilgilendirme:</strong> Müdahale tarihleri, servis firmaları ve tüp seri alanları test ortamı örneğidir.</span>")
+![Cihaz Arıza Çözüm ve Teknik Servis Kapatma Formu | Cihaz Arıza Takibi > Seçili Arızayı Çöz | Tüp Değişimi ve Servis Kapatma | amber](assets/img/19_3_cihaz_ariza_bakim_ve_kalite_kontrol_qc.png)
 
-![Cihaz Kalite Kontrol KKT ve KUT Takip Ekranı | Cihaz Yönetimi > Kalite Kontrol | 4 KPI Kartı ve Resmi Rapor Takibi | emerald](assets/img/19_5_cihaz_ariza_bakim_ve_kalite_kontrol_qc.png "<span><strong>Yasal Bilgilendirme:</strong> QC test tarihleri ve cihaz kayıtları gösterim amacıyla üretilmiştir.</span>")
+![Cihaz Kalite Kontrol KKT ve KUT Takip Ekranı | Cihaz Yönetimi > Kalite Kontrol | 4 KPI Kartı ve Resmi Rapor Takibi | emerald](assets/img/19_5_cihaz_ariza_bakim_ve_kalite_kontrol_qc.png)
 
-![Kalite Kontrol ve Kalibrasyon Kayıt Formu | Kalite Kontrol > Planlı Testi Tamamla veya Münferit Rapor | Resmi PDF ve Sonuç Kararı | purple](assets/img/19_6_cihaz_ariza_bakim_ve_kalite_kontrol_qc.png "<span><strong>Yasal Bilgilendirme:</strong> Formdaki ölçüm tarihleri ve test sonucu örnek veri niteliğindedir.</span>")
+![Kalite Kontrol ve Kalibrasyon Kayıt Formu | Kalite Kontrol > Planlı Testi Tamamla veya Münferit Rapor | Resmi PDF ve Sonuç Kararı | purple](assets/img/19_6_cihaz_ariza_bakim_ve_kalite_kontrol_qc.png)
 
-![Cihaz Periyodik Bakım Planlama ve Takip Ekranı | Cihaz Yönetimi > Periyodik Bakım Takibi | İhale Takvimi ve Bu Yıl Radarı | cyan](assets/img/19_7_cihaz_periyodik_bakim_takibi.png "<span><strong>Yasal Bilgilendirme:</strong> Bakım dönemleri, cihaz numaraları ve tamamlanma durumları test ortamı verileridir.</span>")
+![Cihaz Periyodik Bakım Planlama ve Takip Ekranı | Cihaz Yönetimi > Periyodik Bakım Takibi | İhale Takvimi ve Bu Yıl Radarı | cyan](assets/img/19_7_cihaz_periyodik_bakim_takibi.png)
 
-![Cihaz ve Koruyucu Ekipman HEK Hurda Arşivi Ekranı | Cihaz Yönetimi > HEK / Hurda Arşivi | İki Aşamalı Tasfiye ve Mühürlü Arşiv | slate](assets/img/19_8_cihaz_hek_hurda_arsivi.png "<span><strong>Yasal Bilgilendirme:</strong> Hurda arşivindeki cihaz künyeleri ve komisyon tutanak kayıtları örnek veri niteliğindedir.</span>")
+![Cihaz ve Koruyucu Ekipman HEK Hurda Arşivi Ekranı | Cihaz Yönetimi > HEK / Hurda Arşivi | İki Aşamalı Tasfiye ve Mühürlü Arşiv | slate](assets/img/19_8_cihaz_hek_hurda_arsivi.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

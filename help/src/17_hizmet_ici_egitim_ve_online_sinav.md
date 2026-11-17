@@ -91,13 +91,13 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![Masaüstü Hizmet İçi Eğitim Uyum Matrisi Ekranı | Kalite ve Eğitim > Hizmet İçi Eğitim > Uyum ve Denetim Raporu | 5 KPI & 4 Durumlu Uyum Matrisi | purple](assets/img/17_1_1_hizmet_ici_egitim_uyum_matrisi.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki personel isimleri, eğitim tarihleri ve uyum yüzdeleri test ortamına ait sentetik verilerdir.</span>")
+![Masaüstü Hizmet İçi Eğitim Uyum Matrisi Ekranı | Kalite ve Eğitim > Hizmet İçi Eğitim > Uyum ve Denetim Raporu | 5 KPI & 4 Durumlu Uyum Matrisi | purple](assets/img/17_1_1_hizmet_ici_egitim_uyum_matrisi.png)
 
-![Masaüstü Soru Havuzu ve Online Sınav Ekranı | Hizmet İçi Eğitim > Sınav Soruları Havuzu | Görselli Soru, Excel İçe Aktarım & Kopyalama | indigo](assets/img/17_2_1_hizmet_ici_egitim_soru_ve_sinav.png "<span><strong>Yasal Bilgilendirme:</strong> Soru bankası ve şık seçenekleri eğitim amaçlı örnek içeriklerle doldurulmuştur.</span>")
+![Masaüstü Soru Havuzu ve Online Sınav Ekranı | Hizmet İçi Eğitim > Sınav Soruları Havuzu | Görselli Soru, Excel İçe Aktarım & Kopyalama | indigo](assets/img/17_2_1_hizmet_ici_egitim_soru_ve_sinav.png)
 
-![Web Portalı Kurumsal Eğitim Uyum Matrisi | Web Portalı > Eğitim Yönetimi > Uyum Matrisi | Birim Bazlı Uyum Analizi & KPI'lar | cyan](assets/img/17_1_2_hizmet_ici_egitim_uyum_matrisi_web.png "<span><strong>Yasal Bilgilendirme:</strong> Web yönetim ekranındaki uyum dağılımı ve grafikler test ortamı verilerini göstermektedir.</span>")
+![Web Portalı Kurumsal Eğitim Uyum Matrisi | Web Portalı > Eğitim Yönetimi > Uyum Matrisi | Birim Bazlı Uyum Analizi & KPI'lar | cyan](assets/img/17_1_2_hizmet_ici_egitim_uyum_matrisi_web.png)
 
-![Web Portalı Personel Eğitim ve Online Sınav Ekranı | Web Portalı > Eğitimlerim | Video İzleme, Doküman Onayı & Online Sınav | emerald](assets/img/17_2_2_hizmet_ici_egitim_soru_ve_sinav_web.png "<span><strong>Yasal Bilgilendirme:</strong> Personel sınav ekranı ve sorular simülasyon verileri üzerinden görüntülenmiştir.</span>")
+![Web Portalı Personel Eğitim ve Online Sınav Ekranı | Web Portalı > Eğitimlerim | Video İzleme, Doküman Onayı & Online Sınav | emerald](assets/img/17_2_2_hizmet_ici_egitim_soru_ve_sinav_web.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 

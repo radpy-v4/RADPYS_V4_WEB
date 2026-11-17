@@ -92,11 +92,11 @@ flowchart TB
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
-![İzin Listesi ve Filtreleme Ekranı | Sol Menü > İzin Yönetimi > İzin Listesi | KPI Sayaçları & Onay Araçları | cyan](assets/img/izin_list.png "<span><strong>Yasal Bilgilendirme:</strong> Bu görseldeki personel adları, departmanlar ve izin tarihleri tamamen test amaçlı sentetik veridir.</span>")
+![İzin Listesi ve Filtreleme Ekranı | Sol Menü > İzin Yönetimi > İzin Listesi | KPI Sayaçları & Onay Araçları | cyan](assets/img/izin_list.png)
 
-![2 Adımlı İzin Talep Penceresi | İzin Listesi > İzin Talep Et | İzin Bilgileri & Kalan Hak Özeti | cyan](assets/img/izin_talep.png "<span><strong>Yasal Bilgilendirme:</strong> Form alanları ve bakiye özeti simülasyon amaçlı sentetik veridir; gerçek kişi verisi içermez.</span>")
+![2 Adımlı İzin Talep Penceresi | İzin Listesi > İzin Talep Et | İzin Bilgileri & Kalan Hak Özeti | cyan](assets/img/izin_talep.png)
 
-![Kalan Hak, Şua Hakedişi ve Yıllık İzin Devir Ekranı | Sol Menü > İzin Yönetimi > Kalan Hak / Hakediş | EK-2 Şua Hesabı ve Yıl Kilidi | emerald](assets/img/06_izin_hakedis_ve_devir.png "<span><strong>Yasal Bilgilendirme:</strong> Görseldeki personel bakiye, devir ve şua gün sayıları tamamen test amaçlı sentetik veridir.</span>")
+![Kalan Hak, Şua Hakedişi ve Yıllık İzin Devir Ekranı | Sol Menü > İzin Yönetimi > Kalan Hak / Hakediş | EK-2 Şua Hesabı ve Yıl Kilidi | emerald](assets/img/06_izin_hakedis_ve_devir.png)
 
 ## Adım Adım İşlem Rehberi {#step-by-step}
 
