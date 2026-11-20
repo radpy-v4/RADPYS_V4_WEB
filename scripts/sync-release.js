@@ -444,16 +444,26 @@ function verifyIntegrity(version, sectionCount) {
   // 4. sitemap.xml URL doğrulaması
   if (fs.existsSync(SITEMAP_XML_PATH)) {
     const sitemap = fs.readFileSync(SITEMAP_XML_PATH, 'utf8');
+    const blogSlugs = new Set((Array.isArray(R.BLOG_POSTS) ? R.BLOG_POSTS : []).map(p => p.slug));
     const locRe = /<loc>https:\/\/radpys\.com\.tr\/([^<]*)<\/loc>/g;
     let lm;
     let locCount = 0;
     while ((lm = locRe.exec(sitemap)) !== null) {
       locCount++;
-      const rel = lm[1] || 'index.html';
-      const target = path.join(ROOT, rel);
+      const rawRel = lm[1] || 'index.html';
+      const [relFile, relQuery] = rawRel.split('?');
+      const target = path.join(ROOT, relFile || 'index.html');
       if (!fs.existsSync(target)) {
-        console.error(`  ✗ sitemap.xml içinde var olmayan dosya: ${rel}`);
+        console.error(`  ✗ sitemap.xml içinde var olmayan dosya: ${rawRel}`);
         errors++;
+        continue;
+      }
+      if (relFile === 'kaynaklar.html' && relQuery) {
+        const slug = new URLSearchParams(relQuery).get('slug');
+        if (!slug || !blogSlugs.has(slug)) {
+          console.error(`  ✗ sitemap.xml içinde geçersiz blog slug: ${rawRel}`);
+          errors++;
+        }
       }
     }
     console.log(`• sitemap.xml içerisindeki ${locCount} URL doğrulandı.`);

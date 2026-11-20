@@ -1898,7 +1898,7 @@ Tüm klinik ve idari birimlerden gelen personel izinlerini, karşılıklı nöbe
 
 ## 22. Web Portalı ve Yönetici Gösterge Panelleri
 
-Kurum içi personel ve saha işlemlerini (izin, nöbet devri, EK-1 sağlık/RD.F43 beyanı, cihaz arıza-bakım-QC, RKE QR muayenesi ve ortam dozu ölçümü) mobil uyumlu tarayıcı ve PWA arayüzüne taşırken; 4 ana gruptaki 20 aktif yönetici gösterge panelini 60 saniyelik bellek içi önbellek, 8 saniyelik canlı sağlık denetimi ve isteğe bağlı şifreli dış erişim tüneliyle sunar.
+Kurum içi personel ve saha işlemlerini (izin, nöbet devri, EK-1 sağlık/RD.F43 beyanı, cihaz arıza-bakım-QC, RKE QR muayenesi ve ortam dozu ölçümü) mobil uyumlu tarayıcı ve PWA arayüzüne taşırken; 3 ana gruptaki 19 aktif yönetici gösterge panelini 60 saniyelik bellek içi önbellek, 8 saniyelik canlı sağlık denetimi ve isteğe bağlı şifreli dış erişim tüneliyle sunar.
 
 > **Yasal ve KVKK Güvencesi:** Tüm gösterge panelleri doğrudan kurumun canlı yerel veritabanından beslenir ve sıfır veri durumunda asla sahte veya sentetik kayıt üretmez; dış erişim açılsa dahi personel ve doz verileri bulut sunucularında depolanmaz.
 
@@ -1907,26 +1907,26 @@ Kurum içi personel ve saha işlemlerini (izin, nöbet devri, EK-1 sağlık/RD.F
 **Kısa Reçete: Portal Servisini Kontrol Etme ve Yönetici Paneline Erişim**
 
 **1. İstenen Sonuç:**
-Masaüstü uygulamasından veya Portal Servis Yöneticisinden Web Portalını doğrulayıp 20 analitik gösterge paneli ile saha QR işlemlerine anında bağlanmak.
+Masaüstü uygulamasından veya Portal Servis Yöneticisinden Web Portalını doğrulayıp 19 analitik gösterge paneli ile saha QR işlemlerine anında bağlanmak.
 **2. Yapılacak İşlem:**
 Masaüstü durum çubuğunda **[Portal Sunucu: Aktif]** göstergesini kontrol edin (kapalıysa tıklayarak başlatıcıdan **[Başlat]** deyin), ardından sol üstteki **[Genel Bakış]** butonuna basın.
 **3. Sistem Etkisi:**
 Varsayılan tarayıcınızda Yönetici Özet Paneli açılır; 60 saniyelik bellek içi önbellek eşzamanlı sorgularda veritabanı yükünü dengeler, istenen anda **[Yenile]** ile canlı veri çekilir.
 
-- **Yönetici Panelleri:** 4 Grupta 20 Aktif Pano
+- **Yönetici Panelleri:** 3 Grupta 19 Aktif Pano
 - **Sağlık Kontrol Döngüsü:** Her 8 Saniyede Bir
 - **Dashboard Önbelleği:** 60 Saniye TTL
 - **Platform:** Tarayıcı + Mobil PWA
 
 ### 5N1K Kural ve Arayüz Çözümleme Tablosu
 
-*Masaüstü köprü ve başlatıcı denetimi, 60 saniyelik önbellek, 20 yönetici paneli, dış erişim güvenliği, saha QR ve PWA kuralları.*
+*Masaüstü köprü ve başlatıcı denetimi, 60 saniyelik önbellek, 19 yönetici paneli, dış erişim güvenliği, saha QR ve PWA kuralları.*
 
 | NE? (Bileşen / Kontrol) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Tetiklenme) | KİM? (Yetkili Rol) |
 | --- | --- | --- | --- | --- |
 | **[Genel Bakış] & [Portal Sunucu: Aktif / Kapalı]** (Masaüstü Köprüsü ve 8 Sn Kontrol) | Sunucunun canlı olduğunu anlık görmek ve tek tıkla yönetici özetini açmak. | Masaüstü her 8 saniyede bir portal durumunu sorgular; kapalıysa durum butonundan veya Servis Yöneticisindeki **[Başlat]** ve **[Web Portalı Aç]** butonlarından tarayıcı açılır. | Program açıkken ve kullanıcı tıkladığında. | Sistem Yöneticisi / Yönetici |
 | **60 Sn Önbellek, [Yenile] ve Excel/PDF İhracı** (Eşzamanlı Performans ve Çıktı) | Yüzlerce kişi aynı anda panele girerken veritabanının kilitlenmesini önlemek. | İstatistik yanıtları 60 saniye bellekte tutulur; sağ üstteki **[Yenile]** önbelleği sıfırlayıp güncel veriyi çeker, **[Excel]** ve **[Yazdır / PDF]** butonları tablo dökümü verir. | Dashboard yüklenirken veya çıktı alınırken. | Yönetici / RKS / Yetkili |
-| **4 Grupta 20 Aktif Yönetici Gösterge Paneli** (SKS Denetim, Nöbet, Dozimetre, Cihaz/RKE) | Kurumsal uyum, nöbet yükü, doz aşımı, bakım ve eğitim durumlarını tek yerden izlemek. | Genel ve Analiz (3), Nöbet ve İzin (6), Sağlık ve Güvenlik (9) ile Personel ve Varlıklar (2) gruplarında canlı KPI ve grafikler sunulur; boş dönemlerde dürüst boş durum gösterilir. | Yetkili yönetici yan menüden panel seçtiğinde. | Yönetici / RKS / Birim Sorumlusu |
+| **3 Grupta 19 Aktif Yönetici Gösterge Paneli** (Denetim, Kısıt, RD.F43, Cihaz/Zimmet, RKE & Eğitim) | Kurumsal uyum, çalışma kısıtları, doz aşımı incelemesi, bakım ve eğitim durumlarını tek yerden izlemek. | Genel ve Analiz (4), Nöbet ve İzin Yönetimi (6) ile Sağlık ve Güvenlik (9) gruplarında canlı KPI, yıllık ısı haritası ve dürüst boş durum sunulur; **Çalışma Kısıtları** hizmet sınıfı ile radyasyon kapsamını ayırarak tek-ekran önlem ve planlanan fazları, **NDK Araştırma Formları** ise Çalışan Beyanı / RKS kapılarıyla 15 gün yasal takibi sunar. | Yetkili yönetici yan menüden panel seçtiğinde. | Yönetici / RKS / Birim Sorumlusu |
 | **Şifreli Dış Erişim Tüneli, Robot Koruması ve 2FA OTP** (Kurumsal İnternet Erişim Güvenliği) | Modem portu açmadan güvenli dış erişim sağlamak ve yetkisiz girişleri önlemek. | Yerel hastane ağında hızlı oturum sürerken dış ağda lisans içine şifreli tünel, robot doğrulaması ve 6 haneli tek kullanımlık e-posta kodu zorunlu çalışır; 5 hatalı girişte hesap 15 dakika kilitlenir. | Kullanıcı dış ağdan veya web ekranından girerken. | Admin / Tüm Web Kullanıcıları |
 | **Merkezi Profilim ve 3 Gruplu Saha Formları** (Kişisel İşlemler, Nöbet ve Saha Güvenliği) | Çalışan ve saha teknisyenlerinin mobil/tarayıcıdan eksiksiz işlem yapmasını sağlamak. | EK-1 sağlık beyanı, RD.F43 doz beyanı ve izin/nöbet devirleri **[Profilim]** ve form sekmelerinden yürür; saha ekibi cihaz arıza-bakım-QC, RKE ve ortam dozu kayıtlarını atomik veri kilidiyle işler. | Personel beyanı veya saha müdahalesi yapılırken. | Tüm Personel / Saha Görevlisi |
 | **PWA Kurulumu, QR Kamera, Fener ve Taslak Koruma** (Mobil / Karanlık Oda Ergonomisi) | Telefon ve tabletlerde tam ekran uygulama deneyimi ve karanlık odalarda kesintisiz QR okuma sunmak. | Üst çubuktaki **[Uygulamayı Yükle]** ile tam ekran uygulama kurulur; kamera QR okuyucusu karanlık çekim odaları için fener, ekranı uyanık tutma, titreşimli onay ve uzun form taslağı koruması sağlar. | Tarayıcıdan saha veya QR işlemi yapılırken. | Saha Personeli / Teknisyen |
@@ -1935,13 +1935,13 @@ Varsayılan tarayıcınızda Yönetici Özet Paneli açılır; 60 saniyelik bell
 
 > **Mit Avcısı — Web Portal Sadece Nöbet Görüntüleme Ekranı mıdır ve Dış Erişim Verileri Buluta mı Taşır?**
 > - **Yanlış Algı:** *"Web Portal yalnızca personelin nöbet listesine baktığı salt okunur bir sayfadır; ayrıca kurum dışından erişim açıldığında personel ve dozimetre kayıtlarımız dış bulut sunucularına yüklenir."*
-> - **Gerçek Sistem Mantığı:** **İkisi de doğru değildir.** Web Portalında yöneticiler için SKS Denetim Panosu dahil **20 aktif karar destek paneli** ve personeller/teknisyenler için tam kapsamlı saha formları bulunur (izin, nöbet devri/havuzu, RD.F43/EK-1 beyan, cihaz bakım/QC, RKE kroki muayenesi ve ortam dozu). Ayrıca dış erişim açıldığında hiçbir veri buluta kopyalanmaz; yalnızca kurumun yerel sunucusuyla yetkili kullanıcının tarayıcısı arasında uçtan uca şifreli tünel köprüsü kurulur.
+> - **Gerçek Sistem Mantığı:** **İkisi de doğru değildir.** Web Portalında yöneticiler için SKS Denetim Panosu dahil **19 aktif karar destek paneli** ve personeller/teknisyenler için tam kapsamlı saha formları bulunur (izin, nöbet devri/havuzu, RD.F43/EK-1 beyan, cihaz bakım/QC, RKE kroki muayenesi ve ortam dozu). Ayrıca dış erişim açıldığında hiçbir veri buluta kopyalanmaz; yalnızca kurumun yerel sunucusuyla yetkili kullanıcının tarayıcısı arasında uçtan uca şifreli tünel köprüsü kurulur.
 
 ### Süreç Akış Şeması
 
 1. **Servis Denetimi:** Masaüstü uygulaması 8 saniyede bir portal durumunu kontrol eder; kapalıysa Servis Yöneticisi üzerinden yerel sunucu ve varsa şifreli tünel ayağa kaldırılır.
 2. **Güvenli Oturum:** Kurum içi ağda hızlı oturum açılırken dış erişimde robot doğrulaması ve 6 haneli tek kullanımlık e-posta doğrulaması uygulanır.
-3. **Analitik ve Saha İşlemleri:** Yetkisine göre yöneticiler 20 gösterge panelinde (60 sn önbellekli) anlık Excel/PDF analizine ulaşır; personel ve teknisyenler karanlık oda fenerli QR okuyucu ve mobil formlarla sahadan kayıt girer.
+3. **Analitik ve Saha İşlemleri:** Yetkisine göre yöneticiler 19 gösterge panelinde (60 sn önbellekli) anlık Excel/PDF analizine ulaşır; personel ve teknisyenler karanlık oda fenerli QR okuyucu ve mobil formlarla sahadan kayıt girer.
 
 ### Adım Adım İşlem Rehberi
 
@@ -1951,9 +1951,9 @@ Varsayılan tarayıcınızda Yönetici Özet Paneli açılır; 60 saniyelik bell
 2. Yönetici penceresinde **[Başlat]** butonuna basarak veritabanı motoru ile portal servisinin (gerekirse dış erişim tünelinin) aktifleşmesini bekleyin ve pencereyi küçültmek için **[Tepsiye Küçült]** seçeneğini kullanın.
 3. Doğrudan tarayıcıyı açmak için başlatıcıdaki **[Web Portalı Aç]** butonuna veya masaüstü sol menüsündeki **[Genel Bakış]** düğmesine tıklayın.
 
-#### 2. 20 Yönetici Gösterge Panelinde Analiz ve Raporlama
+#### 2. 19 Yönetici Gösterge Panelinde Analiz ve Raporlama
 
-1. Sol menüdeki **GENEL & ANALİZ**, **NÖBET & İZİN YÖNETİMİ**, **SAĞLIK & GÜVENLİK** ve **PERSONEL & VARLIKLAR** gruplarından ilgili panoyu seçin (örneğin **Denetim Panosu**, **Dozimetre Takibi** veya **Cihaz & QC Yönetimi**).
+1. Sol menüdeki **GENEL & ANALİZ** (4 pano), **NÖBET & İZİN YÖNETİMİ** (6 pano) ve **SAĞLIK & GÜVENLİK** (9 pano) gruplarından ilgili panoyu seçin (örneğin **Denetim Panosu**, **Dozimetre Takibi**, **NDK Araştırma Formları**, **Çalışma Kısıtları** veya **Cihaz & QC Yönetimi**).
 2. Üstteki dönem ve birim filtrelerini uygulayın; son 60 saniye içinde yeni bir veri girişi yaptıysanız önbelleği beklemeden taze veri çekmek için sağ üstteki **[Yenile]** butonuna tıklayın.
 3. Denetim veya toplantı sunumu için sağ üstteki **[Excel]** ya da **[Yazdır / PDF]** butonlarından tabloyu ve özet metrikleri dışa aktarın.
 

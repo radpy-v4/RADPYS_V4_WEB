@@ -43,7 +43,6 @@ RADPYS V4, radyasyon alanında görev yapan personelin (Radyoloji Teknisyenleri/
 - [Modüller](https://radpys.com.tr/moduller.html)
 - [Fiyatlandırma & Paketler](https://radpys.com.tr/fiyatlandirma.html)
 - [Geliştirme Planları](https://radpys.com.tr/gelistirme-planlari.html)
-- [Dokümanlar & Rehber](https://radpys.com.tr/dokumanlar.html)
 - [Sürüm Notları (Changelog)](https://radpys.com.tr/changelog.html)
 - [Kaynaklar & Blog](https://radpys.com.tr/kaynaklar.html)
 - [Hakkımızda](https://radpys.com.tr/hakkimizda.html)

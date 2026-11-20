@@ -3,17 +3,98 @@
 Bu projedeki tüm önemli değişiklikler bu dosyada belgelenmektedir.
 Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına dayanır ve 4 basamaklı SemVer (`MAJOR.MINOR.PATCH.BUILD`) disiplinini uygular.
 
+## [4.0.5.32] - 2026-11-19
+
+### Eklendi
+
+- **Merkezi Donanım-Entropili DPAPI Güvenlik Kasası (`app/core/key_manager.py`, `app/utils/send_otp_email.py`, `user_launcher/portal_launcher.py`, `app/services/system/maintenance/db_maintenance_service.py`, `main.pyw`, `tests/test_security_vault.py`):**
+  - KVKK dosya kasası anahtarı (`files_db_key`), kurumsal SMTP parolası, yedek kurtarma anahtarı ve yerel HTTPS Kök CA anahtarı donanım entropili (`VAULT_ENTROPY_PREFIX`) tek atomik Windows DPAPI kasasında (`data/.security/.vault.dpapi` + `.bak`) toplandı; ACL sıkılaştırma ve eski dağınık anahtar dosyaları için otomatik başlangıç göçü eklendi.
+- **Çökme Tanılama Günlüğü & HMAC İmzalı Denetim Çapası (`app/logger.py`, `app/utils/audit_logger.py`, `app/interaction_logger.py`, `tests/test_crash_fault_log.py`, `tests/test_crash_stability_fixes.py`):**
+  - `setup_crash_fault_handler` (`faulthandler`, `logs/crash_fault.log`) ile oturum başlığı ve temiz kapanışta dosya kısaltma mekanizması eklendi; `calculate_entry_hmac` / `_sign_anchor` HMAC bütünlük doğrulaması ve `QThread`/C++ yaşam döngüsü kararlılık testleri oluşturuldu.
+- **NDK Göz Merceği, Ekstremite ve 5 Yıllık Doz Emniyet Kilitleri (`app/domain/dozimetre/doz_esik_kontrol.py`, `doz_limit_checker.py`, `doz_arastirma_engine.py`, `app/services/personel/dozimetre/{doz_olcum_service,doz_analiz_service,doz_import_service}.py`):**
+  - Göz merceği aylık `Hp(3) >= 2.0 mSv` (`KILIT-NDK-GOZ-01`), el/ayak/cilt aylık `>= 50.0 mSv` (`KILIT-NDK-EKSTREMITE-01`) ve 5 yıllık kümülatif `>= 100.0 mSv` (`KILIT-NDK-BESYIL-01`) yasal inceleme/limit emniyet kilitleri eklendi.
+- **Serbest / Harici Kişi Destekli Cihaz Zimmeti (`app/db/migrations/V20261118_2_extend_personel_cihaz_zimmet.py`, `cihaz_repository.py`, `cihaz_service.py`, `ui/pages/cihaz/cihaz_ekle_duzenle_dialog.ui`, `ui/controllers/cihaz/cihaz_ekle_duzenle_controller.py`):**
+  - `personel_cihaz_zimmet.personel_id` alanı nullable yapılarak `personel_ad_soyad` kolonu eklendi; kurum personel listesinde bulunmayan sorumlu/kişilere de zimmet ataması desteklendi.
+- **Yüksek Veri Hacmi İçin Performans İndeksleri:** `V20261118_1_add_saglik_latest_exam_index.py` (`idx_saglik_personel_son_muayene`), `V20261119_2_add_rke_latest_exam_index.py` (`idx_rke_muayene_rke_son`) ve `V20261119_3_add_ortam_dozu_latest_index.py` (`idx_ortam_dozu_nokta_son`) migration'ları eklendi.
+- **Web Portal Eğitim Sertifikası Güvenli İndirme Ucu & Modüler Panolar (`web_portal/src/routes/egitim.routes.ts`, `egitim.repo.ts`, `web_portal/src/components/dashboards/*`, `web_portal/src/components/{arastirma,olay}/*`):**
+  - `GET /api/egitim/sertifika/:kayitId` ucu ve `findEgitimCertificateRecord` ile IDOR kontrollü, AES-256 KVKK kasası (`getStoredDocument`) ve path-traversal korumalı disk fallback sertifika sunumu eklendi.
+  - Modüler saha ve analitik alt bileşenleri eklendi: `RksDegerlendirmeSection.tsx`, `OlaySahaKokpiti.tsx`, NDK Araştırma (`ArastirmaPanelTab.tsx`, `ArastirmaAnalizVeTakipTab.tsx`, `ArastirmaDetailModal.tsx`, `arastirmaDashboardTypes.ts`), Çalışma Kısıtları (`KisitlarPanelTab.tsx`, `KisitlarYillikTakvim.tsx`, `KisitlarKapasiteVeParametreTab.tsx`, `KisitDetailModal.tsx`, `kisitlarDashboardTypes.ts`), Cihaz (`CihazEnvanterKokpitCards.tsx`, `CihazYillikIsiHaritasi.tsx`, `CihazPeriyodikBakimTab.tsx`, `CihazArizaTab.tsx`, `CihazKalibrasyonTab.tsx`, `cihazKokpitUtils.ts`), RKE (`RkePanelTab.tsx`, `RkeYillikIsiHaritasi.tsx`, `RkeDinAnalitikTab.tsx`, `RkeDetailModal.tsx`, `rkeDashboardTypes.ts`), Ortam Dozu (`OrtamDozuPanelTab.tsx`, `OrtamDozuYillikIsiHaritasi.tsx`, `OrtamDozuTrendVeAsimTab.tsx`, `OrtamDozuDetailModal.tsx`, `ortamDozuDashboardTypes.ts`) ve Zorunlu Eğitim (`EgitimPanelTab.tsx`, `EgitimYillikIsiHaritasi.tsx`, `EgitimAnalizVeAksiyonTab.tsx`, `EgitimDetailModal.tsx`, `egitimDashboardTypes.ts`).
+- **UI Tipografi Politika Denetimi (`scripts/policy_checks.py`):** 55 adet `.ui` arayüz dosyasında tabular dışı sabit font ailesi tanımları temizlenerek politika denetleyicisine otomatik kural kontrolü eklendi.
+
+### Değiştirildi
+
+- **Web Portal Faz 2 & Faz 3 Gösterge Panoları Modernizasyonu:** `#10 Dozimetre`, `#11 Olay Bildirimi & DÖF`, `#12 NDK Araştırma Formları (RD.F43)` (Bölüm 2 çalışan beyanı ve Bölüm 3 RKS `kullanim_detay` kapı takibi, açık `dozimetre_aksiyonlar` sayacı, aciliyet sıralı 15 gün yasal takip ve `App.tsx` üzerinden `DozArastirmaBeyanView` `initialFormId` derin bağlantısı), `#13 Sağlık Muayene`, `#14 Çalışma Kısıtları` (`unvanlar.hizmet_sinifi` ile `radyasyon_gorevlisi_mi` kapsam ayrımı, radyasyonlu birimde aktif alan kısıtı `ALAN_RISK` uyarı şeridi, tek-ekran operasyonel önlem özeti/sütunu, ileri tarihli `planlananFazlar`, sürekli kadro muafiyetleri ayrımı ve `CLINICAL_MASK_TEXT` KVKK/BOLA izolasyonu), `#15 Cihaz & QC` (eski `#21 Zimmet` Dijital Pasaport Zimmet Sekmesi altında birleştirildi), `#16 RKE & KKD Muayene`, `#17 Ortam Dozu Trendi` (survey cihazları lisans/kalibrasyon eşleştirmesi dahil) ve `#18 Zorunlu Eğitim Uyum` (`PageShell`/`KpiStrip`/`FilterToolbar`/`ScrollableTabs`, Personel × Zorunlu Eğitim Matrisi, `≤30 gün` yaklaşanların uyuma dahil edilmesi, statik Mevzuat sekmesinin kaldırılması) yenilendi; `docs/architecture/web_portal_dashboard_dikey_dosya_haritasi.md` **19 aktif panoyla** senkronize edildi.
+- **RKE Masaüstü Durum Filtresi Akışı & UI Sabit Font Temizliği (`ui/controllers/rke/rke_yonetimi_controller.py`, `rke_muayene_listesi_controller.py`, `ui/pages/**/*.ui`):** `_schedule_filter_load` ile durum filtresi değişimlerinde tekrarlı/bloklayıcı yüklemeler önlendi; 55 `.ui` sayfasında tabular dışı sabit font aileleri kaldırıldı.
+
+### Düzeltildi / Kaldırıldı
+
+- **Çapraz Eğitim Uyum SQL Tutarsızlığı (`web_portal/src/repositories/kurumsal/kurumsal.repo.ts`, `egitim.repo.ts`):** `Denetim Panosu` sorgusunda `Hic_Alinmamis` kayıtların uyumlu sayılması, çok yıllık mükerrer satır sayımı ve `ek.zorunlu = 1` filtresi eksikliği giderilerek **Genel Bakış**, **Denetim Panosu** ve **Zorunlu Eğitim Uyum** hesapları birebir hizalandı.
+- **#12 NDK Araştırma Formları & #14 Çalışma Kısıtları Doğruluk ve Güvenlik Düzeltmeleri (`arastirma.repo.ts`, `dashboard.dozimetre.routes.ts`, `arastirma.routes.ts`, `saglik.repo.ts`, `dashboard.klinik.routes.ts`):** `toISOString().slice(0, 10)` yerine yerel `getTodayLocalYmd()`, `hesaplanmis_doz_msv` / `maruziyetSure` / `ortamDozHizi` için sahte `0.0` yerine `NULL` koruması, sentetik `DOZ-<id>` ve UI `"Aşımı Aşımı"` metin tekrarı temizliği, `POST /form/:id/beyan` sonrası `dashboardCache.invalidate()`, `500` yanıtlarından ham `err.message` temizliği, `Sevk_Edildi` + `onay_durumu = 'Beklemede'` ile gecikmiş koşullu muayenelerin yeni `"Uygun"` raporu gelene kadar korunması, `p.silinme_tarihi IS NULL` ve `ust_id` alt birim ağaç izolasyonu sağlandı.
+- **Eski #19 Kurumsal Lisanslar & Tek-Dosya Dashboard Kalıntılarının Kaldırılması:** Kullanılmayan eski `#19 Kurumsal Lisanslar (kurumsal_lisans)` sayfası UI (`KurumsalLisansDashboard.tsx`, `KurumsalLisansSections.tsx`), `App.tsx`, `sidebar.ts`, `viewRegistry.ts`, `schema.ts`, `auth.middleware.ts`, `dashboard.kurumsal.routes.ts`, `cihaz.repo.ts` (`fetchDashboardKurumsalLisanslar`) ve `tests/test_web_portal_security.py` katmanlarından tamamen silindi; `V20261119_1_drop_cihaz_arizalar_maliyet.py` ile `cihaz_arizalar.maliyet` kolonu temizlendi; yerlerine modüler bileşenler getirilen eski `ZimmetDashboard.tsx`, `ZimmetTabsAndModal.tsx`, `CihazArizaVeQcTabs.tsx`, `KisitlarTabsAndModal.tsx`, `ArastirmaTabsAndModal.tsx`, `RkeDashboardTabsAndModal.tsx`, `OrtamDozuDashboardTabsAndModal.tsx` ve `EgitimUyumTabsAndModal.tsx` dosyaları kaldırıldı.
+- **`main.pyw` & Onay/Başlatıcı Kararlılık Düzeltmeleri:** `main.pyw` başlatma akışındaki sözdizimi hatası, `OnayBekleyenGorevlerController` ve `AppController` pencere yaşam döngüsü sorunları giderildi.
+
+## [4.0.5.31] - 2026-11-17
+
+### Eklendi
+
+- **Yönetici Panoları Dikey Takip Haritası (`docs/architecture/web_portal_dashboard_dikey_dosya_haritasi.md`):** 21 Web Portal gösterge paneli için Route -> Service -> Repository -> UI dikey izlenebilirlik haritası eklendi ve Faz 1 kapsamındaki 4 panonun tamamlama durumları kaydedildi.
+- **Denetim Panosu Geliştirmeleri (`DenetimHazirlikDashboard.tsx`, `DenetimHazirlikSections.tsx`, `dashboard.kurumsal.routes.ts`, `kurumsal.repo.ts`):**
+  - `fetchDashboardDenetimOzeti` içine `explicitDeptId` (`?departmentId=`) birim filtresi; `cihaz_lisanslari`, `DISTINCT ON (psm.personel_id)` son sağlık muayenesi, `personel_calisma_kisitlari`, `personel_cihaz_zimmet`, `rgs_gorevlendirmeler` ve `arsivOzeti` sorguları eklendi.
+  - Dinamik `Acil Aksiyon` sekmesi, modal içinde `denetciSorusu` / `radpysKaniti` bölümleri ve `docs/manual/src/24_kisaltmalar_ve_mevzuat_sozlugu.md` ile uyumlu (`5` yasal/kurumsal ayrım kuralı, `16` mevzuat/standart, `22` sözlük terimi) `Mevzuat & Denetim Rehberi` sekmesi eklendi.
+- **Birim Yük Cari Yıl & Destek Birim Şemsiyesi (`BirimYukDashboard.tsx`, `dashboard.nobet.routes.ts`, `nobetDashboard.repo.ts`):**
+  - `fetchDashboardBirimYuku(session, year)` içinde `?year=` cari yıl parametresiyle `shiftHours`, `personel_fiili_hizmet_aylik`, `izin_haklari` ve `personel_calisma_kisitlari` hesaplamaları eklendi.
+  - Nöbet tutulmayan ve radyasyon riski taşımayan idari/destek birimler `isSupportUmbrella` / `mergedUnitCount` alanlarıyla tek `İdari & Destek Birimleri (Sekreterlik / Arşiv)` satırında birleştirildi.
+- **Personel Ünvan Dağılımı & Tıklanabilir Klinik Birim Matrisi (`PersonelView.tsx`, `PersonelTabsAndModal.tsx`, `personel.repo.ts`):**
+  - `PersonelDemografiTab` içine `unvanDagilimi`, `PersonelBirimlerTab` içine ise tıklanabilir `onSelectUnit` Klinik Birim Matrisi ve idari destek birimleri şemsiye satırı eklendi.
+
+### Değiştirildi
+
+- **Web Portal Sol Menü 3 Gruba Sadeleştirildi (`web_portal/src/config/sidebar.ts`, `web_portal/src/App.tsx`):** `personel_varliklar` grubu kaldırılarak 20 aktif pano 3 ana grup altında toplandı (`genel_analiz`: 4, `nobet_izin`: 6, `saglik_guvenlik`: 10); `Personel & Birimler` `GENEL & ANALİZ` altına, `Cihaz Zimmet Takip` `SAĞLIK & GÜVENLİK` altına taşındı.
+- **Genel Bakış Panosu (`GenelDashboard.tsx`, `GenelDashboardSections.tsx`, `kurumsal.repo.ts`):**
+  - Çift 6'lı özet şeridi 4 hücreli Executive Operations & Approvals Strip yapısına sadeleştirildi; çift birim grafiği 3 modlu tek interaktif grafikte birleştirildi.
+  - Sağ uyarı akışı `Acil / Geciken` (`saglikGecikmisSayisi`) ve `Yaklaşan (30 Gün)` (`saglikYaklasanSayisi`) sekmelerine ayrıldı; `bugunNobetteSayisi`, `bugunIzindeSayisi`, `acikArastirmaSayisi`, `ortamDozuLimitAsimiSayisi` ve `LATERAL` QC sorguları bağlandı.
+- **Denetim Panosu Etiket Güncellemesi (`DenetimHazirlikSections.tsx`):** 4. sekme başlığı `Mevzuat & Denetim Rehberi`, ilgili KPI etiketi `RKS & Kanıt Tamlığı` olarak yenilendi.
+- **Birim Yük Panosu (`BirimYukDashboard.tsx`):** Gereksiz bireysel personel yükü tablosu kaldırıldı; alt birim grafiği ve kartları 1+3 birleşik panelde (`Yatay Barometre`, `Karşılaştırma Grafiği`, `Ana Departman Gruplu`) toplandı.
+- **Personel & Birimler Liste ve Doz Formatı (`PersonelListeTab.tsx`, `PersonelTabsAndModal.tsx`):** Tekrarlı `NDK & Mevzuat` sekmesi, `grid` kart görünümü ve mükerrer `Rad. Gör.` rozeti kaldırıldı; `isPersonelRadiationWorker` ve `latestDoseMap` birleştirilip `derin_doz_hp10` / `kumulatif_yillik` değerleri `toFixed(2)` ile yuvarlandı.
+- **Nöbet Değişim Havuzu (`nobet.routes.ts`, `nobetDevir.service.ts`, `nobetDevir.repo.ts`):** `havuzTeklifYanitSchema`, `havuzTalipSchema`, `havuzIlanSchema`, `havuzGeriCekSchema` ve `devirSchema` doğrulamaları ile `createNobetDevirRequest`, `claimHavuzIlani`, `respondToHavuzTeklifi`, `findHavuzIlanById`, `respondHavuzTeklifTransactional`, `TEKLIF_GELDI` ve `dashboardCache.invalidate()` akışları iyileştirildi.
+
+### Düzeltildi / Kaldırıldı
+
+- **Dürüst Boş Durum & Doğru Filtre/Kıdem Hesabı (`kurumsal.repo.ts`, `personel.repo.ts`):** `fetchDashboardGenelOzet` içindeki sahte `0.25` izin fallback değeri ve birim filtresi/`LATERAL` QC sorgu hataları düzeltildi; `fetchDashboardPersonelDemografi` içinde sahte `35` yaş / `5` kıdem fallback'leri `0` yapılarak `kidemSql` kronolojik sıraya alındı (`p.silinme_tarihi IS NULL`, `gebelik_tahmini_bitis`).
+- **Eski Nöbet Havuzu Bileşen Temizliği (`web_portal/src/components/nobet/`):** Kullanılmayan 4 eski bileşen (`ShiftApprovalView.tsx`, `ShiftChangeForm.tsx`, `ShiftPoolSections.tsx`, `ShiftPoolView.tsx`) projeden kaldırıldı.
+
+## [4.0.5.30] - 2026-11-17
+
+### Eklendi
+
+- **Cihaz Envanteri — Radyasyon Ölçüm Cihazı (`SURVEY`) Kategorisi ve Akıllı Ölçüm Cihazı Seçimi:** `app/db/seeds.sql` ve `app/db/migrations/V20261115_1_add_survey_meter_device_lookup.py` (`VERSION = "4.0.5.26"`) ile `cihaz_turleri` (`SURVEY` — *Radyasyon Ölçüm Cihazı (Survey Meter / Doz Hızı Ölçer)*) ve `cihaz_amaclari` (*Radyasyon / Ortam Ölçümü*) referans tanımları eklendi. `OrtamDozuService.list_olcum_cihazlari()` (`app/services/kalite/ortam_dozu_service.py`) ve `GET /api/ortam-dozu/olcum-cihazlari` (`web_portal/src/routes/ortam_dozu.routes.ts`, `fetchOrtamDozuOlcumCihazlari`) uç noktası ile envanterdeki aktif ölçüm cihazları ile en güncel geçerli KKT/KUT kalibrasyon tarihleri (`cihaz_kalite_kontrol`) otomatik sorgulanır hale getirildi.
+- **Ortam Dozu — Evrensel Onay Kuyruğu (`ortam_olcum_noktalari`) ve RBAC Görevli Birim Kısıtı:** `ApprovalService` (`_ENTITY_TABLES`), `OrtamDozuService.create_nokta()` / `approve_nokta()` ve `OnayBekleyenGorevlerController` (`ortam_olcum_noktalari` / `ortam_dozu_olcumleri`) entegrasyonu tamamlandı; Web Portal `POST /api/ortam-dozu/olcumler` ve `POST /api/ortam-dozu/noktalar` uç noktalarında RBAC görevli birim kontrolü (`fetchUserResponsibleUnits`) ve `degisiklik_talepleri` onay kuyruğu kaydı devreye alındı.
+
+### Değiştirildi
+
+- **Cihaz Saha Merkezi & Esnek Arıza Müdahale Akışı (Masaüstü & Web Portal):** `ui/pages/cihaz/cihaz_ariza_coz_dialog.ui`, `ui/controllers/cihaz/cihaz_ariza_controller.py`, `app/infrastructure/db/repositories/cihaz_repository.py` ve `web_portal/src/components/cihaz/{CihazArizaView.tsx,CihazTabsAndModals.tsx,cihazTypes.ts}` üzerinde arıza müdahale süreci tek pencereden esnek durum geçişine (`Açık`, `Servis Bekleniyor`, `Parça Bekleniyor`, `Test Aşamasında`, `Çözüldü`) kavuşturuldu. Önceki müdahale kayıtları salt-okunur (`txtMevcutGecmis`) korunarak yeni notların `[GG.AA.YYYY SS:DD - Ad Soyad ( Durum )]: ...` zaman ve kullanıcı damgasıyla kümülatif (append-only) eklenmesi sağlandı. Web Portal Cihaz ekranı *Cihaz Eşleştirme & Seçim Merkezi* üst çubuğu, satır içi *Cihaz Pasaport Kartı* ve 4 operasyonel sekme mimarisine geçirildi.
+- **RKE Saha Merkezi & Birim Bazlı Toplu Muayene (Web Portal):** `web_portal/src/components/rke/{RkeView.tsx,RkeModals.tsx,RkeKrokiCanvas.tsx,rkeTypes.ts}`, `web_portal/src/routes/rke.routes.ts` ve `web_portal/src/repositories/rke/rke.repo.ts` yeniden yapılandırılarak RBAC görevli birim filtreli *RKE Eşleştirme & Seçim Merkezi* (Tek QR Tara), satır içi *RKE Saha Pasaport Kartı* ve 3 satır içi sekme (*1. DIN 6857-1 Muayene & Kroki*, *2. Askılık/Sayım & Muayene Geçmişi*, *3. Birim Bazlı Toplu Muayene*) oluşturuldu. 5 fiziki kontrol kriteri ve Skopi kVp/mAs alanlarındaki gizle/göster daraltmaları kaldırılarak sürekli görünür yapıldı; `KARAR_RANK` birleşik karar motoru ve `rke_muayene_belgeleri` şifreli fotoğraf kasası entegre edildi.
+- **Ortam Dozu Saha Merkezi & Nokta Bazlı Tarihçe (Masaüstü & Web Portal):** `ui/pages/kalite/ortam_dozu_olcum_dialog.ui`, `ui/controllers/kalite/ortam_dozu_olcum_dialog.py` ve `web_portal/src/components/ortam_dozu/{OrtamDozuView.tsx,OrtamDozuKrokiTab.tsx,OrtamDozuTablesAndModals.tsx,ortamDozuTypes.ts}` üzerinde manuel cihaz/kalibrasyon giriş alanları kaldırılarak envanterde 0 veya 1 aktif ölçüm cihazı varsa gizli arka plan kaydı, >1 cihaz varsa Marka/Model combo seçimi uygulandı. Web Portal Ortam Dozu ekranında üst 4'lü KPI şeridi, harita `Etiketler`/`Tam Ekran` butonları ve 3. sekme (*Ölçüm Noktaları Kataloğu*) kaldırılarak *Ortam Dozu Eşleştirme & Seçim Merkezi* üst çubuğu ve *Seçili Nokta Ölçüm Tarihçesi* sekmesi (nokta bazlı filtreleme) devreye alındı.
+
+### Düzeltildi
+
+- **RKE Kroki Pin Görünürlüğü (`RkeKrokiCanvas.tsx`):** `RkeView.tsx` içinde `x_orani/y_orani` olarak oluşturulan kusur koordinatlarının `RkeKrokiCanvas.tsx` içinde yalnızca `xOrani/yOrani` okunması nedeniyle kroki üzerinde pinlerin görünmemesi hatası her iki isimlendirmeyi destekleyecek şekilde giderildi.
+- **Ortam Dozu Nokta Tarihçesi Filtresi, `(µSv/h)` Başlığı ve `notlar='None'` Hatası:** `OrtamDozuView.tsx` içinde `filteredOlcumler` (`useMemo`) ile istemci + sunucu (`noktaId`) çift katmanlı nokta filtrelemesi eklendi; tablo başlığında `uppercase` CSS yüzünden `(MSV/H)` görünen birim `(µSv/h)` (`normal-case`) olarak düzeltildi; `OrtamDozuService.create_olcum()` ve `approve_olcum()` içinde boş notların `'None'` metni olarak kaydedilmesi hatası giderildi.
+
 ## [4.0.5.29] - 2026-11-16
 
 ### Eklendi
+
 - **Tam Kılavuz Keşif Arşivi (`docs/kesif/*.md`, 22 dosya):** Modül `01`–`23` arası tüm ana modüller ve Faz 6'da `21_merkezi_onaylar_ve_rapor_merkezi_kesif.md`, `21_merkezi_onaylar_kesif.md`, `22_web_portal_ve_dashboardlar_kesif.md`, `23_rapor_tutanak_merkezi_kesif.md` için canlı PySide6 UI/Controller, `app/services/`, `app/domain/`, `user_launcher/` ve `web_portal/` kod doğrulamalı keşif raporları arşivlendi.
 - **Ekran Görüntüleri Envanteri ve Çekim Rehberi (`docs/ekran_goruntuleri_envanter_ve_eksik_listesi.md`):** `docs/manual/assets/img/` altındaki mevcut 87 görsel (69 aktif kullanılan, 18 atıl/bozuk), yenilenmesi önerilen 3 eski görsel ve 10 SSOT modülüne yeni bağlanan 13 eksik ekran görüntüsü tam dosya adlarıyla belgelendi.
 
 ### Değiştirildi
+
 - **29 SSOT Kullanım Kılavuzu (`docs/manual/src/*.md`, Faz 1–7):** 24 Ana Modül + 5 Nöbet Alt Kılavuzu (`07_1`–`07_5`) `09_prompt_sablonlari.md` ve `kilavuz_modul_sablonu.md` standardında baştan yazıldı; modül içi reçete/5N1K/adım tekrarları giderilerek 5N1K tabloları 5–7 satıra sadeleştirildi, Modül 21–24 gerçek kod sayılarıyla (7 onay sekmesi + 8 KPI kartı, `Cihaz` evrensel onay kapsamı, 20 aktif dashboard + 10 saha formu, 27 aktif rapor + 25 veri seti + 11 modüllü Tutanak Sihirbazı) hizalandı.
 - **Katalog, Birleşik Özeti ve Sürüm Eşitlemesi (`docs/manual/src/_catalog.json`, `docs/kilavuz_guncel.md`, `docs/kilavuz_denetim_izi.md`):** `_catalog.json` içindeki `Port 3000 API`, `60s TTL Cache`, `Diff dialog` ve `4 adımlı QC sihirbazı` gibi stale/teknik sızıntılar temizlendi; `docs/kilavuz_guncel.md` 29 SSOT dosyasından sıfır emoji/HTML/Mermaid/Jinja2 sızıntısıyla yeniden üretildi.
 
 ### Düzeltildi
+
 - **A4 PDF & Web Yardım Derleyici Hattı (`docs/manual/build_manual_pdf.py`, `scripts/sync_release_and_web.py`):**
   - `MarkdownModuleParser._parse_body` içinde `:::subguides`, `Süreç Akış Şeması`, tablo içi Tailwind köşeli parantez koruması (`_inline_md`), `###` alt başlıkları, `**...**` vurguları, `#step-by-step` regex sonu (`(?=\n##\s|\Z)`) ve eksik görseller için kırık `<img>` yerine `.img-placeholder` yer tutucu bloğu düzeltildi.
   - `scripts/sync_release_and_web.py` içinde Web Yardım Portalı görsel eşitleme kaynağı eski `docs/assets/img` yerine SSOT `docs/manual/assets/img` dizinine yönlendirildi.
@@ -21,16 +102,19 @@ Format, [Keep a Changelog](https://keepachangelog.com/tr/1.0.0/) standardına da
 ## [4.0.5.28] - 2026-11-16
 
 ### Eklendi
+
 - **Şua İzni EK-2 Kademeli Hesap ve Aylık Tam Dilim Ayrımı (`app/domain/fiili_hizmet/policies.py`):** 13.04.2023 tarihli ve 32162 sayılı Yönetmelik EK-2 Sağlık İzni Tablosu uyarınca kümülatif yıllık Şua hakkı (`sua_hak_edis_hesapla`) `ceil(saat / 50.0)` (azami 30 gün) olarak güncellendi; tekil aylık satır gösteriminde şişmeyi önlemek için `aylik_sua_tam_dilim_hesapla` (`// 50`) fonksiyonu eklenerek `app/domain/fiili_hizmet/__init__.py` üzerinden dışa aktarıldı.
 - **Tek Yıllık Mutlak 50 mSv Doz Tavanı Denetimi (`app/domain/dozimetre/doz_limit_checker.py`):** `DozDurumRaporu` veri sınıfına `tek_yil_azami_asildi_mi: bool = False` alanı eklendi; `DozLimitChecker.denetle` ve `compute_limit_state` akışlarında ardışık 5 yıl ortalaması / operasyonel tavan (`20.0 mSv`) ile tek yıllık mutlak yasal tavan (`50.0 mSv`) ayrıştırıldı.
 - **Modül 24 — Kısaltmalar Sözlüğü ve Mevzuat Referans Matrisi (`docs/manual/src/24_kisaltmalar_ve_mevzuat_sozlugu.md`):** 37 teknik/idari kısaltma (`HEK`, `FM`, `RADAT`, `TENMAK`, `EBYS`, `RKS`, `KKT`, `KUT`, `KUK`, `TİTCK` vb.), 16 ana mevzuat dayanağı ve "Yasal Mevzuat Sınırı vs Kurumsal Parametre" karşılaştırma tablosu oluşturulup `_catalog.json` ve `modules.json` manifesto kayıtlarına eklendi.
 - **Birim Test Güncellemeleri (`tests/test_domain_rules.py`, `tests/test_izin_service.py`):** `test_tek_yil_mutlak_50_msv_tavani_asimi` (52.5 mSv) ve `test_aktar_ve_kesinlestir_sua_ek2_1460_saat_30_gun` (1460 saat → 30 gün) doğrulama testleri eklendi.
 
 ### Değiştirildi
+
 - **Şua Hesaplama Katman Hizalaması (`app/domain/izin/izin_kural_motoru.py`, `app/domain/fiili_hizmet/fhz_calculator.py`, `app/services/personel/fiili_hizmet/fhz_hesaplama_service.py`, `app/services/personel/fiili_hizmet/fhz_kilit_service.py`, `app/services/personel/izin/izin_service.py`):** Yıllık kümülatif özet senkronizasyonu (`_refresh_ozet`, `get_puantaj_raporu`, `aktar_ve_kesinlestir_sua_hakedisleri`) EK-2 `sua_hak_edis_hesapla` kuralına bağlandı; aylık puantaj satır kayıtları ise `aylik_sua_tam_dilim_hesapla` ile ayrıştırıldı.
 - **Kılavuz Mevzuat Atıfları ve Terminoloji Standardizasyonu (`docs/manual/src/*.md`):** Modül `05`, `06`, `07`, `07_1`, `07_4`, `07_5`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `22`, `23` kılavuzları güncellenerek somut kanun/yönetmelik atıfları (`3153`, `657`, `4857`, `5510`, `6331`, `6698`, `4688/6356`, `32162`, `23999`, `32818`, `26407`, `NDK 06.03.2025 RKS Usul ve Esasları`) eklendi; eski `RGS`/`RGU` metinleri `RKS` terminolojisine hizalandı (Modül 16 ekran etiketi hariç).
 
 ### Düzeltildi
+
 - **Mevzuat İçerik Çelişkileri ve Kod Sızıntısı Temizliği (`docs/manual/src/*.md`):** Gebelik (kalan gebelik süresince karın yüzeyi 1 mSv) ile emzirme (sayısal mSv sınırı yok; kontaminasyon/açık kaynak yasağı) kuralı ayrıştırıldı; Modül 12 aylık renk skalası (`< 2.0 mSv` Yeşil, `2.0–4.99 mSv` Sarı, `>= 5.0 mSv` veya kümülatif aşım Kırmızı) tutarlı hale getirildi; yıllık izin devri (5 gün kurum parametresi vs 657 m. 103 / 4857) ve şua izin alacağı (657 vs 4857 Yargıtay 9. HD) ifadeleri düzeltildi; `RED-*`, `docxtpl`, `ilgili_cihaz_id`, `_add_business_days`, `HEK_Hurda`, `Kullanim_Disi` ve dahili PDF dosya yolu sızıntıları temizlendi.
 - **Test Beklentileri (`tests/test_fiili_hizmet_service.py`):** `test_sua_hak_edis_hesapla_kademeli_ve_tavan`, `test_kaydet_donem_hesaplama_syncs_to_izin_haklari` ve ilgili EK-2 kademeli Şua beklentileri (`120 saat -> 3.0 gün`, `280 saat -> 6.0 gün`, `320 saat -> 7.0 gün`) güncellendi.
 

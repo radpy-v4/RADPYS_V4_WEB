@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.29</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.32</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -178,9 +178,9 @@
         <td class="py-3.5 px-4">Yetkili Kullanıcı</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Ölçüm Kaydet] &amp; Kalibrasyon Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Geçerli Survey Meter Kontrolü</span></td>
-        <td class="py-3.5 px-4">Kalibrasyon süresi geçmiş cihazla hatalı veya geçersiz doz ölçümü yapılmasını önlemek.</td>
-        <td class="py-3.5 px-4">Seçilen ölçüm aletinin kayıtlı kalibrasyon bitiş tarihini denetler; süresi dolmuş cihazla ölçüm kaydedilmesini kesinlikle reddeder.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Ölçüm Kaydet] &amp; Kalibrasyon Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Envanterden Akıllı Survey Meter Seçimi</span></td>
+        <td class="py-3.5 px-4">Kalibrasyon süresi geçmiş cihazla hatalı doz ölçümü girilmesini önlemek ve her ölçümde cihaz/tarih yazma zahmetini kaldırmak.</td>
+        <td class="py-3.5 px-4">Cihaz Envanterindeki aktif Radyasyon Ölçüm Cihazlarını ve son geçerli kalite kontrol tarihini otomatik çeker; sistemde tek ölçüm cihazı varsa Marka/Model bilgisini arka planda otomatik kaydeder, birden çok cihaz varsa seçim kutusu sunar ve kalibrasyonu dolmuş cihazı reddeder.</td>
         <td class="py-3.5 px-4">Her doz ölçümü kaydında.</td>
         <td class="py-3.5 px-4">RKS / Fizikçi / Tekniker</td>
       </tr>
@@ -314,8 +314,8 @@ flowchart TB
 
 <ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
   <li>Üst çubuktan <strong>[Ölçüm Kaydet]</strong> butonuna tıklayın (veya kroki üzerinde ilgili nokta pinine çift tıklayın).</li>
-  <li>Seçilen nokta için ölçüm tarihini, ölçülen doz hızını, doğal arka plan (fon) değerini, ölçümü yapan personeli ve kalibrasyonu geçerli ölçüm cihazını seçip <strong>[Ölçümü Kaydet ve Haritayı Güncelle]</strong> butonuna basın.</li>
-  <li>Limit aşımı varsa sistem uyarı vererek Olay Bildirimi (Modül 15) altında otomatik kayıt ve DÖF başlatır; ölçümleri gözden geçirmek için <strong>Periyodik Ölçüm Geçmişi</strong> sekmesini kullanın.</li>
+  <li>Seçilen nokta için ölçüm tarihini, ölçülen doz hızını (µSv/h) ve doğal arka plan (fon) değerini girin. Sistemde Cihaz Envanterinde tek bir aktif Radyasyon Ölçüm Cihazı tanımlıysa cihazın Marka/Model ve son kalibrasyon tarihi arka planda otomatik işlenir; birden fazla ölçüm cihazı kayıtlıysa açılan <strong>Ölçüm Cihazı (Marka / Model)</strong> listesinden ilgili cihazı seçip <strong>[Ölçümü Kaydet ve Haritayı Güncelle]</strong> butonuna basın.</li>
+  <li>Limit aşımı varsa sistem uyarı vererek Olay Bildirimi (Modül 15) altında otomatik kayıt ve DÖF başlatır; seçilen izleme noktasının önceki tüm kayıtlarını incelemek için <strong>Seçili Nokta Ölçüm Tarihçesi</strong> (masaüstünde <strong>Periyodik Ölçüm Geçmişi</strong>) sekmesini kullanın.</li>
 </ol>
 
 <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-5 mb-2">3. Kapı QR Pasaportu, Toplu Baskı Paketi, SKS Excel ve Saha Mobil Akışı</h3>
@@ -323,7 +323,7 @@ flowchart TB
 <ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
   <li>Oda giriş kapısı veya tekil nokta etiketi için <strong>[Karekod / Etiket Bas]</strong> menüsünden etiketi üretin (<strong>[PNG Olarak Kaydet]</strong> veya <strong>[Yazıcıya Gönder]</strong>); tüm noktaları matbaa ve tabela baskısı için toplu indirmek isterseniz toplu QR paketi seçeneğiyle 300 DPI etiketler, baskı rehberi ve icmal listesini içeren arşivi dışa aktarın.</li>
   <li>Denetimler öncesinde <strong>[SKS Raporu (Excel)]</strong> butonuyla kurum antetli ve renk kodlu resmi denetim tablosunu oluşturun.</li>
-  <li><strong>Web ve Mobil Saha Kullanımı:</strong> Saha personeli kapıdaki QR kodu telefon veya tabletle okutarak o odanın noktalarına sahadan doğrudan doz girişi yapabilir; yöneticiler ise Web Portal haritasında çoklu oda sınırlarını ve aylık doz trend grafiklerini canlı izleyebilir.</li>
+  <li><strong>Web ve Mobil Saha Kullanımı:</strong> Saha personeli üstteki <strong>Ortam Dozu Eşleştirme ve Seçim Merkezi</strong> çubuğundan yalnızca görevli olduğu birimleri seçebilir ya da kapıdaki QR kodu telefonla okutarak doğrudan ilgili odaya/noktaya odaklanabilir. İnteraktif kroki üzerinden yeni ölçüm noktası ve doz ölçümü girildiğinde kayıtlar Merkezi Onay Kuyruğuna iletilir; <strong>Seçili Nokta Ölçüm Tarihçesi</strong> sekmesinden ise o noktaya ait kalıcı geçmiş ve onay durumu anlık izlenir.</li>
 </ol>
 </section>
 
@@ -404,7 +404,7 @@ flowchart TB
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.29) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.32) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>

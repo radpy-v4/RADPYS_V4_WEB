@@ -1,10 +1,10 @@
 {
-  "version": "4.0.5.29",
-  "release_version": "4.0.5.29",
-  "build_version": "4.0.5.29",
-  "latest_demo_version": "4.0.5.29",
-  "release_date": "2026-11-16",
+  "version": "4.0.5.32",
+  "release_version": "4.0.5.32",
+  "build_version": "4.0.5.28",
+  "latest_demo_version": "4.0.5.32",
+  "release_date": "2026-11-19",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.5.29: Tüm 24 Ana Modül ve 5 Nöbet Alt Kılavuzu canlı sistem davranışlarıyla birebir doğrulanarak yenilendi; tekrar eden açıklamalar ve 5N1K tabloları sadeleştirildi, eksik ekran görüntüsü alanları hazırlandı ve Kurumsal A4 PDF El Kitabı ile Web Yardım Portalı eşitlendi.",
+  "changelog": "RADPYS V4.0.5.32: Web Portal Faz 2 ve Faz 3 Yönetici Panoları modernizasyonu (Dozimetre, Olay/DÖF, #12 NDK Araştırma Formları RD.F43, Sağlık Muayene, #14 Çalışma Kısıtları hizmet sınıfı & tek-ekran önlem, Cihaz & QC ile birleştirilmiş Zimmet, RKE DIN 6857-1, Ortam Dozu Trendi ve Zorunlu Eğitim Uyum Matrisi; eski #19 Kurumsal Lisanslar kaldırılarak 19 aktif pano yapısı), merkezi donanım entropili güvenlik kasası, NDK göz/ekstremite/5 yıllık doz emniyet kilitleri, serbest cihaz zimmeti, .ui tipografi politikası ve RKE filtre kararlılık iyileştirmeleri kullanıma sunuldu.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }

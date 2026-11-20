@@ -15,9 +15,6 @@
     <link rel="icon" type="image/x-icon" href="images/logo.ico" />
     <link rel="icon" type="image/webp" href="images/logo.webp" />
     <link rel="apple-touch-icon" href="https://radpys.com.tr/images/main_logo.webp" />
-    <link rel="canonical" href="https://radpys.com.tr/kaynaklar.html" />
-    <link rel="alternate" hreflang="tr" href="https://radpys.com.tr/kaynaklar.html" />
-    <link rel="alternate" hreflang="x-default" href="https://radpys.com.tr/kaynaklar.html" />
 
     <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
     <meta property="og:type" content="website" />
@@ -86,7 +83,7 @@
                 <div class="relative container-narrow">
                     <nav aria-label="Breadcrumb" class="mb-4">
                         <ol class="flex items-center space-x-2 text-xs md:text-sm text-slate-400">
-                            <li><a href="index.html" class="hover:text-teal-300 transition-colors">Ana Sayfa</a></li>
+                            <li><a href="/" class="hover:text-teal-300 transition-colors">Ana Sayfa</a></li>
                             <li><span class="text-slate-600">/</span></li>
                             <li class="text-teal-400 font-medium" aria-current="page">Kaynaklar</li>
                         </ol>
@@ -132,17 +129,58 @@
     <script>
         (function () {
             const { BLOG_POSTS: posts } = window.RADPYS;
+            const LIST_URL = "https://radpys.com.tr/kaynaklar.html";
             const params = new URLSearchParams(location.search);
             const slug = params.get("slug");
+            const post = slug ? posts.find(p => p.slug === slug) : null;
+
+            function setHeadLink(rel, href, hreflang) {
+                const selector = hreflang
+                    ? `link[rel="${rel}"][hreflang="${hreflang}"]`
+                    : `link[rel="${rel}"]:not([hreflang])`;
+                let el = document.head.querySelector(selector);
+                if (!el) {
+                    el = document.createElement("link");
+                    el.rel = rel;
+                    if (hreflang) el.hreflang = hreflang;
+                    document.head.appendChild(el);
+                }
+                el.href = href;
+            }
+
+            function setMeta(selector, content) {
+                const el = document.head.querySelector(selector);
+                if (el) el.setAttribute("content", content);
+            }
 
             if (slug) {
-                const post = posts.find(p => p.slug === slug);
                 document.getElementById("view-list").style.display = "none";
                 document.getElementById("view-post").style.display = "block";
                 if (!post) {
+                    setMeta('meta[name="robots"]', "noindex, follow");
+                    setHeadLink("canonical", LIST_URL);
                     document.getElementById("post-header").innerHTML = `<p class="text-slate-400 pt-20">Yazı bulunamadı.</p><a href="kaynaklar.html" class="text-neon-teal underline">Geri dön</a>`;
                 } else {
-                    document.title = post.title + " — RADPYS V4";
+                    const pageUrl = `${LIST_URL}?slug=${encodeURIComponent(post.slug)}`;
+                    document.title = `${post.title} — RADPYS V4`;
+                    setHeadLink("canonical", pageUrl);
+                    setHeadLink("alternate", pageUrl, "tr");
+                    setHeadLink("alternate", pageUrl, "x-default");
+                    setMeta('meta[name="description"]', post.excerpt);
+                    setMeta('meta[property="og:type"]', "article");
+                    setMeta('meta[property="og:url"]', pageUrl);
+                    setMeta('meta[property="og:title"]', document.title);
+                    setMeta('meta[property="og:description"]', post.excerpt);
+                    setMeta('meta[name="twitter:title"]', document.title);
+                    setMeta('meta[name="twitter:description"]', post.excerpt);
+                    if (post.cover) {
+                        const coverUrl = /^https?:\/\//i.test(post.cover)
+                            ? post.cover
+                            : `https://radpys.com.tr/${post.cover}`;
+                        setMeta('meta[property="og:image"]', coverUrl);
+                        setMeta('meta[property="og:image:secure_url"]', coverUrl);
+                        setMeta('meta[name="twitter:image"]', coverUrl);
+                    }
                     document.getElementById("post-header").innerHTML = `
               <a href="kaynaklar.html" class="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white">← Kaynaklar</a>
               <span class="section-label mt-8" style="display:inline-flex">${post.category}</span>
@@ -157,6 +195,9 @@
               <div class="mt-14 pt-8 border-t border-white/10"><a href="https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe" data-radpys-download target="_blank" rel="noopener noreferrer" class="btn btn-primary">Demo İndir →</a></div>`;
                 }
             } else {
+                setHeadLink("canonical", LIST_URL);
+                setHeadLink("alternate", LIST_URL, "tr");
+                setHeadLink("alternate", LIST_URL, "x-default");
                 // Dinamik kategori listesi (BLOG_POSTS üzerinden otomatik üretilir)
                 const uniqueCats = Array.from(new Set(posts.map(p => p.category)));
                 const CATS = ["Tümü", ...uniqueCats];

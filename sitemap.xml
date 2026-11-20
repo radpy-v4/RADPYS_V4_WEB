@@ -26,16 +26,58 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radpys.com.tr/dokumanlar.html</loc>
+    <loc>https://radpys.com.tr/kaynaklar.html</loc>
     <lastmod>2026-11-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radpys.com.tr/kaynaklar.html</loc>
+    <loc>https://radpys.com.tr/kaynaklar.html?slug=radyoloji-kanunlar-ve-yasal-dayanaklar</loc>
     <lastmod>2026-11-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radpys.com.tr/kaynaklar.html?slug=radyoloji-hizmetleri-yonetmeligi-ve-guncellemeleri</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radpys.com.tr/kaynaklar.html?slug=ndk-teknik-kilavuzlar-rehberi</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radpys.com.tr/kaynaklar.html?slug=saglik-bakanligi-genelgeleri-ve-sks61-rehberi</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radpys.com.tr/kaynaklar.html?slug=dozimetre-takibi-ve-kumatik-doz-analizi</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radpys.com.tr/kaynaklar.html?slug=radyasyon-olay-ve-dof-bildirimleri</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radpys.com.tr/kaynaklar.html?slug=radyoloji-nobet-ve-izin-planlama-rehberi</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radpys.com.tr/kaynaklar.html?slug=kvkk-ve-saglik-verileri-guvenligi-rehberi</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://radpys.com.tr/changelog.html</loc>
@@ -242,5 +284,11 @@
     <lastmod>2026-11-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radpys.com.tr/help/24_kisaltmalar_ve_mevzuat_sozlugu.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

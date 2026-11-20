@@ -127,7 +127,7 @@ flowchart TB
 
 1. Tekil veya çoklu QR basımı için araç çubuğundan **[QR Etiket]** butonuna tıklayın: tek satır seçiliyken pasaport önizlemesinden **[PNG Olarak Kaydet]** veya **[Yazıcıya Gönder]**, çoklu seçimde ya da seçimsiz basımda 300 DPI PNG etiketleri ve baskı şartnamesini içeren ZIP paketini indirin.
 2. Denetim çizelgeleri için **[Dışa Aktar]** menüsünden SKS 6.1 RKE çizelgesini Excel/PDF/Word formatında alın; hurdaya ayrılacak birden çok önlüğü Ctrl veya Shift ile seçip **[HEK Tutanağı]** butonundan toplu komisyon tutanağı üretin (tekil hurdaya çekmek için **[HEK'e Ayır]** kullanılır).
-3. **Web Portalı ve Mobil QR Saha Akışı:** Saha kullanıcısı mobil kamerayla önlükteki QR etiketi okuttuğunda dijital pasaport kartı açılır; parmakla yakınlaştırılabilen dokunmatik ön/arka SVG silüeti üzerinde kusur işaretlenebilir, canlı kamera fotoğrafı eklenebilir, askılık hızlı sayımı ve toplu muayene sorumlu birim yetkisi dahilinde sahadan tamamlanabilir.
+3. **Web Portalı ve Mobil QR Saha Akışı:** Saha kullanıcısı Web Portalındaki **RKE Eşleştirme ve Seçim Merkezi** üzerinden yalnızca görevli olduğu birimleri filtreleyebilir ya da önlükteki QR etiketi **[QR Tara]** düğmesiyle okutup satır içi **RKE Saha Pasaport Kartını** açabilir. Sayfa içindeki üç sekmeden (**1. DIN 6857-1 Muayene ve Kroki**, **2. Askılık/Sayım ve Muayene Geçmişi**, **3. Birim Bazlı Toplu Muayene**) sürekli açık 5 fiziki kontrol kriteri, kVp/mAs değerleri ve dokunmatik Ön/Arka SVG silüeti üzerinde görünür kusur pinleriyle muayene tamamlanıp şifreli hasar fotoğrafı eklenebilir; görevli birim kapsamındaki askılık sayımı ve toplu muayeneler sahadan kaydedilebilir.
 
 ## Sıkça Sorulan Sorular (SSS) {#faq}
 

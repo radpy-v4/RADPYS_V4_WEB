@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.29</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.5.32</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -157,9 +157,9 @@
     </thead>
     <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Güvenlik ve Kurtarma Anahtarı]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Kurtarma Kartı & Donanım Anahtarı</span></td>
-        <td class="py-3.5 px-4">Format veya yeni sunucu kurulumu sonrası şifreli yedeklerin açılabilmesini garanti altına almak.</td>
-        <td class="py-3.5 px-4">Sudo onayıyla 32 karakterlik anahtarı ve Cihaz Kimliğini gösterir; kurtarma dosyası indirilir ve geri yüklemede <strong>[Cihaz Kimliğiyle Çözmeyi Dene]</strong> sunulur.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Güvenlik ve Kurtarma Anahtarı]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Merkezi Kasa & Donanım Anahtarı</span></td>
+        <td class="py-3.5 px-4">Format veya yeni sunucu kurulumu sonrası şifreli yedeklerin ve hassas sistem anahtarlarının açılabilmesini garanti altına almak.</td>
+        <td class="py-3.5 px-4">Sudo onayıyla 32 karakterlik anahtarı ve Cihaz Kimliğini gösterir; sistem gizli anahtarları (dosya kasası, e-posta parolası, yerel sertifika) donanıma bağlı tek atomik kasada korunur ve geri yüklemede <strong>[Cihaz Kimliğiyle Çözmeyi Dene]</strong> sunulur.</td>
         <td class="py-3.5 px-4">İlk kurulumda veya felaket kurtarma sırasında.</td>
         <td class="py-3.5 px-4">Sistem Yöneticisi (Sudo)</td>
       </tr>
@@ -187,14 +187,14 @@
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>3 Sekmeli Log Merkezi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[Tarihsel Sistem] / [Etkileşim] / [KVKK Denetim İzi]</span></td>
         <td class="py-3.5 px-4">Teknik hataları, kullanıcı adımlarını ve resmi KVKK/NDK işlem izlerini denetlemek.</td>
-        <td class="py-3.5 px-4">Denetim İzi sekmesi her kaydın SHA-256 hash zincirini doğrular; dış müdahale şüphesinde kırmızı uyarı verir ve gölge kasadan onarım sunar.</td>
+        <td class="py-3.5 px-4">Denetim İzi sekmesi her kaydın kriptografik hash zinciri ve imzalı doğrulama çapasını kontrol eder; dış müdahale şüphesinde kırmızı uyarı verir ve gölge kasadan onarım sunar.</td>
         <td class="py-3.5 px-4">Arıza incelemelerinde veya resmi denetimlerde.</td>
         <td class="py-3.5 px-4">Sistem Yöneticisi / Denetçi</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Beklenmeyen Hata Penceresi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Global Çökme Koruması</span></td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Beklenmeyen Hata Penceresi & Çökme Günlüğü</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Global Çökme Koruması</span></td>
         <td class="py-3.5 px-4">Beklenmedik bir çalışma hatasında programın aniden kapanmasını önleyip destek kaydı almak.</td>
-        <td class="py-3.5 px-4">Hata ayrıntısını panoya kopyalamaya veya hazır teknik destek e-postası oluşturmaya izin verir; açık bağlantıyı korur.</td>
+        <td class="py-3.5 px-4">Olası sistem çökmeleri oturum tanılama günlüğüne zaman damgasıyla işlenir; arayüz istisnalarında hata ayrıntısını panoya kopyalamaya veya hazır destek e-postası oluşturmaya izin verir.</td>
         <td class="py-3.5 px-4">Beklenmeyen bir yazılım istisnası oluştuğunda.</td>
         <td class="py-3.5 px-4">Tüm Kullanıcılar</td>
       </tr>
@@ -393,7 +393,7 @@ flowchart TB
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.29) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.5.32) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>
