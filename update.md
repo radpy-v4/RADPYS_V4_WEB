@@ -6,6 +6,59 @@ Bu kılavuz; **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## RADPYS V4.0.6.1: Saatlik ve Yarım Gün İzin Yönetimi, Yasal Mazeret İzinleri Hesaplama Güvencesi, 4-Göz Çift Onay Kalkanı ve Kurumsal Veri Güvenliği
+
+### Öne Çıkan Yenilikler
+
+- **Saatlik ve Yarım Gün İzin Desteği:** Personel izin talep ekranına tam günün yanı sıra **Yarım Gün** ve **Saatlik İzin** seçenekleri eklendi; yarım günlük izinlerin yıllık haktan 0,5 gün düşmesi ve saatlik izinlerde başlangıç/bitiş saatlerinin kayıt altına alınması sağlandı.
+- **Yasal Mazeret İzinlerinde Takvim Günü Güvencesi:** Evlilik, ölüm, babalık ve çocuk evliliği gibi kanunen takvim günü esasına tabi mazeret izinlerinin hafta sonu ve resmi tatillere rastlayan günlerinin mevzuata uygun hesaplanması garanti altına alındı; genel mazeret izinlerinin yıllık izin hakkını eksiltmemesi sağlandı.
+- **4-Göz Prensibi (Öz-Onay Engeli) ve Güvenli Onay Kuyruğu:** Onay gerektiren birim amirleri ve yöneticilerin kendi oluşturdukları talep veya bildirimleri kendilerinin onaylamasını engelleyen **4-Göz Çift Onay Kalkanı** devreye alındı; yetkili ve personel kimlik eşleştirmeleri kesinleştirildi.
+- **Eşzamanlı Belge ve Kayıt Numaralama Güvencesi:** Aynı anda birden fazla kullanıcının koruyucu ekipman (RKE), cihaz arıza, hurda (HEK) veya tutanak oluşturması durumunda kayıt numaralarının çakışmasını önleyen kurumsal kilit mekanizması eklendi.
+- **Güvenli Geçici Belge Açıcı ve Sistem Kararlılığı:** Rapor ve resmi evrak görüntülemelerinde bilgisayarda sahipsiz dosya kalmasını önleyen otomatik temizlik mekanizması devreye alındı; ilk giriş parola değişiminde kullanıcı iletişim bilgilerinin korunması sağlandı ve destek paketi oluşturma süreci güçlendirildi.
+
+### Fayda Odaklı Açıklamalar
+
+#### 1. Esnek İzin Talebi ve Hatasız Mevzuat Uyumu
+
+Sağlık çalışanları ve birim sorumluları artık poliklinik veya nöbet mesaileri sırasında ihtiyaç duydukları **Yarım Gün** veya **Saatlik İzin** taleplerini doğrudan sistem üzerinden iletebilir. Yasal mazeret izinlerinde ise takvim günü hesabı otomatik yapılarak personelin hak kaybına uğraması veya mevzuat dışı izin kullanımı tamamen engellenir.
+
+#### 2. Kurumsal Şeffaflık: 4-Göz Prensibi ile Denetlenebilir Onay Süreci
+
+Sağlık Bakanlığı ve kurumsal akreditasyon standartları doğrultusunda, talep sahibi ile onay makamının aynı kişi olamayacağı kuralı sisteme entegre edildi. Bir yönetici kendi adına izin veya işlem başlattığında bu talep doğrudan bir üst onay merciine yönlendirilir, böylece tüm idari kararlar denetim izinde tam tarafsızlıkla belgelenir.
+
+#### 3. Eşzamanlı Çalışmada Sıfır Numara Çakışması ve Veri Güvenliği
+
+Yoğun klinik operasyonlarda teknisyenler, fizikçiler ve idari personelin aynı saniyede arıza, RKE kontrolü veya tutanak kaydetmesi durumunda mükerrer kayıt hatası oluşmaz. Açılan rapor ve evraklar geçici kullanım sonrası güvenle temizlenir; kurumsal sistem ayarları ve kullanıcı bilgileri en üst düzey güvenlik standartlarıyla korunur.
+
+---
+
+## RADPYS V4.0.5.33: Web Portal Nöbet ve İzin Yönetimi Panoları (Faz 4), Yeni Nöbet Kısıt ve İstek Analitiği, Birleşik İzin/Şua/Farazi Planlama ve 2027–2030 Resmi/Dini Tatil Takvimi
+
+### Öne Çıkan Yenilikler
+
+- **Nöbet & İzin Yönetimi Panoları Tamamlandı (3 Grupta 18 Aktif Pano):** Nöbet Yönetimi, Nöbet Devir & Takas Analitiği, yeni **Nöbet Kısıt & İstek Analitiği**, Aylık Mesai & Tatil Cetveli ve **İzin & Hak Ediş Yönetimi** panoları açık ve koyu kurumsal temayla yenilendi; ayrı duran **Şua İzni** ve **Farazi İzin** ekranları İzin & Hak Ediş Yönetimi çatısı altında birleştirilerek Web Portal **3 ana grupta 18 aktif yönetici panosu** yapısına kavuşturuldu.
+- **Yeni Nöbet Kısıt & İstek Analitiği Panosu:** Personelin eğitim ve ders günü kısıtları, nöbet yaz veya nöbet yazma talepleri ile fazla mesai tercihlerinin gerçekleşen nöbet çizelgesiyle ne ölçüde karşılandığını veya hangi zorunlu nedenlerle aşıldığını gösteren yeni karar destek ekranı eklendi; 7 günlük birim kısıt yoğunluğu ile yaş ve kıdem muafiyetleri tek bakışta izlenir hale getirildi.
+- **Birleşik İzin, Şua Bakiye Karnesi ve Farazi İzin Projeksiyonu:** Birim izin matrisi, izin hareketleri, yıl sonu yanma riskini izleyen **Yıllık & Şua Bakiye Karnesi** ve gelecek aylardaki birim kapasite ve çakışma etkisini simüle eden **Farazi İzin Projeksiyonu** tek ekranda toplandı; sağlık mazereti gibi özel nitelikli izin açıklamaları yetkisiz roller için otomatik gizlendi.
+- **Nöbet Yönetimi ve Nöbet Devir/Takas İzlenebilirliği:** Nöbet Yönetimi ekranında dini ve resmi bayram ayrımlı adalet sayacı, 12 aylık borç/alacak matrisi ve birim × kural çapraz ihlal matrisi devreye alındı; **Nöbet Devir & Takas Analitiği** ekranında karşılıklı takasların her iki vardiya ayağı, 3 aşamalı onay süreleri ve aşırı devir yoğunluğu uyarıları netleştirildi.
+- **2027–2030 Diyanet Dini Bayram Takvimi ve Hatasız Mesai Hesabı:** 2027–2030 yıllarına ait Ramazan ve Kurban Bayramları ile Arife yarım günleri sisteme hazır tanımlandı; milli bayramlarla dini bayramların aynı güne denk geldiği yıllarda mükerrer tatil düşümü engellendi ve artık yıllar (366 gün) otomatik hesaplamaya dahil edildi.
+- **Karar Destek Analizleri, Canlı Veri Tazeliği ve Denetim Paketi PDF Çıktısı:** Dozimetre ekranına yıllık **ALARA Doz Bütçesi** ve özel izlem radarı, Olay Bildirimi ekranına yanıt süresi ve kök neden dağılım analizi, Denetim Panosu'na tek tıkla kurumsal **Denetim Paketi (PDF)** çıktısı ve tüm panolara son veri çekim zamanını gösteren **Veri Tazeliği Göstergesi** eklendi; Portal Sunucusunun masaüstü programından bağımsız başlatılmasındaki açılış uyumluluğu güçlendirildi.
+
+### Fayda Odaklı Açıklamalar
+
+#### 1. Adil Nöbet Dağıtımı, Şeffaf Talep Karşılama ve Kesintisiz Devir Takibi
+
+Birim sorumluları ve nöbet planlayıcıları artık **Nöbet Yönetimi** panosundan dini ve resmi bayram yüklerini ayrı izleyebilir, 12 aylık borç/alacak bakiyelerini tek tabloda karşılaştırabilir ve hangi kuralın hangi birimde ihlale yol açtığını çapraz matristen görebilir. Yeni **Nöbet Kısıt & İstek Analitiği** panosu sayesinde eğitim günü kısıtları ve nöbet tercihlerinin çizelgeye yansıma oranı şeffafça denetlenir; **Nöbet Devir & Takas Analitiği** ekranı ise karşılıklı takaslardaki tüm vardiya eşleşmelerini ve onay gecikmelerini tek ekranda toplar.
+
+#### 2. Tek Ekranda Yıllık İzin, Şua Yanma Riski ve Kapasite Simülasyonu
+
+Daha önce farklı menülerde izlenen yıllık izin hareketleri, 50 saate 1 gün **Şua İzni** bakiye karnesi ve ileri tarihli **Farazi İzin** kapasite simülasyonu **İzin & Hak Ediş Yönetimi** altında dört sekmede birleştirildi. Yöneticiler ve RKS'ler yıl bitmeden yanma riski taşıyan Şua hak edişlerini tespit ederken, aynı anda birim bazlı çakışma simülasyonu ile nöbet kadro dengesini koruyabilir ve kişisel sağlık mahremiyetinden ödün vermeden planlama yapabilir.
+
+#### 3. Çok Yıllı Resmi/Dini Tatil Güvencesi ve Denetime Hazır Kurumsal Raporlama
+
+**Aylık Mesai & Tatil Cetveli** artık 2026–2030 dönemindeki tüm resmi tatilleri, Diyanet dini bayramlarını ve Arife yarım günlerini hazır barındırır; aynı tarihe rastlayan milli ve dini tatillerde yanlış eksik mesai düşümünü önler. Tüm yönetici panolarındaki **Veri Tazeliği Göstergesi**, 1.000 kaydı aşan yoğun dönemler için filtreleme hatırlatması ve Denetim Panosu'ndaki tek tıkla **Denetim Paketi (PDF)** çıktısı sayesinde SKS ve NDK denetim hazırlıkları hızlanır.
+
+---
+
 ## RADPYS V4.0.5.32: Web Portal Faz 2 ve Faz 3 Panoları, Merkezi Güvenlik Kasası, Genişletilmiş NDK Doz Kilitleri ve Zorunlu Eğitim Matrisi
 
 ### Öne Çıkan Yenilikler

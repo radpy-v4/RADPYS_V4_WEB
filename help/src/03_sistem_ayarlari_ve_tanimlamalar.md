@@ -123,7 +123,7 @@ flowchart TB
 ### 3. Resmi ve Dini Tatil Takvimini Otomatik Oluşturma
 
 1. **[Sistem Tanımları] > [Resmi/Dini Tatiller]** ekranını açın; araç çubuğundaki **[Resmi Tatilleri Ekle]** butonuna tıklayıp yılı girerek 8 sabit resmi tatili (1 Ocak, 23 Nisan, 1 Mayıs, 19 Mayıs, 15 Temmuz, 30 Ağustos ve 28–29 Ekim dahil) tek seferde ekleyin.
-2. Ramazan veya Kurban Bayramı eklemek için **[Yeni]** butonuna basıp bayram türünü seçin, **[Tüm bayram günlerini otomatik oluştur (Arife + Bayram)]** kutusu aktifken yalnızca **Arife** gününün tarihini girip **[Kaydet]** butonuna tıklayın.
+2. 2026–2030 yılları arasındaki resmi tatiller ile Diyanet dini bayramları ve Arife yarım günleri (aynı tarihe denk gelen milli ve dini tatillerin tekilleştirilmesi dahil) sistemde hazır tanımlı gelir; sonraki yıllar için **[Yeni]** butonuna basıp bayram türünü seçin, **[Tüm bayram günlerini otomatik oluştur (Arife + Bayram)]** kutusu aktifken yalnızca **Arife** gününün tarihini girip **[Kaydet]** butonuna tıklayın.
 
 ### 4. E-Posta (SMTP), Otomatik Bildirimler ve Web Portal 2FA Kurulumu
 

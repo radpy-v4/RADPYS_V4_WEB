@@ -582,15 +582,15 @@
         "tone": "emerald"
       },
       "cardTitle": "22. Web Portalı ve Yönetici Gösterge Panelleri",
-      "cardDesc": "3 grupta 19 yönetici gösterge paneli ve 3 alt grupta 10 mobil/PWA uyumlu saha formu, kamera ile QR okuma, hızlı portal servis yöneticisi ve güvenli dış erişim.",
+      "cardDesc": "3 grupta 18 yönetici gösterge paneli (nöbet adalet/devir/kısıt/istek, birleşik izin/Şua/farazi ve sağlık/cihaz analizleri) ile 3 alt grupta 10 mobil/PWA uyumlu saha formu, kamera ile QR okuma, hızlı portal servis yöneticisi ve güvenli dış erişim.",
       "tags": [
-        "19 Gösterge Paneli",
+        "18 Gösterge Paneli",
         "10 Saha Formu",
         "Mobil & PWA",
         "Güvenli Dış Erişim"
       ],
       "footerLabel": "Web Portal & Analitik",
-      "searchKeywords": "22 web portal yonetici gosterge panelleri dashboard saha formu mobil pwa qr tarama genel bakis nobet saglik rke cihaz lms kpi grafik analitik"
+      "searchKeywords": "22 web portal yonetici gosterge panelleri dashboard saha formu mobil pwa qr tarama genel bakis nobet kisit istek devir takas farazi izin sua denetim paketi saglik rke cihaz lms kpi grafik analitik"
     },
     {
       "slug": "23_rapor_tutanak_merkezi",
