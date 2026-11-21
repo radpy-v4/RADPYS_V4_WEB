@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.1</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.2</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -164,17 +164,17 @@
         <td class="py-3.5 px-4">Radyasyon Çalışanları / İK</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Tarih ve Aktif Nöbet Çakışma Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Otomatik Kayıt Denetimi</span></td>
-        <td class="py-3.5 px-4">Personelin nöbet gününde veya başka izniyle kesişen tarihlerde izin almasını engellemek.</td>
-        <td class="py-3.5 px-4">Seçilen tarihlerde personelin onaylı/bekleyen başka bir izni veya aktif nöbet görevi bulunuyorsa işlem durdurulur.</td>
-        <td class="py-3.5 px-4">İzin talebi kaydedilirken.</td>
-        <td class="py-3.5 px-4">Sistem (Otomatik Kilit)</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Tarih ve Aktif Nöbet Çakışma Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Otomatik Kayıt &amp; İkame Denetimi</span></td>
+        <td class="py-3.5 px-4">Yayınlanmış nöbet çizelgesiyle planlı izinlerin çakışmasını önlemek ve acil raporlarda boşluğu yakalamak.</td>
+        <td class="py-3.5 px-4">Yayınlanmış nöbet varken planlı izin talebi engellenir; acil rapor veya mazeret izni onaylandığında ise çakışan nöbet otomatik boşaltılıp birim sorumlusuna ikame uyarısı iletilir ve belge zorunlu türlerde onay öncesi kanıt evrakı aranır.</td>
+        <td class="py-3.5 px-4">İzin talebi kaydedilirken veya onaylanırken.</td>
+        <td class="py-3.5 px-4">Sistem (Otomatik Kilit) / Birim Amiri</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Tam Gün / Yarım Gün / Saatlik Hesap</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[İzin Bilgileri] Süre Seçimi</span></td>
-        <td class="py-3.5 px-4">İzin türünün hafta sonu ve resmi tatil kurallarına göre net düşüm süresini hesaplamak.</td>
-        <td class="py-3.5 px-4">Seçilen süre tipi ile hafta sonu ve resmi tatil dahil edilme ayarlarına göre düşülecek gün veya saat miktarını otomatik belirler.</td>
-        <td class="py-3.5 px-4">İzin formu doldurulurken.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Tam Gün / Yarım Gün / Saatlik ve Yıl Aşan Hesap</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[İzin Bilgileri] Süre Seçimi</span></td>
+        <td class="py-3.5 px-4">İzin türünün hafta sonu, resmi tatil ve günlük mesai saatine göre net düşümünü hesaplamak.</td>
+        <td class="py-3.5 px-4">Saatlik izinleri kurumun günlük mesai saatine bölerek ondalık güne çevirir, yılbaşına sarkan izinleri ilgili takvim yıllarına paylaştırır ve belge zorunlu türlerde onay öncesi kanıt arar.</td>
+        <td class="py-3.5 px-4">İzin formu doldurulurken ve onaylanırken.</td>
         <td class="py-3.5 px-4">Personel / Birim Amiri</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
@@ -186,8 +186,8 @@
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Devir Aktar (Önceki Yıldan)] ve Yıl Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Yıl Sonu Kesinleştirme Motoru</span></td>
-        <td class="py-3.5 px-4">Kapanan yılın kalan yıllık iznini aktarmak, Şua hakkını kesinleştirmek ve kaynak yılı dondurmak.</td>
-        <td class="py-3.5 px-4">Yalnızca tamamlanmış önceki yıl için çalışır; kurum devir ayarı (varsayılan 5 gün) kadar devreder, 12 aylık fiili hizmetten yeni yıl Şua hakkını kesinleştirir ve yılı kilitler.</td>
+        <td class="py-3.5 px-4">Kapanan yılın kalan yıllık iznini tekrarsız aktarmak, Şua hakkını kesinleştirmek ve kaynak yılı dondurmak.</td>
+        <td class="py-3.5 px-4">Yalnızca tamamlanmış önceki yıl için çalışır; Şua izni devrini kesin olarak reddeder, tekrar çalıştırılsa dahi bakiyeyi bozmadan kurum devir tavanı (varsayılan 5 gün) kadar aktarır ve yılı kilitler.</td>
         <td class="py-3.5 px-4">Yıl başında devir aktarımı yapılırken.</td>
         <td class="py-3.5 px-4">Sistem Yöneticisi / İK</td>
       </tr>
@@ -415,7 +415,7 @@ flowchart TB
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.1) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.2) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>

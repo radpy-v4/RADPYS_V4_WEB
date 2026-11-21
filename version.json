@@ -1,10 +1,10 @@
 {
-  "version": "4.0.6.1",
-  "release_version": "4.0.6.1",
-  "build_version": "4.0.6.1",
-  "latest_demo_version": "4.0.6.1",
-  "release_date": "2026-11-21",
+  "version": "4.0.6.2",
+  "release_version": "4.0.6.2",
+  "build_version": "4.0.6.2",
+  "latest_demo_version": "4.0.6.2",
+  "release_date": "2026-11-22",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.6.1: Kurumsal Güvenlik ve Mimari Bütünlük (Faz 1) paketi devreye alındı. Fail-closed RBAC, kullanıcı özel yetkileri ve 4-göz öz-onay kalkanı, evrensel kimlik uzayı ayrımı, saatlik ve yarım gün izin desteği ile mazeret izinleri yasal gün hesaplamaları, eşzamanlı kod üretim kilitleri (TOCTOU), güvenli geçici dosya temizliği (TempFileOpener) ve şema kısıt bütünlüğü sağlandı.",
+  "changelog": "RADPYS V4.0.6.2: Kurumsal Güvenlik ve İş Kuralları Bütünlüğü (Faz 2 & Faz 3) paketi devreye alındı. Çoklu birim kapsam izolasyonu, personel özlük/gebelik yaşam döngüsü ve güvenli toplu aktarım, izin-nöbet çakışma ve acil mazeret ikame senkronizasyonu, hibrit FHZ/Şua vardiya ve Arife yarım gün hesabı, RGS/RSO sertifika sürüm koruması ve Hizmet İçi Eğitim/LMS şifreli kasa ve sınav iyileştirmeleri tamamlandı.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }

@@ -6,6 +6,33 @@ Bu kılavuz; **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## RADPYS V4.0.6.2: Çoklu Birim Kapsam Güvencesi, KVKK Evrak Kasası Koruması, Gebelik Yaşam Döngüsü, Çakışma Kontrollü İzin/FHZ Hesabı ve Eğitim/RGS İyileştirmeleri
+
+### Öne Çıkan Yenilikler
+
+- **Çoklu Birim ve Alt Birim Kapsam Güvencesi:** Birden fazla kliniğin veya alt birimin sorumluluğunu üstlenen yöneticilerin Genel Bakış, Dozimetre kokpitleri, Merkezi Onaylar, İzin, Eğitim ve Hızlı Arama (Ctrl+K) ekranlarında yalnızca yetkili oldukları birimlerin verilerine tam ve güvenli şekilde erişmesi sağlandı.
+- **Sistem Yöneticisi Hesap Dokunulmazlığı ve Bakım Güvenliği:** Yönetici hesaplarının yetkisiz kişilerce değiştirilmesi veya geri yüklenmesi tamamen engellendi; Veritabanı Bakım, şifreli yedekleme/geri yükleme ve KVKK Denetim İzi ekranları yalnızca Sistem Yöneticisi yetkisine sınırlandırıldı.
+- **KVKK Evrak Kasası ve Otomatik Saklama Süresi Koruması:** Kişisel sağlık, izin, dozimetre, gebelik ve eğitim belgelerinde kişi ve birim sahipliği denetimi sıkılaştırıldı; aktif kullanımdaki hiçbir resmi belgenin silinmemesi garanti altına alınırken yasal saklama süresi dolan yetim dosyalar için otomatik temizlik koruması devreye alındı.
+- **Gebelik Doktor Raporu Ekleme ve Doğum/Emzirme Geçişi:** Gebelik bildirimi penceresine doğrudan doktor raporu ekleme seçeneği kazandırıldı ve aktif gebeliği bulunan çalışanlarda doğum sonrası emzirme/süt izni dönemine geçiş işlemi personel kartına bağlandı; toplu Excel aktarımında eksik bırakılan sütunların mevcut personel bilgilerini ezmesi önlendi.
+- **Nöbet Çakışma Kontrollü İzin, Yıl Aşan İzin Paylaştırması ve Güvenli Yıl Sonu Devir:** Yayınlanmış nöbet çizelgesinde aktif nöbeti bulunan personele çakışan izin açılması engellendi; saatlik izinlerin kurumun günlük mesai saatine göre hesaplanması, yılbaşına sarkan izinlerin ilgili yıllara adil paylaştırılması ve yıl sonu izin devrinin mükerrer çalıştırılsa dahi bakiyeyi bozmaması sağlandı.
+- **Hatasız Fiili Hizmet (FHZ), EK-2 Şua, RGS/RSO ve Hizmet İçi Eğitim Takibi:** Fiili Hizmet hesaplamasında aynı gün vardiya ve nöbet saatinin mükerrer toplanması önlendi, Arife yarım gün tatilleri ve yıl içinde emekli olan/ayrılan personelin SGK puantajları korundu; RGS/RSO görevlendirmelerinde çakışma ve belge sürüm koruması, Hizmet İçi Eğitimde ise tam takvim ayı geçerlilik hesabı, görselli sınav soruları ve 15 gün erken uyarı bildirimleri iyileştirildi.
+
+### Fayda Odaklı Açıklamalar
+
+#### 1. Birim Sorumluları İçin Net Kapsam Sınırı ve Güçlendirilmiş KVKK Mahremiyeti
+
+Birden fazla görüntüleme ünitesinden sorumlu başteknisyenler ve birim amirleri, hem masaüstü uygulamasında hem Web Portalında tüm sorumlu birimlerini ve bağlı alt ünitelerini tek seferde görüntülerken yetkileri dışındaki kliniklerin özel nitelikli sağlık ve özlük verilerine erişemez. Şifreli evrak kasasından açılan belgeler yalnızca yetkili oturum sahibi doğrulandıktan sonra görüntülenir ve geçici çalışma dosyaları oturum başında/sonunda otomatik temizlenir.
+
+#### 2. Doğru İzin Düşümü, Nöbet Çakışma Önleme ve Kesin SGK / Şua Puantajı
+
+İzin talebi oluşturulurken veya onaylanırken çalışanın yayındaki nöbet çizelgesi otomatik kontrol edilerek nöbet gününde açık vardiya kalması engellenir; acil rapor ve mazeret durumlarında ise birim sorumlusuna anında ikame uyarısı üretilir. Fiili Hizmet ve EK-2 Şua hesaplamasında Arife yarım günleri, çakışan izin tarihleri ve vardiya süreleri eksiksiz ayrıştırılır; yıl içinde kurumdan ayrılan veya emekli olan çalışanların hak edilmiş dönem kayıtları resmi SGK ve Şua raporlarında eksiksiz yer alır.
+
+#### 3. Kesintisiz Gebelik Takibi, RKS Belge Arşivi ve Online Sınav Güvenilirliği
+
+Kadın radyasyon çalışanlarının gebelik bildirimleri doktor raporuyla birlikte kayıt altına alınır ve doğum gerçekleştiğinde tek adımda emzirme/süt izni koruma fazına geçirilir. Periyodik sağlık muayenesi Word raporlarında yalnızca hekimin girdiği gerçek branş bulguları ve nihai uygunluk kararı yer alır; RGS/RSO görevlendirmelerinde taslak ve imzalı atama yazılarının sürüm zinciri korunur; Hizmet İçi Eğitim modülünde ise masaüstü sınava giriş seçeneği, matematiksel semboller veya radyolojik görseller içeren sınav soruları ve tam takvim ayına dayalı geçerlilik takibi güvenle sunulur.
+
+---
+
 ## RADPYS V4.0.6.1: Saatlik ve Yarım Gün İzin Yönetimi, Yasal Mazeret İzinleri Hesaplama Güvencesi, 4-Göz Çift Onay Kalkanı ve Kurumsal Veri Güvenliği
 
 ### Öne Çıkan Yenilikler

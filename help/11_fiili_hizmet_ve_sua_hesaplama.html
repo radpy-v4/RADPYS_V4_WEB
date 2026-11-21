@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.1</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.2</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -165,8 +165,8 @@
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Koşul A / Koşul B ve İzin Düşümü</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Net Fiili Saat Motoru</span></td>
-        <td class="py-3.5 px-4">Radyasyonlu alanda çalışma sürelerini idari/destek çalışmasından kesin olarak ayırmak.</td>
-        <td class="py-3.5 px-4">Radyasyon çalışanlarında Koşul A (7.0 saat), idari/izlenen çalışanlarda Koşul B (8.0 saat) esas alınır; resmi tatil ve onaylı izinler düşülür.</td>
+        <td class="py-3.5 px-4">Radyasyonlu alanda çalışma sürelerini mükerrer sayım olmadan idari çalışmadan ayırmak.</td>
+        <td class="py-3.5 px-4">Radyasyon çalışanlarında Koşul A (7.0 saat), idari/izlenen çalışanlarda Koşul B (8.0 saat) esas alınır; aynı gün nöbet ve görev dağılımı mükerrer toplanmaz, Arife yarım günleri (0,5 gün) ve tekilleştirilmiş onaylı izinler düşülür.</td>
         <td class="py-3.5 px-4">2. sekmede hesaplama çalışırken.</td>
         <td class="py-3.5 px-4">Hesaplama Motoru</td>
       </tr>
@@ -178,10 +178,10 @@
         <td class="py-3.5 px-4">Sistem Güvenlik Kilidi</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>EK-2 Kümülatif Şua ve Aylık Tam Dilim</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Şişme Önleyici Barem</span></td>
-        <td class="py-3.5 px-4">Yıllık toplamı 32162 Yönetmelik EK-2'ye göre hesaplarken aylık ara görünümlerde hata oluşmasını önlemek.</td>
-        <td class="py-3.5 px-4">Yıllık kümülatif toplamda her 50 saatlik dilim 1 gün (0–50s: 1 gün, 1.451–1.500+s: azami 30 gün) sayılır; tekil aylık satırlarda ise yalnızca tam 50 saatlik bloklar gösterilir.</td>
-        <td class="py-3.5 px-4">Aylık ve yıllık hesaplamada.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>EK-2 Kümülatif Şua ve Emekli/Ayrılan Koruması</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Şişme Önleyici Barem &amp; Resmi Rapor</span></td>
+        <td class="py-3.5 px-4">Yıllık toplamı 32162 Yönetmelik EK-2'ye göre hesaplarken ayrılan personelin puantajını korumak.</td>
+        <td class="py-3.5 px-4">Yıllık kümülatif toplamda her 50 saatlik dilim 1 gün (azami 30 gün) sayılır; o dönem çalışması bulunan yıl içinde ayrılmış veya emekli olmuş personeller de resmi SGK/Şua çıktılarında eksiksiz listelenir.</td>
+        <td class="py-3.5 px-4">Aylık/yıllık hesaplama ve raporlamada.</td>
         <td class="py-3.5 px-4">Radyasyon Çalışanları / İK</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
@@ -426,7 +426,7 @@ flowchart TB
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.1) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.2) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>

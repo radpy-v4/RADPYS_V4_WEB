@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.1</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.2</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -179,23 +179,23 @@
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Görselli Soru Havuzu &amp; [Excel'den Soru Yükle]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[Başka Eğitimden Kopyala...]</span></td>
-        <td class="py-3.5 px-4">Çoktan seçmeli soru bankasını radyolojik görsellerle ve toplu aktarımla hızla hazırlamak.</td>
-        <td class="py-3.5 px-4">Soru köküne ve A–D şıklarına görsel ekler; şablondan toplu yükleme veya önceki dönem eğitiminden soru kopyalama yapar.</td>
+        <td class="py-3.5 px-4">Çoktan seçmeli soru bankasını radyolojik görsellerle ve doğrulanmış aktarımla hızla hazırlamak.</td>
+        <td class="py-3.5 px-4">Soru köküne ve A–D şıklarına görsel ekler (yalnızca görsel içeren şıkları da korur); Excel/CSV aktarımında başlık eşleştirmesi ve geçerli doğru şık doğrulaması yapar.</td>
         <td class="py-3.5 px-4">Sınav soruları hazırlanırken.</td>
         <td class="py-3.5 px-4">Sınav Komisyonu / RKS</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Dinamik Karıştırmalı Online Sınav &amp; Tescil</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[Sınavı Tamamla ve Gönder]</span></td>
         <td class="py-3.5 px-4">Kopyayı engellemek ve başarı barajını geçen eğitimi bekletmeden onaylamak.</td>
-        <td class="py-3.5 px-4">Her denemede soru ve şık sırasını karıştırır; baraj altında sınırsız tekrar hakkı verir; sınavsız eğitim ise okuma onayıyla tescillenir.</td>
+        <td class="py-3.5 px-4">Matematiksel semboller (&lt;, &gt;) dahil tüm soru metinlerini eksiksiz gösterir, her denemede soru/şık sırasını karıştırır ve yalnızca aktif ataması bulunan çalışanın sınavını tesciller.</td>
         <td class="py-3.5 px-4">Çalışan eğitimi tamamlarken.</td>
         <td class="py-3.5 px-4">Tüm Çalışanlar</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>15 Gün Erken Uyarı Bildirim Motoru</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Mükerrer Bildirim Koruması</span></td>
-        <td class="py-3.5 px-4">Geçerlilik süresi dolmak üzere olan eğitimlerin unutulmasını önlemek.</td>
-        <td class="py-3.5 px-4">Sürenin dolmasına 15 gün ve daha az kalan eğitimleri otomatik tarayıp ilgili çalışana günde en fazla bir kez hatırlatma gönderir.</td>
-        <td class="py-3.5 px-4">Zamanlanmış kontrolde.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Takvim Ayı Geçerlilik &amp; 15 Gün Bildirim Motoru</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Mükerrer Bildirim Koruması</span></td>
+        <td class="py-3.5 px-4">Eğitim geçerlilik süresini tam takvim ayına göre hesaplamak ve bitiş öncesi hatırlatmak.</td>
+        <td class="py-3.5 px-4">Geçerlilik bitişini sabit 30 gün yerine gerçek takvim ayına göre hesaplar; süresine 15 gün ve daha az kalan eğitimler için ilgili çalışana günde en fazla bir kez hatırlatma gönderir.</td>
+        <td class="py-3.5 px-4">Kayıt tescilinde ve zamanlanmış kontrolde.</td>
         <td class="py-3.5 px-4">Sistem Otomatik / Çalışan</td>
       </tr>
     </tbody>
@@ -426,7 +426,7 @@ flowchart TB
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.1) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.2) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>
