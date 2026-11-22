@@ -1,10 +1,10 @@
 {
-  "version": "4.0.6.2",
-  "release_version": "4.0.6.2",
-  "build_version": "4.0.6.2",
-  "latest_demo_version": "4.0.6.2",
+  "version": "4.0.6.6",
+  "release_version": "4.0.6.6",
+  "build_version": "4.0.6.0",
+  "latest_demo_version": "4.0.6.6",
   "release_date": "2026-11-22",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.6.2: Kurumsal Güvenlik ve İş Kuralları Bütünlüğü (Faz 2 & Faz 3) paketi devreye alındı. Çoklu birim kapsam izolasyonu, personel özlük/gebelik yaşam döngüsü ve güvenli toplu aktarım, izin-nöbet çakışma ve acil mazeret ikame senkronizasyonu, hibrit FHZ/Şua vardiya ve Arife yarım gün hesabı, RGS/RSO sertifika sürüm koruması ve Hizmet İçi Eğitim/LMS şifreli kasa ve sınav iyileştirmeleri tamamlandı.",
+  "changelog": "RADPYS V4.0.6.6: Web Portal ve Mobil QR Arayüzü Güvenlik, BOLA ve KVKK Evrak Kasası Sertleştirme Paketi (Faz 7) devreye alındı. Çoklu birim kapsam izolasyonu, 60 saniyelik imzalı belge indirme bileti, SHA-256 evrak bütünlük doğrulaması, oturuma bağlı CSRF/CORS kalkanı, gerçek IP tabanlı dış ağ 2FA koruması, HBYS resmi onay kilidi ve tek uçuşlu kat planı görselleştirme güvencesi tamamlandı.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }

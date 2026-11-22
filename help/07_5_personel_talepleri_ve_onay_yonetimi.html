@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.2</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.6</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -158,9 +158,9 @@
     <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Yayınlanmış Ay Güvenlik Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Plan Bütünlük Koruması</span></td>
-        <td class="py-3.5 px-4">İlan edilmiş nöbet çizelgesinin sonradan açılan taleplerle bozulmasını engellemek.</td>
-        <td class="py-3.5 px-4">İlgili dönemin nöbet planı yayınlanmış durumdaysa o aya yeni talep kaydı engellenir; değişiklik için devir/mazeret akışı gerekir.</td>
-        <td class="py-3.5 px-4">Talep kaydedilirken.</td>
+        <td class="py-3.5 px-4">İlan edilmiş nöbet çizelgesinin sonradan açılan, değiştirilen veya silinen taleplerle bozulmasını engellemek.</td>
+        <td class="py-3.5 px-4">İlgili dönemin nöbet planı yayınlanmış veya arşivlenmiş durumdaysa yeni talep ekleme, <strong>[İsteği Güncelle]</strong>, <strong>[İsteği Sil]</strong> ve <strong>[Ders Programını Revize Et]</strong> işlemleri kilitlenir; değişiklik için devir/mazeret akışı kullanılır.</td>
+        <td class="py-3.5 px-4">Talep ekleme, güncelleme, revizyon veya silmede.</td>
         <td class="py-3.5 px-4">Sistem Kilidi</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
@@ -173,7 +173,7 @@
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Hafta İçi Ders Seçimi &amp; [Ders Programını Revize Et]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Dönem İçi Güncelleme</span></td>
         <td class="py-3.5 px-4">Lisansüstü dersi olan personelin sadece hafta içi ders günlerini korumak ve dönem içi değişikliği izlemek.</td>
-        <td class="py-3.5 px-4">Eğitim türünde yalnızca <em>Pazartesi–Cuma</em> günleri aktifleşir; dönem ortasında gün değişirse eski talep dondurulup revizyon tarihinden yeni kısıt açılır.</td>
+        <td class="py-3.5 px-4">Eğitim türünde yalnızca <em>Pazartesi–Cuma</em> günleri aktifleşir; taslak dönemde gün değişirse eski talep dondurulup revizyon tarihinden yeni kısıt açılır.</td>
         <td class="py-3.5 px-4">Eğitim talebinde ve revizyonda.</td>
         <td class="py-3.5 px-4">Personel / Birim Amiri</td>
       </tr>
@@ -185,10 +185,10 @@
         <td class="py-3.5 px-4">Talep Eden / Amir</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Onayla] &amp; [Reddet] Karar Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Amir Onay Süzgeci</span></td>
-        <td class="py-3.5 px-4">Beklemede kalan veya hizmeti aksatan taleplerin çizelgeyi etkilemesini önlemek.</td>
-        <td class="py-3.5 px-4">Yalnızca <strong>[Onayla]</strong> verilen kayıtlar motor kısıtı olur; <strong>[Reddet]</strong> edilen talepler motor tarafından tamamen yok sayılır.</td>
-        <td class="py-3.5 px-4">Ay öncesi incelemede.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Onayla] &amp; [Reddet] Karar ve Yeniden Onay Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Amir Onay Süzgeci &amp; Birim Kapsamı</span></td>
+        <td class="py-3.5 px-4">Onaysız veya sonradan saati/tarihi değiştirilen taleplerin çizelgeyi kendiliğinden etkilemesini önlemek.</td>
+        <td class="py-3.5 px-4">Onay yetkisi olmayan kullanıcıların açtığı veya tarih/saat/tür değiştirdiği talepler otomatik olarak <em>Beklemede</em> durumuna düşer; yalnızca yetkili birim kapsamındaki amirin <strong>[Onayla]</strong> verdiği kayıtlar motor kısıtı olur.</td>
+        <td class="py-3.5 px-4">Yeni kayıtta, içerik değişiminde ve incelemede.</td>
         <td class="py-3.5 px-4">Birim Sorumlusu / Yönetici</td>
       </tr>
     </tbody>
@@ -301,7 +301,7 @@
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.2) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.6) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>

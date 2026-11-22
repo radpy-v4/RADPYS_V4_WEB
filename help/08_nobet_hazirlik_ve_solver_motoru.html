@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.2</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.6</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -164,17 +164,17 @@
         <td class="py-3.5 px-4">Nöbet Planlama Sorumlusu</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Otomatik Oluştur] ve Mutabakat Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Akıllı Dağıtım Motoru</span></td>
-        <td class="py-3.5 px-4">İki ay önceki fazla mesai bakiyesi eksik kalmadan çakışmasız çizelge üretmek.</td>
-        <td class="py-3.5 px-4">Planlanan aydan iki ay önceki dönemin mutabakatını denetler; eksik varsa işlemi durdurur, hazırsa taslağı yedekleyip dağıtımı arka planda çalıştırır.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Otomatik Oluştur], Taslak Kilidi ve Mutabakat</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Akıllı Dağıtım Motoru</span></td>
+        <td class="py-3.5 px-4">İki ay önceki birim mutabakatı eksik kalmadan ve onaylı/gerçekleşmiş nöbetleri bozmadan çizelge üretmek.</td>
+        <td class="py-3.5 px-4">Yalnızca <em>Taslak</em> durumundaki planlarda çalışır (<em>Birim Onaylı</em>/<em>Yayında</em>/<em>Arşiv</em> planları ve gerçekleşmiş, devredilmiş veya ikame nöbetleri korur); ilgili birimin iki ay önceki yayınlanmış mutabakatını doğrular.</td>
         <td class="py-3.5 px-4">Taslak matrisinde başlatıldığında.</td>
         <td class="py-3.5 px-4">Birim Sorumlusu / Motor</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Otomatik Taslak Yedeği ve [Yedek Yükle]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Tek Tıkla Taslak Kurtarma</span></td>
-        <td class="py-3.5 px-4">Otomatik oluşturma sonucunda önceki manuel düzenlemelerin kaybolmasını engellemek.</td>
-        <td class="py-3.5 px-4">Her otomatik oluşturma öncesinde taslak otomatik yedeklenir ve istenildiğinde <strong>[Yedek Yükle]</strong> ile önceki duruma tek tıkla geri dönülür.</td>
-        <td class="py-3.5 px-4">Her otomatik dağıtım öncesi.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Otomatik Taslak Yedeği, [Yedek Yükle] ve Toplu Aktarım</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Kısıt Doğrulamalı Taslak Kurtarma</span></td>
+        <td class="py-3.5 px-4">Otomatik oluşturma öncesi manuel taslağı korumak ve yedek/Excel yüklemelerinin yayındaki planları ezmesini engellemek.</td>
+        <td class="py-3.5 px-4">Yedekten geri yükleme ve toplu Excel nöbet aktarımı yalnızca <em>Taslak</em> planlara izin verir; aktarılan her satır onaylı izin, sağlık kısıtı ve çakışma denetiminden geçirilerek aylık özetlere işlenir.</td>
+        <td class="py-3.5 px-4">Dağıtım öncesi, yedek yükleme veya Excel aktarımında.</td>
         <td class="py-3.5 px-4">Sistem Otomatik / Sorumlu</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
@@ -192,10 +192,10 @@
         <td class="py-3.5 px-4">Yetkili Yönetici</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Ay Ortası Plan İptali] ve 3 Gün Kuralı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Kesim Tarihi &amp; Şifre Doğrulama</span></td>
-        <td class="py-3.5 px-4">Yayındaki planda olağanüstü kriz anında gerçekleşen nöbetleri silmeden gelecek günleri iptal etmek.</td>
-        <td class="py-3.5 px-4">Kesim tarihi bugünden en fazla 3 gün geriye seçilir; en az 20 karakter gerekçe ve yönetici şifresiyle gelecek slotlar iptal edilip plan taslağa alınır.</td>
-        <td class="py-3.5 px-4">Acil revizyon gerektiğinde.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Ay Ortası Plan İptali] ve Arşiv Revizyon Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Bugün Sınırı, İptal İzi &amp; Şifre Doğrulama</span></td>
+        <td class="py-3.5 px-4">Henüz tutulmamış gelecek nöbetlerin gerçekleşmiş sayılmasını ve diğer birimlerin dönem kilidinin bozulmasını önlemek.</td>
+        <td class="py-3.5 px-4">Kesim tarihi bugünü aşamaz ve en fazla 3 gün geriye seçilir; kesim sonrası nöbetler silinmeyip gerekçesiyle <em>İptal</em> işaretlenir, bağlı havuz/devir talepleri kapatılır. Arşivden revizyona açma ise yönetici şifresi ister ve diğer birimlerin Fiili Hizmet dönem kilidini korur.</td>
+        <td class="py-3.5 px-4">Acil ay ortası veya arşiv revizyonunda.</td>
         <td class="py-3.5 px-4">Yönetici (Şifre Onaylı)</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
@@ -443,7 +443,7 @@ flowchart TB
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.2) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.6) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>

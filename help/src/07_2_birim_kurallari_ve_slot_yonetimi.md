@@ -11,7 +11,7 @@
     }
   ],
   "readingTime": "4 Dakika",
-  "legalNote": "<strong>Önemli Uyarı:</strong> [Birim Kuralını Kopyala] işlemi çalıştırıldığında hedef birimdeki mevcut tüm nöbet slotları tamamen silinir ve kaynak birimdeki slotlar sıfırdan oluşturulur; kopyalama öncesi hedef birimi mutlaka doğrulayın."
+  "legalNote": "<strong>Önemli Uyarı:</strong> [Birim Kuralını Kopyala] işlemi hedef birimin şablonunu kaynak birimle eşitlerken geçmiş nöbet kaydı bulunan eski slotları silmez, geçmiş çizelge bütünlüğü için pasife alır; kopyalama öncesi hedef birimi mutlaka doğrulayın."
 }
 ---
 
@@ -43,7 +43,8 @@ Bitiş saati gece yarısı devri dahil otomatik hesaplanır; dağıtım motoru b
 | <strong>Nöbetçi Sayısı ve Hizmet Tipi Kapsamı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Kontenjan ve Meslek Grubu</span> | Slotta aynı anda kaç kişinin ve hangi meslek grubunun nöbet tutacağını belirlemek. | Nöbetçi sayısı günlük zorunlu kişi adedini belirler; hizmet tipi boş bırakılırsa birimdeki tüm gruplara, seçilirse yalnızca ilgili gruba atanır. | Slot tanımlanırken. | Birim Sorumlusu / Başhekimlik |
 | <strong>Gün Kapsamı, Tatil ve 24 Saat Seçenekleri</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[24 Saat Tutulabilir] &amp; Tatil Kutuları</span> | Vardiya türünün hangi günlerde açılacağını ve 24 saat birleştirme uygunluğunu yönetmek. | <em>Her Gün</em>, <em>Sadece Hafta İçi</em> veya <em>Sadece Hafta Sonu ve Tatil</em> seçilir; <strong>[Hafta sonlarında nöbet yazılsın]</strong>, <strong>[Resmi ve dini bayramlarda nöbet yazılsın]</strong> ve <strong>[24 Saat Tutulabilir]</strong> işaretleriyle kapsam kesinleşir. | Slot oluşturulurken. | Birim Amiri |
 | <strong>[Capraz Gorevlendirme] Anahtarı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Seyyar Slot Uygunluğu</span> | Birim içi kadro yetersizliğinde diğer birimlerden takviye alabilecek slotları işaretlemek. | İşaretlenen slotlar çizelge ekranındaki çapraz birim tamamlama motoru tarafından hedef slot olarak algılanır. | Çapraz destek açılırken. | Birim Sorumlusu |
-| <strong>[Birim Kuralını Kopyala]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Birimler Arası Şablon Aktarımı</span> | Benzer çalışma düzenine sahip servislere aynı vardiya slotlarını hızlıca kurmak. | Kaynak birimin tüm slotlarını hedef birime kopyalar; çakışma olmaması için hedef birimin önceki tüm slotlarını silerek sıfırdan yazar. | Yeni birim yapılandırılırken. | Sistem Yöneticisi / Amir |
+| <strong>[Birim Kuralını Kopyala]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Birimler Arası Şablon Aktarımı</span> | Benzer çalışma düzenine sahip servislere aynı vardiya slotlarını geçmiş veriyi bozmadan kurmak. | Kaynak birimin slotlarını ve birim kurallarını hedef birime aktarır; hedef birimde geçmiş nöbet kaydı bulunan eski slotları fiziksel silmek yerine pasife alır, eşleşen kodları günceller. | Yeni birim yapılandırılırken. | Sistem Yöneticisi / Amir |
+| <strong>Birim Mesai Kuralları Miras ve Sınır Kalkanı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Bağımsız Slot Kaydı &amp; Yasal Sınırlar</span> | Slot eklerken birim veya kurum çalışma standartlarının yanlışlıkla değişmesini ve mevzuat dışı değer girilmesini önlemek. | <strong>[Birim Kuralı Ekle]</strong> ve <strong>[Birim Kuralı Güncelle]</strong> yalnızca vardiya slotunu kaydeder; boş bırakılan birim alanları Temel Ayarlar'dan miras alınır ve dinlenme/fazla mesai değerleri yasal alt-üst sınırlarla doğrulanır. | Slot veya birim kuralı kaydedilirken. | Birim Sorumlusu / Sistem Kilidi |
 
 ## Arayüz Ekran Görünümleri {#screenshots}
 
@@ -70,8 +71,8 @@ Bitiş saati gece yarısı devri dahil otomatik hesaplanır; dağıtım motoru b
 ### Bitiş saatini neden doğrudan değiştiremiyorum?
 Vardiya süreleri ile bitiş saati arasındaki tutarsızlığı önlemek için bitiş saati başlangıç ve süre üzerinden otomatik hesaplanır. Bitiş saatini değiştirmek için süreyi veya başlangıç saatini güncellemeniz yeterlidir.
 
-### Kural kopyalarken hedef birimdeki eski slotlar neden siliniyor?
-Aynı birimde mükerrer vardiya kodu ve saat çakışması oluşmasını engellemek için kopyalama işlemi hedef birimin şablonunu kaynak birimle birebir eşitler. Mevcut slotları korumak istiyorsanız yeni slotları kopyalamak yerine <strong>[Birim Kuralı Ekle]</strong> ile tek tek eklemelisiniz.
+### Kural kopyalarken hedef birimdeki eski slotlara ve geçmiş nöbetlere ne olur?
+Aynı birimde mükerrer vardiya kodu ve saat çakışması oluşmasını engellemek için kopyalama işlemi hedef birimin aktif şablonunu kaynak birimle eşitler; geçmiş nöbet çizelgelerinde kullanılmış eski slotlar veri kaybı olmaması için silinmez ve pasife alınır. Mevcut aktif slotları koruyarak ekleme yapmak istiyorsanız <strong>[Birim Kuralı Ekle]</strong> butonunu kullanmalısınız.
 
 ### Birden fazla personelin aynı nöbete yazılması nasıl sağlanır?
 İlgili vardiya tanımında <strong>Nöbetçi Sayısı</strong> değerini gereken kişi adedine çıkarıp <strong>[Birim Kuralı Güncelle]</strong> butonuna basmanız yeterlidir.

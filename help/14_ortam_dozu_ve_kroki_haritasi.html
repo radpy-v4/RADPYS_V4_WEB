@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.2</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.6</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -157,16 +157,16 @@
     </thead>
     <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Kroki Yükle], Çoklu Oda Sınırları &amp; 90° Döndürme</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[Sola Döndür] / [Sağa Döndür]</span></td>
-        <td class="py-3.5 px-4">Kat planını merkezi saklamak ve saha yönelimine göre pinlerle birlikte hizalamak.</td>
-        <td class="py-3.5 px-4">PDF veya görsel plan veritabanında saklanır; 90° döndürme uygulandığında pinler, sabit cihazlar ve oda sınırları yeni açıya otomatik taşınır.</td>
-        <td class="py-3.5 px-4">Plan ekleme ve revizyonda.</td>
-        <td class="py-3.5 px-4">RKS / Sistem Yöneticisi</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Kroki Yükle], Çoklu Oda Sınırları &amp; 90° Döndürme</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[Sola Döndür] / [Sağa Döndür] &amp; Birim Kapsamı</span></td>
+        <td class="py-3.5 px-4">Kat planını özgün formatıyla şifreli kasada saklamak ve birim sorumlularını yalnızca kendi klinikleriyle sınırlandırmak.</td>
+        <td class="py-3.5 px-4">PDF veya görsel plan özgün dosya uzantısı ve benzersiz önbellek adıyla şifreli kasada saklanır; 90° döndürmede pin ve oda sınırları otomatik taşınır, tüm kroki ve nokta değişiklikleri birim yetki kapsamı ve onay kuyruğu denetiminden geçer.</td>
+        <td class="py-3.5 px-4">Plan ekleme, güncelleme ve revizyonda.</td>
+        <td class="py-3.5 px-4">RKS / Birim Sorumlusu / Sistem Yöneticisi</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Yeni Nokta Ekle] &amp; NDK Alan Eşikleri</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Ölçüm Geçmişi Silme Engeli</span></td>
         <td class="py-3.5 px-4">Denetimli, gözetimli ve halka açık alanları yasal limitlerle izleyip geçmişi korumak.</td>
-        <td class="py-3.5 px-4">Alan sınıfına göre otomatik uyarı/limit eşiği atar; üzerinde kayıtlı ölçüm bulunan noktaların silinmesini emniyet kilidiyle engeller.</td>
+        <td class="py-3.5 px-4">Alan sınıfına göre otomatik uyarı/limit eşiği atar; üzerinde kayıtlı ölçüm bulunan noktaların silinmesini emniyet kilidiyle engeller ve nokta değişikliklerini onay kuyruğunda izler.</td>
         <td class="py-3.5 px-4">Nokta tanımlama ve silmede.</td>
         <td class="py-3.5 px-4">RKS / Sistem Yöneticisi</td>
       </tr>
@@ -178,24 +178,24 @@
         <td class="py-3.5 px-4">Yetkili Kullanıcı</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Ölçüm Kaydet] &amp; Kalibrasyon Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Envanterden Akıllı Survey Meter Seçimi</span></td>
-        <td class="py-3.5 px-4">Kalibrasyon süresi geçmiş cihazla hatalı doz ölçümü girilmesini önlemek ve her ölçümde cihaz/tarih yazma zahmetini kaldırmak.</td>
-        <td class="py-3.5 px-4">Cihaz Envanterindeki aktif Radyasyon Ölçüm Cihazlarını ve son geçerli kalite kontrol tarihini otomatik çeker; sistemde tek ölçüm cihazı varsa Marka/Model bilgisini arka planda otomatik kaydeder, birden çok cihaz varsa seçim kutusu sunar ve kalibrasyonu dolmuş cihazı reddeder.</td>
-        <td class="py-3.5 px-4">Her doz ölçümü kaydında.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Ölçüm Kaydet] &amp; Zorunlu 1 Yıllık Kalibrasyon Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Envanterden Survey Meter Seçimi &amp; Tutarlı Eşik</span></td>
+        <td class="py-3.5 px-4">Kalibrasyon tarihi eksik veya süresi 1 yılı aşmış cihazlarla ve hatalı doz/eşik değerleriyle resmi ölçüm girilmesini önlemek.</td>
+        <td class="py-3.5 px-4">Ölçüm tarihi ile cihazın son kalibrasyon tarihi arasındaki 1 yıllık geçerliliği hem ekranda hem sunucuda zorunlu doğrular; kalibrasyonu eksik veya süresi dolmuş cihazı, negatif doz/arka plan değerlerini ve uyarı eşiği limit eşiğini aşan kayıtları reddeder.</td>
+        <td class="py-3.5 px-4">Her doz ölçümü kaydında ve güncellemede.</td>
         <td class="py-3.5 px-4">RKS / Fizikçi / Tekniker</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Limit Aşımında Otomatik Olay &amp; DÖF</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">3 Kat Aşımda NDK Bayrağı</span></td>
         <td class="py-3.5 px-4">Sınır aşımı tespit edildiği anda kalite ve zırhlama inceleme sürecini bekletmeden başlatmak.</td>
-        <td class="py-3.5 px-4">Limit aşıldığında Modül 15 üzerinde otomatik olay ve düzeltici faaliyet açar; limitin 3 katı aşılırsa NDK bildirim bayrağını işaretler.</td>
+        <td class="py-3.5 px-4">Limit aşıldığında bildiren personel bilgisiyle Modül 15 üzerinde otomatik olay ve düzeltici faaliyet açar; limitin 3 katı aşılırsa NDK bildirim bayrağını işaretler.</td>
         <td class="py-3.5 px-4">Ölçüm limit dışı çıktığında.</td>
         <td class="py-3.5 px-4">Sistem Motoru / RKS</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Karekod / Etiket Bas] &amp; [SKS Raporu (Excel)]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">300 DPI Toplu QR &amp; Denetim Çıktısı</span></td>
-        <td class="py-3.5 px-4">Kapı QR pasaportu üzerinden mobil doz girişi sağlamak ve SKS 6.1 resmi Excel çıktısı almak.</td>
-        <td class="py-3.5 px-4">Tekil veya toplu 300 DPI QR etiket arşivi (baskı şartnamesi ve icmal listesiyle birlikte) ile renk kodlu resmi SKS Excel tablosu üretir.</td>
-        <td class="py-3.5 px-4">Etiket baskısı ve denetimde.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Karekod / Etiket Bas], [SKS Raporu (Excel)] &amp; NDK RKP Sihirbazı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">KLV-014 Kuruluş Ayarları &amp; Talimat Sıfırlama</span></td>
+        <td class="py-3.5 px-4">Kapı QR pasaportu, SKS 6.1 Excel çıktısı ve NDK Radyasyondan Korunma Programı (RKP) dosyasını eksiksiz üretmek.</td>
+        <td class="py-3.5 px-4">Tekil/toplu 300 DPI QR etiket arşivi ve birim kapsamlı SKS Excel tablosu üretir; NDK KLV-014 RKP sihirbazında uygulama yeri, görev ve yetkili iletişim alanlarını tam kaydeder, standart talimat sıfırlamasında yalnızca ilgili madde kodunu varsayılana döndürür ve geçici arşiv dosyasını yükleme sonrası temizler.</td>
+        <td class="py-3.5 px-4">Etiket baskısı, denetim ve RKP üretiminde.</td>
         <td class="py-3.5 px-4">RKS / Kalite Birimi</td>
       </tr>
     </tbody>
@@ -404,7 +404,7 @@ flowchart TB
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.2) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.6) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>

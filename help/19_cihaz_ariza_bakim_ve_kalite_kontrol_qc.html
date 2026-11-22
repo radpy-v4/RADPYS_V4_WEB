@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.2</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.6</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -157,23 +157,23 @@
     </thead>
     <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong><strong>[Yeni Arıza Bildir]</strong> &amp; <strong>[Seçili Arızayı Çöz]</strong></strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Esnek Durum &amp; Silinemez Tarihçe</span></td>
-        <td class="py-3.5 px-4">Arızalı cihazda çekimi durdurmak, her servis aşamasını takip etmek ve önceki teknisyen notlarının silinmesini önlemek.</td>
-        <td class="py-3.5 px-4">Bildirimde cihaz otomatik Arızalı olur; tek müdahale penceresinden durum esnek biçimde Açık, Servis Bekleniyor, Parça Bekleniyor, Test Aşamasında veya Çözüldü yapılabilir. Önceki müdahale geçmişi salt okunur korunur ve her yeni not otomatik tarih, saat ve kullanıcı damgasıyla eklenir.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong><strong>[Yeni Arıza Bildir]</strong> &amp; <strong>[Seçili Arızayı Çöz]</strong></strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Esnek Durum &amp; QC Kilit Koruması</span></td>
+        <td class="py-3.5 px-4">Arızalı cihazda çekimi durdurmak, her servis aşamasını takip etmek ve uygunsuz QC kilidinin kalkmasını önlemek.</td>
+        <td class="py-3.5 px-4">Bildirimde cihaz otomatik Arızalı olur; müdahale geçmişi zaman ve kullanıcı damgasıyla korunur. Tüm arızalar kapansa bile son resmi QC sonucu Kullanımı Uygun Değil ise cihaz Aktif duruma açılmaz; hurda veya devredilmiş cihazlara işlem yapılamaz.</td>
         <td class="py-3.5 px-4">Cihazda arıza oluştuğunda veya servis sürerken.</td>
         <td class="py-3.5 px-4">Tekniker / Biyomedikal / RKS</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>X-Işını Tüp Değişimi &amp; <strong>[Teknik Rapor]</strong></strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Künye Senkronizasyonu ve Tutanağı</span></td>
-        <td class="py-3.5 px-4">Ana radyasyon üreten tüpün değişimini cihaz künyesine işlemek ve NDK revizyonunu hatırlatmak.</td>
-        <td class="py-3.5 px-4">Çözüm formunda tüp değişimi kutusu işaretlenip yeni tüp seri no girilince cihaz künyesi güncellenir; <strong>[Teknik Rapor]</strong> ile yazdırılabilir A4 servis tutanağı oluşturulur.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>X-Işını Tüp Değişimi &amp; <strong>[Teknik Rapor]</strong></strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Zorunlu Seri No ve Künye Tutanağı</span></td>
+        <td class="py-3.5 px-4">Ana radyasyon üreten tüpün değişimini eksiksiz seri numarasıyla cihaz künyesine işlemek.</td>
+        <td class="py-3.5 px-4">Çözüm formunda tüp değişimi kutusu işaretlendiğinde yeni tüp seri numarası zorunlu tutulur ve cihaz künyesi güncellenir; <strong>[Teknik Rapor]</strong> ile yazdırılabilir A4 servis tutanağı oluşturulur.</td>
         <td class="py-3.5 px-4">X-ışını tüpü yenilendiğinde veya teknik rapor gerektiğinde.</td>
         <td class="py-3.5 px-4">Biyomedikal / RKS</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong><strong>[İhale Bakım Takvimi Planla]</strong> &amp; Bu Yıl Radarı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Çoklu Cihaz Seçimi ve 4 KPI Kartı</span></td>
-        <td class="py-3.5 px-4">İhale sözleşmesine bağlı bakım aylarını önceden sabitlemek ve klinik sürprizlerini önlemek.</td>
-        <td class="py-3.5 px-4">Marka/modalite süzgeçli tabloda seçilen cihazlara sözleşme bitişine dek 1, 3, 6 veya 12 aylık Beklemede slotları üretir; radar ekranı varsayılan Bu Yıl görünümüyle geciken ve yaklaşan bakımları gösterir.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong><strong>[İhale Bakım Takvimi Planla]</strong> &amp; Bu Yıl Radarı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Tekil Slot ve 4 KPI Kartı</span></td>
+        <td class="py-3.5 px-4">İhale sözleşmesine bağlı bakım aylarını mükerrer kayıt oluşturmadan önceden sabitlemek.</td>
+        <td class="py-3.5 px-4">Seçilen aktif cihazlara sözleşme bitişine dek mükerrer açık slot açmadan 1, 3, 6 veya 12 aylık Beklemede slotları üretir; radar ekranı varsayılan Bu Yıl görünümüyle geciken ve yaklaşan bakımları gösterir.</td>
         <td class="py-3.5 px-4">Bakım ihalesi sonrası veya planlı takip açıldığında.</td>
         <td class="py-3.5 px-4">Klinik Amiri / Biyomedikal</td>
       </tr>
@@ -186,23 +186,23 @@
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong><strong>[İhale Kalibrasyon / KUT Takvimi Planla]</strong></strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">TİTCK Modalite Bazlı Periyot Motoru</span></td>
-        <td class="py-3.5 px-4">KKT ve KUT kalibrasyon tarihlerini modalite mevzuatına göre hatasız takvimlendirmek.</td>
-        <td class="py-3.5 px-4">Seçilen kontrol türü ve cihaz modalitesine göre KUT için 36 veya 60 ay, KKT için 3, 6 veya 12 ay önerir ve sözleşme bitişine kadar planlı test slotları açar.</td>
+        <td class="py-3.5 px-4">KKT ve KUT kalibrasyon tarihlerini modalite mevzuatına göre tek atomik takvimde planlamak.</td>
+        <td class="py-3.5 px-4">Seçilen kontrol türü ve cihaz modalitesine göre KUT için 36 veya 60 ay, KKT için 3, 6 veya 12 ay önerir; mükerrer açık slotları engelleyerek planlı test takvimini tek işlemde oluşturur.</td>
         <td class="py-3.5 px-4">KKT ihalesi veya yeni KUT dönemi başladığında.</td>
         <td class="py-3.5 px-4">Medikal Fizikçi / RKS</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong><strong>[Planlı Testi Tamamla]</strong> / <strong>[Münferit Resmi Rapor Gir]</strong></strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">KUT, KKT ve Kabul/Onarım Testleri</span></td>
         <td class="py-3.5 px-4">Günlük kağıt formlar yerine yetkili KUK veya medikal fizikçi imzalı resmi raporları arşivlemek.</td>
-        <td class="py-3.5 px-4">Rapor no, yapan kuruluş/KUK yetki belge no ve PDF rapor kasaya alınır; Sınırlı Kullanım kararı verilirse eksiklik giderme için azami 1 yıllık takip termini otomatik başlar.</td>
+        <td class="py-3.5 px-4">Yalnızca aktif cihazlar için rapor no, yapan kuruluş/KUK yetki belge no ve PDF rapor kasaya alınır; Sınırlı Kullanım kararı verilirse eksiklik giderme için azami 1 yıllık takip termini otomatik başlar.</td>
         <td class="py-3.5 px-4">Resmi KUT, KKT veya onarım sonrası test raporu gelince.</td>
         <td class="py-3.5 px-4">Medikal Fizikçi / RKS</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Olumsuz QC Güvenlik Karantina Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">7 Sütunlu Tablo / 9 Sütunlu Excel</span></td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Olumsuz QC Güvenlik Karantina Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Doğrudan Kayıt ve Onay Kuyruğu Kilidi</span></td>
         <td class="py-3.5 px-4">Kalibrasyon veya radyasyon emniyeti başarısız çıkan cihazın hasta çekiminde kullanılmasını engellemek.</td>
-        <td class="py-3.5 px-4">Resmi test sonucu Kullanımı Uygun Değil seçildiğinde kullanıcı güvenlik onayı ister ve onaylandığında cihazı anında Arızalı statüsüne çekerek kilitler.</td>
-        <td class="py-3.5 px-4">QC/KUT sonucu olumsuz işlendiğinde.</td>
+        <td class="py-3.5 px-4">Tanımsız sonuç metinleri reddedilir; resmi test sonucu Kullanımı Uygun Değil seçildiğinde hem doğrudan kayıtta hem merkezi onay kuyruğundan onaylandığında cihaz anında Arızalı statüsüne çekilerek kilitlenir.</td>
+        <td class="py-3.5 px-4">QC/KUT sonucu olumsuz işlendiğinde veya onaylandığında.</td>
         <td class="py-3.5 px-4">Medikal Fizikçi / Sistem</td>
       </tr>
     </tbody>
@@ -481,7 +481,7 @@ flowchart TB
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.2) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.6) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>

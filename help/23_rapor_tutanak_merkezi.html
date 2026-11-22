@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.2</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.6</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -157,44 +157,44 @@
     </thead>
     <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Rapor Kataloğu ve Akıllı Kriter Gizleme</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Tümü / Raporlar / Tutanaklar Süzgeci</span></td>
-        <td class="py-3.5 px-4">27 aktif mevzuat raporunu ve kurum şablonlarını kriter karmaşası olmadan sunmak.</td>
-        <td class="py-3.5 px-4">Seçilen raporun parametresi yoksa filtre kutusu otomatik gizlenir; sağ panelde ilk satırlarla canlı sütun önizlemesi ve sayfa yönü önerisi gösterilir.</td>
-        <td class="py-3.5 px-4">Rapor seçildiğinde veya kategori değiştirildiğinde.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Rapor Kataloğu, Birim Kapsamı ve KVKK Maskelemesi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Tümü / Raporlar / Tutanaklar Süzgeci</span></td>
+        <td class="py-3.5 px-4">27 aktif mevzuat raporunu yalnızca yetkili birim kapsamı ve KVKK gizliliği içinde sunmak.</td>
+        <td class="py-3.5 px-4">Canlı önizleme dahil tüm raporlar modül yetkisini ve kullanıcının sorumlu birim kapsamını doğrular; özel nitelikli KVKK alanları yetkisiz rollerde otomatik maskelenir ve tüm açılır filtre kaynakları canlı doldurulur.</td>
+        <td class="py-3.5 px-4">Rapor seçildiğinde veya önizleme/çıktı alındığında.</td>
         <td class="py-3.5 px-4">Yetkili Kullanıcı / RKS</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Format Disiplini ve Dinamik Sayfa Yönlendirme</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400"><strong>[PDF İndir]</strong> &amp; <strong>[Excel (.xlsx)]</strong></span></td>
-        <td class="py-3.5 px-4">Doğru işe tek format uygulamak ve geniş tabloların sayfa dışına taşmasını önlemek.</td>
-        <td class="py-3.5 px-4">Rapor Merkezinde yalnızca PDF ve Excel aktiftir (Word yalnızca kurumca düzenlenen NDK RKP taslağında korunur); PDF dökümünde 7 ve üstü sütunda otomatik Yatay A4 seçilir.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Format Disiplini ve Dinamik Sayfa Yönlendirme</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400"><strong>[PDF İndir]</strong>, <strong>[Excel (.xlsx)]</strong> &amp; RKP Word</span></td>
+        <td class="py-3.5 px-4">Doğru işe tek format uygulamak, formül enjeksiyonunu önlemek ve geniş tabloları sığdırmak.</td>
+        <td class="py-3.5 px-4">Standart raporlarda güvenli hücre korumalı Excel ve kilitli PDF (7+ sütunda Yatay A4) üretilir; NDK KLV-014 RKP gibi resmi başvuru şablonlarında ise <strong>[Word (.docx)]</strong> dışa aktarım butonu otomatik açılır.</td>
         <td class="py-3.5 px-4">Dışa aktarma butonuna basıldığında.</td>
         <td class="py-3.5 px-4">Yetkili Kullanıcı / Yönetici</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Rapor Tasarım Stüdyosu ve Çift Antet/Logo</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400"><strong>[Yeni Tasarla]</strong> &amp; <strong>[Özelleştir]</strong></span></td>
-        <td class="py-3.5 px-4">25 hazır veri kaynağından kuruma özel rapor veya tutanak şablonu üretmek.</td>
-        <td class="py-3.5 px-4">5 sekmeli stüdyoda sütun sırası, metin gövdesi, filtre ve imza blokları düzenlenir; özel/genel kurum başlıkları ve çift veya tek logo antete otomatik uygulanır.</td>
+        <td class="py-3.5 px-4">25 hazır veri kaynağından şablon geçmişini bozmadan kuruma özel şablon üretmek.</td>
+        <td class="py-3.5 px-4">5 sekmeli stüdyoda sütun sırası, metin gövdesi, filtre tipleri ve imza blokları yetki doğrulaması sonrasında kaydedilir; geçmiş şablon sürümleri korunur ve yalnızca izinli kurum logoları antete yerleştirilir.</td>
         <td class="py-3.5 px-4">Yeni kurumsal rapor veya antet gerektiğinde.</td>
         <td class="py-3.5 px-4">Sistem Yöneticisi (Admin)</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>11 Modüllü Evrensel Tutanak Sihirbazı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400"><strong>[Sistemden Kayıt Ekle...]</strong> &amp; Akıllı Heyet</span></td>
-        <td class="py-3.5 px-4">Tekil veya 20+ cihaz/RKE kaydını tek komisyon tutanağında birleştirmek.</td>
-        <td class="py-3.5 px-4">Modül kapsamına göre otomatik yer tutucu etiket butonları ve unvan öncelikli heyet önerilir; Salt Metin düzeninde tablo gizlenir ve kilitli PDF üretilir.</td>
+        <td class="py-3.5 px-4">Tekil veya 20+ aktif cihaz/RKE kaydını mühürlü hurdaları karıştırmadan tek tutanakta birleştirmek.</td>
+        <td class="py-3.5 px-4">Varlık seçiminde mühürlü HEK kayıtları hariç tutulur; üretilen PDF, Evrak Kasası kaydı ve tutanak numarası tek atomik işlemde tamamlanarak sıralı tablolarda satır kayması önlenir.</td>
         <td class="py-3.5 px-4">Devir, hasar, nöbet veya HEK kararı yazılırken.</td>
         <td class="py-3.5 px-4">Komisyon Başkanı / Birim Yetkilisi</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>2 Aşamalı HEK Tasfiye ve SHA-256 Mühürleme</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Ön İnceleme Dosyası → EBYS Kapatma</span></td>
         <td class="py-3.5 px-4">Heyet ıslak imzası ve Taşınır EBYS üst yazısı olmadan kayıttan düşmeyi önlemek.</td>
-        <td class="py-3.5 px-4">İlk PDF alımında ekipmanlar kilitli ön inceleme dosyasına alınır; ikinci aşamada Ayniyat EBYS sayısı ve taranmış üst yazı yüklenerek SHA-256 mühürlü birleşik PDF ile dondurulur.</td>
+        <td class="py-3.5 px-4">İlk PDF alımında ekipmanlar ön inceleme dosyasına alınır; ikinci aşamada EBYS sayısı ve ek belgeyle tüm lisans/bakım/QC/muayene geçmişi ve PDF ekleri SHA-256 mühürlü tek tasfiye PDF dosyasında birleştirilir.</td>
         <td class="py-3.5 px-4">HEK tutanağı kesildiğinde ve EBYS gelince.</td>
         <td class="py-3.5 px-4">Komisyon / Taşınır Yetkilisi</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Resmi Tutanaklar Kasası (v1 Taslak → v2 İmzalı)</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400"><strong>[İmzalı Nüshayı Yükle]</strong> &amp; <strong>[Resmi Belgeyi Aç]</strong></span></td>
-        <td class="py-3.5 px-4">Tüm modüllerin tutanaklarını numaralı takip etmek ve taslağı ezmeden arşivlemek.</td>
-        <td class="py-3.5 px-4">Üretilen her tutanağa ardışık numara verilir; imzalı tarama yüklendiğinde taslak belge sessizce arşive alınır ve v2 imzalı nüsha AES-256 kasada resmi belge olur.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Resmi Tutanaklar Kasası (v1 Taslak → v2 İmzalı)</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400"><strong>[İmzalı Nüshayı Yükle]</strong> &amp; Mühür Kilidi</span></td>
+        <td class="py-3.5 px-4">Tüm modüllerin tutanaklarını çakışmasız numaralamak ve mühürlenen belgelerin değiştirilmesini önlemek.</td>
+        <td class="py-3.5 px-4">İmzalı tarama yüklendiğinde v1 taslak korunarak v2 imzalı nüsha resmi belge olur; imzalanıp tamamlanmış veya iptal edilmiş tutanakların sonradan değiştirilmesi ya da iptali kilitlenir ve açılan geçici belgeler özgün uzantısıyla temizlenir.</td>
         <td class="py-3.5 px-4">Islak imzalı tutanak taranıp sisteme girilince.</td>
         <td class="py-3.5 px-4">Birim Amiri / RKS / İdare</td>
       </tr>
@@ -438,7 +438,7 @@ flowchart TB
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.2) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.6) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>

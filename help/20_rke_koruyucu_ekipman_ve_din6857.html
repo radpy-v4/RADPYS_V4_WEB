@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.2</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.6</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -171,17 +171,17 @@
         <td class="py-3.5 px-4">Medikal Fizik Uzmanı</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>DIN 6857-1 Karar Motoru ve 10+ Yıl Ömür Kuralı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Otomatik Eşik ve Risk Değerlendirmesi</span></td>
-        <td class="py-3.5 px-4">Sübjektif yorumu ortadan kaldırıp uluslararası standartlara göre yasal karar üretmek.</td>
-        <td class="py-3.5 px-4">Kritik bölgede delik/çatlak, kurşun blok kayması veya non-kritikte 15,0 mm² üstü hasarda HEK; 5–15 mm² hasar, yüzeysel dikiş/toka kusuru veya düşük Pb kalınlığında Şartlı; 10 yıl yaş üzerinde ise HEK önerisi üretilir.</td>
-        <td class="py-3.5 px-4">Her kusur pini veya fiziki bulgu işaretlendiğinde.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>DIN 6857-1 Karar Motoru ve 10+ Yıl Ömür Kuralı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Tekil Karar Motoru ve 6 / 12 Ay Takvim</span></td>
+        <td class="py-3.5 px-4">Masaüstü ve mobil sahada aynı yasal eşiği uygulamak ve Şartlı ekipmanları yakın izlemeye almak.</td>
+        <td class="py-3.5 px-4">Kritik bölgede sıfır tolerans (0,0 mm²), blok kayması, 15,0 mm² üstü hasar veya 10+ yıl sınırında öncelikle HEK; kusurlu veya düşük Pb kalınlığında Şartlı Kullanım (6 ay sonraki muayene); tam sağlam kayıtta Kullanıma Uygun (12 ay sonraki muayene) kararı artık yıl uyumlu üretilir.</td>
+        <td class="py-3.5 px-4">Her kusur pini, önizleme veya muayene kaydında.</td>
         <td class="py-3.5 px-4">Sistem Motoru / RKS</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong><strong>[1-Tıkla Kusursuz / Uygun Onayla]</strong> ve <strong>[Toplu Muayene]</strong></strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Hızlı Onay ve Gecikenleri Seçme</span></td>
-        <td class="py-3.5 px-4">Yüzlerce koruyucu önlüğün yıllık periyodik skopi taramasını hatasız hızlandırmak.</td>
-        <td class="py-3.5 px-4">Tekil kokpitte 5 kriteri tam sağlam kabul edip kaydederken <strong>[Toplu Muayene]</strong> penceresinde geciken/10+ yaşlı ekipmanları seçip (isteğe bağlı otomatik HEK ile) tek işlemde kapatır.</td>
-        <td class="py-3.5 px-4">Yıllık toplu klinik RKE taramalarında.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong><strong>[1-Tıkla Kusursuz / Uygun Onayla]</strong> ve <strong>[Toplu Muayene]</strong></strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">İptal/Yaş Koruması ve Görünür Satır Süzgeci</span></td>
+        <td class="py-3.5 px-4">Yıllık skopi taramasını hızlandırırken kusurlu/10+ yaşlı veya gizli birim ekipmanlarının yanlışlıkla onaylanmasını önlemek.</td>
+        <td class="py-3.5 px-4">Hızlı onayda kullanıcı vazgeçerse veya 10+ yaş sınırı aşılırsa kusur pinlerini silmeden işlemi durdurur; <strong>[Toplu Muayene]</strong> penceresinde ise yalnızca filtreyle ekranda görünen seçili ekipmanları işler.</td>
+        <td class="py-3.5 px-4">Yıllık toplu veya hızlı RKE taramalarında.</td>
         <td class="py-3.5 px-4">Medikal Fizikçi / RKS</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
@@ -446,7 +446,7 @@ flowchart TB
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.2) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.6) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>

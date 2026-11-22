@@ -6,6 +6,113 @@ Bu kılavuz; **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## RADPYS V4.0.6.6: Web Portal ve Mobil QR Güvenlik Kalkanı, İmzalı Belge İndirme Bileti, Çoklu Birim Yetki İzolasyonu ve Oturum/Evrak Bütünlük Güvencesi
+
+### Öne Çıkan Yenilikler
+
+- **60 Saniyelik İmzalı Belge İndirme Bileti ve Tam Oturum Gizliliği:** Profil evrakları, sağlık muayene raporları, eğitim materyalleri, sınav görselleri ve birim kat planları açılırken tarayıcı adres çubuğunda kalıcı oturum anahtarı taşınması tamamen kaldırıldı; her dosya açılışında yalnızca ilgili belge için geçerli 60 saniyelik tekil güvenlik bileti üretilerek ağ günlüklerinde ve tarayıcı geçmişinde tam oturum gizliliği sağlandı.
+- **Şifreli Evrak Kasasında Dijital Parmak İzi ve Cihaz Evrak Sahiplik Kontrolü:** Web Portal üzerinden açılan cihaz bakım, arıza ve kalite kontrol belgelerinin gerçekten ilgili cihaza ve kullanıcının yetkili olduğu kliniğe ait olduğu doğrulamaya bağlandı; şifreli kasadaki her tıbbi ve kurumsal evrakın dijital bütünlük izi kontrol edilerek bozulmuş veya yetkisiz hiçbir dosyanın açılmaması güvenceye alındı.
+- **Çoklu Sorumlu Birim İzolasyonu, Rol Yetki Tamlığı ve Onaylı HBYS Kilidi:** Birden fazla kliniğin sorumluluğunu yürüten birim amirleri ve Radyasyondan Korunma Sorumlularının (RKS) olay bildirimleri, DÖF takibi, RD.F43 doz araştırma formları ve ortam dozu ekranlarında görevli oldukları tüm birimleri eksiksiz ve sınır aşımı olmadan yönetmesi sağlandı; HBYS evrak numarası kaydı yalnızca yönetici onayı tamamlanmış izinlerle sınırlandırıldı ve Türkçe karakterli yönetici rollerinde tam eşleşme sağlandı.
+- **Gerçek Ağ Adresi Tabanlı Dış Erişim Koruması ve Güvenli Nöbet Devir Onayı:** Kurum dışı erişimlerde robot doğrulaması ve iki aşamalı e-posta kodu (2FA) denetimi ağ başlığı yerine doğrudan gerçek bağlantı adresine bağlandı; ilk giriş zorunlu parola yenileme adımı tek kullanımlık doğrulama biletiyle koruma altına alındı ve şifahi nöbet devir onaylarında kriptografik tek kullanımlık doğrulama kodu zorunlu kılındı.
+- **Masaüstü ile Anlık Oturum Senkronizasyonu ve Kesintisiz Kat Planı / Eğitim Akışı:** Masaüstü uygulamasından sonlandırılan oturumların veya pasife alınan kullanıcı hesaplarının Web Portal üzerinde de otomatik olarak düşürülmesi sağlandı; PDF kat planlarının eşzamanlı açılışlarında sunucuyu yormayan tekil dönüştürme kilidi, eğitim videolarında kesintisiz ileri-geri sarma doğrulaması ve e-posta bildirimlerinde ekranı bekletmeyen arka plan gönderimi devreye alındı.
+
+### Fayda Odaklı Açıklamalar
+
+#### 1. Ortak Bilgisayarlarda ve Mobil Sahada Sıfır Sızıntılı Evrak Erişimi
+
+Hastane içi ortak terminallerde veya mobil cihazlarda çalışanlar kendi sağlık raporlarını, diplomalarını, eğitim videolarını ya da klinik kat planlarını görüntülediğinde tarayıcı geçmişine veya vekil sunucu kayıtlarına hiçbir oturum anahtarı yansımaz. İndirme bağlantıları 60 saniye sonunda kendiliğinden geçersiz olur; genel seçim listelerinde T.C. Kimlik Numarası, telefon ve özel sağlık tarihleri paylaşılmayarak KVKK veri minimizasyonu tam olarak korunur.
+
+#### 2. Birim Sorumluları ve RKS İçin Kesin Kapsam ve İş Akışı Güvenliği
+
+Cihaz, koruyucu ekipman (RKE), nöbet, izin, personel, ortam dozu ve olay yönetimi ekranlarının tamamında okuma, yazma, güncelleme ve silme işlemleri kullanıcının tanımlı rol yetkilerine birebir bağlandı. Standart çalışanlar yalnızca kendi özlük ve beyan kayıtları üzerinde işlem yapabilirken henüz onaylanmamış veya reddedilmiş izin taleplerine HBYS belge numarası işlenemez; çoklu birim sorumluları ise atandıkları tüm alt kliniklerin denetim ve aksiyon süreçlerini tek oturumda güvenle yürütür.
+
+#### 3. Yüksek Eşzamanlılıkta Kararlı Kat Planı, E-Posta ve Denetim İzi Altyapısı
+
+Aynı anda çok sayıda kullanıcının PDF tabanlı ortam dozu kat planını açtığı yoğun saha saatlerinde sistem aynı planı mükerrer kez işlemek yerine tek seferde hazırlayıp tüm kullanıcılara anında sunar. Doğrulama e-postaları sunucu yanıt hızını etkilemeden arka planda şifreli bağlantıyla iletilir; masaüstü ve Web Portalın paylaştığı denetim günlüğü ise süreçler arası kilitle korunarak kesintisiz doğrulama zinciri oluşturur.
+
+---
+
+## RADPYS V4.0.6.5: Mühürlü Cihaz ve HEK Tasfiye Güvencesi, QC Karantina Kilidi, Tekil DIN 6857-1 RKE Karar Motoru, Güvenli Toplu İçe Aktarım ve KVKK Korumalı Raporlama / Tutanak Merkezi
+
+### Öne Çıkan Yenilikler
+
+- **Gerçek Veri Odaklı Tıbbi Cihaz, NDK Lisans ve QR Etiket Yönetimi:** Henüz kalite kontrol testi girilmemiş cihazların resmi raporlarda yapay olarak uyumlu gösterilmesi ve boş lisans tarihlerine otomatik tarih atanması kaldırıldı; lisanssız MR ve ultrason cihazlarının aktif envanterde eksiksiz listelenmesi, 300 DPI karekod etiketlerine gerçek cihaz türünün basılması ve tüm saha karekodlarının kurumun tanımlı Web Portal adresine yönlenmesi sağlandı.
+- **Mühürlü HEK Koruması, NDK RKS Taahhütnamesi ve Atomik Tutanak Süreci:** EBYS numarasıyla mühürlenmiş hurda (HEK) cihaz ve koruyucu ekipmanların silinmesi, toplu aktarımla üzerine yazılması veya yeni tutanaklara tekrar eklenmesi tamamen engellendi; NDK RKS Taahhütname penceresinin aktif personel iletişim bilgileriyle eksiksiz açılması ve devir/zimmet/HEK tutanaklarının evrak kasası kaydıyla tek bütün halinde tamamlanması güvenceye alındı.
+- **Olumsuz QC Güvenlik Karantinası ve Onarım/Tüp Değişimi Doğrulaması:** Cihaz arızası kapatılırken son resmi kalite kontrol sonucu uygunsuz olan cihazların güvenlik kilidi korunarak yanlışlıkla hasta çekimine açılması önlendi; onay kuyruğundan geçen uygunsuz KUT/KKT testlerinde de otomatik karantina kilidi devreye alındı ve X-ışını tüpü değişiminde yeni tüp seri numarası zorunlu hale getirildi.
+- **Tekil DIN 6857-1 RKE Karar Motoru ve Artık Yıl Uyumlu 6/12 Ay Takvim:** Masaüstü muayene kokpiti, önizleme ve mobil saha ekranlarının tamamı sıfır toleranslı kritik bölge ve 10+ yaş kurallarını aynı öncelik sırasıyla uygulayan tek karar motorunda birleştirildi; Şartlı Kullanım kararında 6 ay, Kullanıma Uygun kararında 12 ay sonraki kontrol tarihi artık yıllar dahil hatasız hesaplanmaya başlandı ve toplu muayenede yalnızca ekranda süzülen görünür kayıtların işlenmesi sağlandı.
+- **Salt-Okunur Önizlemeli ve Kısmi Birleştirmeli Evrensel Toplu İçe Aktarım:** Toplu Excel/CSV aktarım sihirbazında önizleme adımının veritabanında hiçbir kayıt oluşturmadan tamamen simülasyon olarak çalışması, birleştirme modunda boş bırakılan sütunların mevcut personel/cihaz/ekipman bilgilerini ezmemesi, kilitli Şua yılları ile mühürlü HEK kayıtlarının korunması ve tanımsız değer eşleştirme adımında rastgele otomatik atama yapılmaması sağlandı.
+- **Birim Kapsamlı Rapor Merkezi, Kesintisiz 30 Yıllık KVKK Arşivi ve Tutanak Kilidi:** Rapor ve Tutanak Merkezinde canlı önizleme dahil tüm raporlara birim kapsam sınırı ve yetkisiz rollerde KVKK veri maskelemesi uygulandı; NDK KLV-014 RKP Word çıktısı, gerçek klinik karar/cihaz verileri, imzalanmış veya iptal edilmiş resmi tutanaklarda değiştirme kilidi ve satır sınırı olmaksızın tam kapsamlı 30 yıllık personel KVKK özlük arşivi (ZIP) devreye alındı.
+
+### Fayda Odaklı Açıklamalar
+
+#### 1. Cihaz, Kalite Kontrol ve HEK Tasfiyesinde Tam Mevzuat ve Hasta Güvenliği
+
+Biyomedikal, medikal fizik ve RKS ekiplerinin yürüttüğü cihaz süreçlerinde artık eksik lisans veya test bilgisi yerine yalnızca doğrulanmış gerçek kayıtlar raporlanır. Bir cihazda uygunsuz KUT veya KKT raporu bulunduğunda arıza kaydı kapatılsa ya da rapor yönetici onayından geçse dahi cihaz güvenlik karantinasında tutulur; EBYS üst yazısıyla mühürlenen HEK tasfiye dosyaları ise tüm geçmiş lisans, bakım, kalite kontrol ve evrak ekleriyle birleşik PDF olarak kalıcı arşivlenir.
+
+#### 2. Standart DIN 6857-1 Koruyucu Ekipman Denetimi ve Hatasız Tablo Seçimi
+
+Kurşun önlük, tiroid ve gonad koruyucularının yıllık kontrollerinde masaüstü ve mobil saha ekranları aynı DIN 6857-1 eşiklerini uygular; Şartlı Kullanım alan ekipmanlar 12 ay yerine 6 aylık yakın izlemeye alınır ve 1-tıkla hızlı onay penceresinde kullanıcı vazgeçtiğinde veya 10+ yaş sınırı aşıldığında mevcut kusur işaretleri korunur. Sıralanmış envanter ve tutanak tablolarında yapılan çoklu seçimler her zaman ekranda seçilen gerçek ekipmana bağlanır.
+
+#### 3. Güvenli Toplu Veri Aktarımı ve Denetime Hazır Kurumsal Raporlama
+
+İnsan kaynakları, birim sorumluları ve RKS yetkilileri kısmi sütunlu Excel listeleriyle güncelleme yaptığında çalışanların mevcut özlük bilgileri veya cihazların korunması gereken kayıtları silinmez; hata raporları formül güvenliği ve kişisel veri maskelemesiyle üretilir. Rapor Merkezinde her yönetici kendi sorumlu birimlerinin verilerini görüntülerken işten ayrılan veya devredilen çalışanlar için üretilen 30 yıllık KVKK arşiv paketinde tüm dozimetre, izin, sağlık ve eğitim geçmişi hiçbir satır kırpılmadan özgün belge formatlarıyla teslim edilir.
+
+---
+
+## RADPYS V4.0.6.4: NDK Doz Limit Hiyerarşisi ve RD.F43 Kilit Güvencesi, KVKK Korumalı EK-1 Sağlık Gözetimi, Zorunlu Kalibrasyonlu Ortam Dozu Haritası ve Süre/DÖF Kilitli Olay Yönetimi
+
+### Öne Çıkan Yenilikler
+
+- **Dozimetre Eşik Hiyerarşisi, Kilitli RD.F43 Koruması ve Gebe/Ayral Personel Güvencesi:** Yıllık 20 mSv, 5 yıllık 100 mSv, tek yıl azami 50 mSv, gebe çalışan 1,0 mSv ve stajyer 6 mSv NDK yasal sınırlarının aylık 2,0 mSv inceleme uyarısı tarafından gölgelenmesi önlendi; kapalı/mühürlü RD.F43 dosyası bulunan dönem ölçümlerinin toplu aktarımla üzerine yazılması ve bağlı aksiyonu olan ölçümlerin silinmesi engellendi, alanda unutma veya tıbbi tetkik kaynaklı vakalarda gereksiz çalışma kısıtı açılmaması sağlandı.
+- **Doğru Dozimetre Kokpiti, Tarihsel Doz Raporu ve Gerçek Birim Koruması:** Dozimetre kokpit kartları, eğilim grafikleri ve Excel/PDF raporlarında birim sorumlularının yalnızca yetkili oldukları klinikleri görmesi sağlandı; yıl içinde görevden ayrılan çalışanların geçmiş doz kayıtlarının resmi yıllık raporlarda eksiksiz korunması ve laboratuvar dosyasından birim bilgisi gelmediğinde yapay klinik adı yazılmaması güvenceye alındı.
+- **KVKK Korumalı EK-1 Sağlık Belgesi, Doğru Branş Kararı ve Ayrı Şua/Periyodik Takip:** Resmi EK-1 A4 çıktısında hekim onayının (Uygun, Koşullu Uygun, Uygun Değil) kesin karşılığıyla basılması ve poliklinik muayene kutularının boş kalması sağlandı; hekim bulguları ve anamnez bilgilerinin yetkisiz rollerde KVKK kapsamında maskelenmesi, yalnızca polikliniğe sevk edilen veya işe giriş kayıtlarına otomatik gelecek yıl tarihi yazılmaması ve 12 aylık periyodik kontrol ile 6 aylık Şua muayenesinin birbirini gizlemeden ayrı izlenmesi devreye alındı.
+- **Ortam Dozunda Zorunlu 1 Yıllık Kalibrasyon Kilidi ve Kat Planı Format Koruması:** Ortam dozu ölçümü kaydedilirken kalibrasyon tarihi eksik veya 1 yıllık kalibrasyon süresi dolmuş ölçüm cihazlarıyla kayıt yapılması, negatif doz hızı veya tutarsız eşik girilmesi engellendi; PDF ve görsel kat planlarının özgün dosya biçimiyle şifreli kasada saklanması sağlandı.
+- **KLV-014 NDK RKP Sihirbazı Kuruluş Tamlığı ve Talimat Koruması:** Radyasyondan Korunma Programı (RKP) sihirbazında uygulama yeri, görev ve iletişim alanları dahil tüm kuruluş ayarlarının eksiksiz kaydedilip temizlenen alanların korunması ve standart talimat metinlerine tek tıkla sıfırlanırken diğer maddelerin etkilenmemesi sağlandı.
+- **NDK İş Günü Geri Sayımı, Açık DÖF Kapatma Kilidi ve Resmi A4 Olay Tutanağı:** Olay inceleme ekranında 1 ve 3 iş günlük NDK yasal bildirim durumu ve numarasının eksiksiz izlenmesi, açık veya planlı DÖF varken olayın kapatılamaması, iptal edilen olayların gerekçesiyle kaydedilip bekleyen kaza sayısından düşülmesi ve resmi A4 tutanağında aktif Radyasyondan Korunma Sorumlusu (RKS) adı ile gerçek 24 saat / 72 saat süresinin yer alması sağlandı.
+
+### Fayda Odaklı Açıklamalar
+
+#### 1. Mevzuata Tam Uyumlu Kişisel Doz Takibi ve RD.F43 Dosya Bütünlüğü
+
+Laboratuvar sonuçları toplu olarak aktarılırken veya manuel ölçüm eklenirken sistem artık önce gebe (1,0 mSv) ve yıllık/5 yıllık NDK limitlerini denetler, ardından 2,0 mSv inceleme düzeyini uygular; böylece kritik bir yıllık sınır ihlali asla alt düzey bir aylık uyarı arkasında kalmaz. İnceleme sürecinde dosya ve karar kimlikleri birbirine karışmadan takip edilir, kapalı RD.F43 dosyası bulunan dönem ölçümleri korunur ve şifreli kasadan çözülen kişisel doz/sağlık belgeleri görüntülendikten sonra geçici klasörlerden güvenle temizlenir.
+
+#### 2. KVKK Uyumlu Sağlık Gözetimi ve Güvenilir Poliklinik Periyotlama
+
+İşyeri hekimi ve İSG ekiplerinin yürüttüğü periyodik muayenelerde, henüz branş kararları tamamlanmamış sevk kayıtları personeli süresinde muayenesi yapılmış gibi göstermez; 6 aylık Şua kontrolü gecikmiş çalışanlar 12 aylık genel muayene nedeniyle gözden kaçmaz. Poliklinik açılır listeleri ile rapor süzgeçleri tek karar dilinde birleştirildi; klinik muayene notlarına yalnızca yetkili sağlık ve RKS rolleri erişebilirken birim sorumluları kendi ekiplerinin sadece çalışma uygunluk durumunu ve tarihlerini izler.
+
+#### 3. Kalibre Ortam Ölçümü, Sıkı Onay Akışı ve Denetime Hazır Olay / DÖF Yönetimi
+
+Kroki haritası ve ölçüm noktalarında birim sorumluları yalnızca sorumlu oldukları klinikleri yönetir ve yapılan tüm nokta/kroki değişiklikleri yetki ve onay kuyruğundan geçer; limit aşımı oluştuğunda olay bildirimi ve DÖF kaydı otomatik açılır. Olay inceleme sürecinde ise bitiş tarihine kadar olan tüm gün sonu vakaları rapora dahil edilir, açık DÖF'ü tamamlanmamış dosyalar kapatılmaz ve resmi tutanakta kurumun aktif RKS yetkilisi ile NDK bildirim süreleri eksiksiz belgelenir.
+
+---
+
+## RADPYS V4.0.6.3: Güvenli Nöbet Planlama Yaşam Döngüsü, 24/48 Saat Dinlenme Korumalı Devir ve İkame, Kısıt/Talep Birim Güvencesi ve Yıl Sonu/Arşiv Uyumlu Fazla Mesai Mutabakatı
+
+### Öne Çıkan Yenilikler
+
+- **Nöbet Talep ve Özel Sağlık Kısıtlarında Tam Birim ve Mevzuat Koruması:** Nöbet taleplerinde saat, tarih veya tür değiştirildiğinde talebin yeniden yönetici onayına düşmesi ve yayınlanmış dönemlerde geçmişe dönük talep değiştirme/silme işlemlerinin kilitlenmesi sağlandı; bağımsız emzirme kayıtlarında çocuğun doğum tarihine göre 2 yaş gece muafiyeti sınırı ve yayındaki gece/radyasyon nöbetlerinin otomatik iptali devreye alındı.
+- **Birim Vardiya Slotu ve Kurumsal Çalışma Kuralı Ayrımı:** Birim nöbet slotu ekleme ve güncelleme işlemlerinin kurum geneli veya birim çalışma standartlarını sessizce değiştirmesi önlendi; yasal dinlenme, ardışık nöbet ve fazla mesai parametrelerine mevzuat alt ve üst sınır koruması eklendi.
+- **Taslak, Yayın ve Arşiv Plan Bütünlüğü ile Güvenli Kısmi İptal:** Otomatik yeniden çizelgeleme, taslak yedeğinden geri yükleme ve toplu Excel nöbet aktarımı yalnızca Taslak durumundaki planlarla sınırlandırılarak gerçekleşen, devredilen ve ikame nöbetlerin korunması garanti altına alındı; ay ortası kısmi iptalde kesim tarihi bugünle sınırlandırıldı ve arşivden revizyona açılan planların diğer kliniklerin Fiili Hizmet dönem kilidini bozması engellendi.
+- **Devir, Değişim Havuzu ve İkamede 24/48 Saat Dinlenme ve Rıza Kalkanı:** Birebir devir, Web Portal Nöbet Değişim Havuzu, acil mazeret ikamesi ve gebe personel ikamesinin tamamında 24 saat genel dinlenme, iki gece nöbeti arası 48 saat ara ve ardışık nöbet sınırı zorunlu hale getirildi; meslektaş kabul aşamasının başka birim yöneticilerince atlanması, öz-onay ve mükerrer devir talepleri kapatıldı.
+- **Kısıt Süzgeçli Acil Mazeret İkamesi ve Güvenli Gebelik Aksiyon Sihirbazı:** Acil mazeret penceresindeki ikame önerilerinin izinli, gebe, emziren, doz/sağlık kısıtlı veya nöbet muafiyeti bulunan çalışanları otomatik elemesi ve gerçekleşmiş ikame nöbetlerin yanlışlıkla geri alınmaması sağlandı; gebelik aksiyon sihirbazında yeni görev yerinin radyasyonsuz alan olduğu zorunlu doğrulamaya bağlandı.
+- **Arşiv Uyumlu Fazla Mesai, 31 Aralık – 1 Ocak Tatil Ayrıştırması ve Kilit Güvenliği:** Arşivlenen aylardaki nöbetlerin de borç/alacak tablosu ve mutemetlik cetvelinde eksiksiz hesaplanması, 31 Aralık gecesi başlayan nöbetlerin 1 Ocak resmi tatil saatlerinin bayram mesaisine ayrıştırılması, kısmi ödemelerde kalan saatlerin doğru devretmesi ve dönem/birim filtresi değiştiğinde geçici kilit açma oturumunun otomatik kapanması sağlandı.
+
+### Fayda Odaklı Açıklamalar
+
+#### 1. Planlama Öncesi Kısıt Güvencesi ve Korunan Çizelge Geçmişi
+
+Birim sorumluları yeni vardiya slotu tanımlarken birim veya hastane çalışma kuralları etkilenmez; özel sağlık kısıtları kaldırıldığında veya gebelik süreci sonlandığında kayıtlar geçmiş denetim izi bozulmadan pasife alınır ve iptal edilen nöbetler için birim amirine anında bilgi verilir. Yayınlanmış veya arşivlenmiş çizelgeler toplu Excel aktarımı ya da taslak yedeği ile yanlışlıkla ezilemez; ay ortası kısmi iptalde ise kesim sonrası nöbetler gerekçesiyle iptal statüsünde saklanarak açık devir ve havuz ilanları otomatik kapatılır.
+
+#### 2. Yorgunluk ve Mevzuat İhlalini Önleyen Devir, Havuz ve Acil İkame Süreci
+
+Çalışanlar arası nöbet devri, karşılıklı takas, değişim havuzu ve acil mazeret ikamelerinde yalnızca saat çakışmasına değil, ardışık gün sınırına ve zorunlu 24/48 saat dinlenme kurallarına da tam uyum aranır. Karşılıklı takaslarda her iki vardiya masaüstü ve Web Portal arasında birebir eşleştirilir; 36 saat kala zaman aşımına uğrayan havuz ilanları ancak onaylı sağlık/mazeret izni veya yönetici onayıyla acil mazerete dönüştürülebilir.
+
+#### 3. Kesin Bordro / Mutemetlik Hesabı ve Birimler Arası Bağımsız Planlama
+
+Ay kapandıktan sonra Arşiv durumuna alınan nöbet planları da fazla mesai ve bayram cetvellerinde tam doğrulukla görünür; yılbaşında 31 Aralık'tan 1 Ocak sabahına sarkan vardiya saatleri resmi tatil mesaisi olarak ayrıştırılır. Yeni ayın planlaması yapılırken başka bir kliniğin taslak planı diğer birimleri engellemez; mutemetlik kaydı sırasında yasal 130 saat tavanı, kişisel fazla mesai sınırı ve ödenen + devreden bakiye denkliği sistem tarafından otomatik doğrulanır.
+
+---
+
 ## RADPYS V4.0.6.2: Çoklu Birim Kapsam Güvencesi, KVKK Evrak Kasası Koruması, Gebelik Yaşam Döngüsü, Çakışma Kontrollü İzin/FHZ Hesabı ve Eğitim/RGS İyileştirmeleri
 
 ### Öne Çıkan Yenilikler

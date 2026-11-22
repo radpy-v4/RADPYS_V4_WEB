@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.2</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.6</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -158,24 +158,24 @@
     <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Yeni Donem Raporu] &amp; Kalıcı Eşleşme Hafızası</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">TENMAK, RADAT ve Excel Aktarımı</span></td>
-        <td class="py-3.5 px-4">Farklı laboratuvar yazımlarındaki doz sonuçlarını hatasız biçimde personellere işlemek.</td>
-        <td class="py-3.5 px-4">Sağlayıcı, ad-soyad ve T.C. bilgisinden kalıcı eşleştirme hafızası kurar; eşleşmeyen satırlar manuel bağlanır veya Excel olarak indirilir.</td>
+        <td class="py-3.5 px-4">Farklı laboratuvar yazımlarındaki doz sonuçlarını hatasız biçimde personellere işlemek ve mühürlü dosyaları korumak.</td>
+        <td class="py-3.5 px-4">Sağlayıcı, ad-soyad ve T.C. bilgisinden kalıcı eşleştirme hafızası kurar; boş birimlere yapay klinik adı yazmaz ve kapalı/kilitli RD.F43 dosyası bulunan dönem ölçümlerinin üzerine yazılmasını engeller (ayrılan personelin geçmiş dozları yıllık raporlarda korunur).</td>
         <td class="py-3.5 px-4">Periyodik doz raporu geldiğinde.</td>
         <td class="py-3.5 px-4">RKS / Dozimetre Sorumlusu</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Periyodik ve Yıllık NDK Eşik Alarmları</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Tam Vücut, Göz, Ekstremite &amp; Kümülatif Kilitler</span></td>
-        <td class="py-3.5 px-4">İnceleme düzeylerini ve kümülatif yasal sınır aşımlarını gecikmeden tespit etmek.</td>
-        <td class="py-3.5 px-4">Aylık 2,0 mSv etkin doz, göz merceği aylık 2,0 mSv ve el/ayak/cilt aylık 50,0 mSv eşiklerinde sarı uyarı ve 10 iş günü sayacı, 5,0 mSv'de kırmızı alarm üretir; yıllık 20 mSv, 5 yıllık 100 mSv, tek yıl 50 mSv ve gebe 1,0 mSv limitini yazılım kilidiyle denetler.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Periyodik ve Yıllık NDK Eşik Alarmları</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Tam Vücut, Göz, Ekstremite &amp; Öncelik Sırası</span></td>
+        <td class="py-3.5 px-4">İnceleme düzeylerini ve ağır kümülatif yasal sınır aşımlarını maskelenmeden tespit etmek.</td>
+        <td class="py-3.5 px-4">Önce gebe (1,0 mSv), tek yıl (50 mSv), 5 yıl (100 mSv), yıllık (20 mSv) ve stajyer (6 mSv) bloke edici NDK sınırlarını, ardından aylık 2,0 mSv inceleme, göz (2,0 mSv) ve ekstremite (50,0 mSv) eşiklerini denetler; negatif doz değerlerini reddeder.</td>
         <td class="py-3.5 px-4">Ölçüm eklendiğinde / aktarıldığında.</td>
         <td class="py-3.5 px-4">Sistem Motoru / RKS</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Geçmiş Ölçümler ve Birim Rotasyon Takibi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">5 Sütunlu Sağ Panel Tablosu</span></td>
-        <td class="py-3.5 px-4">Personeldeki doz artışının hangi klinik birimde görev yaptığı dönemden kaynaklandığını bulmak.</td>
-        <td class="py-3.5 px-4">Seçili personelin tüm geçmiş ölçümlerini dönem, çalıştığı birim, derin/yüzey dozu ve durum bilgisiyle sıralar.</td>
-        <td class="py-3.5 px-4">Ölçüm satırı seçildiğinde.</td>
-        <td class="py-3.5 px-4">RKS / Yönetici</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Geçmiş Ölçümler ve Birim Rotasyon Takibi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">5 Sütunlu Sağ Panel &amp; Kokpit Kapsamı</span></td>
+        <td class="py-3.5 px-4">Personeldeki doz artışının hangi klinik birimde görev yaptığı dönemden kaynaklandığını KVKK sınırlarıyla izlemek.</td>
+        <td class="py-3.5 px-4">Seçili personelin geçmiş ölçümlerini dönem, çalıştığı birim, derin/yüzey dozu ve durum bilgisiyle sıralar; kokpit kartları, grafikler ve aksiyon listeleri yalnızca yöneticinin yetkili olduğu birimleri gösterir.</td>
+        <td class="py-3.5 px-4">Ölçüm satırı seçildiğinde / kokpitte.</td>
+        <td class="py-3.5 px-4">RKS / Birim Sorumlusu</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[İnceleme Başlat] &amp; Çift Yönlü Beyan Bildirimi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">8 Sütunlu Aksiyon Kokpiti</span></td>
@@ -187,7 +187,7 @@
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>3 Adımlı [Doz Araştırma Formu (RD.F43)]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Akıllı Karar ve RKS Değerlendirmesi</span></td>
         <td class="py-3.5 px-4">Odada unutulma, önlük üstü kullanım veya tıbbi tetkik artefaktını gerçek maruziyetten ayırmak.</td>
-        <td class="py-3.5 px-4">Çalışan beyanı ve Web Portal üzerinden girilen RKS saha değerlendirmesinden sonra 3. adımda teorik doz ile önlük düzeltmesini hesaplar; <strong>[Önerilen Kararı ve Bulguları Forma Aktar]</strong> ile tutanağa işler.</td>
+        <td class="py-3.5 px-4">Çalışan beyanı ve Web Portal üzerinden girilen RKS saha değerlendirmesinden sonra aktif gebelik durumunu kontrol eder, teorik doz ile önlük düzeltmesini hesaplar; kişisel maruziyet bulunmayan vakalarda gereksiz çalışma kısıtı açmaz, gerçek aşımlarda kısıtı otomatik başlatır.</td>
         <td class="py-3.5 px-4">Çalışan beyanı geldikten sonra.</td>
         <td class="py-3.5 px-4">RKS / Kurum Amiri</td>
       </tr>
@@ -199,9 +199,9 @@
         <td class="py-3.5 px-4">RKS / Dozimetre Sorumlusu</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Güvenlik Kilitli [Aksiyonu Kapat] &amp; Yeniden Açma</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Denetim İzli Mühürleme</span></td>
-        <td class="py-3.5 px-4">Tutanak ve karar numarası eksikken vakanın kağıt üzerinde kapatılmasını engellemek.</td>
-        <td class="py-3.5 px-4">Beyan, RKS soruları, nihai not ve gerekiyorsa DÖF tamamlanınca dosyayı kapatır; sonradan hata fark edilirse <strong>[Düzeltme Yap / Formu Yeniden Aç]</strong> ile gerekçeli açar.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Güvenlik Kilitli [Aksiyonu Kapat] &amp; Yeniden Açma</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Denetim İzli Mühürleme &amp; Silme Koruması</span></td>
+        <td class="py-3.5 px-4">Tutanak ve gerekçe eksikken vakanın kapatılmasını veya araştırmalı ölçümün silinmesini engellemek.</td>
+        <td class="py-3.5 px-4">İptal dahil tüm kapanışlarda zorunlu gerekçe, RD.F43 kilidi ve göz/ekstremite/yıllık limit doğrulaması yapar; bağlı araştırma veya aksiyon kaydı olan ölçümlerin silinmesini engeller, geçici belgeleri görüntüleme sonrası otomatik temizler.</td>
         <td class="py-3.5 px-4">Dosya kapatılırken / revizyonda.</td>
         <td class="py-3.5 px-4">RKS / Kurum Amiri</td>
       </tr>
@@ -471,7 +471,7 @@ flowchart TB
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.2) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.6) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>

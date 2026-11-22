@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.2</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.6</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -83,7 +83,7 @@
   <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
     Her kliniğin günlük, hafta içi ve hafta sonu/tatil vardiya slotlarını, aynı anda görev yapacak nöbetçi sayılarını, otomatik bitiş saati hesabını, 24 saat veya çapraz görev uygunluğunu ve birimler arası şablon aktarımını yönetmenizi sağlar.
   </p>
-  <div class="mt-4 text-xs sm:text-sm text-slate-500 dark:text-slate-400"><strong>Önemli Uyarı:</strong> [Birim Kuralını Kopyala] işlemi çalıştırıldığında hedef birimdeki mevcut tüm nöbet slotları tamamen silinir ve kaynak birimdeki slotlar sıfırdan oluşturulur; kopyalama öncesi hedef birimi mutlaka doğrulayın.</div>
+  <div class="mt-4 text-xs sm:text-sm text-slate-500 dark:text-slate-400"><strong>Önemli Uyarı:</strong> [Birim Kuralını Kopyala] işlemi hedef birimin şablonunu kaynak birimle eşitlerken geçmiş nöbet kaydı bulunan eski slotları silmez, geçmiş çizelge bütünlüğü için pasife alır; kopyalama öncesi hedef birimi mutlaka doğrulayın.</div>
   
   
 </section>
@@ -186,10 +186,17 @@
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Birim Kuralını Kopyala]</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Birimler Arası Şablon Aktarımı</span></td>
-        <td class="py-3.5 px-4">Benzer çalışma düzenine sahip servislere aynı vardiya slotlarını hızlıca kurmak.</td>
-        <td class="py-3.5 px-4">Kaynak birimin tüm slotlarını hedef birime kopyalar; çakışma olmaması için hedef birimin önceki tüm slotlarını silerek sıfırdan yazar.</td>
+        <td class="py-3.5 px-4">Benzer çalışma düzenine sahip servislere aynı vardiya slotlarını geçmiş veriyi bozmadan kurmak.</td>
+        <td class="py-3.5 px-4">Kaynak birimin slotlarını ve birim kurallarını hedef birime aktarır; hedef birimde geçmiş nöbet kaydı bulunan eski slotları fiziksel silmek yerine pasife alır, eşleşen kodları günceller.</td>
         <td class="py-3.5 px-4">Yeni birim yapılandırılırken.</td>
         <td class="py-3.5 px-4">Sistem Yöneticisi / Amir</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Birim Mesai Kuralları Miras ve Sınır Kalkanı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Bağımsız Slot Kaydı &amp; Yasal Sınırlar</span></td>
+        <td class="py-3.5 px-4">Slot eklerken birim veya kurum çalışma standartlarının yanlışlıkla değişmesini ve mevzuat dışı değer girilmesini önlemek.</td>
+        <td class="py-3.5 px-4"><strong>[Birim Kuralı Ekle]</strong> ve <strong>[Birim Kuralı Güncelle]</strong> yalnızca vardiya slotunu kaydeder; boş bırakılan birim alanları Temel Ayarlar'dan miras alınır ve dinlenme/fazla mesai değerleri yasal alt-üst sınırlarla doğrulanır.</td>
+        <td class="py-3.5 px-4">Slot veya birim kuralı kaydedilirken.</td>
+        <td class="py-3.5 px-4">Birim Sorumlusu / Sistem Kilidi</td>
       </tr>
     </tbody>
   </table>
@@ -264,11 +271,11 @@
   </details>
   <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
     <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
-      <span>Kural kopyalarken hedef birimdeki eski slotlar neden siliniyor?</span>
+      <span>Kural kopyalarken hedef birimdeki eski slotlara ve geçmiş nöbetlere ne olur?</span>
       <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
     </summary>
     <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Aynı birimde mükerrer vardiya kodu ve saat çakışması oluşmasını engellemek için kopyalama işlemi hedef birimin şablonunu kaynak birimle birebir eşitler. Mevcut slotları korumak istiyorsanız yeni slotları kopyalamak yerine <strong>[Birim Kuralı Ekle]</strong> ile tek tek eklemelisiniz.</p>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Aynı birimde mükerrer vardiya kodu ve saat çakışması oluşmasını engellemek için kopyalama işlemi hedef birimin aktif şablonunu kaynak birimle eşitler; geçmiş nöbet çizelgelerinde kullanılmış eski slotlar veri kaybı olmaması için silinmez ve pasife alınır. Mevcut aktif slotları koruyarak ekleme yapmak istiyorsanız <strong>[Birim Kuralı Ekle]</strong> butonunu kullanmalısınız.</p>
     </div>
   </details>
   <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
@@ -313,7 +320,7 @@
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.2) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.6) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>

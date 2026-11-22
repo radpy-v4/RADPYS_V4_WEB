@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.2</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.6</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -165,8 +165,8 @@
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>NDK Lisans Vize, RKS Ataması ve Esnek Zimmet</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">2. Sekme: NDK Lisans, RKS &amp; Zimmet</span></td>
-        <td class="py-3.5 px-4">Ruhsat yenileme takvimini ve cihaz sorumlularını kurum içi personel veya harici sorumlu ayrımı olmadan takip etmek.</td>
-        <td class="py-3.5 px-4">Radyasyonsuz ve Medikal gruplar otomatik Muaf işaretlenirken radyasyonlu cihazlarda vize bitimine 180, 45 ve 30 gün kala uyarı sayacı çalışır; cihaz zimmeti kayıtlı personel yanında harici kişi adıyla da atanarak Web Portal Cihaz ve QC panosundaki zimmet sekmesinden izlenir.</td>
+        <td class="py-3.5 px-4">Ruhsat yenileme takvimini ve cihaz sorumlularını yapay tarih veya sonuç üretmeden takip etmek.</td>
+        <td class="py-3.5 px-4">Radyasyonsuz ve Medikal gruplar aktif listede korunarak Muaf işaretlenir; radyasyonlu cihazlarda yalnızca gerçek lisans bilgisi değiştiğinde vize kaydı açılır ve 180/45/30 gün uyarı sayacı çalışır, NDK RKS Taahhütnamesi ve cihaz zimmeti şifreli kasayla doğrulanır.</td>
         <td class="py-3.5 px-4">Cihaz kaydedildiğinde, zimmetlendiğinde veya vize yaklaştığında.</td>
         <td class="py-3.5 px-4">RKS / Yönetici</td>
       </tr>
@@ -180,21 +180,21 @@
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Şifreli Evrak Kasası ve Birleşik Tutanak Tablosu</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">5. Sekme: Kılavuzlar ve Belgeler</span></td>
         <td class="py-3.5 px-4">Kullanım kılavuzlarını, NDK ruhsat belgelerini ve cihaz tutanaklarını tek listede şifreli korumak.</td>
-        <td class="py-3.5 px-4">Yüklenen kılavuzlar, lisans PDF belgeleri ve cihazla ilişkili resmi tutanaklar AES-256 Evrak Kasası üzerinden tek tabloda izlenir ve imzalı tutanak nüshası doğrudan satırdan eklenir.</td>
+        <td class="py-3.5 px-4">Yüklenen kılavuzlar, lisans PDF belgeleri ve cihazla ilişkili resmi tutanaklar onay kuyruğu dahil AES-256 Evrak Kasası üzerinden tek tabloda korunur ve imzalı tutanak nüshası doğrudan satırdan eklenir.</td>
         <td class="py-3.5 px-4">Teknik belge teslim alındığında veya tutanak imzalandığında.</td>
         <td class="py-3.5 px-4">Yetkili Kullanıcı / RKS</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong><strong>[Tutanak Oluştur]</strong>, <strong>[HEK]</strong> ve 2 Aşamalı Tasfiye Arşivi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Devir / Hasar / Kabul / HEK Süreç Yönetimi</span></td>
-        <td class="py-3.5 px-4">Çoklu cihaz tutanaklarını standart Word/PDF olarak üretmek ve hurdaya ayrılan cihazları EBYS ile mühürlemek.</td>
-        <td class="py-3.5 px-4">Araç çubuğundaki <strong>[HEK]</strong> veya <strong>[Tutanak Oluştur]</strong> sihirbazı cihazı imzada bekleyen HEK dosyasına bağlar; Ayniyat kapatmada <strong>[EBYS Gir / Dosyayı Kapat]</strong> ile dosya kalıcı mühürlenir.</td>
+        <td class="py-3.5 px-4">Çoklu cihaz tutanaklarını atomik olarak üretmek ve EBYS mühürlü cihazların silinmesini veya tekrar seçilmesini önlemek.</td>
+        <td class="py-3.5 px-4">Tutanak, kasa kaydı ve birim/zimmet/HEK güncellemesi tek bütün olarak tamamlanır; <strong>[EBYS Gir / Dosyayı Kapat]</strong> ile mühürlenen cihazların açık lisans/bakım/QC slotları kapatılır ve bu cihazlar silinemez veya yeni tutanaklara eklenemez.</td>
         <td class="py-3.5 px-4">Birim devri, hasar tespiti veya hurdaya ayırma kararında.</td>
         <td class="py-3.5 px-4">Komisyon / Ayniyat / RKS</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong><strong>[QR Etiket]</strong> ve 300 DPI Toplu Baskı Paketi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Tekil Kart ve ZIP Matbaa İhracı</span></td>
-        <td class="py-3.5 px-4">Cihaz gövdesine yapıştırılacak saha karekodunu tekil yazdırmak veya topluca matbaa baskısına hazırlamak.</td>
-        <td class="py-3.5 px-4">Açılır menüden seçili cihaz için tekil etiket yazdırılır veya seçili/tüm liste için 300 DPI etiket görselleri, matbaa baskı rehberi ve icmal listesi tek ZIP arşivinde üretilir.</td>
+        <td class="py-3.5 px-4">Cihaz gövdesine yapıştırılacak saha karekodunu gerçek cihaz türü ve kurumsal portal adresiyle hazırlamak.</td>
+        <td class="py-3.5 px-4">Kurum ayarlarındaki Web Portal adresi ve cihazın gerçek tür başlığı kullanılarak tekil etiket yazdırılır veya seçili/tüm liste için 300 DPI etiket görselleri, baskı rehberi ve icmal listesi tek ZIP arşivinde üretilir.</td>
         <td class="py-3.5 px-4">Cihaz kabulünde veya toplu etiket yenilemede.</td>
         <td class="py-3.5 px-4">Tekniker / Biyomedikal / RKS</td>
       </tr>
@@ -436,7 +436,7 @@ flowchart TB
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.2) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.6) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>
