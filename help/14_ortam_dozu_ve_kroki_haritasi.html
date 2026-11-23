@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.6</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.12</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -157,9 +157,9 @@
     </thead>
     <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Kroki Yükle], Çoklu Oda Sınırları &amp; 90° Döndürme</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[Sola Döndür] / [Sağa Döndür] &amp; Birim Kapsamı</span></td>
-        <td class="py-3.5 px-4">Kat planını özgün formatıyla şifreli kasada saklamak ve birim sorumlularını yalnızca kendi klinikleriyle sınırlandırmak.</td>
-        <td class="py-3.5 px-4">PDF veya görsel plan özgün dosya uzantısı ve benzersiz önbellek adıyla şifreli kasada saklanır; 90° döndürmede pin ve oda sınırları otomatik taşınır, tüm kroki ve nokta değişiklikleri birim yetki kapsamı ve onay kuyruğu denetiminden geçer.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Kroki Yükle], Çoklu Oda Sınırları &amp; 90° Döndürme</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[Sola Döndür] / [Sağa Döndür], Arka Plan PDF Çizimi &amp; Birim Kapsamı</span></td>
+        <td class="py-3.5 px-4">Kat planını özgün formatıyla şifreli kasada saklamak, yüksek çözünürlüklü PDF planları ekran dondurmadan çizmek ve birim sorumlularını yalnızca kendi klinikleriyle sınırlandırmak.</td>
+        <td class="py-3.5 px-4">PDF veya görsel plan özgün dosya uzantısı ve benzersiz önbellek adıyla şifreli kasada saklanır; yüksek çözünürlüklü PDF rasterleştirme ve son ölçüm harita sorguları arka planda tekilleştirilerek çalıştırılır, 90° döndürmede pin ve oda sınırları otomatik taşınır ve tüm kroki/nokta değişiklikleri birim yetki kapsamı ile onay kuyruğu denetiminden geçer.</td>
         <td class="py-3.5 px-4">Plan ekleme, güncelleme ve revizyonda.</td>
         <td class="py-3.5 px-4">RKS / Birim Sorumlusu / Sistem Yöneticisi</td>
       </tr>
@@ -171,9 +171,9 @@
         <td class="py-3.5 px-4">RKS / Sistem Yöneticisi</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Pinler Kilitli] &amp; Sabit Cihaz Konumları</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">İnteraktif Kroki Tuvali</span></td>
-        <td class="py-3.5 px-4">Haritada gezinirken noktaların kazara sürüklenip yerinden kaymasını önlemek.</td>
-        <td class="py-3.5 px-4">Varsayılan olarak koordinatları kilitler; taşıma modu açıldığında izleme pinleri ve sabit cihaz konumları düzenlenebilir.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Pinler Kilitli] &amp; Sabit Cihaz Konumları</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">İnteraktif Kroki Tuvali &amp; Konum Geri Yükleme</span></td>
+        <td class="py-3.5 px-4">Haritada gezinirken noktaların kazara sürüklenmesini önlemek ve başarısız kayıtlarda harita bütünlüğünü korumak.</td>
+        <td class="py-3.5 px-4">Varsayılan olarak koordinatları kilitler; taşıma modu açıldığında izleme pinleri ve sabit cihaz konumları düzenlenebilir, kayıt yetki veya sunucu hatasıyla reddedilirse uyarı verilerek harita otomatik olarak önceki konumuna geri yüklenir.</td>
         <td class="py-3.5 px-4">Kroki üzerinde çalışılırken.</td>
         <td class="py-3.5 px-4">Yetkili Kullanıcı</td>
       </tr>
@@ -192,9 +192,9 @@
         <td class="py-3.5 px-4">Sistem Motoru / RKS</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Karekod / Etiket Bas], [SKS Raporu (Excel)] &amp; NDK RKP Sihirbazı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">KLV-014 Kuruluş Ayarları &amp; Talimat Sıfırlama</span></td>
-        <td class="py-3.5 px-4">Kapı QR pasaportu, SKS 6.1 Excel çıktısı ve NDK Radyasyondan Korunma Programı (RKP) dosyasını eksiksiz üretmek.</td>
-        <td class="py-3.5 px-4">Tekil/toplu 300 DPI QR etiket arşivi ve birim kapsamlı SKS Excel tablosu üretir; NDK KLV-014 RKP sihirbazında uygulama yeri, görev ve yetkili iletişim alanlarını tam kaydeder, standart talimat sıfırlamasında yalnızca ilgili madde kodunu varsayılana döndürür ve geçici arşiv dosyasını yükleme sonrası temizler.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Karekod / Etiket Bas], [SKS Raporu (Excel)] &amp; NDK RKP Sihirbazı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Oda/Nokta QR Adı, KLV-014 Kuruluş Ayarları &amp; Asenkron Arşiv</span></td>
+        <td class="py-3.5 px-4">Kapı QR pasaportu, SKS 6.1 Excel çıktısı ve NDK Radyasyondan Korunma Programı (RKP) dosyasını ekran kilitlemeden ve geçici artıkları temizleyerek üretmek.</td>
+        <td class="py-3.5 px-4">Tekil/toplu 300 DPI QR etiketleri nokta veya oda pasaportu moduna göre uygun dosya adıyla PNG olarak dışa aktarır ve yazdırır; NDK KLV-014 RKP sihirbazında veri yükleme, Word/PDF üretimi ve KVKK Kasasına arşivleme arka planda yürütülür, işlem sonrası geçici belge kopyası temizlenir ve yalnızca seçili talimat kodu sıfırlanır.</td>
         <td class="py-3.5 px-4">Etiket baskısı, denetim ve RKP üretiminde.</td>
         <td class="py-3.5 px-4">RKS / Kalite Birimi</td>
       </tr>
@@ -404,7 +404,7 @@ flowchart TB
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.6) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.12) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>

@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.6</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.12</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -203,6 +203,20 @@
         <td class="py-3.5 px-4">Yetki seviyesini ve hesap aktifliğini listede tek bakışta ayırt etmek.</td>
         <td class="py-3.5 px-4">Kullanıcı ve rol listelerinde yetki düzeyleri (Admin, Yönetici, Birim Sorumlusu, Kullanıcı) ve aktiflik durumu renkli rozetlerle gösterilir.</td>
         <td class="py-3.5 px-4">Kullanıcı veya rol listesi incelenirken.</td>
+        <td class="py-3.5 px-4">Sistem Yöneticisi</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Yönetici Sudo 3 Hatalı Deneme Kilidi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">İkinci Parola Doğrulama Penceresi</span></td>
+        <td class="py-3.5 px-4">Yönetici parolasının deneme-yanılma ile tahmin edilmesini önlemek.</td>
+        <td class="py-3.5 px-4">Yetki değişikliği veya kritik işlemlerde art arda 3 kez yanlış şifre girildiğinde işlem 5 dakika kilitlenir ve denetim izine yetkisiz girişim kaydedilir.</td>
+        <td class="py-3.5 px-4">Sudo parolası 3 kez hatalı girildiğinde.</td>
+        <td class="py-3.5 px-4">Sistem Yöneticisi / Güvenlik Kilidi</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Akıcı Kullanıcı Listesi ve Güvenli Silme</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[Kullanıcılar] Tablosu ve [Sil]</span></td>
+        <td class="py-3.5 px-4">Yüzlerce kullanıcı kaydı yüklenirken arayüzün donmasını önlemek ve silme işlemlerini tek adımda tamamlamak.</td>
+        <td class="py-3.5 px-4">Kullanıcı listesi arka planda yüklenerek buton kilitleri devreye alınır; çoklu kullanıcı silme işlemleri veri kaybı riski olmadan tek seferde güvenle uygulanır.</td>
+        <td class="py-3.5 px-4">Kullanıcı listesi açıldığında veya personel silinirken.</td>
         <td class="py-3.5 px-4">Sistem Yöneticisi</td>
       </tr>
     </tbody>
@@ -402,7 +416,7 @@ flowchart TB
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.6) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.12) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>

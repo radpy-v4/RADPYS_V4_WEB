@@ -6,6 +6,163 @@ Bu kılavuz; **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## RADPYS V4.0.6.12: Hızlı ve Donmayan Toplu Veri Aktarımı, Mevzuat Uyumlu Rapor/Tutanak Çıktıları, Cihaz/HEK/RKE İzlenebilirliği ve Güçlendirilmiş Web Portal Güvenliği
+
+### Öne Çıkan Yenilikler
+
+- **Akıllı ve Kesintisiz Toplu Excel/CSV Veri Aktarımı:** Büyük personel, cihaz, RKE, izin ve nöbet listeleri sisteme yüklenirken dosya içi tekrar eden satırlar daha onay aşamasında yakalanır hale getirildi; tırnak içinde çok satırlı açıklama içeren CSV dosyalarının parçalanması önlendi ve boş şablon indirme işlemleri arka plana alınarak arayüz donmaları giderildi.
+- **Türkçe Harf Uyumlu ve Standartlaştırılmış Resmi Rapor & Tutanaklar:** PDF, Word ve Excel çıktılarındaki kurum adı ve rapor başlıklarında yaşanan Türkçe büyük/küçük harf bozulmaları giderildi; 7 ve daha fazla imza yetkilisi içeren tutanaklarda imza bloklarının 3'erli düzenli satırlara bölünmesi sağlandı. Rapor merkezi canlı önizlemesi ve tutanak ihraçları arka planda çalışacak şekilde hızlandırıldı.
+- **Güncel Yasal Limitlere Bağlı Dozimetre ve Sayfalamalı Sağlık/Nöbet Raporları:** Dozimetre raporlarında yıllık ve gebelik doz limitleri sabit değerler yerine kurum ayarlarından dinamik okunmaya başlandı; gebe çalışan doz takibinde tahmini bitiş tarihi sonrası ölçümler rapor kapsamından ayrıldı. İzin bakiye, sağlık takip ve fazla mesai raporları büyük kurumsal verilerde hızlandırıldı.
+- **Güçlendirilmiş Web ve Saha Portalı Yetki, Bildirim ve Dosya Güvenliği:** Web Portal üzerinden gönderilen duyuru ve bildirimlerde yalnızca yetkili kapsam (kullanıcı, bağlı birim veya tüm kurum) dahilinde işlem yapılması sağlandı; çok birimli birim sorumlularının önbellek verilerinin birbirine karışması önlendi ve belge yüklemelerinde dosya türü/içerik güvenliği sıkılaştırıldı.
+- **Cihaz/HEK ve RKE Envanter Takibinde İyileştirmeler:** Tıbbi cihaz arıza, bakım/kalite kontrol ve hurdaya ayırma (HEK) süreçleri ile koruyucu ekipman (RKE) zimmet ve saha muayene adımlarında sayfalama ve arka plan performansı artırıldı.
+
+### Fayda Odaklı Açıklamalar
+
+#### 1. Toplu Veri Girişlerinde Sıfır Kayıp ve Türkçe Doğruluğu
+
+Yeni dönem toplu aktarımlarda aynı dosya içinde sehven iki kez girilen nöbet, izin hakedişi veya cihaz seri numarası satırları veritabanına ulaşmadan doğrulama adımında kullanıcıya net satır numarasıyla bildirilir. Otomatik oluşturulan kısa kodlarda Türkçe karakter bütünlüğü korunur.
+
+#### 2. Denetime Hazır Resmi Çıktılar ve Canlı Önizleme Rahatlığı
+
+Kurumsal rapor motorunda ve resmi KLV-014 / RD.F43 / tutanak belgelerinde uzun imza listeleri sayfaya taşmadan hizalanır, boş tablo bölümleri birleşik hücre düzeniyle temiz basılır. Klinik sorumlular büyük rapor tablolarını önizlerken ekran donması yaşamaz.
+
+#### 3. Çok Birimli Yöneticiler İçin Tam Kapsamlı Web Portal Deneyimi
+
+Birden fazla radyoloji veya nükleer tıp biriminden sorumlu yöneticiler, Web Portal'a giriş yaptıklarında yalnızca yetkili oldukları birimlerin verilerini kendi kapsam anahtarlarıyla görüntüleyebilir; arayüz aktivite takibi arka planda sistemi yormadan akıcı çalışır.
+
+---
+
+## RADPYS V4.0.6.11: Gelişmiş Dozimetre Anomali ve Limit Analizi, Hızlı EK-1 Sağlık Muayenesi, Akıcı Kat Planı/Kroki & RKP Sihirbazı ve Atomik Olay/DÖF Takibi
+
+### Öne Çıkan Yenilikler
+
+- **Akıllı Dozimetre Anomali Algılama ve Genişletilmiş Yasal Limitler:** Anomali analizinde incelenen dönemin kendi ortalamayı şişirmesi önlenerek geçmiş ölçümlere göre ani doz sıçramaları hassas biçimde yakalanır hale getirildi; RD.F43 araştırma motoruna tek yıllık 50 mSv, göz merceği 20 mSv ve el/ekstremite 500 mSv yasal sınır kontrolleri eklendi.
+- **Standartlaştırılmış Tek Tık EK-1 Belgesi ve Tam 12 Aylık Doz Özeti:** Tüm sağlık muayenesi listeleme, ekleme, detay ve geçmiş ekranlarından üretilen resmi EK-1 sevk belgeleri tek kurumsal standartta birleştirildi; sağlık kontrollerinde değerlendirilen yıllık doz toplamı 13 aya taşmadan tam son 12 aylık dönem üzerinden hesaplanmaya başlandı.
+- **Donmayan Kat Planı (Kroki), QR Etiket ve NDK RKP Sihirbazı:** Yüksek çözünürlüklü PDF kat planı çizimleri, NDK RSGD-KLV-014 RKP başvuru belgesi üretimi ve şifreli Evrak Kasasına arşivleme işlemleri arka plana taşınarak ekran donmaları giderildi; harita üzerinde yetkisiz veya başarısız pin/cihaz taşımalarında konum otomatik olarak önceki yerine döndürülür hale getirildi, kapı pasaportu QR etiketleri oda koduyla dışa aktarılacak şekilde düzenlendi.
+- **Anlık Birim Sorumlusu ve RKS Olay Bildirimleri ile Tek Adımda İnceleme Kaydı:** Yeni açılan veya yönetici onayından geçen olay bildirimleri anında ilgili bölüm sorumlusuna ve aktif RKS/RGS görevlilerine bildirim olarak düşmeye başladı; olay inceleme penceresinde sorumlu atama ve durum güncellemesi tek adımda atomik olarak kaydedilir hale getirildi, yeni olay bildirimi tamamlandığında kullanıcı doğrudan olay listesine yönlendirildi.
+
+### Fayda Odaklı Açıklamalar
+
+#### 1. Gerçek Maruziyet ve Ani Doz Sıçramalarında Erken Müdahale
+
+Dozimetre takip ekranında iki dönem arasındaki ani artışlar incelenirken ölçümün kendisi ortalamaya katılmadığı için gerçek anomali vakaları gözden kaçmaz. Göz merceği ve ekstremite dozlarına yönelik yasal eşikler sayesinde tüm vücut dozu normal görünse bile lokal radyasyon riskleri anında RKS incelemesine düşer.
+
+#### 2. Muayene ve Çevresel İzlemede Tutarlı Kurumsal Standart
+
+İşyeri hekimlerinin ve RKS'lerin farklı ekranlardan ürettiği tüm EK-1 formları ve resmi olay tutanakları aynı tipografik hizalama ve kurum antetiyle hazırlanır. Kat planı üzerinde pin taşırken bir hata veya yetki engeli oluştuğunda kullanıcının yanıltıcı başarı mesajı alması önlenir ve harita güvenle güncel durumuna döndürülür.
+
+#### 3. Kesintisiz RKP Üretimi ve Şeffaf Olay Yönetimi
+
+Büyük klinik verilerle NDK RKP başvuru dosyası hazırlanırken, yüksek çözünürlüklü PDF kat planı yüklenirken veya resmi olay tutanağı basılırken program yanıt vermiyor durumuna düşmez. Onay mekanizmasından geçen her olay incelemesi ve ataması ilgili klinik sorumlulara gecikmesiz ulaşarak düzeltici faaliyetlerin hızlanmasını sağlar.
+
+---
+
+## RADPYS V4.0.6.10: Akıllı ve Sert Kısıt Korumalı Nöbet Planlama Motoru, Güvenli İzin Üstü Atama, Yasal Dinlenme Kalkanı, Dinamik Nöbet İkamesi ve Eşitlenmiş Fazla Mesai Bordro İcmali
+
+### Öne Çıkan Yenilikler
+
+- **Yaş ve Kıdem Muafiyetini Koruyan Sert Kısıtlı Dağıtım Motoru:** Otomatik nöbet planlama motorunda 50 yaş veya 25 hizmet yılı muafiyetine sahip personelin gece ve hafta sonu nöbet koruması ile aylık hafta sonu nöbet limitleri mutlak sert kısıt olarak güvenceye alındı; saat dengeleme adımlarında muaf personelin haklarının korunması sağlandı.
+- **Yönetici Gerekçeli ve Denetim İzli İzin Üstü Nöbet Ataması:** Zorunlu klinik durumlarda personelin onaylı izni üzerine manuel nöbet yazılabilmesi yalnızca yetkili yöneticinin onayına, zorunlu gerekçe kaydına ve resmi denetim kütüğüne mühürlenmesine bağlandı; kural dışı plansız atamaların önüne geçildi.
+- **24 Saat Kesintisiz Dinlenme ve Bitişik Nöbet Kalkanı:** Nöbet devirlerinde, meslektaş takaslarında ve acil mazeret ikamelerinde personelin yasal dinlenme haklarını ihlal eden 24 saat üzeri bitişik nöbet atamaları otomatik olarak engellendi; tükenmişlik ve iş kazası riskleri minimize edildi.
+- **Ekran Donmasını Önleyen Hızlı ve Akıcı Nöbet Ekosistemi:** Nöbet ayarları sekmeleri, devir listeleri ve fazla mesai bordro hesaplamaları arka plan işçilerine devredildi; büyük kliniklerde yüzlerce personelin nöbet ve fazla mesai tabloları yüklenirken veya hesaplanırken ekran kilitlenmeleri tamamen ortadan kaldırıldı.
+- **Eşitlenmiş 8 Sütunlu Fazla Mesai Bordro Cetveli ve Şeffaf Kayıt:** Fazla mesai bordro ekranındaki doğrudan yazıcı çıktısı ile Excel, PDF ve Word dökümleri 8 sütunlu resmi mutemetlik cetveli standardında tam olarak eşitlendi; bordro düzenlemelerinde yalnızca üzerinde değişiklik yapılan personeller kaydedilerek diğer kayıtların karar geçmişi koruma altına alındı.
+- **Gelişmiş Gebelik Yaşam Döngüsü ve Radyasyon Alanı Doğrulaması:** Gebe çalışanların nöbet iptalleri ve servis transferleri bağımsız pencerelerle yönetilmeye başlandı; yalnızca radyasyonlu alan birimlerindeki nöbetler iptal edilerek radyasyonsuz birimlerde personelin hak kaybına uğraması önlendi.
+
+### Fayda Odaklı Açıklamalar
+
+#### 1. Yasal Dinlenme ve Çalışan Sağlığı Güvencesi
+
+Nöbet çizelgelerinde personelin arka arkaya iki gün 24 saatlik nöbet tutması, gece nöbeti sonrası dinlenmeksizin göreve başlatılması veya muaf kıdemli personele gece vardiyası verilmesi dağıtım motoru ve devir onay mekanizmalarıyla imkânsız hale getirilmiştir. Çalışan sağlığı ve mevzuat uyumu en üst düzeyde korunur.
+
+#### 2. Şeffaf ve Geriye Dönük İtiraz Edilemez Yönetici Kararları
+
+Zorunlu hekim veya tekniker açığında izinli personelin göreve çağrılması durumunda, yöneticinin sisteme girdiği gerekçe silinemez biçimde resmi denetim izine kaydedilir. Bu sayede klinik denetimlerde ve sendikal değerlendirmelerde kurumun aldığı her operasyonel karar tam şeffaflıkla belgelenir.
+
+#### 3. Mutemetlik ve Bordroda Sıfır Hesaplama Hatası
+
+Hastanenin ay sonu fazla mesai ödeme icmallerinde ekranda görünen tablo, doğrudan yazıcıya gönderilen döküm ve mutemetliğe iletilen Excel/PDF dosyaları kuruş ve saat bazında birebir örtüşür. Bireysel bakiye düzenlemelerinde diğer personellerin onay izleri etkilenmez.
+
+---
+
+## RADPYS V4.0.6.9: Güvenli Personel Toplu Aktarımı, Veri Bütünlüğü Korumalı İzin Türü Yönetimi, Atomik Fiili Hizmet Kilidi ve Ekranı Dondurmayan Sınav Sistemi
+
+### Öne Çıkan Yenilikler
+
+- **Personel İçe Aktarımında Kimlik Gizliliği ve Lisans Kotası Koruması:** Excel üzerinden toplu personel aktarımı sırasında oluşan hata kayıtlarında T.C. Kimlik numaralarının maskelenerek gizliliğinin korunması sağlandı; aktarım provası (Dry-Run) aşamasında kurumun aktif personel lisans kotası otomatik denetlenerek limit aşımlarına karşı erken uyarı mekanizması getirildi.
+- **Klinik Geçmişi Koruyan Güvenli İzin Türü Silme:** Daha önce kullanılmış ve personellerin izin geçmişinde yer alan izin türleri silinmek istendiğinde, geçmiş resmi evrak ve izin bakiyelerinin bozulmaması için kayıt kalıcı olarak silinmeyip güvenle **Pasif** duruma alınır; yeni izin talebi formlarında ise yalnızca aktif izin türlerinin listelenmesi güvenceye alındı.
+- **Kesintisiz Fiili Hizmet Zammı (FHZ) ve Şua Dönem Kilitleme:** Radyasyon görevlilerinin aylık fiili hizmet ve şua puantajları hesaplanıp resmi rapor aşamasına geçildiğinde, hesaplama sonuçlarının kaydedilmesi ve dönemin kilitlenmesi tek adımda atomik olarak tamamlanır; böylece olası elektrik veya ağ kesintilerinde yarım kalmış veya tutarsız dönem durumu oluşması kesin olarak engellendi.
+- **Radyasyondan Korunma Görevlendirmelerinde Güvenli Sertifika Yükleme:** RGS ve RSO görevlendirmelerinde taranmış sertifika ve atama nüshaları için 25 MB dosya boyutu sınırı uygulandı; dosya yükleme ve şifreli evrak kasasına aktarım işlemleri arka plana alınarak büyük boyutlu taramalarda ekran donması engellendi.
+- **Akıcı Hizmet İçi Eğitim ve Çevrimiçi Sınav Deneyimi:** Hizmet içi eğitim modülünde soru arama kutusuna hızlı yazma koruması (debounce) eklenerek arayüz takılmaları önlendi; soru şablonu indirme düğmesi arayüze entegre edildi, eğitim videoları ve materyal kopyalama adımları ile sınav değerlendirme süreçleri arka plana taşınarak kesintisiz bir kullanıcı deneyimi sağlandı.
+
+### Fayda Odaklı Açıklamalar
+
+#### 1. Personel ve İzin Kayıtlarında Sıfır Veri Kaybı
+
+Hastane yönetiminin geçmiş yıllara ait izin türü tanımlarını güncellemesi veya kaldırması durumunda personelin eski izin hakedişleri ve şua hakları kaybolmaz. Sistem, ilişkili kayıtları tespit ederek veriyi pasife çeker ve yasal denetim izlenebilirliğini korur.
+
+#### 2. Radyasyon Çalışanları İçin Yasal Güvenceli FHZ Puantajı
+
+Radyasyonlu alanlarda çalışan personelin SGK fiili hizmet zammı bildirimleri ve şua izinleri, dönem kilitlendiği anda resmileştirilir. Kaydetme ve kilitleme işlemlerinin bölünmezliği sayesinde resmi tutanaklar ve bordro dökümleri her zaman %100 örtüşür.
+
+#### 3. Hızlı ve Güvenilir Kurum İçi Eğitim Süreçleri
+
+Radyasyon güvenliği ve kalite eğitimlerinde personel sınavlarını tamamlarken veya eğitim amirleri yüzlerce soruluk soru havuzunu tararken sistem anında yanıt verir. Harici eğitim videolarında yalnızca güvenli bağlantılara izin verilerek kurum ağı siber risklere karşı korunur.
+
+---
+
+## RADPYS V4.0.6.8: Gelişmiş Kimlik ve Hesap Gizliliği, Yönetici Sudo Kilit Koruması, Akıllı Departman/Unvan Birleştirme, Ekranı Dondurmayan Yönetim İşlemleri ve Kusursuz Tasarım Sistemi
+
+### Öne Çıkan Yenilikler
+
+- **Parola Sıfırlamada Hesap Varlık Koruması ve Oturum Güvenliği:** Şifremi unuttum ekranında girilen kullanıcı adının sistemde kayıtlı olup olmadığını dışarıya ifşa etmeyen tekil kurumsal bilgilendirme sağlandı; hesap kilitlendiğinde, lisans süresi dolduğunda veya parola yenilendiğinde ilgili kullanıcının tüm açık oturumlarının anında güvenle sonlandırılması devreye alındı.
+- **Yönetici Sudo İşlemlerinde 3 Hatalı Deneme Kilit Koruması:** Kullanıcı yetkileri, modül izinleri ve veritabanı bakım araçları gibi kritik alanlarda istenen ikinci güvenlik parolası girişinde art arda 3 kez hatalı deneme yapıldığında sistemin 5 dakika kilitlenmesi ve reddedilen tüm girişimlerin güvenlik denetim kütüğüne işlenmesi sağlandı.
+- **Akıllı Departman ve Unvan Birleştirme:** Birim kapatma veya birleştirme işlemlerinde personellerin yanı sıra kat planı kroki noktaları, tıbbi cihazlar, arıza kayıtları ve gelecekteki çakışan nöbet slotlarının otomatik olarak yeni hedef departmana eksiksiz aktarılması sağlandı; unvan birleştirmeleri yönetici onayına ve denetim izine bağlandı.
+- **Ekranı Dondurmayan Akıcı Yönetim ve Bakım İşlemleri:** Kullanıcı listesi filtrelemeleri, 5500 piksel yüksek çözünürlüklü bina kat krokisi çizimleri, test e-postası gönderimi, şifreli veritabanı yedeği yükleme ve onay merkezi görev kuyruğu yüklemeleri arka plana alınarak ekran donmaları tamamen engellendi; işlem sırasında düğmeler kilitlenerek mükerrer tıklama riskleri önlendi.
+- **Kusursuz Görsel Tasarım Sistemi ve Bağımsız İletişim Pencereleri:** Veritabanı sıfırlama onay formu, sistem sağlık ve tanı sihirbazı, denetim izi ayrıntıları, veri fark incelemeleri ve şifreli yedek anahtarı pencereleri kurumsal tasarım standartlarına uyarlandı; beklenmeyen sistem hatalarında açılan hata bildirim pencereleri Açık ve Karanlık temaya tam uyumlu hale getirildi.
+- **Evrensel Onay ve Bildirim Senkronizasyonu:** Onay bekleyen veri değişikliklerinde yöneticinin onay/ret notu ekleyebilmesi, kendi açtığı talebi kendisinin onaylamasını engelleyen dört-göz güvenlik kuralı, olay bildirim iptallerinde personel kartı güvencesi ve 17 farklı sistem bildiriminin kullanıcılara eksiksiz ulaştırılması güvenceye alındı.
+
+### Fayda Odaklı Açıklamalar
+
+#### 1. Kurumsal Hesap Gizliliği ve Yetkisiz Erişim Engeli
+
+Ortak kullanılan hastane ağlarında kötü niyetli kullanıcıların sistemde hangi personellerin kullanıcı hesabı bulunduğunu tespit etmesini önleyen gizlilik kalkanı devreye alınmıştır. Kritik sistem yönetimi işlemlerinde ikinci parola sorgusu ile ek güvenlik sağlanırken, 3 hatalı deneme sonrası kilit mekanizmasıyla yönetici hesapları koruma altına alınır.
+
+#### 2. Klinik Yapılanma Değişikliklerinde Sıfır Veri Kaybı
+
+Hastane birimleri birleştirildiğinde veya yeni binalara taşındığında eski birimdeki nöbetçi personeller, skopi/röntgen cihazları, arıza geçmişi ve kat planındaki sensör/ekipman noktaları tek adımda yeni birime devredilir. Gelecek tarihlere yazılmış çakışan nöbet slotları güvenle aktarılarak hizmet akışının kesintiye uğraması önlenir.
+
+#### 3. Kesintisiz Çalışma ve Tutarlı Görsel Deneyim
+
+Büyük veri hacmine sahip hastanelerde kullanıcı arama, kat planı açma veya e-posta sunucusu deneme işlemlerinde program yanıt vermiyor durumuna düşmez. Tüm yeni pencereler ve uyarı kutuları, kurumun seçtiği Açık veya Karanlık tema paletine eksiksiz uyarak göz yormayan, sade ve modern bir deneyim sunar.
+
+---
+
+## RADPYS V4.0.6.7: Akıcı Arka Plan Denetimi, Birim Kapsamlı Onay Rozeti, Kapanış Oturum Güvenliği, Tam Açık/Koyu Tema Uyumu ve Doğrulanmış Tarih / Rapor Tipografisi
+
+### Öne Çıkan Yenilikler
+
+- **Ekranı Bekletmeyen Arka Plan Portal, Bildirim ve Yardım Kılavuzu Akışı:** Masaüstü uygulamasında açılış bildirim taraması, okunmamış bildirim rozeti, Web Portal sunucu sağlık kontrolü ve yerleşik Kullanım Kılavuzu yüklemesi arka plana alınarak ağ gecikmesi veya yoğun veri taraması sırasında ekran donmalarının tamamen önüne geçildi.
+- **Yetki Kapsamına Duyarlı Onay Rozeti ve Kapanışta Otomatik Oturum Sonlandırma:** Sol menüdeki **[Onay Bekleyenler]** sayacının yalnızca kullanıcının gerçekten onaylamaya yetkili olduğu birim, vardiya devir aşaması ve resmi tutanak kayıtlarını sayması sağlandı; masaüstü penceresi doğrudan kapatıldığında da aktif oturum anahtarının güvenli şekilde geçersiz kılınması devreye alındı.
+- **Başhekimlik / RKS Onay Rozetlerinde Doğru Renk ve Tam Açık/Koyu Tema Tutarlılığı:** Tablolarda **Başhekimlik Onaylı** ve **RKS Onaylı** ibarelerinin hurda kısaltmasıyla karışarak kırmızı görünmesi önlenip yeşil onay rozetiyle gösterilmesi, tekil **İptal** kayıtlarının kırmızı uyarı ve **İptal Mazeret** kayıtlarının kehribar bilgilendirme rozetiyle ayrılması, uzmanlık muayene rozetlerinin ve tüm mesaj/yardım/açılış pencerelerinin seçili Açık veya Karanlık temaya tam uyum sağlaması sağlandı.
+- **Gerçek Takvim Tarihi Doğrulaması, Türkçe Başlık Düzeni ve Sorunsuz PDF/Excel Şablonları:** Form ve aktarım doğrulamalarında takvimde var olmayan günlerin (örneğin 31 Şubat veya hatalı ay/gün kombinasyonları) anında yakalanması, kurum adı ve kullanıcı baş harflerinde Türkçe İ/I harf kurallarının korunması, PDF raporlarda kalın Türkçe başlıkların eksiksiz basılması ve dosya yükleme uyarı pencerelerinde başlık ile açıklama metinlerinin doğru sırada gösterilmesi güvenceye alındı.
+- **Hızlı Açılan Servisler ve Güvenli Arama Altyapısı:** Ortam dozu, kat planı ve nöbet ayarları ekranlarının her açılışta mükerrer tablo hazırlığı yapması yerine veritabanı kurulumlarının tek seferlik güncelleme adımında tamamlanması sağlanarak modül açılışları hızlandırıldı; tüm modül içi arama kutularında güvenli alan doğrulaması standartlaştırıldı.
+
+### Fayda Odaklı Açıklamalar
+
+#### 1. Yoğun Klinik Kullanımda Sıfır Takılmalı Masaüstü Deneyimi
+
+Hastane ağının yavaşladığı veya dış internet erişiminin kapalı olduğu ortamlarda üst çubuktaki **[Yardım]**, **[Genel Bakış]** ve **[Portal Sunucu]** düğmelerine tıklandığında ya da sabah ilk açılışta bekleyen bildirimler taranırken arayüz kilitlenmez; tüm kontroller arka planda yürütülerek kullanıcıların hasta ve nöbet işlemlerine kesintisiz devam etmesi sağlanır.
+
+#### 2. Yöneticiler İçin Gerçek İş Yükü Sayacı ve Ortak Terminal Güvenliği
+
+Birim sorumluları ve üst yöneticiler sol menüdeki **[Onay Bekleyenler]** rozetinde artık diğer kliniklerin veya henüz meslektaş kabulü tamamlanmamış nöbet takaslarının sayısını değil, doğrudan kendi kararlarını bekleyen gerçek kayıt sayısını görür. Ortak kullanılan hastane bilgisayarlarında kullanıcı **[Çıkış]** düğmesi yerine pencereyi doğrudan kapatsa dahi oturumu sunucu tarafında güvenli biçimde kapatılır.
+
+#### 3. Açık ve Karanlık Temada Yüksek Okunabilirlik ve Veri Doğruluğu
+
+Gündüz aydınlık ofislerde Açık Tema, karanlık röntgen ve skopi odalarında Karanlık Tema kullanıldığında bildirim kutuları, boş liste kartları, uzmanlık muayene göstergeleri ve yerleşik kullanım kılavuzu aynı kurumsal kontrastla görüntülenir; hatalı takvim tarihleri daha veri giriş aşamasında engellenerek resmi rapor ve arşiv bütünlüğü korunur.
+
+---
+
 ## RADPYS V4.0.6.6: Web Portal ve Mobil QR Güvenlik Kalkanı, İmzalı Belge İndirme Bileti, Çoklu Birim Yetki İzolasyonu ve Oturum/Evrak Bütünlük Güvencesi
 
 ### Öne Çıkan Yenilikler

@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.6</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.12</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -164,16 +164,16 @@
         <td class="py-3.5 px-4">RKS / Dozimetre Sorumlusu</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Periyodik ve Yıllık NDK Eşik Alarmları</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Tam Vücut, Göz, Ekstremite &amp; Öncelik Sırası</span></td>
-        <td class="py-3.5 px-4">İnceleme düzeylerini ve ağır kümülatif yasal sınır aşımlarını maskelenmeden tespit etmek.</td>
-        <td class="py-3.5 px-4">Önce gebe (1,0 mSv), tek yıl (50 mSv), 5 yıl (100 mSv), yıllık (20 mSv) ve stajyer (6 mSv) bloke edici NDK sınırlarını, ardından aylık 2,0 mSv inceleme, göz (2,0 mSv) ve ekstremite (50,0 mSv) eşiklerini denetler; negatif doz değerlerini reddeder.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Periyodik ve Yıllık NDK Eşik Alarmları</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Tam Vücut, Göz, Ekstremite &amp; Ani Sıçrama Analizi</span></td>
+        <td class="py-3.5 px-4">İnceleme düzeylerini, ağır kümülatif yasal sınır aşımlarını ve ani dönem sıçramalarını maskelenmeden tespit etmek.</td>
+        <td class="py-3.5 px-4">Önce gebe (1,0 mSv), tek yıl (50 mSv), 5 yıl (100 mSv), yıllık (20 mSv) ve stajyer (6 mSv) bloke edici NDK sınırlarını, ardından aylık 2,0 mSv inceleme, göz merceği (20 mSv / 2,0 mSv) ve ekstremite (500 mSv / 50,0 mSv) eşiklerini denetler; anomali ortalamasını incelenen dönem hariç geçmiş ölçümlerden hesaplar ve negatif doz değerlerini reddeder.</td>
         <td class="py-3.5 px-4">Ölçüm eklendiğinde / aktarıldığında.</td>
         <td class="py-3.5 px-4">Sistem Motoru / RKS</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
-        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Geçmiş Ölçümler ve Birim Rotasyon Takibi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">5 Sütunlu Sağ Panel &amp; Kokpit Kapsamı</span></td>
-        <td class="py-3.5 px-4">Personeldeki doz artışının hangi klinik birimde görev yaptığı dönemden kaynaklandığını KVKK sınırlarıyla izlemek.</td>
-        <td class="py-3.5 px-4">Seçili personelin geçmiş ölçümlerini dönem, çalıştığı birim, derin/yüzey dozu ve durum bilgisiyle sıralar; kokpit kartları, grafikler ve aksiyon listeleri yalnızca yöneticinin yetkili olduğu birimleri gösterir.</td>
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Geçmiş Ölçümler ve Birim Rotasyon Takibi</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">5 Sütunlu Sağ Panel &amp; Akıcı Kokpit</span></td>
+        <td class="py-3.5 px-4">Personeldeki doz artışının hangi klinik birimde görev yaptığı dönemden kaynaklandığını ekran donmadan KVKK sınırlarıyla izlemek.</td>
+        <td class="py-3.5 px-4">Seçili personelin geçmiş ölçümlerini dönem, çalıştığı birim, derin/yüzey dozu ve durum bilgisiyle sıralar; kokpit kartları, analizler ve dışa aktarım işlemleri arka planda çalışarak yalnızca yöneticinin yetkili olduğu birimleri gösterir.</td>
         <td class="py-3.5 px-4">Ölçüm satırı seçildiğinde / kokpitte.</td>
         <td class="py-3.5 px-4">RKS / Birim Sorumlusu</td>
       </tr>
@@ -471,7 +471,7 @@ flowchart TB
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.6) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.12) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>

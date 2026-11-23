@@ -1,6 +1,6 @@
 # RADPYS V4 — Güncel Kullanım Kılavuzu
 
-> **Yazılım ve Kılavuz Sürümü:** v4.0.6.6  
+> **Yazılım ve Kılavuz Sürümü:** v4.0.6.7  
 > **Veri Gizliliği Notu:** Kılavuzda geçen tüm örnek kayıtlar ve görseller KVKK 6698 kapsamında test amaçlı sentetik veridir.
 
 RADPYS (Radyoloji ve Radyasyon Yönetim Sistemi); hastane radyoloji ve radyasyon onkolojisi birimlerinin personel nöbetlerini, izin ve şua hakedişlerini, kişisel dozimetre takibini, sağlık muayenelerini, ortam radyasyon ölçümlerini, koruyucu ekipman (RKE) muayenelerini, tıbbi cihaz envanterini, kalite kontrol süreçlerini ve resmi mevzuat raporlamasını (NDK, Sağlık Bakanlığı SKS 6.1, DIN 6857-1, TİTCK TCS-KLVZ-06 ve KVKK 6698) tek çatı altında yöneten entegre karar destek platformudur.
@@ -41,7 +41,8 @@ Geçici şifre kalıcı olarak iptal edilir; yeni şifre yalnızca size özel ş
 | **[Şifreyi göster]** (Onay Kutusu) | Yazım sırasında büyük/küçük harf ve rakam hatasını anlık görmek. | İşaretlendiğinde noktalı maskeli parola kutusunu açık metne çevirir. | Giriş veya yeni şifre belirleme sırasında. | Tüm Personel |
 | **Hatalı Giriş Kilidi** (Otomatik Güvenlik Kalkanı) | Deneme-yanılma yoluyla yetkisiz hesap ele geçirmelerini önlemek. | Varsayılan olarak art arda 5 hatalı parola girişinde hesabı 15 dakika süreyle kilitler (yönetici kilidi anında açabilir). | Parola üst üste hatalı girildiğinde. | Tüm Kullanıcılar |
 | **[Şifremi Unuttum?]** (3 Aşamalı Sıfırlama Sihirbazı) | E-posta doğrulamasıyla unutulan parolayı self-servis yenilemek. | Kayıtlı e-postaya 15 dakika geçerli 6 haneli kod gönderir (5 hatalı kod denemesinde kod iptal edilir; Web Portalda yalnızca yerel ağda çalışır). | Parola unutulduğunda. | E-postası Kayıtlı Personel |
-| **Bildirim Merkezi & Rozet** (Sağ Üst Zil Simgesi) | Nöbet devri, onay kuyruğu ve dozimetre uyarılarını anlık yakalamak. | Okunmamış uyarı varken zil simgesi rozet gösterir; nöbet devri bildiriminden doğrudan onay penceresi açılır. | Yeni görev veya uyarı geldiğinde. | Hedef Personel / Yönetici |
+| **Bildirim Merkezi & Rozet** (Sağ Üst Zil Simgesi) | Nöbet devri, onay kuyruğu ve dozimetre uyarılarını anlık yakalamak. | Okunmamış uyarı varken zil simgesi arka planda güncellenerek rozet gösterir; nöbet devri bildiriminden doğrudan onay penceresi açılır. | Yeni görev veya uyarı geldiğinde. | Hedef Personel / Yönetici |
+| **[Onay Bekleyenler] Rozeti & Kapanış Güvenliği** (Birim Kapsamlı Sayaç ve Oturum Sonlandırma) | Yalnızca yetkili olunan gerçek onay yükünü göstermek ve açık oturum bırakmamak. | Rozet sayacı yalnızca kullanıcının yetkili olduğu birim, vardiya devir aşaması ve tutanakları arka planda sayar; ana pencere kapatıldığında aktif oturum otomatik sonlandırılır. | Oturum açıkken ve pencere kapatıldığında. | Birim Sorumlusu / Yönetici / Tüm Kullanıcılar |
 
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 

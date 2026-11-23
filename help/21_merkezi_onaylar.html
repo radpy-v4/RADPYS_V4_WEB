@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.6</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.12</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -204,6 +204,20 @@
         <td class="py-3.5 px-4">Taslak tutanak incelenip EBYS imzalı PDF yüklendiğinde tutanak kasası güncellenir; tüm 7 sekmede ret işleminde metin gerekçesi zorunludur ve ret sonrası talep arşivlenerek kilitlenir.</td>
         <td class="py-3.5 px-4">Tutanak imzalandığında veya talep reddedildiğinde.</td>
         <td class="py-3.5 px-4">Birim Amiri / RKS / İdare</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Veri Değişikliklerinde Karar Notu ve Öz-Onay Kısıtı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">[İncele ve Karar Ver] &amp; [Karar Notu]</span></td>
+        <td class="py-3.5 px-4">Onaylanan veya reddedilen veri değişikliklerinde açıklama kaydı tutmak ve tarafsızlığı korumak.</td>
+        <td class="py-3.5 px-4">Yöneticiler onay veya ret işlemi yaparken açıklayıcı karar notu ekleyebilir; kendi açtıkları talebi onaylamaları güvenlik kurallarınca kesinlikle engellenir.</td>
+        <td class="py-3.5 px-4">Veri değişikliği talebi incelenirken.</td>
+        <td class="py-3.5 px-4">Modül Amiri / Yetkili Yönetici</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>17 Bildirim Tipi Senkronizasyonu ve Tekilleştirme</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Bildirim Merkezi ve Rozet Sayacı</span></td>
+        <td class="py-3.5 px-4">Tüm onay, izin ve nöbet hareketlerinin eksiksiz bildirilmesini ve mükerrer kayıtların elenmesini sağlamak.</td>
+        <td class="py-3.5 px-4">17 farklı sistem bildirim türü eksiksiz takip edilir; silinmiş bildirimler filtrelenerek rozet ve bildirim kutusunda yalnızca güncel kayıtlar gösterilir.</td>
+        <td class="py-3.5 px-4">Yeni görev, devir veya uyarı oluştuğunda.</td>
+        <td class="py-3.5 px-4">İlgili Kullanıcı / Birim Amiri</td>
       </tr>
     </tbody>
   </table>
@@ -413,7 +427,7 @@ flowchart TB
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.6) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.12) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>

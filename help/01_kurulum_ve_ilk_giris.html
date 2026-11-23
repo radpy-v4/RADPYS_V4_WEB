@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.6</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.12</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -187,9 +187,30 @@
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Bildirim Merkezi & Rozet</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Sağ Üst Zil Simgesi</span></td>
         <td class="py-3.5 px-4">Nöbet devri, onay kuyruğu ve dozimetre uyarılarını anlık yakalamak.</td>
-        <td class="py-3.5 px-4">Okunmamış uyarı varken zil simgesi rozet gösterir; nöbet devri bildiriminden doğrudan onay penceresi açılır.</td>
+        <td class="py-3.5 px-4">Okunmamış uyarı varken zil simgesi arka planda güncellenerek rozet gösterir; nöbet devri bildiriminden doğrudan onay penceresi açılır.</td>
         <td class="py-3.5 px-4">Yeni görev veya uyarı geldiğinde.</td>
         <td class="py-3.5 px-4">Hedef Personel / Yönetici</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>[Onay Bekleyenler] Rozeti & Kapanış Güvenliği</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Birim Kapsamlı Sayaç ve Oturum Sonlandırma</span></td>
+        <td class="py-3.5 px-4">Yalnızca yetkili olunan gerçek onay yükünü göstermek ve açık oturum bırakmamak.</td>
+        <td class="py-3.5 px-4">Rozet sayacı yalnızca kullanıcının yetkili olduğu birim, vardiya devir aşaması ve tutanakları arka planda sayar; ana pencere kapatıldığında aktif oturum otomatik sonlandırılır.</td>
+        <td class="py-3.5 px-4">Oturum açıkken ve pencere kapatıldığında.</td>
+        <td class="py-3.5 px-4">Birim Sorumlusu / Yönetici / Tüm Kullanıcılar</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Parola Sıfırlama Gizlilik Koruması</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Şifremi Unuttum Ekranı</span></td>
+        <td class="py-3.5 px-4">Kötü niyetli kişilerin kurum personel hesaplarını tespit etmesini önlemek.</td>
+        <td class="py-3.5 px-4">Girilen kullanıcı adının sistemde var olup olmadığına bakılmaksızın tekil bilgilendirme gösterir; yalnızca geçerli hesaba e-posta kodu iletilir.</td>
+        <td class="py-3.5 px-4">Şifremi unuttum sihirbazı kullanıldığında.</td>
+        <td class="py-3.5 px-4">E-postası Kayıtlı Personel</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Anında Oturum İptali &amp; Hesap Kilit Senkronu</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Güvenlik Otomasyonu</span></td>
+        <td class="py-3.5 px-4">Parolası yenilenen veya kilitlenen personelin açık oturumlarını derhal sonlandırmak.</td>
+        <td class="py-3.5 px-4">Parola değişimi, lisans süresi dolumu veya hesap kilitlenmesi anında kullanıcının tüm açık bilgisayarlardaki aktif oturumları anında düşürülür.</td>
+        <td class="py-3.5 px-4">Parola değiştiğinde veya hesap kilitlendiğinde.</td>
+        <td class="py-3.5 px-4">Sistem Güvenlik Kilidi</td>
       </tr>
     </tbody>
   </table>
@@ -410,7 +431,7 @@ flowchart TB
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.6) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.12) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>

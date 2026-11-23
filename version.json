@@ -1,10 +1,10 @@
 {
-  "version": "4.0.6.6",
-  "release_version": "4.0.6.6",
-  "build_version": "4.0.6.0",
-  "latest_demo_version": "4.0.6.6",
-  "release_date": "2026-11-22",
+  "version": "4.0.6.12",
+  "release_version": "4.0.6.12",
+  "build_version": "4.0.6.12",
+  "latest_demo_version": "4.0.6.12",
+  "release_date": "2026-11-23",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.6.6: Web Portal ve Mobil QR Arayüzü Güvenlik, BOLA ve KVKK Evrak Kasası Sertleştirme Paketi (Faz 7) devreye alındı. Çoklu birim kapsam izolasyonu, 60 saniyelik imzalı belge indirme bileti, SHA-256 evrak bütünlük doğrulaması, oturuma bağlı CSRF/CORS kalkanı, gerçek IP tabanlı dış ağ 2FA koruması, HBYS resmi onay kilidi ve tek uçuşlu kat planı görselleştirme güvencesi tamamlandı.",
+  "changelog": "RADPYS V4.0.6.12: Cihaz/HEK/RKE Operasyonları, Toplu İçe Aktarım & Raporlama Motoru ve Web Portal Mimari Kapanışı (PLAN 02 Faz 6–8). Cihaz/HEK sayfalama ve RKE zimmet izlenebilirliği; dosya içi mükerrer korumalı toplu içe aktarım, Türkçe büyük harf ve SQL sayfalamalı 25 rapor veri kaynağı; Web Portal'da kanonik izin matrisi, salt-okunur şema doğrulaması, N+1 sorgu birleştirmeleri, güvenli yükleme ve otomatik test paketi devreye alındı.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }
