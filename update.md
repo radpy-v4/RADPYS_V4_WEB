@@ -6,6 +6,31 @@ Bu kılavuz; **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## RADPYS V4.0.6.13: Daha Hızlı Toplu Aktarım ve Raporlama, Eksiksiz Denetim İzlenebilirliği ve Tutarlı Arayüz Deneyimi
+
+### Öne Çıkan Yenilikler
+
+- **Yüksek Hacimli Excel Aktarımında ve Aylık Hesaplamalarda Hız Artışı:** Büyük personel listelerinin toplu içe aktarımında bellek kullanımı azaltılarak aktarım hızı artırıldı; fiili hizmet puantaj hesaplamaları, RGS/RSO özet kartları ve toplu ortam dozu QR paketleme işlemleri optimize edildi.
+- **Güçlendirilmiş Denetim İzleri ve KVKK Veri Koruması:** Cihaz, bakım/kalite kontrol, hurda (HEK), nöbet devir ve hizmet içi eğitim işlemlerindeki kayıt geçmişleri gerçek kullanıcı kimliğiyle kaydedilmeye başlandı; pasif personele bağlı kullanıcı kartları düzenlenirken personel bağı kaybolmaz hale getirildi.
+- **Düzeltilen Form Hataları ve Okunaklı Geçmiş Ekranları:** İzin talep formundaki ters Açıklama/Notlar etiketleri ile şua izni yazımları düzeltildi; şifre değiştirme penceresinde aktif kurum parola kurallarının tamamı dinamik gösterilmeye başlandı; sağlık muayenesi değişiklik geçmişi ham teknik veri yerine okunaklı Türkçe özet ve işlemi yapan personel adıyla sunulur hale getirildi.
+- **Tutarlı Görünüm, Hizalı Sayısal Tablolar ve Emojisiz Kurumsal İkonlar:** Masaüstü ve Web Portal genelinde sayısal sütunlar (TC kimlik, tarih, doz, nöbet saati) sabit genişlikli hizalı yazı tipine geçirildi; metin içi ham sembol ve emojiler kurumsal vektör ikonlarla yenilendi, bakım ve kalite kontrol kartlarına kararlı tek tık filtreleme kazandırıldı.
+
+### Fayda Odaklı Açıklamalar
+
+#### 1. Doğru Mevzuat Kontrolleri ve Sıfır Veri Kaybı
+
+Dozimetre RD.F43 tutanaklarında aylık ve gebelik inceleme limitleri kurum ayarlarından dinamik okunur hale getirildi; NDK RKP sihirbazında talimat düzenlemelerinin sekme geçişinde silinmesi, RKE muayenelerinde kritik kusur eksikliği veya mükerrer `(RKS)` etiketi oluşması engellendi. Cihaz kodu önericisinde kelime sınırı kontrolü uygulanarak benzer harfli modalitelerin yanlış kodlanması önlendi.
+
+#### 2. Net ve Hatasız Kullanıcı Formları
+
+Personel yakını, eğitim, belge ve sağlık muayenesi kayıt pencereleri standart görsel tasarım sistemine uyarlandı; RGS/RSO görevlendirmelerinde dosya boyutu yuvarlama hataları ve kullanıcı uyarı metinlerindeki Türkçe karakter eksiklikleri giderildi.
+
+#### 3. Gerçekçi Eğitim Göstergeleri ve Raporlama Tutarlılığı
+
+Hizmet içi eğitimlerde henüz zorunlu atama olmayan durumlarda yanıltıcı tam uyum oranı yerine sıfır ve boş durum göstergesi sunulur hale getirildi; eğitim soru bankası arama ve katalog filtrelemesi tek seferde daha hızlı çalışacak biçimde düzenlendi. EK-1 resmi sağlık raporundaki kurum adı ve 12 belirti listesi merkezi tanımlarla tekilleştirildi; koruyucu ekipman (RKE) muayene listesi ve rapor ekranlarında şifreli evrak kasasına belge ve fotoğraf yükleme akışı tek standartta birleştirildi ve tıbbi cihaz toplu Excel aktarımında marka, tür ve kullanım amacı eş anlamlı eşleştirme kapsamı genişletildi.
+
+---
+
 ## RADPYS V4.0.6.12: Hızlı ve Donmayan Toplu Veri Aktarımı, Mevzuat Uyumlu Rapor/Tutanak Çıktıları, Cihaz/HEK/RKE İzlenebilirliği ve Güçlendirilmiş Web Portal Güvenliği
 
 ### Öne Çıkan Yenilikler

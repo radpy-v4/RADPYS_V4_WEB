@@ -1,10 +1,10 @@
 {
-  "version": "4.0.6.12",
-  "release_version": "4.0.6.12",
-  "build_version": "4.0.6.12",
-  "latest_demo_version": "4.0.6.12",
-  "release_date": "2026-11-23",
+  "version": "4.0.6.13",
+  "release_version": "4.0.6.13",
+  "build_version": "4.0.6.13",
+  "latest_demo_version": "4.0.6.13",
+  "release_date": "2026-11-24",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.6.12: Cihaz/HEK/RKE Operasyonları, Toplu İçe Aktarım & Raporlama Motoru ve Web Portal Mimari Kapanışı (PLAN 02 Faz 6–8). Cihaz/HEK sayfalama ve RKE zimmet izlenebilirliği; dosya içi mükerrer korumalı toplu içe aktarım, Türkçe büyük harf ve SQL sayfalamalı 25 rapor veri kaynağı; Web Portal'da kanonik izin matrisi, salt-okunur şema doğrulaması, N+1 sorgu birleştirmeleri, güvenli yükleme ve otomatik test paketi devreye alındı.",
+  "changelog": "RADPYS V4.0.6.13: PLAN 03 Güvenlik, Performans, Yalınlaştırma ve Tasarım Sistemi (RDS) Kapanışı. Veritabanı/kasa ve denetim izi sertleştirmeleri; toplu aktarım N+1/bellek optimizasyonları, nöbet planlama ve olay tutanağı motor sadeleştirmeleri; personel alt diyaloglarının .ui XML standardına taşınması ve QSS/tabular font/ikon uyumu tamamlandı.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }
