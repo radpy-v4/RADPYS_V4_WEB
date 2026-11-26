@@ -1,11 +1,11 @@
 # RADPYS V4 — Güncel Kullanım Kılavuzu
 
-> **Yazılım ve Kılavuz Sürümü:** v4.0.6.7  
+> **Yazılım ve Kılavuz Sürümü:** v4.0.6.15  
 > **Veri Gizliliği Notu:** Kılavuzda geçen tüm örnek kayıtlar ve görseller KVKK 6698 kapsamında test amaçlı sentetik veridir.
 
 RADPYS (Radyoloji ve Radyasyon Yönetim Sistemi); hastane radyoloji ve radyasyon onkolojisi birimlerinin personel nöbetlerini, izin ve şua hakedişlerini, kişisel dozimetre takibini, sağlık muayenelerini, ortam radyasyon ölçümlerini, koruyucu ekipman (RKE) muayenelerini, tıbbi cihaz envanterini, kalite kontrol süreçlerini ve resmi mevzuat raporlamasını (NDK, Sağlık Bakanlığı SKS 6.1, DIN 6857-1, TİTCK TCS-KLVZ-06 ve KVKK 6698) tek çatı altında yöneten entegre karar destek platformudur.
 
-Bu tek dosya özeti, **24 Ana Modül** ve **5 Nöbet Alt Kılavuzu** dahil toplam **29 Tek Kaynak (SSOT) kılavuz sayfasından** otomatik ve birebir senkronize edilerek derlenmiştir.
+Bu tek dosya özeti, **25 Ana Modül** ve **5 Nöbet Alt Kılavuzu** dahil toplam **30 Tek Kaynak (SSOT) kılavuz sayfasından** otomatik ve birebir senkronize edilerek derlenmiştir.
 
 ---
 
@@ -47,6 +47,7 @@ Geçici şifre kalıcı olarak iptal edilir; yeni şifre yalnızca size özel ş
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Masaüstü Simgesine Tıkladım Ama İkinci Pencere Açılmadı**
+>
 > - **Yanlış Algı:** *"Masaüstü simgesine tıkladım ama program açılmadı, sistem dondu veya hata verdi."*
 > - **Gerçek Sistem Mantığı:** **Tekil Uygulama Kilidi aktiftir.** RADPYS veritabanı bütünlüğünü korumak için aynı bilgisayarda yalnızca tek bir örnek altında çalışır. Program zaten açık veya simge durumundaysa ikinci bir kopya başlatılmaz; mevcut açık pencere doğrudan ekranın en önüne getirilir.
 
@@ -118,6 +119,7 @@ Kullanıcı yalnızca yetkili olduğu modüllere ve veri kapsamına erişir; dep
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Ayrılan Personelin Hesabını Kapatırsam Onayladığı Kayıtlar Silinir mi?**
+>
 > - **Yanlış Algı:** *"İşten ayrılan personelin kullanıcı hesabını kapattığımda geçmişte onayladığı nöbetler ve girdiği dozimetre ölçümleri sistemden silinir veya bozulur."*
 > - **Gerçek Sistem Mantığı:** **Hiçbir geçmiş kayıt silinmez.** **[Aktif/Pasif]** işlemi kullanıcının sisteme giriş yetkisini durdurur ancak personel kartını veya onay geçmişini silmez. Geçmişte onaylanan nöbetler, dozimetre verileri ve denetim izleri veritabanında eksiksiz korunur.
 
@@ -184,6 +186,7 @@ Seçilen logolar güvenli kaynak alanına kopyalanır ve tüm rapor motorları k
 | NE? (Bileşen / Kontrol) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Tetiklenme) | KİM? (Yetkili Rol) |
 | --- | --- | --- | --- | --- |
 | **Çekirdek Program Parametreleri** (Genel, Güvenlik, Dozimetre, İzin, FHZ) | Uygulamanın iş kurallarını kod değiştirmeden merkezi olarak uyarlamak. | Yalnızca mevcut sistem anahtarlarının değeri değiştirilir; karşılığı olmayan yeni parametre eklenmesine izin verilmez. | Kurum politikası güncellendiğinde. | Sistem Yöneticisi |
+| **Varsayılan Dozimetre Firması Seçimi** (**[Dozimetre Ayarları]**) | Her dozimetre rapor yüklemesinde firma radyo düğmesini tekrar seçme zahmetini önlemek. | Sağ paneldeki açılır kutudan **Otomatik Algıla**, **RADAT**, **TENMAK / NDK** veya **Genel Excel / CSV** seçeneklerinden biri kaydedilir; Dozimetre Raporu İçe Aktar ekranı açılışta seçili firmayı işaretler. | Kurum laboratuvar sağlayıcısı belirlendiğinde. | Sistem Yöneticisi |
 | **Otomatik Algılamalı E-Posta (SMTP)** ([E-Posta ve Bildirim Ayarları]) | Sunucu ve port bilgisi aramadan bildirim e-postasını kurmak ve parolayı gizlemek. | Adres yazıldığında sağlayıcı ve port otomatik algılanır; kaydedilen parola ekran tekrar açıldığında güvenlik gereği kutuya geri doldurulmaz. | E-posta altyapısı yapılandırılırken. | Sistem Yöneticisi |
 | **Dış Ağ 2FA ve Otomatik Bildirimler** (Güvenlik ve Bildirim Tercihleri) | Dış ağ Web Portal girişlerini 6 haneli kodla korumak ve kritik alarmları iletmek. | Onay kutuları kaydedildiğinde açık Web Portal sunucusunu yeniden başlatmadan devreye girer (dış ağ 2FA kodu gönderilemezse oturum açılmaz). | Siber güvenlik veya uyarı politikası açıldığında. | Sistem Yöneticisi |
 | **Departman Hiyerarşi Döngü Kilidi** ([Üst Departman] Açılır Kutusu) | Organizasyon ağacında sonsuz döngü oluşmasını engellemek. | Bir departman kendisini veya kendi altındaki bir birimi üst departman olarak seçerse kayıt işlemi reddedilir. | Departman kaydedilirken veya güncellenirken. | Sistem Yöneticisi |
@@ -194,6 +197,7 @@ Seçilen logolar güvenli kaynak alanına kopyalanır ve tüm rapor motorları k
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Kullanımda Olan Bir Tanımı Silersem Geçmiş Kayıtlar Bozulur mu?**
+>
 > - **Yanlış Algı:** *"Eski bir departmanı, unvanı, cihaz türünü veya RKE tanımını [Sil] butonuyla kaldırırsam geçmişte ona bağlı cihaz, nöbet ve muayene kayıtları da silinir."*
 > - **Gerçek Sistem Mantığı:** **Geçmiş kayıtlarınız güvendedir.** RADPYS'de tüm tanım ekranlarında **Veri Bütünlüğü Odaklı Hibrit Silme** çalışır. Silmek istediğiniz tanıma bağlı personel, alt birim, cihaz, RKE veya muayene kaydı varsa sistem tanımı kalıcı silmez, güvenle **Pasif** duruma alır; yalnızca hiç kullanılmamış tanımlar sistemden kalıcı temizlenir.
 
@@ -274,6 +278,7 @@ Veriler ve yüklenen belgeler 256-bit şifrelemeyle zaman damgalı arşivlenir; 
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Veritabanını Sıfırlarsam Departmanlarım ve Ayarlarım da Silinir mi?**
+>
 > - **Yanlış Algı:** *"Veritabanını Sıfırla butonuna basarsam hastane departmanlarım, unvanlarım, tatil takvimim, rollerim ve admin şifrem de silinir; sistemi baştan kurmam gerekir."*
 > - **Gerçek Sistem Mantığı:** **Kurumsal altyapınız korunur.** Sıfırlama işlemi yalnızca personel, nöbet, izin, dozimetre ve arıza gibi operasyonel hareket kayıtlarını temizler. Departmanlar, unvanlar, resmi tatiller, program ayarları, roller, yetkiler ve Admin hesabı korunarak sistem anında kullanıma hazır kalır.
 
@@ -311,9 +316,9 @@ Veriler ve yüklenen belgeler 256-bit şifrelemeyle zaman damgalı arşivlenir; 
 
 ---
 
-## 05. Personel Yönetimi, Lisans Kotası & Toplu İçe Aktarım
+## 05. Personel Yönetimi ve Lisans Kotası
 
-Radyasyonla çalışan ve idari personelin özlük kartını yönetme, aktif lisans kotası kontrolü, otomatik kullanıcı hesabı üretimi, 5 adımlı toplu Excel veri aktarımı, gebe/emzirme koruma kalkanı ve 30 yıllık yasal KVKK/NDK arşiv paketini oluşturma rehberi.
+Radyasyonla çalışan ve idari personelin özlük kartını yönetme, aktif lisans kotası kontrolü, otomatik kullanıcı hesabı üretimi, 10 kategorili detay takibi, gebe/emzirme koruma kalkanı ve 30 yıllık yasal KVKK/NDK arşiv paketini oluşturma rehberi.
 
 > **Yasal Güvence:** 6331 sayılı İSG Kanunu m. 15, 32162 sayılı Yönetmelik ve NDK düzenlemeleri gereğince ayrılan radyasyon çalışanları sistemden silinmez; sağlık ve doz geçmişleri en az 30 yıl saklanır.
 
@@ -335,7 +340,7 @@ Aktif personel kotası doğrulanır ve giriş hesabı otomatik oluşturulur; ayr
 
 ### 5N1K Kural ve Arayüz Çözümleme Tablosu
 
-*Personel lisans kotası, sayfalama koruması, gebelik/emzirme kalkanı, ilişik kesme ve toplu aktarım kuralları.*
+*Personel lisans kotası, sayfalama koruması, gebelik/emzirme kalkanı ve ilişik kesme kuralları.*
 
 | NE? (Bileşen / Kontrol) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Tetiklenme) | KİM? (Yetkili Rol) |
 | --- | --- | --- | --- | --- |
@@ -343,11 +348,11 @@ Aktif personel kotası doğrulanır ve giriş hesabı otomatik oluşturulur; ayr
 | **Durum Filtresi ve Sayfalama Koruması** (Liste Kontrol Çubuğu) | Aktif personeli ayrılanlardan ayırmak ve binlerce kayıtta ekran donmasını engellemek. | Varsayılan olarak yalnızca aktif çalışanlar listelenir; 1.000 üzeri kayıtta Tümü seçildiğinde performans onayı istenir. | Personel listesi süzülürken. | Tüm Kullanıcılar |
 | **Gebe ve Emzirme Koruma Kalkanı** ([Bildirimi Kaydet ve Nöbetleri İptal Et]) | Anne, fetüs ve bebeği iyonlaştırıcı radyasyon ile bulaşma riskinden korumak. | Gebelikte denetimli alan, gece nöbeti ve fazla mesai kapatılıp kalan süre fetüs ek doz sınırı 1 mSv izlenir; 1 yıllık emzirmede açık kaynak/bulaşma yasağı, süt izni ve gece muafiyeti uygulanır. | Gebelik veya doğum sonrası emzirme bildirildiğinde. | RKS / Hekim / Yönetici |
 | **Zimmet Denetimli Ayrılış ve 30 Yıl Arşiv** ([Ayrılış Bilgilerini Kaydet] & ZIP İhracı) | Kurum RKE/dozimetre demirbaşını korumak ve yasal verileri devredilebilir pakette saklamak. | Zimmetli RKE, aktif dozimetre ve RKS görevi denetlenir; ayrılış onaylandığında kota boşaltılır ve yetki doğrulamasıyla tüm dozimetre, izin, sağlık ve eğitim geçmişini hiçbir satır kırpmadan özgün belge uzantılarıyla içeren 30 yıllık KVKK/özlük paketi (ZIP) üretilir. | İşten ayrılma, tayin veya emeklilikte. | İK / RKS / Sistem Yöneticisi |
-| **Tanımsız Değer Çözücü ve Kısmi Birleştirme** ([Toplu Import] Sihirbazı) | Excel dosyalarındaki yazım farklarını yakalamak ve güncellemede mevcut veya mühürlü verilerin ezilmesini önlemek. | Hedef modül yetkisini denetler ve önizleme adımında veritabanına hiçbir kayıt yazmadan simülasyon yapar; tanımsız değerleri rastgele eşlemez, birleştirme modunda yalnızca Excel'de dolu gelen sütunları güncelleyip kilitli Şua yılları ile mühürlü HEK kayıtlarını korur ve hata raporunu maskeli üretir. | Toplu Excel veya CSV içe aktarımında. | Modül Yetkilisi / Sistem Yöneticisi |
 
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — İşten Ayrılan Personeli Silersek Doz ve Sağlık Kayıtları Yok Olur mu?**
+>
 > - **Yanlış Algı:** *"İşten çıkan personeli lisans kotasından yer açılsın diye sistemden silmeliyiz; silersek geçmiş doz ve sağlık kayıtları da kaybolur."*
 > - **Gerçek Sistem Mantığı:** **Personel kaydı asla kalıcı silinmez.** 6331 sayılı İSG Kanunu m. 15, 32162 sayılı Yönetmelik ve NDK kuralları uyarınca sağlık ve doz kayıtları işten ayrılış sonrası en az **30 yıl** saklanmalıdır. Ayrılış statüsüne alınan personel lisans kotasından otomatik düşülür ve tüm geçmişi şifreli özlük arşiv paketiyle korunur.
 
@@ -371,13 +376,7 @@ Aktif personel kotası doğrulanır ve giriş hesabı otomatik oluşturulur; ayr
 2. İşten ayrılan personelde **[İşten Ayrılış]** kategorisini açıp ayrılış tarihi ile sebebini seçin ve **[Ayrılış Bilgilerini Kaydet]** butonuna basın; sistem zimmetli koruyucu ekipman ve aktif dozimetre varsa iade onayı ister, aktif RKS görevi varsa sonlandırır.
 3. Tüm sağlık, dozimetre, izin, eğitim ve özlük belgelerini tek dosyada dışa aktarmak için **[KVKK ve Özlük Arşiv Paketini İndir (ZIP)]** butonunu kullanın.
 
-#### 3. 5 Adımlı Evrensel Toplu Veri İçe Aktarım Sihirbazı
-
-1. **[Toplu Import]** butonuna basıp **[Şablonlar Klasörü]** üzerinden 2 sayfalı Excel şablonunu (*Veri Listesi* ve *Geçerli Değerler Kılavuzu*) hazırlayın ve **[Dosya Seç...]** ile yükleyin.
-2. Sütun eşleştirme adımını doğrulayın; dosyada sistemde bulunmayan birim veya unvan varsa açılan **3. Tanımsız Değerleri Eşleştir** adımında **[Hepsini Eşle]** ya da **[Hepsini Yeni Yap]** ile çözüp **[Eşleştirmeleri Uygula ve İlerle]** butonuna basın.
-3. **Önizleme ve Doğrulama** adımında **[Sadece Hatalılar]** / **[Sadece Mükerrerler]** filtrelerini kontrol ettikten sonra **[Aktarımı Başlat]** butonuna tıklayın; işlem bitince otomatik oluşturulan şifreleri **[Kullanıcı Hesap Bilgilerini İndir (.txt)]** ile alın ve varsa **[Hata Raporunu Aç]** ile hatalı satırları inceleyin.
-
-#### 4. Web Portalı Hesabım & Profilim Görünümü
+#### 3. Web Portalı Hesabım & Profilim Görünümü
 
 1. Saha personeli tarayıcı veya mobilden **Web Portalı**'na giriş yaptığında **Hesabım & Profilim** ekranından kendi iletişim, dozimetre, periyodik sağlık/EK-1, eğitim ve izin/nöbet kayıtlarını görüntüler.
 2. Personele bağlı gebelik veya rotasyon bildirimi gönderildiğinde talep doğrudan masaüstü yetkili onay kuyruğuna iletilir; yöneticiler ise Web Portaldaki personel gösterge panelinden kadro özetini salt okunur izler.
@@ -429,6 +428,7 @@ Mevcut izin veya aktif nöbet çakışması varsa talep engellenir; onay anında
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Kullanılmayan Şua İzinleri Ertesi Yıla Devreder mi veya Ücrete Çevrilir mi?**
+>
 > - **Yanlış Algı:** *"Yoğunluk nedeniyle bu yıl 30 günlük Şua iznimi kullanamadım; gelecek yıla devreder veya kullanamadığım günlerin parasını alabilirim."*
 > - **Gerçek Sistem Mantığı:** **Ertesi yıla devretmez; aktif çalışmada ücrete çevrilemez.** 3153 sayılı Kanun Ek Madde 1, 657 DMK m. 103/3 ve 32162 sayılı Yönetmelik m. 8 uyarınca Şua (sağlık) izni çalışanın radyasyondan korunması ve biyolojik onarımı içindir; bölünemez, devretmez ve çalışırken paraya dönüştürülemez. İşten ayrılış veya fesih halinde ise 657'ye tabi memurlarda ücrete dönüşmezken, 4857'ye tabi işçilerde Yargıtay 9. Hukuk Dairesi içtihatları çerçevesindeki durum kurum İK ve hukuk birimince değerlendirilir.
 
@@ -510,6 +510,7 @@ Nöbet çizelgelerinin mevzuata, çalışan sağlığına ve klinik hizmet ihtiy
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — 50 Yaşını veya 25 Hizmet Yılını Dolduran Personele Hiçbir Şekilde Gece Nöbeti Yazılamaz mı?**
+>
 > - **Yanlış Algı:** *"Personel 50 yaşını geçti veya 25 yıllık memur oldu; servis nöbeti kilitlense bile sistem gece nöbeti atayamaz."*
 > - **Gerçek Sistem Mantığı:** **Mutlak bir kanuni yasak değil, koruyucu öncelik politikasıdır.** Gebelik veya radyasyon doz aşımı gibi kanuni engeller kesin olarak delinemezken, 50 yaş veya 25 yıl kıdem kriteri öncelikle gündüz vardiyası veren bir kurum politikasıdır. Serviste boş slot kalması veya personelin zorunlu çalışma süresini dolduramaması halinde motor bu kuralı otomatik esneterek gece nöbeti atayabilir.
 
@@ -855,6 +856,7 @@ Dağıtım başlamadan önce mevcut taslak otomatik yedeklenir; hesaplama arayü
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Otomatik Dağıtım Çalıştırıldığında Mevcut Manuel Taslağım Kalıcı Olarak Silinir mi?**
+>
 > - **Yanlış Algı:** *"Günlerce üzerinde uğraştığım taslak çizelgede yanlışlıkla [Otomatik Oluştur] butonuna basarsam tüm manuel düzenlemelerim sonsuza kadar kaybolur."*
 > - **Gerçek Sistem Mantığı:** **Kesinlikle kaybolmaz.** Dağıtım motoru çalışmaya başlamadan hemen önce sistem mevcut çizelgenin tam bir taslak anlık görüntüsünü otomatik olarak arşivler. Üretilen yeni dağıtımdan memnun kalmazsanız çizelge araç çubuğundaki **[Yedek Yükle]** butonuna tıklayarak saniyeler içinde bir önceki taslağınıza dönebilirsiniz.
 
@@ -934,6 +936,7 @@ Hizmet sınıfı eşitliği, 24 saat dinlenme ve taban çalışma saati otomatik
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Havuzda 36 Saat Kala Eşleşmeyen Nöbetler Otomatik Olarak Acil Mazerete Aktarılır mı?**
+>
 > - **Yanlış Algı:** *"Nöbetimi Web Portalı değişim havuzuna bıraktım; nöbete 36 saat kala kimse talip olmazsa sistem nöbeti üzerimden otomatik düşürüp yerime zorunlu ikame yazar."*
 > - **Gerçek Sistem Mantığı:** **Bu süreç kendiliğinden otomatik işlemez.** Nöbete 36 saat kaldığında sistem nöbetin açıkta kalmasını önlemek için ilanı zaman aşımına uğratıp havuzdan çeker; ancak acil mazeret ve ikame kaydı otomatik açılmaz. Personelin birim yöneticisine başvurması ve yöneticinin klinik zorunluluk tespit ederek acil mazeret protokolünü başlatması gerekir.
 
@@ -1009,6 +1012,7 @@ Dönemi ve birimi seçip **[Yenile]** ile hesaplamayı alın; bireysel satırlar
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Personelin Biriken Fazla Mesaisinin Tamamı Aynı Ay Nakden Ödenebilir mi?**
+>
 > - **Yanlış Algı:** *"Personel ay içinde geçmişten devreden saatlerle birlikte 150 saat fazla mesai biriktirdiyse, amirin onayıyla tamamı o ay nöbet ücreti olarak bordroya yazılır."*
 > - **Gerçek Sistem Mantığı:** **Hayır, yasal ödeme tavanı aşılamaz.** 657 sayılı Devlet Memurları Kanunu Ek Madde 33 uyarınca bir personele bir ayda nöbet ücreti ödenebilecek üst sınır **130 saattir**. Ayrıca kurum sağlığı için önerilen koruyucu kota **60 saattir**; ödenmeyen kalan hak edişler kesinlikle yanmaz ve sonraki dönemlere saat bakiyesi olarak devreder.
 
@@ -1058,6 +1062,7 @@ Dönemi ve birimi seçip **[Yenile]** ile hesaplamayı alın; bireysel satırlar
 **1. İstenen Sonuç:**
 15–14 SGK bordro dönemine ait görev yerlerinin onaylanması, net fiili çalışma saatlerinin ve EK-2 Şua hak edişlerinin hesaplanıp kilitlenerek SGK puantaj cetvelinin alınması.
 **2. Yapılacak İşlem:**
+
 1. sekmede varsayılan ve rotasyonlu görev yerlerini kontrol edip **[1. Görev Yerlerini Onayla ve Hesaplamaya Geç]**'e basın; 2. sekmede hesaplamayı doğrulayıp **[2. Hesaplamayı Kaydet, Kilitle ve Rapor Çıktısına Geç]** butonunu kullanın; 3. sekmede **[3. Rapor Çıktısı Al (Excel / PDF)]** ile çıktıyı alıp **[4. İşlemi Bitir ve Kapat]**'a tıklayın.
 **3. Sistem Etkisi:**
 Onaysız izin varsa güvenlik bariyeri hesaplamayı durdurur; Koşul A (7s) ve Koşul B (8s) ayrıştırılır; yıl içi kümülatif toplamda 32162 Yönetmelik EK-2 basamakları (azami 30 gün) uygulanır ve dönem mühürlenir.
@@ -1083,6 +1088,7 @@ Onaysız izin varsa güvenlik bariyeri hesaplamayı durdurur; Koşul A (7s) ve K
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Radyasyon Biriminde Kadrolu Personel İzinli Olsa da Her Ay Tam Fiili Hizmet Zammı Alır mı?**
+>
 > - **Yanlış Algı:** *"Radyoloji kadrosunda çalışan bir personel o ay ne kadar yıllık izin veya sağlık raporu kullanırsa kullansın her ay 30 gün üzerinden yıpranma payı (FHZ) alır."*
 > - **Gerçek Sistem Mantığı:** **Kesinlikle almaz.** 5510 sayılı Kanun ve SGK genelgeleri gereğince Fiili Hizmet Süresi Zammı yalnızca iyonlaştırıcı radyasyon kaynağının bulunduğu kontrollü alanda **fiilen çalışılan gün ve saatler** üzerinden tahakkuk ettirilir. Yıllık izin, mazeret izni, rapor veya idari izin günleri brüt süreden otomatik düşülür.
 
@@ -1149,6 +1155,7 @@ Laboratuvardan gelen periyodik doz sonuçlarının doğru personellere işlenmes
 | NE? (Bileşen / Kontrol) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Tetiklenme) | KİM? (Yetkili Rol) |
 | --- | --- | --- | --- | --- |
 | **[Yeni Donem Raporu] & Kalıcı Eşleşme Hafızası** (TENMAK, RADAT ve Excel Aktarımı) | Farklı laboratuvar yazımlarındaki doz sonuçlarını hatasız biçimde personellere işlemek ve mühürlü dosyaları korumak. | Sağlayıcı, ad-soyad ve T.C. bilgisinden kalıcı eşleştirme hafızası kurar; boş birimlere yapay klinik adı yazmaz ve kapalı/kilitli RD.F43 dosyası bulunan dönem ölçümlerinin üzerine yazılmasını engeller (ayrılan personelin geçmiş dozları yıllık raporlarda korunur). | Periyodik doz raporu geldiğinde. | RKS / Dozimetre Sorumlusu |
+| **TENMAK (e-Devlet) Bireysel PDF & Artımlı Aktarım** (**[Personel Seç...]**, **[Dozimetre Raporu Yükle]**) | Üzerinde personel adı ve T.C. yazmayan bireysel e-Devlet TENMAK PDF belgelerini eksiksiz ve güvenli biçimde aktarmak. | İçe aktarma sihirbazında (veya Personel Kartı / Listesi sağ tık kısayolundan) hedef çalışan doğrudan seçilir; henüz sonucu okunmamış boş dönemler sıfır yazılmadan atlanır. Çalışanın sistemde kaydı yoksa tüm okunmuş dönemler, mevcut kaydı varsa yalnızca yeni dönemler aktarılır; birim bilgisi çalışanın sistemdeki aktif görev yerinden alınır ve çoklu aktarımda tek özet bildirim gönderilir. | e-Devlet TENMAK belgesi yüklendiğinde. | RKS / Yetkili Personel |
 | **Periyodik ve Yıllık NDK Eşik Alarmları** (Tam Vücut, Göz, Ekstremite & Öncelik Sırası) | İnceleme düzeylerini ve ağır kümülatif yasal sınır aşımlarını maskelenmeden tespit etmek. | Önce gebe (1,0 mSv), tek yıl (50 mSv), 5 yıl (100 mSv), yıllık (20 mSv) ve stajyer (6 mSv) bloke edici NDK sınırlarını, ardından aylık 2,0 mSv inceleme, göz (2,0 mSv) ve ekstremite (50,0 mSv) eşiklerini denetler; negatif doz değerlerini reddeder. | Ölçüm eklendiğinde / aktarıldığında. | Sistem Motoru / RKS |
 | **Geçmiş Ölçümler ve Birim Rotasyon Takibi** (5 Sütunlu Sağ Panel & Kokpit Kapsamı) | Personeldeki doz artışının hangi klinik birimde görev yaptığı dönemden kaynaklandığını KVKK sınırlarıyla izlemek. | Seçili personelin geçmiş ölçümlerini dönem, çalıştığı birim, derin/yüzey dozu ve durum bilgisiyle sıralar; kokpit kartları, grafikler ve aksiyon listeleri yalnızca yöneticinin yetkili olduğu birimleri gösterir. | Ölçüm satırı seçildiğinde / kokpitte. | RKS / Birim Sorumlusu |
 | **[İnceleme Başlat] & Çift Yönlü Beyan Bildirimi** (8 Sütunlu Aksiyon Kokpiti) | Çalışanın savunması ve olay açıklaması alınmadan RKS dosyasının kapatılmasını önlemek. | Çalışanın Web Portal görev paneline Sayfa 1 beyan görevi düşürür; beyan yanıtı gelmeden taslak kaydı ve kapatma kilidi açılmaz. | Yeni eşik aşımı veya anomali açıldığında. | RKS / İlgili Personel |
@@ -1159,6 +1166,7 @@ Laboratuvardan gelen periyodik doz sonuçlarının doğru personellere işlenmes
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Tıbbi Tetkik Dozu veya Döngüsel Rozet Numarası Mesleki Limite mi İşlenir?**
+>
 > - **Yanlış Algı:** *"Personel o ay hasta olarak PET-BT çektirdiği için dozimetresinde 15 mSv çıktı; bu doz artık yıllık yasal limitini doldurmuş sayılır ve eşleştirmede dozimetre seri numarası kalıcı kimlik olarak kullanılır."*
 > - **Gerçek Sistem Mantığı:** **İkisi de doğru değildir.** NDK mevzuatına göre çalışan hasta sıfatıyla aldığı tıbbi tetkik dozları mesleki maruziyet sayılmaz; RD.F43 formunda tıbbi tetkik veya alanda unutulma seçilerek RKS net doz hesabıyla düşülür. Ayrıca dozimetre kasetleri her periyotta rotasyona girdiği için kalıcı eşleştirme asla kaset numarasına göre değil, sağlayıcı laboratuvar, personel adı-soyadı ve T.C. kimlik bilgisine göre yapılır.
 
@@ -1172,8 +1180,8 @@ Laboratuvardan gelen periyodik doz sonuçlarının doğru personellere işlenmes
 
 #### 1. Laboratuvar Dosyası İçe Aktarma ve Eşleşme Hafızasını Kullanma
 
-1. **[Kişisel Dozimetre Takibi]** ekranında araç çubuğundaki **[Yeni Donem Raporu]** butonuna tıklayın; format olarak **Otomatik Algıla**, **RADAT**, **TENMAK / NDK** veya **Genel Excel / CSV** seçip **[Dosya Seç...]** ile raporu yükleyin ve **[İleri]**'ye basın.
-2. Önizleme tablosunda eşleşmeyen satır varsa satıra çift tıklayarak (veya **[Seçiliyi Personelle Eşle]** ile) doğru çalışanı arayıp seçin; kalıcı hafıza onay kutusunu işaretleyerek **[Bu Personelle Eşle]**'ye basın (kurum dışı veya ayrılmış kişiler için **[Eşleşmeyenleri Excel Olarak İndir]** ile listeyi alabilirsiniz).
+1. **[Kişisel Dozimetre Takibi]** ekranında araç çubuğundaki **[Yeni Donem Raporu]** butonuna tıklayın (ayrıca belirli bir personel için doğrudan **Personel Kartı > Dozimetre** sekmesindeki **[Dozimetre Raporu Yükle]** butonunu veya Personel Listesi sağ tık menüsünü kullanabilirsiniz); açılışta varsayılan firma ayarına göre gelen format seçeneklerinden **Otomatik Algıla**, **RADAT**, **TENMAK / NDK** veya **Genel Excel / CSV** seçip **[Dosya Seç...]** ile raporu yükleyin ve **[İleri]**'ye basın.
+2. Toplu listede eşleşmeyen satır varsa satıra çift tıklayarak (veya **[Seçiliyi Personelle Eşle]** ile) çalışanı eşleyin. Yüklenen dosya personel adı içermeyen bir **e-Devlet TENMAK Bireysel PDF** ise **[Personel Seç...]** veya **[Hedef Personel Seç / Değiştir]** ile ilgili personeli bağlayın; okunmamış boş dönemler otomatik atlanır ve çalışanın sistemde mevcut kaydı olup olmamasına göre tüm geçmiş ya da yalnızca yeni dönemler listelenir.
 3. Son adımda **[Tamamla]** butonuna basarak tüm ölçümleri kümülatife işleyin ve eşik aşımı varsa otomatik aksiyon kaydını oluşturun.
 
 #### 2. Manuel / EPD Ölçümü Ekleme ve Geçmiş Birim Rotasyonunu İzleme
@@ -1192,6 +1200,7 @@ Laboratuvardan gelen periyodik doz sonuçlarının doğru personellere işlenmes
 
 - **Dozimetre raporu aktarırken bazı personeller eşleşmezse sonraki aylarda tekrar mı seçmem gerekir?** Hayır. Eşleşmeyen satıra çift tıklayıp açılan personel seçim penceresinde eşleştirmeyi hafızaya kaydet kutusunu işaretlediğinizde, sistem sağlayıcı yazımı ile personeli kalıcı olarak eşleştirir ve sonraki dönemlerde otomatik tanır. Kurum personeli olmayan satırlar ise **[Eşleşmeyenleri Excel Olarak İndir]** ile dışa aktarılabilir.
 - **TENMAK veya RADAT dışında farklı bir dozimetri laboratuvarıyla çalışıyorsak nasıl aktarabiliriz?** Raporu standart Excel sütunlarına göre düzenleyip **Genel Excel / CSV** seçeneğiyle aktarabilirsiniz. Laboratuvarınızın özgün rapor formatını doğrudan tanıtmak isterseniz örnek bir dosyayı destek ekibiyle paylaşmanız yeterlidir.
+- **e-Devlet'ten indirilen ve üzerinde personel adı yazmayan TENMAK PDF raporları nasıl aktarılır?** e-Devlet TENMAK Sorgulama PDF belgelerinde çalışan adı yer almadığı için sihirbazda **[Personel Seç...]** ile ilgili personeli seçebilir, Personel Kartındaki **[Dozimetre Raporu Yükle]** kısayolunu kullanabilir veya çalışanın Web Portalındaki **Profilim > Dozimetre & Doz Karnesi** sekmesinden PDF yükleyip Yönetici/RKS onayına göndermesini sağlayabilirsiniz. Sistem boş/okunmamış dönemleri sıfır yazmadan otomatik atlar; çalışanın kayıtlı eski verisi yoksa tüm geçmiş dönemleri, varsa yalnızca yeni dönemleri aktarır.
 - **Kaydedilmiş bir dozimetri ölçümü yanlışsa neden doğrudan silinip yok edilemiyor?** NDK mevzuatı ve denetim izi bütünlüğü gereğince resmi doz kayıtları iz bırakmadan değiştirilemez. Düzeltme gerektiğinde tutanak veya kayıt üzerindeki gerekçeli düzeltme mekanizması kullanılır ve değişiklik denetim izine işlenir.
 - **10 iş günü yasal geri sayım rozeti kırmızıya dönerse sistem işlem engeli koyar mı?** Sistem doğrudan teknik çalışma kilidi koymaz; ancak NDK açısından 10 iş günü aşımı kritik gecikme sayıldığı için RKS panosunda yüksek öncelikli alarm üretilir ve denetim izinde gecikme kaydı tutulur.
 
@@ -1235,6 +1244,7 @@ Sevk anında hekim ve çalışana bildirim gider; Muayene Türüne göre 6 veya 
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Poliklinikte "Uygun Değil" Seçilince Nöbetler Otomatik Silinir mi ve 3 Branş Aynı Gün Zorunlu mu?**
+>
 > - **Yanlış Algı:** *"Hekim muayenede Uygun Değil seçeneğini işaretlediği anda sistem personelin tüm nöbetlerini siler; ayrıca 3 branş sonucu aynı gün çıkmadan muayene formu kaydedilemez."*
 > - **Gerçek Sistem Mantığı:** **İkisi de yanlıştır.** Rutin klinik takip ekranında Uygun Değil görüşü verilmesi personelin ilgili uzman kliniğe ileri tetkike sevk edilmesini sağlar; çalışamayacağına dair resmi Sağlık Kurulu Heyet Raporu kesinleştiğinde çalışma muafiyeti Modül 07 üzerinden tanımlanır. Ayrıca 3 branşın aynı gün bitmesi gerekmez; en az bir branş sonucu girilerek kayıt kaydedilebilir ve diğer branşlar tamamlandıkça güncellenebilir.
 
@@ -1310,6 +1320,7 @@ Kat planı döndürmesinde pin ve oda sınırları otomatik taşınır; eşik a�
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Kalibrasyonu Geçmiş Cihazla Acil Ölçüm Girilebilir mi ve Ölçümlü Nokta Silinebilir mi?**
+>
 > - **Yanlış Algı:** *"Survey meter kalibrasyonu birkaç gün önce dolmuş ama acil bir durumda onunla ortam ölçümü kaydedebiliriz; ayrıca kat planı değişince eski ölçümlü noktayı listeden doğrudan silebiliriz."*
 > - **Gerçek Sistem Mantığı:** **Her iki işlem de sistem tarafından engellenir.** NDK ve SKS 6.1 kuralları gereğince kalibrasyon süresi dolmuş hiçbir cihazla sisteme resmi ölçüm girilemez; cihazın önce TENMAK İkincil Standart Dozimetri Laboratuvarı gibi yetkili bir merkezde kalibre edilip tarihinin güncellenmesi gerekir. Üzerinde geçmiş ölçüm verisi bulunan noktalar da denetim kanıtını korumak için fiziksel olarak silinemez.
 
@@ -1386,6 +1397,7 @@ Hafta sonu ve resmi tatiller hariç tutularak 1 veya 3 iş günlük NDK süresi 
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Açık DÖF Varken Olay Kapatılabilir mi ve Olaydaki Cihaz Arızası Harici Servise Çağrı Açar mı?**
+>
 > - **Yanlış Algı:** *"Olayı acilen kapatmak için açık duran DÖF faaliyeti olsa bile dosyayı Kapalı yapabiliriz; ayrıca olayda cihaz arızası seçtiğimizde yetkili teknik servise otomatik iş emri gider."*
 > - **Gerçek Sistem Mantığı:** **İkisi de doğru değildir.** Açık ve tamamlanmamış bir DÖF faaliyeti varken sistem olay kapatma işlemini kesinlikle kilitler; her faaliyet tamamlanmalı veya gerekçeli iptal edilmelidir. Cihaz kaynaklı olaylarda açılan kayıt ise yalnızca kurum içi Radyasyon Güvenliği Komitesi arıza-kaza istatistiğini izlemek içindir; harici bakım firmasına resmi servis çağrısı göndermez (harici servis Modül 19'dan yönetilir).
 
@@ -1406,8 +1418,8 @@ Hafta sonu ve resmi tatiller hariç tutularak 1 veya 3 iş günlük NDK süresi 
 #### 2. 4 Adımlı İnceleme Sihirbazı, Sorumlu Atama ve DÖF Yönetimi
 
 1. Ana listeden bir satır seçip **[İncele ve DÖF Yönet]** butonuna tıklayın; 1. adımda olay künyesini inceleyip 2. adıma geçin, **[İncelemeye Al]** veya **[NDK Bildir]** işlemlerini yapın ve listeden yetkili sorumluyu seçin (**[Sonraki Adım]**'a geçerken atama otomatik kaydedilir).
-2. 3. adımda **[Faaliyet Başlat]** ile Düzeltici, Önleyici veya İyileştirici DÖF tanımlayın; tamamlanan aksiyonlarda **[Seçili DÖF'ü Tamamlandı Yap]** butonunu kullanın (olaydan bağımsız genel kalite iyileştirmeleri için ana araç çubuğundaki **[Yeni DÖF Ekle]** butonu kullanılabilir).
-3. 4. adımda tüm DÖF'lerin kapandığı doğrulandıktan sonra kapanış notunu yazıp **[Olayı Kapat ve Tamamla]** butonuna basın; **[Resmi Tutanağı Yazdır / PDF]** ile antetli resmi tutanağı, ana çubuktaki **[Excel]** ve **[Trend Raporu]** ile toplu analizleri alın.
+2. 1. adımda **[Faaliyet Başlat]** ile Düzeltici, Önleyici veya İyileştirici DÖF tanımlayın; tamamlanan aksiyonlarda **[Seçili DÖF'ü Tamamlandı Yap]** butonunu kullanın (olaydan bağımsız genel kalite iyileştirmeleri için ana araç çubuğundaki **[Yeni DÖF Ekle]** butonu kullanılabilir).
+3. 1. adımda tüm DÖF'lerin kapandığı doğrulandıktan sonra kapanış notunu yazıp **[Olayı Kapat ve Tamamla]** butonuna basın; **[Resmi Tutanağı Yazdır / PDF]** ile antetli resmi tutanağı, ana çubuktaki **[Excel]** ve **[Trend Raporu]** ile toplu analizleri alın.
 
 #### 3. Saha Web Portalından Olay Bildirimi ve Yönetici Analizi
 
@@ -1461,6 +1473,7 @@ Vize bitimine 60 ve 30 gün kala sarı/turuncu erken uyarı üretilir; imzalı b
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Görevlendirme Silindiğinde Evrak Kasasındaki Sertifika da Silinir mi?**
+>
 > - **Yanlış Algı:** *"Eski bir RGS görevlendirmesini listeden sildiğimde yüklediğim sertifika ve atama yazısı da sistemden tamamen yok olur; ayrıca düzenleme ekranından aynı kaydı doğrudan başka bir hekime devredebilirim."*
 > - **Gerçek Sistem Mantığı:** **İkisi de koruma kilitlidir.** Yasal arşiv bütünlüğü gereğince görevlendirme kaydı listeden silinse dahi personelin şifreli evrak kasasındaki atama ve sertifika dosyaları geçmiş denetim kanıtı olarak saklanmaya devam eder. Ayrıca görev devri yapılacaksa mevcut kayıt üzerinden personel değiştirilemez (düzenlemede personel alanı kilitlidir); eski kayıt pasife alınıp yeni personel için yeni kayıt açılmalıdır.
 
@@ -1536,6 +1549,7 @@ Online sınavda her çalışana soru ve şık sırası rastgele karıştırılar
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Baraj Altında Kalan Personelin Hakkı Biter mi ve Hiç Almamış Olanlar Uyum Oranını Etkiler mi?**
+>
 > - **Yanlış Algı:** *"Online sınavda %70 barajını geçemeyen personelin hakkı yanar ve bir daha giremez; ayrıca kuruma yeni başladığı için eğitimi hiç almamış görünen çalışanlar uyum yüzdesini düşürmez."*
 > - **Gerçek Sistem Mantığı:** **İkisi de yanlıştır.** Eğitimin amacı öğrenmeyi pekiştirmektir; baraj altında kalan personel materyali inceleyerek sınırsız sayıda sınava yeniden girebilir (her denemede sorular ve şıklar yeniden karıştırılır). Öte yandan Uyum Matrisi tüm aktif personelleri zorunlu eğitimlerle çapraz eşleştirdiği için Hiç Alınmamış mor rozetli çalışanlar genel uyum oranını doğrudan aşağı çeker.
 
@@ -1611,6 +1625,7 @@ Modalite sırasına göre Cihaz No ve kilitli Cihaz Kodu otomatik üretilir; viz
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Cihaz Kodu Elle Değiştirilebilir veya HEK'e Ayrılan Cihaz Tamamen Silinebilir mi?**
+>
 > - **Yanlış Algı:** *"Cihaz kodunu kendi kurum numaramıza göre elle yazabilirim; ayrıca hurdaya ayrılan veya yanlış eklenen bir cihazı HEK ekranından silebilir veya dilediğim zaman tek tuşla geri açabilirim."*
 > - **Gerçek Sistem Mantığı:** **İkisi de sistem güvencesiyle kısıtlıdır.** Cihaz No ve Cihaz Kodu ilişkisel arıza, kalite kontrol ve kroki bağlantılarını korumak için otomatik üretilir; kurum içi demirbaş takibi için formdaki **Demirbaş No** alanı kullanılır ve kod yalnızca birim değiştiğinde güncellenir. Ayrıca hurdaya ayrılan cihazlar geçmiş denetim izini korumak adına asla fiziksel silinmez; komisyon tutanağı ve EBYS sayısıyla mühürlenen HEK tasfiye dosyaları geri döndürülemez.
 
@@ -1625,9 +1640,9 @@ Modalite sırasına göre Cihaz No ve kilitli Cihaz Kodu otomatik üretilir; viz
 #### 1. Yeni Cihaz Tanımlama, Kroki Pinleme ve Evrak Kasası
 
 1. **Tıbbi Cihaz ve Lisans Envanteri** ekranında **[Yeni Cihaz]** butonuna tıklayın; 1. sekmede kaynak grubunu (**Radyasyonlu (XRAY)**, **Radyasyonsuz (RADSIZ/MR/USG)**, **Medikal Cihaz** veya **Ölçüm Cihazı**), **Anabilim Dalı** ve bağlı **Birim** ile **Cihaz Türü** seçimini yapın (Cihaz Kodu ve Cihaz No otomatik oluşur). Seri No ve varsa Demirbaş No bilgilerini girin.
-2. 2. sekmede radyasyonlu veya ölçüm cihazları için NDK Lisans No ve bitiş tarihini yazın; resmi lisans PDF belgenizi **[Belge Seç...]** ile doğrudan bağlayın (gerekirse **[Görüntüle]** ile açabilirsiniz) ve **RKS Sorumlusu** ile birim sorumlusunu seçin.
-3. 3. sekmede varsa üretici garantisi onay kutusunu ve servis anlaşması tarihlerini işleyin; 4. sekmede mimari kat planını seçip oda içine tıklayarak pini yerleştirin ve **[Pin Kilitli]** butonuyla sabitleyin.
-4. 5. sekmede cihazın kullanım kılavuzu ve teknik belgelerini **[Dosya Seç...]** → **[Yükle]** ile AES-256 Evrak Kasasına ekleyip **[Cihazı Kaydet]** butonuna basın (rolünüz onay gerektiriyorsa kayıt Merkezi Onay kuyruğuna iletilir).
+2. 1. sekmede radyasyonlu veya ölçüm cihazları için NDK Lisans No ve bitiş tarihini yazın; resmi lisans PDF belgenizi **[Belge Seç...]** ile doğrudan bağlayın (gerekirse **[Görüntüle]** ile açabilirsiniz) ve **RKS Sorumlusu** ile birim sorumlusunu seçin.
+3. 1. sekmede varsa üretici garantisi onay kutusunu ve servis anlaşması tarihlerini işleyin; 4. sekmede mimari kat planını seçip oda içine tıklayarak pini yerleştirin ve **[Pin Kilitli]** butonuyla sabitleyin.
+4. 1. sekmede cihazın kullanım kılavuzu ve teknik belgelerini **[Dosya Seç...]** → **[Yükle]** ile AES-256 Evrak Kasasına ekleyip **[Cihazı Kaydet]** butonuna basın (rolünüz onay gerektiriyorsa kayıt Merkezi Onay kuyruğuna iletilir).
 
 #### 2. Toplu İçe/Dışa Aktarım, NDK Çizelgesi ve 300 DPI QR Paketi
 
@@ -1694,6 +1709,7 @@ Sözleşme bitimine kadar tüm slotlar Beklemede statüsüyle radara işlenir; k
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Günlük Kontrol Formları QC Ekranına mı Girilir ve X-Işını Tüpü Değişince İşlem Biter mi?**
+>
 > - **Yanlış Algı:** *"Kalite kontrol ekranına günlük kağıt çekim formlarını girmemiz gerekir; ayrıca X-ışını tüpü değiştiğinde arızayı kapatınca sistem dışı başka bir resmi işlem kalmaz."*
 > - **Gerçek Sistem Mantığı:** **İkisi de doğru değildir.** TİTCK TCS-KLVZ-06 kılavuzu uyarınca RADPYS yalnızca resmi imzalı raporla belgelenen üç yasal kategoriyi (Kalite Uygunluk KUT, Periyodik KKT ve Kabul/Onarım Sonrası Test) takip eder. Ayrıca arıza ekranında X-ışını tüpü değişimi işaretlenip kapatıldığında cihazın aktif tüp seri numarası künyede güncellenir; ancak tüp değişimi NDK lisansı açısından tadil/revizyon gerektirebileceğinden RKS biriminin gecikmeden NDK bildirimi yapması ve Kabul/Onarım Sonrası Test kaydını işlemesi şarttır.
 
@@ -1777,6 +1793,7 @@ Dairesel hasar alanı (π · (d/2)²) ve kritik bölge otomatik hesaplanır; HEK
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Şartlı Önlükler Ameliyathanede Kullanılabilir mi veya Geçmiş Muayene Güncel Statüyü Bozar mı?**
+>
 > - **Yanlış Algı:** *"5–15 mm² arası hasar alıp Şartlı Kullanım verilen önlüğü anjiyo ve ortopedi skopisinde de giyebiliriz; ayrıca sisteme eski tarihli bir muayene girersek cihazın bugünkü HEK statüsü bozulur."*
 > - **Gerçek Sistem Mantığı:** **İkisi de yanlıştır.** **Şartlı Kullanım** alan önlükler (5–15 mm² çevre hasarı veya dikiş/askı kusuru olanlar) primer ışınlama konisi ve girişimsel işlemlerde kesinlikle kullanılmaz; yalnızca düşük saçılmalı alanlarda ve hasta yakını refakatinde değerlendirilir. Ayrıca sistem kronolojik eşitleme kuralıyla envanter durumunu daima takvimdeki en yeni tarihli muayeneye göre hesaplar; sonradan girilen eski tarihli bir tarama bugünkü HEK kararını asla bozmaz.
 
@@ -1853,13 +1870,14 @@ Tüm klinik ve idari birimlerden gelen personel izinlerini, karşılıklı nöbe
 | **İzinler, Nöbet İstekleri ve İdari Plan Yayını** (**[Onayla]**, **[Yayınla]**, **[Taslağa Geri Gönder]**) | İzin bakiyelerini düşmek, nöbet kısıtlarını bağlamak ve birim planını yayımlamak. | İzin onayında kalan bakiye anında güncellenir; nöbet istekleri çizelge motoruna kısıt olarak aktarılır; planlarda **[Yayınla]** çizelgeyi portala açarken **[Taslağa Geri Gönder]** planı birime iade eder. | İzin/istek geldiğinde veya aylık plan sunulduğunda. | Birim Amiri / Başhekimlik / İdare |
 | **3 Aşamalı Nöbet Devri Onay Zinciri** (Devralan Rızası + **[İncele ve Karar Ver]**) | Personeller arası nöbet takasının karşılıklı onay olmadan çizelgeyi değiştirmesini önlemek. | Devralan çalışan Web Portalından kabul verene dek talep devralan onayı aşamasında bekler; amir inceleyip onayladığında çizelgedeki nöbetçi değişimi gerçekleşir. | Nöbet takası devralan tarafından onaylandığında. | Nöbetçi Personel / Birim Amiri |
 | **RKE Muayeneleri RKS Onay Sekmesi** (**[İncele ve Muayene Detayı]** & **[RKS Olarak Onayla]**) | Sahada veya toplu olarak yapılan DIN 6857-1 kurşun ekipman kontrollerini RKS imzasıyla kesinleştirmek. | Muayene raporu ve kusur krokisi incelenerek **[RKS Olarak Onayla]** ile tescil edilir ya da **[Reddet / İade Et]** ile gerekçeli şekilde düzeltmeye gönderilir. | RKS onayı bekleyen RKE muayenesi varken. | RKS Sorumlusu |
-| **4-Göz Veri Değişiklikleri ve Fark İnceleme** (Personel, Sağlık, Eğitim, RGS, Olay/DÖF, Cihaz) | Onay zorunluluğu tanımlı rollerin tüm ekleme, güncelleme ve silme işlemlerini denetlemek. | **[İncele ve Karar Ver]** penceresi eski değerleri kırmızı, yeni talep edilen değerleri yeşil satırlarla karşılaştırır; **[Talebi Onayla]** ile kayıt işlenir ve geçici ek belgeler AES-256 Evrak Kasasına taşınır. | Onaya tabi rol kayıt değişikliği yaptığında. | Modül Sorumlusu / Yönetici |
+| **4-Göz Veri Değişiklikleri ve Fark İnceleme** (Personel, Dozimetre, Sağlık, Eğitim, RGS, Olay/DÖF, Cihaz) | Onay zorunluluğu tanımlı rollerin tüm ekleme, güncelleme ve silme işlemlerini denetlemek. | **[İncele ve Karar Ver]** penceresi eski değerleri kırmızı, yeni talep edilen değerleri yeşil satırlarla karşılaştırır; **[Talebi Onayla]** ile kayıt işlenir ve Web Portalından gelen e-Devlet TENMAK PDF talepleri dahil tüm ek belgeler AES-256 Evrak Kasasına taşınır. | Onaya tabi rol kayıt değişikliği yaptığında. | Modül Sorumlusu / Yönetici / RKS |
 | **Sağlık Muayenesi Hızlı Onay Engeli** (Zorunlu Hekim İnceleme Formu) | İşe giriş veya periyodik muayene bulgularının incelenmeden tek tıkla onaylanmasını önlemek. | Sağlık muayenesi ekleme taleplerinde hızlı onay çalıştırılmaz ve sistem doğrudan Göz, Dahiliye, Dermatoloji bulgularını içeren hekim doğrulama formunu açar. | Sağlık muayenesi onaylanmak istendiğinde. | İşyeri Hekimi / RKS |
 | **Resmi Tutanaklar ve Zorunlu Ret Kuralı** (**[Taslak Görüntüle]** & **[İmzalı Belge Yükle / Onayla]**) | Heyet tutanaklarının ıslak imzalı nüshalarını tamamlamak ve ret işlemlerinde iz bırakmak. | Taslak tutanak incelenip EBYS imzalı PDF yüklendiğinde tutanak kasası güncellenir; tüm 7 sekmede ret işleminde metin gerekçesi zorunludur ve ret sonrası talep arşivlenerek kilitlenir. | Tutanak imzalandığında veya talep reddedildiğinde. | Birim Amiri / RKS / İdare |
 
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Sağlık Muayeneleri Hızlı Onayla Geçilebilir mi veya Reddedilen Talep Geri Açılabilir mi?**
+>
 > - **Yanlış Algı:** *"Veri Değişiklikleri sekmesinde Hızlı Onayla diyerek sağlık muayenesi dahil her talebi tek tıkla onaylayabilirim; yanlışlıkla reddettiğim bir talebi de sonradan listeden bulup yeniden onaylarım."*
 > - **Gerçek Sistem Mantığı:** **İkisi de engellenmiştir.** Sağlık muayenesi kayıtlarında hızlı onay güvenlik kilidiyle bloklanır ve uzman hekim/RKS bulgularının görüntülendiği inceleme formu zorunlu açılır. Ayrıca tüm sekmelerde reddedilen talepler zorunlu ret gerekçesiyle kalıcı sonlandırılır ve kuyruktan düşer; düzeltme sonrası çalışanın yeni talep açması gerekir.
 
@@ -1898,83 +1916,100 @@ Tüm klinik ve idari birimlerden gelen personel izinlerini, karşılıklı nöbe
 
 ---
 
-## 22. Web Portalı ve Yönetici Gösterge Panelleri
+## 22. Merkezi Toplu İçe Aktarım Motoru (Bulk Import)
 
-Kurum içi personel ve saha işlemlerini (izin, nöbet devri, EK-1 sağlık/RD.F43 beyanı, cihaz arıza-bakım-QC, RKE QR muayenesi ve ortam dozu ölçümü) mobil uyumlu tarayıcı ve PWA arayüzüne taşırken; 3 ana gruptaki 18 aktif yönetici gösterge panelini bellek içi önbellek, canlı veri tazeliği göstergesi, 8 saniyelik canlı sağlık denetimi ve isteğe bağlı şifreli dış erişim tüneliyle sunar.
+Personel, izin hakları, cihaz, koruyucu ekipman (RKE), nöbet çizelgesi ve sistem tanımlamalarını 2 sayfalı kurumsal Excel şablonlarıyla sisteme yükleme; akıllı sütun eşleme, tanımsız değer çözücü, sıfır veri kaybı sağlayan Dry-Run simülasyonu ve asenkron aktarım rehberi.
 
-> **Yasal ve KVKK Güvencesi:** Tüm gösterge panelleri doğrudan kurumun canlı yerel veritabanından beslenir ve sıfır veri durumunda asla sahte veya sentetik kayıt üretmez; dış erişim açılsa dahi personel ve doz verileri bulut sunucularında depolanmaz.
+> **Veri Bütünlüğü ve Güvenlik Güvencesi:** İçe aktarım motoru veritabanına doğrudan ham SQL yazmaz; aktarım öncesinde kuru simülasyon (dry-run) ile mükerrerlik ve alan doğrulaması yapar, kilitli resmi Şua dönemleri ile mühürlü kayıtları ezilmeye karşı korur.
 
-### Kısa Reçete: Portal Servisini Kontrol Etme ve Yönetici Paneline Erişim
+### Kısa Reçete: 5 Adımlı Toplu Veri İçe Aktarımı
 
-**Kısa Reçete: Portal Servisini Kontrol Etme ve Yönetici Paneline Erişim**
+**Kısa Reçete: 5 Adımlı Toplu Veri İçe Aktarımı**
 
 **1. İstenen Sonuç:**
-Masaüstü uygulamasından veya Portal Servis Yöneticisinden Web Portalını doğrulayıp 18 analitik gösterge paneli ile saha QR işlemlerine anında bağlanmak.
+Yüzlerce personel, cihaz, RKE veya izin kaydını Excel dosyasından tek seferde, veri tabanını kilitlemeden ve hatalı satırları önceden ayıklayarak sisteme aktarmak.
 **2. Yapılacak İşlem:**
-Masaüstü durum çubuğunda **[Portal Sunucu: Aktif]** göstergesini kontrol edin (kapalıysa tıklayarak başlatıcıdan **[Başlat]** deyin), ardından sol üstteki **[Genel Bakış]** butonuna basın.
+Sol Menüden **[Sistem Yönetimi] > [Toplu İçe Aktarım]** (veya ilgili modüldeki **[Toplu Import]**) butonuna tıklayın; **[Şablonlar Klasörü]** içindeki resmi Excel şablonunu doldurup **[Dosya Seç...]** ile yükleyin. Tanımsız değerleri eşleştirip **[Önizleme ve Doğrulama]** adımında **[Aktarımı Başlat]** butonuna basın.
 **3. Sistem Etkisi:**
-Varsayılan tarayıcınızda Yönetici Özet Paneli açılır; 60 saniyelik bellek içi önbellek eşzamanlı sorgularda veritabanı yükünü dengeler, sağ üstte son veri çekim saati görülür ve istenen anda **[Yenile]** ile canlı veri çekilir.
+Kayıtlar asenkron arka plan iş parçacığıyla veritabanına işlenir; arayüz donmaz, yeni personeller için otomatik oluşturulan rastgele şifreler tek tıkla metin belgesi olarak indirilir ve hatalı satırlar varsa gerekçesiyle raporlanır.
 
-- **Yönetici Panelleri:** 3 Grupta 18 Aktif Pano
-- **Sağlık Kontrol Döngüsü:** Her 8 Saniyede Bir
-- **Dashboard Önbelleği:** 60 Sn (Tatil Cetveli 300 Sn)
-- **Platform:** Tarayıcı + Mobil PWA
+- **İşlem Adımı:** 5 Aşamalı Güvenli Sihirbaz
+- **Doğrulama:** Kuru Çalıştırma (Dry-Run)
+- **Motor Mimarisi:** Asenkron Arka Plan (QThread)
+- **Güvenlik Çıktısı:** Maskeli Hesap Listesi (.txt)
 
 ### 5N1K Kural ve Arayüz Çözümleme Tablosu
 
-*Masaüstü köprü ve başlatıcı denetimi, önbellek ve veri tazeliği, 18 yönetici paneli, dış erişim güvenliği, saha QR ve PWA kuralları.*
+*İçe aktarım motorunun arayüz kontrolleri, çalışma ilkeleri ve güvenlik sınırları:*
 
 | NE? (Bileşen / Kontrol) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Tetiklenme) | KİM? (Yetkili Rol) |
 | --- | --- | --- | --- | --- |
-| **[Genel Bakış] & [Portal Sunucu: Aktif / Kapalı]** (Masaüstü Köprüsü ve 8 Sn Kontrol) | Sunucunun canlı olduğunu anlık görmek ve tek tıkla yönetici özetini açmak. | Masaüstü her 8 saniyede bir portal durumunu sorgular; kapalıysa durum butonundan veya Servis Yöneticisindeki **[Başlat]** ve **[Web Portalı Aç]** butonlarından tarayıcı açılır. | Program açıkken ve kullanıcı tıkladığında. | Sistem Yöneticisi / Yönetici |
-| **Önbellek, Veri Tazeliği, [Yenile] ve Excel/PDF İhracı** (Eşzamanlı Performans ve Denetim Paketi) | Yüzlerce kişi aynı anda panele girerken veritabanı yükünü korumak ve verinin güncelliğini şeffaf göstermek. | İstatistik yanıtları 60 saniye (yıllık resmi tatil cetvelinde 300 saniye paylaşımlı) bellekte tutulur; sağ üstte son çekim zamanını gösteren **Veri Tazeliği Göstergesi** ve 1.000 kaydı aşan listelerde dönem daraltma bilgilendirmesi yer alır. **[Yenile]** önbelleği sıfırlar; **[Excel]**, **[Yazdır / PDF]** ve Denetim Panosu'ndaki **[Denetim Paketi (PDF)]** resmi çıktı verir. | Dashboard yüklenirken veya çıktı alınırken. | Yönetici / RKS / Yetkili |
-| **3 Grupta 18 Aktif Yönetici Gösterge Paneli** (Denetim, Nöbet & İzin, Sağlık & Güvenlik) | Kurumsal uyum, nöbet adaleti ve kısıt/istek analizi, birleşik izin/Şua/farazi planlama, doz aşımı, bakım ve eğitim durumlarını tek yerden izlemek. | Genel ve Analiz (4), Nöbet ve İzin Yönetimi (5) ile Sağlık ve Güvenlik (9) gruplarında canlı KPI, yıllık ısı haritası ve dürüst boş durum sunulur; **İzin & Hak Ediş Yönetimi** altında yıllık izin, Şua bakiye karnesi ve farazi projeksiyon tek ekranda toplanır, **Nöbet Kısıt & İstek Analitiği** tercih/kısıt ihlallerini denetler ve **Çalışma Kısıtları** hizmet sınıfı ile radyasyon kapsamını ayırır. | Yetkili yönetici yan menüden panel seçtiğinde. | Yönetici / RKS / Birim Sorumlusu |
-| **Şifreli Dış Erişim Tüneli, Robot Koruması ve 2FA OTP** (Kurumsal İnternet Erişim Güvenliği) | Modem portu açmadan güvenli dış erişim sağlamak ve yetkisiz girişleri önlemek. | Yerel ve dış ağ ayrımı gerçek bağlantı adresinden doğrulanır; dış ağda şifreli tünel, robot doğrulaması, ilk girişte tek kullanımlık parola yenileme bileti ve 6 haneli e-posta kodu zorunlu çalışır, 5 hatalı girişte hesap 15 dakika kilitlenir ve masaüstünden kapatılan oturumlar portalda da düşürülür. | Kullanıcı dış ağdan veya web ekranından girerken. | Admin / Tüm Web Kullanıcıları |
-| **İmzalı Belge Bileti, Kasa Bütünlüğü ve Çoklu Birim Yetki Kalkanı** (**[İndir]**, **[Raporu İndir]** & Saha Güvenliği) | Tarayıcı adres çubuğunda oturum sızmasını, birimler arası yetkisiz erişimi ve bozuk evrak açılmasını önlemek. | Belge, eğitim medyası ve kat planı açılışlarında 60 saniyelik tekil güvenlik bileti üretilir ve evrakın dijital parmak izi doğrulanır; çoklu birim sorumluları yalnızca atandıkları klinikleri yönetir, şifahi nöbet devirlerinde tek kullanımlık kod aranır ve HBYS numarası yalnızca onaylı izinlere işlenebilir. | Belge/kat planı açılırken veya saha kaydı girilirken. | Yetkili Kullanıcı / Birim Sorumlusu |
-| **Merkezi Profilim ve 3 Gruplu Saha Formları** (Kişisel İşlemler, Nöbet ve Saha Güvenliği) | Çalışan ve saha teknisyenlerinin mobil/tarayıcıdan eksiksiz işlem yapmasını sağlamak. | EK-1 sağlık beyanı, RD.F43 doz beyanı ve izin/nöbet devirleri **[Profilim]** ve form sekmelerinden yürür; saha ekibi cihaz arıza-bakım-QC, RKE ve ortam dozu kayıtlarını atomik veri kilidiyle işler. | Personel beyanı veya saha müdahalesi yapılırken. | Tüm Personel / Saha Görevlisi |
-| **PWA Kurulumu, QR Kamera, Fener ve Taslak Koruma** (Mobil / Karanlık Oda Ergonomisi) | Telefon ve tabletlerde tam ekran uygulama deneyimi ve karanlık odalarda kesintisiz QR okuma sunmak. | Üst çubuktaki **[Uygulamayı Yükle]** ile tam ekran uygulama kurulur; kamera QR okuyucusu karanlık çekim odaları için fener, ekranı uyanık tutma, titreşimli onay ve uzun form taslağı koruması sağlar. | Tarayıcıdan saha veya QR işlemi yapılırken. | Saha Personeli / Teknisyen |
+| **[Şablonlar Klasörü] & [Dosya Seç...]** (Şablon ve Dosya Seçim Adımı) | Sistemin beklediği sütun yapısına uygun 2 sayfalı kurumsal Excel dosyasını temin etmek ve yüklemek. | Modüle özel şablonu (Veri Listesi + Geçerli Değerler Kılavuzu) Windows Gezgini'nde açar; yüklenen dosyanın formatını ve satır sayısını doğrular. | İçe aktarım sihirbazı başlatıldığında. | Modül Sorumlusu / Sistem Yöneticisi |
+| **Akıllı Sütun Eşleştirme Motoru** (2. Adım: Sütun Haritalama) | Excel'deki farklı sütun başlıklarını sistemdeki zorunlu ve isteğe bağlı veri alanlarıyla eşleştirmek. | Başlık benzerliklerini otomatik tanır; eşleşmeyen sütunları açılır kutulardan kullanıcıya seçtirir ve zorunlu alanlar tamamlanmadan ilerletmez. | Dosya başarıyla yüklendiğinde. | Modül Sorumlusu / Sistem Yöneticisi |
+| **Tanımsız Değer Çözücü** (3. Adım: Lookup Değer Eşleştirme) | Excel dosyasındaki farklı birim, unvan veya kategori yazımlarını sistemdeki standart kayıtlarla hizalamak. | Dosyada geçen tanımsız her değer için üç seçenek sunar: sistemdeki mevcut tanıma bağlama ([Hepsini Eşle]), veritabanına yeni tanım olarak ekleme ([Hepsini Yeni Yap]) veya satırı atlama. | Dosyada kayıtlı olmayan bir değer tespit edildiğinde. | Sistem Yöneticisi |
+| **Dry-Run Simülasyonu ve Sayaç Kartları** (4. Adım: Önizleme ve Doğrulama) | Veritabanına tek bir satır yazmadan önce tüm dosyanın doğrulama durumunu ve mükerrer kayıtları görmek. | Satırları bellek üzerinde sanal olarak dener; [Tümü], [Sadece Hatalılar] ve [Sadece Mükerrerler] filtreleriyle hatalı satırları kırmızı vurgulayarak düzeltme imkanı sağlar. | Eşleştirmeler tamamlanıp önizlemeye geçildiğinde. | Modül Sorumlusu / Sistem Yöneticisi |
+| **Asenkron Aktarım & [Hesap Bilgilerini İndir]** (5. Adım: Tamamlama ve Döküm) | Büyük dosyalarda masaüstü uygulamasını dondurmadan aktarımı tamamlamak ve oluşturulan kimlikleri güvenle teslim etmek. | İşlemi ana ekrandan bağımsız arka plan iş parçacığında ilerleme çubuğuyla yürütür; personel aktarımlarında üretilen tek kullanımlık geçici şifreleri maskeli TXT dosyası olarak indirir. | [Aktarımı Başlat] butonuna basıldığında. | Sistem Yöneticisi |
+| **Modüle Özel İş Kuralı ve Otomatik Kod Kalkanları** (Personel, RKE, İzin ve Sistem Tanımları) | Aktarım sırasında mevzuat sınıfı, ekipman numaralandırma ve geçmiş hak ediş hatalarını önlemek. | Personelde yalnızca hizmet sınıfı **Radyasyon Görevlisi** olanları radyasyon görevlisi olarak işaretler; RKE aktarımında ekipman tipi ön ekine göre otomatik kod üretir; İzin Hakediş ile İzin Geçmişi verilerini kilitli Şua dönemlerini koruyarak ayırır ve 6 farklı sistem tanımı kategorisini toplu işler. | Önizleme ve aktarım çalıştırıldığında. | Modül Sorumlusu / Sistem Yöneticisi |
 
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
-> **Mit Avcısı — Web Portal Sadece Nöbet Görüntüleme Ekranı mıdır ve Dış Erişim Verileri Buluta mı Taşır?**
-> - **Yanlış Algı:** *"Web Portal yalnızca personelin nöbet listesine baktığı salt okunur bir sayfadır; ayrıca kurum dışından erişim açıldığında personel ve dozimetre kayıtlarımız dış bulut sunucularına yüklenir."*
-> - **Gerçek Sistem Mantığı:** **İkisi de doğru değildir.** Web Portalında yöneticiler için SKS Denetim Panosu dahil **18 aktif karar destek paneli** ve personeller/teknisyenler için tam kapsamlı saha formları bulunur (izin, nöbet devri/havuzu, RD.F43/EK-1 beyan, cihaz bakım/QC, RKE kroki muayenesi ve ortam dozu). Ayrıca dış erişim açıldığında hiçbir veri buluta kopyalanmaz; yalnızca kurumun yerel sunucusuyla yetkili kullanıcının tarayıcısı arasında uçtan uca şifreli tünel köprüsü kurulur.
+> **Mit Avcısı — Excel Dosyasında Hatalı Satırlar Varsa Tüm Aktarım İptal Olur mu?**
+>
+> - **Yanlış Algı:** *"Toplu aktarım dosyasında 10 tane satırda eksik bilgi varsa bütün dosya reddedilir, düzeltip baştan yüklemek zorunda kalırız."*
+> - **Gerçek Sistem Mantığı:** **HAYIR.** İçe aktarım motoru esnek doğrulama mimarisine sahiptir. Önizleme adımında hatalı satırlar açıkça işaretlenir; dilerseniz yalnızca geçerli satırları tek tıkla aktarabilir, hatalı satırları ise [Hata Raporunu Aç] butonu ile ayrı bir Excel listesi halinde dışa aktararak sadece ilgili satırları düzelttikten sonra ekleyebilirsiniz.
 
 ### Süreç Akış Şeması
 
-1. **Servis Denetimi:** Masaüstü uygulaması 8 saniyede bir portal durumunu kontrol eder; kapalıysa Servis Yöneticisi üzerinden yerel sunucu ve varsa şifreli tünel ayağa kaldırılır.
-2. **Güvenli Oturum:** Kurum içi ağda hızlı oturum açılırken dış erişimde robot doğrulaması ve 6 haneli tek kullanımlık e-posta doğrulaması uygulanır.
-3. **Analitik ve Saha İşlemleri:** Yetkisine göre yöneticiler 18 gösterge panelinde (60 sn önbellekli ve veri tazeliği göstergeli) anlık Excel/PDF analizine ulaşır; personel ve teknisyenler karanlık oda fenerli QR okuyucu ve mobil formlarla sahadan kayıt girer.
+1. **Dosya ve Sütun Hazırlığı:** İlgili modülün 2 sayfalı şablonu doldurulur; yükleme sonrasında sistem alanları ile Excel sütunları otomatik veya manuel eşleştirilir.
+2. **Tanımsız Değer ve Simülasyon:** Sistemde kayıtlı olmayan birim veya unvanlar çözülür; veritabanına yazmadan önce kuru simülasyon (dry-run) çalıştırılarak mükerrer veya hatalı satırlar filtrelenir.
+3. **Asenkron Aktarım ve Çıktı:** Onaylanan kayıtlar arka plan iş parçacığıyla veritabanına atomik olarak işlenir; yeni personel hesapları için tek kullanımlık geçici şifre dökümü üretilir.
 
 ### Adım Adım İşlem Rehberi
 
-#### 1. Portal Servisini Başlatma ve Durum Kontrolü
+#### 1. Şablon Hazırlama ve Dosya Yükleme
 
-1. Masaüstü programının sağ alt köşesindeki **[Portal Sunucu: Aktif]** göstergesini kontrol edin; gösterge **Kapalı** görünüyorsa butona tıklayarak **RADPYS V4 Portal ve Servis Yöneticisi** penceresini öne getirin.
-2. Yönetici penceresinde **[Başlat]** butonuna basarak veritabanı motoru ile portal servisinin (gerekirse dış erişim tünelinin) aktifleşmesini bekleyin ve pencereyi küçültmek için **[Tepsiye Küçült]** seçeneğini kullanın.
-3. Doğrudan tarayıcıyı açmak için başlatıcıdaki **[Web Portalı Aç]** butonuna veya masaüstü sol menüsündeki **[Genel Bakış]** düğmesine tıklayın.
+1. Sol menüden **[Sistem Yönetimi] > [Toplu İçe Aktarım]** ekranına girin veya ilgili modül listesindeki (Personel, Cihaz, RKE vb.) **[Toplu Import]** butonuna tıklayın.
+2. Açılan sihirbazın ilk adımında **[Şablonlar Klasörü]** butonuna basın; sistemin `data/import_sablon/` dizinindeki resmi 2 sayfalı Excel şablonunu açın (*1. Sayfa: Veri Listesi*, *2. Sayfa: Geçerli Değerler Kılavuzu*).
+3. Verilerinizi şablona kopyalayıp kaydettikten sonra sihirbazdaki **[Dosya Seç...]** butonuna tıklayarak Excel dosyanızı sisteme yükleyin ve **[İleri]** butonuna basın.
 
-#### 2. 18 Yönetici Gösterge Panelinde Analiz ve Raporlama
+#### 2. Sütun Eşleştirme ve Alan Doğrulama
 
-1. Sol menüdeki **GENEL & ANALİZ** (4 pano), **NÖBET & İZİN YÖNETİMİ** (5 pano) ve **SAĞLIK & GÜVENLİK** (9 pano) gruplarından ilgili panoyu seçin (veya üst çubuktan `Ctrl+K` hızlı arama ile Şua, Farazi İzin ya da Kısıt alt görünümlerine doğrudan atlayın).
-   - **Üst Yönetim ve Denetim Kolaylıkları:** **Genel Bakış** ekranında 4 hücreli yönetici özet şeridi, 3 modlu birim grafiği ile **Acil / Geciken** ve **Yaklaşan (30 Gün)** uyarı sekmelerini inceleyebilir; **Denetim Panosu** ekranında birim bazlı kanıt özetlerini, acil aksiyonları, **Mevzuat & Denetim Rehberi** sekmesini ve tek tıkla **[Denetim Paketi (PDF)]** toplu kanıt çıktısını kullanabilirsiniz.
-   - **Nöbet & İzin Yönetimi Panoları (Faz 4):** **Nöbet Yönetimi** ekranında kurumsal matris, birim çizelgesi, dini ve resmi bayram ayrımlı Adalet Sayacı, 12 aylık Borç/Alacak Matrisi ve Birim × Kural Çapraz İhlal Matrisi sunulur; **Nöbet Devir & Takas Analitiği** karşılıklı takasların her iki vardiya ayağını, 3 aşamalı onay ve yanıt sürelerini, aşırı devir uyarılarını ve saha Değişim/Onay Merkezine doğrudan geçişi izler; **Nöbet Kısıt & İstek Analitiği** eğitim/ders günü kısıtları, nöbet yaz/yazma mazeretleri ve fazla mesai tercihlerinin çizelgeye gerçekleşme ve ihlal durumunu 7 günlük birim yoğunluğu ile yaş/kıdem muafiyetleri eşliğinde analiz eder; **Aylık Mesai & Tatil Cetveli** artık yıl duyarlı yıllık mesai hesabını, 2027–2030 Diyanet dini bayram/Arife yarım günlerini ve çakışan tatil tekilleştirmesini gösterir; **İzin & Hak Ediş Yönetimi** ise Birim İzin Matrisi, İzin Hareketleri, yıl sonu yanma riskini izleyen **Yıllık & Şua Bakiye Karnesi** ve KVKK maskelemeli **Farazi İzin Projeksiyonu** sekmelerini tek çatı altında birleştirir.
-   - **Sağlık & Güvenlik Panoları:** **Dozimetre Takibi** (yıllık **ALARA Doz Bütçesi** ve özel izlem radarı dahil), **Olay Bildirimi & DÖF** (yanıt süresi ve kök neden dağılım analizi dahil), **NDK Araştırma Formları**, **Sağlık Muayene**, **Çalışma Kısıtları**, **Cihaz & QC Yönetimi**, **RKE & KKD Muayene**, **Ortam Dozu Trendi** ve **Zorunlu Eğitim Uyum** panellerinde yıllık ısı haritaları, Personel × Eğitim matrisi ve güvenli sertifika önizleme imkanı sunulur.
-2. Üstteki dönem ve birim filtrelerini uygulayın; sağ üstteki **Veri Tazeliği Göstergesi** verinin en son ne zaman çekildiğini gösterir, son 60 saniye içinde yeni bir veri girişi yaptıysanız önbelleği beklemeden taze veri çekmek için **[Yenile]** butonuna tıklayın.
-3. Denetim veya toplantı sunumu için sağ üstteki **[Excel]**, **[Yazdır / PDF]** ya da Denetim Panosu'ndaki **[Denetim Paketi (PDF)]** butonlarından tabloyu ve özet metrikleri dışa aktarın.
+1. İkinci adımda sistem, Excel'deki sütun başlıkları ile veritabanındaki hedef alanları otomatik olarak eşleştirmeye çalışır.
+2. Otomatik algılanamayan sütunlar varsa, açılır kutulardan ilgili sistem alanını manuel olarak seçin.
+3. Kırmızı yıldızlı zorunlu alanların (örneğin Personel için TC Kimlik, Ad, Soyad; Cihaz için Seri No, Marka vb.) tamamı eşleştiğinde **[İleri]** butonu aktifleşecektir.
 
-#### 3. Mobil Saha İşlemleri, PWA Kurulumu ve Karanlık Oda QR Kullanımı
+#### 3. Tanımsız Değerleri Çözümleme Motoru
 
-1. Telefon, tablet veya bilgisayarda tarayıcı üst çubuğundaki **[Uygulamayı Yükle]** butonuna basarak Web Portalını tam ekran uygulama (PWA) olarak kurun (iOS cihazlarda ekrandaki Paylaş ve Ana Ekrana Ekle yönergesi açılır).
-2. Sol menüdeki **Kişisel İşlemlerim**, **Nöbet İşlemlerim** ve **Saha & Güvenlik Bildirimleri** altından izin talebi, nöbet takası/havuzu, **Profilim** içi EK-1 sağlık / RD.F43 doz beyanları ile saha arıza-bakım-QC ve RKE muayene ekranlarını açın.
-3. Çekim odasında QR kod taratırken tarayıcı kamerasındaki fener düğmesiyle alanı aydınlatın; uzun formlarda sayfa kapansa dahi tarayıcı taslağının korunduğundan emin olarak işleminizi güvenle tamamlayın.
+1. Yüklenen dosyada sistemde henüz tanımlanmamış birim, unvan, cihaz türü veya koruyucu ekipman tipi varsa sihirbaz otomatik olarak **3. Tanımsız Değerleri Eşleştir** adımını açar.
+2. Her tanımsız değer için sağdaki işlem seçeneklerinden birini belirleyin:
+   - **Mevcutla Eşle:** Benzer bir kaydı seçip bağlayın (örneğin Excel'deki "Radyoloji Uzm." değerini sistemdeki "Uzm. Tabip" ile eşleştirin).
+   - **Yeni Oluştur (Hepsini Yeni Yap):** Bu değeri sistem tanımlarına otomatik yeni kayıt olarak ekleyin.
+   - **Satırı Atla:** İlgili değeri içeren satırın aktarılmasını engelleyin.
+3. Kararları verdikten sonra **[Eşleştirmeleri Uygula ve İlerle]** butonuna tıklayın.
+
+#### 4. Dry-Run Simülasyonu ile Önizleme ve Hata Filtreleme
+
+1. Dördüncü adımda sistem, veritabanına hiçbir veri yazmadan tam bir kuru çalıştırma (dry-run) simülasyonu yürütür.
+2. Ekrandaki sayaç kartlarını kontrol edin: **Toplam Satır**, **Geçerli Kayıt**, **Mükerrer Kayıt** ve **Hatalı Kayıt**.
+3. Tablo üzerindeki filtre butonlarını kullanarak:
+   - **[Sadece Hatalılar]** butonuna basarak MERNİS algoritmasına uymayan TC kimlikleri, formatı bozuk tarihleri veya mükerrer sicil numaralarını inceleyin.
+   - Varsa hatalı satırları **[Hata Raporunu Aç]** ile dışa aktarın.
+4. Sonuçlar uygunsa **[Aktarımı Başlat]** butonuna tıklayarak onay verin.
+
+#### 5. Asenkron Aktarım, Şifre Dökümü ve Tamamlama
+
+1. Aktarım arka planda asenkron olarak başlar; ilerleme çubuğu yüzdelik durumu canlı gösterir ve uygulama donmaz.
+2. İşlem tamamlandığında özet bilgi kartı görüntülenir.
+3. Personel aktarımı yapıldıysa, yeni kullanıcılar için üretilen tek kullanımlık geçici şifreleri **[Kullanıcı Hesap Bilgilerini İndir (.txt)]** butonuna basarak güvenle kaydedin.
+4. **[Tamamla]** butonuna basarak sihirbazı kapatın ve güncellenen modül listesine dönün.
 
 ### Sıkça Sorulan Sorular (SSS)
 
-- **Portal sunucusunu herkes başlatabilir veya durdurabilir mi?** Hayır. Kurumsal güvenlik politikası gereğince arka plan portal servisini başlatma, durdurma ve tünel ayarlarını yönetme yetkisi yalnızca Sistem Yöneticisi (Admin) rolüne aittir; diğer yetkili kullanıcılar açık portalda kendi modüllerini kullanır.
-- **60 saniyelik önbellek yüzünden yeni girdiğim kayıt görünmezse ne yapmalıyım?** Yönetici panellerinin sağ üstünde yer alan **[Yenile]** butonuna basmanız yeterlidir. Bu işlem 60 saniyelik bellek süresini beklemeden doğrudan güncel veritabanı sorgusunu çalıştırır.
-- **İnternet kesildiğinde Web Portal ve mobil QR okuyucu çalışmaya devam eder mi?** Evet. Hastane yerel ağı (intranet) üzerindeki tüm gösterge panelleri, personel formları ve QR saha işlemleri kurum sunucusu üzerinde çalıştığı için dış internet kesintisinden etkilenmez.
-- **Web Portalındaki bazı ekranlar dar telefon penceresinde neden alta kayıyor?** Dar mobil veya uygulama pencerelerinde hiçbir sekmenin ekran dışında kesilip gizlenmemesi için sekmeler otomatik olarak alt satıra dizilir ve tüm onay pencereleri dokunmatik ekrana uyumlu açılır.
+- **Excel'de var olan bir personel veya cihaz dosyada tekrar gelirse sistem ne yapar?** İçe aktarım motoru önizleme adımında benzersiz alanları kontrol ederek bu kayıtları Mükerrer olarak işaretler. Birleştirme (merge) stratejisi seçildiyse var olan kaydın yalnızca boş alanları güncellenir; kilitli Şua yılları veya resmi onaylı kayıtlar kesinlikle ezilmez.
+- **Tanımsız bir birim veya unvan çıktığında dosya yüklemesini iptal etmek zorunda mıyım?** Hayır. Sihirbazın 3. adımı olan Tanımsız Değer Çözücü sayesinde, sistemde olmayan değerleri ya mevcut bir tanımla eşleştirebilir ya da tek tıkla veritabanına yeni tanım olarak ekleyebilirsiniz.
+- **Aktarım sırasında elektrik kesilirse veya uygulama kapanırsa veriler yarım kalır mı?** Hayır. İçe aktarım motoru atomik veritabanı işlem kalkanı (transaction) ile çalışır. Bir veri bloğunda kritik hata oluşursa o ana kadarki adımlar güvenle geri alınır (rollback), böylece veritabanında bozuk veya başıboş yarım kayıt oluşması engellenir.
+- **Oluşturulan personel kullanıcı hesaplarının geçici şifrelerini daha sonra tekrar görebilir miyiz?** Hayır. KVKK ve parola güvenliği ilkeleri gereğince, tek kullanımlık geçici şifreler yalnızca aktarım bittiği anda 5. adımda [Kullanıcı Hesap Bilgilerini İndir (.txt)] butonu üzerinden bir defaya mahsus indirilebilir.
+- **Hangi modüller için toplu içe aktarım şablonu bulunmaktadır?** RADPYS v4 Evrensel İçe Aktarım Motoru; Personel Özlük, İzin Hakları ve Devirleri, Tıbbi Cihaz Envanteri, Koruyucu Ekipman (RKE), Nöbet Çizelgesi ve Sistem Tanımlamaları olmak üzere tüm ana kurumsal modülleri desteklemektedir.
 
 ---
 
@@ -2017,6 +2052,7 @@ Rapor Merkezinde listeden şablonu seçip varsa filtreleri belirleyerek **[PDF �
 ### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
 
 > **Mit Avcısı — Tutanaklar Word Olarak Değiştirilebilir mi ve HEK Tutanağı Ekipmanı Anında Siler mi?**
+>
 > - **Yanlış Algı:** *"Tutanak Sihirbazında resmi komisyon tutanağını Word formatında indirip sonradan metnini düzeltebilirim; ayrıca HEK tutanağı oluşturduğum an cihaz veya önlük hemen envanterden silinir."*
 > - **Gerçek Sistem Mantığı:** **İkisi de doğru değildir.** Hukuki bağlayıcılığı olan heyet kararlarında tahrifatı önlemek için Rapor Merkezinde ve Tutanak Sihirbazında Word çıktısı tamamen kaldırılmış olup tek resmi çıktı kilitli PDF belgesidir (Word çıktısı yalnızca kurum içi düzenleme gerektiren NDK RKP kılavuz taslağında bulunur). Ayrıca HEK tutanağı üretildiğinde ilk aşamada varlık silinmez, yalnızca imza koruma kilidine alınır; Taşınır EBYS evrakıyla kapatılıp SHA-256 mührü basılmadan kalıcı tasfiye tamamlanmaz.
 
@@ -2055,7 +2091,89 @@ Rapor Merkezinde listeden şablonu seçip varsa filtreleri belirleyerek **[PDF �
 
 ---
 
-## 24. Kısaltmalar Sözlüğü ve Mevzuat Referans Matrisi
+## 24. Web Portalı ve Yönetici Gösterge Panelleri
+
+Kurum içi personel ve saha işlemlerini (izin, nöbet devri, EK-1 sağlık/RD.F43 beyanı, cihaz arıza-bakım-QC, RKE QR muayenesi ve ortam dozu ölçümü) mobil uyumlu tarayıcı ve PWA arayüzüne taşırken; 3 ana gruptaki 18 aktif yönetici gösterge panelini bellek içi önbellek, canlı veri tazeliği göstergesi, 8 saniyelik canlı sağlık denetimi ve isteğe bağlı şifreli dış erişim tüneliyle sunar.
+
+> **Yasal ve KVKK Güvencesi:** Tüm gösterge panelleri doğrudan kurumun canlı yerel veritabanından beslenir ve sıfır veri durumunda asla sahte veya sentetik kayıt üretmez; dış erişim açılsa dahi personel ve doz verileri bulut sunucularında depolanmaz.
+
+### Kısa Reçete: Portal Servisini Kontrol Etme ve Yönetici Paneline Erişim
+
+**Kısa Reçete: Portal Servisini Kontrol Etme ve Yönetici Paneline Erişim**
+
+**1. İstenen Sonuç:**
+Masaüstü uygulamasından veya Portal Servis Yöneticisinden Web Portalını doğrulayıp 18 analitik gösterge paneli ile saha QR işlemlerine anında bağlanmak.
+**2. Yapılacak İşlem:**
+Masaüstü durum çubuğunda **[Portal Sunucu: Aktif]** göstergesini kontrol edin (kapalıysa tıklayarak başlatıcıdan **[Başlat]** deyin), ardından sol üstteki **[Genel Bakış]** butonuna basın.
+**3. Sistem Etkisi:**
+Varsayılan tarayıcınızda Yönetici Özet Paneli açılır; 60 saniyelik bellek içi önbellek eşzamanlı sorgularda veritabanı yükünü dengeler, sağ üstte son veri çekim saati görülür ve istenen anda **[Yenile]** ile canlı veri çekilir.
+
+- **Yönetici Panelleri:** 3 Grupta 18 Aktif Pano
+- **Sağlık Kontrol Döngüsü:** Her 8 Saniyede Bir
+- **Dashboard Önbelleği:** 60 Sn (Tatil Cetveli 300 Sn)
+- **Platform:** Tarayıcı + Mobil PWA
+
+### 5N1K Kural ve Arayüz Çözümleme Tablosu
+
+*Masaüstü köprü ve başlatıcı denetimi, önbellek ve veri tazeliği, 18 yönetici paneli, dış erişim güvenliği, saha QR ve PWA kuralları.*
+
+| NE? (Bileşen / Kontrol) | NEDEN? (Amacı) | NASIL? (Çalışma Mantığı) | NE ZAMAN? (Tetiklenme) | KİM? (Yetkili Rol) |
+| --- | --- | --- | --- | --- |
+| **[Genel Bakış] & [Portal Sunucu: Aktif / Kapalı]** (Masaüstü Köprüsü ve 8 Sn Kontrol) | Sunucunun canlı olduğunu anlık görmek ve tek tıkla yönetici özetini açmak. | Masaüstü her 8 saniyede bir portal durumunu sorgular; kapalıysa durum butonundan veya Servis Yöneticisindeki **[Başlat]** ve **[Web Portalı Aç]** butonlarından tarayıcı açılır. | Program açıkken ve kullanıcı tıkladığında. | Sistem Yöneticisi / Yönetici |
+| **Önbellek, Veri Tazeliği, [Yenile] ve Excel/PDF İhracı** (Eşzamanlı Performans ve Denetim Paketi) | Yüzlerce kişi aynı anda panele girerken veritabanı yükünü korumak ve verinin güncelliğini şeffaf göstermek. | İstatistik yanıtları 60 saniye (yıllık resmi tatil cetvelinde 300 saniye paylaşımlı) bellekte tutulur; sağ üstte son çekim zamanını gösteren **Veri Tazeliği Göstergesi** ve 1.000 kaydı aşan listelerde dönem daraltma bilgilendirmesi yer alır. **[Yenile]** önbelleği sıfırlar; **[Excel]**, **[Yazdır / PDF]** ve Denetim Panosu'ndaki **[Denetim Paketi (PDF)]** resmi çıktı verir. | Dashboard yüklenirken veya çıktı alınırken. | Yönetici / RKS / Yetkili |
+| **3 Grupta 18 Aktif Yönetici Gösterge Paneli** (Denetim, Nöbet & İzin, Sağlık & Güvenlik) | Kurumsal uyum, nöbet adaleti ve kısıt/istek analizi, birleşik izin/Şua/farazi planlama, doz aşımı, bakım ve eğitim durumlarını tek yerden izlemek. | Genel ve Analiz (4), Nöbet ve İzin Yönetimi (5) ile Sağlık ve Güvenlik (9) gruplarında canlı KPI, yıllık ısı haritası ve dürüst boş durum sunulur; **İzin & Hak Ediş Yönetimi** altında yıllık izin, Şua bakiye karnesi ve farazi projeksiyon tek ekranda toplanır, **Nöbet Kısıt & İstek Analitiği** tercih/kısıt ihlallerini denetler ve **Çalışma Kısıtları** hizmet sınıfı ile radyasyon kapsamını ayırır. | Yetkili yönetici yan menüden panel seçtiğinde. | Yönetici / RKS / Birim Sorumlusu |
+| **Şifreli Dış Erişim Tüneli, Robot Koruması ve 2FA OTP** (Kurumsal İnternet Erişim Güvenliği) | Modem portu açmadan güvenli dış erişim sağlamak ve yetkisiz girişleri önlemek. | Yerel ve dış ağ ayrımı gerçek bağlantı adresinden doğrulanır; dış ağda şifreli tünel, robot doğrulaması, ilk girişte tek kullanımlık parola yenileme bileti ve 6 haneli e-posta kodu zorunlu çalışır, 5 hatalı girişte hesap 15 dakika kilitlenir ve masaüstünden kapatılan oturumlar portalda da düşürülür. | Kullanıcı dış ağdan veya web ekranından girerken. | Admin / Tüm Web Kullanıcıları |
+| **İmzalı Belge Bileti, Kasa Bütünlüğü ve Çoklu Birim Yetki Kalkanı** (**[İndir]**, **[Raporu İndir]** & Saha Güvenliği) | Tarayıcı adres çubuğunda oturum sızmasını, birimler arası yetkisiz erişimi ve bozuk evrak açılmasını önlemek. | Belge, eğitim medyası ve kat planı açılışlarında 60 saniyelik tekil güvenlik bileti üretilir ve evrakın dijital parmak izi doğrulanır; çoklu birim sorumluları yalnızca atandıkları klinikleri yönetir, şifahi nöbet devirlerinde tek kullanımlık kod aranır ve HBYS numarası yalnızca onaylı izinlere işlenebilir. | Belge/kat planı açılırken veya saha kaydı girilirken. | Yetkili Kullanıcı / Birim Sorumlusu |
+| **Merkezi Profilim ve 3 Gruplu Saha Formları** (Kişisel İşlemler, Nöbet, TENMAK PDF ve Saha Güvenliği) | Çalışan ve saha teknisyenlerinin mobil/tarayıcıdan eksiksiz işlem yapmasını sağlamak. | EK-1 sağlık beyanı, RD.F43 doz beyanı, **[Profilim] > [Dozimetre & Doz Karnesi] > [e-Devlet TENMAK PDF Yükle]** öz-servis raporu (tüm rollerde zorunlu onay kuyruğuna düşer) ve izin/nöbet devirleri profil sekmelerinden yürür; saha ekibi cihaz arıza-bakım-QC, RKE ve ortam dozu kayıtlarını atomik veri kilidiyle işler. | Personel beyanı, PDF yükleme veya saha müdahalesi yapılırken. | Tüm Personel / Saha Görevlisi |
+| **PWA Kurulumu, QR Kamera, Fener ve Taslak Koruma** (Mobil / Karanlık Oda Ergonomisi) | Telefon ve tabletlerde tam ekran uygulama deneyimi ve karanlık odalarda kesintisiz QR okuma sunmak. | Üst çubuktaki **[Uygulamayı Yükle]** ile tam ekran uygulama kurulur; kamera QR okuyucusu karanlık çekim odaları için fener, ekranı uyanık tutma, titreşimli onay ve uzun form taslağı koruması sağlar. | Tarayıcıdan saha veya QR işlemi yapılırken. | Saha Personeli / Teknisyen |
+
+### Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)
+
+> **Mit Avcısı — Web Portal Sadece Nöbet Görüntüleme Ekranı mıdır ve Dış Erişim Verileri Buluta mı Taşır?**
+>
+> - **Yanlış Algı:** *"Web Portal yalnızca personelin nöbet listesine baktığı salt okunur bir sayfadır; ayrıca kurum dışından erişim açıldığında personel ve dozimetre kayıtlarımız dış bulut sunucularına yüklenir."*
+> - **Gerçek Sistem Mantığı:** **İkisi de doğru değildir.** Web Portalında yöneticiler için SKS Denetim Panosu dahil **18 aktif karar destek paneli** ve personeller/teknisyenler için tam kapsamlı saha formları bulunur (izin, nöbet devri/havuzu, RD.F43/EK-1 beyan, cihaz bakım/QC, RKE kroki muayenesi ve ortam dozu). Ayrıca dış erişim açıldığında hiçbir veri buluta kopyalanmaz; yalnızca kurumun yerel sunucusuyla yetkili kullanıcının tarayıcısı arasında uçtan uca şifreli tünel köprüsü kurulur.
+
+### Süreç Akış Şeması
+
+1. **Servis Denetimi:** Masaüstü uygulaması 8 saniyede bir portal durumunu kontrol eder; kapalıysa Servis Yöneticisi üzerinden yerel sunucu ve varsa şifreli tünel ayağa kaldırılır.
+2. **Güvenli Oturum:** Kurum içi ağda hızlı oturum açılırken dış erişimde robot doğrulaması ve 6 haneli tek kullanımlık e-posta doğrulaması uygulanır.
+3. **Analitik ve Saha İşlemleri:** Yetkisine göre yöneticiler 18 gösterge panelinde (60 sn önbellekli ve veri tazeliği göstergeli) anlık Excel/PDF analizine ulaşır; personel ve teknisyenler karanlık oda fenerli QR okuyucu ve mobil formlarla sahadan kayıt girer.
+
+### Adım Adım İşlem Rehberi
+
+#### 1. Portal Servisini Başlatma ve Durum Kontrolü
+
+1. Masaüstü programının sağ alt köşesindeki **[Portal Sunucu: Aktif]** göstergesini kontrol edin; gösterge **Kapalı** görünüyorsa butona tıklayarak **RADPYS V4 Portal ve Servis Yöneticisi** penceresini öne getirin.
+2. Yönetici penceresinde **[Başlat]** butonuna basarak veritabanı motoru ile portal servisinin (gerekirse dış erişim tünelinin) aktifleşmesini bekleyin ve pencereyi küçültmek için **[Tepsiye Küçült]** seçeneğini kullanın.
+3. Doğrudan tarayıcıyı açmak için başlatıcıdaki **[Web Portalı Aç]** butonuna veya masaüstü sol menüsündeki **[Genel Bakış]** düğmesine tıklayın.
+
+#### 2. 18 Yönetici Gösterge Panelinde Analiz ve Raporlama
+
+1. Sol menüdeki **GENEL & ANALİZ** (4 pano), **NÖBET & İZİN YÖNETİMİ** (5 pano) ve **SAĞLIK & GÜVENLİK** (9 pano) gruplarından ilgili panoyu seçin (veya üst çubuktan `Ctrl+K` hızlı arama ile Şua, Farazi İzin ya da Kısıt alt görünümlerine doğrudan atlayın).
+   - **Üst Yönetim ve Denetim Kolaylıkları:** **Genel Bakış** ekranında 4 hücreli yönetici özet şeridi, 3 modlu birim grafiği ile **Acil / Geciken** ve **Yaklaşan (30 Gün)** uyarı sekmelerini inceleyebilir; **Denetim Panosu** ekranında birim bazlı kanıt özetlerini, acil aksiyonları, **Mevzuat & Denetim Rehberi** sekmesini ve tek tıkla **[Denetim Paketi (PDF)]** toplu kanıt çıktısını kullanabilirsiniz.
+   - **Nöbet & İzin Yönetimi Panoları (Faz 4):** **Nöbet Yönetimi** ekranında kurumsal matris, birim çizelgesi, dini ve resmi bayram ayrımlı Adalet Sayacı, 12 aylık Borç/Alacak Matrisi ve Birim × Kural Çapraz İhlal Matrisi sunulur; **Nöbet Devir & Takas Analitiği** karşılıklı takasların her iki vardiya ayağını, 3 aşamalı onay ve yanıt sürelerini, aşırı devir uyarılarını ve saha Değişim/Onay Merkezine doğrudan geçişi izler; **Nöbet Kısıt & İstek Analitiği** eğitim/ders günü kısıtları, nöbet yaz/yazma mazeretleri ve fazla mesai tercihlerinin çizelgeye gerçekleşme ve ihlal durumunu 7 günlük birim yoğunluğu ile yaş/kıdem muafiyetleri eşliğinde analiz eder; **Aylık Mesai & Tatil Cetveli** artık yıl duyarlı yıllık mesai hesabını, 2027–2030 Diyanet dini bayram/Arife yarım günlerini ve çakışan tatil tekilleştirmesini gösterir; **İzin & Hak Ediş Yönetimi** ise Birim İzin Matrisi, İzin Hareketleri, yıl sonu yanma riskini izleyen **Yıllık & Şua Bakiye Karnesi** ve KVKK maskelemeli **Farazi İzin Projeksiyonu** sekmelerini tek çatı altında birleştirir.
+   - **Sağlık & Güvenlik Panoları:** **Dozimetre Takibi** (yıllık **ALARA Doz Bütçesi** ve özel izlem radarı dahil), **Olay Bildirimi & DÖF** (yanıt süresi ve kök neden dağılım analizi dahil), **NDK Araştırma Formları**, **Sağlık Muayene**, **Çalışma Kısıtları**, **Cihaz & QC Yönetimi**, **RKE & KKD Muayene**, **Ortam Dozu Trendi** ve **Zorunlu Eğitim Uyum** panellerinde yıllık ısı haritaları, Personel × Eğitim matrisi ve güvenli sertifika önizleme imkanı sunulur.
+2. Üstteki dönem ve birim filtrelerini uygulayın; sağ üstteki **Veri Tazeliği Göstergesi** verinin en son ne zaman çekildiğini gösterir, son 60 saniye içinde yeni bir veri girişi yaptıysanız önbelleği beklemeden taze veri çekmek için **[Yenile]** butonuna tıklayın.
+3. Denetim veya toplantı sunumu için sağ üstteki **[Excel]**, **[Yazdır / PDF]** ya da Denetim Panosu'ndaki **[Denetim Paketi (PDF)]** butonlarından tabloyu ve özet metrikleri dışa aktarın.
+
+#### 3. Mobil Saha İşlemleri, PWA Kurulumu ve Karanlık Oda QR Kullanımı
+
+1. Telefon, tablet veya bilgisayarda tarayıcı üst çubuğundaki **[Uygulamayı Yükle]** butonuna basarak Web Portalını tam ekran uygulama (PWA) olarak kurun (iOS cihazlarda ekrandaki Paylaş ve Ana Ekrana Ekle yönergesi açılır).
+2. Sol menüdeki **Kişisel İşlemlerim**, **Nöbet İşlemlerim** ve **Saha & Güvenlik Bildirimleri** altından izin talebi, nöbet takası/havuzu, **Profilim** içi EK-1 sağlık / RD.F43 doz beyanları, **[e-Devlet TENMAK PDF Yükle]** ile bireysel dozimetre raporu gönderimi (ön izleme sonrası zorunlu Yönetici/RKS onay kuyruğuna iletilir) ve saha arıza-bakım-QC ile RKE muayene ekranlarını açın.
+3. Çekim odasında QR kod taratırken tarayıcı kamerasındaki fener düğmesiyle alanı aydınlatın; uzun formlarda sayfa kapansa dahi tarayıcı taslağının korunduğundan emin olarak işleminizi güvenle tamamlayın.
+
+### Sıkça Sorulan Sorular (SSS)
+
+- **Portal sunucusunu herkes başlatabilir veya durdurabilir mi?** Hayır. Kurumsal güvenlik politikası gereğince arka plan portal servisini başlatma, durdurma ve tünel ayarlarını yönetme yetkisi yalnızca Sistem Yöneticisi (Admin) rolüne aittir; diğer yetkili kullanıcılar açık portalda kendi modüllerini kullanır.
+- **60 saniyelik önbellek yüzünden yeni girdiğim kayıt görünmezse ne yapmalıyım?** Yönetici panellerinin sağ üstünde yer alan **[Yenile]** butonuna basmanız yeterlidir. Bu işlem 60 saniyelik bellek süresini beklemeden doğrudan güncel veritabanı sorgusunu çalıştırır.
+- **İnternet kesildiğinde Web Portal ve mobil QR okuyucu çalışmaya devam eder mi?** Evet. Hastane yerel ağı (intranet) üzerindeki tüm gösterge panelleri, personel formları ve QR saha işlemleri kurum sunucusu üzerinde çalıştığı için dış internet kesintisinden etkilenmez.
+- **Web Portalındaki bazı ekranlar dar telefon penceresinde neden alta kayıyor?** Dar mobil veya uygulama pencerelerinde hiçbir sekmenin ekran dışında kesilip gizlenmemesi için sekmeler otomatik olarak alt satıra dizilir ve tüm onay pencereleri dokunmatik ekrana uyumlu açılır.
+- **Web Portalından yüklediğim e-Devlet TENMAK dozimetre PDF raporu hemen karneme işlenir mi?** Hayır. Güvenlik ve mevzuat doğrulaması gereğince Web Portalından gönderilen e-Devlet TENMAK raporları rol ayrımı olmaksızın önce Merkezi Onay Kuyruğuna düşer; Yönetici veya RKS onayladığında yeni dönem ölçümleri doz karnenize eklenir ve PDF belgesi Evrak Kasasına arşivlenir.
+
+---
+
+## 25. Kısaltmalar Sözlüğü ve Mevzuat Referans Matrisi
 
 RADPYS V4 kullanım kılavuzunun tüm modüllerinde geçen teknik, idari ve mevzuata ilişkin kısaltmaların açık karşılıklarını; NDK, Sağlık Bakanlığı, ÇSGB, SGK ve Taşınır Mal mevzuatından doğan yasal sınırlar ile kurum içi yapılandırılabilir operasyonel parametreler arasındaki ayrımı tek merkezden sunar.
 

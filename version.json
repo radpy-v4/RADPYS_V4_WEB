@@ -1,10 +1,10 @@
 {
-  "version": "4.0.6.13",
-  "release_version": "4.0.6.13",
-  "build_version": "4.0.6.13",
-  "latest_demo_version": "4.0.6.13",
-  "release_date": "2026-11-24",
+  "version": "4.0.6.16",
+  "release_version": "4.0.6.16",
+  "build_version": "4.0.6.16",
+  "latest_demo_version": "4.0.6.16",
+  "release_date": "2026-11-25",
   "download_url": "https://download.radpys.com.tr/releases/RADPYS_Setup_latest.exe",
-  "changelog": "RADPYS V4.0.6.13: PLAN 03 Güvenlik, Performans, Yalınlaştırma ve Tasarım Sistemi (RDS) Kapanışı. Veritabanı/kasa ve denetim izi sertleştirmeleri; toplu aktarım N+1/bellek optimizasyonları, nöbet planlama ve olay tutanağı motor sadeleştirmeleri; personel alt diyaloglarının .ui XML standardına taşınması ve QSS/tabular font/ikon uyumu tamamlandı.",
+  "changelog": "RADPYS V4.0.6.16: Personel Detay kartı 7 kategorili sade düzene geçirildi (Sağlık özet kartları ve koşullu Dozimetre görünümüyle); Toplu Excel İçe Aktarım sihirbazında bölünmüş eşleştirme, 3 durumlu uyarı simgeleri ve canlı sayaç filtreleri eklendi; uygulama genelinde kapalı açılır kutu fare tekerleği koruması, yüksek kontrastlı RDS renkli butonlar ve Windows uyumlu Segoe UI okunabilirlik iyileştirmesi devreye alındı.",
   "notes": "Resmi kararlı dağıtım sürümü."
 }

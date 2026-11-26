@@ -35,8 +35,8 @@
     },
     {
       "num": "05",
-      "title": "Personel & Excel Aktarım",
-      "url": "05_personel_yonetimi_ve_toplu_aktarim.html"
+      "title": "Personel & Lisans Kotası",
+      "url": "05_personel_yonetimi.html"
     },
     {
       "num": "06",
@@ -147,8 +147,8 @@
     },
     {
       "num": "22",
-      "title": "Web Portal & Dashboard",
-      "url": "22_web_portal_ve_dashboardlar.html"
+      "title": "Toplu İçe Aktarım",
+      "url": "22_toplu_ice_aktarim.html"
     },
     {
       "num": "23",
@@ -157,8 +157,13 @@
     },
     {
       "num": "24",
+      "title": "Web Portal & Dashboard",
+      "url": "24_web_portal_ve_dashboardlar.html"
+    },
+    {
+      "num": "25",
       "title": "Kısaltmalar & Mevzuat Sözlüğü",
-      "url": "24_kisaltmalar_ve_mevzuat_sozlugu.html"
+      "url": "25_kisaltmalar_ve_mevzuat_sozlugu.html"
     }
   ];
 

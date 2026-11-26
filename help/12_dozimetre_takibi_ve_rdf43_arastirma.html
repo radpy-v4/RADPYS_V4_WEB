@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.13</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.16</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
           </div>
@@ -162,6 +162,13 @@
         <td class="py-3.5 px-4">Sağlayıcı, ad-soyad ve T.C. bilgisinden kalıcı eşleştirme hafızası kurar; boş birimlere yapay klinik adı yazmaz ve kapalı/kilitli RD.F43 dosyası bulunan dönem ölçümlerinin üzerine yazılmasını engeller (ayrılan personelin geçmiş dozları yıllık raporlarda korunur).</td>
         <td class="py-3.5 px-4">Periyodik doz raporu geldiğinde.</td>
         <td class="py-3.5 px-4">RKS / Dozimetre Sorumlusu</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>TENMAK (e-Devlet) Bireysel PDF &amp; Artımlı Aktarım</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400"><strong>[Personel Seç...]</strong>, <strong>[Dozimetre Raporu Yükle]</strong></span></td>
+        <td class="py-3.5 px-4">Üzerinde personel adı ve T.C. yazmayan bireysel e-Devlet TENMAK PDF belgelerini eksiksiz ve güvenli biçimde aktarmak.</td>
+        <td class="py-3.5 px-4">İçe aktarma sihirbazında (veya Personel Kartı / Listesi sağ tık kısayolundan) hedef çalışan doğrudan seçilir; henüz sonucu okunmamış boş dönemler sıfır yazılmadan atlanır. Çalışanın sistemde kaydı yoksa tüm okunmuş dönemler, mevcut kaydı varsa yalnızca yeni dönemler aktarılır; birim bilgisi çalışanın sistemdeki aktif görev yerinden alınır ve çoklu aktarımda tek özet bildirim gönderilir.</td>
+        <td class="py-3.5 px-4">e-Devlet TENMAK belgesi yüklendiğinde.</td>
+        <td class="py-3.5 px-4">RKS / Yetkili Personel</td>
       </tr>
       <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
         <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Periyodik ve Yıllık NDK Eşik Alarmları</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Tam Vücut, Göz, Ekstremite &amp; Ani Sıçrama Analizi</span></td>
@@ -372,8 +379,8 @@ flowchart TB
   <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-5 mb-2">1. Laboratuvar Dosyası İçe Aktarma ve Eşleşme Hafızasını Kullanma</h3>
 
 <ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
-  <li><strong>[Kişisel Dozimetre Takibi]</strong> ekranında araç çubuğundaki <strong>[Yeni Donem Raporu]</strong> butonuna tıklayın; format olarak <strong>Otomatik Algıla</strong>, <strong>RADAT</strong>, <strong>TENMAK / NDK</strong> veya <strong>Genel Excel / CSV</strong> seçip <strong>[Dosya Seç...]</strong> ile raporu yükleyin ve <strong>[İleri]</strong>'ye basın.</li>
-  <li>Önizleme tablosunda eşleşmeyen satır varsa satıra çift tıklayarak (veya <strong>[Seçiliyi Personelle Eşle]</strong> ile) doğru çalışanı arayıp seçin; kalıcı hafıza onay kutusunu işaretleyerek <strong>[Bu Personelle Eşle]</strong>'ye basın (kurum dışı veya ayrılmış kişiler için <strong>[Eşleşmeyenleri Excel Olarak İndir]</strong> ile listeyi alabilirsiniz).</li>
+  <li><strong>[Kişisel Dozimetre Takibi]</strong> ekranında araç çubuğundaki <strong>[Yeni Donem Raporu]</strong> butonuna tıklayın (ayrıca belirli bir personel için doğrudan <strong>Personel Kartı > Dozimetre</strong> sekmesindeki <strong>[Dozimetre Raporu Yükle]</strong> butonunu veya Personel Listesi sağ tık menüsünü kullanabilirsiniz); açılışta varsayılan firma ayarına göre gelen format seçeneklerinden <strong>Otomatik Algıla</strong>, <strong>RADAT</strong>, <strong>TENMAK / NDK</strong> veya <strong>Genel Excel / CSV</strong> seçip <strong>[Dosya Seç...]</strong> ile raporu yükleyin ve <strong>[İleri]</strong>'ye basın.</li>
+  <li>Toplu listede eşleşmeyen satır varsa satıra çift tıklayarak (veya <strong>[Seçiliyi Personelle Eşle]</strong> ile) çalışanı eşleyin. Yüklenen dosya personel adı içermeyen bir <strong>e-Devlet TENMAK Bireysel PDF</strong> ise <strong>[Personel Seç...]</strong> veya <strong>[Hedef Personel Seç / Değiştir]</strong> ile ilgili personeli bağlayın; okunmamış boş dönemler otomatik atlanır ve çalışanın sistemde mevcut kaydı olup olmamasına göre tüm geçmiş ya da yalnızca yeni dönemler listelenir.</li>
   <li>Son adımda <strong>[Tamamla]</strong> butonuna basarak tüm ölçümleri kümülatife işleyin ve eşik aşımı varsa otomatik aksiyon kaydını oluşturun.</li>
 </ol>
 
@@ -416,6 +423,15 @@ flowchart TB
     </summary>
     <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
       <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Raporu standart Excel sütunlarına göre düzenleyip <strong>Genel Excel / CSV</strong> seçeneğiyle aktarabilirsiniz. Laboratuvarınızın özgün rapor formatını doğrudan tanıtmak isterseniz örnek bir dosyayı destek ekibiyle paylaşmanız yeterlidir.</p>
+    </div>
+  </details>
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>e-Devlet'ten indirilen ve üzerinde personel adı yazmayan TENMAK PDF raporları nasıl aktarılır?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">e-Devlet TENMAK Sorgulama PDF belgelerinde çalışan adı yer almadığı için sihirbazda <strong>[Personel Seç...]</strong> ile ilgili personeli seçebilir, Personel Kartındaki <strong>[Dozimetre Raporu Yükle]</strong> kısayolunu kullanabilir veya çalışanın Web Portalındaki <strong>Profilim &gt; Dozimetre &amp; Doz Karnesi</strong> sekmesinden PDF yükleyip Yönetici/RKS onayına göndermesini sağlayabilirsiniz. Sistem boş/okunmamış dönemleri sıfır yazmadan otomatik atlar; çalışanın kayıtlı eski verisi yoksa tüm geçmiş dönemleri, varsa yalnızca yeni dönemleri aktarır.</p>
     </div>
   </details>
   <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
@@ -471,7 +487,7 @@ flowchart TB
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6">
-      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.13) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.16) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
       <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
   </footer>

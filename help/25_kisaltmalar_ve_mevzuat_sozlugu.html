@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>25. Kısaltmalar Sözlüğü ve Mevzuat Referans Matrisi — RADPYS v4 Kullanım Kılavuzu</title>
+  <link rel="stylesheet" href="assets/tailwind.min.css">
+  <script src="assets/mermaid.min.js"></script>
+  <style>
+    pre, code { font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 9999px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.6); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- TOP HEADER NAVBAR -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Menüyü Aç/Kapat">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.16</span>
+            </span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="flex-1 max-w-xl hidden md:block">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input
+            type="text"
+            readonly
+            placeholder="Dokümanda ara... (Ctrl+K ile hızlı arama)"
+            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition cursor-pointer"
+          >
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <kbd class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600 font-semibold">Ctrl+K</kbd>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition"><span>Tüm Modüller</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <div class="flex-1 max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 flex gap-8">
+    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar"></aside>
+
+    <main class="flex-1 min-w-0 py-8">
+      <nav class="flex items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
+        <a href="index.html" class="hover:text-cyan-600 transition">Kılavuz Ana Sayfası</a>
+        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span>Bölüm 6: Merkezi Onay &amp; Web Portal</span>
+        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">25. Kısaltmalar &amp; Mevzuat Sözlüğü</span>
+      </nav>
+
+<section id="overview" class="mb-10 border-b border-slate-200 dark:border-slate-800 pb-6">
+  <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+    <div class="flex flex-wrap items-center gap-2.5"><span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-800 dark:bg-indigo-950 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">Mevzuat & Terminoloji Sözlüğü</span></div>
+    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Tahmini Okuma: 4 Dakika</span>
+  </div>
+  <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3">
+    Kısaltmalar Sözlüğü ve Mevzuat Referans Matrisi
+  </h1>
+  <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
+    RADPYS V4 kullanım kılavuzunun tüm modüllerinde geçen teknik, idari ve mevzuata ilişkin kısaltmaların açık karşılıklarını; NDK, Sağlık Bakanlığı, ÇSGB, SGK ve Taşınır Mal mevzuatından doğan yasal sınırlar ile kurum içi yapılandırılabilir operasyonel parametreler arasındaki ayrımı tek merkezden sunar.
+  </p>
+  <div class="mt-4 text-xs sm:text-sm text-slate-500 dark:text-slate-400"><strong>Hukuki Bilgilendirme:</strong> Bu bölüm operasyonel ve teknik bilgilendirme amacıyla hazırlanmıştır; bağlayıcı hukuki görüş yerine geçmez. Kurum içi uygulamalar Radyasyondan Korunma Sorumlusu (RKS), İş Sağlığı ve Güvenliği (İSG) ve hukuk/mevzuat uyum birimi onayıyla yürütülmelidir.</div>
+  
+  
+</section>
+
+<section id="quick-recipe" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Kısa Reçete: Kısaltma ve Mevzuat Doğrulama</span>
+  </h2>
+  <div class="p-6 sm:p-7 rounded-3xl bg-cyan-50/70 dark:bg-cyan-950/30 border border-cyan-200/90 dark:border-cyan-800/60 shadow-md">
+  <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+    <div class="flex items-center gap-2.5 text-cyan-900 dark:text-cyan-200 font-bold text-sm sm:text-base">
+      <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      <span>Kısa Reçete: Kısaltma ve Mevzuat Doğrulama</span>
+    </div>
+    <span class="text-xs font-mono px-2.5 py-1 rounded bg-cyan-200/80 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-300 font-bold">20 SANİYELİK AKIŞ</span>
+  </div>
+  
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5 text-xs sm:text-sm">
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
+      <span class="font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider text-[11px] block">1. İstenen Sonuç</span>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Kılavuz boyunca geçen teknik kısaltmaların karşılıklarını, yasal mevzuat maddelerini ve kurum içi değiştirilebilir parametre sınırlarını tek tabloda doğrulamak.</p>
+    </div>
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
+      <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider text-[11px] block">2. Yapılacak İşlem</span>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Aradığınız kavramı (<strong>HEK</strong>, <strong>FM</strong>, <strong>RADAT</strong>, <strong>TENMAK</strong>, <strong>EBYS</strong>, <strong>RKS</strong> vb.) alfabetik sözlükten bulun; kuralın yasal dayanağını ikinci tablodan ve kurum içi değiştirilebilir kotadan farkını üçüncü tablodan teyit edin.</p>
+    </div>
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
+      <span class="font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider text-[11px] block">3. Sistem Etkisi</span>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Klinik iş yükü kotaları (<strong>60 saat</strong> FM kotası, <strong>5 gün</strong> devir tavanı, <strong>2,0 / 5,0 mSv</strong> inceleme düzeyi) bağlayıcı mevzuat tavanlarıyla (<strong>130 saat</strong>, <strong>20/50 mSv</strong>, <strong>EK-2 30 gün</strong>) karıştırılmadan uygulanır.</p>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-cyan-200/60 dark:border-cyan-800/40">
+    <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Sözlük Kapsamı</span>
+      <span class="text-sm sm:text-base font-black text-indigo-600 dark:text-indigo-400 font-mono">37 Kısaltma</span>
+    </div>
+    <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Mevzuat Matrisi</span>
+      <span class="text-sm sm:text-base font-black text-emerald-600 dark:text-emerald-400 font-mono">16 Ana Düzenleme</span>
+    </div>
+    <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Parametre Ayrımı</span>
+      <span class="text-sm sm:text-base font-black text-amber-600 dark:text-amber-400 font-mono">5 Kritik Kural</span>
+    </div>
+    <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Uyum Sorumlusu</span>
+      <span class="text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 font-mono">RKS / İSG / Hukuk</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="kisaltmalar" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Kurumsal ve Teknik Kısaltmalar Sözlüğü</span>
+  </h2>
+  <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3"><em>RADPYS V4 ekranlarında, resmi dökümlerde ve kullanım kılavuzu modüllerinde kullanılan tüm kısaltmaların alfabetik açık karşılıkları ve kullanım alanları:</em></p>
+
+<div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 custom-scrollbar shadow-sm my-4">
+  <table class="w-full text-left border-collapse text-xs sm:text-sm">
+    <thead>
+      <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/80 uppercase text-xs font-bold tracking-wider text-slate-500 dark:text-slate-400">
+        <th class="py-3.5 px-4">Kısaltma</th>
+        <th class="py-3.5 px-4">Açık Karşılığı</th>
+        <th class="py-3.5 px-4">Modül / Mevzuat Bağlamı ve Açıklama</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>ALARA</strong></td>
+        <td class="py-3.5 px-4">As Low As Reasonably Achievable</td>
+        <td class="py-3.5 px-4">İyonlaştırıcı radyasyon maruziyetinin makul ölçüde erişilebilir en düşük düzeyde tutulması ilkesi (Radyasyon Güvenliği Yönetmeliği).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>CAPA</strong></td>
+        <td class="py-3.5 px-4">Corrective and Preventive Actions</td>
+        <td class="py-3.5 px-4">Düzeltici ve Önleyici Faaliyetlerin (DÖF) uluslararası kalite yönetimindeki karşılığı.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>CDSS</strong></td>
+        <td class="py-3.5 px-4">Clinical Decision Support System (Klinik Karar Destek Sistemi)</td>
+        <td class="py-3.5 px-4">Doz aşımı veya sağlık anomalisi bulgularında mevzuata uygun aksiyon taslağı öneren destek modülü.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>ÇKYS</strong></td>
+        <td class="py-3.5 px-4">Çekirdek Kaynak Yönetim Sistemi</td>
+        <td class="py-3.5 px-4">Sağlık Bakanlığı bünyesinde personel, cihaz ve kurum kaynaklarının izlendiği merkezi kamu kayıt sistemi.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>DIN 6857-1</strong></td>
+        <td class="py-3.5 px-4">Radyasyon Koruyucu Ekipman Kalite Kontrol Standardı</td>
+        <td class="py-3.5 px-4">Kurşun önlük, tiroid ve gonad koruyucuların aktif alan hasarı ve bütünlük muayenesinde kullanılan uluslararası standart.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>DMK</strong></td>
+        <td class="py-3.5 px-4">657 sayılı Devlet Memurları Kanunu</td>
+        <td class="py-3.5 px-4">Kamu görevlilerinin çalışma saatleri, yıllık izin devri (m. 103), mazeret/doğum izinleri (m. 101, 104/D) ve fazla mesai tavanını (Ek m. 33) düzenler.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>DÖF</strong></td>
+        <td class="py-3.5 px-4">Düzeltici ve Önleyici Faaliyet</td>
+        <td class="py-3.5 px-4">Olay bildirimi, doz aşımı veya denetim bulgusu sonrası kök neden analiziyle açılan resmi iyileştirme kaydı.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>EBYS</strong></td>
+        <td class="py-3.5 px-4">Elektronik Belge Yönetim Sistemi</td>
+        <td class="py-3.5 px-4">Resmi üst yazıların, tutanak onaylarının ve Taşınır/Ayniyat HEK kapatma işlemlerinin kurumsal evrak numarasıyla yürütüldüğü sistem.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>EPD</strong></td>
+        <td class="py-3.5 px-4">Elektronik Kişisel Dozimetre</td>
+        <td class="py-3.5 px-4">Gerçek zamanlı kümülatif veya anlık radyasyon maruziyetini ölçen aktif elektronik dozimetre.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>FHZ</strong></td>
+        <td class="py-3.5 px-4">Fiili Hizmet Süresi Zammı (Yıpranma Payı)</td>
+        <td class="py-3.5 px-4">5510 sayılı Kanun Madde 40 kapsamında radyasyon görevlilerine bilfiil maruziyet çalışma saatine göre sağlanan erken emeklilik prim hakkı.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>FM</strong></td>
+        <td class="py-3.5 px-4">Fazla Mesai</td>
+        <td class="py-3.5 px-4">Aylık zorunlu normal çalışma hedefini aşan nöbet veya hizmet süreleri (kurumsal denge kotası ile DMK Ek m. 33 ücret tavanı ayrı izlenir).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>HBYS</strong></td>
+        <td class="py-3.5 px-4">Hastane Bilgi Yönetim Sistemi</td>
+        <td class="py-3.5 px-4">Hasta, tetkik, klinik ve insan kaynakları verilerinin yürütüldüğü hastane otomasyon sistemi.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>HEK</strong></td>
+        <td class="py-3.5 px-4">Hurdaya Esas Kayıt / Hizmete Elverişli Değildir</td>
+        <td class="py-3.5 px-4">Taşınır Mal Yönetmeliği (RG: 18.01.2007 / 26407) kapsamında ekonomik ömrü dolan veya kusurlu tıbbi cihaz ile koruyucu ekipmanların resmi komisyon tutanağıyla tasfiye süreci.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Hp(10) / Hp(0,07)</strong></td>
+        <td class="py-3.5 px-4">Kişisel Doz Eşdeğerleri</td>
+        <td class="py-3.5 px-4">Hp(10) 10 mm doku derinliğindeki tüm vücut/etkin dozu; Hp(0,07) ise 0,07 mm derinlikteki cilt ve ekstremite (el/parmak/göz lensi) dozunu ifade eder.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>İGU</strong></td>
+        <td class="py-3.5 px-4">İş Güvenliği Uzmanı</td>
+        <td class="py-3.5 px-4">6331 sayılı Kanun çerçevesinde işyeri risk analizi ve düzeltici/önleyici süreçlerde görev alan sertifikalı uzman.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>İSG</strong></td>
+        <td class="py-3.5 px-4">İş Sağlığı ve Güvenliği</td>
+        <td class="py-3.5 px-4">Çalışan sağlığının korunması, periyodik muayeneler ve 30 yıllık tıbbi gözetim arşivini kapsayan mevzuat alanı.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>KKD</strong></td>
+        <td class="py-3.5 px-4">Kişisel Koruyucu Donanım</td>
+        <td class="py-3.5 px-4">Çalışanı fiziksel ve radyolojik risklere karşı koruyan donanımlar (kurşun önlük, gözlük vb.).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>KKT</strong></td>
+        <td class="py-3.5 px-4">Periyodik Kalite Kontrol Testi</td>
+        <td class="py-3.5 px-4">TİTCK mevzuatı uyarınca cihazların 3, 6 veya 12 aylık dönemlerde yapılan performans ve güvenlik testleri.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>KUK</strong></td>
+        <td class="py-3.5 px-4">Kalite Uygunluk Kuruluşu</td>
+        <td class="py-3.5 px-4">TİTCK tarafından yetkilendirilmiş, resmi Kalite Uygunluk Testi (KUT) raporu düzenlemeye yetkili kuruluş.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>KUT</strong></td>
+        <td class="py-3.5 px-4">Kalite Uygunluk Testi</td>
+        <td class="py-3.5 px-4">Yetkili KUK tarafından Radyoterapi cihazlarında 36 ayda (3 yıl), Diagnostik ve Nükleer Tıp cihazlarında 60 ayda (5 yıl) bir yürütülen zorunlu uygunluk testi.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>KVKK</strong></td>
+        <td class="py-3.5 px-4">6698 sayılı Kişisel Verilerin Korunması Kanunu</td>
+        <td class="py-3.5 px-4">Özel nitelikli sağlık verilerinin (kan tahlili, doz, gebe/sağlık raporu) şifreli kasada saklanması ve rol bazlı yetki izolasyonunu zorunlu kılar.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>LMS</strong></td>
+        <td class="py-3.5 px-4">Learning Management System (Öğrenme Yönetim Sistemi)</td>
+        <td class="py-3.5 px-4">Hizmet içi zorunlu eğitim modüllerinin, videoların, online sınavların ve sertifikaların yönetildiği eğitim altyapısı.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>MERNİS</strong></td>
+        <td class="py-3.5 px-4">Merkezi Nüfus İdaresi Sistemi</td>
+        <td class="py-3.5 px-4">T.C. Kimlik Numarası ve resmi kimlik doğrulamasında esas alınan merkezi kimlik standardı.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>mSv / µSv/h</strong></td>
+        <td class="py-3.5 px-4">Milisievert / Mikrosievert-Saat</td>
+        <td class="py-3.5 px-4">Kişisel radyasyon doz eşdeğeri (mSv) ve ortam radyasyon doz hızı (µSv/h) birimleri (1 mSv = 1.000 µSv).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>NDK</strong></td>
+        <td class="py-3.5 px-4">Nükleer Düzenleme Kurumu</td>
+        <td class="py-3.5 px-4">Türkiye'de radyasyon güvenliği, cihaz/tesis lisanslaması, RKS görevlendirmesi, doz limitleri ve resmi inceleme (RD.F43) süreçlerinin düzenleyici ve denetleyici üst kurumu.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>PWA</strong></td>
+        <td class="py-3.5 px-4">Progressive Web App (İlerici Web Uygulaması)</td>
+        <td class="py-3.5 px-4">Mobil telefon ve tabletlerin ana ekranına kurulabilen, kamera ile QR okuma ve dokunmatik imza desteği sunan Web Portal deneyimi.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>RADAT</strong></td>
+        <td class="py-3.5 px-4">Radyasyon Dozimetre ve Analiz Laboratuvarları</td>
+        <td class="py-3.5 px-4">TENMAK bünyesinde ve yetkili laboratuvarlar aracılığıyla kişisel dozimetre okuma, takip ve veri bildirimi süreçlerini yürüten yapı.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>RBAC</strong></td>
+        <td class="py-3.5 px-4">Role-Based Access Control (Rol Tabanlı Erişim Kontrolü)</td>
+        <td class="py-3.5 px-4">Kullanıcıların yalnızca yetkili oldukları modül, buton ve kayıtlara erişebilmesini sağlayan güvenlik mimarisi.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>RD.F43</strong></td>
+        <td class="py-3.5 px-4">NDK Dozimetri Aşımı Resmi İnceleme Formu</td>
+        <td class="py-3.5 px-4">Yetkili dozimetre kuruluşunun aşım/anomali bildirimi sonrası 10 iş günü içinde doldurulup NDK'ya iletilen resmi inceleme formu.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>RKE</strong></td>
+        <td class="py-3.5 px-4">Radyasyon Koruyucu Ekipman</td>
+        <td class="py-3.5 px-4">Kurşun önlük, tiroid koruyucu, gonad siperliği, kurşun eldiven ve gözlük gibi radyolojik KKD envanteri.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>RKP</strong></td>
+        <td class="py-3.5 px-4">Radyasyondan Korunma Programı</td>
+        <td class="py-3.5 px-4">Kurumun radyasyon güvenliği organizasyonunu, doz izlemesini ve acil durum planlarını tanımlayan ana uyum programı.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>RKS</strong></td>
+        <td class="py-3.5 px-4">Radyasyondan Korunma Sorumlusu</td>
+        <td class="py-3.5 px-4">06.03.2025 tarihli NDK Usul ve Esasları ile güncel resmi terminoloji (eski <em>RGS / RGU / RSO</em> unvanlarının güncel karşılığı).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>SGK</strong></td>
+        <td class="py-3.5 px-4">Sosyal Güvenlik Kurumu</td>
+        <td class="py-3.5 px-4">5510 sayılı Kanun kapsamında FHZ/yıpranma primlerinin ve hizmet dökümlerinin bildirildiği sosyal güvenlik kurumu.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>SKS</strong></td>
+        <td class="py-3.5 px-4">Sağlıkta Kalite Standartları</td>
+        <td class="py-3.5 px-4">Sağlık Bakanlığı tarafından hastane kalite, güvenlik, olay bildirimi, cihaz/ekipman izlenebilirliği ve personel uyumu için yayımlanan denetim seti (SKS 6.1).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>SSDL</strong></td>
+        <td class="py-3.5 px-4">Secondary Standard Dosimetry Laboratory</td>
+        <td class="py-3.5 px-4">TENMAK bünyesinde ortam ölçüm cihazlarının (alan monitörü / doz hızı ölçer) kalibrasyon izlenebilirliğini sağlayan İkincil Standart Dozimetri Laboratuvarı.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>TENMAK</strong></td>
+        <td class="py-3.5 px-4">Türkiye Enerji, Nükleer ve Maden Araştırma Kurumu</td>
+        <td class="py-3.5 px-4">Mülga TAEK (Türkiye Atom Enerjisi Kurumu) yerine kurulan ve ikincil dozimetri kalibrasyonu ile dozimetre hizmetlerini yürüten ulusal kurum.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>TİTCK</strong></td>
+        <td class="py-3.5 px-4">Türkiye İlaç ve Tıbbi Cihaz Kurumu</td>
+        <td class="py-3.5 px-4">Tıbbi cihazların kayıt, Kalite Kontrol (KKT) ve Kalite Uygunluk Testi (KUT) süreçlerini düzenleyen Sağlık Bakanlığı kurumu.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<section id="mevzuat-dayanaklari" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Temel Mevzuat Dayanakları ve Yasal Çerçeve</span>
+  </h2>
+  <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3"><em>RADPYS V4 modüllerinde yer alan iş kurallarının, form alanlarının, saklama sürelerinin ve resmi tutanakların dayandığı başlıca mevzuat metinleri:</em></p>
+
+<div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 custom-scrollbar shadow-sm my-4">
+  <table class="w-full text-left border-collapse text-xs sm:text-sm">
+    <thead>
+      <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/80 uppercase text-xs font-bold tracking-wider text-slate-500 dark:text-slate-400">
+        <th class="py-3.5 px-4">Mevzuat / Standart Adı</th>
+        <th class="py-3.5 px-4">Resmî Gazete / Numara</th>
+        <th class="py-3.5 px-4">İlgili Madde ve RADPYS V4 Karşılığı</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Radyoloji, Radyom ve Elektrikle Tedavi Müesseseleri Hakkında Kanun</strong></td>
+        <td class="py-3.5 px-4">3153 sayılı Kanun (Ek Madde 1)</td>
+        <td class="py-3.5 px-4">Radyasyon kaynaklarıyla çalışan sağlık personelinin yıllık izne ek olarak hak kazandığı <strong>Şua (Sağlık) İzni</strong> temel yasal dayanağı (Modül 06, 11).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>İyonlaştırıcı Radyasyon ve Radyonüklit Kullanılarak Sunulan Sağlık Hizmetleri Hakkında Yönetmelik</strong></td>
+        <td class="py-3.5 px-4">RG: 13.04.2023 / 32162</td>
+        <td class="py-3.5 px-4"><strong>Madde 8 ve EK-2 Sağlık İzni Tablosu</strong> (bilfiil çalışma saatine göre kademeli 1–30 gün Şua hesabı), <strong>EK-1 Tıbbi Gözetim Belgesi</strong>, gebe/emziren çalışma kısıtları ve görev bitiminden itibaren en az 30 yıl kayıt saklama (Modül 05, 06, 07.4, 11, 13).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Radyasyon Güvenliği Yönetmeliği</strong> (ve NDK düzenlemeleri)</td>
+        <td class="py-3.5 px-4">RG: 24.03.2000 / 23999</td>
+        <td class="py-3.5 px-4"><strong>Madde 10:</strong> Radyasyon görevlileri için ardışık 5 yılın ortalaması <strong>20 mSv</strong>, herhangi bir yılda tek yıl azami <strong>50 mSv</strong> etkin doz limiti.<br><strong>Madde 12:</strong> Hamilelik bildirimi sonrası kalan gebelik süresince karın yüzeyi ilave <strong>1 mSv</strong> eşdeğer doz limiti.<br><strong>Madde 15:</strong> Denetimli alan (<strong>6 mSv</strong> potansiyel eşiği) ve gözetimli alan (<strong>1–6 mSv</strong>) sınıflandırması (Modül 05, 07.4, 12, 14).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Radyasyondan Korunma Sorumlusu Görevlendirilmesine İlişkin Usul ve Esaslar</strong></td>
+        <td class="py-3.5 px-4">NDK Kararı: 06.03.2025</td>
+        <td class="py-3.5 px-4">Eski <em>RGS / RSO</em> unvanı yerine <strong>Radyasyondan Korunma Sorumlusu (RKS)</strong> tanımı, sertifika ve görevlendirme takibi (Modül 16).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Radyasyondan Korunma Eğitimlerine İlişkin Yönetmelik</strong></td>
+        <td class="py-3.5 px-4">RG: 19.02.2025 / 32818</td>
+        <td class="py-3.5 px-4">Radyasyon görevlilerinin zorunlu hizmet içi radyasyondan korunma eğitimleri, sınav ve sertifikalandırma esasları (Modül 17).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Devlet Memurları Kanunu</strong></td>
+        <td class="py-3.5 px-4">657 sayılı Kanun</td>
+        <td class="py-3.5 px-4"><strong>Madde 101:</strong> Gebe/emziren memurların gece nöbeti muafiyeti.<br><strong>Madde 103:</strong> Yıllık izinlerin cari ve bir önceki yılda kullanılması.<br><strong>Madde 104/D:</strong> Doğum/süt izni.<br><strong>Ek Madde 33:</strong> Aylık azami <strong>130 saat</strong> fazla mesai/nöbet ücreti tavanı (Modül 06, 07, 07.1, 07.4, 10).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>İş Kanunu</strong> (ve İlgili Yargıtay İçtihatları)</td>
+        <td class="py-3.5 px-4">4857 sayılı Kanun</td>
+        <td class="py-3.5 px-4"><strong>Madde 53–59:</strong> Sözleşmeli/işçi statüsünde yıllık izin hakları.<br><strong>Madde 74:</strong> Analık hali, gebe/emziren işçi çalışması. İş akdi feshinde kullanılmayan şua izinleri için Yargıtay 9. Hukuk Dairesi içtihatlarında işçi statüsünde <em>şua izin alacağı</em> davaları görülebilmektedir (Modül 06, 07.4).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Sosyal Sigortalar ve Genel Sağlık Sigortası Kanunu</strong></td>
+        <td class="py-3.5 px-4">5510 sayılı Kanun (Madde 40)</td>
+        <td class="py-3.5 px-4">İyonlaştırıcı radyasyon işlerinde bilfiil çalışanlar için yıllık <strong>Fiili Hizmet Süresi Zammı (FHZ / Yıpranma)</strong> primi hesabı (Modül 11).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>İş Sağlığı ve Güvenliği Kanunu</strong></td>
+        <td class="py-3.5 px-4">6331 sayılı Kanun (Madde 15)</td>
+        <td class="py-3.5 px-4">Sağlık gözetimi, periyodik hematoloji/biyokimya muayeneleri ve kişisel doz/sağlık dosyalarının iş ilişkisinin bitiminden sonra <strong>en az 30 yıl</strong> saklanması (Modül 05, 13).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Kişisel Verilerin Korunması Kanunu</strong></td>
+        <td class="py-3.5 px-4">6698 sayılı Kanun (m. 6, m. 12)</td>
+        <td class="py-3.5 px-4">Özel nitelikli sağlık verilerinin şifreli kasada (AES-256) tutulması ve erişim denetimi (Modül 01, 04, 05, 13, 18).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Sendika Hakları Mevzuatı</strong></td>
+        <td class="py-3.5 px-4">4688 ve 6356 sayılı Kanunlar</td>
+        <td class="py-3.5 px-4">4688 m. 18 (kamu görevlileri sendika yöneticisi/temsilcisi izni) ve 6356 (işçi sendikaları) kapsamında nöbet/çalışma koruma kuralları (Modül 07.4).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Taşınır Mal Yönetmeliği</strong></td>
+        <td class="py-3.5 px-4">RG: 18.01.2007 / 26407</td>
+        <td class="py-3.5 px-4">Hurdaya Esas Kayıt / Hizmete Elverişli Değildir (<strong>HEK</strong>) komisyon kararları, iki aşamalı tasfiye ve EBYS kapatması (Modül 18, 20, 23).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Tıbbi Cihaz KUT / KKT Mevzuatı</strong></td>
+        <td class="py-3.5 px-4">TİTCK Yönetmeliği &amp; TCS-KLVZ-06</td>
+        <td class="py-3.5 px-4">Radyoterapi cihazlarında 36 ay / Diagnostik-Nükleer Tıp cihazlarında 60 ay <strong>KUT</strong>, 3–6–12 ay <strong>KKT</strong>, KUK yetkisi ve <em>Sınırlı Kullanım</em> 1 yıl kuralı (Modül 19).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>NDK Doz Aşımı Kılavuzları</strong></td>
+        <td class="py-3.5 px-4">RSGD-KLV-005 / RSGD-KLV-014</td>
+        <td class="py-3.5 px-4">Dozimetre anomalilerinde <strong>RD.F43</strong> formunun 10 iş günü içinde düzenlenmesi ve RKP başvuru dosyası hazırlanması (Modül 12, 18).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Sağlıkta Kalite Standartları (SKS)</strong></td>
+        <td class="py-3.5 px-4">Sağlık Bakanlığı SKS 6.1</td>
+        <td class="py-3.5 px-4">Güvenlik Raporlama Sistemi (Olay Bildirimi), DÖF takibi, cihaz/RKE denetim izlenebilirliği (Modül 12, 14, 15, 20, 23).</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Radyasyon Koruyucu Ekipman Standardı</strong></td>
+        <td class="py-3.5 px-4">DIN 6857-1</td>
+        <td class="py-3.5 px-4">Kurşun önlük ve koruyucularda kritik organ 0 mm², non-kritik ≤ 5 mm² / 5–15 mm² / &gt; 15 mm² kusur karar eşikleri (Modül 20).</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<section id="yasal-vs-kurumsal" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Yasal Mevzuat Sınırı ve Kurumsal Parametre Ayrımı</span>
+  </h2>
+  <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3"><em>Kurum içi iş yükü, kalite hedefi veya erken uyarı politikası olarak yapılandırılabilen parametreler ile kanun/yönetmelikten doğan bağlayıcı sınırların karşılaştırma tablosu:</em></p>
+
+<div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 custom-scrollbar shadow-sm my-4">
+  <table class="w-full text-left border-collapse text-xs sm:text-sm">
+    <thead>
+      <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/80 uppercase text-xs font-bold tracking-wider text-slate-500 dark:text-slate-400">
+        <th class="py-3.5 px-4">Konu Başlığı</th>
+        <th class="py-3.5 px-4">Bağlayıcı Yasal Mevzuat Sınırı</th>
+        <th class="py-3.5 px-4">RADPYS Varsayılan Kurumsal Parametresi</th>
+        <th class="py-3.5 px-4">Açıklama ve Kullanım Kuralı</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Etkin Doz Limitleri (Radyasyon Görevlisi)</strong></td>
+        <td class="py-3.5 px-4">Ardışık <strong>5 yılın ortalaması 20 mSv/yıl</strong>; herhangi bir tek yılda azami <strong>50 mSv</strong> (Radyasyon Güvenliği Yönetmeliği m. 10).</td>
+        <td class="py-3.5 px-4">Yıllık operasyonel ALARA uyarı tavanı: <strong>20 mSv</strong>.<br>Aylık inceleme düzeyleri: <strong>2,0 – 4,99 mSv</strong> (Sarı), <strong>≥ 5,0 mSv</strong> veya kümülatif aşım (Kırmızı).</td>
+        <td class="py-3.5 px-4">Aylık <strong>2,0 mSv</strong> ve <strong>5,0 mSv</strong> eşikleri hastane kalite/RKP inceleme seviyeleridir; tek yıllık <strong>50 mSv</strong> yasal tavan ayrı olarak kırmızı alarm üretir.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Gebe ve Emziren Çalışan Korunması</strong></td>
+        <td class="py-3.5 px-4">Gebelik bildirimi sonrası kalan gebelik boyunca karın yüzeyi ilave eşdeğer dozu <strong>en fazla 1 mSv</strong> (RGY m. 12). Emziren çalışan için sayısal mSv limiti yoktur; <strong>radyoaktif kontaminasyon riskli işlerde çalıştırılmama</strong> kuralı vardır (32162 Yönetmelik, 657 m. 101, 4857 m. 74).</td>
+        <td class="py-3.5 px-4">Gebe/emziren personel nöbet havuzu muafiyeti, gebe için gece nöbeti yasağı ve doz takip alarmı.</td>
+        <td class="py-3.5 px-4">Gebelik için yıllık değil <strong>kalan gebelik süresince</strong> fetüs koruma eşiği geçerlidir; emziren personel ise kontaminasyon riskli açık kaynak alanlarına verilmez.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Şua İzni Hakediş ve Kullanım Kuralları</strong></td>
+        <td class="py-3.5 px-4">3153 Ek m. 1 ve 13.04.2023/32162 EK-2 tablosuna göre yıllık kademeli (<strong>1–30 gün</strong>). Çalışma devam ederken izin yerine ücret ödenemez (dinlenme hakkı).</td>
+        <td class="py-3.5 px-4">Yıllık fiili çalışma saatlerinin ertesi yıla <strong>Şua İzni</strong> hakkı olarak aktarımı; kurum parametresine bağlı kullanım kuralları.</td>
+        <td class="py-3.5 px-4">İş akdi sona ermesinde memur (657 DMK) ve işçi (4857 İş K.) statüleri farklıdır; işçi statüsünde kullanılmayan izinler için Yargıtay içtihadı kapsamında <em>şua izin alacağı</em> gündeme gelebilir.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Yıllık İzin Devir Sınırı</strong></td>
+        <td class="py-3.5 px-4">657 DMK m. 103 (cari yıl + bir önceki yıl hakkı birleşir, daha eski yıllar düşer); 4857 İş K. m. 53–59 (iş sözleşmesi devam ettiği sürece yanmaz).</td>
+        <td class="py-3.5 px-4">RADPYS sistem ayarı varsayılanı: <strong>Azami 5 gün</strong> kurum parametresi.</td>
+        <td class="py-3.5 px-4">"Azami 5 gün" kuralı kurum yöneticisinin sistem ayarlarından değiştirebileceği bir <strong>kurumsal devir kotasıdır</strong>; kamu/özel statüye göre insan kaynakları tarafından uyarlanmalıdır.</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Aylık Fazla Mesai (FM) Kotası</strong></td>
+        <td class="py-3.5 px-4">657 DMK Ek Madde 33 uyarınca nöbet ücreti ödenebilecek üst sınır aylık <strong>130 saat</strong> (özel statü/icra kurallarına tabidir).</td>
+        <td class="py-3.5 px-4">RADPYS sistem ayarı varsayılanı: Aylık <strong>60 saat</strong> FM denge kotası.</td>
+        <td class="py-3.5 px-4"><strong>60 saat</strong> kotası çalışan radyasyon maruziyetini ve yorgunluğu dengelemek için ayarlanan kurumsal planlama sınırıdır; <strong>130 saat</strong> ücret üst sınırıyla karıştırılmamalıdır.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<section id="faq" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Sıkça Sorulan Sorular (SSS)</span>
+  </h2>
+  <div class="space-y-3" id="faqAccordion">
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>Kılavuzda belirtilen "kurum parametresi" rakamlarını hastanemizin statüsüne göre değiştirebilir miyiz?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Evet. Sistem ayarlarında tanımlanan aylık 60 saat fazla mesai dengesi, 5 günlük yıllık izin devri tavanı veya aylık 2,0 / 5,0 mSv doz inceleme eşikleri kurum yöneticisi ve Radyasyondan Korunma Sorumlusu (RKS) tarafından hastanenin tabi olduğu personel statüsüne (657 DMK veya 4857 İş Kanunu) ve kalite talimatlarına uygun biçimde güncellenebilir.</p>
+    </div>
+  </details>
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>Eski belgelerdeki RGS / RSO ve TAEK ifadeleri neden RKS ve TENMAK olarak yer alıyor?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Nükleer Düzenleme Kurumunun (NDK) 06.03.2025 tarihli düzenlemesiyle Radyasyondan Korunma Sorumlusu unvanı resmi olarak <strong>RKS</strong> şeklinde birleştirilmiştir. Benzer şekilde mülga Türkiye Atom Enerjisi Kurumu (TAEK) görevleri <strong>TENMAK</strong> çatısı altında yürütülmektedir.</p>
+    </div>
+  </details>
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>Bu kullanım kılavuzundaki mevzuat atıfları hukuki danışmanlık yerine geçer mi?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Hayır. RADPYS V4 Kullanım Kılavuzu içinde yer alan tüm kanun, yönetmelik ve kılavuz atıfları yazılım içi iş kurallarının gerekçesini açıklamak ve RKS/İSG uyum süreçlerine rehberlik etmek amacıyla hazırlanmıştır. Resmî Gazete metinleri esastır; statüye özgü değerlendirmelerde kurumunuzun RKS birimi, İnsan Kaynakları ve Hukuk Müşavirliği görüşü esas alınmalıdır.</p>
+    </div>
+  </details>
+</div>
+</section>
+
+<footer class="pt-8 border-t border-slate-200 dark:border-slate-800">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <a href="24_web_portal_ve_dashboardlar.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">← Önceki Doküman</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">24. Web Portal &amp; Dashboard</span>
+          </a>
+          <a href="index.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition text-right group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">Sonraki Doküman →</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">Tüm 23 Modül Portalı</span>
+          </a>
+        </div>
+      </footer>
+    </main>
+
+    <aside class="w-64 shrink-0 hidden xl:block py-8 pl-6 border-l border-slate-200 dark:border-slate-800">
+      <div class="sticky top-24 space-y-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-3">Bu Sayfada</span>
+        <nav class="space-y-2.5 text-sm" id="onPageToc">
+          <a href="#quick-recipe" data-toc-link="quick-recipe" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Kısa Reçete: Kısaltma ve Mevzuat Doğrulama</a>
+          <a href="#kisaltmalar" data-toc-link="kisaltmalar" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Kurumsal ve Teknik Kısaltmalar Sözlüğü</a>
+          <a href="#mevzuat-dayanaklari" data-toc-link="mevzuat-dayanaklari" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Temel Mevzuat Dayanakları ve Yasal Çerçeve</a>
+          <a href="#yasal-vs-kurumsal" data-toc-link="yasal-vs-kurumsal" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Yasal Mevzuat Sınırı ve Kurumsal Parametre Ayrımı</a>
+          <a href="#faq" data-toc-link="faq" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Sıkça Sorulan Sorular (SSS)</a>
+        </nav>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
+    <div class="max-w-[1720px] mx-auto px-6">
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.16) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
+    </div>
+  </footer>
+
+  <script src="assets/search_index.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

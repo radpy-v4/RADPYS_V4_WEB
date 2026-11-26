@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>24. Web Portalı ve Yönetici Gösterge Panelleri — RADPYS v4 Kullanım Kılavuzu</title>
+  <link rel="stylesheet" href="assets/tailwind.min.css">
+  <script src="assets/mermaid.min.js"></script>
+  <style>
+    pre, code { font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 9999px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.6); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased font-sans transition-colors duration-200 min-h-screen flex flex-col">
+
+  <!-- TOP HEADER NAVBAR -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <div class="max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Menüyü Aç/Kapat">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.16</span>
+            </span>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Karar Destek Portalı</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="flex-1 max-w-xl hidden md:block">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <input
+            type="text"
+            readonly
+            placeholder="Dokümanda ara... (Ctrl+K ile hızlı arama)"
+            class="w-full pl-10 pr-14 py-2 text-sm bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 text-slate-800 dark:text-slate-100 placeholder-slate-400 transition cursor-pointer"
+          >
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <kbd class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-600 font-semibold">Ctrl+K</kbd>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="hidden sm:inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition"><span>Tüm Modüller</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <div class="flex-1 max-w-[1720px] w-full mx-auto px-4 sm:px-6 lg:px-10 flex gap-8">
+    <aside id="sidebarNav" class="w-72 shrink-0 fixed inset-y-0 left-0 z-30 pt-20 pb-8 px-4 bg-white/95 dark:bg-slate-900/95 lg:bg-transparent lg:dark:bg-transparent border-r border-slate-200 dark:border-slate-800 lg:border-none lg:static lg:block transform -translate-x-full lg:translate-x-0 transition-transform duration-200 overflow-y-auto custom-scrollbar"></aside>
+
+    <main class="flex-1 min-w-0 py-8">
+      <nav class="flex items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
+        <a href="index.html" class="hover:text-cyan-600 transition">Kılavuz Ana Sayfası</a>
+        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span>Bölüm 6: Merkezi Onay &amp; Web Portal</span>
+        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">24. Web Portal &amp; Dashboard</span>
+      </nav>
+
+<section id="overview" class="mb-10 border-b border-slate-200 dark:border-slate-800 pb-6">
+  <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+    <div class="flex flex-wrap items-center gap-2.5"><span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">18 Aktif Dashboard & Mobil PWA</span></div>
+    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Tahmini Okuma: 5 Dakika</span>
+  </div>
+  <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-3">
+    Web Portalı ve Yönetici Gösterge Panelleri
+  </h1>
+  <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
+    Kurum içi personel ve saha işlemlerini (izin, nöbet devri, EK-1 sağlık/RD.F43 beyanı, cihaz arıza-bakım-QC, RKE QR muayenesi ve ortam dozu ölçümü) mobil uyumlu tarayıcı ve PWA arayüzüne taşırken; 3 ana gruptaki 18 aktif yönetici gösterge panelini bellek içi önbellek, canlı veri tazeliği göstergesi, 8 saniyelik canlı sağlık denetimi ve isteğe bağlı şifreli dış erişim tüneliyle sunar.
+  </p>
+  <div class="mt-4 text-xs sm:text-sm text-slate-500 dark:text-slate-400"><strong>Yasal ve KVKK Güvencesi:</strong> Tüm gösterge panelleri doğrudan kurumun canlı yerel veritabanından beslenir ve sıfır veri durumunda asla sahte veya sentetik kayıt üretmez; dış erişim açılsa dahi personel ve doz verileri bulut sunucularında depolanmaz.</div>
+  
+  
+</section>
+
+<section id="quick-recipe" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Kısa Reçete: Portal Servisini Kontrol Etme ve Yönetici Paneline Erişim</span>
+  </h2>
+  <div class="p-6 sm:p-7 rounded-3xl bg-cyan-50/70 dark:bg-cyan-950/30 border border-cyan-200/90 dark:border-cyan-800/60 shadow-md">
+  <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+    <div class="flex items-center gap-2.5 text-cyan-900 dark:text-cyan-200 font-bold text-sm sm:text-base">
+      <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      <span>Kısa Reçete: Portal Servisini Kontrol Etme ve Yönetici Paneline Erişim</span>
+    </div>
+    <span class="text-xs font-mono px-2.5 py-1 rounded bg-cyan-200/80 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-300 font-bold">20 SANİYELİK AKIŞ</span>
+  </div>
+  
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5 text-xs sm:text-sm">
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
+      <span class="font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider text-[11px] block">1. İstenen Sonuç</span>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Masaüstü uygulamasından veya Portal Servis Yöneticisinden Web Portalını doğrulayıp 18 analitik gösterge paneli ile saha QR işlemlerine anında bağlanmak.</p>
+    </div>
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
+      <span class="font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider text-[11px] block">2. Yapılacak İşlem</span>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Masaüstü durum çubuğunda <strong>[Portal Sunucu: Aktif]</strong> göstergesini kontrol edin (kapalıysa tıklayarak başlatıcıdan <strong>[Başlat]</strong> deyin), ardından sol üstteki <strong>[Genel Bakış]</strong> butonuna basın.</p>
+    </div>
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-1">
+      <span class="font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider text-[11px] block">3. Sistem Etkisi</span>
+      <p class="text-slate-700 dark:text-slate-200 font-medium leading-relaxed">Varsayılan tarayıcınızda Yönetici Özet Paneli açılır; 60 saniyelik bellek içi önbellek eşzamanlı sorgularda veritabanı yükünü dengeler, sağ üstte son veri çekim saati görülür ve istenen anda <strong>[Yenile]</strong> ile canlı veri çekilir.</p>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-cyan-200/60 dark:border-cyan-800/40">
+    <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Yönetici Panelleri</span>
+      <span class="text-sm sm:text-base font-black text-cyan-600 dark:text-cyan-400 font-mono">3 Grupta 18 Aktif Pano</span>
+    </div>
+    <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Sağlık Kontrol Döngüsü</span>
+      <span class="text-sm sm:text-base font-black text-emerald-600 dark:text-emerald-400 font-mono">Her 8 Saniyede Bir</span>
+    </div>
+    <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Dashboard Önbelleği</span>
+      <span class="text-sm sm:text-base font-black text-amber-600 dark:text-amber-400 font-mono">60 Sn (Tatil Cetveli 300 Sn)</span>
+    </div>
+    <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
+      <span class="text-xs text-slate-400 block uppercase font-bold tracking-wider mb-1">Platform</span>
+      <span class="text-sm sm:text-base font-black text-purple-600 dark:text-purple-400 font-mono">Tarayıcı + Mobil PWA</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="5w1h" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>5N1K Kural ve Arayüz Çözümleme Tablosu</span>
+  </h2>
+  <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3"><em>Masaüstü köprü ve başlatıcı denetimi, önbellek ve veri tazeliği, 18 yönetici paneli, dış erişim güvenliği, saha QR ve PWA kuralları.</em></p>
+
+<div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 custom-scrollbar shadow-sm my-4">
+  <table class="w-full text-left border-collapse text-xs sm:text-sm">
+    <thead>
+      <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/80 uppercase text-xs font-bold tracking-wider text-slate-500 dark:text-slate-400">
+        <th class="py-3.5 px-4">NE? (Bileşen / Kontrol)</th>
+        <th class="py-3.5 px-4">NEDEN? (Amacı)</th>
+        <th class="py-3.5 px-4">NASIL? (Çalışma Mantığı)</th>
+        <th class="py-3.5 px-4">NE ZAMAN? (Tetiklenme)</th>
+        <th class="py-3.5 px-4">KİM? (Yetkili Rol)</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium text-slate-600 dark:text-slate-300">
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong><strong>[Genel Bakış]</strong> &amp; <strong>[Portal Sunucu: Aktif / Kapalı]</strong></strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Masaüstü Köprüsü ve 8 Sn Kontrol</span></td>
+        <td class="py-3.5 px-4">Sunucunun canlı olduğunu anlık görmek ve tek tıkla yönetici özetini açmak.</td>
+        <td class="py-3.5 px-4">Masaüstü her 8 saniyede bir portal durumunu sorgular; kapalıysa durum butonundan veya Servis Yöneticisindeki <strong>[Başlat]</strong> ve <strong>[Web Portalı Aç]</strong> butonlarından tarayıcı açılır.</td>
+        <td class="py-3.5 px-4">Program açıkken ve kullanıcı tıkladığında.</td>
+        <td class="py-3.5 px-4">Sistem Yöneticisi / Yönetici</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Önbellek, Veri Tazeliği, <strong>[Yenile]</strong> ve Excel/PDF İhracı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Eşzamanlı Performans ve Denetim Paketi</span></td>
+        <td class="py-3.5 px-4">Yüzlerce kişi aynı anda panele girerken veritabanı yükünü korumak ve verinin güncelliğini şeffaf göstermek.</td>
+        <td class="py-3.5 px-4">İstatistik yanıtları 60 saniye (yıllık resmi tatil cetvelinde 300 saniye paylaşımlı) bellekte tutulur; sağ üstte son çekim zamanını gösteren <strong>Veri Tazeliği Göstergesi</strong> ve 1.000 kaydı aşan listelerde dönem daraltma bilgilendirmesi yer alır. <strong>[Yenile]</strong> önbelleği sıfırlar; <strong>[Excel]</strong>, <strong>[Yazdır / PDF]</strong> ve Denetim Panosu'ndaki <strong>[Denetim Paketi (PDF)]</strong> resmi çıktı verir.</td>
+        <td class="py-3.5 px-4">Dashboard yüklenirken veya çıktı alınırken.</td>
+        <td class="py-3.5 px-4">Yönetici / RKS / Yetkili</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>3 Grupta 18 Aktif Yönetici Gösterge Paneli</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Denetim, Nöbet &amp; İzin, Sağlık &amp; Güvenlik</span></td>
+        <td class="py-3.5 px-4">Kurumsal uyum, nöbet adaleti ve kısıt/istek analizi, birleşik izin/Şua/farazi planlama, doz aşımı, bakım ve eğitim durumlarını tek yerden izlemek.</td>
+        <td class="py-3.5 px-4">Genel ve Analiz (4), Nöbet ve İzin Yönetimi (5) ile Sağlık ve Güvenlik (9) gruplarında canlı KPI, yıllık ısı haritası ve dürüst boş durum sunulur; <strong>İzin &amp; Hak Ediş Yönetimi</strong> altında yıllık izin, Şua bakiye karnesi ve farazi projeksiyon tek ekranda toplanır, <strong>Nöbet Kısıt &amp; İstek Analitiği</strong> tercih/kısıt ihlallerini denetler ve <strong>Çalışma Kısıtları</strong> hizmet sınıfı ile radyasyon kapsamını ayırır.</td>
+        <td class="py-3.5 px-4">Yetkili yönetici yan menüden panel seçtiğinde.</td>
+        <td class="py-3.5 px-4">Yönetici / RKS / Birim Sorumlusu</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Şifreli Dış Erişim Tüneli, Robot Koruması ve 2FA OTP</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Kurumsal İnternet Erişim Güvenliği</span></td>
+        <td class="py-3.5 px-4">Modem portu açmadan güvenli dış erişim sağlamak ve yetkisiz girişleri önlemek.</td>
+        <td class="py-3.5 px-4">Yerel ve dış ağ ayrımı gerçek bağlantı adresinden doğrulanır; dış ağda şifreli tünel, robot doğrulaması, ilk girişte tek kullanımlık parola yenileme bileti ve 6 haneli e-posta kodu zorunlu çalışır, 5 hatalı girişte hesap 15 dakika kilitlenir ve masaüstünden kapatılan oturumlar portalda da düşürülür.</td>
+        <td class="py-3.5 px-4">Kullanıcı dış ağdan veya web ekranından girerken.</td>
+        <td class="py-3.5 px-4">Admin / Tüm Web Kullanıcıları</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>İmzalı Belge Bileti, Kasa Bütünlüğü ve Çoklu Birim Yetki Kalkanı</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400"><strong>[İndir]</strong>, <strong>[Raporu İndir]</strong> &amp; Saha Güvenliği</span></td>
+        <td class="py-3.5 px-4">Tarayıcı adres çubuğunda oturum sızmasını, birimler arası yetkisiz erişimi ve bozuk evrak açılmasını önlemek.</td>
+        <td class="py-3.5 px-4">Belge, eğitim medyası ve kat planı açılışlarında 60 saniyelik tekil güvenlik bileti üretilir ve evrakın dijital parmak izi doğrulanır; çoklu birim sorumluları yalnızca atandıkları klinikleri yönetir, şifahi nöbet devirlerinde tek kullanımlık kod aranır ve HBYS numarası yalnızca onaylı izinlere işlenebilir.</td>
+        <td class="py-3.5 px-4">Belge/kat planı açılırken veya saha kaydı girilirken.</td>
+        <td class="py-3.5 px-4">Yetkili Kullanıcı / Birim Sorumlusu</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>Merkezi Profilim ve 3 Gruplu Saha Formları</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Standart Saha Merkezi, TENMAK PDF &amp; Onay Kuyruğu</span></td>
+        <td class="py-3.5 px-4">Çalışan ve saha teknisyenlerinin mobil/tarayıcıdan eksiksiz ve tek biçimli işlem yapmasını sağlamak.</td>
+        <td class="py-3.5 px-4">EK-1 sağlık beyanı, RD.F43 doz beyanı, <strong>[Profilim] &gt; [Dozimetre &amp; Doz Karnesi] &gt; [e-Devlet TENMAK PDF Yükle]</strong> öz-servis raporu (tüm rollerde zorunlu onay kuyruğuna düşer) ve izin/nöbet devirleri profil sekmelerinden yürür; Cihaz, RKE ve Ortam Dozu saha ekranları ise ortak <strong>Eşleştirme ve Seçim Merkezi</strong>, satır içi <strong>Pasaport Kartı</strong> ve görevli birim yetkisi güvencesiyle çalışır.</td>
+        <td class="py-3.5 px-4">Personel beyanı, PDF yükleme veya saha müdahalesi yapılırken.</td>
+        <td class="py-3.5 px-4">Tüm Personel / Saha Görevlisi</td>
+      </tr>
+      <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition">
+        <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white"><strong>PWA Kurulumu, QR Kamera, Fener ve Taslak Koruma</strong><br><span class="text-[11px] text-slate-500 dark:text-slate-400">Mobil / Karanlık Oda Ergonomisi</span></td>
+        <td class="py-3.5 px-4">Telefon ve tabletlerde tam ekran uygulama deneyimi ve karanlık odalarda kesintisiz QR okuma sunmak.</td>
+        <td class="py-3.5 px-4">Üst çubuktaki <strong>[Uygulamayı Yükle]</strong> ile tam ekran uygulama kurulur; kamera QR okuyucusu karanlık çekim odaları için fener, ekranı uyanık tutma, titreşimli onay ve uzun form taslağı koruması sağlar.</td>
+        <td class="py-3.5 px-4">Tarayıcıdan saha veya QR işlemi yapılırken.</td>
+        <td class="py-3.5 px-4">Saha Personeli / Teknisyen</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<section id="myth-buster" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)</span>
+  </h2>
+  <div class="p-6 rounded-3xl bg-amber-50/70 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/50 shadow-sm">
+  <div class="flex items-center gap-2.5 text-amber-800 dark:text-amber-300 font-bold text-sm sm:text-base mb-3">
+    <svg class="w-5 h-5 text-amber-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+    <span>Web Portal Sadece Nöbet Görüntüleme Ekranı mıdır ve Dış Erişim Verileri Buluta mı Taşır?</span>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-3 text-sm">
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-rose-200 dark:border-rose-900/50 text-rose-900 dark:text-rose-200 leading-relaxed">
+      <span class="font-bold block mb-1">Yanlış Algı</span>
+      <div><em>"Web Portal yalnızca personelin nöbet listesine baktığı salt okunur bir sayfadır; ayrıca kurum dışından erişim açıldığında personel ve dozimetre kayıtlarımız dış bulut sunucularına yüklenir."</em></div>
+    </div>
+    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-emerald-200 dark:border-emerald-800/60 text-emerald-900 dark:text-emerald-200 leading-relaxed">
+      <span class="font-bold block mb-1">Gerçek Sistem Mantığı</span>
+      <div><strong>İkisi de doğru değildir.</strong> Web Portalında yöneticiler için SKS Denetim Panosu dahil <strong>18 aktif karar destek paneli</strong> ve personeller/teknisyenler için tam kapsamlı saha formları bulunur (izin, nöbet devri/havuzu, RD.F43/EK-1 beyan, cihaz bakım/QC, RKE kroki muayenesi ve ortam dozu). Ayrıca dış erişim açıldığında hiçbir veri buluta kopyalanmaz; yalnızca kurumun yerel sunucusuyla yetkili kullanıcının tarayıcısı arasında uçtan uca şifreli tünel köprüsü kurulur.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="workflow" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Süreç Akış Şeması</span>
+  </h2>
+  <div class="p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-x-auto my-4">
+  <div class="mermaid text-sm">
+flowchart TB
+ subgraph S1 ["1. AŞAMA: SERVİS DENETİMİ VE BAŞLATMA"]
+  direction LR
+  A(["Masaüstü 8 Sn Sağlık Kontrolü"]) --> B{"Portal Sunucu Aktif mi?"}
+  B -->|Kapalı| C["Başlatıcı: Başlat &amp; Tünel Hazırlığı"]
+  B -->|Aktif| D["Durum Rozeti Yeşil &amp; Tarayıcı Köprüsü"]
+ end
+
+ subgraph S2 ["2. AŞAMA: OTURUM GÜVENLİĞİ VE ERİŞİM"]
+  direction LR
+  E{"Yerel Ağ mı Dış Ağ mı?"} -->|Yerel Hastane Ağı| F["Hızlı Kurumsal Oturum"]
+  E -->|Dış Ağ Tüneli| G["Robot Doğrulama &amp; 6 Haneli E-Posta Kodu"]
+ end
+
+ subgraph S3 ["3. AŞAMA: DASHBOARD VE SAHA OPERASYONU"]
+  direction LR
+  H["3 Grupta 18 Analitik Pano (Canlı Veri Tazeliği)"]
+  I["Saha Formları: QR Kamera, Fener, Bakım/QC, RKE"]
+  J["Excel / Denetim Paketi PDF &amp; Zorla Yenileme"]
+ end
+
+ C ==> D
+ D ==> E
+ F & G ==> H & I
+ H ==> J
+  </div>
+</div>
+
+<ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
+  <li><strong>Servis Denetimi:</strong> Masaüstü uygulaması 8 saniyede bir portal durumunu kontrol eder; kapalıysa Servis Yöneticisi üzerinden yerel sunucu ve varsa şifreli tünel ayağa kaldırılır.</li>
+  <li><strong>Güvenli Oturum:</strong> Kurum içi ağda hızlı oturum açılırken dış erişimde robot doğrulaması ve 6 haneli tek kullanımlık e-posta doğrulaması uygulanır.</li>
+  <li><strong>Analitik ve Saha İşlemleri:</strong> Yetkisine göre yöneticiler 18 gösterge panelinde (60 sn önbellekli ve veri tazeliği göstergeli) anlık Excel/PDF analizine ulaşır; personel ve teknisyenler karanlık oda fenerli QR okuyucu ve mobil formlarla sahadan kayıt girer.</li>
+</ol>
+</section>
+
+<section id="screenshots" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Arayüz Ekran Görünümleri</span>
+  </h2>
+  <figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+    <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
+      <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Başlatıcı Penceresi > Başlat / Web Portalı Aç</strong>
+      </span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">Veritabanı ve Portal Canlı Durumu</span>
+    </div>
+  <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+    <img src="assets/img/dashboard_masaustu_portal_erisim.png" alt="Portal ve Servis Yöneticisi Aktif Çalışma Ekranı" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+  </div>
+</figure>
+
+<figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+    <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
+      <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Sistem Tepsisi / Başlatıcı</strong>
+      </span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Servis Başlatma ve Tepsiye Küçültme</span>
+    </div>
+  <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+    <img src="assets/img/02_portal_launcher_paneli_off.png" alt="Portal ve Servis Yöneticisi Kapalı Bekleme Ekranı" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+  </div>
+</figure>
+
+<figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+    <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
+      <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Web Portal > Genel ve Analiz > Genel Bakış</strong>
+      </span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">8 Özet KPI Kartı ve Alt Birim Trendleri</span>
+    </div>
+  <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+    <img src="assets/img/web_portal_genel_dashboard.png" alt="Web Portal Genel Bakış Yönetici Özet Paneli" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+  </div>
+</figure>
+
+<figure class="my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md bg-white dark:bg-slate-900">
+    <div class="p-4 bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2 text-sm">
+      <span class="font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-2">
+        <span>Ekran Konumu:</span> <strong class="text-slate-900 dark:text-white font-bold">Web Portal > Saha İşlemleri</strong>
+      </span>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 dark:bg-indigo-950 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">Mobil Uyumlu Formlar ve Canlı QR Okuyucu</span>
+    </div>
+  <div class="p-6 flex justify-center bg-slate-950/20 dark:bg-black/30">
+    <img src="assets/img/22_2_web_portal_saha_formlari_mobil.png" alt="Web Portal Mobil Saha Formları ve Kamera ile QR Tarama Ekranı" class="rounded-2xl border border-slate-300 dark:border-slate-700 max-h-[500px] object-contain shadow-lg">
+  </div>
+</figure>
+</section>
+
+<section id="step-by-step" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Adım Adım İşlem Rehberi</span>
+  </h2>
+  <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-5 mb-2">1. Portal Servisini Başlatma ve Durum Kontrolü</h3>
+
+<ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
+  <li>Masaüstü programının sağ alt köşesindeki <strong>[Portal Sunucu: Aktif]</strong> göstergesini kontrol edin; gösterge <strong>Kapalı</strong> görünüyorsa butona tıklayarak <strong>RADPYS V4 Portal ve Servis Yöneticisi</strong> penceresini öne getirin.</li>
+  <li>Yönetici penceresinde <strong>[Başlat]</strong> butonuna basarak veritabanı motoru ile portal servisinin (gerekirse dış erişim tünelinin) aktifleşmesini bekleyin ve pencereyi küçültmek için <strong>[Tepsiye Küçült]</strong> seçeneğini kullanın.</li>
+  <li>Doğrudan tarayıcıyı açmak için başlatıcıdaki <strong>[Web Portalı Aç]</strong> butonuna veya masaüstü sol menüsündeki <strong>[Genel Bakış]</strong> düğmesine tıklayın.</li>
+</ol>
+
+<h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-5 mb-2">2. 18 Yönetici Gösterge Panelinde Analiz ve Raporlama</h3>
+
+<ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
+  <li>Sol menüdeki <strong>GENEL & ANALİZ</strong> (4 pano), <strong>NÖBET & İZİN YÖNETİMİ</strong> (5 pano) ve <strong>SAĞLIK & GÜVENLİK</strong> (9 pano) gruplarından ilgili panoyu seçin (veya üst çubuktan <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-cyan-700 dark:text-cyan-300 text-xs font-mono">Ctrl+K</code> hızlı arama ile Şua, Farazi İzin ya da Kısıt alt görünümlerine doğrudan atlayın).
+    <ul class="list-disc list-inside pl-5 mt-1 space-y-1 text-xs">
+      <li><strong>Üst Yönetim ve Denetim Kolaylıkları:</strong> <strong>Genel Bakış</strong> ekranında 4 hücreli yönetici özet şeridi, 3 modlu birim grafiği ile <strong>Acil / Geciken</strong> ve <strong>Yaklaşan (30 Gün)</strong> uyarı sekmelerini inceleyebilir; <strong>Denetim Panosu</strong> ekranında birim bazlı kanıt özetlerini, acil aksiyonları, <strong>Mevzuat & Denetim Rehberi</strong> sekmesini ve tek tıkla <strong>[Denetim Paketi (PDF)]</strong> toplu kanıt çıktısını kullanabilirsiniz.</li>
+      <li><strong>Birim Yük ve Personel Matrisi:</strong> <strong>Birim Yük / Oran Paneli</strong> ekranında cari yıl seçimiyle 1+3 düzenindeki <strong>Yatay Barometre</strong>, <strong>Karşılaştırma Grafiği</strong> ve <strong>Ana Departman Gruplu</strong> görünümlerini inceleyebilir (sekreterlik ve arşiv gibi destek birimleri tek <strong>İdari & Destek Birimleri (Sekreterlik / Arşiv)</strong> satırında özetlenir); <strong>Personel & Birimler</strong> ekranında ise iki ondalıklı doz gösterimini, <strong>Ünvan & Branş Dağılımı</strong> özetini ve tıklandığında ilgili birim listesini açan <strong>Klinik Birim Matrisi</strong> yapısını kullanabilirsiniz.</li>
+      <li><strong>Nöbet & İzin Yönetimi Panoları (Faz 4):</strong> <strong>Nöbet Yönetimi</strong> ekranında kurumsal matris, birim çizelgesi, dini ve resmi bayram ayrımlı Adalet Sayacı, 12 aylık Borç/Alacak Matrisi ve Birim × Kural Çapraz İhlal Matrisi sunulur; <strong>Nöbet Devir & Takas Analitiği</strong> karşılıklı takasların her iki vardiya ayağını, 3 aşamalı onay ve yanıt sürelerini, aşırı devir uyarılarını ve saha Değişim/Onay Merkezine doğrudan geçişi izler; <strong>Nöbet Kısıt & İstek Analitiği</strong> eğitim/ders günü kısıtları, nöbet yaz/yazma mazeretleri ve fazla mesai tercihlerinin çizelgeye gerçekleşme ve ihlal durumunu 7 günlük birim yoğunluğu ile yaş/kıdem muafiyetleri eşliğinde analiz eder; <strong>Aylık Mesai & Tatil Cetveli</strong> artık yıl duyarlı yıllık mesai hesabını, 2027–2030 Diyanet dini bayram/Arife yarım günlerini ve çakışan tatil tekilleştirmesini gösterir; <strong>İzin & Hak Ediş Yönetimi</strong> ise Birim İzin Matrisi, İzin Hareketleri, yıl sonu yanma riskini izleyen <strong>Yıllık & Şua Bakiye Karnesi</strong> ve KVKK maskelemeli <strong>Farazi İzin Projeksiyonu</strong> sekmelerini tek çatı altında birleştirir.</li>
+      <li><strong>Sağlık & Güvenlik Panoları (Faz 2 & Faz 3):</strong> <strong>Dozimetre Takibi</strong> (yıllık <strong>ALARA Doz Bütçesi</strong> ve özel izlem radarı dahil), <strong>Olay Bildirimi & DÖF</strong> (yanıt süresi ve kök neden dağılım analizi dahil), <strong>NDK Araştırma Formları</strong> (Çalışan Beyanı / RKS süreç kapıları, 15 günlük yasal süre geri sayımı ve panelden ilgili RD.F43 formuna tek tıkla geçiş), <strong>Sağlık Muayene</strong>, <strong>Çalışma Kısıtları</strong> (hizmet sınıfı ile radyasyon kapsamı ayrımı, radyasyonlu birim alan kısıtı uyarısı, tek-ekran önlem özeti, ileri tarihli planlanan fazlar ve kadro muafiyeti ayrımı), <strong>Cihaz & QC Yönetimi</strong> (zimmet sekmesiyle birleşik), <strong>RKE & KKD Muayene</strong>, <strong>Ortam Dozu Trendi</strong> (ölçüm cihazı lisans/kalibrasyon takibi dahil) ve <strong>Zorunlu Eğitim Uyum</strong> panellerinde yıllık ısı haritaları, Personel × Eğitim matrisi ve güvenli sertifika önizleme imkanı sunulur.</li>
+    </ul></li>
+  <li>Üstteki dönem ve birim filtrelerini uygulayın; sağ üstteki <strong>Veri Tazeliği Göstergesi</strong> verinin en son ne zaman çekildiğini gösterir, son 60 saniye içinde yeni bir veri girişi yaptıysanız önbelleği beklemeden taze veri çekmek için <strong>[Yenile]</strong> butonuna tıklayın.</li>
+  <li>Denetim veya toplantı sunumu için sağ üstteki <strong>[Excel]</strong>, <strong>[Yazdır / PDF]</strong> ya da Denetim Panosu'ndaki <strong>[Denetim Paketi (PDF)]</strong> butonlarından tabloyu ve özet metrikleri dışa aktarın.</li>
+</ol>
+
+<h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-5 mb-2">3. Mobil Saha İşlemleri, PWA Kurulumu ve Karanlık Oda QR Kullanımı</h3>
+
+<ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-2 my-2">
+  <li>Telefon, tablet veya bilgisayarda tarayıcı üst çubuğundaki <strong>[Uygulamayı Yükle]</strong> butonuna basarak Web Portalını tam ekran uygulama (PWA) olarak kurun (iOS cihazlarda ekrandaki Paylaş ve Ana Ekrana Ekle yönergesi açılır).</li>
+  <li>Sol menüdeki <strong>Kişisel İşlemlerim</strong>, <strong>Nöbet İşlemlerim</strong> ve <strong>Saha & Güvenlik Bildirimleri</strong> altından izin talebi, nöbet takası/havuzu, <strong>Profilim</strong> içi EK-1 sağlık / RD.F43 doz beyanları, <strong>[e-Devlet TENMAK PDF Yükle]</strong> ile bireysel dozimetre raporu gönderimi (ön izleme sonrası zorunlu Yönetici/RKS onay kuyruğuna iletilir) ve Cihaz, RKE ile Ortam Dozu saha merkezlerini açın. Cihaz, RKE ve Ortam Dozu ekranlarında yalnızca görevli olduğunuz birimler üzerinden seçim veya QR taraması yaparak pasaport kartı ve alt sekmelerden (esnek arıza tarihçesi, kroki pinleme, askılık sayımı ve nokta bazlı ölçüm geçmişi) kayıtlarınızı onaya gönderin.</li>
+  <li>Çekim odasında QR kod taratırken tarayıcı kamerasındaki fener düğmesiyle alanı aydınlatın; uzun formlarda sayfa kapansa dahi tarayıcı taslağının korunduğundan emin olarak işleminizi güvenle tamamlayın.</li>
+</ol>
+</section>
+
+<section id="faq" class="mb-12">
+  <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5 mb-4">
+    <span class="w-3 h-3 rounded bg-cyan-600 shrink-0"></span>
+    <span>Sıkça Sorulan Sorular (SSS)</span>
+  </h2>
+  <div class="space-y-3" id="faqAccordion">
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>Portal sunucusunu herkes başlatabilir veya durdurabilir mi?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Hayır. Kurumsal güvenlik politikası gereğince arka plan portal servisini başlatma, durdurma ve tünel ayarlarını yönetme yetkisi yalnızca Sistem Yöneticisi (Admin) rolüne aittir; diğer yetkili kullanıcılar açık portalda kendi modüllerini kullanır.</p>
+    </div>
+  </details>
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>60 saniyelik önbellek yüzünden yeni girdiğim kayıt görünmezse ne yapmalıyım?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Yönetici panellerinin sağ üstünde yer alan <strong>[Yenile]</strong> butonuna basmanız yeterlidir. Bu işlem 60 saniyelik bellek süresini beklemeden doğrudan güncel veritabanı sorgusunu çalıştırır.</p>
+    </div>
+  </details>
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>İnternet kesildiğinde Web Portal ve mobil QR okuyucu çalışmaya devam eder mi?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Evet. Hastane yerel ağı (intranet) üzerindeki tüm gösterge panelleri, personel formları ve QR saha işlemleri kurum sunucusu üzerinde çalıştığı için dış internet kesintisinden etkilenmez.</p>
+    </div>
+  </details>
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>Web Portalındaki bazı ekranlar dar telefon penceresinde neden alta kayıyor?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Dar mobil veya uygulama pencerelerinde hiçbir sekmenin ekran dışında kesilip gizlenmemesi için sekmeler otomatik olarak alt satıra dizilir ve tüm onay pencereleri dokunmatik ekrana uyumlu açılır.</p>
+    </div>
+  </details>
+  <details class="group p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs">
+    <summary class="font-bold text-slate-900 dark:text-white text-sm sm:text-base cursor-pointer flex items-center justify-between">
+      <span>Web Portalından yüklediğim e-Devlet TENMAK dozimetre PDF raporu hemen karneme işlenir mi?</span>
+      <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </summary>
+    <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-3 space-y-2">
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">Hayır. Güvenlik ve mevzuat doğrulaması gereğince Web Portalından gönderilen e-Devlet TENMAK raporları rol ayrımı olmaksızın önce Merkezi Onay Kuyruğuna düşer; Yönetici veya RKS onayladığında yeni dönem ölçümleri doz karnenize eklenir ve PDF belgesi Evrak Kasasına arşivlenir.</p>
+    </div>
+  </details>
+</div>
+</section>
+
+<footer class="pt-8 border-t border-slate-200 dark:border-slate-800">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <a href="23_rapor_tutanak_merkezi.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">← Önceki Doküman</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">23. Rapor &amp; Tutanak Merkezi</span>
+          </a>
+          <a href="25_kisaltmalar_ve_mevzuat_sozlugu.html" class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 transition text-right group">
+            <span class="text-xs font-mono uppercase text-slate-400 block mb-1">Sonraki Doküman →</span>
+            <span class="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-cyan-600 transition">25. Kısaltmalar &amp; Mevzuat Sözlüğü</span>
+          </a>
+        </div>
+      </footer>
+    </main>
+
+    <aside class="w-64 shrink-0 hidden xl:block py-8 pl-6 border-l border-slate-200 dark:border-slate-800">
+      <div class="sticky top-24 space-y-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-3">Bu Sayfada</span>
+        <nav class="space-y-2.5 text-sm" id="onPageToc">
+          <a href="#quick-recipe" data-toc-link="quick-recipe" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Kısa Reçete: Portal Servisini Kontrol Etme ve Yönetici Paneline Erişim</a>
+          <a href="#5w1h" data-toc-link="5w1h" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">5N1K Kural ve Arayüz Çözümleme Tablosu</a>
+          <a href="#myth-buster" data-toc-link="myth-buster" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Kritik Sahada Yanlış Bilinen Kurallar (Mit Avcısı)</a>
+          <a href="#workflow" data-toc-link="workflow" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Süreç Akış Şeması</a>
+          <a href="#screenshots" data-toc-link="screenshots" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Arayüz Ekran Görünümleri</a>
+          <a href="#step-by-step" data-toc-link="step-by-step" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Adım Adım İşlem Rehberi</a>
+          <a href="#faq" data-toc-link="faq" class="block py-1 pl-3 border-l-2 border-transparent text-xs text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition leading-snug">Sıkça Sorulan Sorular (SSS)</a>
+        </nav>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
+    <div class="max-w-[1720px] mx-auto px-6">
+      <p>© 2024–2026 RADPYS Geliştirme Ekibi (v4.0.6.16) — Sağlık Bilgi Güvenliği &amp; KVKK Standartları ile Korunmaktadır.</p>
+      <p class="mt-1 text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
+    </div>
+  </footer>
+
+  <script src="assets/search_index.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

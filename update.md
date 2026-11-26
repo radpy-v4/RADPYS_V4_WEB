@@ -6,6 +6,69 @@ Bu kılavuz; **RADPYS V4 Kurumsal Radyasyon ve Personel Yönetim Sistemi** kapsa
 
 ---
 
+## RADPYS V4.0.6.16: Personel Detay Sadeleşmesi, Toplu İçe Aktarım İyileştirmeleri ve Ekran Okunabilirlik Güncellemesi (25 Kasım 2026)
+
+### Öne Çıkan Yenilikler
+
+- **7 Kategorili Sadeleştirilmiş Personel Ayrıntı Kartı:** Personel kartındaki iç içe geçmiş sekmeler yerine sol menüden tek bakışta erişilebilen 7 sade kategoriye geçildi (*Özlük & Kurumsal*, *Belgeler, Eğitim & Yakınlar*, *İzin Bilgileri*, *Sağlık Muayenesi*, *Dozimetre Takip*, *Nöbet Geçmişi*, *Geçmiş & İşten Ayrılış*). Genel, iletişim ve kurumsal bilgiler tek ekranda toplandı; belgeler, eğitimler ve acil durum yakınları bölünmüş tek bir sayfada birleştirildi.
+- **Dozimetre ve Sağlık Sekmelerinde Özet Kartlar ve Koşullu Yüksek Doz Alanı:** Sağlık Muayenesi ve Dozimetre Takip sekmelerinin üstüne güncel özet durum kartları eklendi; yıllık NDK limitleri tek satırda özetlendi ve Yüksek Doz / Araştırma Formu (RD.F43) bölümü yalnızca limiti aşan ölçüm veya açık inceleme bulunan personellerde görüntülenecek şekilde düzenlendi.
+- **Toplu Excel İçe Aktarım Sihirbazında Gelişmiş Görsel Doğrulama:** Sütun eşleştirme adımı 1/3 ve 2/3 bölünmüş görünüme kavuştu; satır sonlarına eşleşen, çakışan/şüpheli ve atlanan alanları ayırt eden durum simgeleri eklendi. Önizleme adımında canlı kayıt sayaçlı filtre butonları, son adımda ise animasyonlu ilerleme göstergesi devreye alındı.
+- **Yüksek Kontrastlı Renkli Butonlar, Net Yazı Tipi ve Tekerlek Koruması:** Koyu ve açık temalardaki tüm vurgulu işlem butonları (mavi, yeşil, kırmızı, turuncu ve dozimetre) yüksek kontrastlı dolgu ve net beyaz metin yapısıyla güncellendi; masaüstü arayüz yazı tipi Windows ekranlarına uygun daha keskin bir görünüme kavuşturuldu. Ayrıca açılır seçim kutuları kapalıyken yanlışlıkla fare tekerleğiyle değer değişmesini önleyen koruma devreye alındı.
+
+### Fayda Odaklı Açıklamalar
+
+#### 1. Daha Hızlı Personel İnceleme ve Küçük Ekranlarda Taşmasız Görünüm
+
+Önceden 10 ayrı başlık ve alt sekmeler arasında dağılan personel bilgileri 7 mantıksal grupta toplanarak tıklama sayısı azaltıldı. Küçük veya düşük çözünürlüklü ekranlarda Personel Kartının ekran dışına taşması engellendi; normal doz değerine sahip çalışanlarda gereksiz yüksek doz uyarı kutuları gizlenerek okuma yorgunluğu ortadan kaldırıldı.
+
+#### 2. Sıfır Sürprizli Veri Girişi ve Net Ekran Okunabilirliği
+
+Uzun formlarda sayfayı kaydırırken fare tekerleğinin kapalı açılır kutulara denk gelip birim veya unvan seçimini istemeden değiştirmesi uygulama genelinde engellendi. Toplu Excel aktarımlarında ise sütun eşleştirme uyarısı ve canlı filtre sayaçları sayesinde aktarım öncesi hatalı satırlar anında fark edilir hale geldi; koyu temada renkli buton yazılarındaki bulanıklık giderilerek uzun süreli kullanımda göz konforu artırıldı.
+
+---
+
+## RADPYS V4.0.6.15: e-Devlet TENMAK Bireysel Dozimetre PDF Aktarımı, Web Portal Öz-Servis Yükleme ve Onay Kuyruğu Entegrasyonu
+
+### Öne Çıkan Yenilikler
+
+- **e-Devlet TENMAK Bireysel Dozimetre PDF Desteği (Masaüstü):** Üzerinde çalışan adı ve T.C. kimlik numarası yer almayan bireysel e-Devlet TENMAK dozimetre sonuç belgeleri artık personel listesinden doğrudan hedef kişi seçilerek sisteme aktarılabiliyor. Ayrıca Personel Kartı içerisindeki Dozimetre sekmesinden ve Personel Listesi sağ tık menüsünden seçili çalışan için tek tıkla aktarım penceresi açılabiliyor.
+- **Web Portalı Üzerinden Öz-Servis TENMAK PDF Yükleme ve Zorunlu Onay Akışı:** Personeller **Profilim > Dozimetre & Doz Karnesi** sekmesindeki **e-Devlet TENMAK PDF Yükle** butonunu kullanarak kendi dozimetre raporlarını yükleyebiliyor. Ön izleme sonrasında gönderilen her talep (rol ayrımı olmaksızın) doğrudan **Onay Bekleyen Görevler** kuyruğuna düşüyor; yönetici veya RKS onayladığında ölçümler dozimetre geçmişine işlenirken PDF belgesi şifreli Evrak Kasasına (`Belgelerim`) otomatik arşivleniyor.
+- **Varsayılan Dozimetre Firması Sistem Ayarı:** **Genel Ayarlar > Dozimetre Ayarları** altında kurumun çalıştığı varsayılan dozimetre firması (*Otomatik Algıla*, *RADAT*, *TENMAK / NDK* veya *Genel Excel / CSV*) seçilebilir hale getirildi; içe aktarım sihirbazı açılışta otomatik olarak seçilen firmaya ayarlı geliyor.
+- **Toplu Excel İçe Aktarım Motorunda İş Kuralı Güçlendirmeleri:** Personel toplu aktarımında hizmet sınıfına göre radyasyon görevlisi statüsünün otomatik ayrılması, koruyucu ekipman (RKE) aktarımında ekipman tipine göre otomatik kurumsal kod üretimi, izin hakediş/geçmiş ayrımı ile kilitli Şua dönemi koruması ve 6 farklı sistem tanımı kategorisinin toplu aktarımı daha güvenli hale getirildi.
+
+### Fayda Odaklı Açıklamalar
+
+#### 1. Sıfır Hata ve Artımlı Dönem Korumasıyla Geçmişten Bugüne Eksiksiz Doz Takibi
+
+e-Devlet TENMAK raporlarında henüz sonucu okunmamış boş dönemler sistem tarafından sıfır (`0,00 mSv`) olarak kabul edilmeyip otomatik atlanır; yalnızca okunmuş gerçek ölçümler işlenir. Çalışanın sistemde hiç dozimetre kaydı yoksa belgedeki tüm geçmiş dönemler tek seferde aktarılır; mevcut kayıtları varsa yalnızca yeni dönemler eklenerek geçmiş kayıtlar korunur ve PDF'teki eski kurum adı yerine daima personelin sistemdeki aktif görev birimi esas alınır. Çok dönemli aktarımlarda çalışana her dönem için ayrı bildirim yerine tek bir özet bildirim gönderilir.
+
+#### 2. Çalışan Katılımlı, Denetlenebilir Web Portal Doz Akışı
+
+Kurum dışından veya klinik içinden e-Devlet belgesini indiren personel tarayıcıdan raporunu ön izleyerek RKS onayına sunabilir. Yönetici/RKS onayı olmadan canlı dozimetre tablosuna hiçbir ölçüm işlenmez; onay tamamlandığında ise hem kümülatif yıllık/5 yıllık doz göstergeleri güncellenir hem de kaynak PDF resmi evrak kasasında saklanır.
+
+---
+
+## RADPYS V4.0.6.14: Müstakil Toplu Excel İçe Aktarım Kılavuzu, Sadeleştirilmiş Personel Yönetimi ve Kusursuz Kılavuz Düzeni
+
+### Öne Çıkan Yenilikler
+
+- **Müstakil "22. Toplu İçe Aktarım" Kılavuz Bölümü:** Daha önce personel yönetimi bölümü içine sıkışmış olan Evrensel Toplu Excel İçe Aktarım Sihirbazı, kullanım kılavuzunda bağımsız bir ana bölüm (**Bölüm 22: Merkezi Toplu İçe Aktarım Motoru**) olarak kullanıma sunuldu. Böylece kullanıcılar Excel aktarımıyla ilgili şablon hazırlama, akıllı sütun eşleme ve hata süzme adımlarını içindekiler tablosunda tek bakışta görebilir hale geldi.
+- **Sadeleştirilmiş ve Özlük Odaklı Personel Yönetimi Kılavuzu:** Bölüm 05 (Personel Yönetimi) kılavuz sayfası, genel içe aktarım kalabalığından arındırılarak kurum lisans kotası kontrolü, 10 kategorili personel özlük kartı, gebe ve emziren çalışan koruma kalkanı ile 30 yıllık yasal KVKK/NDK arşiv paketi yönetimine odaklandı.
+- **5 Adımlı Aktarım Sihirbazının Adım Adım Rehberi:** Excel aktarımı sırasında karşılaşılan tanımsız birim/unvanların otomatik çözümlenmesi, veritabanına tek bir kayıt yazmadan önce hatalı satırları kırmızıyla işaretleyen kuru çalıştırma (Dry-Run) simülasyonu ve yeni personeller için tek kullanımlık geçici şifre listesi indirme adımları rehber ve sıkça sorulan sorularla zenginleştirildi.
+- **Birebir Hizalanmış Kılavuz ve Yardım Portalı Dizini:** Kullanım kılavuzu, arama indeksleri ve Web Yardım Portalı başlıkları tam uyumlu hale getirilerek Web Portalı Bölüm 24, Mevzuat Sözlüğü ise Bölüm 25 olarak güncellendi.
+
+### Fayda Odaklı Açıklamalar
+
+#### 1. Aranan Bilgiye Hızlı Erişim ve Zaman Tasarrufu
+
+Hastanelerde yeni dönem başlangıçlarında yüzlerce personel, cihaz, koruyucu önlük veya izin kaydı sisteme toplu yüklenirken, kılavuzda bağımsız bir "Toplu İçe Aktarım" başlığı olmaması kullanıcıların bu özelliği bulmasını zorlaştırıyordu. Açılan müstakil 22. Bölüm sayesinde, sistemin sunduğu 5 adımlı sihirbaz ve Excel şablon kullanım yönergeleri doğrudan erişilebilir kılındı.
+
+#### 2. Sıfır Veri Kaybı ve Hatasız Toplu Veri Yükleme
+
+Yeni kılavuz sayfası; sahada en çok tereddüt edilen *"Excel'de hatalı satır varsa dosya tamamen iptal olur mu?"* ve *"Var olan kayıtlar ezilir mi?"* sorularına net yanıtlar sunarak, sistemin kuru çalıştırma (Dry-Run) güvenliğini ve atomik koruma mekanizmasını kullanıcıya adım adım anlatır.
+
+---
+
 ## RADPYS V4.0.6.13: Daha Hızlı Toplu Aktarım ve Raporlama, Eksiksiz Denetim İzlenebilirliği ve Tutarlı Arayüz Deneyimi
 
 ### Öne Çıkan Yenilikler

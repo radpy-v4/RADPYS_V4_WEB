@@ -29,7 +29,7 @@
           </div>
           <div class="flex flex-col">
             <span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.13</span>
+              RADPYS <span class="text-xs px-2 py-0.5 rounded font-mono font-semibold bg-cyan-100 text-cyan-800 dark:bg-cyan-900/60 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-700/50">v4.0.6.16</span>
             </span>
             <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Kullanım Kılavuzu &amp; Bilgi Portalı</span>
           </div>
@@ -94,7 +94,7 @@
         <div class="space-y-2 text-xs px-3 text-slate-500 dark:text-slate-400">
           <div class="flex justify-between py-1 border-b border-slate-100 dark:border-slate-800/50">
             <span>Toplam Modül:</span>
-            <strong class="text-slate-800 dark:text-slate-200 font-mono text-sm">24</strong>
+            <strong class="text-slate-800 dark:text-slate-200 font-mono text-sm">25</strong>
           </div>
           <div class="flex justify-between py-1 border-b border-slate-100 dark:border-slate-800/50">
             <span>Mevzuat Standardı:</span>
@@ -134,7 +134,7 @@
         <span class="text-xs font-bold tracking-wider uppercase text-cyan-600 dark:text-cyan-400">Bölüm 1</span>
         <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">Başlangıç, Güvenlik ve Sistem Altyapısı (Onboarding)</h2>
       </div>
-      <span class="text-xs sm:text-sm px-3 py-1 rounded-full font-mono font-medium bg-slate-100 dark:bg-slate-800 text-slate-500">5 Modül</span>
+      <span class="text-xs sm:text-sm px-3 py-1 rounded-full font-mono font-medium bg-slate-100 dark:bg-slate-800 text-slate-500">6 Modül</span>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
       <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-cyan-500/70 shadow-md hover:shadow-xl transition-all flex flex-col justify-between" data-search="01 kurulum ilk giris login sifre degistirme lisans aktivasyon ctrl+k komut paleti bildirim merkezi">
@@ -233,6 +233,37 @@
         </div>
       </div>
 
+      <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-cyan-500/70 shadow-md hover:shadow-xl transition-all flex flex-col justify-between" data-search="22 toplu ice aktarim bulk import excel yukleme sablon sutun eslestirme tanimsiz deger lookup cozumleyici dry run simulasyon sifre dokumu hata raporu">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">22</span>
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border-emerald-200 dark:border-emerald-800 px-2.5 py-1 rounded-full border">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında &amp; Güncel
+            </span>
+          </div>
+          <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
+            22. Merkezi Toplu İçe Aktarım Motoru (Bulk Import)
+          </h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+            Personel, izin, cihaz, RKE, nöbet ve sistem tanımlamalarını 2 sayfalı kurumsal Excel şablonlarıyla sisteme yükleme, akıllı sütun eşleme, tanımsız değer çözücü, Dry-Run simülasyonu ve asenkron aktarım rehberi.
+          </p>
+          <div class="flex flex-wrap gap-1.5 mb-5">
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">5 Adımlı Sihirbaz</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Excel Şablonu</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Tanımsız Değer Eşleme</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Dry-Run Simülasyonu</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Asenkron QThread</span>
+          </div>
+        </div>
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+          <span class="text-xs text-slate-400 font-medium">Toplu İçe Aktarım</span>
+          <a href="22_toplu_ice_aktarim.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+            <span>Kılavuzu Aç</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
       <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-cyan-500/70 shadow-md hover:shadow-xl transition-all flex flex-col justify-between" data-search="23 rapor ve tutanak rapor merkezi tutanak sihirbazi hek tutanagi iki asamali tasfiye sha256 muhrul pdf excel resmi sablon tasarim studyosu matbu evrak antet">
         <div>
           <div class="flex items-center justify-between mb-4">
@@ -274,7 +305,7 @@
       <span class="text-xs sm:text-sm px-3 py-1 rounded-full font-mono font-medium bg-slate-100 dark:bg-slate-800 text-slate-500">2 Modül</span>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-      <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-cyan-500/70 shadow-md hover:shadow-xl transition-all flex flex-col justify-between" data-search="05 personel yonetimi toplu aktarim excel import ozluk karti isten ayrilis 30 yil kvkk arsiv">
+      <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border-2 border-cyan-500/70 shadow-md hover:shadow-xl transition-all flex flex-col justify-between" data-search="05 personel yonetimi ozluk lisans kotasi tc kimlik mernis gebelik emzirme ayrilis 30 yil kvkk arsiv paket zip gorev unvan">
         <div>
           <div class="flex items-center justify-between mb-4">
             <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">05</span>
@@ -283,15 +314,21 @@
             </span>
           </div>
           <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
-            05. Personel Yönetimi ve Toplu Aktarım
+            05. Personel Yönetimi ve Lisans Kotası
           </h3>
           <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-            Personel özlük kartı yönetimi, Excel'den 5 adımlı toplu içe aktarım (alan eşleme, Dry-Run doğrulama, otomatik şifre dökümü), işten ayrılış ve 30 yıllık KVKK özlük arşivi.
+            Radyasyonla çalışan ve idari personelin özlük kartını yönetme, aktif lisans kotası kontrolü, otomatik kullanıcı hesabı üretimi, 10 kategorili detay takibi, gebe/emzirme koruma kalkanı ve 30 yıllık yasal KVKK/NDK arşiv paketini oluşturma rehberi.
           </p>
+          <div class="flex flex-wrap gap-1.5 mb-5">
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Özlük &amp; Görev Kartı</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Lisans Kotası</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">Gebe/Emzirme Kalkanı</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">30 Yıllık Arşiv</span>
+          </div>
         </div>
         <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
-          <span class="text-xs text-slate-400 font-medium">Özlük &amp; Excel Aktarım</span>
-          <a href="05_personel_yonetimi_ve_toplu_aktarim.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+          <span class="text-xs text-slate-400 font-medium">Personel Yönetimi</span>
+          <a href="05_personel_yonetimi.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
             <span>Kılavuzu Aç</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </a>
@@ -821,16 +858,16 @@
         </div>
       </div>
 
-      <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="22 web portal yonetici gosterge panelleri dashboard saha formu mobil pwa qr tarama genel bakis nobet kisit istek devir takas farazi izin sua denetim paketi saglik rke cihaz lms kpi grafik analitik">
+      <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="24 web portal yonetici gosterge panelleri dashboard saha formu mobil pwa qr tarama genel bakis nobet kisit istek devir takas farazi izin sua denetim paketi saglik rke cihaz lms kpi grafik analitik">
         <div>
           <div class="flex items-center justify-between mb-4">
-            <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">22</span>
+            <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">24</span>
             <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border-emerald-200 dark:border-emerald-800 px-2.5 py-1 rounded-full border">
               <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Yayında &amp; Güncel
             </span>
           </div>
           <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
-            22. Web Portalı ve Yönetici Gösterge Panelleri
+            24. Web Portalı ve Yönetici Gösterge Panelleri
           </h3>
           <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
             3 grupta 18 yönetici gösterge paneli (nöbet adalet/devir/kısıt/istek, birleşik izin/Şua/farazi ve sağlık/cihaz analizleri) ile 3 alt grupta 10 mobil/PWA uyumlu saha formu, kamera ile QR okuma, hızlı portal servis yöneticisi ve güvenli dış erişim.
@@ -844,23 +881,23 @@
         </div>
         <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
           <span class="text-xs text-slate-400 font-medium">Web Portal &amp; Analitik</span>
-          <a href="22_web_portal_ve_dashboardlar.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+          <a href="24_web_portal_ve_dashboardlar.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
             <span>Kılavuzu Aç</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </a>
         </div>
       </div>
 
-      <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="24 kisaltmalar mevzuat sozluk hek fm radat tenmak ebys rks ndk titck sks din6857 3153 32162 23999 657 4857 5510 6331 yasal sinir kurumsal parametre">
+      <div class="module-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="25 kisaltmalar mevzuat sozluk hek fm radat tenmak ebys rks ndk titck sks din6857 3153 32162 23999 657 4857 5510 6331 yasal sinir kurumsal parametre">
         <div>
           <div class="flex items-center justify-between mb-4">
-            <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">24</span>
+            <span class="font-mono text-sm font-bold px-2.5 py-1 rounded bg-cyan-100 dark:bg-cyan-950 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800">25</span>
             <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border-emerald-200 dark:border-emerald-800 px-2.5 py-1 rounded-full border">
               <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Referans Sözlük
             </span>
           </div>
           <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition mb-3">
-            24. Kısaltmalar ve Mevzuat Referans Sözlüğü
+            25. Kısaltmalar ve Mevzuat Referans Sözlüğü
           </h3>
           <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
             Tüm kılavuzda geçen 37 teknik ve idari kısaltma (HEK, FM, RADAT, TENMAK, EBYS, RKS), 16 ana mevzuat dayanağı ve yasal sınır ile kurumsal parametre ayrım tablosu.
@@ -873,7 +910,7 @@
         </div>
         <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
           <span class="text-xs text-slate-400 font-medium">Sözlük &amp; Mevzuat</span>
-          <a href="24_kisaltmalar_ve_mevzuat_sozlugu.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
+          <a href="25_kisaltmalar_ve_mevzuat_sozlugu.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-600 dark:text-cyan-400 hover:underline">
             <span>Kılavuzu Aç</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </a>
@@ -894,7 +931,7 @@
 
   <footer class="border-t border-slate-200 dark:border-slate-800 py-8 bg-white dark:bg-slate-900 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-16">
     <div class="max-w-[1720px] mx-auto px-6 space-y-2">
-      <p class="font-semibold text-slate-700 dark:text-slate-300">RADPYS V4 (v4.0.6.13) — Radyoloji Bilgi &amp; Radyasyon Güvenliği Yönetim Sistemi</p>
+      <p class="font-semibold text-slate-700 dark:text-slate-300">RADPYS V4 (v4.0.6.16) — Radyoloji Bilgi &amp; Radyasyon Güvenliği Yönetim Sistemi</p>
       <p>Sağlık Bakanlığı SKS 6.1, NDK Mevzuatı, DIN 6857-1 ve KVKK Standartları ile Uyumlu Olarak Korunmaktadır.</p>
       <p class="text-xs text-slate-400 dark:text-slate-500">Bu kılavuzdaki tüm ekran görüntüleri ve örnek kayıtlar KVKK 6698 kapsamında test amaçlı sentetik veridir; gerçek kişilerle benzerlikler tesadüfidir.</p>
     </div>
